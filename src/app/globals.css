@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  /* Ovation Brand Colors */
+  --primary: #779FEB;        /* Cornflower — CTAs, links */
+  --secondary: #82E19D;      /* Jade — Success, positive */
+  --accent: #EDB974;         /* Kernel — Premium, special */
+  --destructive: #EC8662;    /* Peachy — Alerts, recording glow */
+  --danger: #E55353;         /* Danger — Destructive actions */
+  --charcoal: #2D2D2D;       /* Body text */
+  --off-white: #F9F7F4;      /* Page background */
+
+  --background: var(--off-white);
+  --foreground: var(--charcoal);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-destructive: var(--destructive);
+  --color-danger: var(--danger);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}

@@ -1,0 +1,219 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "retry": "Try again",
+    "close": "Close",
+    "search": "Search",
+    "noResults": "No results found"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signOut": "Sign out",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset password",
+    "verifyEmail": "Verify your email",
+    "orContinueWith": "Or continue with"
+  },
+  "event": {
+    "create": {
+      "title": "Create your event",
+      "partnerAName": "Partner 1 name",
+      "partnerBName": "Partner 2 name",
+      "weddingDate": "Wedding date",
+      "venue": "Venue",
+      "guestCount": "Expected guests",
+      "welcomeMessage": "Welcome message",
+      "branding": "Branding",
+      "review": "Review & create"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "messages": "Messages",
+      "photos": "Photos",
+      "hoursOfAudio": "Hours of audio",
+      "invitesSent": "Invites sent",
+      "recentMessages": "Recent messages",
+      "quickActions": "Quick actions",
+      "shareQR": "Share QR code",
+      "inviteGuests": "Invite guests",
+      "startKiosk": "Start kiosk",
+      "browseKeepsakes": "Browse keepsakes"
+    },
+    "messages": {
+      "title": "Messages",
+      "empty": "No messages yet",
+      "emptyHint": "Share your QR code to get started",
+      "all": "All",
+      "favorites": "Favorites",
+      "photoOnly": "With photo",
+      "audioOnly": "Audio only",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "longest": "Longest",
+      "favorite": "Favorite",
+      "unfavorite": "Unfavorite",
+      "deleteConfirm": "Delete this message?"
+    },
+    "photos": {
+      "title": "Photos",
+      "empty": "No photos yet",
+      "download": "Download",
+      "downloadAll": "Download all"
+    },
+    "invite": {
+      "title": "Invite guests",
+      "qrCode": "QR Code",
+      "downloadQR": "Download QR",
+      "printQR": "Print QR",
+      "shareVia": "Share via",
+      "copyLink": "Copy link",
+      "copied": "Copied!",
+      "stats": "Invite statistics",
+      "sent": "Sent",
+      "opened": "Opened",
+      "submitted": "Submitted"
+    },
+    "kiosk": {
+      "setup": "Kiosk setup",
+      "pin": "Set a 4-digit PIN",
+      "pinHint": "Used to exit kiosk mode",
+      "launch": "Launch kiosk",
+      "deviceTip": "Use a tablet for the best experience"
+    },
+    "keepsakes": {
+      "title": "Keepsakes",
+      "goldBook": "Gold Book",
+      "videoMontage": "Video Montage",
+      "digitalAlbum": "Digital Album",
+      "audioVinyl": "Audio Vinyl",
+      "thankYouCards": "Thank You Cards",
+      "canvasPrint": "Canvas Print",
+      "configure": "Configure",
+      "selectMessages": "Select messages",
+      "chooseCover": "Choose cover",
+      "chooseLayout": "Choose layout",
+      "preview": "Preview",
+      "orderNow": "Order now"
+    },
+    "orders": {
+      "title": "Orders",
+      "empty": "No orders yet",
+      "status": {
+        "paid": "Paid",
+        "inProduction": "In production",
+        "shipped": "Shipped",
+        "delivered": "Delivered"
+      },
+      "tracking": "Track order",
+      "invoice": "View invoice"
+    },
+    "settings": {
+      "title": "Event settings",
+      "names": "Names",
+      "date": "Date",
+      "venue": "Venue",
+      "branding": "Branding",
+      "privacy": "Privacy"
+    },
+    "checklist": {
+      "title": "Wedding day checklist"
+    }
+  },
+  "guest": {
+    "landing": {
+      "title": "{names}'s wedding",
+      "cta": "Leave a message",
+      "poweredBy": "Powered by Ovation"
+    },
+    "recording": {
+      "yourName": "Your name",
+      "start": "Start recording",
+      "stop": "Stop recording",
+      "recording": "Recording...",
+      "tooShort": "That was too short — try again?",
+      "maxLength": "Max {seconds} seconds",
+      "review": "Review your recording",
+      "reRecord": "Re-record",
+      "addPhoto": "Add a photo",
+      "addNote": "Add a note",
+      "noteHint": "Up to {limit} characters",
+      "micPermission": "We need access to your microphone",
+      "micPermissionHint": "Tap allow when prompted",
+      "micDenied": "Microphone access was denied. Please enable it in your browser settings.",
+      "finalReview": "Review your message",
+      "submit": "Send message",
+      "uploading": "Sending your message...",
+      "uploadFailed": "Upload failed — we'll retry automatically"
+    },
+    "thankYou": {
+      "title": "Thank you!",
+      "message": "Your message has been sent to {names}",
+      "sharePrompt": "Share the love"
+    }
+  },
+  "account": {
+    "title": "Account",
+    "profile": "Profile",
+    "preferences": "Preferences",
+    "emailSettings": "Email settings",
+    "paymentMethods": "Payment methods",
+    "deleteAccount": "Delete account",
+    "deleteConfirm": "This action cannot be undone. Are you sure?"
+  },
+  "pricing": {
+    "title": "Choose your plan",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "currentPlan": "Current plan",
+    "upgrade": "Upgrade",
+    "faq": "Frequently asked questions"
+  },
+  "checkout": {
+    "success": "Payment successful!",
+    "successHint": "Your order is being processed",
+    "cancelled": "Payment cancelled",
+    "cancelledHint": "No charges were made",
+    "retry": "Try again"
+  },
+  "marketing": {
+    "hero": {
+      "title": "Capture every heartfelt moment",
+      "subtitle": "Let your guests leave audio messages, photos, and notes — and turn them into beautiful keepsakes.",
+      "cta": "Get started free"
+    },
+    "howItWorks": {
+      "title": "How it works"
+    },
+    "examples": {
+      "title": "Real wedding stories"
+    },
+    "about": {
+      "title": "About Ovation"
+    }
+  },
+  "kiosk": {
+    "welcome": "Leave a message for the happy couple",
+    "tapToStart": "Tap to start",
+    "offline": "Offline — messages will sync when reconnected",
+    "exitPin": "Enter PIN to exit"
+  },
+  "errors": {
+    "UNAUTHORIZED": "Please sign in to continue.",
+    "FORBIDDEN": "You don't have access to this.",
+    "NOT_FOUND": "Not found.",
+    "MESSAGE_LIMIT_REACHED": "This guestbook is full — check back later!",
+    "EVENT_NOT_ACTIVE": "This guestbook is closed.",
+    "RATE_LIMITED": "Slow down a moment, then try again.",
+    "generic": "Something went wrong. Reference: {traceId}"
+  }
+}
