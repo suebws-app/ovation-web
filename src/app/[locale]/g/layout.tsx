@@ -1,14 +1,12 @@
 export default function GuestLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <>
-      {/* TODO: Event-themed header (if set) */}
-      {/* TODO: Language picker */}
+      {/* TODO: Event-themed header, language picker */}
       <main className="flex-1">{children}</main>
-      {/* No footer — minimal guest experience */}
     </>
-  );
+  )
 }

@@ -1,101 +1,126 @@
 ---
 name: tailwind-design-system
-description: Use this skill when working with Tailwind CSS v4 — CSS-based @theme config, CSS variables for design tokens, dark mode, cn() utility, and cva components
+description: Use this skill when working with Tailwind CSS v4, shadcn/ui component patterns, the full theme token set, cn() utility, and cva components
 type: skill
 ---
 
-# Tailwind CSS v4 Design System
+# Tailwind CSS v4 + shadcn/ui Design System
 
 ## When to Use
 - Adding or modifying design tokens (colors, typography, spacing)
-- Implementing dark mode with CSS variables
-- Building variant-based components with cva
-- Setting up the `cn()` utility for class merging
+- Building new UI components
+- Implementing dark mode
+- Adding shadcn/ui components or customizing existing ones
 
 ## Core Principles
+- **shadcn/ui pattern** — components use Radix UI primitives + cva + cn(), live in `packages/ui/`
 - **Tailwind v4 uses CSS, not JS** — no `tailwind.config.ts`, theme defined via `@theme inline` in CSS
-- **CSS variables** define all design tokens in `:root` (and `.dark` for dark mode)
-- **`@theme inline`** maps CSS variables to Tailwind utility classes
+- **Full shadcn/ui token set** — oklch colors, radius scale, sidebar/chart tokens
+- **NEVER use raw Tailwind colors** (`text-zinc-50`, `bg-slate-900`, etc.) — always use theme tokens
 - `cn()` wraps `clsx` + `tailwind-merge` — always use it, never raw className concatenation
-- Components use `cva` for variant-driven styling
 
-## Tailwind v4 Config
+## UI Package Location
+
+```
+packages/ui/
+├── package.json              # @ovation/ui — workspace package
+├── tsconfig.json
+└── src/
+    ├── components/           # shadcn/ui-style components
+    │   ├── Button.tsx
+    │   ├── Input.tsx
+    │   └── ...
+    └── utils/
+        └── cn.ts             # clsx + tailwind-merge
+```
+
+Import from app code:
+```typescript
+import { Button } from '@ovation/ui/components/Button'
+import { cn } from '@ovation/ui/utils/cn'
+```
+
+## Theme Structure (globals.css)
+
+The CSS follows the standard shadcn/ui theme layout:
 
 ```css
-/* src/app/globals.css */
 @import "tailwindcss";
+@import "shadcn/tailwind.css";
 
-:root {
-  /* Brand tokens */
-  --primary: #779FEB;
-  --secondary: #82E19D;
-  --accent: #EDB974;
-  --destructive: #EC8662;
-  --danger: #E55353;
-  --charcoal: #2D2D2D;
-  --off-white: #F9F7F4;
+@custom-variant dark (&:is(.dark *));
 
-  /* Semantic tokens */
-  --background: var(--off-white);
-  --foreground: var(--charcoal);
-  --muted: #F5F5F7;
-  --muted-foreground: #6B7280;
-  --border: #E5E7EB;
-  --ring: var(--primary);
-}
-
-/* Dark mode — add when implementing theme toggle (not yet in project) */
-.dark {
-  --background: #0F0F23;
-  --foreground: #F1F1F3;
-  --muted: #1A1A2E;
-  --muted-foreground: #9CA3AF;
-  --border: #2D2D44;
-  --ring: #6B9AFF;
-  --primary: #6B9AFF;
-  --secondary: #4ADE80;
-  --accent: #FBBF24;
-  --destructive: #F87171;
-  --danger: #F87171;
-}
-
-/* Map CSS variables → Tailwind utilities */
 @theme inline {
+  /* Maps CSS variables → Tailwind utility classes */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-destructive: var(--destructive);
-  --color-danger: var(--danger);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --color-ring: var(--ring);
+  --color-primary-foreground: var(--primary-foreground);
+  /* ... full token set ... */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  /* ... radius scale ... */
+}
+
+:root { /* Light mode oklch values */ }
+.dark { /* Dark mode oklch values */ }
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground; }
 }
 ```
 
-```mjs
-// postcss.config.mjs
-const config = {
-  plugins: {
-    "@tailwindcss/postcss": {},
-  },
-};
-export default config;
-```
+## Complete Token Reference
 
-**No `tailwind.config.ts` needed.** Tailwind v4 reads `@theme` directives from CSS directly.
+### Core tokens (always available)
+
+| Token | Tailwind class | Use for |
+|-------|---------------|---------|
+| `background` / `foreground` | `bg-background`, `text-foreground` | Page backgrounds, body text |
+| `card` / `card-foreground` | `bg-card`, `text-card-foreground` | Card surfaces |
+| `popover` / `popover-foreground` | `bg-popover`, `text-popover-foreground` | Dropdowns, popovers |
+| `primary` / `primary-foreground` | `bg-primary`, `text-primary-foreground` | CTAs, links (Cornflower #779FEB) |
+| `secondary` / `secondary-foreground` | `bg-secondary`, `text-secondary-foreground` | Success, positive (Jade #82E19D) |
+| `accent` / `accent-foreground` | `bg-accent`, `text-accent-foreground` | Premium, special (Kernel #EDB974) |
+| `muted` / `muted-foreground` | `bg-muted`, `text-muted-foreground` | Subtle backgrounds, secondary text |
+| `destructive` | `bg-destructive` | Alerts, warnings (Peachy #EC8662) |
+| `danger` | `bg-danger` | Delete, destructive actions (#E55353) |
+| `border` | `border-border` | Borders, dividers |
+| `input` | `border-input` | Input borders (slightly different from border) |
+| `ring` | `ring-ring` | Focus rings |
+
+### Sidebar tokens (for app layout)
+
+| Token | Use for |
+|-------|---------|
+| `sidebar` / `sidebar-foreground` | Sidebar background and text |
+| `sidebar-primary` / `sidebar-primary-foreground` | Active sidebar item |
+| `sidebar-accent` / `sidebar-accent-foreground` | Hover/selected sidebar item |
+| `sidebar-border` / `sidebar-ring` | Sidebar borders and focus |
+
+### Chart tokens
+
+`chart-1` through `chart-5` — mapped to brand colors for data visualization.
+
+### Radius scale
+
+`rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`, `rounded-2xl` etc. — all derived from `--radius: 0.625rem`.
+
+## Adding New Tokens
+
+Add in **three places**:
+1. `@theme inline { --color-new-token: var(--new-token); }`
+2. `:root { --new-token: oklch(...); }`
+3. `.dark { --new-token: oklch(...); }`
 
 ## cn() Utility
 
-**Not yet installed.** Run first:
-```bash
-pnpm add clsx tailwind-merge
-```
-
 ```typescript
-// src/lib/utils/cn.ts
+// packages/ui/src/utils/cn.ts
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -104,85 +129,74 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-## Button with cva
+## Adding New shadcn/ui Components
+
+1. Check [ui.shadcn.com](https://ui.shadcn.com) for the component
+2. Copy the component code into `packages/ui/src/components/<Component>.tsx`
+3. Update imports: `cn` from `../utils/cn` (relative, not `@/`)
+4. Replace `text-white` with `text-primary-foreground` etc. — use theme tokens
+5. Install any missing Radix primitives: `pnpm add @radix-ui/react-<primitive>`
+
+### Example: Adding a Dialog
+
+```bash
+pnpm add @radix-ui/react-dialog
+```
 
 ```typescript
-// src/features/ui/Button.tsx
+// packages/ui/src/components/Dialog.tsx
 'use client'
+import * as DialogPrimitive from '@radix-ui/react-dialog'
+import { cn } from '../utils/cn'
 
-import { cva, type VariantProps } from 'class-variance-authority'
-import { Slot } from '@radix-ui/react-slot'
-import { forwardRef } from 'react'
-import { cn } from '@/lib/utils/cn'
+export const Dialog = DialogPrimitive.Root
+export const DialogTrigger = DialogPrimitive.Trigger
 
-const buttonVariants = cva(
-  'inline-flex cursor-pointer items-center justify-center rounded-lg font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
-  {
-    variants: {
-      variant: {
-        default: 'bg-primary text-white hover:bg-primary/90',
-        secondary: 'bg-secondary text-charcoal hover:bg-secondary/90',
-        ghost: 'hover:bg-muted text-foreground',
-        destructive: 'bg-danger text-white hover:bg-danger/90',
-        outline: 'border border-border bg-background text-foreground hover:bg-muted',
-      },
-      size: {
-        default: 'h-10 gap-2 px-4 text-sm',
-        lg: 'h-12 gap-2 px-6 text-base',
-        sm: 'h-8 gap-1 px-3 text-xs',
-        icon: 'size-10',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
-  },
-)
-
-type ButtonProps = React.ComponentProps<'button'> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }
-
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button'
-    return (
-      <Comp
-        ref={ref}
-        className={cn(buttonVariants({ variant, size }), className)}
+export function DialogContent({ className, children, ...props }: DialogPrimitive.DialogContentProps) {
+  return (
+    <DialogPrimitive.Portal>
+      <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/50" />
+      <DialogPrimitive.Content
+        className={cn(
+          'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2',
+          'rounded-lg bg-popover p-6 shadow-lg border border-border text-popover-foreground',
+          className,
+        )}
         {...props}
-      />
-    )
-  },
-)
-Button.displayName = 'Button'
-export { buttonVariants }
+      >
+        {children}
+      </DialogPrimitive.Content>
+    </DialogPrimitive.Portal>
+  )
+}
 ```
 
-## CSS Class Patterns
+## Installed Dependencies
 
-```
-/* Layout */        flex flex-col items-center justify-center gap-4
-/* Colors */        bg-background text-foreground bg-primary text-white
-/* Dark mode */     Automatic via CSS variables — no dark: prefix for themed colors
-/* States */        hover:bg-primary/90 focus:ring-2 focus:ring-ring disabled:opacity-50
-/* Border */        rounded-lg border border-border
-/* Responsive */    sm:px-4 md:px-8 lg:px-0
-```
+| Package | Purpose |
+|---------|---------|
+| `tailwindcss` v4 | CSS framework |
+| `@tailwindcss/postcss` | PostCSS plugin |
+| `shadcn` | Base CSS (keyframes, Radix variants, scrollbar utility) |
+| `class-variance-authority` | Component variants (cva) |
+| `clsx` | Conditional class names |
+| `tailwind-merge` | Smart class merging |
+| `@radix-ui/react-slot` | Polymorphic `asChild` pattern |
 
 ## Conventions
-- Always use `cn()` — never concatenate class strings manually
-- Semantic color names (`primary`, `foreground`) not raw hex in classes
-- Dark mode via CSS variables — `dark:` prefix only needed for non-themed values
+- **NEVER use raw Tailwind colors** — no `text-zinc-50`, `bg-slate-900`, `text-gray-500`. Always use theme tokens: `text-foreground`, `bg-background`, `text-muted-foreground`
+- Always use `cn()` — never concatenate class strings
 - `cva` for any component with 2+ visual variants
-- `@theme inline` for all Tailwind-consumed tokens
-- Standard Tailwind v4 breakpoints: `sm`, `md`, `lg`, `xl`, `2xl`
+- UI components live in `packages/ui/src/components/` — one file per component
+- Components use relative imports (`../utils/cn`), not `@/` aliases
+- Follow shadcn/ui component APIs for consistency
+- All colors use oklch in the CSS variables
+- Add `@ovation/ui` to `transpilePackages` in `next.config.ts`
 
 ## Anti-patterns
+- **NEVER use `text-zinc-*`, `bg-slate-*`, `text-gray-*` or any raw color** — use theme tokens only
 - Never create a `tailwind.config.ts` — Tailwind v4 uses CSS-based config
-- Never use raw hex/rgb values in className — use theme tokens
-- Never use `dark:` prefix for colors defined as CSS variables
-- Never create component variants with conditional ternaries — use `cva`
-- Never mix styled-components/Emotion with Tailwind
+- Never hardcode hex/rgb in className — use CSS variable tokens
+- Never use `dark:` prefix for colors defined as CSS variables — they switch automatically
+- Never put UI components in `src/features/ui/` — they live in `packages/ui/`
+- Never install shadcn CLI — copy components manually and adapt

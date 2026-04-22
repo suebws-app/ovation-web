@@ -13,9 +13,11 @@ type: skill
 
 ## Core Principles
 - Components are **server** (default) or **client** (`'use client'`)
-- Feature components in `src/features/<feature>/`
-- Shared UI components in `src/features/ui/`
+- **UI primitives** live in `packages/ui/` — shadcn/ui pattern (Radix + cva + cn)
+- **Feature components** in `src/features/<feature>/`
 - Shared hooks in `src/lib/hooks/`
+- **NEVER use raw Tailwind colors** (`text-zinc-50`, `bg-slate-900`) — always theme tokens
+- Import UI: `import { Button } from '@ovation/ui/components/Button'`
 
 ## Component File Structure
 
@@ -26,9 +28,9 @@ type: skill
 import { forwardRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-// 2. Internal alias imports
-import { cn } from '@/lib/utils/cn'
-import { Button } from '@/features/ui/Button'
+// 2. Package imports
+import { Button } from '@ovation/ui/components/Button'
+import { cn } from '@ovation/ui/utils/cn'
 
 // 3. Relative imports
 import type { CardProps } from './types'
@@ -58,11 +60,17 @@ export function FeatureCard({ title, className }: CardProps) {
 ## File Organization
 
 ```
-src/features/
-├── ui/                         # Shared UI components
-│   ├── Button.tsx
-│   ├── Input.tsx
-│   └── Dialog.tsx
+packages/ui/                    # @ovation/ui — shared UI package
+├── src/
+│   ├── components/             # shadcn/ui-style components
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   └── Dialog.tsx
+│   └── utils/
+│       └── cn.ts               # clsx + tailwind-merge
+└── package.json
+
+src/features/                   # App feature modules
 ├── auth/
 │   ├── LoginForm.tsx
 │   ├── loginSchema.ts
@@ -74,12 +82,12 @@ src/features/
 └── domain/
     └── types.ts
 
-src/lib/
+src/lib/                        # Shared app utilities
 ├── hooks/
 │   ├── useMediaQuery.ts
 │   └── useDebounce.ts
 └── utils/
-    └── cn.ts
+    └── env.ts
 ```
 
 ## Naming Conventions
@@ -107,9 +115,9 @@ type ButtonProps = React.ComponentProps<'button'> & {
 
 ## Export Patterns
 
+- **UI components**: individual file exports via package (`import { Button } from '@ovation/ui/components/Button'`), no barrel
 - **Feature modules**: use an `index.ts` barrel for the public API of each feature
-- **UI components**: individual file exports (`import { Button } from '@/features/ui/Button'`), no barrel
-- **Hooks/utils**: individual file exports (`import { cn } from '@/lib/utils/cn'`)
+- **Hooks/utils**: individual file exports (`import { useDebounce } from '@/lib/hooks/useDebounce'`)
 
 Barrel exports are fine when a feature has a small, stable public API. Avoid barrels for large sets (icons, many UI components) — they break tree-shaking.
 
@@ -120,7 +128,9 @@ Barrel exports are fine when a feature has a small, stable public API. Avoid bar
 - `className` prop on all visual components
 
 ## Anti-patterns
+- **NEVER use `text-zinc-*`, `bg-slate-*`, `text-gray-*`** — use theme tokens only
 - Never put `'use client'` on a component that doesn't need it
 - Never use `next/link` or `next/navigation` directly — use i18n wrappers
+- Never put UI primitives in `src/` — they belong in `packages/ui/`
 - Never use `any` without justification
 - Never create a component without deciding server vs client first

@@ -1,30 +1,160 @@
 @import "tailwindcss";
+@import "shadcn/tailwind.css";
 
-:root {
-  /* Ovation Brand Colors */
-  --primary: #779FEB;        /* Cornflower — CTAs, links */
-  --secondary: #82E19D;      /* Jade — Success, positive */
-  --accent: #EDB974;         /* Kernel — Premium, special */
-  --destructive: #EC8662;    /* Peachy — Alerts, recording glow */
-  --danger: #E55353;         /* Danger — Destructive actions */
-  --charcoal: #2D2D2D;       /* Body text */
-  --off-white: #F9F7F4;      /* Page background */
-
-  --background: var(--off-white);
-  --foreground: var(--charcoal);
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-danger: var(--danger);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
+/*
+ * Ovation Brand Tokens — Light Mode
+ *
+ * Brand palette:
+ *   Cornflower  #779FEB  — Primary CTAs, links
+ *   Jade        #82E19D  — Success, positive
+ *   Kernel      #EDB974  — Premium, special
+ *   Peachy      #EC8662  — Alerts, recording glow
+ *   Danger      #E55353  — Destructive actions
+ *   Charcoal    #2D2D2D  — Body text
+ *   Off-white   #F9F7F4  — Page background
+ */
+:root {
+  --radius: 0.625rem;
+
+  --background: oklch(0.977 0.005 78.3);
+  --foreground: oklch(0.297 0.000 89.9);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.297 0.000 89.9);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.297 0.000 89.9);
+
+  --primary: oklch(0.705 0.120 262.5);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.833 0.132 151.8);
+  --secondary-foreground: oklch(0.297 0.000 89.9);
+
+  --accent: oklch(0.818 0.105 73.3);
+  --accent-foreground: oklch(0.297 0.000 89.9);
+
+  --muted: oklch(0.971 0.003 286.4);
+  --muted-foreground: oklch(0.551 0.023 264.4);
+
+  --destructive: oklch(0.723 0.135 40.0);
+  --danger: oklch(0.639 0.182 23.8);
+
+  --border: oklch(0.928 0.006 264.5);
+  --input: oklch(0.928 0.006 264.5);
+  --ring: oklch(0.705 0.120 262.5);
+
+  --chart-1: oklch(0.705 0.120 262.5);
+  --chart-2: oklch(0.833 0.132 151.8);
+  --chart-3: oklch(0.818 0.105 73.3);
+  --chart-4: oklch(0.723 0.135 40.0);
+  --chart-5: oklch(0.639 0.182 23.8);
+
+  --sidebar: oklch(0.977 0.005 78.3);
+  --sidebar-foreground: oklch(0.297 0.000 89.9);
+  --sidebar-primary: oklch(0.705 0.120 262.5);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.971 0.003 286.4);
+  --sidebar-accent-foreground: oklch(0.297 0.000 89.9);
+  --sidebar-border: oklch(0.928 0.006 264.5);
+  --sidebar-ring: oklch(0.705 0.120 262.5);
+}
+
+.dark {
+  --background: oklch(0.178 0.000 0);
+  --foreground: oklch(0.971 0.003 286.4);
+
+  --card: oklch(0.220 0.000 0);
+  --card-foreground: oklch(0.971 0.003 286.4);
+
+  --popover: oklch(0.220 0.000 0);
+  --popover-foreground: oklch(0.971 0.003 286.4);
+
+  --primary: oklch(0.750 0.130 262.5);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.750 0.110 151.8);
+  --secondary-foreground: oklch(0.971 0.003 286.4);
+
+  --accent: oklch(0.750 0.095 73.3);
+  --accent-foreground: oklch(0.971 0.003 286.4);
+
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+
+  --destructive: oklch(0.704 0.191 22.2);
+  --danger: oklch(0.704 0.191 22.2);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.750 0.130 262.5);
+
+  --chart-1: oklch(0.750 0.130 262.5);
+  --chart-2: oklch(0.750 0.110 151.8);
+  --chart-3: oklch(0.750 0.095 73.3);
+  --chart-4: oklch(0.704 0.191 22.2);
+  --chart-5: oklch(0.639 0.182 23.8);
+
+  --sidebar: oklch(0.220 0.000 0);
+  --sidebar-foreground: oklch(0.971 0.003 286.4);
+  --sidebar-primary: oklch(0.750 0.130 262.5);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.971 0.003 286.4);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.750 0.130 262.5);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
