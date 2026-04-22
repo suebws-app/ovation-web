@@ -1,3 +1,1 @@
-export default function SignUpPage() {
-  return <div>{/* TODO: Registration form */}</div>;
-}
+export { SignUp as default } from "@/features/auth/SignUp/SignUp";
