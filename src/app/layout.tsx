@@ -7,10 +7,12 @@ export const metadata: Metadata = {
     "Let your guests leave audio messages, photos, and notes — and turn them into beautiful keepsakes.",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return children;
 }
+
+export default RootLayout

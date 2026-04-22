@@ -1,6 +1,6 @@
 ---
 name: next-intl-setup
-description: Use this skill when working with next-intl v4 — routing config, createNavigation, translation loading, CLDR currency formatting, and translation key conventions
+description: Use this skill when working with next-intl v4 — routing config, createNavigation, translation loading, and translation key conventions
 type: skill
 ---
 
@@ -9,7 +9,7 @@ type: skill
 ## When to Use
 - Setting up or modifying i18n configuration
 - Adding new translation keys
-- Building locale-aware navigation or currency formatting
+- Building locale-aware navigation
 - Working with translations in server or client components
 
 ## Core Principles
@@ -17,17 +17,16 @@ type: skill
 - Locale prefix: `as-needed` — default locale (`en`) has no prefix
 - Navigation exports (`Link`, `redirect`, `useRouter`) from `@/i18n/navigation` — never raw `next/link`
 - `proxy.ts` handles locale detection (Next.js 16 uses proxy, not middleware)
-- CLDR-aware currency formatting via `@/i18n/currency`
+- **Language and currency are independent** — currency comes from the backend, not the locale
 
 ## File Structure
 
 ```
 src/i18n/
-├── config.ts       # Locales, default, currency map, BCP 47 tags
+├── config.ts       # Locales, default locale, Locale type
 ├── routing.ts      # defineRouting config
 ├── navigation.ts   # createNavigation exports (Link, redirect, useRouter, etc.)
-├── request.ts      # getRequestConfig — loads messages per locale
-└── currency.ts     # formatCurrency, formatCurrencyParts
+└── request.ts      # getRequestConfig — loads messages per locale
 
 messages/
 ├── en.json         # English translations (source of truth)
@@ -47,14 +46,6 @@ messages/
 export const locales = ['en', 'fr', 'nl', 'de', 'es', 'it'] as const
 export type Locale = (typeof locales)[number]
 export const defaultLocale: Locale = 'en'
-
-export const localeCurrency: Record<Locale, string> = {
-  en: 'EUR', fr: 'EUR', nl: 'EUR', de: 'EUR', es: 'EUR', it: 'EUR',
-}
-
-export const localeMap: Record<Locale, string> = {
-  en: 'en-GB', fr: 'fr-FR', nl: 'nl-NL', de: 'de-DE', es: 'es-ES', it: 'it-IT',
-}
 ```
 
 ### Routing
@@ -120,7 +111,7 @@ import { routing } from './i18n/routing'
 
 const intlMiddleware = createMiddleware(routing)
 
-export function proxy(request: Request) {
+export const proxy = (request: Request) => {
   return intlMiddleware(request as any)
 }
 
@@ -134,10 +125,12 @@ export const config = {
 ```typescript
 import { getTranslations } from 'next-intl/server'
 
-export default async function AboutPage() {
+const AboutPage = async () => {
   const t = await getTranslations()
   return <h1>{t('about__title')}</h1>
 }
+
+export default AboutPage
 ```
 
 ### Client component usage
@@ -146,7 +139,7 @@ export default async function AboutPage() {
 'use client'
 import { useTranslations } from 'next-intl'
 
-export function LoginForm() {
+export const LoginForm = () => {
   const t = useTranslations()
   return <h2>{t('auth__login__title')}</h2>
 }
@@ -159,7 +152,7 @@ export function LoginForm() {
 import { usePathname, useRouter } from '@/i18n/navigation'
 import { locales } from '@/i18n/config'
 
-export function LanguageSwitcher() {
+export const LanguageSwitcher = () => {
   const router = useRouter()
   const pathname = usePathname()
 
@@ -193,13 +186,15 @@ Scopes: `auth`, `event`, `common`, `validation`, `seo`, `error`
 
 ## Conventions
 - Always use `Link` / `useRouter` from `@/i18n/navigation` — never `next/link`
+- Always use arrow functions for components
 - Translation keys: `scope__section__element` with double underscores
 - Default locale (`en`) has no URL prefix; all others do
-- Currency formatting uses CLDR-correct `Intl.NumberFormat` via `@/i18n/currency`
 - Messages loaded from JSON files in `messages/` directory
+- Currency is backend-driven, not tied to locale — never couple them
 
 ## Anti-patterns
 - Never hardcode strings in components — always use `t('key')`
 - Never use `next/link` or `next/navigation` directly
 - Never create a custom Link wrapper — `createNavigation` handles everything
 - Never store locale in state — use the URL and cookie as source of truth
+- Never derive currency from locale — currency comes from backend/user settings

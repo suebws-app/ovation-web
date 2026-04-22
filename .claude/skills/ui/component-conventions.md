@@ -12,6 +12,7 @@ type: skill
 - Organizing component files
 
 ## Core Principles
+- **Always use arrow functions** for components — `export const MyComponent = () => {}`, never `function MyComponent() {}`
 - Components are **server** (default) or **client** (`'use client'`)
 - **UI primitives** live in `packages/ui/` — shadcn/ui pattern (Radix + cva + cn)
 - **Feature components** in `src/features/<feature>/`
@@ -25,7 +26,7 @@ type: skill
 'use client' // Only if using hooks, state, or browser APIs
 
 // 1. External imports
-import { forwardRef, useState } from 'react'
+import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 // 2. Package imports
@@ -35,8 +36,8 @@ import { cn } from '@ovation/ui/utils/cn'
 // 3. Relative imports
 import type { CardProps } from './types'
 
-// 4. Component
-export function FeatureCard({ title, className }: CardProps) {
+// 4. Component — always arrow function
+export const FeatureCard = ({ title, className }: CardProps) => {
   const t = useTranslations()
   return (
     <div className={cn('rounded-lg bg-background p-6', className)}>

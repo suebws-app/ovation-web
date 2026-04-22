@@ -1,11 +1,13 @@
-export default function AuthLayout({
+const AuthLayout = ({
   children,
 }: {
   children: React.ReactNode
-}) {
+}) => {
   return (
     <div className="flex min-h-full flex-col items-center justify-center px-4">
       <div className="w-full max-w-md">{children}</div>
     </div>
   )
 }
+
+export default AuthLayout

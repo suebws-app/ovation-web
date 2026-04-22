@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-export default function NotFound() {
+const NotFound = () => {
   const t = useTranslations('errors')
 
   return (
@@ -10,3 +10,5 @@ export default function NotFound() {
     </div>
   )
 }
+
+export default NotFound

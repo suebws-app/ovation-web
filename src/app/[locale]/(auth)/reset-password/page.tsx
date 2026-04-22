@@ -1,3 +1,5 @@
-export default function ResetPasswordPage() {
+const ResetPasswordPage = () => {
   return <div>{/* TODO: New password form */}</div>;
 }
+
+export default ResetPasswordPage

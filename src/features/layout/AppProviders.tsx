@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react'
 
-export function AppProviders({ children }: { children: ReactNode }) {
+export const AppProviders = ({ children }: { children: ReactNode }) => {
   return (
     <>
       {/* Future: ThemeProvider, ErrorBoundary, Toaster */}

@@ -1,8 +1,8 @@
-export default function GuestLayout({
+const GuestLayout = ({
   children,
 }: {
   children: React.ReactNode
-}) {
+}) => {
   return (
     <>
       {/* TODO: Event-themed header, language picker */}
@@ -10,3 +10,5 @@ export default function GuestLayout({
     </>
   )
 }
+
+export default GuestLayout

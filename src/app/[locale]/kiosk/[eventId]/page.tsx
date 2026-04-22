@@ -1,3 +1,5 @@
-export default function KioskPage() {
+const KioskPage = () => {
   return <div>{/* TODO: Fullscreen kiosk — welcome screen, attract loop, recording flow, PIN exit */}</div>;
 }
+
+export default KioskPage

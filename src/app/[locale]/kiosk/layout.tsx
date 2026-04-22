@@ -1,8 +1,8 @@
-export default function KioskLayout({
+const KioskLayout = ({
   children,
 }: {
   children: React.ReactNode
-}) {
+}) => {
   return (
     <div className="fixed inset-0 overflow-hidden bg-background">
       {/* Fullscreen, no nav, no scroll, no chrome */}
@@ -11,3 +11,5 @@ export default function KioskLayout({
     </div>
   )
 }
+
+export default KioskLayout
