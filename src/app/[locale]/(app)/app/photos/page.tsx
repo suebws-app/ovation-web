@@ -1,7 +1,1 @@
-import { PhotosPage } from '@/features/photos/PhotosPage'
-
-const PhotosRoutePage = () => {
-  return <PhotosPage eventId="default" />
-}
-
-export default PhotosRoutePage
+export { PhotosPage as default } from "@/features/photos/PhotosPage";

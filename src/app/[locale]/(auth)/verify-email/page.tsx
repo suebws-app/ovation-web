@@ -1,5 +1,1 @@
-const VerifyEmailPage = () => {
-  return <div>{/* TODO: Email verification landing */}</div>;
-}
-
-export default VerifyEmailPage
+export { VerifyEmailPage as default } from "@/features/auth/VerifyEmailPage";

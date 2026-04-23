@@ -22,7 +22,7 @@ const TINTS = [
 const generateWave = (seed: number) =>
   Array.from(
     { length: 48 },
-    (_, i) => 0.2 + 0.8 * Math.abs(Math.sin(seed * 0.7 + i * 0.4))
+    (_, i) => 0.2 + 0.8 * Math.abs(Math.sin(seed * 0.7 + i * 0.4)),
   );
 
 const MOCK_MESSAGES = [
@@ -123,8 +123,7 @@ const MOCK_MESSAGES = [
     relation: "Bride\u2019s mother",
     initials: "EV",
     tint: TINTS[5],
-    quote:
-      "My baby girl, you have always been my greatest adventure.",
+    quote: "My baby girl, you have always been my greatest adventure.",
     transcript:
       "My baby girl, you have always been my greatest adventure. Watching you walk down that aisle today, I thought my heart would burst. Tom\u00e1s, thank you for making her smile the way only I used to be able to.",
     duration: "4:02",
@@ -159,8 +158,7 @@ const MOCK_MESSAGES = [
     relation: "Wedding planner",
     initials: "SL",
     tint: TINTS[7],
-    quote:
-      "In ten years of weddings, yours was the first where I cried.",
+    quote: "In ten years of weddings, yours was the first where I cried.",
     transcript:
       "In ten years of weddings, yours was the first where I cried. Not during the vows \u2014 during the first dance. The way he whispered something and you laughed? That\u2019s it. That\u2019s the whole thing.",
     duration: "1:45",
@@ -221,28 +219,27 @@ export const MessagesPage = () => {
         setActiveMessageId(id);
       }
     },
-    [selectMode, toggleSelect]
+    [selectMode, toggleSelect],
   );
 
   const activeMessage =
     MOCK_MESSAGES.find((m) => m.id === activeMessageId) ?? MOCK_MESSAGES[0];
 
   const weddingNight = MOCK_MESSAGES.filter(
-    (m) => !["00:05", "00:22"].includes(m.time)
+    (m) => !["00:05", "00:22"].includes(m.time),
   );
   const nextMorning = MOCK_MESSAGES.filter((m) =>
-    ["00:05", "00:22"].includes(m.time)
+    ["00:05", "00:22"].includes(m.time),
   );
 
   const selectedDuration = MOCK_MESSAGES.filter((m) =>
-    selectedIds.has(m.id)
+    selectedIds.has(m.id),
   ).reduce((acc, m) => acc + m.durationSec, 0);
 
   return (
     <div className="-mx-4 -mb-6 tablet:-mb-10 desktop:-mb-20 grid min-h-screen large-desktop:grid-cols-[1fr_360px]">
       <div className="flex min-w-0 flex-col bg-card">
         <MessageToolbar />
-
         <div className="flex items-center gap-2 border-b border-border px-4 py-2.5 tablet:px-7">
           <Button
             variant={selectMode ? "default" : "outline"}
@@ -376,9 +373,7 @@ const DayHeader = ({
 }) => (
   <div className="flex items-center gap-2.5 border-b border-border bg-background px-4 py-3 tablet:px-6">
     <span className="font-serif type-body font-semibold">{day}</span>
-    <span className="type-caption text-muted-foreground">
-      &middot; {date}
-    </span>
+    <span className="type-caption text-muted-foreground">&middot; {date}</span>
     <span className="ml-auto rounded-full border border-border bg-card px-2 py-0.5 type-caption font-semibold text-muted-foreground">
       {count} {count === 1 ? "message" : "messages"}
     </span>

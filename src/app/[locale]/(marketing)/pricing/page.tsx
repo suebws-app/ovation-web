@@ -1,5 +1,1 @@
-const PricingPage = () => {
-  return <div>{/* TODO: Plan comparison & FAQs */}</div>;
-}
-
-export default PricingPage
+export { PricingPage as default } from "@/features/marketing/PricingPage";

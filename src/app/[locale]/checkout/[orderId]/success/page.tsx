@@ -1,5 +1,1 @@
-const CheckoutSuccessPage = () => {
-  return <div>{/* TODO: Payment successful, polling for order status */}</div>;
-}
-
-export default CheckoutSuccessPage
+export { CheckoutSuccessPage as default } from "@/features/checkout/CheckoutSuccessPage";

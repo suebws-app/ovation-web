@@ -1,5 +1,1 @@
-const PrivacyPage = () => {
-  return <div>{/* TODO: Privacy policy */}</div>;
-}
-
-export default PrivacyPage
+export { PrivacyPage as default } from "@/features/marketing/legal/PrivacyPage";

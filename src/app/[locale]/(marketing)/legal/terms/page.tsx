@@ -1,5 +1,1 @@
-const TermsPage = () => {
-  return <div>{/* TODO: Terms of service */}</div>;
-}
-
-export default TermsPage
+export { TermsPage as default } from "@/features/marketing/legal/TermsPage";

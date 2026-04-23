@@ -7,7 +7,7 @@ export const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <SidebarProvider>
       <PrivateSideBar />
-      <div className="flex w-full flex-1 px-6 flex-col overflow-hidden ">
+      <div className="flex w-full flex-1 px-6 pb-6 flex-col overflow-hidden">
         <PrivateHeaderDesktop />
         <PrivateHeaderMobile />
         <SidebarInset>{children}</SidebarInset>

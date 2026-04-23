@@ -29,6 +29,8 @@ Start with `.claude/skills/INDEX.md` for the full list and dependency map.
 
 ## Code style rules (do NOT ignore)
 
+- **NEVER put component code in `page.tsx`** — every `page.tsx` must be a single re-export line: `export { ComponentName as default } from "@/features/...";` — no imports, no logic, no JSX, no props handling
+- **NEVER use arbitrary value brackets for spacing/sizing** (`size-[22px]`, `w-[10px]`, `p-[14px]`, `gap-[6px]`) — always use Tailwind utility classes (`size-5.5`, `w-2.5`, `p-3.5`, `gap-1.5`). If an exact token doesn't exist, pick the closest one or extend the theme
 - **Always use arrow functions** for components — `export const MyComponent = () => {}`, never `function MyComponent() {}`
 - **NEVER inline JSX inside `.map()`** — extract a named component and render that in the map
 - **NEVER put multiple components in one file** — one component per file, use folders with `index.ts` when a component has sub-components

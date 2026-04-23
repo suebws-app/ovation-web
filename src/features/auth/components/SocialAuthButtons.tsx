@@ -29,13 +29,13 @@ export const SocialAuthButtons = ({ action = 'sign-up', className }: SocialAuthB
 }
 
 const AppleIconBox = () => (
-  <span className="inline-flex size-[22px] items-center justify-center rounded-6 bg-foreground">
+  <span className="inline-flex size-5.5 items-center justify-center rounded-6 bg-foreground">
     <Apple width={12} height={12} className="text-background" />
   </span>
 )
 
 const GoogleIconBox = () => (
-  <span className="inline-flex size-[22px] items-center justify-center rounded-6 border border-border bg-card type-caption font-bold text-foreground">
+  <span className="inline-flex size-5.5 items-center justify-center rounded-6 border border-border bg-card type-caption font-bold text-foreground">
     G
   </span>
 )

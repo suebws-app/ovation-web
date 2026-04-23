@@ -64,11 +64,7 @@ const ALBUM_CHIPS = [
   { label: "Reception", count: 23 },
 ];
 
-type PhotosPageProps = {
-  eventId: string;
-};
-
-export const PhotosPage = ({ eventId }: PhotosPageProps) => {
+export const PhotosPage = () => {
   const [selectMode, setSelectMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [activeAlbum, setActiveAlbum] = useState("All");

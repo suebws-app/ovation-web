@@ -1,5 +1,1 @@
-const ResetPasswordPage = () => {
-  return <div>{/* TODO: New password form */}</div>;
-}
-
-export default ResetPasswordPage
+export { ResetPasswordPage as default } from "@/features/auth/ResetPasswordPage";

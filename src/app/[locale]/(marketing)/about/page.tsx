@@ -1,5 +1,1 @@
-const AboutPage = () => {
-  return <div>{/* TODO: Team, story */}</div>;
-}
-
-export default AboutPage
+export { AboutPage as default } from "@/features/marketing/AboutPage";

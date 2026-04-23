@@ -312,7 +312,7 @@ export const SidebarInset = forwardRef<
     ref={ref}
     data-slot="sidebar-inset"
     className={cn(
-      "relative flex min-h-svh w-full flex-1 flex-col max-w-container  mx-auto",
+      "relative flex min-h-svh w-full flex-1 flex-col max-w-container mx-auto",
       className,
     )}
     {...props}

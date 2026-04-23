@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { QRStage } from "./components/QRStage";
 import { UrlCard } from "./components/UrlCard";
 import { StylePicker } from "./components/StylePicker";
@@ -9,13 +8,8 @@ import { DownloadCard } from "./components/DownloadCard";
 import { ShareCard } from "./components/ShareCard";
 import { QRStatsCard } from "./components/QRStatsCard";
 import { OrderCtaStrip } from "./components/OrderCtaStrip";
-import { ChevronRight } from "@ovation/icons/ChevronRight";
 
-type QRCodePageProps = {
-  eventId: string;
-};
-
-export const QRCodePage = ({ eventId }: QRCodePageProps) => {
+export const QRCodePage = () => {
   return (
     <div className="mx-auto min-w-0">
       <div className="flex flex-col gap-5 desktop:flex-row desktop:items-end desktop:justify-between">
@@ -23,7 +17,7 @@ export const QRCodePage = ({ eventId }: QRCodePageProps) => {
           <h1 className="font-serif text-[2.125rem] font-semibold leading-tight tracking-tight tablet:text-[2.75rem]">
             Your <span className="italic text-primary">QR code.</span>
           </h1>
-          <p className="mt-2 max-w-[520px] type-body-small leading-relaxed text-muted-foreground">
+          <p className="mt-2 max-w-130 type-body-small leading-relaxed text-muted-foreground">
             Any guest who scans this lands directly on your welcome screen.
             Download, share, whatever you like — napkins included.
           </p>
@@ -85,11 +79,3 @@ export const QRCodePage = ({ eventId }: QRCodePageProps) => {
     </div>
   );
 };
-
-const Breadcrumb = () => (
-  <div className="mb-2.5 flex items-center gap-1.5 type-caption text-muted-foreground">
-    <span>Dashboard</span>
-    <ChevronRight width={14} height={14} />
-    <span className="font-semibold text-foreground">Your QR code</span>
-  </div>
-);

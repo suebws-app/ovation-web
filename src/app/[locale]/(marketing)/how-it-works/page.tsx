@@ -1,5 +1,1 @@
-const HowItWorksPage = () => {
-  return <div>{/* TODO: Step-by-step explainer */}</div>;
-}
-
-export default HowItWorksPage
+export { HowItWorksPage as default } from "@/features/marketing/HowItWorksPage";

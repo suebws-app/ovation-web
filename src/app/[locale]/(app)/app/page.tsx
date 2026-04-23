@@ -1,7 +1,1 @@
-import { DashboardHome } from "@/features/dashboard/DashboardHome";
-
-const DashboardPage = () => {
-  return <DashboardHome eventId="default" />;
-};
-
-export default DashboardPage;
+export { DashboardPage as default } from "@/features/dashboard/DashboardPage";

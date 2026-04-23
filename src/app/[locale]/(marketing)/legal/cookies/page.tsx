@@ -1,5 +1,1 @@
-const CookiesPage = () => {
-  return <div>{/* TODO: Cookie policy */}</div>;
-}
-
-export default CookiesPage
+export { CookiesPage as default } from "@/features/marketing/legal/CookiesPage";

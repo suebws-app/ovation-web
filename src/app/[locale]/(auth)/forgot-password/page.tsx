@@ -1,5 +1,1 @@
-const ForgotPasswordPage = () => {
-  return <div>{/* TODO: Password recovery form */}</div>;
-}
-
-export default ForgotPasswordPage
+export { ForgotPasswordPage as default } from "@/features/auth/ForgotPasswordPage";

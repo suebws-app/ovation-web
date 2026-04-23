@@ -1,5 +1,1 @@
-const CheckoutCancelPage = () => {
-  return <div>{/* TODO: Payment cancelled, retry option */}</div>;
-}
-
-export default CheckoutCancelPage
+export { CheckoutCancelPage as default } from "@/features/checkout/CheckoutCancelPage";

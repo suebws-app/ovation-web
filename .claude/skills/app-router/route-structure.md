@@ -13,7 +13,7 @@ type: skill
 
 ## Core Principles
 - **Route groups** `(name)` control which layout wraps a set of pages — they don't affect URLs
-- **Pages are thin shells** — import from `@/features/`, zero business logic in route files
+- **Pages are pure re-exports** — a `page.tsx` contains ONLY a single re-export line: `export { ComponentName as default } from "@/features/..."`, zero imports, zero logic, zero JSX
 - **One `[locale]` segment** at the root wraps all routes for i18n
 - **`params` is always a Promise** in Next.js 16 — must `await` in async components or `use()` in client components
 
@@ -122,33 +122,28 @@ export default function Page({
 }
 ```
 
-### Thin page shell (target pattern — pages currently have inline stubs)
+### Page files (STRICT — pure re-export only)
 
-Once features are built, pages should be thin re-exports:
-
-```typescript
-// src/app/[locale]/(marketing)/about/page.tsx
-import { AboutPage } from '@/features/marketing/AboutPage'
-export default AboutPage
-```
-
-### Page with metadata
+Every `page.tsx` must contain exactly ONE line — a re-export from `@/features/`:
 
 ```typescript
 // src/app/[locale]/(marketing)/about/page.tsx
-import { AboutPage, generateAboutMetadata } from '@/features/marketing/AboutPage'
-export const generateMetadata = generateAboutMetadata
-export default AboutPage
+export { AboutPage as default } from "@/features/marketing/AboutPage";
 ```
-
-### Static page with locale params
 
 ```typescript
-// src/app/[locale]/(marketing)/page.tsx
-import { LandingPage } from '@/features/marketing/LandingPage'
-export default LandingPage
-export const dynamic = 'force-static'
+// src/app/[locale]/(auth)/sign-in/page.tsx
+export { SignInPage as default } from "@/features/auth/SignInPage";
 ```
+
+```typescript
+// src/app/[locale]/(app)/app/page.tsx
+export { DashboardHome as default } from "@/features/dashboard/DashboardHome";
+```
+
+No imports, no component definitions, no props, no logic. All component code lives in `src/features/`.
+
+If a page needs `params`, `searchParams`, or `generateMetadata`, handle that inside the feature component — the page.tsx stays a one-liner.
 
 ### Catch-all for 404
 
@@ -183,13 +178,13 @@ app/layout.tsx (Root — metadata, globals.css)
 
 ## Conventions
 - Route group names describe layout purpose, not URL path
-- `page.tsx` files import from `@/features/` — keep them thin
+- `page.tsx` files are pure re-exports: `export { X as default } from "@/features/..."` — no imports, no logic, no JSX
 - `dynamic = 'force-static'` on marketing pages
 - API route handlers live outside `[locale]`
 - `params` is always `Promise<T>` — `await` in server, `use()` in client
 
 ## Anti-patterns
-- Never put business logic in route files — thin imports from `@/features/`
+- Never put ANY code in `page.tsx` beyond a single re-export line — all logic lives in `@/features/`
 - Never destructure params synchronously — always await or use()
 - Never nest route groups more than 2 levels deep
 - Never put route handlers inside `[locale]` — API routes don't need i18n
