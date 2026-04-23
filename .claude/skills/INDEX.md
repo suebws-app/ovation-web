@@ -11,6 +11,7 @@ Reusable patterns for the Ovation Web project — Next.js 16, Tailwind CSS v4, n
 | [tailwind-design-system](ui/tailwind-design-system.md) | CSS v4 @theme config, tokens, cn(), cva components |
 | [component-conventions](ui/component-conventions.md) | File structure, naming, server/client split, props |
 | [next-intl-setup](i18n/next-intl-setup.md) | Routing, translations, currency, navigation wrappers |
+| [no-hardcoded-text](i18n/no-hardcoded-text.md) | Enforce all user-facing strings use translation keys |
 | [route-structure](app-router/route-structure.md) | Route groups, dynamic segments, async params |
 | [layouts-and-providers](app-router/layouts-and-providers.md) | Server/client layout split, providers, auth guards |
 | [metadata](app-router/metadata.md) | SEO, Open Graph, language alternates |
