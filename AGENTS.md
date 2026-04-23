@@ -25,6 +25,7 @@ Start with `.claude/skills/INDEX.md` for the full list and dependency map.
 | Zustand stores, state management | `.claude/skills/state/zustand-patterns.md` |
 | Forms, validation, Zod schemas | `.claude/skills/forms/react-hook-form-patterns.md` |
 | Error tracking, Sentry | `.claude/skills/observability/sentry-setup.md` |
+| TypeScript types, generics, props | `.claude/skills/typescript/typescript-patterns.md` |
 
 ## Code style rules (do NOT ignore)
 
@@ -34,6 +35,10 @@ Start with `.claude/skills/INDEX.md` for the full list and dependency map.
 - **NEVER inline SVGs in components** — icons go in `packages/icons/`, illustrations in `packages/illustrations/`
 - **NEVER add code comments** — write self-documenting code with descriptive (but not excessively long) variable and function names
 - **NEVER use raw Tailwind colors** (`text-zinc-50`, `bg-slate-900`) — always use theme tokens (`text-foreground`, `bg-primary`)
+- **NEVER use raw Tailwind text sizes** (`text-sm`, `text-xs`, `text-[17px]`) — always use `type-*` utilities (`type-body`, `type-body-small`, `type-caption`)
+- **NEVER use raw Tailwind radius** (`rounded-sm`, `rounded-lg`) — always use numeric tokens (`rounded-8`, `rounded-12`, `rounded-16`)
+- **NEVER use default breakpoints** (`sm:`, `md:`, `lg:`, `xl:`) — always use named (`mobile:`, `tablet:`, `desktop:`, `large-desktop:`)
+- **NEVER use raw Tailwind shadows** — always use semantic tokens (`shadow`, `shadow-sm`, `shadow-lg`, `shadow-input`)
 - UI components live in `packages/ui/` (`@ovation/ui`), icons in `packages/icons/` (`@ovation/icons`)
 
 ## Critical Next.js 16 rules (do NOT ignore)

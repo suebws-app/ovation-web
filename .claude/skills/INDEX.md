@@ -19,6 +19,7 @@ Reusable patterns for the Ovation Web project — Next.js 16, Tailwind CSS v4, n
 | [zustand-patterns](state/zustand-patterns.md) | Global/feature stores, persistence, server sync |
 | [react-hook-form-patterns](forms/react-hook-form-patterns.md) | RHF + Zod, i18n schemas, Zustand sync |
 | [sentry-setup](observability/sentry-setup.md) | Error tracking, source maps, error boundaries |
+| [typescript-patterns](typescript/typescript-patterns.md) | Type naming, prop patterns, schema inference, generics, utility types |
 
 ## Next.js 16 Breaking Changes (always remember)
 
