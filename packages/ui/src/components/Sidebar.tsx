@@ -176,7 +176,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
           ref={ref}
           data-slot="sidebar"
           className={cn(
-            "flex h-full w-[var(--sidebar-width)] flex-col bg-sidebar text-sidebar-foreground",
+            "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
             className,
           )}
           {...props}
@@ -193,7 +193,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             data-sidebar="sidebar"
             data-slot="sidebar"
             data-mobile="true"
-            className="w-[var(--sidebar-width)] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+            className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -225,24 +225,24 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
         <div
           data-slot="sidebar-gap"
           className={cn(
-            "relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear",
+            "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
             "group-data-[collapsible=offcanvas]:w-0",
             "group-data-[side=right]:rotate-180",
             variant === "floating" || variant === "inset"
               ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+16px)]"
-              : "group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]",
+              : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
           )}
         />
         <div
           data-slot="sidebar-container"
           data-side={side}
           className={cn(
-            "fixed inset-y-0 z-10 hidden h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear desktop:flex",
+            "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear desktop:flex",
             side === "left" && "left-0",
             side === "right" && "right-0",
             variant === "floating" || variant === "inset"
               ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+16px+2px)]"
-              : "group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]",
+              : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
             className,
           )}
         >

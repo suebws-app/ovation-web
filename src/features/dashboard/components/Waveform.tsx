@@ -1,5 +1,10 @@
 import { cn } from '@ovation/ui/utils/cn'
 
+const seededRandom = (seed: number) => {
+  const x = Math.sin(seed + 1) * 10000
+  return x - Math.floor(x)
+}
+
 type WaveformProps = {
   bars?: number[]
   barCount?: number
@@ -15,7 +20,7 @@ export const Waveform = ({
   progress = 0,
   className,
 }: WaveformProps) => {
-  const data = bars ?? Array.from({ length: barCount }, () => Math.random())
+  const data = bars ?? Array.from({ length: barCount }, (_, i) => seededRandom(i))
   const filledCount = Math.floor(data.length * progress)
 
   return (

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { usePathname } from "next/navigation";
 import {
   Breadcrumb,
@@ -9,7 +10,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@ovation/ui/components/Breadcrumb";
-import { Link } from "@/i18n/navigation";
 import { isLocale } from "@/lib/utils/isLocale";
 
 export const PrivateHeaderDesktop = () => {
@@ -34,12 +34,14 @@ export const PrivateHeaderDesktop = () => {
             const href =
               i === 0 ? "/app" : `/app/${segments.slice(0, i).join("/")}`;
             return (
-              <BreadcrumbItem key={crumb}>
-                <BreadcrumbLink href={href} className="capitalize">
-                  {crumb}
-                </BreadcrumbLink>
+              <React.Fragment key={crumb}>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={href} className="capitalize">
+                    {crumb}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
                 <BreadcrumbSeparator />
-              </BreadcrumbItem>
+              </React.Fragment>
             );
           })}
           <BreadcrumbItem>
@@ -56,7 +58,7 @@ export const PrivateHeaderDesktop = () => {
 
 const KeepsakesActions = () => (
   <div className="flex items-center gap-3">
-    <span className="type-caption font-semibold text-[#9A6B2F]">
+    <span className="type-caption font-semibold text-accent-foreground">
       &#9733; &euro;50 credit available
     </span>
     <button
