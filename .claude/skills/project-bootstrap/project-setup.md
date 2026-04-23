@@ -33,11 +33,15 @@ type: skill
 │   │   ├── package.json
 │   │   └── tsconfig.json
 │   │
-│   └── icons/                  # @ovation/icons — SVG icon components
-│       ├── src/                # One file per icon, individual exports
-│       │   ├── ChevronDown.tsx
-│       │   ├── Check.tsx
-│       │   └── ...
+│   ├── icons/                  # @ovation/icons — SVG icon components
+│   │   ├── src/                # One file per icon, individual exports
+│   │   │   ├── ChevronDown.tsx
+│   │   │   ├── Check.tsx
+│   │   │   └── ...
+│   │   └── package.json
+│   │
+│   └── illustrations/          # @ovation/illustrations — larger SVG illustrations
+│       ├── src/                # One file per illustration
 │       └── package.json
 │
 ├── src/
@@ -92,6 +96,7 @@ type: skill
 |----------|----------|------|
 | `packages/ui/` | UI primitives | shadcn/ui components, cn() — `@ovation/ui` |
 | `packages/icons/` | Icon components | One SVG component per file — `@ovation/icons` |
+| `packages/illustrations/` | SVG illustrations | Larger decorative/complex SVGs — `@ovation/illustrations` |
 | `src/app/` | Route files only | Thin shells that import from features |
 | `src/features/` | Feature modules | Components, stores, types, schemas per feature |
 | `src/lib/` | Shared code | API client, auth, hooks, utilities |

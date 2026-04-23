@@ -172,22 +172,34 @@ export const LanguageSwitcher = () => {
 
 ## Translation Key Convention
 
+**Always use snake_case** for JSON keys. Use nesting for hierarchy, double underscores for flat access:
+
 ```
-<scope>__<section>__<element>
+JSON nesting:                     Flat access with t():
+marketing.cta.domain_prefix       t('domain_prefix') with namespace 'marketing.cta'
 
 Examples:
-  auth__login__title           → "Log in to your account"
-  event__create__title         → "Create Event"
-  common__save                 → "Save"
-  validation__required         → "This field is required"
+  auth.login.title               → "Log in to your account"
+  event.create.title             → "Create Event"
+  common.save                    → "Save"
+  marketing.hero.cta_primary     → "Start your book — €0 today"
+  marketing.cta.domain_prefix    → "ovation.love/"
 ```
 
-Scopes: `auth`, `event`, `common`, `validation`, `seo`, `error`
+Key naming rules:
+- **Flat keys with `__` separators** — no JSON nesting, every key is top-level
+- **Always lowercase snake_case** within segments — `domain_prefix`, `cta_primary` (never camelCase, never UPPERCASE)
+- **Always `useTranslations()` with no namespace** — access keys directly: `t('marketing__cta__domain_prefix')`
+- **No arrays** — expand into individual keys: `common__footer__company_links__about`
+
+Scopes: `auth`, `event`, `common`, `validation`, `seo`, `error`, `marketing`, `guest`, `kiosk`
 
 ## Conventions
 - Always use `Link` / `useRouter` from `@/i18n/navigation` — never `next/link`
 - Always use arrow functions for components
-- Translation keys: `scope__section__element` with double underscores
+- Translation keys: flat with `__` separators, always snake_case — `marketing__hero__cta_primary`
+- Always `useTranslations()` with no namespace argument
+- No arrays in translations — expand to individual keys
 - Default locale (`en`) has no URL prefix; all others do
 - Messages loaded from JSON files in `messages/` directory
 - Currency is backend-driven, not tied to locale — never couple them
@@ -198,3 +210,6 @@ Scopes: `auth`, `event`, `common`, `validation`, `seo`, `error`
 - Never create a custom Link wrapper — `createNavigation` handles everything
 - Never store locale in state — use the URL and cookie as source of truth
 - Never derive currency from locale — currency comes from backend/user settings
+- Never use `useTranslations('namespace')` — always `useTranslations()` with full flat keys
+- Never use `t.raw()` — no arrays in translations
+- Never nest JSON in message files — all keys are flat with `__` separators

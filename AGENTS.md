@@ -29,6 +29,9 @@ Start with `.claude/skills/INDEX.md` for the full list and dependency map.
 ## Code style rules (do NOT ignore)
 
 - **Always use arrow functions** for components — `export const MyComponent = () => {}`, never `function MyComponent() {}`
+- **NEVER inline JSX inside `.map()`** — extract a named component and render that in the map
+- **NEVER put multiple components in one file** — one component per file, use folders with `index.ts` when a component has sub-components
+- **NEVER inline SVGs in components** — icons go in `packages/icons/`, illustrations in `packages/illustrations/`
 - **NEVER add code comments** — write self-documenting code with descriptive (but not excessively long) variable and function names
 - **NEVER use raw Tailwind colors** (`text-zinc-50`, `bg-slate-900`) — always use theme tokens (`text-foreground`, `bg-primary`)
 - UI components live in `packages/ui/` (`@ovation/ui`), icons in `packages/icons/` (`@ovation/icons`)

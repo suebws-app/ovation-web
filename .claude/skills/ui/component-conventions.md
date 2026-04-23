@@ -18,6 +18,7 @@ type: skill
 - **Feature components** in `src/features/<feature>/`
 - Shared hooks in `src/lib/hooks/`
 - **NEVER use raw Tailwind colors** (`text-zinc-50`, `bg-slate-900`) — always theme tokens
+- **NEVER inline JSX inside `.map()`** — extract a named component instead
 - Import UI: `import { Button } from '@ovation/ui/components/Button'`
 
 ## Component File Structure
@@ -101,14 +102,52 @@ src/lib/                        # Shared app utilities
 | Constants | SCREAMING_SNAKE | `MAX_FILE_SIZE` |
 | Utilities | camelCase | `formatDate.ts` |
 
+## Map Items as Components
+
+Never inline JSX inside `.map()`. Extract a named component into its own file:
+
+```typescript
+// BAD — inline JSX in map
+{bars.map((i) => (
+  <div key={i} className={cn('w-3.5 rounded-sm', i < 12 ? 'h-[30px] bg-primary' : 'h-[22px] bg-foreground/10')} />
+))}
+
+// GOOD — extracted into separate file
+// RitualBar.tsx
+export const RitualBar = ({ index }: { index: number }) => (
+  <div className={cn('w-3.5 rounded-sm', index < 12 ? 'h-[30px] bg-primary' : 'h-[22px] bg-foreground/10')} />
+)
+```
+
+## Component Folder Structure
+
+When a component has sub-components, extract them into a folder:
+
+```
+// BEFORE — single file with sub-components inside
+RootFooter.tsx  (contains SocialIcon, FooterColumn, FooterLink)
+
+// AFTER — folder with one file per component + index.ts
+RootFooter/
+├── RootFooter.tsx       # Main component
+├── SocialIcon.tsx       # Sub-component
+├── FooterColumn.tsx     # Sub-component
+├── FooterLink.tsx       # Sub-component
+└── index.ts             # export { RootFooter } from './RootFooter'
+```
+
+Rules:
+- **One component per file** — never define multiple components in the same file
+- **Create a folder** when a component has any sub-components
+- **Add `index.ts`** only when the folder name matches the main component (e.g. `RootFooter/RootFooter.tsx` needs `index.ts` so you can import `from './RootFooter'` instead of `from './RootFooter/RootFooter'`)
+- Sub-components are **not exported** from `index.ts` — only the main component is
+- Import sub-components with relative paths inside the folder
+
 ## Props Patterns
 
 ```typescript
-// Inline for simple components
-function Card({ title, className }: { title: string; className?: string }) {}
+const Card = ({ title, className }: { title: string; className?: string }) => {}
 
-// Always accept className for styling flexibility
-// Use ComponentProps for extending HTML elements
 type ButtonProps = React.ComponentProps<'button'> & {
   variant?: 'default' | 'secondary'
 }
@@ -129,6 +168,8 @@ Barrel exports are fine when a feature has a small, stable public API. Avoid bar
 - `className` prop on all visual components
 
 ## Anti-patterns
+- **NEVER inline JSX inside `.map()`** — extract a named component
+- **NEVER inline SVGs in components** — put icons in `packages/icons/`, illustrations in `packages/illustrations/`
 - **NEVER use `text-zinc-*`, `bg-slate-*`, `text-gray-*`** — use theme tokens only
 - Never put `'use client'` on a component that doesn't need it
 - Never use `next/link` or `next/navigation` directly — use i18n wrappers
