@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { getCurrentUser } from '@/lib/auth/session'
+import { PrivateLayout } from '@/features/layout/PrivateLayout/PrivateLayout'
 
 export default async function AppLayout({
   children,
@@ -11,11 +12,5 @@ export default async function AppLayout({
     redirect('/sign-in')
   }
 
-  return (
-    <>
-      {/* TODO: Top bar — Event switcher, user menu, notifications */}
-      {/* TODO: Desktop sidebar / Mobile bottom nav */}
-      <main className="flex-1">{children}</main>
-    </>
-  )
+  return <PrivateLayout>{children}</PrivateLayout>
 }

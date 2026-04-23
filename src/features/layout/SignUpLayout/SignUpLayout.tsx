@@ -1,10 +1,10 @@
-import { SignUpHeader } from "./SignUpHeader";
+import { SignUpHeader } from './SignUpHeader'
 
 export const SignUpLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="min-h-full w-full flex flex-col">
+    <div className="flex min-h-screen w-full flex-col bg-background">
       <SignUpHeader />
-      {children}
+      <main className="flex-1">{children}</main>
     </div>
-  );
-};
+  )
+}

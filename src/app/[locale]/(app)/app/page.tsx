@@ -1,5 +1,7 @@
-const AppDashboardPage = () => {
-  return <div>{/* TODO: Event list — redirect to /app/events/new if zero, or first event if one */}</div>;
-}
+import { DashboardHome } from "@/features/dashboard/DashboardHome";
 
-export default AppDashboardPage
+const DashboardPage = () => {
+  return <DashboardHome eventId="default" />;
+};
+
+export default DashboardPage;

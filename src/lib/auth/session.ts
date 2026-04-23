@@ -8,6 +8,10 @@ export type User = {
 }
 
 export const getCurrentUser = cache(async (): Promise<User | null> => {
+  if (process.env.NODE_ENV === 'development') {
+    return { id: 'dev-user', email: 'lena.serra@gmail.com', name: 'Lena Serra' }
+  }
+
   const cookieStore = await cookies()
   const token = cookieStore.get('auth_token')?.value
   if (!token) return null

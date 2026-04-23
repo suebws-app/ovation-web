@@ -1,5 +1,7 @@
+import { SignInFlow } from '@/features/auth/SignIn/SignInFlow'
+
 const SignInPage = () => {
-  return <div>{/* TODO: Email/OAuth sign in (Google, Apple) */}</div>;
+  return <SignInFlow step="form" />
 }
 
 export default SignInPage

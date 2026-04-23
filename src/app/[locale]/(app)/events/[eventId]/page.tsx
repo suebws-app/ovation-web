@@ -1,5 +1,12 @@
-const EventDashboardPage = () => {
-  return <div>{/* TODO: Event dashboard — hero, stats, recent messages, quick actions */}</div>;
+import { DashboardHome } from '@/features/dashboard/DashboardHome'
+
+const EventDashboardPage = async ({
+  params,
+}: {
+  params: Promise<{ eventId: string }>
+}) => {
+  const { eventId } = await params
+  return <DashboardHome eventId={eventId} />
 }
 
 export default EventDashboardPage

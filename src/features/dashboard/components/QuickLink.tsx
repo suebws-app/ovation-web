@@ -1,0 +1,20 @@
+import { Link } from '@/i18n/navigation'
+
+type QuickLinkProps = {
+  label: string
+  href: string
+  icon: React.ReactNode
+}
+
+export const QuickLink = ({ label, href, icon }: QuickLinkProps) => (
+  <Link
+    href={href}
+    className="flex items-center gap-3 rounded-10 px-3 py-2.5 type-body-small text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+  >
+    <span className="inline-flex text-muted-foreground">{icon}</span>
+    <span className="flex-1">{label}</span>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-40">
+      <path d="M7 17L17 7M8 7h9v9" />
+    </svg>
+  </Link>
+)
