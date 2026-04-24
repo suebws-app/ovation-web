@@ -237,7 +237,7 @@ export const MessagesPage = () => {
   ).reduce((acc, m) => acc + m.durationSec, 0);
 
   return (
-    <div className="-mx-4 -mb-6 tablet:-mb-10 desktop:-mb-20 grid min-h-screen large-desktop:grid-cols-[1fr_360px]">
+    <div className="-mx-4 -mb-6 tablet:-mb-10 desktop:-mb-20 grid min-h-screen small-desktop:grid-cols-[1fr_360px]">
       <div className="flex min-w-0 flex-col bg-card">
         <MessageToolbar />
         <div className="flex items-center gap-2 border-b border-border px-4 py-2.5 tablet:px-7">

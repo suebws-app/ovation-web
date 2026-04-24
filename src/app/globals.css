@@ -43,6 +43,7 @@
   /* ── Breakpoints ────────────────────────────────────────── */
   --breakpoint-mobile: 390px;
   --breakpoint-tablet: 740px;
+  --breakpoint-small-desktop: 1024px;
   --breakpoint-desktop: 1220px;
   --breakpoint-large-desktop: 1800px;
 

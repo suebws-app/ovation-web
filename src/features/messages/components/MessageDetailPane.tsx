@@ -33,7 +33,7 @@ export const MessageDetailPane = ({
   favorited,
   listens,
 }: MessageDetailPaneProps) => (
-  <div className="hidden flex-col gap-4 overflow-auto border-l border-border bg-background p-5 large-desktop:flex">
+  <div className="hidden flex-col gap-4 overflow-auto border-l border-border bg-background p-5 small-desktop:flex">
     <div className="flex gap-3.5 rounded-16 border border-border bg-card p-5">
       <div
         className="flex size-[72px] shrink-0 -rotate-3 items-center justify-center rounded-full font-serif text-3xl font-bold"
@@ -84,12 +84,7 @@ export const MessageDetailPane = ({
           type="button"
           className="flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-destructive text-primary-foreground shadow-[0_0_0_6px_oklch(0.723_0.135_40/0.15)]"
         >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
           </svg>
         </button>

@@ -24,12 +24,14 @@ import { QrCode } from "@ovation/icons/QrCode";
 import { Monitor } from "@ovation/icons/Monitor";
 import { UserPlus } from "@ovation/icons/UserPlus";
 import { HelpCircle } from "@ovation/icons/HelpCircle";
+import { Users } from "@ovation/icons/Users";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/app", icon: Home },
   { label: "Messages", href: "/app/messages", icon: MessageSquare, badge: 12 },
   { label: "Photos", href: "/app/photos", icon: ImageIcon },
   { label: "Keepsakes", href: "/app/keepsakes", icon: Star },
+  { label: "Guests", href: "/app/guests", icon: Users, badge: 112 },
   { label: "Settings", href: "/app/settings", icon: Settings },
 ];
 

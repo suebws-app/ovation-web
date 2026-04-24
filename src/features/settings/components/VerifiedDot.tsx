@@ -1,0 +1,29 @@
+import { Check } from "@ovation/icons/Check";
+import { cn } from "@ovation/ui/utils/cn";
+
+type VerifiedDotProps = {
+  ok?: boolean;
+};
+
+export const VerifiedDot = ({ ok = true }: VerifiedDotProps) => (
+  <span
+    className={cn(
+      "inline-flex items-center gap-1.5 type-caption font-bold",
+      ok ? "text-secondary-foreground" : "text-destructive",
+    )}
+  >
+    <span
+      className={cn(
+        "flex size-4 items-center justify-center rounded-full",
+        ok ? "bg-secondary/30" : "bg-destructive/20",
+      )}
+    >
+      {ok ? (
+        <Check width={10} height={10} strokeWidth={3.5} />
+      ) : (
+        <span className="type-caption font-bold">!</span>
+      )}
+    </span>
+    {ok ? "Verified" : "Unverified"}
+  </span>
+);

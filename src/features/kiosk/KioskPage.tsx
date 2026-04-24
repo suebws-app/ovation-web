@@ -1,3 +1,11 @@
+"use client";
+
+import { KioskLiveFrame } from "@/features/kiosk-setup/components/KioskLiveFrame";
+
 export const KioskPage = () => {
-  return <div>{/* TODO: Fullscreen kiosk — welcome screen, attract loop, recording flow, PIN exit */}</div>
-}
+  return (
+    <div className="fixed inset-0">
+      <KioskLiveFrame />
+    </div>
+  );
+};
