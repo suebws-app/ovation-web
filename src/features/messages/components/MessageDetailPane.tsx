@@ -8,31 +8,27 @@ import { Play } from "@ovation/icons/Play";
 import { Star } from "@ovation/icons/Star";
 import { Waveform } from "@/features/dashboard/components/Waveform";
 
+import type { MessageMock } from "../mocks";
+
 type MessageDetailPaneProps = {
-  name: string;
-  relation: string;
-  initials: string;
-  tint: string;
-  quote: string;
-  transcript: string;
-  wave: number[];
-  duration: string;
-  favorited?: boolean;
-  listens: number;
+  message: MessageMock;
 };
 
-export const MessageDetailPane = ({
-  name,
-  relation,
-  initials,
-  tint,
-  quote,
-  transcript,
-  wave,
-  duration,
-  favorited,
-  listens,
-}: MessageDetailPaneProps) => (
+export const MessageDetailPane = ({ message }: MessageDetailPaneProps) => {
+  const {
+    name,
+    relation,
+    initials,
+    tint,
+    quote,
+    transcript,
+    wave,
+    duration,
+    favorited,
+    listens,
+  } = message;
+
+  return (
   <div className="hidden flex-col gap-4 overflow-auto border-l border-border bg-background p-5 small-desktop:flex">
     <div className="flex gap-3.5 rounded-16 border border-border bg-card p-5">
       <div
@@ -149,4 +145,5 @@ export const MessageDetailPane = ({
       <span>Book-worthy</span>
     </div>
   </div>
-);
+  );
+};

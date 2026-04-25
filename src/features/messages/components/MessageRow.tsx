@@ -7,17 +7,10 @@ import { Play } from "@ovation/icons/Play";
 import { Pause } from "@ovation/icons/Pause";
 import { Waveform } from "@/features/dashboard/components/Waveform";
 
+import type { MessageMock } from "../mocks";
+
 type MessageRowProps = {
-  name: string;
-  relation: string;
-  quote: string;
-  initials: string;
-  tint: string;
-  wave: number[];
-  duration: string;
-  favorited?: boolean;
-  hasPhoto?: boolean;
-  language?: string;
+  message: MessageMock;
   selected?: boolean;
   playing?: boolean;
   index: number;
@@ -25,16 +18,7 @@ type MessageRowProps = {
 };
 
 export const MessageRow = ({
-  name,
-  relation,
-  quote,
-  initials,
-  tint,
-  wave,
-  duration,
-  favorited,
-  hasPhoto,
-  language,
+  message,
   selected,
   playing,
   index,
@@ -50,28 +34,30 @@ export const MessageRow = ({
     }`}
   >
     <Avatar
-      initials={initials}
-      tint={tint}
+      initials={message.initials}
+      tint={message.tint}
       size="lg"
       className={index % 2 ? "rotate-2" : "-rotate-2"}
     />
 
     <div className="min-w-0">
       <div className="flex items-center gap-2">
-        <span className="type-body font-semibold text-foreground">{name}</span>
-        {favorited && (
+        <span className="type-body font-semibold text-foreground">
+          {message.name}
+        </span>
+        {message.favorited && (
           <Heart
             width={13}
             height={13}
             className="fill-destructive text-destructive"
           />
         )}
-        {language && (
+        {message.language && (
           <span className="rounded-4 bg-primary/10 px-1.5 py-0.5 type-caption font-bold uppercase tracking-wider text-primary">
-            {language}
+            {message.language}
           </span>
         )}
-        {hasPhoto && (
+        {message.hasPhoto && (
           <ImageIcon
             width={12}
             height={12}
@@ -79,22 +65,22 @@ export const MessageRow = ({
           />
         )}
       </div>
-      <p className="type-caption text-muted-foreground">{relation}</p>
+      <p className="type-caption text-muted-foreground">{message.relation}</p>
       <p className="mt-1 truncate font-serif type-body-small italic text-muted-foreground">
-        &ldquo;{quote}&rdquo;
+        &ldquo;{message.quote}&rdquo;
       </p>
     </div>
 
     <div className="hidden tablet:block">
       <Waveform
-        bars={wave.slice(0, 24)}
+        bars={message.wave.slice(0, 24)}
         height={28}
         progress={playing ? 0.42 : 0}
       />
     </div>
 
     <span className="hidden font-mono type-caption text-muted-foreground tablet:block tablet:text-right">
-      {duration}
+      {message.duration}
     </span>
 
     <PlayButton playing={playing} />
