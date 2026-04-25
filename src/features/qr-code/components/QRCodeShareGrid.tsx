@@ -2,7 +2,7 @@ import { DownloadCard } from "./DownloadCard";
 import { ShareCard } from "./ShareCard";
 
 export const QRCodeShareGrid = () => (
-  <div className="grid gap-4 tablet:grid-cols-2">
+  <div className="tablet:grid-cols-2 grid gap-4">
     <DownloadCard />
     <ShareCard />
   </div>

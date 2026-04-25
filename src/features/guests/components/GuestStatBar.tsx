@@ -45,7 +45,7 @@ const STATS = [
 
 export const GuestStatBar = () => {
   return (
-    <div className="grid grid-cols-2 gap-4 tablet:grid-cols-3 desktop:grid-cols-5">
+    <div className="tablet:grid-cols-3 desktop:grid-cols-5 grid grid-cols-2 gap-4">
       {STATS.map((stat) => (
         <GuestStatCard key={stat.label} {...stat} />
       ))}

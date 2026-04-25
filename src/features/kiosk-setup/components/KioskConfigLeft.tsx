@@ -47,11 +47,14 @@ export const KioskConfigLeft = () => {
               recommended
             </span>
           </div>
-          <div className="relative mt-3.5 h-1.5 rounded-full bg-border">
-            <div className="absolute inset-y-0 left-0 w-[45%] rounded-full bg-primary" />
-            <div className="absolute top-1/2 size-5 -translate-y-1/2 rounded-full border-2 border-primary bg-card shadow-sm" style={{ left: "calc(45% - 10px)" }} />
+          <div className="bg-border relative mt-3.5 h-1.5 rounded-full">
+            <div className="bg-primary absolute inset-y-0 left-0 w-[45%] rounded-full" />
+            <div
+              className="border-primary bg-card absolute top-1/2 size-5 -translate-y-1/2 rounded-full border-2 shadow-sm"
+              style={{ left: "calc(45% - 10px)" }}
+            />
           </div>
-          <div className="mt-2 flex justify-between type-caption text-muted-foreground">
+          <div className="type-caption text-muted-foreground mt-2 flex justify-between">
             <span>15s</span>
             <span>30s</span>
             <span>60s</span>
@@ -65,9 +68,13 @@ export const KioskConfigLeft = () => {
           description="After the guest sends their message. Keeps the line moving."
           last
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 type-body-small">
+          <span className="border-border bg-card type-body-small inline-flex items-center gap-2 rounded-full border px-3.5 py-2">
             5 seconds
-            <ChevronDown width={12} height={12} className="text-muted-foreground" />
+            <ChevronDown
+              width={12}
+              height={12}
+              className="text-muted-foreground"
+            />
           </span>
         </KioskConfigRow>
       </KioskConfigCard>
@@ -88,7 +95,7 @@ export const KioskConfigLeft = () => {
         >
           <button
             type="button"
-            className="cursor-pointer rounded-full border border-border bg-card px-3 py-2 type-caption font-semibold"
+            className="border-border bg-card type-caption cursor-pointer rounded-full border px-3 py-2 font-semibold"
           >
             Show me how
           </button>
@@ -97,7 +104,7 @@ export const KioskConfigLeft = () => {
           title="Exit passcode"
           description="Four digits. So a curious guest can\u2019t get out."
         >
-          <span className="rounded-full border border-border bg-card px-3.5 py-2 font-mono type-body-small tracking-widest">
+          <span className="border-border bg-card type-body-small rounded-full border px-3.5 py-2 font-mono tracking-widest">
             &bull; &bull; &bull; &bull;
           </span>
         </KioskConfigRow>

@@ -154,11 +154,11 @@ const GUESTS = [
 
 export const GuestDirectory = () => {
   return (
-    <div className="overflow-hidden rounded-16 border border-border bg-card">
-      <div className="flex items-center gap-3 border-b border-border px-6 py-4">
-        <div className="font-serif type-body font-semibold">
+    <div className="rounded-16 border-border bg-card overflow-hidden border">
+      <div className="border-border flex items-center gap-3 border-b px-6 py-4">
+        <div className="type-body font-serif font-semibold">
           Directory{" "}
-          <span className="type-body-small font-medium text-muted-foreground">
+          <span className="type-body-small text-muted-foreground font-medium">
             &middot; showing 112
           </span>
         </div>

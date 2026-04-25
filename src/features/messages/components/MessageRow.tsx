@@ -27,10 +27,10 @@ export const MessageRow = ({
   <button
     type="button"
     onClick={onClick}
-    className={`grid w-full cursor-pointer grid-cols-[48px_1fr_48px] items-center gap-3 border-b border-border px-4 py-3 text-left transition-colors tablet:grid-cols-[48px_1fr_100px_50px_36px] tablet:gap-4 tablet:px-6 ${
+    className={`border-border tablet:grid-cols-[48px_1fr_100px_50px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[48px_1fr_48px] items-center gap-3 border-b px-4 py-3 text-left transition-colors ${
       selected
-        ? "border-l-3 border-l-primary bg-primary/5"
-        : "border-l-3 border-l-transparent hover:bg-muted/50"
+        ? "border-l-primary bg-primary/5 border-l-3"
+        : "hover:bg-muted/50 border-l-3 border-l-transparent"
     }`}
   >
     <Avatar
@@ -42,7 +42,7 @@ export const MessageRow = ({
 
     <div className="min-w-0">
       <div className="flex items-center gap-2">
-        <span className="type-body font-semibold text-foreground">
+        <span className="type-body text-foreground font-semibold">
           {message.name}
         </span>
         {message.favorited && (
@@ -53,25 +53,21 @@ export const MessageRow = ({
           />
         )}
         {message.language && (
-          <span className="rounded-4 bg-primary/10 px-1.5 py-0.5 type-caption font-bold uppercase tracking-wider text-primary">
+          <span className="rounded-4 bg-primary/10 type-caption text-primary px-1.5 py-0.5 font-bold tracking-wider uppercase">
             {message.language}
           </span>
         )}
         {message.hasPhoto && (
-          <ImageIcon
-            width={12}
-            height={12}
-            className="text-muted-foreground"
-          />
+          <ImageIcon width={12} height={12} className="text-muted-foreground" />
         )}
       </div>
       <p className="type-caption text-muted-foreground">{message.relation}</p>
-      <p className="mt-1 truncate font-serif type-body-small italic text-muted-foreground">
+      <p className="type-body-small text-muted-foreground mt-1 truncate font-serif italic">
         &ldquo;{message.quote}&rdquo;
       </p>
     </div>
 
-    <div className="hidden tablet:block">
+    <div className="tablet:block hidden">
       <Waveform
         bars={message.wave.slice(0, 24)}
         height={28}
@@ -79,7 +75,7 @@ export const MessageRow = ({
       />
     </div>
 
-    <span className="hidden font-mono type-caption text-muted-foreground tablet:block tablet:text-right">
+    <span className="type-caption text-muted-foreground tablet:block tablet:text-right hidden font-mono">
       {message.duration}
     </span>
 
@@ -92,7 +88,7 @@ const PlayButton = ({ playing }: { playing?: boolean }) => (
     className={`flex size-9 items-center justify-center rounded-full ${
       playing
         ? "bg-destructive text-primary-foreground shadow-[0_0_0_4px_oklch(0.723_0.135_40/0.15)]"
-        : "border border-border bg-card text-foreground"
+        : "border-border bg-card text-foreground border"
     }`}
   >
     {playing ? (

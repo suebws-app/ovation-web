@@ -1,23 +1,23 @@
-'use client'
+"use client";
 
-import { Logo } from '@ovation/ui/components/Logo'
-import { Stepper } from '@ovation/ui/components/Stepper'
-import { useSignUpStore } from '@/features/auth/SignUp/useSignUpStore'
+import { Logo } from "@ovation/ui/components/Logo";
+import { Stepper } from "@ovation/ui/components/Stepper";
+import { useSignUpStore } from "@/features/auth/SignUp/useSignUpStore";
 
 export const SignUpHeader = () => {
-  const step = useSignUpStore((s) => s.step)
-  const totalSteps = useSignUpStore((s) => s.totalSteps)
+  const step = useSignUpStore((s) => s.step);
+  const totalSteps = useSignUpStore((s) => s.totalSteps);
 
   return (
-    <header className="flex items-center justify-between border-b border-border px-6 py-7 tablet:px-14">
+    <header className="border-border tablet:px-14 flex items-center justify-between border-b px-6 py-7">
       <Logo />
       <Stepper currentStep={step} totalSteps={totalSteps} />
       <button
         type="button"
-        className="cursor-pointer type-body-small text-muted-foreground transition-colors hover:text-foreground"
+        className="type-body-small text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
       >
         Save &amp; finish later
       </button>
     </header>
-  )
-}
+  );
+};

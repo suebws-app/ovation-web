@@ -1,12 +1,12 @@
-import { NextIntlClientProvider, hasLocale } from 'next-intl'
-import { getMessages } from 'next-intl/server'
-import { notFound } from 'next/navigation'
-import { routing } from '@/i18n/routing'
-import { AppProviders } from '@/features/layout/AppProviders'
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import { AppProviders } from "@/features/layout/AppProviders";
 
 export const generateStaticParams = () => {
-  return routing.locales.map((locale) => ({ locale }))
-}
+  return routing.locales.map((locale) => ({ locale }));
+};
 
 const themeScript = `(function(){
   try {
@@ -17,22 +17,22 @@ const themeScript = `(function(){
       d.classList.add('dark');
     }
   } catch(e) {}
-})()`
+})()`;
 
 export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params
+  const { locale } = await params;
 
   if (!hasLocale(routing.locales, locale)) {
-    notFound()
+    notFound();
   }
 
-  const messages = await getMessages()
+  const messages = await getMessages();
 
   return (
     <html lang={locale} className="h-full antialiased" suppressHydrationWarning>
@@ -45,5 +45,5 @@ export default async function LocaleLayout({
         </NextIntlClientProvider>
       </body>
     </html>
-  )
+  );
 }

@@ -29,10 +29,13 @@ type SettingsSidebarProps = {
   onNavigate?: (key: string) => void;
 };
 
-export const SettingsSidebar = ({ active, onNavigate }: SettingsSidebarProps) => {
+export const SettingsSidebar = ({
+  active,
+  onNavigate,
+}: SettingsSidebarProps) => {
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="type-overline px-3 pb-3.5 text-muted-foreground">
+      <span className="type-overline text-muted-foreground px-3 pb-3.5">
         Settings
       </span>
       {NAV.map((item) => (
@@ -45,12 +48,12 @@ export const SettingsSidebar = ({ active, onNavigate }: SettingsSidebarProps) =>
           onClick={() => onNavigate?.(item.key)}
         />
       ))}
-      <div className="mt-8 rounded-12 border border-border bg-background p-3.5">
+      <div className="rounded-12 border-border bg-background mt-8 border p-3.5">
         <span className="type-overline text-muted-foreground">Your book</span>
-        <div className="mt-1.5 font-serif type-body font-semibold italic">
+        <div className="type-body mt-1.5 font-serif font-semibold italic">
           Lena &amp; Tom&aacute;s
         </div>
-        <div className="mt-1 font-mono type-caption text-muted-foreground">
+        <div className="type-caption text-muted-foreground mt-1 font-mono">
           ovation.love/lena-and-tomas
         </div>
       </div>

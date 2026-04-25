@@ -30,7 +30,7 @@ export const GuestFilterChips = () => {
       ))}
       <button
         type="button"
-        className="ml-auto inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-border bg-card px-3.5 py-2 type-caption font-semibold text-muted-foreground"
+        className="border-border bg-card type-caption text-muted-foreground ml-auto inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3.5 py-2 font-semibold"
       >
         <Sort width={13} height={13} />
         Most recent first

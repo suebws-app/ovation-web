@@ -22,12 +22,12 @@ export const KioskLiveFrame = () => {
         }}
       />
 
-      <div className="relative z-10 flex items-center justify-between px-7 py-5 type-caption text-muted-foreground">
+      <div className="type-caption text-muted-foreground relative z-10 flex items-center justify-between px-7 py-5">
         <div className="flex items-center gap-2.5">
-          <div className="flex size-5.5 items-center justify-center rounded-6 bg-primary font-serif type-caption font-bold text-primary-foreground">
+          <div className="rounded-6 bg-primary type-caption text-primary-foreground flex size-5.5 items-center justify-center font-serif font-bold">
             O
           </div>
-          <span className="font-semibold text-foreground">Kiosk mode</span>
+          <span className="text-foreground font-semibold">Kiosk mode</span>
           <span className="opacity-50">&middot;</span>
           <span className="inline-flex items-center gap-1">
             <Lock width={11} height={11} /> Locked
@@ -47,52 +47,65 @@ export const KioskLiveFrame = () => {
       </div>
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-20 text-center">
-        <div className="type-overline tracking-widest text-primary">
+        <div className="type-overline text-primary tracking-widest">
           You&apos;re at the wedding of
         </div>
         <h1
-          className="mt-3.5 font-serif font-semibold leading-none tracking-tight"
+          className="mt-3.5 font-serif leading-none font-semibold tracking-tight"
           style={{ fontSize: 96 }}
         >
-          Lena <span className="italic text-primary">&amp;</span> Tom&aacute;s
+          Lena <span className="text-primary italic">&amp;</span> Tom&aacute;s
         </h1>
-        <div className="mt-2.5 type-body-small font-semibold tracking-widest text-muted-foreground uppercase">
+        <div className="type-body-small text-muted-foreground mt-2.5 font-semibold tracking-widest uppercase">
           14 June 2026 &middot; Cascais, Portugal
         </div>
 
-        <p className="mt-9 max-w-xl font-serif text-2xl italic leading-snug">
+        <p className="mt-9 max-w-xl font-serif text-2xl leading-snug italic">
           &ldquo;Hola! Bienvenue. Leave us a message &mdash; a story, a song, a
           bad dance move. We&apos;ll cherish it.&rdquo;
         </p>
 
         <button
           type="button"
-          className="relative mt-13 flex size-35 cursor-pointer items-center justify-center rounded-full border-8 border-card bg-destructive shadow-lg"
+          className="border-card bg-destructive relative mt-13 flex size-35 cursor-pointer items-center justify-center rounded-full border-8 shadow-lg"
           style={{
             boxShadow:
               "0 20px 50px oklch(0.72 0.14 40 / 0.45), 0 0 0 1px oklch(0.72 0.14 40 / 0.18)",
           }}
         >
-          <div className="pointer-events-none absolute -inset-10 rounded-full border-2 border-destructive/40 opacity-50" />
-          <div className="pointer-events-none absolute -inset-18 rounded-full border border-destructive/25 opacity-35" />
+          <div className="border-destructive/40 pointer-events-none absolute -inset-10 rounded-full border-2 opacity-50" />
+          <div className="border-destructive/25 pointer-events-none absolute -inset-18 rounded-full border opacity-35" />
           <Mic width={54} height={54} className="text-card" strokeWidth={1.8} />
         </button>
-        <div className="mt-5 type-body font-semibold">
+        <div className="type-body mt-5 font-semibold">
           Tap to leave a message
         </div>
-        <div className="mt-1 type-body-small text-muted-foreground">
+        <div className="type-body-small text-muted-foreground mt-1">
           ~60 seconds &middot; audio &middot; photo optional
         </div>
       </div>
 
       <div className="relative z-10 flex items-center justify-between px-7 py-5.5">
         <div className="flex gap-2">
-          <KioskLiveLanguagePill flag="\ud83c\uddf5\ud83c\uddf9" label="Portugu\u00eas" active />
-          <KioskLiveLanguagePill flag="\ud83c\uddec\ud83c\udde7" label="English" />
-          <KioskLiveLanguagePill flag="\ud83c\uddea\ud83c\uddf8" label="Espa\u00f1ol" />
-          <KioskLiveLanguagePill flag="\ud83c\uddeb\ud83c\uddf7" label="Fran\u00e7ais" />
+          <KioskLiveLanguagePill
+            flag="\ud83c\uddf5\ud83c\uddf9"
+            label="Portugu\u00eas"
+            active
+          />
+          <KioskLiveLanguagePill
+            flag="\ud83c\uddec\ud83c\udde7"
+            label="English"
+          />
+          <KioskLiveLanguagePill
+            flag="\ud83c\uddea\ud83c\uddf8"
+            label="Espa\u00f1ol"
+          />
+          <KioskLiveLanguagePill
+            flag="\ud83c\uddeb\ud83c\uddf7"
+            label="Fran\u00e7ais"
+          />
         </div>
-        <div className="flex items-center gap-2 type-caption text-muted-foreground">
+        <div className="type-caption text-muted-foreground flex items-center gap-2">
           <Finger width={13} height={13} />
           Three-finger press to exit kiosk
         </div>

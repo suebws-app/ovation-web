@@ -13,14 +13,14 @@ const CHANNELS = [
 
 export const GuestNudgeCard = () => {
   return (
-    <div className="relative overflow-hidden rounded-20 border border-border bg-card p-8 tablet:p-10">
-      <div className="absolute -right-8 -top-8 size-50 rounded-full bg-destructive/15" />
+    <div className="rounded-20 border-border bg-card tablet:p-10 relative overflow-hidden border p-8">
+      <div className="bg-destructive/15 absolute -top-8 -right-8 size-50 rounded-full" />
       <div className="relative">
         <span className="type-overline text-destructive">Follow-up</span>
-        <h3 className="mt-2.5 font-serif type-h2 tracking-tight">
+        <h3 className="type-h2 mt-2.5 font-serif tracking-tight">
           Nudge 34 guests who haven&apos;t recorded yet
         </h3>
-        <p className="mt-2.5 max-w-xl type-body-small text-muted-foreground leading-relaxed">
+        <p className="type-body-small text-muted-foreground mt-2.5 max-w-xl leading-relaxed">
           We&apos;ll send a warm one-liner with your link. You can preview and
           edit before anything goes out. WhatsApp works best &mdash; 3&times;
           the response rate of email.
@@ -30,7 +30,7 @@ export const GuestNudgeCard = () => {
             <NudgeChannelButton key={channel.label} {...channel} />
           ))}
         </div>
-        <div className="mt-5 max-w-xl rounded-12 border border-border bg-background p-3.5 type-body-small leading-relaxed">
+        <div className="rounded-12 border-border bg-background type-body-small mt-5 max-w-xl border p-3.5 leading-relaxed">
           <span className="text-muted-foreground">Preview:</span>{" "}
           <span className="font-serif italic">
             &ldquo;Hi Ren&eacute;e &mdash; Lena &amp; Tom&aacute;s here. The
@@ -59,10 +59,10 @@ const NudgeChannelButton = ({
   <button
     type="button"
     className={cn(
-      "inline-flex cursor-pointer items-center gap-2.5 rounded-16 px-4 py-3 type-body-small font-semibold",
+      "rounded-16 type-body-small inline-flex cursor-pointer items-center gap-2.5 px-4 py-3 font-semibold",
       recommended
         ? "bg-foreground text-background"
-        : "border border-border bg-card text-foreground",
+        : "border-border bg-card text-foreground border",
     )}
   >
     <Icon width={15} height={15} />
@@ -76,7 +76,7 @@ const NudgeChannelButton = ({
       {count}
     </span>
     {recommended && (
-      <span className="rounded-4 bg-destructive px-1.5 py-0.5 type-overline text-background">
+      <span className="rounded-4 bg-destructive type-overline text-background px-1.5 py-0.5">
         BEST
       </span>
     )}

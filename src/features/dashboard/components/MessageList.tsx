@@ -79,13 +79,13 @@ export const MessageList = () => {
         </h2>
         <Link
           href={`/messages`}
-          className="type-body-small font-semibold text-primary"
+          className="type-body-small text-primary font-semibold"
         >
           See all 87 &rarr;
         </Link>
       </div>
 
-      <div className="overflow-hidden rounded-20 border border-border bg-card">
+      <div className="rounded-20 border-border bg-card overflow-hidden border">
         {messages.map((m, i) => (
           <MessageRow key={m.id} {...m} index={i} />
         ))}

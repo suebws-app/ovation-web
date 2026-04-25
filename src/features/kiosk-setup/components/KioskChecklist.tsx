@@ -45,7 +45,7 @@ export const KioskChecklist = () => {
   return (
     <div>
       <div className="mb-3.5 flex items-baseline justify-between">
-        <h2 className="font-serif type-h2 tracking-tight">
+        <h2 className="type-h2 font-serif tracking-tight">
           Wedding-day checklist
         </h2>
         <span className="type-caption text-muted-foreground">
@@ -55,7 +55,7 @@ export const KioskChecklist = () => {
           ready &middot; ~2 min to finish
         </span>
       </div>
-      <div className="grid grid-cols-1 gap-3 tablet:grid-cols-2 desktop:grid-cols-3">
+      <div className="tablet:grid-cols-2 desktop:grid-cols-3 grid grid-cols-1 gap-3">
         {ITEMS.map((item) => (
           <KioskChecklistItem key={item.title} {...item} />
         ))}

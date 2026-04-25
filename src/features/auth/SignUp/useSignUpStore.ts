@@ -1,46 +1,46 @@
-'use client'
+"use client";
 
-import { create } from 'zustand'
+import { create } from "zustand";
 
 type SignUpFormData = {
-  email: string
-  password: string
-  agreedToTerms: boolean
-  otpCode: string
-  partner1Name: string
-  partner2Name: string
-  displayOrder: string
-  weddingDate: Date | null
-  dateUndecided: boolean
-  venue: string
-  coverType: string
-  bookUrl: string
-  selectedPlan: string
-}
+  email: string;
+  password: string;
+  agreedToTerms: boolean;
+  otpCode: string;
+  partner1Name: string;
+  partner2Name: string;
+  displayOrder: string;
+  weddingDate: Date | null;
+  dateUndecided: boolean;
+  venue: string;
+  coverType: string;
+  bookUrl: string;
+  selectedPlan: string;
+};
 
 type SignUpStore = {
-  step: number
-  totalSteps: number
-  formData: SignUpFormData
-  setStep: (step: number) => void
-  updateFormData: (data: Partial<SignUpFormData>) => void
-}
+  step: number;
+  totalSteps: number;
+  formData: SignUpFormData;
+  setStep: (step: number) => void;
+  updateFormData: (data: Partial<SignUpFormData>) => void;
+};
 
 const initialFormData: SignUpFormData = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
   agreedToTerms: false,
-  otpCode: '',
-  partner1Name: '',
-  partner2Name: '',
-  displayOrder: '',
+  otpCode: "",
+  partner1Name: "",
+  partner2Name: "",
+  displayOrder: "",
   weddingDate: null,
   dateUndecided: false,
-  venue: '',
-  coverType: '',
-  bookUrl: '',
-  selectedPlan: '',
-}
+  venue: "",
+  coverType: "",
+  bookUrl: "",
+  selectedPlan: "",
+};
 
 export const useSignUpStore = create<SignUpStore>((set) => ({
   step: 1,
@@ -49,4 +49,4 @@ export const useSignUpStore = create<SignUpStore>((set) => ({
   setStep: (step) => set({ step }),
   updateFormData: (data) =>
     set((state) => ({ formData: { ...state.formData, ...data } })),
-}))
+}));

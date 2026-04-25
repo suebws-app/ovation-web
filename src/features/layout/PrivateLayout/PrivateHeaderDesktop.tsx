@@ -27,7 +27,7 @@ export const PrivateHeaderDesktop = () => {
   const isKeepsakes = segments.includes("keepsakes");
 
   return (
-    <header className="hidden w-full items-center justify-between py-3 h-16 max-w-container mx-auto desktop:flex">
+    <header className="max-w-container desktop:flex mx-auto hidden h-16 w-full items-center justify-between py-3">
       <Breadcrumb>
         <BreadcrumbList className="type-caption">
           {parentCrumbs.map((crumb, i) => {
@@ -58,12 +58,12 @@ export const PrivateHeaderDesktop = () => {
 
 const KeepsakesActions = () => (
   <div className="flex items-center gap-3">
-    <span className="type-caption font-semibold text-accent-foreground">
+    <span className="type-caption text-accent-foreground font-semibold">
       &#9733; &euro;50 credit available
     </span>
     <button
       type="button"
-      className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-border bg-card px-3.5 py-2 type-caption font-semibold text-foreground transition-colors hover:bg-muted"
+      className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3.5 py-2 font-semibold transition-colors"
     >
       Cart &middot; 0
     </button>

@@ -1,21 +1,26 @@
-'use client'
+"use client";
 
-import { Button } from '@ovation/ui/components/Button'
+import { Button } from "@ovation/ui/components/Button";
 
 export const OrderCtaStrip = () => (
-  <div className="flex flex-col gap-4 rounded-16 border border-destructive/30 bg-gradient-to-br from-destructive/10 to-accent/10 p-5 tablet:flex-row tablet:items-center tablet:gap-5 tablet:p-6">
+  <div className="rounded-16 border-destructive/30 from-destructive/10 to-accent/10 tablet:flex-row tablet:items-center tablet:gap-5 tablet:p-6 flex flex-col gap-4 border bg-gradient-to-br p-5">
     <div className="flex-1">
-      <p className="type-overline tracking-[2px] text-destructive">Want it on paper?</p>
-      <p className="mt-1.5 font-serif text-[1.375rem] font-semibold leading-snug tracking-tight tablet:text-[1.625rem]">
-        Letterpress QR cards &mdash;{' '}
-        <span className="italic text-destructive">from &euro;1.89 each.</span>
+      <p className="type-overline text-destructive tracking-[2px]">
+        Want it on paper?
       </p>
-      <p className="mt-1.5 type-body-small text-muted-foreground">
+      <p className="tablet:text-[1.625rem] mt-1.5 font-serif text-[1.375rem] leading-snug font-semibold tracking-tight">
+        Letterpress QR cards &mdash;{" "}
+        <span className="text-destructive italic">from &euro;1.89 each.</span>
+      </p>
+      <p className="type-body-small text-muted-foreground mt-1.5">
         Hand-printed in Lisbon. Ships to Girona in 5&ndash;7 days.
       </p>
     </div>
-    <Button size="lg" className="w-full rounded-full shadow-md shadow-primary/40 tablet:w-auto">
+    <Button
+      size="lg"
+      className="shadow-primary/40 tablet:w-auto w-full rounded-full shadow-md"
+    >
       Order cards
     </Button>
   </div>
-)
+);

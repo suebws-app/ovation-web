@@ -176,7 +176,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
           ref={ref}
           data-slot="sidebar"
           className={cn(
-            "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
+            "bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col",
             className,
           )}
           {...props}
@@ -193,7 +193,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             data-sidebar="sidebar"
             data-slot="sidebar"
             data-mobile="true"
-            className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+            className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -215,7 +215,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
     return (
       <div
         ref={ref}
-        className="group peer hidden text-sidebar-foreground desktop:block"
+        className="group peer text-sidebar-foreground desktop:block hidden"
         data-state={state}
         data-collapsible={state === "collapsed" ? collapsible : ""}
         data-variant={variant}
@@ -237,7 +237,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
           data-slot="sidebar-container"
           data-side={side}
           className={cn(
-            "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear desktop:flex",
+            "desktop:flex fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear",
             side === "left" && "left-0",
             side === "right" && "right-0",
             variant === "floating" || variant === "inset"
@@ -249,11 +249,11 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
           <div
             data-slot="sidebar-inner"
             className={cn(
-              "flex h-full w-full flex-col bg-sidebar",
+              "bg-sidebar flex h-full w-full flex-col",
               variant === "floating" &&
-                "overflow-hidden rounded-12 border border-sidebar-border shadow",
-              variant === "inset" && "overflow-hidden rounded-12",
-              variant === "sidebar" && "border-r border-sidebar-border",
+                "rounded-12 border-sidebar-border overflow-hidden border shadow",
+              variant === "inset" && "rounded-12 overflow-hidden",
+              variant === "sidebar" && "border-sidebar-border border-r",
             )}
           >
             {children}
@@ -277,7 +277,7 @@ export const SidebarTrigger = forwardRef<
       data-slot="sidebar-trigger"
       type="button"
       className={cn(
-        "inline-flex size-8 cursor-pointer items-center justify-center rounded-8 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+        "rounded-8 text-muted-foreground hover:bg-muted hover:text-foreground inline-flex size-8 cursor-pointer items-center justify-center transition-colors",
         className,
       )}
       onClick={(event) => {
@@ -312,7 +312,7 @@ export const SidebarInset = forwardRef<
     ref={ref}
     data-slot="sidebar-inset"
     className={cn(
-      "relative flex min-h-svh w-full flex-1 flex-col max-w-container mx-auto",
+      "max-w-container relative mx-auto flex min-h-svh w-full flex-1 flex-col",
       className,
     )}
     {...props}
@@ -385,7 +385,7 @@ export const SidebarGroupLabel = forwardRef<
       ref={ref}
       data-slot="sidebar-group-label"
       className={cn(
-        "flex h-8 shrink-0 items-center rounded-8 px-2 type-caption font-semibold tracking-wider uppercase text-sidebar-foreground/60 outline-none",
+        "rounded-8 type-caption text-sidebar-foreground/60 flex h-8 shrink-0 items-center px-2 font-semibold tracking-wider uppercase outline-none",
         className,
       )}
       {...props}
@@ -451,11 +451,11 @@ export const SidebarMenuButton = forwardRef<
         data-slot="sidebar-menu-button"
         data-active={isActive}
         className={cn(
-          "peer/menu-button flex w-full items-center gap-3 overflow-hidden rounded-10 px-3 type-body-small font-medium text-sidebar-foreground/80 outline-none transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-sidebar-ring active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 [&>svg]:size-5 [&>svg]:shrink-0",
+          "peer/menu-button rounded-10 type-body-small text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-sidebar-ring active:bg-sidebar-accent active:text-sidebar-accent-foreground flex w-full items-center gap-3 overflow-hidden px-3 font-medium transition-colors outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 [&>svg]:size-5 [&>svg]:shrink-0",
           size === "default" && "min-h-9 py-2",
-          size === "sm" && "min-h-7 py-1 type-caption",
+          size === "sm" && "type-caption min-h-7 py-1",
           size === "lg" && "min-h-11 py-3",
-          "data-[active=true]:bg-sidebar-accent data-[active=true]:font-semibold data-[active=true]:text-sidebar-accent-foreground",
+          "data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground data-[active=true]:font-semibold",
           className,
         )}
         {...props}
@@ -473,7 +473,7 @@ export const SidebarMenuBadge = forwardRef<
     ref={ref}
     data-slot="sidebar-menu-badge"
     className={cn(
-      "pointer-events-none absolute right-2 flex h-5 min-w-5 select-none items-center justify-center rounded-8 bg-primary px-1 type-caption font-semibold text-primary-foreground",
+      "rounded-8 bg-primary type-caption text-primary-foreground pointer-events-none absolute right-2 flex h-5 min-w-5 items-center justify-center px-1 font-semibold select-none",
       className,
     )}
     {...props}
@@ -488,7 +488,7 @@ export const SidebarSeparator = forwardRef<
   <div
     ref={ref}
     data-slot="sidebar-separator"
-    className={cn("mx-2 h-px bg-sidebar-border", className)}
+    className={cn("bg-sidebar-border mx-2 h-px", className)}
     {...props}
   />
 ));

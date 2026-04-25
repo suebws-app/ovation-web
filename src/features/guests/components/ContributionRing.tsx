@@ -9,7 +9,7 @@ export const ContributionRing = ({ value, total }: ContributionRingProps) => {
   const c = 2 * Math.PI * r;
 
   return (
-    <div className="flex w-55 flex-col items-center rounded-20 border border-border bg-card p-5 shadow">
+    <div className="rounded-20 border-border bg-card flex w-55 flex-col items-center border p-5 shadow">
       <svg width="140" height="140" viewBox="0 0 140 140">
         <circle
           cx="70"
@@ -53,9 +53,11 @@ export const ContributionRing = ({ value, total }: ContributionRingProps) => {
           CONTRIBUTED
         </text>
       </svg>
-      <p className="mt-1 text-center type-caption text-muted-foreground">
-        <strong className="text-foreground">{value} of {total}</strong> guests
-        left a message
+      <p className="type-caption text-muted-foreground mt-1 text-center">
+        <strong className="text-foreground">
+          {value} of {total}
+        </strong>{" "}
+        guests left a message
       </p>
     </div>
   );

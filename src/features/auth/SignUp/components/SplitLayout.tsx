@@ -19,11 +19,11 @@ export const SplitLayout = ({
   return (
     <div
       className={cn(
-        "grid min-h-[calc(100vh-89px)] desktop:grid-cols-[40%_1fr]",
+        "desktop:grid-cols-[40%_1fr] grid min-h-[calc(100vh-89px)]",
         className,
       )}
     >
-      <div className="relative hidden overflow-hidden bg-gradient-to-br from-primary to-primary/80 text-primary-foreground desktop:flex desktop:items-center desktop:justify-center">
+      <div className="from-primary to-primary/80 text-primary-foreground desktop:flex desktop:items-center desktop:justify-center relative hidden overflow-hidden bg-gradient-to-br">
         <DecorativeBlob
           className="-top-20 -right-20"
           color="destructive"
@@ -38,7 +38,7 @@ export const SplitLayout = ({
           {left}
         </div>
       </div>
-      <div className="flex items-center px-6 py-16 tablet:px-18">
+      <div className="tablet:px-18 flex items-center px-6 py-16">
         <div className="w-full max-w-[520px]">{right}</div>
       </div>
     </div>

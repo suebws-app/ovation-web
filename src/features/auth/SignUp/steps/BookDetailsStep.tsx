@@ -65,7 +65,7 @@ export const BookDetailsStep = () => {
               })}
               venue={venue}
             />
-            <p className="mt-6 type-body-small leading-relaxed opacity-80">
+            <p className="type-body-small mt-6 leading-relaxed opacity-80">
               Your cover updates as you type. This is how guests see your book.
             </p>
           </div>
@@ -74,15 +74,15 @@ export const BookDetailsStep = () => {
       }
       right={
         <>
-          <Eyebrow className="mb-3 text-primary">
+          <Eyebrow className="text-primary mb-3">
             Step 3 &middot; Your book
           </Eyebrow>
-          <h1 className="font-serif text-[2.75rem] font-semibold leading-tight tracking-tight">
+          <h1 className="font-serif text-[2.75rem] leading-tight font-semibold tracking-tight">
             Names, date
             <br />
-            <span className="italic text-primary">&amp; place.</span>
+            <span className="text-primary italic">&amp; place.</span>
           </h1>
-          <p className="mt-3 type-body-small leading-relaxed text-muted-foreground">
+          <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
             Just first names or nicknames — whatever your guests will recognize.
           </p>
 
@@ -101,7 +101,7 @@ export const BookDetailsStep = () => {
                 placeholder="First name"
               />
             </div>
-            <span className="pb-2.5 font-serif text-[2rem] italic text-muted-foreground">
+            <span className="text-muted-foreground pb-2.5 font-serif text-[2rem] italic">
               &amp;
             </span>
             <div>
@@ -139,10 +139,10 @@ export const BookDetailsStep = () => {
             <button
               type="button"
               onClick={() => setShowCalendar(!showCalendar)}
-              className="group flex w-full cursor-pointer items-center justify-between rounded-12 border border-border bg-card px-4 py-3 shadow-sm transition-all hover:border-primary/40 hover:shadow-input"
+              className="group rounded-12 border-border bg-card hover:border-primary/40 hover:shadow-input flex w-full cursor-pointer items-center justify-between border px-4 py-3 shadow-sm transition-all"
             >
               <div className="flex items-center gap-3">
-                <span className="flex size-9 items-center justify-center rounded-8 bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
+                <span className="rounded-8 bg-primary/10 text-primary group-hover:bg-primary/15 flex size-9 items-center justify-center transition-colors">
                   <svg
                     width="16"
                     height="16"
@@ -160,7 +160,7 @@ export const BookDetailsStep = () => {
                 <span
                   className={
                     weddingDate
-                      ? "type-body-small font-medium text-foreground"
+                      ? "type-body-small text-foreground font-medium"
                       : "type-body-small text-muted-foreground"
                   }
                 >
@@ -173,7 +173,7 @@ export const BookDetailsStep = () => {
                     : "Pick a date"}
                 </span>
               </div>
-              <span className="rounded-full bg-muted px-2.5 py-1 type-caption font-medium text-muted-foreground">
+              <span className="bg-muted type-caption text-muted-foreground rounded-full px-2.5 py-1 font-medium">
                 {weddingDate
                   ? weddingDate.toLocaleDateString("en-US", { weekday: "long" })
                   : "Optional"}
@@ -187,7 +187,7 @@ export const BookDetailsStep = () => {
               }}
             >
               <div className="overflow-hidden">
-                <div className="mt-3 rounded-16 border border-border bg-card p-4 shadow-sm">
+                <div className="rounded-16 border-border bg-card mt-3 border p-4 shadow-sm">
                   <Calendar
                     mode="single"
                     selected={weddingDate ?? undefined}
@@ -213,7 +213,7 @@ export const BookDetailsStep = () => {
               onChange={(e) => updateFormData({ venue: e.target.value })}
               placeholder="e.g. Villa Rosa, Tuscany"
             />
-            <p className="mt-2 type-caption text-muted-foreground">
+            <p className="type-caption text-muted-foreground mt-2">
               Used on guest cards. Optional — just a country works too.
             </p>
           </div>
@@ -222,7 +222,7 @@ export const BookDetailsStep = () => {
             onClick={handleContinue}
             disabled={!partner1Name || !partner2Name}
             size="lg"
-            className="mt-6 w-full rounded-full shadow-md shadow-primary/40"
+            className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
           >
             Continue
             <ArrowRight width={16} height={16} />

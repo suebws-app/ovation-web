@@ -22,23 +22,28 @@ export const PartnerCard = ({
   badgeLabel,
   badgeVariant,
 }: PartnerCardProps) => (
-  <div className="flex gap-4.5 rounded-16 border border-border bg-card p-6">
+  <div className="rounded-16 border-border bg-card flex gap-4.5 border p-6">
     <div className="relative shrink-0">
-      <Avatar initials={initials} tint={tint} size="lg" className="size-16 type-h3" />
+      <Avatar
+        initials={initials}
+        tint={tint}
+        size="lg"
+        className="type-h3 size-16"
+      />
       <button
         type="button"
-        className="absolute -bottom-0.5 -right-0.5 flex size-5.5 cursor-pointer items-center justify-center rounded-full border border-border bg-card"
+        className="border-border bg-card absolute -right-0.5 -bottom-0.5 flex size-5.5 cursor-pointer items-center justify-center rounded-full border"
       >
         <Camera width={11} height={11} />
       </button>
     </div>
     <div className="min-w-0 flex-1">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="font-serif type-h3 font-semibold">{name}</span>
+        <span className="type-h3 font-serif font-semibold">{name}</span>
         <Badge variant={badgeVariant}>{badgeLabel}</Badge>
       </div>
-      <div className="mt-0.5 type-body-small text-muted-foreground">{role}</div>
-      <div className="mt-2.5 type-body-small text-muted-foreground">
+      <div className="type-body-small text-muted-foreground mt-0.5">{role}</div>
+      <div className="type-body-small text-muted-foreground mt-2.5">
         {email}
       </div>
       <div className="mt-2.5">

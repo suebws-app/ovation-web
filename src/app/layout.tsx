@@ -13,6 +13,6 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return children;
-}
+};
 
-export default RootLayout
+export default RootLayout;

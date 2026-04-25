@@ -1,3 +1,3 @@
 export const HowItWorksPage = () => {
-  return <div>{/* TODO: Step-by-step explainer */}</div>
-}
+  return <div>{/* TODO: Step-by-step explainer */}</div>;
+};

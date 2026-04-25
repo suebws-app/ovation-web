@@ -14,7 +14,7 @@ export const RootHeader = ({ className }: { className?: string }) => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md",
+        "border-border bg-background/90 sticky top-0 z-50 border-b backdrop-blur-md",
         className,
       )}
     >
@@ -23,25 +23,25 @@ export const RootHeader = ({ className }: { className?: string }) => {
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
+        <nav className="text-muted-foreground hidden items-center gap-8 text-sm md:flex">
           <Link
             href="/how-it-works"
-            className="font-medium hover:text-foreground"
+            className="hover:text-foreground font-medium"
           >
             {t("marketing__nav__how_it_works")}
           </Link>
-          <Link href="/keepsakes" className="font-medium hover:text-foreground">
+          <Link href="/keepsakes" className="hover:text-foreground font-medium">
             {t("marketing__nav__keepsakes")}
           </Link>
-          <Link href="/pricing" className="font-medium hover:text-foreground">
+          <Link href="/pricing" className="hover:text-foreground font-medium">
             {t("marketing__nav__pricing")}
           </Link>
-          <Link href="/stories" className="font-medium hover:text-foreground">
+          <Link href="/stories" className="hover:text-foreground font-medium">
             {t("marketing__nav__stories")}
           </Link>
           <Link
             href="/for-planners"
-            className="font-medium hover:text-foreground"
+            className="hover:text-foreground font-medium"
           >
             {t("marketing__nav__for_planners")}
           </Link>
@@ -51,7 +51,7 @@ export const RootHeader = ({ className }: { className?: string }) => {
           <ThemeToggle />
           <Link
             href="/sign-in"
-            className="hidden text-sm font-medium text-foreground md:block"
+            className="text-foreground hidden text-sm font-medium md:block"
           >
             {t("marketing__nav__sign_in")}
           </Link>

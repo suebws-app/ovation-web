@@ -51,13 +51,10 @@ export const GuestRow = ({
   return (
     <div
       className={`grid grid-cols-[28px_minmax(220px,1.4fr)_140px_150px_150px_120px_36px] items-center gap-3.5 px-6 py-3.5 ${
-        isLast ? "" : "border-b border-border"
+        isLast ? "" : "border-border border-b"
       }`}
     >
-      <input
-        type="checkbox"
-        className="size-4 accent-primary"
-      />
+      <input type="checkbox" className="accent-primary size-4" />
       <div className="flex min-w-0 items-center gap-3">
         <Avatar initials={initials} tint={tint} size="md" />
         <div className="min-w-0">
@@ -72,16 +69,16 @@ export const GuestRow = ({
               />
             )}
           </div>
-          <div className="truncate type-caption text-muted-foreground">
+          <div className="type-caption text-muted-foreground truncate">
             {relation}
           </div>
         </div>
       </div>
       <div>
         <div className="type-caption">{group}</div>
-        <div className="mt-0.5 type-caption text-muted-foreground">{table}</div>
+        <div className="type-caption text-muted-foreground mt-0.5">{table}</div>
       </div>
-      <div className="flex items-center gap-1.5 overflow-hidden type-caption text-muted-foreground">
+      <div className="type-caption text-muted-foreground flex items-center gap-1.5 overflow-hidden">
         {contactIcon}
         <span className="truncate">{contact}</span>
       </div>
@@ -90,10 +87,10 @@ export const GuestRow = ({
         thanked={thanked}
         nudged={nudged}
       />
-      <div className="flex items-center gap-2 type-caption text-muted-foreground">
+      <div className="type-caption text-muted-foreground flex items-center gap-2">
         {contributed ? (
           <>
-            <span className="font-semibold text-foreground">
+            <span className="text-foreground font-semibold">
               {messageCount} msg
             </span>
             {hasPhoto && (

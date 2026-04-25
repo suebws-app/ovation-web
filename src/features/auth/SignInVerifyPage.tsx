@@ -1,5 +1,5 @@
-import { SignInFlow } from '@/features/auth/SignIn/SignInFlow'
+import { SignInFlow } from "@/features/auth/SignIn/SignInFlow";
 
 export const SignInVerifyPage = () => {
-  return <SignInFlow step="verify" />
-}
+  return <SignInFlow step="verify" />;
+};

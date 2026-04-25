@@ -16,7 +16,7 @@ export const GuestPagination = ({
   of: totalItems,
 }: GuestPaginationProps) => {
   return (
-    <div className="flex items-center justify-between border-t border-border bg-background px-6 py-3.5">
+    <div className="border-border bg-background flex items-center justify-between border-t px-6 py-3.5">
       <span className="type-caption text-muted-foreground">
         Showing {showing} of {totalItems}
       </span>
@@ -33,10 +33,10 @@ const PageButton = ({ label, active }: { label: string; active: boolean }) => (
   <button
     type="button"
     className={cn(
-      "flex size-7.5 cursor-pointer items-center justify-center rounded-8 type-caption font-semibold",
+      "rounded-8 type-caption flex size-7.5 cursor-pointer items-center justify-center font-semibold",
       active
         ? "bg-foreground text-background"
-        : "border border-border bg-card text-foreground",
+        : "border-border bg-card text-foreground border",
     )}
   >
     {label}

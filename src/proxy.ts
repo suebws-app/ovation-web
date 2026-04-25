@@ -5,7 +5,7 @@ const intlMiddleware = createMiddleware(routing);
 
 export const proxy = (request: Request) => {
   return intlMiddleware(request as any);
-}
+};
 
 export const config = {
   matcher: ["/((?!api|_next|.*\\..*).*)"],

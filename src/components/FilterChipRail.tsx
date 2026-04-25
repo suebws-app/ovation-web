@@ -23,7 +23,7 @@ export const FilterChipRail = ({
 }: FilterChipRailProps) => (
   <div
     className={cn(
-      "flex gap-2 overflow-auto border-b border-border bg-card px-4 py-3",
+      "border-border bg-card flex gap-2 overflow-auto border-b px-4 py-3",
       className,
     )}
   >

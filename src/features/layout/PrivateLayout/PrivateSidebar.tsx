@@ -47,7 +47,7 @@ export const PrivateSideBar = () => {
 
   return (
     <Sidebar>
-      <SidebarHeader className="px-5 pb-0 pt-7">
+      <SidebarHeader className="px-5 pt-7 pb-0">
         <Logo />
       </SidebarHeader>
 
@@ -83,10 +83,10 @@ export const PrivateSideBar = () => {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-sidebar-border">
+      <SidebarFooter className="border-sidebar-border border-t">
         <div className="flex items-center gap-3">
           <Avatar initials="L&T" tint="#EFC9A8" size="md" />
-          <span className="type-body-small font-semibold text-foreground">
+          <span className="type-body-small text-foreground font-semibold">
             Lena & Tomás
           </span>
         </div>

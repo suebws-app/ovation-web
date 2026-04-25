@@ -19,13 +19,13 @@ export const KioskPreview = () => {
   return (
     <div>
       <div className="mb-3.5 flex items-baseline justify-between">
-        <h2 className="font-serif type-h2 tracking-tight">Live preview</h2>
+        <h2 className="type-h2 font-serif tracking-tight">Live preview</h2>
         <Button size="sm" className="rounded-full">
           <Eye width={13} height={13} />
           Open as guest
         </Button>
       </div>
-      <div className="rounded-20 border border-border bg-card p-5 shadow">
+      <div className="rounded-20 border-border bg-card border p-5 shadow">
         <div className="mb-3.5 flex gap-1.5">
           {TABS.map((tab) => (
             <KioskPreviewTab
@@ -36,8 +36,11 @@ export const KioskPreview = () => {
             />
           ))}
         </div>
-        <div className="flex justify-center rounded-16 bg-background p-6">
-          <div className="relative overflow-hidden rounded-24 border-[14px] border-foreground/90 shadow-lg" style={{ width: 1280 * 0.58, height: 800 * 0.58 + 28 }}>
+        <div className="rounded-16 bg-background flex justify-center p-6">
+          <div
+            className="rounded-24 border-foreground/90 relative overflow-hidden border-[14px] shadow-lg"
+            style={{ width: 1280 * 0.58, height: 800 * 0.58 + 28 }}
+          >
             <div
               className="absolute inset-0 origin-top-left"
               style={{

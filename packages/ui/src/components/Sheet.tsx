@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { Dialog, VisuallyHidden } from "radix-ui"
-import { forwardRef } from "react"
-import { cn } from "../utils/cn"
+import { Dialog, VisuallyHidden } from "radix-ui";
+import { forwardRef } from "react";
+import { cn } from "../utils/cn";
 
-const Sheet = Dialog.Root
-const SheetTrigger = Dialog.Trigger
-const SheetClose = Dialog.Close
-const SheetPortal = Dialog.Portal
+const Sheet = Dialog.Root;
+const SheetTrigger = Dialog.Trigger;
+const SheetClose = Dialog.Close;
+const SheetPortal = Dialog.Portal;
 
 const SheetOverlay = forwardRef<
   React.ComponentRef<typeof Dialog.Overlay>,
@@ -16,17 +16,17 @@ const SheetOverlay = forwardRef<
   <Dialog.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 bg-foreground/30 backdrop-blur-sm data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in",
-      className
+      "bg-foreground/30 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in fixed inset-0 z-50 backdrop-blur-sm",
+      className,
     )}
     {...props}
   />
-))
-SheetOverlay.displayName = "SheetOverlay"
+));
+SheetOverlay.displayName = "SheetOverlay";
 
 type SheetContentProps = React.ComponentProps<typeof Dialog.Content> & {
-  side?: "top" | "right" | "bottom" | "left"
-}
+  side?: "top" | "right" | "bottom" | "left";
+};
 
 const SheetContent = forwardRef<
   React.ComponentRef<typeof Dialog.Content>,
@@ -37,28 +37,28 @@ const SheetContent = forwardRef<
     <Dialog.Content
       ref={ref}
       className={cn(
-        "fixed z-50 flex flex-col gap-4 bg-card shadow-lg transition-transform duration-300 ease-in-out",
+        "bg-card fixed z-50 flex flex-col gap-4 shadow-lg transition-transform duration-300 ease-in-out",
         side === "left" &&
-          "inset-y-0 left-0 h-full w-3/4 max-w-sm border-r border-border data-[state=closed]:-translate-x-full data-[state=open]:translate-x-0",
+          "border-border inset-y-0 left-0 h-full w-3/4 max-w-sm border-r data-[state=closed]:-translate-x-full data-[state=open]:translate-x-0",
         side === "right" &&
-          "inset-y-0 right-0 h-full w-3/4 max-w-sm border-l border-border data-[state=closed]:translate-x-full data-[state=open]:translate-x-0",
+          "border-border inset-y-0 right-0 h-full w-3/4 max-w-sm border-l data-[state=closed]:translate-x-full data-[state=open]:translate-x-0",
         side === "top" &&
-          "inset-x-0 top-0 border-b border-border data-[state=closed]:-translate-y-full data-[state=open]:translate-y-0",
+          "border-border inset-x-0 top-0 border-b data-[state=closed]:-translate-y-full data-[state=open]:translate-y-0",
         side === "bottom" &&
-          "inset-x-0 bottom-0 border-t border-border data-[state=closed]:translate-y-full data-[state=open]:translate-y-0",
-        className
+          "border-border inset-x-0 bottom-0 border-t data-[state=closed]:translate-y-full data-[state=open]:translate-y-0",
+        className,
       )}
       {...props}
     >
       {children}
     </Dialog.Content>
   </SheetPortal>
-))
-SheetContent.displayName = "SheetContent"
+));
+SheetContent.displayName = "SheetContent";
 
 const SheetHeader = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div className={cn("flex flex-col gap-2 p-4", className)} {...props} />
-)
+);
 
 const SheetTitle = forwardRef<
   React.ComponentRef<typeof Dialog.Title>,
@@ -66,11 +66,11 @@ const SheetTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <Dialog.Title
     ref={ref}
-    className={cn("type-body font-semibold text-foreground", className)}
+    className={cn("type-body text-foreground font-semibold", className)}
     {...props}
   />
-))
-SheetTitle.displayName = "SheetTitle"
+));
+SheetTitle.displayName = "SheetTitle";
 
 const SheetDescription = forwardRef<
   React.ComponentRef<typeof Dialog.Description>,
@@ -81,8 +81,8 @@ const SheetDescription = forwardRef<
     className={cn("type-body-small text-muted-foreground", className)}
     {...props}
   />
-))
-SheetDescription.displayName = "SheetDescription"
+));
+SheetDescription.displayName = "SheetDescription";
 
 export {
   Sheet,
@@ -95,4 +95,4 @@ export {
   SheetTitle,
   SheetDescription,
   VisuallyHidden,
-}
+};

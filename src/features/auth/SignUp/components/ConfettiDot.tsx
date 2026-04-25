@@ -1,13 +1,20 @@
 type ConfettiDotProps = {
-  top: number
-  left?: number
-  right?: number
-  color: string
-  size: number
-  rotation: number
-}
+  top: number;
+  left?: number;
+  right?: number;
+  color: string;
+  size: number;
+  rotation: number;
+};
 
-export const ConfettiDot = ({ top, left, right, color, size, rotation }: ConfettiDotProps) => (
+export const ConfettiDot = ({
+  top,
+  left,
+  right,
+  color,
+  size,
+  rotation,
+}: ConfettiDotProps) => (
   <div
     className="absolute rounded-sm"
     style={{
@@ -20,4 +27,4 @@ export const ConfettiDot = ({ top, left, right, color, size, rotation }: Confett
       transform: `rotate(${rotation}deg)`,
     }}
   />
-)
+);

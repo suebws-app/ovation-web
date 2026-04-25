@@ -1,11 +1,11 @@
 type StatItemProps = {
-  value: string
-  label: string
-}
+  value: string;
+  label: string;
+};
 
 export const StatItem = ({ value, label }: StatItemProps) => (
   <div>
-    <p className="font-serif text-[2rem] font-semibold leading-none">{value}</p>
-    <p className="mt-1.5 type-body-small text-muted-foreground">{label}</p>
+    <p className="font-serif text-[2rem] leading-none font-semibold">{value}</p>
+    <p className="type-body-small text-muted-foreground mt-1.5">{label}</p>
   </div>
-)
+);

@@ -21,10 +21,10 @@ export const SettingsProfileSection = () => {
   return (
     <>
       <span className="type-overline text-primary">Settings</span>
-      <h1 className="mt-2 font-serif type-display tracking-tight">
-        Your <span className="italic text-primary">profile</span>
+      <h1 className="type-display mt-2 font-serif tracking-tight">
+        Your <span className="text-primary italic">profile</span>
       </h1>
-      <p className="mt-2.5 max-w-xl type-body text-muted-foreground">
+      <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
         The couple behind the book. This is what guests see on the welcome
         screen and in any thank-you notes you send through Ovation.
       </p>
@@ -45,7 +45,7 @@ export const SettingsProfileSection = () => {
             badgeVariant="default"
           />
           <div className="flex items-center justify-center">
-            <span className="font-serif text-4xl italic text-primary">
+            <span className="text-primary font-serif text-4xl italic">
               &amp;
             </span>
           </div>
@@ -67,7 +67,7 @@ export const SettingsProfileSection = () => {
           description="Just the fields that belong to you, Lena. Tom\u00e1s edits his own from his sign-in."
         />
         <SettingsCard>
-          <div className="border-b border-border py-5.5">
+          <div className="border-border border-b py-5.5">
             <div className="grid grid-cols-2 gap-6">
               <SettingsField label="First name" value="Lena" />
               <SettingsField label="Last name" value="Alvarez" />
@@ -124,16 +124,14 @@ export const SettingsProfileSection = () => {
           description="Shown on your book\u2019s welcome screen and used to pace reminders."
         />
         <SettingsCard>
-          <div className="border-b border-border py-5.5">
+          <div className="border-border border-b py-5.5">
             <div className="grid grid-cols-[1.2fr_1fr] gap-6">
               <SettingsField label="Couple names, as shown">
-                <div className="flex items-center gap-2.5 rounded-12 border border-border bg-card px-3.5 py-3 type-body-small">
+                <div className="rounded-12 border-border bg-card type-body-small flex items-center gap-2.5 border px-3.5 py-3">
                   <span>Lena</span>
-                  <span className="font-serif italic text-primary">
-                    &amp;
-                  </span>
+                  <span className="text-primary font-serif italic">&amp;</span>
                   <span>Tom&aacute;s</span>
-                  <span className="ml-auto type-caption text-muted-foreground">
+                  <span className="type-caption text-muted-foreground ml-auto">
                     Preview:{" "}
                     <strong className="text-foreground">
                       Lena &amp; Tom&aacute;s
@@ -177,8 +175,10 @@ export const SettingsProfileSection = () => {
             title="Book language"
             description="Main language for your book. Guests can switch on their end \u2014 we detect their browser."
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 type-body-small">
-              <span className="type-body-small">{"\ud83c\uddf5\ud83c\uddf9"}</span>
+            <span className="border-border bg-card type-body-small inline-flex items-center gap-2 rounded-full border px-3.5 py-2">
+              <span className="type-body-small">
+                {"\ud83c\uddf5\ud83c\uddf9"}
+              </span>
               Portuguese
               <ChevronDown
                 width={12}
@@ -193,12 +193,21 @@ export const SettingsProfileSection = () => {
             last
           >
             <div className="flex flex-wrap items-center justify-end gap-1.5">
-              <SettingsLanguageChip flag="\ud83c\uddec\ud83c\udde7" label="English" />
-              <SettingsLanguageChip flag="\ud83c\uddea\ud83c\uddf8" label="Spanish" />
-              <SettingsLanguageChip flag="\ud83c\uddeb\ud83c\uddf7" label="French" />
+              <SettingsLanguageChip
+                flag="\ud83c\uddec\ud83c\udde7"
+                label="English"
+              />
+              <SettingsLanguageChip
+                flag="\ud83c\uddea\ud83c\uddf8"
+                label="Spanish"
+              />
+              <SettingsLanguageChip
+                flag="\ud83c\uddeb\ud83c\uddf7"
+                label="French"
+              />
               <button
                 type="button"
-                className="cursor-pointer rounded-full border border-dashed border-border px-3 py-1.5 type-caption font-semibold text-muted-foreground"
+                className="border-border type-caption text-muted-foreground cursor-pointer rounded-full border border-dashed px-3 py-1.5 font-semibold"
               >
                 + Add
               </button>
@@ -218,14 +227,14 @@ export const SettingsProfileSection = () => {
               label="Welcome note"
               hint="Max 180 characters \u00b7 shown below your names on the welcome screen."
             >
-              <div className="min-h-22 rounded-12 border border-border bg-card p-4 type-body-small leading-relaxed">
-                <span className="font-serif italic text-primary">
+              <div className="rounded-12 border-border bg-card type-body-small min-h-22 border p-4 leading-relaxed">
+                <span className="text-primary font-serif italic">
                   Hola! Bienvenue.
                 </span>{" "}
                 Thanks for being part of this. Leave us a message &mdash; a
                 story, a song, a recipe, a bad dance move. We&apos;ll cherish
                 it.
-                <span className="float-right type-caption text-muted-foreground">
+                <span className="type-caption text-muted-foreground float-right">
                   148 / 180
                 </span>
               </div>
@@ -235,12 +244,12 @@ export const SettingsProfileSection = () => {
             title="Your public link"
             description="Share this, print it on a card, or put it in your invitation."
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card py-2 pl-3.5 pr-1.5 type-body-small">
+            <div className="border-border bg-card type-body-small inline-flex items-center gap-2 rounded-full border py-2 pr-1.5 pl-3.5">
               <span className="text-muted-foreground">ovation.love/</span>
               <span className="font-semibold">lena-and-tomas</span>
               <button
                 type="button"
-                className="cursor-pointer rounded-full bg-primary/15 px-2.5 py-1 type-caption font-bold text-primary"
+                className="bg-primary/15 type-caption text-primary cursor-pointer rounded-full px-2.5 py-1 font-bold"
               >
                 Copy
               </button>
@@ -318,7 +327,7 @@ const ConnectedAccountRow = ({
     title={
       <span className="inline-flex items-center gap-3">
         <span
-          className="flex size-7 items-center justify-center rounded-8 type-caption font-bold text-primary-foreground"
+          className="rounded-8 type-caption text-primary-foreground flex size-7 items-center justify-center font-bold"
           style={{ background: color, fontFamily }}
         >
           {letter}

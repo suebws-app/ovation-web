@@ -27,8 +27,8 @@ export const PhotoTile = ({
       type="button"
       onClick={onClick}
       className={cn(
-        "group relative mb-3 w-full cursor-pointer overflow-hidden rounded-12 text-left transition-all hover:scale-[1.02] hover:shadow-md",
-        selected ? "ring-[3px] ring-secondary ring-offset-1" : "shadow-sm",
+        "group rounded-12 relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-all hover:scale-[1.02] hover:shadow-md",
+        selected ? "ring-secondary ring-[3px] ring-offset-1" : "shadow-sm",
       )}
       style={{ breakInside: "avoid" }}
     >
@@ -47,7 +47,7 @@ export const PhotoTile = ({
         {hasAudio && <AudioBadge duration={audioLen} />}
 
         {!hasAudio && (
-          <div className="absolute right-2 bottom-2 left-2 flex items-baseline justify-between type-caption font-semibold text-white drop-shadow-sm">
+          <div className="type-caption absolute right-2 bottom-2 left-2 flex items-baseline justify-between font-semibold text-white drop-shadow-sm">
             <span>{name}</span>
             <span className="font-mono opacity-85">{time}</span>
           </div>
@@ -90,7 +90,7 @@ const FavouriteIndicator = () => (
 );
 
 const AudioBadge = ({ duration }: { duration: string }) => (
-  <span className="absolute bottom-2 left-2 inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2 py-1 type-caption font-semibold text-white">
+  <span className="type-caption absolute bottom-2 left-2 inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2 py-1 font-semibold text-white">
     <Play width={9} height={9} className="text-white" />
     {duration}
   </span>

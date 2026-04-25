@@ -32,56 +32,56 @@ const PEOPLE = [
 ];
 
 export const FilterRail = () => (
-  <div className="hidden overflow-auto border-r border-border bg-background p-4.5 large-desktop:block">
-    <Eyebrow className="px-2 pb-2 text-muted-foreground">Albums</Eyebrow>
+  <div className="border-border bg-background large-desktop:block hidden overflow-auto border-r p-4.5">
+    <Eyebrow className="text-muted-foreground px-2 pb-2">Albums</Eyebrow>
     {ALBUMS.map((a) => (
       <AlbumItem key={a.label} {...a} />
     ))}
 
-    <Eyebrow className="px-2 pb-2 pt-5 text-muted-foreground">
+    <Eyebrow className="text-muted-foreground px-2 pt-5 pb-2">
       Day timeline
     </Eyebrow>
     {TIMELINE.map((t) => (
       <TimelineItem key={t.label} {...t} />
     ))}
 
-    <Eyebrow className="px-2 pb-2 pt-5 text-muted-foreground">
+    <Eyebrow className="text-muted-foreground px-2 pt-5 pb-2">
       People detected
     </Eyebrow>
     <div className="flex flex-wrap gap-1.5 px-2">
       {PEOPLE.map((p) => (
         <PersonChip key={p.name} {...p} />
       ))}
-      <span className="inline-flex items-center rounded-full border border-dashed border-border px-2.5 py-1 type-caption font-semibold text-muted-foreground">
+      <span className="border-border type-caption text-muted-foreground inline-flex items-center rounded-full border border-dashed px-2.5 py-1 font-semibold">
         + 46 more
       </span>
     </div>
 
-    <div className="mt-6 rounded-12 border border-dashed border-accent bg-gradient-to-br from-accent/10 to-destructive/10 p-3.5">
-      <p className="type-caption font-semibold text-foreground">
+    <div className="rounded-12 border-accent from-accent/10 to-destructive/10 mt-6 border border-dashed bg-gradient-to-br p-3.5">
+      <p className="type-caption text-foreground font-semibold">
         Pair photos with voices automatically.
       </p>
-      <p className="mt-1 type-caption text-muted-foreground">
+      <p className="type-caption text-muted-foreground mt-1">
         22 photos still unmatched — tap to review suggestions.
       </p>
       <Button
         size="sm"
-        className="mt-2.5 rounded-full bg-foreground text-background hover:bg-foreground/90"
+        className="bg-foreground text-background hover:bg-foreground/90 mt-2.5 rounded-full"
       >
         Review matches
       </Button>
     </div>
 
-    <div className="mt-4 rounded-12 border border-border bg-card p-3.5">
+    <div className="rounded-12 border-border bg-card mt-4 border p-3.5">
       <Eyebrow className="text-muted-foreground">Storage</Eyebrow>
-      <p className="mt-1.5 font-serif type-body-large font-semibold">
+      <p className="type-body-large mt-1.5 font-serif font-semibold">
         1.2{" "}
-        <span className="type-caption italic font-medium text-muted-foreground">
+        <span className="type-caption text-muted-foreground font-medium italic">
           / 5 GB
         </span>
       </p>
-      <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-border">
-        <div className="h-full w-[24%] rounded-full bg-primary" />
+      <div className="bg-border mt-1.5 h-1 overflow-hidden rounded-full">
+        <div className="bg-primary h-full w-[24%] rounded-full" />
       </div>
     </div>
   </div>
@@ -98,14 +98,14 @@ const AlbumItem = ({
 }) => (
   <div
     className={cn(
-      "mb-0.5 flex cursor-pointer items-center gap-2.5 rounded-10 px-2.5 py-2.5 type-body-small transition-colors",
+      "rounded-10 type-body-small mb-0.5 flex cursor-pointer items-center gap-2.5 px-2.5 py-2.5 transition-colors",
       active
-        ? "border border-border bg-card font-semibold text-foreground"
+        ? "border-border bg-card text-foreground border font-semibold"
         : "text-muted-foreground hover:bg-muted",
     )}
   >
     <span className="flex-1">{label}</span>
-    <span className="type-caption font-semibold text-muted-foreground">
+    <span className="type-caption text-muted-foreground font-semibold">
       {count}
     </span>
   </div>
@@ -124,7 +124,7 @@ const TimelineItem = ({
 }) => (
   <div
     className={cn(
-      "mb-0.5 flex cursor-pointer items-center gap-2.5 rounded-10 px-2.5 py-2 transition-colors",
+      "rounded-10 mb-0.5 flex cursor-pointer items-center gap-2.5 px-2.5 py-2 transition-colors",
       active ? "bg-primary/10" : "hover:bg-muted",
     )}
   >
@@ -137,15 +137,15 @@ const TimelineItem = ({
     <div className="min-w-0 flex-1">
       <p
         className={cn(
-          "truncate type-caption",
-          active ? "font-semibold text-foreground" : "text-muted-foreground",
+          "type-caption truncate",
+          active ? "text-foreground font-semibold" : "text-muted-foreground",
         )}
       >
         {label}
       </p>
       <p className="type-caption text-muted-foreground">{time}</p>
     </div>
-    <span className="type-caption font-semibold text-muted-foreground">
+    <span className="type-caption text-muted-foreground font-semibold">
       {count}
     </span>
   </div>
@@ -160,12 +160,12 @@ const PersonChip = ({
   initials: string;
   tint: string;
 }) => (
-  <span className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-border bg-card py-1 pr-2.5 pl-1 type-caption font-semibold text-muted-foreground transition-colors hover:bg-muted">
+  <span className="border-border bg-card type-caption text-muted-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border py-1 pr-2.5 pl-1 font-semibold transition-colors">
     <Avatar
       initials={initials}
       tint={tint}
       size="sm"
-      className="size-5 type-caption"
+      className="type-caption size-5"
     />
     {name}
   </span>

@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import { forwardRef } from 'react'
-import { cn } from '../utils/cn'
+import { forwardRef } from "react";
+import { cn } from "../utils/cn";
 
-type ChipProps = Omit<React.ComponentProps<'button'>, 'children'> & {
-  label: string
-  count?: number
-  active?: boolean
-  onRemove?: () => void
-}
+type ChipProps = Omit<React.ComponentProps<"button">, "children"> & {
+  label: string;
+  count?: number;
+  active?: boolean;
+  onRemove?: () => void;
+};
 
 export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
   ({ label, count, active = false, onRemove, className, ...props }, ref) => (
@@ -16,11 +16,11 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       ref={ref}
       type="button"
       className={cn(
-        'inline-flex cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 type-caption font-semibold transition-colors',
+        "type-caption inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 font-semibold whitespace-nowrap transition-colors",
         active
-          ? 'bg-foreground text-background'
-          : 'border border-border bg-card text-muted-foreground hover:bg-muted',
-        className
+          ? "bg-foreground text-background"
+          : "border-border bg-card text-muted-foreground hover:bg-muted border",
+        className,
       )}
       {...props}
     >
@@ -37,14 +37,14 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
           strokeLinecap="round"
           strokeLinejoin="round"
           onClick={(e) => {
-            e.stopPropagation()
-            onRemove()
+            e.stopPropagation();
+            onRemove();
           }}
         >
           <path d="M18 6L6 18M6 6l12 12" />
         </svg>
       )}
     </button>
-  )
-)
-Chip.displayName = 'Chip'
+  ),
+);
+Chip.displayName = "Chip";

@@ -18,7 +18,7 @@ export const SettingsRow = ({
   <div
     className={cn(
       "grid grid-cols-[1fr_auto] items-start gap-10 py-5.5",
-      !last && "border-b border-border",
+      !last && "border-border border-b",
     )}
   >
     <div>
@@ -31,7 +31,7 @@ export const SettingsRow = ({
         {title}
       </div>
       {description && (
-        <div className="mt-1 max-w-lg type-body-small text-muted-foreground leading-relaxed">
+        <div className="type-body-small text-muted-foreground mt-1 max-w-lg leading-relaxed">
           {description}
         </div>
       )}

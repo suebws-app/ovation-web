@@ -26,13 +26,13 @@ export const ProductCard = ({
   tag,
   dark = false,
 }: ProductCardProps) => (
-  <div className="flex flex-col overflow-hidden rounded-20 border border-border bg-card">
+  <div className="rounded-20 border-border bg-card flex flex-col overflow-hidden border">
     <div
       className="relative flex h-45 items-center justify-center p-5"
       style={{ background: gradient }}
     >
       <p
-        className="text-center font-serif text-[1.625rem] font-semibold italic leading-tight"
+        className="text-center font-serif text-[1.625rem] leading-tight font-semibold italic"
         style={{
           color: dark ? "#fff" : "var(--foreground)",
           textShadow: dark ? "0 2px 12px rgba(0,0,0,0.3)" : "none",
@@ -44,21 +44,21 @@ export const ProductCard = ({
     </div>
     <div className="flex flex-1 flex-col gap-1.5 p-4.5">
       <div className="flex items-baseline justify-between">
-        <p className="font-serif type-h4 font-semibold">{name}</p>
-        <p className="font-serif type-body-large font-semibold text-primary">
+        <p className="type-h4 font-serif font-semibold">{name}</p>
+        <p className="type-body-large text-primary font-serif font-semibold">
           &euro;{price}
         </p>
       </div>
-      <p className="type-caption tracking-wider text-muted-foreground">
+      <p className="type-caption text-muted-foreground tracking-wider">
         {subtitle} &middot; Ships in {eta}
       </p>
-      <p className="mt-1.5 type-body-small leading-relaxed text-foreground">
+      <p className="type-body-small text-foreground mt-1.5 leading-relaxed">
         {tagline}
       </p>
       <div className="mt-auto flex gap-2 pt-3.5">
         <Button
           size="sm"
-          className="flex-1 rounded-full bg-foreground text-background hover:bg-foreground/90"
+          className="bg-foreground text-background hover:bg-foreground/90 flex-1 rounded-full"
         >
           Customise <ArrowRight width={12} height={12} />
         </Button>
@@ -72,7 +72,7 @@ export const ProductCard = ({
 
 const ProductTag = ({ label, dark }: { label: string; dark: boolean }) => (
   <span
-    className="absolute top-3 left-3 rounded-full px-2.5 py-1 type-overline tracking-[1.5px]"
+    className="type-overline absolute top-3 left-3 rounded-full px-2.5 py-1 tracking-[1.5px]"
     style={{
       background: "rgba(0,0,0,0.2)",
       color: dark ? "#fff" : "rgba(0,0,0,0.7)",

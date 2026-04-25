@@ -9,9 +9,9 @@ type PricingFeatureProps = {
 };
 
 const PricingFeature = ({ feat, highlighted }: PricingFeatureProps) => (
-  <li className="flex gap-2.5 items-start text-sm">
+  <li className="flex items-start gap-2.5 text-sm">
     <span className={cn(highlighted ? "text-destructive" : "text-primary")}>
-      <Check className="size-4 shrink-0 mt-0.5" strokeWidth={2.2} />
+      <Check className="mt-0.5 size-4 shrink-0" strokeWidth={2.2} />
     </span>
     {feat}
   </li>
@@ -46,45 +46,45 @@ export const PricingCard = ({
   return (
     <div
       className={cn(
-        "flex flex-col rounded-3xl p-8 relative border min-h-146.5",
+        "relative flex min-h-146.5 flex-col rounded-3xl border p-8",
         highlighted
-          ? "border-2 border-primary scale-[1.02] shadow-2xl"
+          ? "border-primary scale-[1.02] border-2 shadow-2xl"
           : "bg-card border-border shadow-sm",
       )}
     >
       {highlighted && (
         <>
-          <div className="absolute -top-3.5 left-8 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider shadow-md">
+          <div className="bg-primary text-primary-foreground absolute -top-3.5 left-8 rounded-full px-3 py-1.5 text-[11px] font-bold tracking-wider shadow-md">
             MOST CHOSEN
           </div>
-          <div className="absolute top-0 right-0 size-55 rounded-full bg-destructive/20 blur-3xl pointer-events-none translate-x-1/2 -translate-y-1/2" />
+          <div className="bg-destructive/20 pointer-events-none absolute top-0 right-0 size-55 translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
         </>
       )}
 
-      <span className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground">
+      <span className="text-muted-foreground text-[10px] font-bold tracking-widest uppercase">
         {t(tagKey)}
       </span>
 
-      <p className="font-serif text-[30px] font-semibold mt-1.5">
+      <p className="mt-1.5 font-serif text-[30px] font-semibold">
         {t(nameKey)}
       </p>
 
-      <div className="flex items-end gap-1.5 mt-3">
-        <span className="font-serif text-[56px] font-semibold tracking-tight leading-none">
+      <div className="mt-3 flex items-end gap-1.5">
+        <span className="font-serif text-[56px] leading-none font-semibold tracking-tight">
           {t(priceKey, { price })}
         </span>
-        <span className="text-sm text-muted-foreground mb-2.5">
+        <span className="text-muted-foreground mb-2.5 text-sm">
           {t(perKey)}
         </span>
       </div>
 
-      <p className="text-sm text-muted-foreground min-h-12 mt-2">
+      <p className="text-muted-foreground mt-2 min-h-12 text-sm">
         {t(descKey)}
       </p>
 
-      <div className="h-px bg-border my-6" />
+      <div className="bg-border my-6 h-px" />
 
-      <ul className="flex flex-col gap-3 flex-1">
+      <ul className="flex flex-1 flex-col gap-3">
         {featKeys.map((featKey) => (
           <PricingFeature
             key={featKey}
@@ -97,7 +97,7 @@ export const PricingCard = ({
       <Button
         size="lg"
         variant={highlighted ? "default" : "outline"}
-        className=" rounded-full w-full self-end"
+        className="w-full self-end rounded-full"
       >
         {t(ctaKey)}
       </Button>

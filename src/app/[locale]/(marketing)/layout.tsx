@@ -1,18 +1,14 @@
-import { RootHeader } from '@/features/layout/RootHeader'
-import { RootFooter } from '@/features/layout/RootFooter'
+import { RootHeader } from "@/features/layout/RootHeader";
+import { RootFooter } from "@/features/layout/RootFooter";
 
-const MarketingLayout = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
+const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <RootHeader />
       <main className="flex-1">{children}</main>
       <RootFooter />
     </>
-  )
-}
+  );
+};
 
-export default MarketingLayout
+export default MarketingLayout;

@@ -4,14 +4,14 @@ import { Button } from "@ovation/ui/components/Button";
 import { Download } from "@ovation/icons/Download";
 
 export const MessageToolbar = () => (
-  <div className="border-b border-border bg-card px-4 py-5 tablet:px-7">
-    <div className="flex flex-col gap-4 desktop:flex-row desktop:items-end desktop:justify-between">
+  <div className="border-border bg-card tablet:px-7 border-b px-4 py-5">
+    <div className="desktop:flex-row desktop:items-end desktop:justify-between flex flex-col gap-4">
       <div>
-        <h1 className="font-serif text-[1.75rem] font-semibold leading-tight tracking-tight desktop:text-[2rem]">
+        <h1 className="desktop:text-[2rem] font-serif text-[1.75rem] leading-tight font-semibold tracking-tight">
           <span>87 messages.</span>{" "}
-          <span className="italic text-primary">1h 42m of love.</span>
+          <span className="text-primary italic">1h 42m of love.</span>
         </h1>
-        <p className="mt-1.5 type-body-small text-muted-foreground">
+        <p className="type-body-small text-muted-foreground mt-1.5">
           From 112 guests &middot; 64 with photos &middot; 14 favourited
           &middot; last received 2 days ago
         </p>
@@ -26,7 +26,7 @@ export const MessageToolbar = () => (
 
     <div className="mt-4 flex items-center gap-2.5">
       <SearchInput />
-      <div className="hidden gap-1.5 desktop:flex">
+      <div className="desktop:flex hidden gap-1.5">
         <FilterChip label="Wedding night" active />
         <FilterChip label="+ Add filter" />
       </div>
@@ -35,7 +35,7 @@ export const MessageToolbar = () => (
 );
 
 const SearchInput = () => (
-  <div className="flex flex-1 items-center gap-2.5 rounded-10 border border-border bg-background px-3.5 py-2.5">
+  <div className="rounded-10 border-border bg-background flex flex-1 items-center gap-2.5 border px-3.5 py-2.5">
     <svg
       width="15"
       height="15"
@@ -52,9 +52,9 @@ const SearchInput = () => (
     </svg>
     <input
       placeholder="Search transcripts, names, quotes\u2026"
-      className="flex-1 bg-transparent type-body-small text-foreground outline-none placeholder:text-muted-foreground"
+      className="type-body-small text-foreground placeholder:text-muted-foreground flex-1 bg-transparent outline-none"
     />
-    <kbd className="rounded-4 border border-border bg-card px-1.5 py-0.5 type-caption text-muted-foreground">
+    <kbd className="rounded-4 border-border bg-card type-caption text-muted-foreground border px-1.5 py-0.5">
       \u2318K
     </kbd>
   </div>
@@ -63,7 +63,7 @@ const SearchInput = () => (
 const SortButton = () => (
   <button
     type="button"
-    className="hidden cursor-pointer items-center gap-1.5 rounded-10 border border-border bg-card px-3.5 py-2.5 type-body-small font-medium text-muted-foreground transition-colors hover:bg-muted desktop:inline-flex"
+    className="rounded-10 border-border bg-card type-body-small text-muted-foreground hover:bg-muted desktop:inline-flex hidden cursor-pointer items-center gap-1.5 border px-3.5 py-2.5 font-medium transition-colors"
   >
     <svg
       width="13"
@@ -89,7 +89,7 @@ const FilterChip = ({
   active?: boolean;
 }) => (
   <span
-    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 type-caption font-semibold ${active ? "bg-primary/10 text-primary" : "border border-border bg-card text-muted-foreground"}`}
+    className={`type-caption inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-semibold ${active ? "bg-primary/10 text-primary" : "border-border bg-card text-muted-foreground border"}`}
   >
     {label}
     {active && (

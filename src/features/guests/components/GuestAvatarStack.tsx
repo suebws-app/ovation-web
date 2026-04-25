@@ -22,7 +22,7 @@ export const GuestAvatarStack = ({
       {visible.map((member, i) => (
         <div
           key={`${member.initials}-${i}`}
-          className="ring-2 ring-card"
+          className="ring-card ring-2"
           style={{ marginLeft: i === 0 ? 0 : -8, borderRadius: "50%" }}
         >
           <Avatar initials={member.initials} tint={member.tint} size="sm" />
@@ -30,7 +30,7 @@ export const GuestAvatarStack = ({
       ))}
       {remaining > 0 && (
         <div
-          className="flex size-8 items-center justify-center rounded-full border-2 border-card bg-muted type-caption font-bold text-muted-foreground"
+          className="border-card bg-muted type-caption text-muted-foreground flex size-8 items-center justify-center rounded-full border-2 font-bold"
           style={{ marginLeft: -8 }}
         >
           +{remaining}

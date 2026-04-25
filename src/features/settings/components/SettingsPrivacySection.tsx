@@ -12,11 +12,10 @@ export const SettingsPrivacySection = () => {
   return (
     <>
       <span className="type-overline text-primary">Settings</span>
-      <h1 className="mt-2 font-serif type-display tracking-tight">
-        Privacy &amp;{" "}
-        <span className="italic text-primary">visibility</span>
+      <h1 className="type-display mt-2 font-serif tracking-tight">
+        Privacy &amp; <span className="text-primary italic">visibility</span>
       </h1>
-      <p className="mt-2.5 max-w-xl type-body text-muted-foreground">
+      <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
         Control who can see your book, who can leave messages, and who can see
         them. Defaults are private &mdash; change only what you want to open up.
       </p>
@@ -87,7 +86,7 @@ export const SettingsPrivacySection = () => {
                 Uses on-device filtering.{" "}
                 <button
                   type="button"
-                  className="cursor-pointer font-semibold text-primary"
+                  className="text-primary cursor-pointer font-semibold"
                 >
                   See word list &rarr;
                 </button>

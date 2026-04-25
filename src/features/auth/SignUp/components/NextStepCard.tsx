@@ -1,13 +1,21 @@
 type NextStepCardProps = {
-  emoji: string
-  title: string
-  description: string
-}
+  emoji: string;
+  title: string;
+  description: string;
+};
 
-export const NextStepCard = ({ emoji, title, description }: NextStepCardProps) => (
-  <div className="rounded-16 border border-border bg-card p-4.5 shadow-sm">
+export const NextStepCard = ({
+  emoji,
+  title,
+  description,
+}: NextStepCardProps) => (
+  <div className="rounded-16 border-border bg-card border p-4.5 shadow-sm">
     <span className="text-xl">{emoji}</span>
-    <p className="mt-2 type-body-small font-semibold text-foreground">{title}</p>
-    <p className="mt-1 type-caption leading-snug text-muted-foreground">{description}</p>
+    <p className="type-body-small text-foreground mt-2 font-semibold">
+      {title}
+    </p>
+    <p className="type-caption text-muted-foreground mt-1 leading-snug">
+      {description}
+    </p>
   </div>
-)
+);

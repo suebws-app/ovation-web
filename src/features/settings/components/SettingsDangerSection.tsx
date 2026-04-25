@@ -14,10 +14,10 @@ export const SettingsDangerSection = () => {
   return (
     <>
       <span className="type-overline text-destructive">Settings</span>
-      <h1 className="mt-2 font-serif type-display tracking-tight">
-        Danger <span className="italic text-destructive">zone</span>
+      <h1 className="type-display mt-2 font-serif tracking-tight">
+        Danger <span className="text-destructive italic">zone</span>
       </h1>
-      <p className="mt-2.5 max-w-xl type-body text-muted-foreground">
+      <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
         Changes here can&apos;t be undone. We&apos;ll ask you to confirm with
         your password and, for deletion, a typed confirmation.
       </p>
@@ -47,7 +47,7 @@ export const SettingsDangerSection = () => {
             <Button
               variant="outline"
               size="sm"
-              className="rounded-full border-destructive/40 text-destructive"
+              className="border-destructive/40 text-destructive rounded-full"
             >
               Leave book
             </Button>
@@ -57,9 +57,9 @@ export const SettingsDangerSection = () => {
 
       <div className="mt-9">
         <SettingsSectionTitle title="Archive or delete" />
-        <div className="overflow-hidden rounded-16 border-2 border-destructive/30">
+        <div className="rounded-16 border-destructive/30 overflow-hidden border-2">
           <div
-            className="flex items-center gap-2.5 px-5 py-3 type-overline text-destructive"
+            className="type-overline text-destructive flex items-center gap-2.5 px-5 py-3"
             style={{
               background:
                 "repeating-linear-gradient(135deg, var(--destructive) / 0.08 0 12px, var(--destructive) / 0.14 12px 24px)",
@@ -76,7 +76,7 @@ export const SettingsDangerSection = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="rounded-full border-destructive/40 text-destructive"
+                className="border-destructive/40 text-destructive rounded-full"
               >
                 Archive
               </Button>
@@ -120,7 +120,7 @@ export const SettingsDangerSection = () => {
             <Button
               variant="outline"
               size="sm"
-              className="rounded-full border-destructive/40 text-destructive"
+              className="border-destructive/40 text-destructive rounded-full"
             >
               Close account
             </Button>
@@ -128,7 +128,7 @@ export const SettingsDangerSection = () => {
         </SettingsCard>
       </div>
 
-      <p className="mt-6 max-w-lg font-serif type-caption italic text-muted-foreground">
+      <p className="type-caption text-muted-foreground mt-6 max-w-lg font-serif italic">
         &ldquo;The best designs make destructive actions feel heavy on purpose.
         Take your time &mdash; nothing here is in a hurry.&rdquo;
       </p>

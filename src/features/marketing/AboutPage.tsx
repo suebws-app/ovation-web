@@ -1,3 +1,3 @@
 export const AboutPage = () => {
-  return <div>{/* TODO: Team, story */}</div>
-}
+  return <div>{/* TODO: Team, story */}</div>;
+};

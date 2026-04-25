@@ -58,7 +58,7 @@ const PillBase = ({
 }) => (
   <span
     className={cn(
-      "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 type-caption font-bold tracking-wide",
+      "type-caption inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-bold tracking-wide whitespace-nowrap",
       className,
     )}
   >

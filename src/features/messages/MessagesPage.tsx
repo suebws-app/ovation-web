@@ -36,8 +36,8 @@ export const MessagesPage = () => {
   ).reduce((acc, m) => acc + m.durationSec, 0);
 
   return (
-    <div className="-mx-4 -mb-6 grid min-h-screen tablet:-mb-10 desktop:-mb-20 small-desktop:grid-cols-[1fr_360px]">
-      <div className="flex min-w-0 flex-col bg-card">
+    <div className="tablet:-mb-10 desktop:-mb-20 small-desktop:grid-cols-[1fr_360px] -mx-4 -mb-6 grid min-h-screen">
+      <div className="bg-card flex min-w-0 flex-col">
         <MessageToolbar />
         <SelectionToolbar
           selectMode={selection.selectMode}

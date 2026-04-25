@@ -1,10 +1,10 @@
 type VoiceMessagePreviewProps = {
-  name: string
-  role: string
-  duration: string
-  initial: string
-  tint: string
-}
+  name: string;
+  role: string;
+  duration: string;
+  initial: string;
+  tint: string;
+};
 
 export const VoiceMessagePreview = ({
   name,
@@ -16,7 +16,7 @@ export const VoiceMessagePreview = ({
   <div className="inline-flex items-center gap-3 rounded-full bg-white/12 px-2.5 py-2.5 pr-4 backdrop-blur-sm">
     <div
       className="flex size-9 items-center justify-center rounded-full font-serif font-bold"
-      style={{ background: tint, color: '#5a3b20' }}
+      style={{ background: tint, color: "#5a3b20" }}
     >
       {initial}
     </div>
@@ -32,11 +32,11 @@ export const VoiceMessagePreview = ({
       ))}
     </div>
   </div>
-)
+);
 
 const WaveformBar = ({ height }: { height: number }) => (
   <span
     className="w-[3px] rounded-full bg-white"
     style={{ height: `${height * 22}px` }}
   />
-)
+);

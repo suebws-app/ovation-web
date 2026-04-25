@@ -3,7 +3,7 @@
 import { Button } from "@ovation/ui/components/Button";
 
 export const QRCodeDesktopFooter = () => (
-  <div className="mt-6 hidden justify-end gap-2.5 tablet:flex">
+  <div className="tablet:flex mt-6 hidden justify-end gap-2.5">
     <Button variant="outline" className="rounded-full">
       Print A4 sheet
     </Button>
@@ -12,7 +12,7 @@ export const QRCodeDesktopFooter = () => (
     </Button>
     <Button
       variant="ghost"
-      className="rounded-full bg-foreground text-background hover:bg-foreground/90"
+      className="bg-foreground text-background hover:bg-foreground/90 rounded-full"
     >
       Open guest view
     </Button>

@@ -1,50 +1,63 @@
-'use client'
+"use client";
 
-import { useTranslations } from 'next-intl'
-import { cn } from '@ovation/ui/utils/cn'
-import { Eyebrow } from '@ovation/ui/components/Eyebrow'
+import { useTranslations } from "next-intl";
+import { cn } from "@ovation/ui/utils/cn";
+import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 
-type StatCardProps = { value: string; label: string }
+type StatCardProps = { value: string; label: string };
 
 const StatCard = ({ value, label }: StatCardProps) => (
-  <div className="bg-white/10 backdrop-blur border border-white/[0.18] rounded-2xl p-4.5">
-    <p className="font-serif text-[34px] font-semibold leading-none">{value}</p>
-    <p className="text-xs opacity-80 mt-0.5">{label}</p>
+  <div className="rounded-2xl border border-white/[0.18] bg-white/10 p-4.5 backdrop-blur">
+    <p className="font-serif text-[34px] leading-none font-semibold">{value}</p>
+    <p className="mt-0.5 text-xs opacity-80">{label}</p>
   </div>
-)
+);
 
 export const TestimonialSection = () => {
-  const t = useTranslations()
+  const t = useTranslations();
 
   const stats = [
-    { value: t('marketing__testimonial__stat1_value'), label: t('marketing__testimonial__stat1_label') },
-    { value: t('marketing__testimonial__stat2_value'), label: t('marketing__testimonial__stat2_label') },
-    { value: t('marketing__testimonial__stat3_value'), label: t('marketing__testimonial__stat3_label') },
-  ]
+    {
+      value: t("marketing__testimonial__stat1_value"),
+      label: t("marketing__testimonial__stat1_label"),
+    },
+    {
+      value: t("marketing__testimonial__stat2_value"),
+      label: t("marketing__testimonial__stat2_label"),
+    },
+    {
+      value: t("marketing__testimonial__stat3_value"),
+      label: t("marketing__testimonial__stat3_label"),
+    },
+  ];
 
   return (
-    <section className="py-[120px] bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
-      <div className="absolute top-[-100px] right-[-80px] size-[400px] rounded-full bg-destructive/30 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-[-80px] left-[-60px] size-[320px] rounded-full bg-accent/25 blur-3xl pointer-events-none" />
+    <section className="from-primary to-primary/80 text-primary-foreground relative overflow-hidden bg-gradient-to-br py-[120px]">
+      <div className="bg-destructive/30 pointer-events-none absolute top-[-100px] right-[-80px] size-[400px] rounded-full blur-3xl" />
+      <div className="bg-accent/25 pointer-events-none absolute bottom-[-80px] left-[-60px] size-[320px] rounded-full blur-3xl" />
 
-      <div className="max-w-[1240px] mx-auto px-6 lg:px-20 relative">
-        <Eyebrow className="opacity-75 mb-6">
-          {t('marketing__testimonial__eyebrow')}
+      <div className="relative mx-auto max-w-[1240px] px-6 lg:px-20">
+        <Eyebrow className="mb-6 opacity-75">
+          {t("marketing__testimonial__eyebrow")}
         </Eyebrow>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-16 items-center">
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[2fr_1fr]">
           <div>
-            <blockquote className="font-serif text-3xl lg:text-[50px] leading-tight italic font-medium tracking-tight">
-              {t('marketing__testimonial__quote')}
+            <blockquote className="font-serif text-3xl leading-tight font-medium tracking-tight italic lg:text-[50px]">
+              {t("marketing__testimonial__quote")}
             </blockquote>
 
-            <div className="flex items-center gap-4 mt-10">
-              <div className="size-[52px] rounded-full bg-accent/60 flex items-center justify-center font-serif text-lg font-bold shrink-0">
+            <div className="mt-10 flex items-center gap-4">
+              <div className="bg-accent/60 flex size-[52px] shrink-0 items-center justify-center rounded-full font-serif text-lg font-bold">
                 SR
               </div>
               <div>
-                <p className="font-semibold text-[15px]">{t('marketing__testimonial__couple_name')}</p>
-                <p className="text-sm opacity-80">{t('marketing__testimonial__couple_detail')}</p>
+                <p className="text-[15px] font-semibold">
+                  {t("marketing__testimonial__couple_name")}
+                </p>
+                <p className="text-sm opacity-80">
+                  {t("marketing__testimonial__couple_detail")}
+                </p>
               </div>
             </div>
           </div>
@@ -57,5 +70,5 @@ export const TestimonialSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

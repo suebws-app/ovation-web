@@ -1,16 +1,16 @@
-import { redirect } from 'next/navigation'
-import { getCurrentUser } from '@/lib/auth/session'
-import { PrivateLayout } from '@/features/layout/PrivateLayout/PrivateLayout'
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "@/lib/auth/session";
+import { PrivateLayout } from "@/features/layout/PrivateLayout/PrivateLayout";
 
 export default async function AppLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const user = await getCurrentUser()
+  const user = await getCurrentUser();
   if (!user) {
-    redirect('/sign-in')
+    redirect("/sign-in");
   }
 
-  return <PrivateLayout>{children}</PrivateLayout>
+  return <PrivateLayout>{children}</PrivateLayout>;
 }

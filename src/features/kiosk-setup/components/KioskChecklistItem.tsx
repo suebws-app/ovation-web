@@ -17,14 +17,14 @@ export const KioskChecklistItem = ({
 }: KioskChecklistItemProps) => (
   <div
     className={cn(
-      "flex items-start gap-3 rounded-16 border bg-card p-4",
+      "rounded-16 bg-card flex items-start gap-3 border p-4",
       done ? "border-secondary/40" : "border-border",
     )}
   >
     <div
       className={cn(
         "mt-0.5 flex size-6.5 shrink-0 items-center justify-center rounded-full",
-        done ? "bg-secondary" : "border-2 border-border bg-card",
+        done ? "bg-secondary" : "border-border bg-card border-2",
       )}
     >
       {done && <Check width={14} height={14} className="text-background" />}
@@ -33,16 +33,16 @@ export const KioskChecklistItem = ({
       <div
         className={cn(
           "type-body-small font-semibold",
-          done && "line-through decoration-foreground/25",
+          done && "decoration-foreground/25 line-through",
         )}
       >
         {title}
       </div>
-      <div className="mt-0.5 type-caption text-muted-foreground leading-snug">
+      <div className="type-caption text-muted-foreground mt-0.5 leading-snug">
         {description}
       </div>
       {cta && !done && (
-        <Button size="sm" className="mt-2.5 rounded-full" >
+        <Button size="sm" className="mt-2.5 rounded-full">
           {cta}
         </Button>
       )}

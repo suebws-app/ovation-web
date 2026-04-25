@@ -15,7 +15,7 @@ export const SelectionToolbar = ({
   onToggle,
   onClearAll,
 }: SelectionToolbarProps) => (
-  <div className="flex items-center gap-2 border-b border-border px-4 py-2.5 tablet:px-7">
+  <div className="border-border tablet:px-7 flex items-center gap-2 border-b px-4 py-2.5">
     <Button
       variant={selectMode ? "default" : "outline"}
       size="sm"
@@ -28,7 +28,7 @@ export const SelectionToolbar = ({
       <button
         type="button"
         onClick={onClearAll}
-        className="cursor-pointer type-caption font-semibold text-primary"
+        className="type-caption text-primary cursor-pointer font-semibold"
       >
         Clear all
       </button>

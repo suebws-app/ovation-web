@@ -30,20 +30,20 @@ export const GuestStatCard = ({
   tone,
 }: GuestStatCardProps) => {
   return (
-    <div className="relative rounded-16 border border-border bg-card p-5">
+    <div className="rounded-16 border-border bg-card relative border p-5">
       <div
         className={cn(
-          "absolute right-4.5 top-4.5 flex size-8 items-center justify-center rounded-10",
+          "rounded-10 absolute top-4.5 right-4.5 flex size-8 items-center justify-center",
           toneBg[tone],
         )}
       >
         <Icon width={15} height={15} className={toneText[tone]} />
       </div>
-      <div className="font-serif text-4xl font-semibold leading-none tracking-tight">
+      <div className="font-serif text-4xl leading-none font-semibold tracking-tight">
         {value}
       </div>
-      <div className="mt-2 type-body-small font-semibold">{label}</div>
-      <div className="mt-0.5 type-caption text-muted-foreground">{sub}</div>
+      <div className="type-body-small mt-2 font-semibold">{label}</div>
+      <div className="type-caption text-muted-foreground mt-0.5">{sub}</div>
     </div>
   );
 };

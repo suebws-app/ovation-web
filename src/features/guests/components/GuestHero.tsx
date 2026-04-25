@@ -8,16 +8,16 @@ import { ContributionRing } from "./ContributionRing";
 
 export const GuestHero = () => {
   return (
-    <div className="relative overflow-hidden rounded-20 bg-card p-8 tablet:p-10 desktop:p-12">
-      <div className="absolute -right-15 -top-15 size-80 rounded-full bg-primary/10" />
-      <div className="relative grid items-end gap-10 desktop:grid-cols-[1fr_auto]">
+    <div className="rounded-20 bg-card tablet:p-10 desktop:p-12 relative overflow-hidden p-8">
+      <div className="bg-primary/10 absolute -top-15 -right-15 size-80 rounded-full" />
+      <div className="desktop:grid-cols-[1fr_auto] relative grid items-end gap-10">
         <div>
           <span className="type-overline text-primary">Guests</span>
-          <h1 className="mt-2.5 font-serif type-display tracking-tight">
-            Your <span className="italic text-primary">112</span> guests,
-            all in one place.
+          <h1 className="type-display mt-2.5 font-serif tracking-tight">
+            Your <span className="text-primary italic">112</span> guests, all in
+            one place.
           </h1>
-          <p className="mt-3.5 max-w-xl type-body text-muted-foreground">
+          <p className="type-body text-muted-foreground mt-3.5 max-w-xl">
             Track who you&apos;ve invited, who contributed a message, and who
             you owe a thank-you. Import from your invite list or add names by
             hand.

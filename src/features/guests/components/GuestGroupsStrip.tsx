@@ -82,15 +82,15 @@ export const GuestGroupsStrip = () => {
   return (
     <div>
       <div className="mb-3.5 flex items-baseline justify-between">
-        <h2 className="font-serif type-h2 tracking-tight">Groups</h2>
+        <h2 className="type-h2 font-serif tracking-tight">Groups</h2>
         <button
           type="button"
-          className="cursor-pointer type-body-small font-semibold text-primary"
+          className="type-body-small text-primary cursor-pointer font-semibold"
         >
           Edit groups &rarr;
         </button>
       </div>
-      <div className="grid grid-cols-2 gap-3 tablet:grid-cols-3 desktop:grid-cols-6">
+      <div className="tablet:grid-cols-3 desktop:grid-cols-6 grid grid-cols-2 gap-3">
         {GROUPS.map((group) => (
           <GuestGroupCard key={group.title} {...group} />
         ))}

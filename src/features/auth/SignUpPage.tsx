@@ -1,5 +1,5 @@
-import { SignUpFlow } from '@/features/auth/SignUp/SignUpFlow'
+import { SignUpFlow } from "@/features/auth/SignUp/SignUpFlow";
 
 export const SignUpPage = () => {
-  return <SignUpFlow step={1} />
-}
+  return <SignUpFlow step={1} />;
+};

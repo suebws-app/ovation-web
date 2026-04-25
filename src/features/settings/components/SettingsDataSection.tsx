@@ -58,10 +58,10 @@ export const SettingsDataSection = () => {
   return (
     <>
       <span className="type-overline text-primary">Settings</span>
-      <h1 className="mt-2 font-serif type-display tracking-tight">
-        Data &amp; <span className="italic text-primary">export</span>
+      <h1 className="type-display mt-2 font-serif tracking-tight">
+        Data &amp; <span className="text-primary italic">export</span>
       </h1>
-      <p className="mt-2.5 max-w-xl type-body text-muted-foreground">
+      <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
         Your messages belong to you. Download everything anytime &mdash; audio,
         transcripts, photos, metadata.
       </p>
@@ -98,7 +98,7 @@ export const SettingsDataSection = () => {
             />
           ))}
         </SettingsCard>
-        <p className="mt-2.5 type-caption text-muted-foreground">
+        <p className="type-caption text-muted-foreground mt-2.5">
           Download links expire after 7 days for your security.
         </p>
       </div>

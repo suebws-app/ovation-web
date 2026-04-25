@@ -20,7 +20,7 @@ export const KioskToggle = ({ on, onChange }: KioskToggleProps) => (
   >
     <div
       className={cn(
-        "absolute top-0.5 size-4.5 rounded-full bg-card shadow-sm transition-[left]",
+        "bg-card absolute top-0.5 size-4.5 rounded-full shadow-sm transition-[left]",
         on ? "left-5" : "left-0.5",
       )}
     />

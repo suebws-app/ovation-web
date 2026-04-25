@@ -5,14 +5,14 @@ export const DashboardGreeting = () => {
   const newMessages = 12;
 
   return (
-    <div className="mb-8 tablet:mb-12">
+    <div className="tablet:mb-12 mb-8">
       <p className="type-body-small text-muted-foreground">
         {date} &middot; {venue}
       </p>
-      <h1 className="mt-3 max-w-205 font-serif text-[2rem] font-semibold leading-[1.05] tracking-tight tablet:text-[3.5rem]">
+      <h1 className="tablet:text-[3.5rem] mt-3 max-w-205 font-serif text-[2rem] leading-[1.05] font-semibold tracking-tight">
         Good morning, {name}.
       </h1>
-      <p className="mt-3.5 max-w-160 type-h4 font-normal leading-snug text-muted-foreground">
+      <p className="type-h4 text-muted-foreground mt-3.5 max-w-160 leading-snug font-normal">
         You have{" "}
         <strong className="text-foreground">
           {newMessages} new voice messages

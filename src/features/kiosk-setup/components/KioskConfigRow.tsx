@@ -16,13 +16,13 @@ export const KioskConfigRow = ({
   <div
     className={cn(
       "grid grid-cols-[1fr_auto] items-center gap-10 py-4.5",
-      !last && "border-b border-border",
+      !last && "border-border border-b",
     )}
   >
     <div>
       <div className="type-body-small font-semibold">{title}</div>
       {description && (
-        <div className="mt-0.5 max-w-md type-caption text-muted-foreground leading-relaxed">
+        <div className="type-caption text-muted-foreground mt-0.5 max-w-md leading-relaxed">
           {description}
         </div>
       )}

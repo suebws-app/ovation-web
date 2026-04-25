@@ -6,16 +6,16 @@ import { QrCode } from "@ovation/icons/QrCode";
 
 export const KioskHero = () => {
   return (
-    <div className="relative overflow-hidden rounded-20 bg-card p-8 tablet:p-10 desktop:p-12">
-      <div className="absolute -right-10 -top-10 size-70 rounded-full bg-primary/10" />
-      <div className="relative grid items-end gap-10 desktop:grid-cols-[1fr_auto]">
+    <div className="rounded-20 bg-card tablet:p-10 desktop:p-12 relative overflow-hidden p-8">
+      <div className="bg-primary/10 absolute -top-10 -right-10 size-70 rounded-full" />
+      <div className="desktop:grid-cols-[1fr_auto] relative grid items-end gap-10">
         <div>
           <span className="type-overline text-primary">Kiosk mode</span>
-          <h1 className="mt-2.5 font-serif type-display tracking-tight">
+          <h1 className="type-display mt-2.5 font-serif tracking-tight">
             Turn any phone or tablet into a{" "}
-            <span className="italic text-primary">guestbook</span>.
+            <span className="text-primary italic">guestbook</span>.
           </h1>
-          <p className="mt-3.5 max-w-xl type-body text-muted-foreground">
+          <p className="type-body text-muted-foreground mt-3.5 max-w-xl">
             Set a device on a stand at the venue. Guests tap, record, and done
             &mdash; no app, no scanning. Locked down so nobody can wander off
             into your photos.
@@ -29,20 +29,20 @@ export const KioskHero = () => {
 };
 
 const KioskStatusCard = () => (
-  <div className="w-85 rounded-20 border border-border bg-card p-5.5 shadow">
-    <div className="flex items-center gap-2.5 type-overline text-muted-foreground">
-      <span className="size-2 rounded-full bg-muted-foreground/50" />
+  <div className="rounded-20 border-border bg-card w-85 border p-5.5 shadow">
+    <div className="type-overline text-muted-foreground flex items-center gap-2.5">
+      <span className="bg-muted-foreground/50 size-2 rounded-full" />
       Currently offline
     </div>
-    <p className="mt-2.5 font-serif type-h3 font-semibold leading-snug tracking-tight">
+    <p className="type-h3 mt-2.5 font-serif leading-snug font-semibold tracking-tight">
       Start the kiosk from the device you&apos;ll use at the venue.
     </p>
-    <Button className="mt-4 w-full rounded-16 shadow-lg">
+    <Button className="rounded-16 mt-4 w-full shadow-lg">
       <Play width={14} height={14} />
       Start kiosk on this device
     </Button>
-    <div className="mt-3.5 flex items-center gap-2.5 rounded-10 bg-background p-3 type-caption text-muted-foreground leading-relaxed">
-      <QrCode width={20} height={20} className="shrink-0 text-primary" />
+    <div className="rounded-10 bg-background type-caption text-muted-foreground mt-3.5 flex items-center gap-2.5 p-3 leading-relaxed">
+      <QrCode width={20} height={20} className="text-primary shrink-0" />
       Or scan this on the device you&apos;ll use &mdash; it&apos;ll open kiosk
       instantly.
     </div>

@@ -6,7 +6,7 @@ import { forwardRef } from "react";
 import { cn } from "../utils/cn";
 
 const buttonVariants = cva(
-  "inline-flex py-4 cursor-pointer items-center justify-center rounded-lg font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "focus-visible:ring-ring inline-flex cursor-pointer items-center justify-center rounded-lg py-4 font-semibold transition focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -16,7 +16,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-muted text-foreground",
         destructive: "bg-danger text-primary-foreground hover:bg-danger/90",
         outline:
-          "ring-2 ring-inset ring-primary bg-card text-primary hover:bg-primary hover:text-primary-foreground",
+          "ring-primary bg-card text-primary hover:bg-primary hover:text-primary-foreground ring-2 ring-inset",
       },
       size: {
         default: "h-10 gap-2 px-4 text-sm",

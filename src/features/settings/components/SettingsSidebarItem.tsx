@@ -21,9 +21,13 @@ export const SettingsSidebarItem = ({
     type="button"
     onClick={onClick}
     className={cn(
-      "flex cursor-pointer items-center gap-2.5 rounded-10 px-3 py-2.5 type-body-small font-medium transition-colors",
-      active && !warn && "border-l-3 border-primary bg-primary/10 pl-2.5 font-semibold text-primary",
-      active && warn && "border-l-3 border-destructive bg-destructive/10 pl-2.5 font-semibold text-destructive",
+      "rounded-10 type-body-small flex cursor-pointer items-center gap-2.5 px-3 py-2.5 font-medium transition-colors",
+      active &&
+        !warn &&
+        "border-primary bg-primary/10 text-primary border-l-3 pl-2.5 font-semibold",
+      active &&
+        warn &&
+        "border-destructive bg-destructive/10 text-destructive border-l-3 pl-2.5 font-semibold",
       !active && !warn && "text-foreground hover:bg-muted",
       !active && warn && "text-destructive hover:bg-destructive/5",
     )}

@@ -8,7 +8,7 @@ type VerifiedDotProps = {
 export const VerifiedDot = ({ ok = true }: VerifiedDotProps) => (
   <span
     className={cn(
-      "inline-flex items-center gap-1.5 type-caption font-bold",
+      "type-caption inline-flex items-center gap-1.5 font-bold",
       ok ? "text-secondary-foreground" : "text-destructive",
     )}
   >

@@ -15,10 +15,10 @@ export const KioskPreviewTab = ({
     type="button"
     onClick={onClick}
     className={cn(
-      "cursor-pointer rounded-8 px-3 py-1.5 type-caption font-semibold",
+      "rounded-8 type-caption cursor-pointer px-3 py-1.5 font-semibold",
       active
-        ? "border border-border bg-background text-foreground"
-        : "border border-transparent text-muted-foreground",
+        ? "border-border bg-background text-foreground border"
+        : "text-muted-foreground border border-transparent",
     )}
   >
     {label}

@@ -22,12 +22,12 @@ export const GuestGroupCard = ({
   members,
 }: GuestGroupCardProps) => {
   return (
-    <div className="cursor-pointer rounded-16 border border-border bg-card p-4 transition-colors hover:bg-muted/50">
+    <div className="rounded-16 border-border bg-card hover:bg-muted/50 cursor-pointer border p-4 transition-colors">
       <Avatar initials={title[0]} tint={tint} size="md" />
-      <div className="mt-3 type-body-small font-semibold leading-tight">
+      <div className="type-body-small mt-3 leading-tight font-semibold">
         {title}
       </div>
-      <div className="mt-0.5 type-caption text-muted-foreground">
+      <div className="type-caption text-muted-foreground mt-0.5">
         {recordedCount} of {totalCount} recorded
       </div>
       <div className="mt-2.5">

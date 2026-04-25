@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import { useSignUpStore } from './useSignUpStore'
-import { CreateAccountStep } from './steps/CreateAccountStep'
-import { VerifyEmailStep } from './steps/VerifyEmailStep'
-import { BookDetailsStep } from './steps/BookDetailsStep'
-import { CoverPhotoStep } from './steps/CoverPhotoStep'
-import { ClaimUrlStep } from './steps/ClaimUrlStep'
-import { ChoosePlanStep } from './steps/ChoosePlanStep'
-import { CompletionStep } from './steps/CompletionStep'
+import { useEffect } from "react";
+import { useSignUpStore } from "./useSignUpStore";
+import { CreateAccountStep } from "./steps/CreateAccountStep";
+import { VerifyEmailStep } from "./steps/VerifyEmailStep";
+import { BookDetailsStep } from "./steps/BookDetailsStep";
+import { CoverPhotoStep } from "./steps/CoverPhotoStep";
+import { ClaimUrlStep } from "./steps/ClaimUrlStep";
+import { ChoosePlanStep } from "./steps/ChoosePlanStep";
+import { CompletionStep } from "./steps/CompletionStep";
 
 const STEP_COMPONENTS: Record<number, React.ComponentType> = {
   1: CreateAccountStep,
@@ -18,20 +18,20 @@ const STEP_COMPONENTS: Record<number, React.ComponentType> = {
   5: ClaimUrlStep,
   6: ChoosePlanStep,
   7: CompletionStep,
-}
+};
 
 type SignUpFlowProps = {
-  step: number
-}
+  step: number;
+};
 
 export const SignUpFlow = ({ step }: SignUpFlowProps) => {
-  const setStep = useSignUpStore((s) => s.setStep)
+  const setStep = useSignUpStore((s) => s.setStep);
 
   useEffect(() => {
-    setStep(step)
-  }, [step, setStep])
+    setStep(step);
+  }, [step, setStep]);
 
-  const StepComponent = STEP_COMPONENTS[step] ?? CreateAccountStep
+  const StepComponent = STEP_COMPONENTS[step] ?? CreateAccountStep;
 
-  return <StepComponent />
-}
+  return <StepComponent />;
+};
