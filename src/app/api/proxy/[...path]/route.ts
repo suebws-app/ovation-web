@@ -1,4 +1,5 @@
 import { cookies, headers } from "next/headers";
+import { getLocale } from "next-intl/server";
 import { env } from "@/lib/utils/env";
 
 const HOP_BY_HOP_HEADERS = new Set([
@@ -33,6 +34,7 @@ const forwardHeaders = async (
   const token = store.get("auth_token")?.value;
   if (token) out["authorization"] = `Bearer ${token}`;
   out["accept"] = request.headers.get("accept") ?? "application/json";
+  out["accept-language"] = await getLocale();
   return out;
 };
 
