@@ -18,4 +18,8 @@ export const queryKeys = {
   user: {
     me: () => ["user", "me"] as const,
   },
+  orders: {
+    all: () => ["orders"] as const,
+    detail: (orderId: string) => ["orders", "detail", orderId] as const,
+  },
 } as const;

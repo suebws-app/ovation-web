@@ -1422,5 +1422,24 @@
   "keepsakes__filter__physical": "Physical",
   "keepsakes__filter__gifts": "Gifts",
 
-  "common__anonymous": "Anonymous"
+  "common__anonymous": "Anonymous",
+
+  "messages__detail__retranscribe": "Re-transcribe",
+  "messages__detail__retranscribe_pending": "Queueing…",
+
+  "orders__detail__title": "Order details",
+  "orders__detail__status": "Status",
+  "orders__detail__placed": "Placed",
+  "orders__detail__total": "Total",
+  "orders__detail__items": "Items",
+  "orders__detail__shipping": "Shipping",
+  "orders__detail__tracking": "Tracking",
+  "orders__detail__refund_cta": "Request refund",
+  "orders__detail__refund_pending": "Processing…",
+  "orders__detail__refund_reason_label": "Reason (optional)",
+  "orders__detail__refund_reason_placeholder": "Tell us briefly why",
+  "orders__detail__refund_confirm": "Confirm refund",
+  "orders__detail__refund_cancel": "Cancel",
+  "orders__detail__close": "Close",
+  "orders__detail__refunded": "Refunded {amount}"
 }

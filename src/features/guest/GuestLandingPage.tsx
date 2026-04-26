@@ -7,6 +7,7 @@ import { Mic } from "@ovation/icons/Mic";
 import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { Link } from "@/i18n/navigation";
+import { InvitationOpenTracker } from "./InvitationOpenTracker";
 
 const formatWeddingDate = (raw: string | null): string => {
   if (!raw) return "";
@@ -53,6 +54,7 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
         background: `linear-gradient(160deg, ${event.themeColor} 0%, oklch(0.96 0.02 80) 100%)`,
       }}
     >
+      <InvitationOpenTracker slug={slug} />
       <header className="px-6 py-6">
         <Logo />
       </header>

@@ -8,7 +8,10 @@ import { Heart } from "@ovation/icons/Heart";
 import { Play } from "@ovation/icons/Play";
 import { Star } from "@ovation/icons/Star";
 import { Waveform } from "@/features/dashboard/components/Waveform";
-import { useMessageDetail } from "@/lib/query/messagesQueries";
+import {
+  useMessageDetail,
+  useRetranscribeMessage,
+} from "@/lib/query/messagesQueries";
 import { formatTimeShort } from "../adapters";
 
 import type { MessageRowView } from "../adapters";
@@ -28,6 +31,7 @@ export const MessageDetailPane = ({
 }: MessageDetailPaneProps) => {
   const t = useTranslations();
   const { data: detail } = useMessageDetail(eventId, message?.id ?? null);
+  const retranscribe = useRetranscribeMessage(eventId);
 
   if (!message) {
     return (
@@ -124,6 +128,18 @@ export const MessageDetailPane = ({
         <p className="type-body-small text-foreground leading-relaxed">
           {transcript}
         </p>
+        {detail?.message.audioUrl && (
+          <button
+            type="button"
+            onClick={() => retranscribe.mutate({ messageId: message.id })}
+            disabled={retranscribe.isPending}
+            className="type-caption text-primary mt-3 cursor-pointer font-semibold disabled:opacity-50"
+          >
+            {retranscribe.isPending
+              ? t("messages__detail__retranscribe_pending")
+              : t("messages__detail__retranscribe")}
+          </button>
+        )}
       </div>
 
       <div className="grid grid-cols-2 gap-2">

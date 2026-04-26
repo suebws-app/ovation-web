@@ -3,10 +3,21 @@ type OrderItemProps = {
   status: string;
   pct: number;
   color: string;
+  onClick?: () => void;
 };
 
-export const OrderItem = ({ title, status, pct, color }: OrderItemProps) => (
-  <div className="rounded-12 border-border bg-background border p-3">
+export const OrderItem = ({
+  title,
+  status,
+  pct,
+  color,
+  onClick,
+}: OrderItemProps) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="rounded-12 border-border bg-background hover:bg-muted/50 cursor-pointer border p-3 text-left transition-colors"
+  >
     <div className="flex items-baseline justify-between">
       <span className="type-body-small font-semibold">{title}</span>
       <span className="type-caption text-muted-foreground">{status}</span>
@@ -17,5 +28,5 @@ export const OrderItem = ({ title, status, pct, color }: OrderItemProps) => (
         style={{ width: `${pct}%`, background: color }}
       />
     </div>
-  </div>
+  </button>
 );

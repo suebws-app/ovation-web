@@ -86,12 +86,6 @@ export type EventStats = {
   favorites: number;
 };
 
-export type QrCodeResult = {
-  url: string | null;
-  shortUrl: string;
-  format: "png" | "svg";
-};
-
 export type MessageSummary = {
   id: string;
   guestNames: string;
@@ -317,6 +311,14 @@ export type OrderDetail = {
   items: OrderItem[];
   tracking: OrderTracking | null;
   createdAt: string;
+};
+
+export type QrCodeFormat = "png" | "svg";
+
+export type QrCodeResult = {
+  qrData: string;
+  shortUrl: string;
+  format: QrCodeFormat;
 };
 
 export type CheckoutOrderType = "plan" | "keepsake";

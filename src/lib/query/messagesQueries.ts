@@ -114,4 +114,22 @@ export const useDeleteMessage = (eventId: string) => {
   });
 };
 
+export const useRetranscribeMessage = (eventId: string) => {
+  const qc = useQueryClient();
+  return useMutation<
+    { jobId: string },
+    Error,
+    { messageId: string; language?: string }
+  >({
+    mutationFn: ({ messageId, language }) =>
+      messagesClient.retranscribe(eventId, messageId, language),
+    onSettled: (_data, _err, { messageId }) => {
+      qc.invalidateQueries({
+        queryKey: queryKeys.messages.detail(eventId, messageId),
+      });
+      qc.invalidateQueries({ queryKey: queryKeys.messages.all(eventId) });
+    },
+  });
+};
+
 export type { InfiniteData };

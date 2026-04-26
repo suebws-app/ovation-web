@@ -35,7 +35,7 @@ export const QRCodePage = async () => {
         />
       </div>
       <div className="mt-4">
-        <QRCodeShareGrid />
+        <QRCodeShareGrid eventId={event.id} slug={event.slug} />
       </div>
       <div className="mt-4">
         <QRStatsCard />

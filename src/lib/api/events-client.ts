@@ -4,6 +4,8 @@ import type {
   CoverUploadResult,
   CreateEventInput,
   Event,
+  QrCodeFormat,
+  QrCodeResult,
   UpdateEventInput,
 } from "./types";
 
@@ -29,5 +31,10 @@ export const eventsClient = {
     clientFetch<CoverUploadResult>(`/events/${eventId}/cover-upload-url`, {
       method: "POST",
       body: { contentType },
+    }),
+
+  qrCode: (eventId: string, format: QrCodeFormat = "png", size = 1024) =>
+    clientFetch<QrCodeResult>(`/events/${eventId}/qr`, {
+      query: { format, size },
     }),
 };

@@ -35,4 +35,14 @@ export const messagesClient = {
 
   remove: (eventId: string, messageId: string): Promise<void> =>
     clientFetch<void>(itemPath(eventId, messageId), { method: "DELETE" }),
+
+  retranscribe: (
+    eventId: string,
+    messageId: string,
+    language?: string,
+  ): Promise<{ jobId: string }> =>
+    clientFetch<{ jobId: string }>(
+      `${itemPath(eventId, messageId)}/retranscribe`,
+      { method: "POST", body: language ? { language } : {} },
+    ),
 };

@@ -6,10 +6,24 @@ type FormatRowProps = {
   desc: string;
   size: string;
   primary: boolean;
+  onClick?: () => void;
+  disabled?: boolean;
 };
 
-export const FormatRow = ({ ext, desc, size, primary }: FormatRowProps) => (
-  <div className="rounded-12 border-border bg-background flex items-center gap-3 border p-3">
+export const FormatRow = ({
+  ext,
+  desc,
+  size,
+  primary,
+  onClick,
+  disabled,
+}: FormatRowProps) => (
+  <div
+    className={cn(
+      "rounded-12 border-border bg-background flex items-center gap-3 border p-3",
+      disabled && !onClick && "opacity-60",
+    )}
+  >
     <div
       className={cn(
         "rounded-8 type-caption flex size-10 items-center justify-center font-bold tracking-wider",
@@ -28,8 +42,11 @@ export const FormatRow = ({ ext, desc, size, primary }: FormatRowProps) => (
     </div>
     <button
       type="button"
+      onClick={onClick}
+      disabled={disabled}
       className={cn(
-        "flex size-8.5 cursor-pointer items-center justify-center rounded-full transition-colors",
+        "flex size-8.5 items-center justify-center rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-50",
+        !disabled && "cursor-pointer",
         primary
           ? "bg-primary text-primary-foreground shadow-primary/35 shadow-md"
           : "border-border bg-card text-foreground hover:bg-muted border",

@@ -1,9 +1,14 @@
 import { DownloadCard } from "./DownloadCard";
 import { ShareCard } from "./ShareCard";
 
-export const QRCodeShareGrid = () => (
+type QRCodeShareGridProps = {
+  eventId: string;
+  slug: string;
+};
+
+export const QRCodeShareGrid = ({ eventId, slug }: QRCodeShareGridProps) => (
   <div className="tablet:grid-cols-2 grid gap-4">
-    <DownloadCard />
-    <ShareCard />
+    <DownloadCard eventId={eventId} slug={slug} />
+    <ShareCard url={slug} />
   </div>
 );
