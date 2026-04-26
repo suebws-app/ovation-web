@@ -1,7 +1,14 @@
+import { env } from "@/lib/utils/env";
 import type { ApiErrorBody } from "./types";
+import { getCsrfToken, invalidateCsrfToken } from "./csrf-token";
 
 export const API_BASE_PATH = "/api/v1";
-export const PROXY_BASE_PATH = "/api/proxy";
+
+const SAFE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
+const CSRF_INVALID_CODES = new Set([
+  "errors:csrf_required",
+  "errors:csrf_invalid",
+]);
 
 export class ApiError extends Error {
   constructor(
@@ -59,6 +66,7 @@ export const buildRequestInit = (
   return {
     ...rest,
     cache: rest.cache ?? "no-store",
+    credentials: "include",
     headers: {
       Accept: "application/json",
       ...(body !== undefined && { "Content-Type": "application/json" }),
@@ -74,12 +82,50 @@ export const readJson = async <T>(res: Response): Promise<T> => {
   return (await res.json()) as T;
 };
 
+const buildClientUrl = (path: string, query?: ApiFetchOptions["query"]) =>
+  `${env.API_URL}${API_BASE_PATH}${ensureLeadingSlash(path)}${buildSearch(query)}`;
+
+const withCsrfHeader = async (
+  init: RequestInit,
+  method: string,
+  forceRefresh: boolean,
+): Promise<RequestInit> => {
+  if (SAFE_METHODS.has(method)) return init;
+  if (forceRefresh) invalidateCsrfToken();
+  const token = await getCsrfToken();
+  const headers = new Headers(init.headers);
+  headers.set("X-CSRF-Token", token);
+  return { ...init, headers };
+};
+
+const fetchWithCsrfRetry = async (
+  url: string,
+  init: RequestInit,
+  method: string,
+): Promise<Response> => {
+  let res = await fetch(url, await withCsrfHeader(init, method, false));
+  if (res.status === 403) {
+    const cloned = res.clone();
+    const body = (await cloned.json().catch(() => null)) as ApiErrorBody | null;
+    const code = body?.error?.code;
+    if (code && CSRF_INVALID_CODES.has(code)) {
+      res = await fetch(url, await withCsrfHeader(init, method, true));
+    }
+  }
+  return res;
+};
+
 export const clientFetch = async <T>(
   path: string,
   options: ApiFetchOptions = {},
 ): Promise<T> => {
-  const url = `${PROXY_BASE_PATH}${API_BASE_PATH}${ensureLeadingSlash(path)}${buildSearch(options.query)}`;
-  const res = await fetch(url, buildRequestInit(options));
+  const method = (options.method ?? "GET").toUpperCase();
+  const init = buildRequestInit(options);
+  const res = await fetchWithCsrfRetry(
+    buildClientUrl(path, options.query),
+    init,
+    method,
+  );
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T }>(res);
   return (json?.data ?? (undefined as T)) as T;
@@ -89,8 +135,13 @@ export const clientFetchPaginated = async <T>(
   path: string,
   options: ApiFetchOptions = {},
 ): Promise<Paginated<T>> => {
-  const url = `${PROXY_BASE_PATH}${API_BASE_PATH}${ensureLeadingSlash(path)}${buildSearch(options.query)}`;
-  const res = await fetch(url, buildRequestInit(options));
+  const method = (options.method ?? "GET").toUpperCase();
+  const init = buildRequestInit(options);
+  const res = await fetchWithCsrfRetry(
+    buildClientUrl(path, options.query),
+    init,
+    method,
+  );
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
   return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };

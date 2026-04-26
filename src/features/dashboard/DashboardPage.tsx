@@ -1,8 +1,9 @@
+import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { ApiError } from "@/lib/api/client";
-import { authApi } from "@/lib/api/auth";
 import { eventsApi } from "@/lib/api/events";
 import { messagesApi } from "@/lib/api/messages";
+import { getCurrentUser } from "@/lib/auth/session";
 import { toMessageRowView } from "@/features/messages/adapters";
 import { DashboardGreeting } from "./components/DashboardGreeting";
 import { ResumeCard } from "./components/ResumeCard";
@@ -30,10 +31,11 @@ const greetingName = (fullName: string | null, email: string): string => {
 export const DashboardPage = async () => {
   const t = await getTranslations();
   const anonymous = t("common__anonymous");
-  const [{ user }, eventsPage] = await Promise.all([
-    authApi.me(),
+  const [user, eventsPage] = await Promise.all([
+    getCurrentUser(),
     eventsApi.list({ limit: 1 }),
   ]);
+  if (!user) redirect("/sign-in");
   const event = eventsPage.items[0];
 
   if (!event) {

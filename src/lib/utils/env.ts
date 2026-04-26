@@ -11,8 +11,17 @@ export const env = {
   // Database (server-only)
   DATABASE_URL: process.env.DATABASE_URL ?? "",
 
-  // Better Auth secret + OAuth providers (server-only)
-  BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET ?? "",
+  // Auth — three independent secrets (server-only)
+  // 1. Cookie HMAC: signs the session cookie. Shared with NestJS for
+  //    verification. Rotation requires invalidating all sessions.
+  AUTH_COOKIE_SECRET: process.env.AUTH_COOKIE_SECRET ?? "",
+  // 2. Hash pepper: HMAC key for IP/UA hashing.
+  AUTH_HASH_PEPPER: process.env.AUTH_HASH_PEPPER ?? "",
+  // 3. Internal secret: service-to-service. Compromise does not affect
+  //    user sessions.
+  AUTH_INTERNAL_SECRET: process.env.AUTH_INTERNAL_SECRET ?? "",
+
+  COOKIE_DOMAIN: process.env.COOKIE_DOMAIN, // e.g. ".ovation.app" — undefined in dev
   TRUSTED_ORIGINS: (process.env.TRUSTED_ORIGINS ?? "http://localhost:3000")
     .split(",")
     .map((s) => s.trim())

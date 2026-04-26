@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { useSignUpStore } from "../useSignUpStore";
-import { authClient } from "@/lib/api/auth-client";
-import { ApiError } from "@/lib/api/client";
+import { authClient } from "@/lib/auth/client";
 import { MailIcon } from "../components/MailIcon";
 
 type ResendState =
@@ -22,17 +21,15 @@ export const VerifyEmailStep = () => {
   const handleResend = async () => {
     if (!email) return;
     setResend({ status: "sending" });
-    try {
-      await authClient.magicLink({ email });
-      setResend({ status: "sent" });
-    } catch (error) {
+    const { error } = await authClient.sendVerificationEmail({ email });
+    if (error) {
       setResend({
         status: "error",
-        message: ApiError.isApiError(error)
-          ? error.message
-          : t("auth__verify__resend_error"),
+        message: error.message ?? t("auth__verify__resend_error"),
       });
+      return;
     }
+    setResend({ status: "sent" });
   };
 
   return (

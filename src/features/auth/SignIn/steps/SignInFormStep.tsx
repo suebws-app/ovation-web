@@ -16,9 +16,8 @@ import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { SocialAuthButtons } from "../../components/SocialAuthButtons";
 import { SignInBrandPanel } from "../components/SignInBrandPanel";
 import { Link, useRouter } from "@/i18n/navigation";
-import { authClient } from "@/lib/api/auth-client";
+import { authClient } from "@/lib/auth/client";
 import { getSignInSchema, type SignInFields } from "../signInSchema";
-import type { ApiErrorBody } from "@/lib/api/types";
 
 export const SignInFormStep = () => {
   const t = useTranslations();
@@ -41,13 +40,12 @@ export const SignInFormStep = () => {
 
   const onSubmit = async (values: SignInFields) => {
     setSubmitError(null);
-    const res = await authClient.signIn({
+    const { error } = await authClient.signIn.email({
       email: values.email,
       password: values.password,
     });
-    if (!res.ok) {
-      const body = (await res.json().catch(() => null)) as ApiErrorBody | null;
-      setSubmitError(body?.error?.message ?? t("auth__signin__error_generic"));
+    if (error) {
+      setSubmitError(error.message ?? t("auth__signin__error_generic"));
       return;
     }
     const redirectTo = searchParams.get("redirect") ?? "/app";

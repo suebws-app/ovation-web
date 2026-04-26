@@ -11,8 +11,7 @@ import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Logo } from "@ovation/ui/components/Logo";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Link } from "@/i18n/navigation";
-import { authClient } from "@/lib/api/auth-client";
-import { ApiError } from "@/lib/api/client";
+import { authClient } from "@/lib/auth/client";
 import {
   getForgotPasswordSchema,
   type ForgotPasswordFields,
@@ -41,17 +40,16 @@ export const ForgotPasswordPage = () => {
 
   const onSubmit = async (values: ForgotPasswordFields) => {
     setStatus({ kind: "idle" });
-    try {
-      await authClient.forgotPassword({ email: values.email });
+    const { error } = await authClient.requestPasswordReset({
+      email: values.email,
+      redirectTo: "/reset-password",
+    });
+    if (error) {
+      // Always present a success state; never confirm whether email exists
       setStatus({ kind: "sent", email: values.email });
-    } catch (error) {
-      setStatus({
-        kind: "error",
-        message: ApiError.isApiError(error)
-          ? error.message
-          : t("auth__forgot__error_generic"),
-      });
+      return;
     }
+    setStatus({ kind: "sent", email: values.email });
   };
 
   return (

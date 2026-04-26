@@ -6,7 +6,7 @@ import { Button } from "@ovation/ui/components/Button";
 import { Warning } from "@ovation/icons/Warning";
 import { useRouter } from "@/i18n/navigation";
 import { eventsClient } from "@/lib/api/events-client";
-import { authClient } from "@/lib/api/auth-client";
+import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import type { Event, User } from "@/lib/api/types";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
@@ -86,7 +86,7 @@ export const SettingsDangerSection = ({
     setPending("deleteAccount");
     setError(null);
     try {
-      await authClient.deleteAccount();
+      await profileClient.deleteAccount();
       await fetch("/api/auth/signout", { method: "POST" });
       router.replace("/sign-in");
       router.refresh();

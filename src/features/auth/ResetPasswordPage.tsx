@@ -12,8 +12,7 @@ import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Logo } from "@ovation/ui/components/Logo";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Link, useRouter } from "@/i18n/navigation";
-import { authClient } from "@/lib/api/auth-client";
-import { ApiError } from "@/lib/api/client";
+import { authClient } from "@/lib/auth/client";
 import {
   getResetPasswordSchema,
   type ResetPasswordFields,
@@ -45,19 +44,15 @@ export const ResetPasswordPage = () => {
       setSubmitError(t("auth__reset__missing_token"));
       return;
     }
-    try {
-      await authClient.resetPassword({
-        accessToken,
-        newPassword: values.newPassword,
-      });
-      router.replace("/sign-in?reset=ok");
-    } catch (error) {
-      setSubmitError(
-        ApiError.isApiError(error)
-          ? error.message
-          : t("auth__reset__error_generic"),
-      );
+    const { error } = await authClient.resetPassword({
+      newPassword: values.newPassword,
+      token: accessToken,
+    });
+    if (error) {
+      setSubmitError(error.message ?? t("auth__reset__error_generic"));
+      return;
     }
+    router.replace("/sign-in?reset=ok");
   };
 
   return (

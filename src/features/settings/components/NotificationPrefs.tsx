@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { authClient } from "@/lib/api/auth-client";
+import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import type { EmailPreferences, User } from "@/lib/api/types";
 import { SettingsCard } from "./SettingsCard";
@@ -63,7 +63,7 @@ export const NotificationPrefs = ({ user }: NotificationPrefsProps) => {
     setPrefs(next);
     setStatus({ kind: "saving" });
     try {
-      await authClient.updateProfile({ emailPreferences: next });
+      await profileClient.updateProfile({ emailPreferences: next });
       setStatus({ kind: "saved" });
       router.refresh();
       setTimeout(() => {

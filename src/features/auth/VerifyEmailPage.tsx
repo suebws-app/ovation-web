@@ -1,63 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Mail } from "@ovation/icons/Mail";
 import { Link, useRouter } from "@/i18n/navigation";
-import { authClient } from "@/lib/api/auth-client";
-import type { ApiErrorBody } from "@/lib/api/types";
-import {
-  VerifyEmailHeading,
-  type VerifyEmailStatus,
-} from "./VerifyEmailHeading";
-import { VerifyEmailBody } from "./VerifyEmailBody";
 
-const readVerifyType = (raw: string | null): "email" | "email_change" =>
-  raw === "email_change" ? "email_change" : "email";
-
+/**
+ * Better Auth handles verification clicks at /api/auth/verify-email and
+ * redirects to the configured callbackURL on success. This page is the
+ * fallback users see if they navigate here directly with no token.
+ */
 export const VerifyEmailPage = () => {
   const t = useTranslations();
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const tokenHash =
-    searchParams.get("token_hash") ?? searchParams.get("token") ?? "";
-  const type = readVerifyType(searchParams.get("type"));
-
-  const [status, setStatus] = useState<VerifyEmailStatus>(() =>
-    tokenHash ? { kind: "verifying" } : { kind: "missing" },
-  );
 
   useEffect(() => {
-    if (!tokenHash) return;
-    let cancelled = false;
-    (async () => {
-      const res = await authClient.verifyEmail({ tokenHash, type });
-      if (cancelled) return;
-      if (res.ok) {
-        setStatus({ kind: "success" });
-        setTimeout(() => {
-          router.replace("/app");
-          router.refresh();
-        }, 800);
-      } else {
-        const body = (await res
-          .json()
-          .catch(() => null)) as ApiErrorBody | null;
-        setStatus({
-          kind: "error",
-          message:
-            body?.error?.message ?? t("auth__verify__page_error_default"),
-        });
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [tokenHash, type, router, t]);
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("verified") === "1") {
+      router.replace("/app");
+    }
+  }, [router]);
 
   return (
     <div className="tablet:px-20 mx-auto flex min-h-screen w-full max-w-130 flex-col px-6 py-12">
@@ -74,14 +39,15 @@ export const VerifyEmailPage = () => {
         <Eyebrow className="text-primary">
           {t("auth__verify__page_eyebrow")}
         </Eyebrow>
-        <VerifyEmailHeading status={status} />
-        <VerifyEmailBody status={status} />
-
-        {(status.kind === "missing" || status.kind === "error") && (
-          <Button asChild className="mt-9 rounded-full">
-            <Link href="/sign-in">{t("auth__verify__back_to_signin")}</Link>
-          </Button>
-        )}
+        <h1 className="type-h1 mt-3 font-serif leading-tight font-semibold tracking-tight">
+          {t("auth__verify__page_missing_title")}
+        </h1>
+        <p className="type-body-small text-muted-foreground mt-3.5 max-w-105 leading-relaxed">
+          {t("auth__verify__page_missing_body")}
+        </p>
+        <Button asChild className="mt-9 rounded-full">
+          <Link href="/sign-in">{t("auth__verify__back_to_signin")}</Link>
+        </Button>
       </div>
     </div>
   );

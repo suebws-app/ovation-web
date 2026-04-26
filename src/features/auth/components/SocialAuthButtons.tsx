@@ -3,9 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
-import { authClient } from "@/lib/api/auth-client";
-import { ApiError } from "@/lib/api/client";
-import { env } from "@/lib/utils/env";
+import { authClient } from "@/lib/auth/client";
 import { SocialAuthButton } from "./SocialAuthButton";
 import { AppleIconBox } from "./AppleIconBox";
 import { GoogleIconBox } from "./GoogleIconBox";
@@ -32,17 +30,13 @@ export const SocialAuthButtons = ({
   const handleProvider = async (provider: Provider) => {
     setPending(provider);
     setError(null);
-    try {
-      const result = await authClient.oauthUrl({
-        provider,
-        redirectTo: `${env.APP_URL}/oauth-callback`,
-      });
-      window.location.href = result.url;
-    } catch (e) {
+    const { error: providerError } = await authClient.signIn.social({
+      provider,
+      callbackURL: "/app",
+    });
+    if (providerError) {
       setPending(null);
-      setError(
-        ApiError.isApiError(e) ? e.message : t("auth__social__error_default"),
-      );
+      setError(providerError.message ?? t("auth__social__error_default"));
     }
   };
 

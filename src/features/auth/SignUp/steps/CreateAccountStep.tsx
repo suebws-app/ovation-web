@@ -16,8 +16,7 @@ import { SocialAuthButtons } from "../../components/SocialAuthButtons";
 import { ChecklistItem } from "../components/ChecklistItem";
 import { useSignUpStore } from "../useSignUpStore";
 import { Link, useRouter } from "@/i18n/navigation";
-import { authClient } from "@/lib/api/auth-client";
-import { ApiError } from "@/lib/api/client";
+import { authClient } from "@/lib/auth/client";
 import {
   getCreateAccountSchema,
   type CreateAccountFields,
@@ -50,20 +49,19 @@ export const CreateAccountStep = () => {
 
   const onSubmit = async (values: CreateAccountFields) => {
     setSubmitError(null);
-    try {
-      await authClient.signUp({
-        email: values.email,
-        password: values.password,
-      });
-      updateFormData({ email: values.email, agreedToTerms: true });
-      router.push("/sign-up/step/2");
-    } catch (error) {
+    const { error } = await authClient.signUp.email({
+      email: values.email,
+      password: values.password,
+      name: values.email.split("@")[0] ?? values.email,
+    });
+    if (error) {
       setSubmitError(
-        ApiError.isApiError(error)
-          ? error.message
-          : t("auth__signup__create_account__error_generic"),
+        error.message ?? t("auth__signup__create_account__error_generic"),
       );
+      return;
     }
+    updateFormData({ email: values.email, agreedToTerms: true });
+    router.push("/sign-up/step/2");
   };
 
   const setupSteps = [

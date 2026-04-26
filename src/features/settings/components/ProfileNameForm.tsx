@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
-import { authClient } from "@/lib/api/auth-client";
+import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import type { User } from "@/lib/api/types";
 import { getProfileSchema, type ProfileFields } from "../profileSchema";
@@ -43,7 +43,7 @@ export const ProfileNameForm = ({ user }: ProfileNameFormProps) => {
   const onSubmit = async (values: ProfileFields) => {
     setStatus({ kind: "idle" });
     try {
-      const { user: updated } = await authClient.updateProfile({
+      const { user: updated } = await profileClient.updateProfile({
         fullName: values.fullName,
       });
       reset({ fullName: updated.fullName ?? "" });
