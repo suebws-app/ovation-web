@@ -1,36 +1,155 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ovation-web
 
-## Getting Started
+Next.js 16 app for Ovation. Hosts the Better Auth handler, all customer
+UI, and the guest landing/record flows. Talks to `ovation-api` over
+HTTP using a session cookie.
 
-First, run the development server:
+## Architecture in one paragraph
+
+Better Auth lives at `/api/auth/[...all]` in this app and owns the
+entire auth lifecycle: email/password, Google + Apple OAuth, email
+verification, password reset, session creation, revocation. Sessions
+are stored in the same Postgres the API uses. Browser-side `clientFetch`
+calls `${NEXT_PUBLIC_API_URL}/api/v1/...` directly with
+`credentials: 'include'`; the cookie is signed with `AUTH_COOKIE_SECRET`
+and the API verifies the HMAC. State-changing requests automatically
+attach `X-CSRF-Token`. There is no proxy and no JWT.
+
+## Stack
+
+- Next.js 16 (App Router) on React 19
+- Tailwind v4 (`@theme inline` in CSS, no config file)
+- next-intl v4 (en, fr, nl, de, es, it)
+- Better Auth 1.6 + `pg` for direct Postgres
+- TanStack Query 5
+- React Hook Form + zod (standard-schema resolver)
+- Resend for transactional email
+- Sentry, PostHog (optional)
+
+## Local development
+
+Requires `ovation-api` running, plus its docker stack (Postgres +
+Redis + MinIO).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# 1. From ovation-api/, bring infra up and run the API
+cd ../ovation-api
+docker compose up -d
+pnpm db:migrate
+pnpm start:dev   # leave running on :3001
+
+# 2. Configure ovation-web env
+cd ../ovation-web
+cp .env.example .env.local
+# Use the same AUTH_COOKIE_SECRET / AUTH_HASH_PEPPER / AUTH_INTERNAL_SECRET
+# values you set in ovation-api/.env. They must match.
+
+# 3. Install + run
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App on `http://localhost:3000`. The API must be on `http://localhost:3001`
+so the browser can hit it directly with the session cookie.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Useful commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+|---|---|
+| `pnpm dev` | Next dev server |
+| `pnpm build` | Production build |
+| `pnpm start` | Run production build |
+| `pnpm ts-check` | `tsc --noEmit` |
+| `pnpm lint` | ESLint (use the CLI directly; `next lint` is gone in 16) |
+| `pnpm format` | Prettier write |
 
-## Learn More
+## Project layout
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                # App Router routes
+│   ├── [locale]/       # all customer + guest pages, locale-prefixed
+│   └── api/auth/[...all]/   # Better Auth handler — only auth route here
+├── features/           # one folder per feature, server + client components
+│   ├── auth/           # sign-in, sign-up flow, password reset
+│   ├── dashboard/
+│   ├── messages/
+│   ├── photos/
+│   ├── guests/
+│   ├── keepsakes/
+│   ├── kiosk-setup/
+│   ├── settings/
+│   └── guest/          # public guest landing + recorder
+├── lib/
+│   ├── auth/           # Better Auth config, client, session helpers
+│   ├── api/            # clientFetch / apiFetch + per-domain wrappers
+│   ├── query/          # TanStack Query hooks + keys
+│   ├── hooks/          # useFullscreen, useWakeLock, useIdleTimeout
+│   └── utils/          # env, formatting, etc.
+├── i18n/               # next-intl config
+└── proxy.ts            # locale-aware route guarding (Next.js 16 replaces middleware.ts)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`messages/<locale>.json` holds the frontend translation strings. The
+backend has its own translations under `ovation-api/src/common/i18n`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Env
 
-## Deploy on Vercel
+Full list in `.env.example`. The non-obvious ones:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **`AUTH_COOKIE_SECRET`** — must match `ovation-api`'s
+  `AUTH_COOKIE_SECRET`. Better Auth signs the cookie with it on this
+  side; the API verifies on the other.
+- **`AUTH_HASH_PEPPER`** — independent secret used to hash IP/UA before
+  storing on `session` rows.
+- **`COOKIE_DOMAIN`** — leave empty in dev (`localhost` rejects
+  `Domain` cookies). Set to `.ovation.app` in prod so `app.*` and
+  `api.*` share the cookie.
+- **`TRUSTED_ORIGINS`** — comma-separated origins Better Auth accepts
+  for CSRF + redirects.
+- **`DATABASE_URL`** — Better Auth needs direct Postgres access.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy (Railway)
+
+- Service "ovation-web" deploys from this directory
+- Set the same `AUTH_*` secrets the API uses
+- Set `DATABASE_URL=${{ Postgres.DATABASE_URL }}` (same Postgres as API)
+- Set `COOKIE_DOMAIN=.ovation.app`
+- Set `TRUSTED_ORIGINS=https://app.ovation.app,https://ovation.app`
+- Set `NEXT_PUBLIC_API_URL=https://api.ovation.app`
+- DNS: `app.ovation.app` → this service. The API service must be at
+  `api.ovation.app` for the cross-subdomain cookie to flow.
+
+## House rules
+
+These come from `AGENTS.md` and matter when editing UI:
+
+- One component per file. When a component grows sub-components,
+  extract them as siblings.
+- No raw Tailwind colors (`bg-slate-*`) — use theme tokens
+  (`bg-card`, `text-foreground`).
+- No raw text sizes (`text-sm`) — use `type-*` utilities (`type-body`,
+  `type-caption`).
+- No raw radii (`rounded-lg`) — numeric tokens (`rounded-12`,
+  `rounded-16`).
+- No default breakpoints (`md:`, `lg:`) — named (`tablet:`, `desktop:`).
+- Inline SVGs go to `packages/icons/` or `packages/illustrations/`,
+  never embedded in components.
+- All user-facing strings go through `useTranslations()` /
+  `getTranslations()`.
+
+`pnpm dev` and a quick browser sanity-check are mandatory before
+calling a UI change done.
+
+## Things to know
+
+- Better Auth's catch-all is the only `/api/auth` route here.
+  Old Supabase routes (`/signin`, `/refresh`, etc.) are gone.
+- Server components fetch via `apiFetch` (forwards the cookie header
+  + locale). Client components fetch via `clientFetch` (uses
+  `credentials: 'include'` and auto-attaches CSRF).
+- `useSession()` from `@/lib/auth/client` is the source of truth for
+  signed-in state on the client. Server components use
+  `getCurrentUser()` from `@/lib/auth/session`.
+- Locale comes from the URL prefix (`/fr/...`, `/de/...`). Default
+  locale (`en`) has no prefix.
