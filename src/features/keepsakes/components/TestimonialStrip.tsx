@@ -1,64 +1,28 @@
-const TESTIMONIALS = [
-  {
-    quote: "The book arrived and we both cried. Again.",
-    couple: "Ella & Joachim",
-    location: "Ghent \u00b7 Apr 26",
-  },
-  {
-    quote: "Playing the vinyl at our 1-year anniversary was wild.",
-    couple: "Nadia & Finn",
-    location: "Lisbon \u00b7 Jun 25",
-  },
-  {
-    quote: "Every guest asked where we got the cards.",
-    couple: "Martina & Pavel",
-    location: "Prague \u00b7 Sep 25",
-  },
-];
+"use client";
 
-export const TestimonialStrip = () => (
-  <div className="rounded-20 bg-foreground text-background tablet:grid-cols-3 relative grid gap-5 overflow-hidden p-7">
-    <div
-      className="pointer-events-none absolute inset-0"
-      style={{
-        background:
-          "radial-gradient(400px 200px at 80% 50%, oklch(0.818 0.105 73.3 / 0.2), transparent 70%)",
-      }}
-    />
-    {TESTIMONIALS.map((t) => (
-      <TestimonialCard key={t.couple} {...t} />
-    ))}
-  </div>
-);
+import { useTranslations } from "next-intl";
+import { TestimonialCard } from "./TestimonialCard";
 
-const TestimonialCard = ({
-  quote,
-  couple,
-  location,
-}: {
-  quote: string;
-  couple: string;
-  location: string;
-}) => (
-  <div className="relative">
-    <div className="mb-2.5 flex gap-0.5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <svg
-          key={i}
-          width="12"
-          height="12"
-          viewBox="0 0 24 24"
-          fill="var(--accent)"
-        >
-          <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
-        </svg>
+export const TestimonialStrip = () => {
+  const t = useTranslations();
+  const testimonials = [1, 2, 3].map((n) => ({
+    quote: t(`keepsakes__testimonial__${n}__quote`),
+    couple: t(`keepsakes__testimonial__${n}__couple`),
+    location: t(`keepsakes__testimonial__${n}__location`),
+  }));
+
+  return (
+    <div className="rounded-20 bg-foreground text-background tablet:grid-cols-3 relative grid gap-5 overflow-hidden p-7">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(400px 200px at 80% 50%, oklch(0.818 0.105 73.3 / 0.2), transparent 70%)",
+        }}
+      />
+      {testimonials.map((item) => (
+        <TestimonialCard key={item.couple} {...item} />
       ))}
     </div>
-    <p className="type-body font-serif leading-snug italic">
-      &ldquo;{quote}&rdquo;
-    </p>
-    <p className="type-caption text-background/60 mt-2">
-      {couple} &middot; {location}
-    </p>
-  </div>
-);
+  );
+};

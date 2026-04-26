@@ -10,11 +10,12 @@ import {
   SidebarFooter,
   SidebarSeparator,
   SidebarGroupLabel,
-  SidebarMenuBadge,
 } from "@ovation/ui/components/Sidebar";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Avatar } from "@ovation/ui/components/Avatar";
 import { Link, usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { SidebarNavItem } from "./SidebarNavItem";
 import { Home } from "@ovation/icons/Home";
 import { MessageSquare } from "@ovation/icons/MessageSquare";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
@@ -26,24 +27,43 @@ import { UserPlus } from "@ovation/icons/UserPlus";
 import { HelpCircle } from "@ovation/icons/HelpCircle";
 import { Users } from "@ovation/icons/Users";
 
-const NAV_ITEMS = [
-  { label: "Home", href: "/app", icon: Home },
-  { label: "Messages", href: "/app/messages", icon: MessageSquare, badge: 12 },
-  { label: "Photos", href: "/app/photos", icon: ImageIcon },
-  { label: "Keepsakes", href: "/app/keepsakes", icon: Star },
-  { label: "Guests", href: "/app/guests", icon: Users, badge: 112 },
-  { label: "Settings", href: "/app/settings", icon: Settings },
-];
-
-const QUICK_LINKS = [
-  { label: "QR code", href: "/app/qr-code", icon: QrCode },
-  { label: "Kiosk mode", href: "/app/kiosk", icon: Monitor },
-  { label: "Invite guests", href: "/app/invite", icon: UserPlus },
-  { label: "Help center", href: "/help", icon: HelpCircle },
-];
-
 export const PrivateSideBar = () => {
+  const t = useTranslations();
   const pathname = usePathname();
+
+  const navItems = [
+    { label: t("sidebar__nav__home"), href: "/app", icon: Home },
+    {
+      label: t("sidebar__nav__messages"),
+      href: "/app/messages",
+      icon: MessageSquare,
+      badge: 12,
+    },
+    { label: t("sidebar__nav__photos"), href: "/app/photos", icon: ImageIcon },
+    { label: t("sidebar__nav__keepsakes"), href: "/app/keepsakes", icon: Star },
+    {
+      label: t("sidebar__nav__guests"),
+      href: "/app/guests",
+      icon: Users,
+      badge: 112,
+    },
+    {
+      label: t("sidebar__nav__settings"),
+      href: "/app/settings",
+      icon: Settings,
+    },
+  ];
+
+  const quickLinks = [
+    { label: t("sidebar__quick__qr"), href: "/app/qr-code", icon: QrCode },
+    { label: t("sidebar__quick__kiosk"), href: "/app/kiosk", icon: Monitor },
+    {
+      label: t("sidebar__quick__invite"),
+      href: "/app/invite",
+      icon: UserPlus,
+    },
+    { label: t("sidebar__quick__help"), href: "/help", icon: HelpCircle },
+  ];
 
   return (
     <Sidebar>
@@ -54,8 +74,8 @@ export const PrivateSideBar = () => {
       <SidebarContent className="px-1.5">
         <SidebarGroup>
           <SidebarMenu>
-            {NAV_ITEMS.map((item) => (
-              <NavItem
+            {navItems.map((item) => (
+              <SidebarNavItem
                 key={item.href}
                 item={item}
                 isActive={pathname.startsWith(item.href)}
@@ -67,9 +87,9 @@ export const PrivateSideBar = () => {
         <SidebarSeparator />
 
         <SidebarGroup>
-          <SidebarGroupLabel>Quick links</SidebarGroupLabel>
+          <SidebarGroupLabel>{t("sidebar__quick__title")}</SidebarGroupLabel>
           <SidebarMenu>
-            {QUICK_LINKS.map((item) => (
+            {quickLinks.map((item) => (
               <SidebarMenuItem key={item.href}>
                 <SidebarMenuButton asChild size="sm">
                   <Link href={item.href}>
@@ -85,29 +105,16 @@ export const PrivateSideBar = () => {
 
       <SidebarFooter className="border-sidebar-border border-t">
         <div className="flex items-center gap-3">
-          <Avatar initials="L&T" tint="#EFC9A8" size="md" />
+          <Avatar
+            initials={t("sidebar__couple_initials")}
+            tint="#EFC9A8"
+            size="md"
+          />
           <span className="type-body-small text-foreground font-semibold">
-            Lena & Tomás
+            {t("sidebar__couple_name")}
           </span>
         </div>
       </SidebarFooter>
     </Sidebar>
   );
 };
-
-type NavItemProps = {
-  item: (typeof NAV_ITEMS)[number];
-  isActive: boolean;
-};
-
-const NavItem = ({ item, isActive }: NavItemProps) => (
-  <SidebarMenuItem>
-    {item.badge != null && <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>}
-    <SidebarMenuButton asChild isActive={isActive}>
-      <Link href={item.href}>
-        <item.icon width={20} height={20} />
-        <span>{item.label}</span>
-      </Link>
-    </SidebarMenuButton>
-  </SidebarMenuItem>
-);

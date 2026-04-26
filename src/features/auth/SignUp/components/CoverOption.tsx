@@ -2,7 +2,7 @@
 
 import { cn } from "@ovation/ui/utils/cn";
 import { Plus } from "@ovation/icons/Plus";
-import { Check } from "@ovation/icons/Check";
+import { CoverSelectedBadge } from "./CoverSelectedBadge";
 
 type CoverOptionProps = {
   label: string;
@@ -49,25 +49,14 @@ export const CoverOption = ({
           strokeWidth={1.8}
         />
       ) : (
-        <span className="font-serif text-[1.375rem] text-black/40 italic">
+        <span className="type-h3 font-serif text-black/40 italic">
           {initials}
         </span>
       )}
     </div>
-    {selected && <SelectedBadge />}
+    {selected && <CoverSelectedBadge />}
     <span className="type-caption absolute right-2 bottom-2 left-2 font-semibold text-white drop-shadow-sm">
       {label}
     </span>
   </button>
-);
-
-const SelectedBadge = () => (
-  <div className="bg-primary absolute top-2 right-2 flex size-6 items-center justify-center rounded-full shadow-md">
-    <Check
-      width={13}
-      height={13}
-      className="text-primary-foreground"
-      strokeWidth={3}
-    />
-  </div>
 );

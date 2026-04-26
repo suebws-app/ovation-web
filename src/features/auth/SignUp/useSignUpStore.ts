@@ -14,6 +14,8 @@ type SignUpFormData = {
   dateUndecided: boolean;
   venue: string;
   coverType: string;
+  coverFile: File | null;
+  coverFilePreview: string | null;
   bookUrl: string;
   selectedPlan: string;
 };
@@ -38,6 +40,8 @@ const initialFormData: SignUpFormData = {
   dateUndecided: false,
   venue: "",
   coverType: "",
+  coverFile: null,
+  coverFilePreview: null,
   bookUrl: "",
   selectedPlan: "",
 };

@@ -1,68 +1,35 @@
-"use client";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
+import { eventsApi } from "@/lib/api/events";
+import { messagesApi } from "@/lib/api/messages";
+import { queryKeys } from "@/lib/query/keys";
+import { PhotosEmptyState } from "./components/PhotosEmptyState";
+import { PhotosPageClient } from "./PhotosPageClient";
 
-import { useState } from "react";
+export const PhotosPage = async () => {
+  const events = await eventsApi.list({ limit: 1 });
+  const event = events.items[0];
+  if (!event) return <PhotosEmptyState />;
 
-import { FilterChipRail } from "@/components/FilterChipRail";
-import { SelectionToolbar } from "@/components/SelectionToolbar";
-import { useSelectionMode } from "@/lib/hooks/useSelectionMode";
+  const initialQuery = {
+    filter: "with_photo",
+    sort: "newest",
+    limit: 60,
+  } as const;
+  const initialMessages = await messagesApi.list(event.id, initialQuery);
 
-import { BatchBar } from "./components/BatchBar";
-import { DetailPane } from "./components/DetailPane";
-import { PhotoGallery } from "./components/PhotoGallery";
-import { PhotoToolbar } from "./components/PhotoToolbar";
-import { PHOTO_ALBUM_CHIPS, PHOTO_DETAIL_WAVE, PHOTO_TILES } from "./mocks";
-
-const TOTAL_PHOTOS = 64;
-
-export const PhotosPage = () => {
-  const selection = useSelectionMode<number>();
-  const [activeAlbum, setActiveAlbum] = useState("All");
-  const [activePhotoId, setActivePhotoId] = useState(0);
-
-  const handleTileClick = (id: number) => {
-    if (selection.selectMode) {
-      selection.toggleSelect(id);
-    } else {
-      setActivePhotoId(id);
-    }
-  };
-
-  const activePhoto =
-    PHOTO_TILES.find((t) => t.id === activePhotoId) ?? PHOTO_TILES[0];
+  const queryClient = new QueryClient();
+  queryClient.setQueryData(
+    queryKeys.messages.list(event.id, initialQuery),
+    initialMessages,
+  );
 
   return (
-    <div className="tablet:-mb-10 desktop:-mb-20 large-desktop:grid-cols-[1fr_340px] -mx-4 -mb-6 grid min-h-screen">
-      <div className="bg-card flex min-w-0 flex-col">
-        <PhotoToolbar />
-        <SelectionToolbar
-          selectMode={selection.selectMode}
-          count={selection.selectedIds.size}
-          onToggle={selection.toggleSelectMode}
-          onClearAll={selection.clear}
-        />
-        {selection.selectMode && (
-          <BatchBar count={selection.selectedIds.size} total={TOTAL_PHOTOS} />
-        )}
-        <FilterChipRail
-          chips={PHOTO_ALBUM_CHIPS}
-          activeLabel={activeAlbum}
-          onSelect={setActiveAlbum}
-          className="large-desktop:hidden"
-        />
-        <PhotoGallery
-          selectMode={selection.selectMode}
-          selectedIds={selection.selectedIds}
-          onTileClick={handleTileClick}
-        />
-      </div>
-      <DetailPane
-        monogram={activePhoto.monogram}
-        tint={activePhoto.tint}
-        name={`${activePhoto.name} ${activePhoto.monogram === "MB" ? "Benedetti" : ""}`}
-        relation={activePhoto.hasAudio ? "Guest \u00b7 with audio" : "Guest"}
-        quote="The way you look at her \u2014 like the room just got quieter."
-        wave={PHOTO_DETAIL_WAVE}
-      />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <PhotosPageClient eventId={event.id} />
+    </HydrationBoundary>
   );
 };

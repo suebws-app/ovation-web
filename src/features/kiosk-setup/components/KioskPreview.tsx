@@ -1,28 +1,54 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Eye } from "@ovation/icons/Eye";
-import { cn } from "@ovation/ui/utils/cn";
+import { Link } from "@/i18n/navigation";
+import type { PublicEvent } from "@/lib/api/types";
 import { KioskLiveFrame } from "./KioskLiveFrame";
 import { KioskPreviewTab } from "./KioskPreviewTab";
 
-const TABS = [
-  { label: "Tablet \u00b7 landscape", value: "tablet" },
-  { label: "Phone \u00b7 portrait", value: "phone" },
-  { label: "Phone \u00b7 locked screen", value: "locked" },
-];
+type KioskPreviewProps = {
+  slug: string | null;
+  event: PublicEvent | null;
+};
 
-export const KioskPreview = () => {
+export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
+  const t = useTranslations();
   const [activeTab, setActiveTab] = useState("tablet");
+  const TABS = [
+    { label: t("kiosk__preview__tablet"), value: "tablet" },
+    { label: t("kiosk__preview__phone"), value: "phone" },
+    { label: t("kiosk__preview__locked"), value: "locked" },
+  ];
+
+  if (!slug || !event) {
+    return (
+      <div>
+        <h2 className="type-h2 font-serif tracking-tight">
+          {t("kiosk__preview__title")}
+        </h2>
+        <div className="rounded-20 border-border bg-card mt-3.5 border p-8 text-center">
+          <p className="type-body-small text-muted-foreground">
+            {t("kiosk__preview__no_event")}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <div className="mb-3.5 flex items-baseline justify-between">
-        <h2 className="type-h2 font-serif tracking-tight">Live preview</h2>
-        <Button size="sm" className="rounded-full">
-          <Eye width={13} height={13} />
-          Open as guest
+        <h2 className="type-h2 font-serif tracking-tight">
+          {t("kiosk__preview__title")}
+        </h2>
+        <Button asChild size="sm" className="rounded-full">
+          <Link href={`/g/${slug}`}>
+            <Eye width={13} height={13} />
+            {t("kiosk__preview__open_as_guest")}
+          </Link>
         </Button>
       </div>
       <div className="rounded-20 border-border bg-card border p-5 shadow">
@@ -42,14 +68,14 @@ export const KioskPreview = () => {
             style={{ width: 1280 * 0.58, height: 800 * 0.58 + 28 }}
           >
             <div
-              className="absolute inset-0 origin-top-left"
+              className="pointer-events-none absolute inset-0 origin-top-left"
               style={{
                 transform: "scale(0.58)",
                 width: 1280,
                 height: 800,
               }}
             >
-              <KioskLiveFrame />
+              <KioskLiveFrame slug={slug} event={event} />
             </div>
           </div>
         </div>

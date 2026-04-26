@@ -1,32 +1,34 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { ChevronDown } from "@ovation/icons/ChevronDown";
 import { KioskConfigCard } from "./KioskConfigCard";
 import { KioskConfigRow } from "./KioskConfigRow";
 import { KioskToggle } from "./KioskToggle";
 
 export const KioskConfigLeft = () => {
+  const t = useTranslations();
   return (
     <div className="flex flex-col gap-5">
       <KioskConfigCard
-        title="What guests can leave"
-        description="Pick one or more. Audio is the magic; a photo is the cherry."
+        title={t("kiosk__config__what_section__title")}
+        description={t("kiosk__config__what_section__desc")}
       >
         <KioskConfigRow
-          title="Audio message"
-          description="60\u201390 seconds by default. Waveform preview while recording."
+          title={t("kiosk__config__what__audio__title")}
+          description={t("kiosk__config__what__audio__desc")}
         >
           <KioskToggle on={true} />
         </KioskConfigRow>
         <KioskConfigRow
-          title="Photo snap"
-          description="Front camera, one tap. Optional \u2014 they can skip."
+          title={t("kiosk__config__what__photo__title")}
+          description={t("kiosk__config__what__photo__desc")}
         >
           <KioskToggle on={true} />
         </KioskConfigRow>
         <KioskConfigRow
-          title="Video message"
-          description="Landscape video up to 60 seconds. Off by default \u2014 big uploads."
+          title={t("kiosk__config__what__video__title")}
+          description={t("kiosk__config__what__video__desc")}
           last
         >
           <KioskToggle on={false} />
@@ -34,17 +36,20 @@ export const KioskConfigLeft = () => {
       </KioskConfigCard>
 
       <KioskConfigCard
-        title="Time limits"
-        description="Keep them tight \u2014 the best messages are short."
+        title={t("kiosk__config__time_section__title")}
+        description={t("kiosk__config__time_section__desc")}
       >
         <div className="py-5">
           <div className="flex items-baseline justify-between">
             <span className="type-body-small font-semibold">
-              Maximum recording length
+              {t("kiosk__config__time__max_label")}
             </span>
             <span className="type-body-small text-muted-foreground">
-              <strong className="text-foreground">90 seconds</strong> &mdash;
-              recommended
+              {t.rich("kiosk__config__time__max_value", {
+                strong: (chunks) => (
+                  <strong className="text-foreground">{chunks}</strong>
+                ),
+              })}
             </span>
           </div>
           <div className="bg-border relative mt-3.5 h-1.5 rounded-full">
@@ -64,12 +69,12 @@ export const KioskConfigLeft = () => {
           </div>
         </div>
         <KioskConfigRow
-          title="Auto-return to welcome"
-          description="After the guest sends their message. Keeps the line moving."
+          title={t("kiosk__config__time__return__title")}
+          description={t("kiosk__config__time__return__desc")}
           last
         >
           <span className="border-border bg-card type-body-small inline-flex items-center gap-2 rounded-full border px-3.5 py-2">
-            5 seconds
+            {t("kiosk__config__time__return__value")}
             <ChevronDown
               width={12}
               height={12}
@@ -80,37 +85,37 @@ export const KioskConfigLeft = () => {
       </KioskConfigCard>
 
       <KioskConfigCard
-        title="Kiosk lock-down"
-        description="Nobody should be able to scroll your camera roll."
+        title={t("kiosk__config__lockdown_section__title")}
+        description={t("kiosk__config__lockdown_section__desc")}
       >
         <KioskConfigRow
-          title="Full-screen lock"
-          description="Hides the browser chrome. Requires three-finger press + passcode to exit."
+          title={t("kiosk__config__lockdown__fullscreen__title")}
+          description={t("kiosk__config__lockdown__fullscreen__desc")}
         >
           <KioskToggle on={true} />
         </KioskConfigRow>
         <KioskConfigRow
-          title="Guided Access / Screen Pinning"
-          description="iPhone: Settings \u2192 Accessibility \u2192 Guided Access. Android: pin-a-screen in task switcher."
+          title={t("kiosk__config__lockdown__guided__title")}
+          description={t("kiosk__config__lockdown__guided__desc")}
         >
           <button
             type="button"
             className="border-border bg-card type-caption cursor-pointer rounded-full border px-3 py-2 font-semibold"
           >
-            Show me how
+            {t("kiosk__config__lockdown__guided__cta")}
           </button>
         </KioskConfigRow>
         <KioskConfigRow
-          title="Exit passcode"
-          description="Four digits. So a curious guest can\u2019t get out."
+          title={t("kiosk__config__lockdown__pin__title")}
+          description={t("kiosk__config__lockdown__pin__desc")}
         >
           <span className="border-border bg-card type-body-small rounded-full border px-3.5 py-2 font-mono tracking-widest">
             &bull; &bull; &bull; &bull;
           </span>
         </KioskConfigRow>
         <KioskConfigRow
-          title="Airplane mode warning"
-          description="Warn us if the device goes offline so we can save messages locally."
+          title={t("kiosk__config__lockdown__airplane__title")}
+          description={t("kiosk__config__lockdown__airplane__desc")}
           last
         >
           <KioskToggle on={true} />

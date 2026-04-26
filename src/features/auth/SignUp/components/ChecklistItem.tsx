@@ -19,7 +19,7 @@ export const ChecklistItem = ({
   >
     <span
       className={cn(
-        "type-caption flex size-[22px] shrink-0 items-center justify-center rounded-full font-bold",
+        "type-caption flex size-5.5 shrink-0 items-center justify-center rounded-full font-bold",
         active ? "bg-destructive text-primary-foreground" : "bg-white/15",
       )}
     >

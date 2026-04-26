@@ -1,5 +1,9 @@
 "use client";
 
+import { useMemo, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
@@ -12,131 +16,224 @@ import { SocialAuthButtons } from "../../components/SocialAuthButtons";
 import { ChecklistItem } from "../components/ChecklistItem";
 import { useSignUpStore } from "../useSignUpStore";
 import { Link, useRouter } from "@/i18n/navigation";
-
-const SETUP_STEPS = [
-  "Create your account",
-  "Name your book",
-  "Cover photo & link",
-  "Choose a plan",
-];
+import { authClient } from "@/lib/api/auth-client";
+import { ApiError } from "@/lib/api/client";
+import {
+  getCreateAccountSchema,
+  type CreateAccountFields,
+} from "../createAccountSchema";
 
 export const CreateAccountStep = () => {
-  const { formData, updateFormData } = useSignUpStore();
+  const t = useTranslations();
   const router = useRouter();
+  const updateFormData = useSignUpStore((s) => s.updateFormData);
+  const storedEmail = useSignUpStore((s) => s.formData.email);
+  const storedAgreed = useSignUpStore((s) => s.formData.agreedToTerms);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const schema = useMemo(() => getCreateAccountSchema(t), [t]);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm<CreateAccountFields>({
+    defaultValues: {
+      email: storedEmail,
+      password: "",
+      agreedToTerms: storedAgreed,
+    },
+    resolver: standardSchemaResolver(schema),
+    mode: "onTouched",
+    reValidateMode: "onChange",
+  });
+
+  const onSubmit = async (values: CreateAccountFields) => {
+    setSubmitError(null);
+    try {
+      await authClient.signUp({
+        email: values.email,
+        password: values.password,
+      });
+      updateFormData({ email: values.email, agreedToTerms: true });
+      router.push("/sign-up/step/2");
+    } catch (error) {
+      setSubmitError(
+        ApiError.isApiError(error)
+          ? error.message
+          : t("auth__signup__create_account__error_generic"),
+      );
+    }
+  };
+
+  const setupSteps = [
+    t("auth__signup__brand_step__create_account"),
+    t("auth__signup__brand_step__name_book"),
+    t("auth__signup__brand_step__cover_link"),
+    t("auth__signup__brand_step__choose_plan"),
+  ];
 
   return (
     <SplitLayout
-      left={<BrandContent />}
-      right={
+      left={
         <>
-          <Eyebrow className="text-primary mb-3">
-            Step 1 &middot; Create account
+          <Eyebrow className="relative tracking-[2.5px] opacity-80">
+            {t("auth__signup__brand_eyebrow")}
           </Eyebrow>
-          <h1 className="font-serif text-[2.75rem] leading-tight font-semibold tracking-tight">
-            Start your
+          <p className="relative font-serif text-5xl leading-tight font-medium tracking-tight">
+            {t("auth__signup__brand_intro")}
+          </p>
+          <div className="relative flex flex-col gap-3.5">
+            {setupSteps.map((label, i) => (
+              <ChecklistItem
+                key={label}
+                index={i + 1}
+                label={label}
+                active={i === 0}
+              />
+            ))}
+          </div>
+        </>
+      }
+      right={
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <Eyebrow className="text-primary mb-3">
+            {t("auth__signup__eyebrow_step", {
+              step: 1,
+              label: t("auth__signup__create_account__label"),
+            })}
+          </Eyebrow>
+          <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+            {t("auth__signup__create_account__title")}
             <br />
-            <span className="text-primary italic">wedding book.</span>
+            <span className="text-primary italic">
+              {t("auth__signup__create_account__title_emphasis")}
+            </span>
           </h1>
           <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
-            Free to start. Upgrade when your guest list is final — or never.
+            {t("auth__signup__create_account__subtitle")}
           </p>
 
           <SocialAuthButtons action="sign-up" className="mt-8" />
 
-          <Separator label="or with email" className="my-6" />
+          <Separator
+            label={t("auth__signup__create_account__separator")}
+            className="my-6"
+          />
 
           <div className="space-y-5">
             <div>
-              <Label htmlFor="email" className="mb-2">
-                Your email
+              <Label htmlFor="signup-email" className="mb-2">
+                {t("auth__signup__create_account__email_label")}
               </Label>
               <Input
-                id="email"
+                id="signup-email"
                 type="email"
-                value={formData.email}
-                onChange={(e) => updateFormData({ email: e.target.value })}
-                placeholder="you@example.com"
+                autoComplete="email"
+                placeholder={t(
+                  "auth__signup__create_account__email_placeholder",
+                )}
+                aria-invalid={Boolean(errors.email)}
+                {...register("email")}
               />
+              {errors.email && (
+                <p className="type-caption text-destructive mt-1.5">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div>
-              <Label htmlFor="password" className="mb-2">
-                Create a password
+              <Label htmlFor="signup-password" className="mb-2">
+                {t("auth__signup__create_account__password_label")}
               </Label>
               <Input
-                id="password"
+                id="signup-password"
                 type="password"
-                value={formData.password}
-                onChange={(e) => updateFormData({ password: e.target.value })}
-                placeholder="8+ characters"
+                autoComplete="new-password"
+                placeholder={t(
+                  "auth__signup__create_account__password_placeholder",
+                )}
+                aria-invalid={Boolean(errors.password)}
+                {...register("password")}
               />
-              <p className="type-caption text-muted-foreground mt-2">
-                8+ characters. We'll never share this — not even with your
-                partner.
-              </p>
+              {errors.password ? (
+                <p className="type-caption text-destructive mt-1.5">
+                  {errors.password.message}
+                </p>
+              ) : (
+                <p className="type-caption text-muted-foreground mt-2">
+                  {t("auth__signup__create_account__password_hint")}
+                </p>
+              )}
             </div>
           </div>
 
-          <Checkbox
-            checked={formData.agreedToTerms}
-            onChange={(checked) => updateFormData({ agreedToTerms: checked })}
-            label={
-              <span>
-                I agree to the{" "}
-                <Link href="/terms" className="text-primary font-semibold">
-                  Terms
-                </Link>{" "}
-                and{" "}
-                <Link href="/privacy" className="text-primary font-semibold">
-                  Privacy Policy
-                </Link>
-                .
-              </span>
-            }
-            className="mt-6"
+          <Controller
+            control={control}
+            name="agreedToTerms"
+            render={({ field, fieldState }) => (
+              <div className="mt-6">
+                <Checkbox
+                  checked={field.value}
+                  onChange={field.onChange}
+                  label={
+                    <span>
+                      {t.rich("auth__signup__create_account__terms_label", {
+                        terms: (chunks) => (
+                          <Link
+                            href="/terms"
+                            className="text-primary font-semibold"
+                          >
+                            {chunks}
+                          </Link>
+                        ),
+                        privacy: (chunks) => (
+                          <Link
+                            href="/privacy"
+                            className="text-primary font-semibold"
+                          >
+                            {chunks}
+                          </Link>
+                        ),
+                      })}
+                    </span>
+                  }
+                />
+                {fieldState.error && (
+                  <p className="type-caption text-destructive mt-1.5">
+                    {fieldState.error.message}
+                  </p>
+                )}
+              </div>
+            )}
           />
 
+          {submitError && (
+            <p className="type-body-small text-destructive mt-4" role="alert">
+              {submitError}
+            </p>
+          )}
+
           <Button
-            onClick={() => router.push("/sign-up/step/2")}
-            disabled={
-              !formData.email || !formData.password || !formData.agreedToTerms
-            }
+            type="submit"
+            disabled={isSubmitting}
             size="lg"
             className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
           >
-            Continue
+            {isSubmitting
+              ? t("auth__signup__create_account__submit_pending")
+              : t("auth__signup__create_account__submit")}
             <ArrowRight width={16} height={16} />
           </Button>
 
           <p className="type-body-small text-muted-foreground mt-4.5 text-center">
-            Already have a book?{" "}
+            {t("auth__signup__create_account__has_account")}{" "}
             <Link href="/sign-in" className="text-foreground font-semibold">
-              Sign in &rarr;
+              {t("auth__signup__create_account__signin_cta")}
             </Link>
           </p>
-        </>
+        </form>
       }
     />
   );
 };
-
-const BrandContent = () => (
-  <>
-    <Eyebrow className="relative tracking-[2.5px] opacity-80">
-      Let&apos;s begin
-    </Eyebrow>
-    <p className="relative font-serif text-5xl leading-tight font-medium tracking-tight">
-      We&apos;ll walk you through it — names, date, cover photo, URL, a plan.
-      You can change any of it later.
-    </p>
-    <div className="relative flex flex-col gap-3.5">
-      {SETUP_STEPS.map((label, i) => (
-        <ChecklistItem
-          key={label}
-          index={i + 1}
-          label={label}
-          active={i === 0}
-        />
-      ))}
-    </div>
-  </>
-);

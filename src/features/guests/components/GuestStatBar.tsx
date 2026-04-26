@@ -1,53 +1,67 @@
-import { Users } from "@ovation/icons/Users";
+import { useTranslations } from "next-intl";
 import { Mic } from "@ovation/icons/Mic";
-import { Hourglass } from "@ovation/icons/Hourglass";
-import { XIcon } from "@ovation/icons/XIcon";
+import { ImageIcon } from "@ovation/icons/ImageIcon";
+import { Heart } from "@ovation/icons/Heart";
 import { Mail } from "@ovation/icons/Mail";
+import type { EventStats, InvitationStats } from "@/lib/api/types";
 import { GuestStatCard } from "./GuestStatCard";
 
-const STATS = [
-  {
-    value: 112,
-    label: "total guests",
-    sub: "across 6 groups",
-    icon: Users,
-    tone: "primary" as const,
-  },
-  {
-    value: 78,
-    label: "contributed",
-    sub: "voice, photo, or both",
-    icon: Mic,
-    tone: "primary" as const,
-  },
-  {
-    value: 34,
-    label: "still to hear",
-    sub: "gentle nudge ready",
-    icon: Hourglass,
-    tone: "destructive" as const,
-  },
-  {
-    value: 0,
-    label: "declined",
-    sub: "no one said no",
-    icon: XIcon,
-    tone: "muted" as const,
-  },
-  {
-    value: 47,
-    label: "thank-yous owed",
-    sub: "addresses ready",
-    icon: Mail,
-    tone: "accent" as const,
-  },
-];
+type GuestStatBarProps = {
+  stats: EventStats;
+  invitations: InvitationStats | null;
+};
 
-export const GuestStatBar = () => {
+export const GuestStatBar = ({ stats, invitations }: GuestStatBarProps) => {
+  const t = useTranslations();
+  const items = [
+    {
+      value: stats.totalMessages,
+      label: t("guests__stats__messages"),
+      sub: t("guests__stats__messages_sub", {
+        audio: stats.audioMessages,
+        written: stats.writtenMessages,
+      }),
+      icon: Mic,
+      tone: "primary" as const,
+    },
+    {
+      value: stats.photoMessages,
+      label: t("guests__stats__with_photo"),
+      sub: t("guests__stats__with_photo_sub", { count: stats.videoMessages }),
+      icon: ImageIcon,
+      tone: "primary" as const,
+    },
+    {
+      value: stats.favorites,
+      label: t("guests__stats__favourited"),
+      sub: t("guests__stats__favourited_sub"),
+      icon: Heart,
+      tone: "accent" as const,
+    },
+    {
+      value: invitations?.totals.sent ?? 0,
+      label: t("guests__stats__invites"),
+      sub: t("guests__stats__invites_sub", {
+        opened: invitations?.totals.opened ?? 0,
+      }),
+      icon: Mail,
+      tone: invitations?.totals.sent
+        ? ("primary" as const)
+        : ("muted" as const),
+    },
+  ];
+
   return (
-    <div className="tablet:grid-cols-3 desktop:grid-cols-5 grid grid-cols-2 gap-4">
-      {STATS.map((stat) => (
-        <GuestStatCard key={stat.label} {...stat} />
+    <div className="tablet:grid-cols-2 desktop:grid-cols-4 grid grid-cols-2 gap-4">
+      {items.map((stat) => (
+        <GuestStatCard
+          key={stat.label}
+          value={stat.value}
+          label={stat.label}
+          sub={stat.sub}
+          icon={stat.icon}
+          tone={stat.tone}
+        />
       ))}
     </div>
   );

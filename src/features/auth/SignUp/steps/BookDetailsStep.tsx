@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Calendar } from "@ovation/ui/components/DatePicker";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { Calendar as CalendarIcon } from "@ovation/icons/Calendar";
 import { SplitLayout } from "../components/SplitLayout";
 import { BookPreview } from "../components/BookPreview";
 import { NameOrderOption } from "../components/NameOrderOption";
@@ -15,6 +17,7 @@ import { useSignUpStore } from "../useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 
 export const BookDetailsStep = () => {
+  const t = useTranslations();
   const { formData, updateFormData } = useSignUpStore();
   const router = useRouter();
   const { partner1Name, partner2Name, displayOrder, weddingDate, venue } =
@@ -22,9 +25,9 @@ export const BookDetailsStep = () => {
   const [showCalendar, setShowCalendar] = useState(false);
 
   const orderOptions = [
-    `${partner1Name || "Partner 1"} & ${partner2Name || "Partner 2"}`,
-    `${partner2Name || "Partner 2"} & ${partner1Name || "Partner 1"}`,
-    "Custom\u2026",
+    `${partner1Name || t("signup__book_details__partner1")} & ${partner2Name || t("signup__book_details__partner2")}`,
+    `${partner2Name || t("signup__book_details__partner2")} & ${partner1Name || t("signup__book_details__partner1")}`,
+    t("signup__book_details__display_custom"),
   ];
 
   const NAME_MAX_LENGTH = 24;
@@ -52,7 +55,7 @@ export const BookDetailsStep = () => {
       left={
         <>
           <Eyebrow className="relative tracking-[2.5px] opacity-80">
-            Cover preview
+            {t("signup__book_details__brand_eyebrow")}
           </Eyebrow>
           <div className="relative">
             <BookPreview
@@ -66,7 +69,7 @@ export const BookDetailsStep = () => {
               venue={venue}
             />
             <p className="type-body-small mt-6 leading-relaxed opacity-80">
-              Your cover updates as you type. This is how guests see your book.
+              {t("signup__book_details__brand_caption")}
             </p>
           </div>
           {daysUntil > 0 && <CountdownCard days={daysUntil} />}
@@ -75,21 +78,26 @@ export const BookDetailsStep = () => {
       right={
         <>
           <Eyebrow className="text-primary mb-3">
-            Step 3 &middot; Your book
+            {t("auth__signup__eyebrow_step", {
+              step: 3,
+              label: t("signup__book_details__step_label"),
+            })}
           </Eyebrow>
-          <h1 className="font-serif text-[2.75rem] leading-tight font-semibold tracking-tight">
-            Names, date
+          <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+            {t("signup__book_details__title_a")}
             <br />
-            <span className="text-primary italic">&amp; place.</span>
+            <span className="text-primary italic">
+              {t("signup__book_details__title_b")}
+            </span>
           </h1>
           <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
-            Just first names or nicknames — whatever your guests will recognize.
+            {t("signup__book_details__subtitle")}
           </p>
 
           <div className="mt-7 grid grid-cols-[1fr_auto_1fr] items-end gap-3.5">
             <div>
               <Label htmlFor="partner1" className="mb-2">
-                Partner 1
+                {t("signup__book_details__partner1")}
               </Label>
               <Input
                 id="partner1"
@@ -98,15 +106,15 @@ export const BookDetailsStep = () => {
                 onChange={(e) =>
                   updateFormData({ partner1Name: e.target.value })
                 }
-                placeholder="First name"
+                placeholder={t("signup__book_details__name_placeholder")}
               />
             </div>
-            <span className="text-muted-foreground pb-2.5 font-serif text-[2rem] italic">
+            <span className="text-muted-foreground type-h1 pb-2.5 font-serif italic">
               &amp;
             </span>
             <div>
               <Label htmlFor="partner2" className="mb-2">
-                Partner 2
+                {t("signup__book_details__partner2")}
               </Label>
               <Input
                 id="partner2"
@@ -115,13 +123,15 @@ export const BookDetailsStep = () => {
                 onChange={(e) =>
                   updateFormData({ partner2Name: e.target.value })
                 }
-                placeholder="First name"
+                placeholder={t("signup__book_details__name_placeholder")}
               />
             </div>
           </div>
 
           <div className="mt-5">
-            <Label className="mb-2">How should the book read?</Label>
+            <Label className="mb-2">
+              {t("signup__book_details__display_label")}
+            </Label>
             <div className="flex flex-wrap gap-2">
               {orderOptions.map((option) => (
                 <NameOrderOption
@@ -135,7 +145,9 @@ export const BookDetailsStep = () => {
           </div>
 
           <div className="mt-6">
-            <Label className="mb-2">Wedding date</Label>
+            <Label className="mb-2">
+              {t("signup__book_details__date_label")}
+            </Label>
             <button
               type="button"
               onClick={() => setShowCalendar(!showCalendar)}
@@ -143,19 +155,7 @@ export const BookDetailsStep = () => {
             >
               <div className="flex items-center gap-3">
                 <span className="rounded-8 bg-primary/10 text-primary group-hover:bg-primary/15 flex size-9 items-center justify-center transition-colors">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect width="18" height="18" x="3" y="4" rx="2" />
-                    <path d="M16 2v4M8 2v4M3 10h18" />
-                  </svg>
+                  <CalendarIcon width={16} height={16} />
                 </span>
                 <span
                   className={
@@ -170,13 +170,13 @@ export const BookDetailsStep = () => {
                         month: "long",
                         year: "numeric",
                       })
-                    : "Pick a date"}
+                    : t("signup__book_details__date_placeholder")}
                 </span>
               </div>
               <span className="bg-muted type-caption text-muted-foreground rounded-full px-2.5 py-1 font-medium">
                 {weddingDate
                   ? weddingDate.toLocaleDateString("en-US", { weekday: "long" })
-                  : "Optional"}
+                  : t("signup__book_details__date_optional")}
               </span>
             </button>
             <div
@@ -205,16 +205,16 @@ export const BookDetailsStep = () => {
 
           <div className="mt-4">
             <Label htmlFor="venue" className="mb-2">
-              Venue or city
+              {t("signup__book_details__venue_label")}
             </Label>
             <Input
               id="venue"
               value={venue}
               onChange={(e) => updateFormData({ venue: e.target.value })}
-              placeholder="e.g. Villa Rosa, Tuscany"
+              placeholder={t("signup__book_details__venue_placeholder")}
             />
             <p className="type-caption text-muted-foreground mt-2">
-              Used on guest cards. Optional — just a country works too.
+              {t("signup__book_details__venue_hint")}
             </p>
           </div>
 
@@ -224,7 +224,7 @@ export const BookDetailsStep = () => {
             size="lg"
             className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
           >
-            Continue
+            {t("signup__book_details__continue")}
             <ArrowRight width={16} height={16} />
           </Button>
         </>

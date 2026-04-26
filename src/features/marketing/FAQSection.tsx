@@ -2,74 +2,41 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { cn } from "@ovation/ui/utils/cn";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
-
-type FAQItemProps = {
-  question: string;
-  answer: string;
-  isOpen: boolean;
-  onToggle: () => void;
-};
-
-const FAQItem = ({ question, answer, isOpen, onToggle }: FAQItemProps) => (
-  <div className="border-border border-b py-5.5">
-    <div
-      className="flex cursor-pointer items-start justify-between gap-5"
-      onClick={onToggle}
-    >
-      <span className="font-serif text-[22px] leading-snug font-semibold">
-        {question}
-      </span>
-      <button
-        type="button"
-        aria-expanded={isOpen}
-        className={cn(
-          "border-border flex size-7 flex-shrink-0 items-center justify-center rounded-full border text-base font-semibold transition-transform",
-          isOpen
-            ? "border-primary bg-primary text-primary-foreground rotate-45"
-            : "bg-background text-foreground",
-        )}
-      >
-        +
-      </button>
-    </div>
-    {isOpen && (
-      <p className="text-muted-foreground mt-3.5 max-w-[640px] text-[15px] leading-relaxed">
-        {answer}
-      </p>
-    )}
-  </div>
-);
+import { FAQItem } from "./FAQItem";
 
 export const FAQSection = () => {
   const t = useTranslations();
   const [openIndex, setOpenIndex] = useState(0);
 
-  const items = [1, 2, 3, 4, 5, 6].map((n) => ({
-    q: t(`marketing__faq__q${n}` as any),
-    a: t(`marketing__faq__a${n}` as any),
-  }));
+  const items = [
+    { q: t("marketing__faq__q1"), a: t("marketing__faq__a1") },
+    { q: t("marketing__faq__q2"), a: t("marketing__faq__a2") },
+    { q: t("marketing__faq__q3"), a: t("marketing__faq__a3") },
+    { q: t("marketing__faq__q4"), a: t("marketing__faq__a4") },
+    { q: t("marketing__faq__q5"), a: t("marketing__faq__a5") },
+    { q: t("marketing__faq__q6"), a: t("marketing__faq__a6") },
+  ];
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? -1 : index);
   };
 
   return (
-    <section className="py-[120px]">
-      <div className="mx-auto max-w-[1240px] px-6 lg:px-20">
+    <section className="py-30">
+      <div className="mx-auto max-w-310 px-6 lg:px-20">
         <div className="grid grid-cols-1 gap-20 lg:grid-cols-[1fr_1.5fr]">
           <div>
-            <p className="text-primary text-[11px] font-bold tracking-[2.2px] uppercase">
+            <p className="text-primary type-overline font-bold tracking-[2.2px] uppercase">
               {t("marketing__faq__eyebrow")}
             </p>
-            <h2 className="mt-4 font-serif text-[60px] leading-tight font-semibold">
+            <h2 className="type-display mt-4 font-serif leading-tight font-semibold">
               <span className="block">{t("marketing__faq__title_line1")}</span>
               <span className="text-primary block italic">
                 {t("marketing__faq__title_line2")}
               </span>
             </h2>
-            <p className="text-muted-foreground mt-6 max-w-[360px] text-[17px] leading-relaxed">
+            <p className="text-muted-foreground type-body-large mt-6 max-w-90 leading-relaxed">
               {t("marketing__faq__subtitle")}
             </p>
             <a

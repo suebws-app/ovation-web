@@ -1,9 +1,21 @@
-export const MessageDayListFooter = () => (
-  <div className="border-border type-body-small text-muted-foreground border-t p-8 text-center">
-    You&apos;re all caught up.{" "}
-    <button type="button" className="text-primary cursor-pointer font-semibold">
-      Share your QR code
-    </button>{" "}
-    to collect more.
-  </div>
-);
+"use client";
+
+import { useTranslations } from "next-intl";
+
+export const MessageDayListFooter = () => {
+  const t = useTranslations();
+  return (
+    <div className="border-border type-body-small text-muted-foreground border-t p-8 text-center">
+      {t.rich("messages__list__footer", {
+        link: (chunks) => (
+          <button
+            type="button"
+            className="text-primary cursor-pointer font-semibold"
+          >
+            {chunks}
+          </button>
+        ),
+      })}
+    </div>
+  );
+};

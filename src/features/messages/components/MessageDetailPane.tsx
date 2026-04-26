@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Download } from "@ovation/icons/Download";
@@ -7,64 +8,70 @@ import { Heart } from "@ovation/icons/Heart";
 import { Play } from "@ovation/icons/Play";
 import { Star } from "@ovation/icons/Star";
 import { Waveform } from "@/features/dashboard/components/Waveform";
+import { useMessageDetail } from "@/lib/query/messagesQueries";
+import { formatTimeShort } from "../adapters";
 
-import type { MessageMock } from "../mocks";
+import type { MessageRowView } from "../adapters";
 
 type MessageDetailPaneProps = {
-  message: MessageMock;
+  eventId: string;
+  message: MessageRowView | null;
+  onToggleFavorite: () => void;
+  togglePending: boolean;
 };
 
-export const MessageDetailPane = ({ message }: MessageDetailPaneProps) => {
-  const {
-    name,
-    relation,
-    initials,
-    tint,
-    quote,
-    transcript,
-    wave,
-    duration,
-    favorited,
-    listens,
-  } = message;
+export const MessageDetailPane = ({
+  eventId,
+  message,
+  onToggleFavorite,
+  togglePending,
+}: MessageDetailPaneProps) => {
+  const t = useTranslations();
+  const { data: detail } = useMessageDetail(eventId, message?.id ?? null);
+
+  if (!message) {
+    return (
+      <div className="border-border bg-background small-desktop:flex hidden flex-col items-center justify-center gap-2 overflow-auto border-l p-8 text-center">
+        <Eyebrow className="text-muted-foreground">
+          {t("messages__detail__placeholder_eyebrow")}
+        </Eyebrow>
+        <p className="type-body-small text-muted-foreground">
+          {t("messages__detail__placeholder_body")}
+        </p>
+      </div>
+    );
+  }
+
+  const transcript =
+    detail?.message.transcript ??
+    message.quote ??
+    t("messages__detail__transcript_unavailable");
+  const fullDuration = message.duration;
+  const recordedAt = formatTimeShort(message.createdAt);
 
   return (
     <div className="border-border bg-background small-desktop:flex hidden flex-col gap-4 overflow-auto border-l p-5">
       <div className="rounded-16 border-border bg-card flex gap-3.5 border p-5">
         <div
-          className="flex size-[72px] shrink-0 -rotate-3 items-center justify-center rounded-full font-serif text-3xl font-bold"
+          className="flex size-18 shrink-0 -rotate-3 items-center justify-center rounded-full font-serif text-3xl font-bold"
           style={{
-            background: tint,
+            background: message.tint,
             color: "#5a3b20",
           }}
         >
-          {initials}
+          {message.initials}
         </div>
         <div className="min-w-0 flex-1">
-          <Eyebrow className="text-primary">{relation}</Eyebrow>
+          {message.relation && (
+            <Eyebrow className="text-primary">{message.relation}</Eyebrow>
+          )}
           <p className="type-h4 mt-1 font-serif leading-snug font-semibold">
-            {name}
+            {message.name}
           </p>
           <p className="type-caption text-muted-foreground mt-1">
-            Wedding night &middot; 23:41 CET &middot; {duration}
+            {recordedAt} &middot; {fullDuration}
           </p>
         </div>
-        <button
-          type="button"
-          className="text-muted-foreground cursor-pointer self-start bg-transparent p-1"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            stroke="none"
-          >
-            <circle cx="5" cy="12" r="1.5" />
-            <circle cx="12" cy="12" r="1.5" />
-            <circle cx="19" cy="12" r="1.5" />
-          </svg>
-        </button>
       </div>
 
       <div className="rounded-16 bg-foreground text-background relative overflow-hidden p-4.5">
@@ -80,74 +87,93 @@ export const MessageDetailPane = ({ message }: MessageDetailPaneProps) => {
             type="button"
             className="bg-destructive text-primary-foreground flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full border-none shadow-[0_0_0_6px_oklch(0.723_0.135_40/0.15)]"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
-            </svg>
+            <Play width={14} height={14} />
           </button>
           <div className="min-w-0 flex-1">
-            <Waveform bars={wave} height={40} progress={0.42} />
+            <Waveform bars={message.wave} height={40} progress={0} />
             <div className="type-caption mt-1.5 flex justify-between font-mono opacity-70">
-              <span>01:29</span>
-              <span>{duration}</span>
+              <span>0:00</span>
+              <span>{fullDuration}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="rounded-8 border-l-3 border-l-[oklch(0.65_0.12_65)] bg-[oklch(0.65_0.12_65/0.1)] px-5 py-4">
-        <Eyebrow className="text-[#9A6B2F]">Pulled quote</Eyebrow>
-        <p className="type-body-large text-foreground mt-2 font-serif leading-relaxed italic">
-          &ldquo;{quote}&rdquo;
-        </p>
-      </div>
+      {message.quote && (
+        <div className="rounded-8 border-l-3 border-l-[oklch(0.65_0.12_65)] bg-[oklch(0.65_0.12_65/0.1)] px-5 py-4">
+          <Eyebrow className="text-[#9A6B2F]">
+            {t("messages__detail__pulled_quote")}
+          </Eyebrow>
+          <p className="type-body-large text-foreground mt-2 font-serif leading-relaxed italic">
+            &ldquo;{message.quote}&rdquo;
+          </p>
+        </div>
+      )}
 
       <div className="rounded-16 border-border bg-card border p-4.5">
         <div className="mb-2 flex items-center justify-between">
-          <Eyebrow className="text-muted-foreground">Transcript</Eyebrow>
-          <span className="type-caption text-muted-foreground">
-            Auto &middot; 99%
-          </span>
+          <Eyebrow className="text-muted-foreground">
+            {t("messages__detail__transcript_eyebrow")}
+          </Eyebrow>
+          {detail?.message.transcriptStatus && (
+            <span className="type-caption text-muted-foreground capitalize">
+              {detail.message.transcriptStatus}
+            </span>
+          )}
         </div>
         <p className="type-body-small text-foreground leading-relaxed">
-          {transcript.slice(0, 230)}&hellip;
+          {transcript}
         </p>
-        <button
-          type="button"
-          className="border-primary/30 type-caption text-primary hover:bg-primary/5 mt-2.5 cursor-pointer rounded-full border bg-transparent px-3 py-1.5 font-semibold transition-colors"
-        >
-          Open full message &rarr;
-        </button>
       </div>
 
       <div className="grid grid-cols-2 gap-2">
-        <Button className="rounded-12">Add to Gold Book</Button>
-        <Button variant="outline" className="rounded-12">
-          <Download width={14} height={14} /> Download
+        <Button className="rounded-12">
+          {t("messages__detail__add_to_book")}
         </Button>
         <Button variant="outline" className="rounded-12">
+          <Download width={14} height={14} /> {t("messages__detail__download")}
+        </Button>
+        <Button
+          variant="outline"
+          className="rounded-12"
+          onClick={onToggleFavorite}
+          disabled={togglePending}
+        >
           <Heart
             width={14}
             height={14}
-            className={favorited ? "fill-destructive text-destructive" : ""}
+            className={
+              message.favorited ? "fill-destructive text-destructive" : ""
+            }
           />
-          {favorited ? "Favourited" : "Favourite"}
+          {message.favorited
+            ? t("messages__detail__favourited")
+            : t("messages__detail__favourite")}
         </Button>
         <Button variant="outline" className="rounded-12">
-          Reply
+          {t("messages__detail__reply")}
         </Button>
       </div>
 
-      <div className="type-caption text-muted-foreground flex items-center gap-2">
-        <Play width={10} height={10} />
-        <span>Played {listens} times</span>
-        <span>&middot;</span>
-        <Star
-          width={11}
-          height={11}
-          className="fill-[#9A6B2F] text-[#9A6B2F]"
-        />
-        <span>Book-worthy</span>
-      </div>
+      {message.listens > 0 && (
+        <div className="type-caption text-muted-foreground flex items-center gap-2">
+          <Play width={10} height={10} />
+          <span>
+            {t("messages__detail__played_times", { count: message.listens })}
+          </span>
+          {message.favorited && (
+            <>
+              <span>&middot;</span>
+              <Star
+                width={11}
+                height={11}
+                className="fill-[#9A6B2F] text-[#9A6B2F]"
+              />
+              <span>{t("messages__detail__book_worthy")}</span>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

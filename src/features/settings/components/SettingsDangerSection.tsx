@@ -1,140 +1,225 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Warning } from "@ovation/icons/Warning";
+import { useRouter } from "@/i18n/navigation";
+import { eventsClient } from "@/lib/api/events-client";
+import { authClient } from "@/lib/api/auth-client";
+import { ApiError } from "@/lib/api/client";
+import type { Event, User } from "@/lib/api/types";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsCard } from "./SettingsCard";
 import { SettingsRow } from "./SettingsRow";
 import { DeleteBookModal } from "./DeleteBookModal";
 
-export const SettingsDangerSection = () => {
+type SettingsDangerSectionProps = {
+  user: User;
+  event: Event | null;
+};
+
+const coupleNameOf = (event: Event) =>
+  [event.partnerAName, event.partnerBName].filter(Boolean).join(" & ");
+
+export const SettingsDangerSection = ({
+  user,
+  event,
+}: SettingsDangerSectionProps) => {
+  const t = useTranslations();
+  const router = useRouter();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [pending, setPending] = useState<
+    null | "archive" | "deleteBook" | "deleteAccount"
+  >(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleArchive = async () => {
+    if (!event) return;
+    if (
+      !window.confirm(
+        t("settings__danger__archive_confirm", { name: coupleNameOf(event) }),
+      )
+    ) {
+      return;
+    }
+    setPending("archive");
+    setError(null);
+    try {
+      await eventsClient.archive(event.id);
+      router.refresh();
+    } catch (e) {
+      setError(
+        ApiError.isApiError(e)
+          ? e.message
+          : t("settings__danger__archive_error"),
+      );
+    } finally {
+      setPending(null);
+    }
+  };
+
+  const handleDeleteBook = async () => {
+    if (!event) return;
+    setPending("deleteBook");
+    setError(null);
+    try {
+      await eventsClient.remove(event.id);
+      setShowDeleteModal(false);
+      router.replace("/app");
+      router.refresh();
+    } catch (e) {
+      setError(
+        ApiError.isApiError(e)
+          ? e.message
+          : t("settings__danger__delete_book_error"),
+      );
+    } finally {
+      setPending(null);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!window.confirm(t("settings__danger__close_account_confirm"))) {
+      return;
+    }
+    setPending("deleteAccount");
+    setError(null);
+    try {
+      await authClient.deleteAccount();
+      await fetch("/api/auth/signout", { method: "POST" });
+      router.replace("/sign-in");
+      router.refresh();
+    } catch (e) {
+      setError(
+        ApiError.isApiError(e)
+          ? e.message
+          : t("settings__danger__close_account_error"),
+      );
+      setPending(null);
+    }
+  };
 
   return (
     <>
-      <span className="type-overline text-destructive">Settings</span>
+      <span className="type-overline text-destructive">
+        {t("settings__danger__eyebrow")}
+      </span>
       <h1 className="type-display mt-2 font-serif tracking-tight">
-        Danger <span className="text-destructive italic">zone</span>
+        {t("settings__danger__title_a")}{" "}
+        <span className="text-destructive italic">
+          {t("settings__danger__title_b")}
+        </span>
       </h1>
       <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
-        Changes here can&apos;t be undone. We&apos;ll ask you to confirm with
-        your password and, for deletion, a typed confirmation.
+        {t("settings__danger__subtitle")}
       </p>
 
-      <div className="mt-9">
-        <SettingsSectionTitle title="Change owner" />
-        <SettingsCard>
-          <SettingsRow
-            title="Transfer book ownership"
-            description={
-              <>
-                Lena is the current owner. Transfer to{" "}
-                <strong className="text-foreground">Tom&aacute;s</strong>, your
-                co-owner. You&apos;ll keep edit access as a co-owner.
-              </>
-            }
-          >
-            <Button variant="outline" size="sm" className="rounded-full">
-              Transfer to Tom&aacute;s
-            </Button>
-          </SettingsRow>
-          <SettingsRow
-            title="Leave this book"
-            description="Step down as owner or co-owner. You\u2019ll lose access until re-invited."
-            last
-          >
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-destructive/40 text-destructive rounded-full"
-            >
-              Leave book
-            </Button>
-          </SettingsRow>
-        </SettingsCard>
-      </div>
+      {error && (
+        <p className="type-body-small text-destructive mt-6" role="alert">
+          {error}
+        </p>
+      )}
 
-      <div className="mt-9">
-        <SettingsSectionTitle title="Archive or delete" />
-        <div className="rounded-16 border-destructive/30 overflow-hidden border-2">
-          <div
-            className="type-overline text-destructive flex items-center gap-2.5 px-5 py-3"
-            style={{
-              background:
-                "repeating-linear-gradient(135deg, var(--destructive) / 0.08 0 12px, var(--destructive) / 0.14 12px 24px)",
-            }}
-          >
-            <Warning width={14} height={14} />
-            These actions are final
-          </div>
-          <div className="bg-card px-7">
-            <SettingsRow
-              title="Archive the book"
-              description="Guests can no longer leave messages and the URL goes offline. You can un-archive anytime."
+      {event && (
+        <div className="mt-9">
+          <SettingsSectionTitle
+            title={t("settings__danger__archive_section")}
+          />
+          <div className="rounded-16 border-destructive/30 overflow-hidden border-2">
+            <div
+              className="type-overline text-destructive flex items-center gap-2.5 px-5 py-3"
+              style={{
+                background:
+                  "repeating-linear-gradient(135deg, var(--destructive) / 0.08 0 12px, var(--destructive) / 0.14 12px 24px)",
+              }}
             >
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-destructive/40 text-destructive rounded-full"
+              <Warning width={14} height={14} />
+              {t("settings__danger__final_warning")}
+            </div>
+            <div className="bg-card px-7">
+              <SettingsRow
+                title={t("settings__danger__archive_title")}
+                description={t("settings__danger__archive_description")}
               >
-                Archive
-              </Button>
-            </SettingsRow>
-            <SettingsRow
-              title={
-                <span className="text-destructive">
-                  Delete book permanently
-                </span>
-              }
-              description="All messages, photos, transcripts and the Gold Book draft will be erased after 30 days. We recommend exporting your data first."
-              warn
-              last
-            >
-              <Button
-                variant="destructive"
-                size="sm"
-                className="rounded-full"
-                onClick={() => setShowDeleteModal(true)}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleArchive}
+                  disabled={
+                    pending === "archive" || event.status === "archived"
+                  }
+                  className="border-destructive/40 text-destructive rounded-full"
+                >
+                  {event.status === "archived"
+                    ? t("settings__danger__archive_already")
+                    : pending === "archive"
+                      ? t("settings__danger__archive_pending")
+                      : t("settings__danger__archive_action")}
+                </Button>
+              </SettingsRow>
+              <SettingsRow
+                title={
+                  <span className="text-destructive">
+                    {t("settings__danger__delete_book_title")}
+                  </span>
+                }
+                description={t("settings__danger__delete_book_description")}
+                warn
+                last
               >
-                <Warning width={13} height={13} />
-                Delete book&hellip;
-              </Button>
-            </SettingsRow>
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  className="rounded-full"
+                  onClick={() => setShowDeleteModal(true)}
+                >
+                  <Warning width={13} height={13} />
+                  {t("settings__danger__delete_book_action")}
+                </Button>
+              </SettingsRow>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <div className="mt-9">
         <SettingsSectionTitle
-          title="Your Ovation account"
-          description="Deleting your account also deletes any books you solely own."
+          title={t("settings__danger__account_section")}
+          description={t("settings__danger__account_description")}
         />
         <SettingsCard>
           <SettingsRow
-            title="Close my Ovation account"
-            description="All your books, messages, billing history, and devices will be removed."
+            title={t("settings__danger__close_account_title")}
+            description={t("settings__danger__close_account_description", {
+              email: user.email,
+            })}
             warn
             last
           >
             <Button
               variant="outline"
               size="sm"
+              onClick={handleDeleteAccount}
+              disabled={pending === "deleteAccount"}
               className="border-destructive/40 text-destructive rounded-full"
             >
-              Close account
+              {pending === "deleteAccount"
+                ? t("settings__danger__close_account_pending")
+                : t("settings__danger__close_account_action")}
             </Button>
           </SettingsRow>
         </SettingsCard>
       </div>
 
-      <p className="type-caption text-muted-foreground mt-6 max-w-lg font-serif italic">
-        &ldquo;The best designs make destructive actions feel heavy on purpose.
-        Take your time &mdash; nothing here is in a hurry.&rdquo;
-      </p>
-
-      {showDeleteModal && (
-        <DeleteBookModal onClose={() => setShowDeleteModal(false)} />
+      {showDeleteModal && event && (
+        <DeleteBookModal
+          coupleName={coupleNameOf(event)}
+          slug={event.slug}
+          pending={pending === "deleteBook"}
+          onConfirm={handleDeleteBook}
+          onClose={() => setShowDeleteModal(false)}
+        />
       )}
     </>
   );

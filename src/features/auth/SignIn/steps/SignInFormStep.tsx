@@ -1,5 +1,10 @@
 "use client";
 
+import { useMemo, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
@@ -9,16 +14,45 @@ import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Logo } from "@ovation/ui/components/Logo";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { SocialAuthButtons } from "../../components/SocialAuthButtons";
-import { VoiceMessagePreview } from "../components/VoiceMessagePreview";
-import { useSignInStore } from "../useSignInStore";
+import { SignInBrandPanel } from "../components/SignInBrandPanel";
 import { Link, useRouter } from "@/i18n/navigation";
+import { authClient } from "@/lib/api/auth-client";
+import { getSignInSchema, type SignInFields } from "../signInSchema";
+import type { ApiErrorBody } from "@/lib/api/types";
 
 export const SignInFormStep = () => {
-  const { formData, updateFormData } = useSignInStore();
+  const t = useTranslations();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const schema = useMemo(() => getSignInSchema(t), [t]);
 
-  const handleSignIn = () => {
-    router.push("/sign-in/verify");
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm<SignInFields>({
+    defaultValues: { email: "", password: "", keepSignedIn: true },
+    resolver: standardSchemaResolver(schema),
+    mode: "onTouched",
+    reValidateMode: "onChange",
+  });
+
+  const onSubmit = async (values: SignInFields) => {
+    setSubmitError(null);
+    const res = await authClient.signIn({
+      email: values.email,
+      password: values.password,
+    });
+    if (!res.ok) {
+      const body = (await res.json().catch(() => null)) as ApiErrorBody | null;
+      setSubmitError(body?.error?.message ?? t("auth__signin__error_generic"));
+      return;
+    }
+    const redirectTo = searchParams.get("redirect") ?? "/app";
+    router.replace(redirectTo);
+    router.refresh();
   };
 
   return (
@@ -26,130 +60,121 @@ export const SignInFormStep = () => {
       <div className="tablet:px-20 flex flex-col items-center px-6 py-12">
         <Logo className="self-start" />
 
-        <div
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
           className="flex w-full flex-1 flex-col justify-center"
           style={{ maxWidth: 440 }}
         >
-          <Eyebrow className="text-primary mb-2.5">Welcome back</Eyebrow>
-          <h1 className="font-serif text-[3.25rem] leading-[1.05] font-semibold tracking-tight">
-            Sign in to your
+          <Eyebrow className="text-primary mb-2.5">
+            {t("auth__signin__eyebrow")}
+          </Eyebrow>
+          <h1 className="type-display font-serif leading-[1.05] font-semibold tracking-tight">
+            {t("auth__signin__title")}
             <br />
-            <span className="text-primary italic">wedding book.</span>
+            <span className="text-primary italic">
+              {t("auth__signin__title_emphasis")}
+            </span>
           </h1>
           <p className="type-body-small text-muted-foreground mt-3.5 leading-relaxed">
-            12 new voice messages from your guests are waiting for you.
+            {t("auth__signin__subtitle")}
           </p>
 
           <SocialAuthButtons action="sign-in" className="mt-9" />
 
-          <Separator label="or with email" className="my-6" />
+          <Separator label={t("auth__signin__separator")} className="my-6" />
 
           <div className="space-y-4.5">
             <div>
               <Label htmlFor="signin-email" className="mb-2">
-                Email
+                {t("auth__email")}
               </Label>
               <Input
                 id="signin-email"
                 type="email"
-                value={formData.email}
-                onChange={(e) => updateFormData({ email: e.target.value })}
-                placeholder="you@example.com"
+                autoComplete="email"
+                placeholder={t("auth__signin__email_placeholder")}
+                aria-invalid={Boolean(errors.email)}
+                {...register("email")}
               />
+              {errors.email && (
+                <p className="type-caption text-destructive mt-1.5">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div>
               <Label htmlFor="signin-password" className="mb-2">
-                Password
+                {t("auth__password")}
               </Label>
               <Input
                 id="signin-password"
                 type="password"
-                value={formData.password}
-                onChange={(e) => updateFormData({ password: e.target.value })}
-                placeholder="Enter your password"
+                autoComplete="current-password"
+                placeholder={t("auth__signin__password_placeholder")}
+                aria-invalid={Boolean(errors.password)}
+                {...register("password")}
               />
+              {errors.password && (
+                <p className="type-caption text-destructive mt-1.5">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
           </div>
 
           <div className="mt-3 flex items-center justify-between">
-            <Checkbox
-              checked={formData.keepSignedIn}
-              onChange={(checked) => updateFormData({ keepSignedIn: checked })}
-              label="Keep me signed in"
+            <Controller
+              control={control}
+              name="keepSignedIn"
+              render={({ field }) => (
+                <Checkbox
+                  checked={field.value}
+                  onChange={field.onChange}
+                  label={t("auth__signin__keep_signed_in")}
+                />
+              )}
             />
             <Link
               href="/forgot-password"
               className="type-body-small text-primary font-semibold"
             >
-              Forgot password?
+              {t("auth__forgot_password")}
             </Link>
           </div>
 
+          {submitError && (
+            <p className="type-body-small text-destructive mt-4" role="alert">
+              {submitError}
+            </p>
+          )}
+
           <Button
-            onClick={handleSignIn}
-            disabled={!formData.email || !formData.password}
+            type="submit"
+            disabled={isSubmitting}
             size="lg"
             className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
           >
-            Sign in
+            {isSubmitting
+              ? t("auth__signin__submit_pending")
+              : t("auth__signin__submit")}
             <ArrowRight width={16} height={16} />
           </Button>
 
           <p className="type-body-small text-muted-foreground mt-4.5 text-center">
-            Don&apos;t have an account?{" "}
+            {t("auth__signin__no_account")}{" "}
             <Link href="/sign-up" className="text-foreground font-semibold">
-              Start your wedding book &rarr;
+              {t("auth__signin__signup_cta")}
             </Link>
           </p>
-        </div>
+        </form>
 
         <p className="type-caption text-muted-foreground/60 self-start">
-          Protected by 2-factor. Your messages never leave your couple account.
+          {t("auth__signin__protected")}
         </p>
       </div>
 
-      <BrandPanel />
+      <SignInBrandPanel />
     </div>
   );
 };
-
-const BrandPanel = () => (
-  <div className="from-primary to-primary/80 text-primary-foreground desktop:flex desktop:flex-col desktop:justify-between relative hidden overflow-hidden bg-gradient-to-br p-14">
-    <div
-      className="pointer-events-none absolute -top-20 -right-20 size-80 rounded-full"
-      style={{
-        background:
-          "radial-gradient(circle, oklch(0.723 0.135 40 / 0.3), transparent 70%)",
-      }}
-    />
-    <div
-      className="pointer-events-none absolute -bottom-15 -left-10 size-65 rounded-full"
-      style={{
-        background:
-          "radial-gradient(circle, oklch(0.818 0.105 73.3 / 0.4), transparent 70%)",
-      }}
-    />
-
-    <Eyebrow className="relative tracking-[2.5px] opacity-70">
-      18 days after &middot; Lena &amp; Tom&aacute;s
-    </Eyebrow>
-
-    <div className="relative">
-      <p className="mb-6.5 font-serif text-[2.75rem] leading-tight tracking-tight italic">
-        &ldquo;The way you look at her — like the room just got quieter.&rdquo;
-      </p>
-      <VoiceMessagePreview
-        name="Margot Devreese"
-        role="Maid of honour"
-        duration="2:22"
-        initial="M"
-        tint="#EFC9A8"
-      />
-    </div>
-
-    <p className="type-body-small relative max-w-[420px] leading-relaxed opacity-75">
-      87 voices, 1h 42m of stories, 64 photos — held safely for you to revisit
-      whenever you want.
-    </p>
-  </div>
-);

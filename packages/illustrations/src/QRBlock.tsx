@@ -1,11 +1,37 @@
-"use client";
-
 type QRBlockProps = {
   size?: number;
   dark?: string;
   light?: string;
   withLogo?: boolean;
 };
+
+type FinderPatternProps = {
+  cx: number;
+  cy: number;
+  cell: number;
+  dark: string;
+  light: string;
+};
+
+const FinderPattern = ({ cx, cy, cell, dark, light }: FinderPatternProps) => (
+  <>
+    <rect x={cx} y={cy} width={7 * cell} height={7 * cell} fill={dark} />
+    <rect
+      x={cx + cell}
+      y={cy + cell}
+      width={5 * cell}
+      height={5 * cell}
+      fill={light}
+    />
+    <rect
+      x={cx + 2 * cell}
+      y={cy + 2 * cell}
+      width={3 * cell}
+      height={3 * cell}
+      fill={dark}
+    />
+  </>
+);
 
 export const QRBlock = ({
   size = 240,
@@ -96,35 +122,3 @@ export const QRBlock = ({
     </svg>
   );
 };
-
-const FinderPattern = ({
-  cx,
-  cy,
-  cell,
-  dark,
-  light,
-}: {
-  cx: number;
-  cy: number;
-  cell: number;
-  dark: string;
-  light: string;
-}) => (
-  <>
-    <rect x={cx} y={cy} width={7 * cell} height={7 * cell} fill={dark} />
-    <rect
-      x={cx + cell}
-      y={cy + cell}
-      width={5 * cell}
-      height={5 * cell}
-      fill={light}
-    />
-    <rect
-      x={cx + 2 * cell}
-      y={cy + 2 * cell}
-      width={3 * cell}
-      height={3 * cell}
-      fill={dark}
-    />
-  </>
-);

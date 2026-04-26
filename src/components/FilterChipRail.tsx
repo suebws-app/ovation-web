@@ -5,7 +5,7 @@ import { cn } from "@ovation/ui/utils/cn";
 
 export type FilterChipItem = {
   label: string;
-  count: number;
+  count?: number;
 };
 
 type FilterChipRailProps = {

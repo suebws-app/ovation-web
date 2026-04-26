@@ -1,4 +1,5 @@
 import { cn } from "@ovation/ui/utils/cn";
+import { DecorativeBlob } from "./DecorativeBlob";
 
 type SplitLayoutProps = {
   left: React.ReactNode;
@@ -34,44 +35,13 @@ export const SplitLayout = ({
           color="accent"
           size={bottomSize}
         />
-        <div className="relative flex w-full max-w-[440px] flex-col gap-10 p-16">
+        <div className="relative flex w-full max-w-110 flex-col gap-10 p-16">
           {left}
         </div>
       </div>
       <div className="tablet:px-18 flex items-center px-6 py-16">
-        <div className="w-full max-w-[520px]">{right}</div>
+        <div className="w-full max-w-130">{right}</div>
       </div>
     </div>
-  );
-};
-
-const DecorativeBlob = ({
-  className,
-  color,
-  size,
-}: {
-  className?: string;
-  color: string;
-  size: number;
-}) => {
-  const styleMap: Record<string, string> = {
-    destructive:
-      "radial-gradient(circle, oklch(0.723 0.135 40 / 0.3), transparent 70%)",
-    accent:
-      "radial-gradient(circle, oklch(0.818 0.105 73.3 / 0.4), transparent 70%)",
-  };
-
-  return (
-    <div
-      className={cn(
-        "pointer-events-none absolute rounded-full transition-all duration-700",
-        className,
-      )}
-      style={{
-        background: styleMap[color],
-        width: size,
-        height: size,
-      }}
-    />
   );
 };

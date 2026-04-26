@@ -1,36 +1,61 @@
 "use client";
 
+import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 
 type UrlCardProps = {
-  url?: string;
+  slug: string;
+  shortUrl: string;
 };
 
-export const UrlCard = ({ url = "lena-and-tomas" }: UrlCardProps) => (
-  <div className="rounded-16 border-border bg-card border p-4.5">
-    <Eyebrow className="text-muted-foreground mb-2.5">Your short link</Eyebrow>
-    <div className="flex items-center gap-2.5">
-      <LinkIcon width={16} height={16} className="text-muted-foreground" />
-      <span className="type-body-small text-foreground flex-1 font-mono">
-        ovation.love/{url}
-      </span>
-      <button
-        type="button"
-        className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold transition-colors"
-      >
-        Copy
-      </button>
+const displayUrl = (raw: string): string => {
+  try {
+    const u = new URL(raw);
+    return `${u.host}${u.pathname}`.replace(/\/$/, "");
+  } catch {
+    return raw.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  }
+};
+
+export const UrlCard = ({ slug, shortUrl }: UrlCardProps) => {
+  const t = useTranslations();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    if (typeof navigator === "undefined" || !navigator.clipboard) return;
+    try {
+      await navigator.clipboard.writeText(shortUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  };
+
+  return (
+    <div className="rounded-16 border-border bg-card border p-4.5">
+      <Eyebrow className="text-muted-foreground mb-2.5">
+        {t("qr__url__eyebrow")}
+      </Eyebrow>
+      <div className="flex items-center gap-2.5">
+        <LinkIcon width={16} height={16} className="text-muted-foreground" />
+        <span className="type-body-small text-foreground flex-1 truncate font-mono">
+          {displayUrl(shortUrl)}
+        </span>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold transition-colors"
+        >
+          {copied ? t("qr__url__copied") : t("qr__url__copy")}
+        </button>
+      </div>
+      <div className="type-caption text-muted-foreground mt-2.5 flex items-center gap-1.5">
+        <span className="bg-secondary size-1.5 rounded-full" />
+        {t("qr__url__slug")} <span className="font-mono">{slug}</span>
+      </div>
     </div>
-    <div className="type-caption text-muted-foreground mt-2.5 flex items-center gap-1.5">
-      <span className="bg-secondary size-1.5 rounded-full" />
-      Live since Sep 12 &middot;{" "}
-      <button
-        type="button"
-        className="text-primary cursor-pointer font-semibold"
-      >
-        Change link
-      </button>
-    </div>
-  </div>
-);
+  );
+};

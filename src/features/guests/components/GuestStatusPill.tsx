@@ -1,24 +1,28 @@
-import { cn } from "@ovation/ui/utils/cn";
+"use client";
+
+import { useTranslations } from "next-intl";
 import { Check } from "@ovation/icons/Check";
 import { Mic } from "@ovation/icons/Mic";
 import { Hourglass } from "@ovation/icons/Hourglass";
+import { PillBase } from "./PillBase";
 
 type GuestStatusPillProps = {
   contributed: boolean;
   thanked: boolean;
-  nudged?: string;
+  wasNudged?: boolean;
 };
 
 export const GuestStatusPill = ({
   contributed,
   thanked,
-  nudged,
+  wasNudged,
 }: GuestStatusPillProps) => {
+  const t = useTranslations();
   if (contributed && thanked) {
     return (
       <PillBase className="bg-secondary/20 text-secondary-foreground">
         <Check width={11} height={11} />
-        Contributed &middot; Thanked
+        {t("guests__pill__contributed_thanked")}
       </PillBase>
     );
   }
@@ -27,16 +31,16 @@ export const GuestStatusPill = ({
     return (
       <PillBase className="bg-primary/15 text-primary">
         <Mic width={11} height={11} />
-        Contributed
+        {t("guests__pill__contributed")}
       </PillBase>
     );
   }
 
-  if (nudged?.startsWith("Nudge sent")) {
+  if (wasNudged) {
     return (
       <PillBase className="bg-accent/25 text-accent-foreground">
         <Hourglass width={11} height={11} />
-        Nudged
+        {t("guests__pill__nudged")}
       </PillBase>
     );
   }
@@ -44,24 +48,7 @@ export const GuestStatusPill = ({
   return (
     <PillBase className="bg-muted text-muted-foreground">
       <Hourglass width={11} height={11} />
-      Awaiting
+      {t("guests__pill__awaiting")}
     </PillBase>
   );
 };
-
-const PillBase = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <span
-    className={cn(
-      "type-caption inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-bold tracking-wide whitespace-nowrap",
-      className,
-    )}
-  >
-    {children}
-  </span>
-);

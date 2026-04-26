@@ -1,16 +1,23 @@
+import type { EventStats } from "@/lib/api/types";
 import { StatItem } from "./StatItem";
 
-const STATS = [
-  { value: "87", label: "messages" },
-  { value: "64", label: "photos" },
-  { value: "1h 42m", label: "of voices" },
-  { value: "14", label: "favourites" },
-];
+type StatLineProps = {
+  stats: EventStats;
+};
 
-export const StatLine = () => (
-  <div className="border-border tablet:flex tablet:gap-14 grid grid-cols-2 gap-6 border-b py-5 pb-8">
-    {STATS.map((s) => (
-      <StatItem key={s.label} value={s.value} label={s.label} />
-    ))}
-  </div>
-);
+export const StatLine = ({ stats }: StatLineProps) => {
+  const items = [
+    { value: String(stats.totalMessages), label: "messages" },
+    { value: String(stats.photoMessages), label: "photos" },
+    { value: String(stats.audioMessages), label: "audio" },
+    { value: String(stats.favorites), label: "favourites" },
+  ];
+
+  return (
+    <div className="border-border tablet:flex tablet:gap-14 grid grid-cols-2 gap-6 border-b py-5 pb-8">
+      {items.map((s) => (
+        <StatItem key={s.label} value={s.value} label={s.label} />
+      ))}
+    </div>
+  );
+};

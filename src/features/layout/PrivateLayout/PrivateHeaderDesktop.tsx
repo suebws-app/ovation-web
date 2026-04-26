@@ -11,6 +11,7 @@ import {
   BreadcrumbSeparator,
 } from "@ovation/ui/components/Breadcrumb";
 import { isLocale } from "@/lib/utils/isLocale";
+import { KeepsakesActions } from "./KeepsakesActions";
 
 export const PrivateHeaderDesktop = () => {
   const pathname = usePathname();
@@ -55,17 +56,3 @@ export const PrivateHeaderDesktop = () => {
     </header>
   );
 };
-
-const KeepsakesActions = () => (
-  <div className="flex items-center gap-3">
-    <span className="type-caption text-accent-foreground font-semibold">
-      &#9733; &euro;50 credit available
-    </span>
-    <button
-      type="button"
-      className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3.5 py-2 font-semibold transition-colors"
-    >
-      Cart &middot; 0
-    </button>
-  </div>
-);

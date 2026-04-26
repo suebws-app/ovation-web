@@ -5,23 +5,14 @@ import { Button } from "@ovation/ui/components/Button";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Link } from "@/i18n/navigation";
 import { HeroShowpiece } from "./HeroShowpiece";
+import { HeroAvatarCircle } from "./HeroAvatarCircle";
 
-const avatars = [
+const AVATARS = [
   { initials: "L", bg: "bg-primary" },
   { initials: "M", bg: "bg-destructive" },
   { initials: "J", bg: "bg-accent" },
   { initials: "A", bg: "bg-secondary" },
 ];
-
-type AvatarCircleProps = { initials: string; bg: string; overlap: boolean };
-
-const AvatarCircle = ({ initials, bg, overlap }: AvatarCircleProps) => (
-  <div
-    className={`border-background text-primary-foreground flex h-9 w-9 items-center justify-center rounded-full border-2 font-serif text-sm font-semibold ${bg} ${overlap ? "-ml-2.5" : ""}`}
-  >
-    {initials}
-  </div>
-);
 
 export const HeroSection = () => {
   const t = useTranslations();
@@ -29,15 +20,15 @@ export const HeroSection = () => {
   return (
     <section className="relative overflow-hidden py-20 lg:py-28">
       <div
-        className="bg-primary/20 pointer-events-none absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full blur-3xl"
+        className="bg-primary/20 pointer-events-none absolute -top-40 -left-40 h-150 w-150 rounded-full blur-3xl"
         aria-hidden="true"
       />
       <div
-        className="bg-destructive/15 pointer-events-none absolute -right-20 -bottom-40 h-[500px] w-[500px] rounded-full blur-3xl"
+        className="bg-destructive/15 pointer-events-none absolute -right-20 -bottom-40 h-125 w-125 rounded-full blur-3xl"
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-15 px-6 lg:grid-cols-[1.15fr_1fr] lg:px-20">
+      <div className="relative mx-auto grid max-w-310 grid-cols-1 items-center gap-15 px-6 lg:grid-cols-[1.15fr_1fr] lg:px-20">
         <div className="flex flex-col gap-8">
           <div className="border-border bg-background inline-flex w-fit items-center gap-2 rounded-full border px-4 py-2 shadow-sm">
             <span
@@ -49,7 +40,7 @@ export const HeroSection = () => {
             </span>
           </div>
 
-          <h1 className="font-serif text-7xl leading-none font-semibold tracking-tighter lg:text-[96px]">
+          <h1 className="lg:type-display font-serif text-7xl leading-none font-semibold tracking-tighter">
             <span className="text-foreground block">
               {t("marketing__hero__title_line1")}
             </span>
@@ -58,7 +49,7 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="text-muted-foreground max-w-[520px] text-[17px] leading-relaxed">
+          <p className="text-muted-foreground type-body-large max-w-130 leading-relaxed">
             {t("marketing__hero__description")}
           </p>
 
@@ -76,8 +67,8 @@ export const HeroSection = () => {
 
           <div className="flex items-center gap-3">
             <div className="flex">
-              {avatars.map((a, i) => (
-                <AvatarCircle
+              {AVATARS.map((a, i) => (
+                <HeroAvatarCircle
                   key={a.initials}
                   initials={a.initials}
                   bg={a.bg}

@@ -1,7 +1,9 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Check } from "@ovation/icons/Check";
+import { BatchAction } from "./BatchAction";
 
 type BatchBarProps = {
   count: number;
@@ -9,7 +11,15 @@ type BatchBarProps = {
 };
 
 export const BatchBar = ({ count, total }: BatchBarProps) => {
+  const t = useTranslations();
   if (count === 0) return null;
+
+  const actions = [
+    t("photos__batch__action_download"),
+    t("photos__batch__action_favourite"),
+    t("photos__batch__action_tag"),
+    t("photos__batch__action_pair"),
+  ];
 
   return (
     <div className="border-border bg-foreground text-background tablet:px-4.5 flex items-center gap-3 border-b px-4 py-2.5">
@@ -22,26 +32,19 @@ export const BatchBar = ({ count, total }: BatchBarProps) => {
         />
       </div>
       <span className="type-body-small font-semibold">
-        {count} photos selected
+        {t("photos__batch__selected", { count })}
       </span>
-      <span className="type-caption opacity-65">&middot; of {total}</span>
+      <span className="type-caption opacity-65">
+        {t("photos__batch__of_total", { total })}
+      </span>
       <div className="desktop:flex ml-auto hidden gap-1.5">
-        {["Download", "Favourite", "Tag", "Pair with message"].map((t) => (
-          <BatchAction key={t} label={t} />
+        {actions.map((label) => (
+          <BatchAction key={label} label={label} />
         ))}
         <Button size="sm" className="rounded-full">
-          Use in Gold Book
+          {t("photos__batch__use_in_book")}
         </Button>
       </div>
     </div>
   );
 };
-
-const BatchAction = ({ label }: { label: string }) => (
-  <button
-    type="button"
-    className="type-caption text-background cursor-pointer rounded-full border border-white/25 bg-transparent px-3 py-1.5 font-semibold transition-colors hover:bg-white/10"
-  >
-    {label}
-  </button>
-);

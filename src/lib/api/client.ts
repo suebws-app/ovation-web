@@ -1,0 +1,97 @@
+import type { ApiErrorBody } from "./types";
+
+export const API_BASE_PATH = "/api/v1";
+export const PROXY_BASE_PATH = "/api/proxy";
+
+export class ApiError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly code: string,
+    message: string,
+    public readonly details?: Record<string, unknown>,
+  ) {
+    super(message);
+    this.name = "ApiError";
+  }
+
+  static isApiError(value: unknown): value is ApiError {
+    return value instanceof ApiError;
+  }
+}
+
+export type ApiFetchOptions = Omit<RequestInit, "body"> & {
+  body?: unknown;
+  query?: Record<string, string | number | boolean | undefined>;
+};
+
+export type Paginated<T> = {
+  items: T[];
+  nextCursor: string | null;
+};
+
+export const buildSearch = (query?: ApiFetchOptions["query"]) => {
+  if (!query) return "";
+  const params = new URLSearchParams();
+  for (const [k, v] of Object.entries(query)) {
+    if (v === undefined || v === null || v === "") continue;
+    params.set(k, String(v));
+  }
+  const qs = params.toString();
+  return qs ? `?${qs}` : "";
+};
+
+export const ensureLeadingSlash = (path: string) =>
+  path.startsWith("/") ? path : `/${path}`;
+
+export const parseError = async (res: Response): Promise<ApiError> => {
+  const body = (await res.json().catch(() => null)) as ApiErrorBody | null;
+  const code = body?.error?.code ?? "HTTP_ERROR";
+  const message = body?.error?.message ?? res.statusText ?? "Request failed";
+  return new ApiError(res.status, code, message, body?.error?.details);
+};
+
+export const buildRequestInit = (
+  options: ApiFetchOptions,
+  authHeader?: string,
+): RequestInit => {
+  const { body, query, headers, ...rest } = options;
+  void query;
+  return {
+    ...rest,
+    cache: rest.cache ?? "no-store",
+    headers: {
+      Accept: "application/json",
+      ...(body !== undefined && { "Content-Type": "application/json" }),
+      ...(authHeader && { Authorization: authHeader }),
+      ...headers,
+    },
+    body: body !== undefined ? JSON.stringify(body) : undefined,
+  };
+};
+
+export const readJson = async <T>(res: Response): Promise<T> => {
+  if (res.status === 204) return undefined as T;
+  return (await res.json()) as T;
+};
+
+export const clientFetch = async <T>(
+  path: string,
+  options: ApiFetchOptions = {},
+): Promise<T> => {
+  const url = `${PROXY_BASE_PATH}${API_BASE_PATH}${ensureLeadingSlash(path)}${buildSearch(options.query)}`;
+  const res = await fetch(url, buildRequestInit(options));
+  if (!res.ok) throw await parseError(res);
+  const json = await readJson<{ data: T }>(res);
+  return (json?.data ?? (undefined as T)) as T;
+};
+
+export const clientFetchPaginated = async <T>(
+  path: string,
+  options: ApiFetchOptions = {},
+): Promise<Paginated<T>> => {
+  const url = `${PROXY_BASE_PATH}${API_BASE_PATH}${ensureLeadingSlash(path)}${buildSearch(options.query)}`;
+  const res = await fetch(url, buildRequestInit(options));
+  if (!res.ok) throw await parseError(res);
+  const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
+  return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };
+};

@@ -1,7 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Badge } from "@ovation/ui/components/Badge";
 import { Box } from "@ovation/icons/Box";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsCard } from "./SettingsCard";
@@ -10,77 +10,82 @@ import { SettingsToggle } from "./SettingsToggle";
 import { ExportHeroCard } from "./ExportHeroCard";
 import { PastExportRow } from "./PastExportRow";
 
-const INDIVIDUAL_EXPORTS = [
+const INDIVIDUAL_KEYS = [
   {
-    title: "All audio (original quality)",
-    description: "142 files \u00b7 MP3 + WAV original \u00b7 1.8 GB",
+    titleKey: "settings__data__individual__audio__title",
+    descKey: "settings__data__individual__audio__desc",
   },
   {
-    title: "All transcripts",
-    description: "As .txt, .docx, or structured JSON",
+    titleKey: "settings__data__individual__transcripts__title",
+    descKey: "settings__data__individual__transcripts__desc",
   },
   {
-    title: "All photos",
-    description: "63 photos \u00b7 original resolution \u00b7 EXIF intact",
+    titleKey: "settings__data__individual__photos__title",
+    descKey: "settings__data__individual__photos__desc",
   },
   {
-    title: "Book layout as PDF",
-    description: "Your current Gold Book draft \u00b7 print-ready 300 dpi",
+    titleKey: "settings__data__individual__pdf__title",
+    descKey: "settings__data__individual__pdf__desc",
   },
   {
-    title: "Guest list",
-    description: "88 guests \u00b7 CSV with contact info + contribution status",
+    titleKey: "settings__data__individual__guests__title",
+    descKey: "settings__data__individual__guests__desc",
   },
 ];
 
-const PAST_EXPORTS = [
+const PAST_EXPORTS_DATA = [
   {
     date: "Oct 12, 2025",
-    title: "Full archive",
+    titleKey: "settings__data__past__title_archive",
     size: "2.1 GB",
     status: "ready" as const,
   },
   {
     date: "Sep 28, 2025",
-    title: "Audio only",
+    titleKey: "settings__data__past__title_audio",
     size: "1.8 GB",
     status: "expired" as const,
   },
   {
     date: "Sep 14, 2025",
-    title: "Transcripts only",
+    titleKey: "settings__data__past__title_transcripts",
     size: "3.2 MB",
     status: "ready" as const,
   },
 ];
 
 export const SettingsDataSection = () => {
+  const t = useTranslations();
   return (
     <>
-      <span className="type-overline text-primary">Settings</span>
+      <span className="type-overline text-primary">
+        {t("settings__data__eyebrow")}
+      </span>
       <h1 className="type-display mt-2 font-serif tracking-tight">
-        Data &amp; <span className="text-primary italic">export</span>
+        {t("settings__data__title_a")}{" "}
+        <span className="text-primary italic">
+          {t("settings__data__title_b")}
+        </span>
       </h1>
       <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
-        Your messages belong to you. Download everything anytime &mdash; audio,
-        transcripts, photos, metadata.
+        {t("settings__data__subtitle")}
       </p>
 
       <ExportHeroCard />
 
       <div className="mt-9">
-        <SettingsSectionTitle title="Export individual pieces" />
+        <SettingsSectionTitle title={t("settings__data__individual__title")} />
         <SettingsCard>
-          {INDIVIDUAL_EXPORTS.map((exp, i) => (
+          {INDIVIDUAL_KEYS.map((entry, i) => (
             <SettingsRow
-              key={exp.title}
-              title={exp.title}
-              description={exp.description}
-              last={i === INDIVIDUAL_EXPORTS.length - 1}
+              key={entry.titleKey}
+              title={t(entry.titleKey)}
+              description={t(entry.descKey)}
+              last={i === INDIVIDUAL_KEYS.length - 1}
             >
               <Button variant="outline" size="sm" className="rounded-full">
                 <Box width={13} height={13} />
-                Download
+                {t("settings__data__download")}
               </Button>
             </SettingsRow>
           ))}
@@ -88,38 +93,41 @@ export const SettingsDataSection = () => {
       </div>
 
       <div className="mt-9">
-        <SettingsSectionTitle title="Past exports" />
+        <SettingsSectionTitle title={t("settings__data__past__title")} />
         <SettingsCard>
-          {PAST_EXPORTS.map((exp, i) => (
+          {PAST_EXPORTS_DATA.map((item, i) => (
             <PastExportRow
-              key={`${exp.date}-${exp.title}`}
-              {...exp}
-              last={i === PAST_EXPORTS.length - 1}
+              key={`${item.date}-${item.titleKey}`}
+              date={item.date}
+              title={t(item.titleKey)}
+              size={item.size}
+              status={item.status}
+              last={i === PAST_EXPORTS_DATA.length - 1}
             />
           ))}
         </SettingsCard>
         <p className="type-caption text-muted-foreground mt-2.5">
-          Download links expire after 7 days for your security.
+          {t("settings__data__past__expiry_note")}
         </p>
       </div>
 
       <div className="mt-9">
         <SettingsSectionTitle
-          title="Data rights"
-          description="Under GDPR & CCPA. For requests on behalf of a deceased partner, contact support."
+          title={t("settings__data__rights__title")}
+          description={t("settings__data__rights__desc")}
         />
         <SettingsCard>
           <SettingsRow
-            title="Request a human-readable data report"
-            description="A PDF summary of everything we know about you and your book. Takes up to 72 hours."
+            title={t("settings__data__rights__report__title")}
+            description={t("settings__data__rights__report__desc")}
           >
             <Button variant="outline" size="sm" className="rounded-full">
-              Request
+              {t("settings__data__rights__report__action")}
             </Button>
           </SettingsRow>
           <SettingsRow
-            title="Ask us to stop using your data for service improvement"
-            description="We use anonymized patterns to tune transcription and layout. Opt out any time."
+            title={t("settings__data__rights__optout__title")}
+            description={t("settings__data__rights__optout__desc")}
             last
           >
             <SettingsToggle on={false} />

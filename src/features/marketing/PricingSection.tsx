@@ -88,8 +88,8 @@ export const PricingSection = () => {
   const t = useTranslations();
 
   return (
-    <section className="bg-card border-border border-t py-[120px]">
-      <div className="mx-auto max-w-[1240px] px-6 lg:px-20">
+    <section className="bg-card border-border border-t py-30">
+      <div className="mx-auto max-w-310 px-6 lg:px-20">
         <div className="mb-14 text-center">
           <Eyebrow className="text-muted-foreground mb-4">
             {t("marketing__pricing__eyebrow")}

@@ -1,72 +1,40 @@
-"use client";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
+import { ApiError } from "@/lib/api/client";
+import { eventsApi } from "@/lib/api/events";
+import { messagesApi } from "@/lib/api/messages";
+import { queryKeys } from "@/lib/query/keys";
+import { MessagesEmptyState } from "./components/MessagesEmptyState";
+import { MessagesPageClient } from "./MessagesPageClient";
 
-import { useState } from "react";
+export const MessagesPage = async () => {
+  const events = await eventsApi.list({ limit: 1 });
+  const event = events.items[0];
+  if (!event) {
+    return <MessagesEmptyState />;
+  }
 
-import { FilterChipRail } from "@/components/FilterChipRail";
-import { SelectionToolbar } from "@/components/SelectionToolbar";
-import { useSelectionMode } from "@/lib/hooks/useSelectionMode";
+  const initialQuery = { filter: "all", sort: "newest", limit: 50 } as const;
+  const [initialMessages, stats] = await Promise.all([
+    messagesApi.list(event.id, initialQuery),
+    eventsApi.stats(event.id).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
+  ]);
 
-import { MessageBatchBar } from "./components/MessageBatchBar";
-import { MessageDayList } from "./components/MessageDayList";
-import { MessageDetailPane } from "./components/MessageDetailPane";
-import { MessageToolbar } from "./components/MessageToolbar";
-import { MESSAGE_FILTER_CHIPS, MOCK_MESSAGES } from "./mocks";
-import { formatDurationLong } from "./utils";
-
-const PLAYING_ID = "1";
-
-export const MessagesPage = () => {
-  const selection = useSelectionMode<string>();
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [activeMessageId, setActiveMessageId] = useState("3");
-
-  const handleRowClick = (id: string) => {
-    if (selection.selectMode) {
-      selection.toggleSelect(id);
-    } else {
-      setActiveMessageId(id);
-    }
-  };
-
-  const activeMessage =
-    MOCK_MESSAGES.find((m) => m.id === activeMessageId) ?? MOCK_MESSAGES[0];
-
-  const selectedDurationSec = MOCK_MESSAGES.filter((m) =>
-    selection.selectedIds.has(m.id),
-  ).reduce((acc, m) => acc + m.durationSec, 0);
+  const queryClient = new QueryClient();
+  queryClient.setQueryData(
+    queryKeys.messages.list(event.id, initialQuery),
+    initialMessages,
+  );
 
   return (
-    <div className="tablet:-mb-10 desktop:-mb-20 small-desktop:grid-cols-[1fr_360px] -mx-4 -mb-6 grid min-h-screen">
-      <div className="bg-card flex min-w-0 flex-col">
-        <MessageToolbar />
-        <SelectionToolbar
-          selectMode={selection.selectMode}
-          count={selection.selectedIds.size}
-          onToggle={selection.toggleSelectMode}
-          onClearAll={selection.clear}
-        />
-        {selection.selectMode && (
-          <MessageBatchBar
-            count={selection.selectedIds.size}
-            combinedDuration={formatDurationLong(selectedDurationSec)}
-          />
-        )}
-        <FilterChipRail
-          chips={MESSAGE_FILTER_CHIPS}
-          activeLabel={activeFilter}
-          onSelect={setActiveFilter}
-          className="large-desktop:hidden"
-        />
-        <MessageDayList
-          messages={MOCK_MESSAGES}
-          selectMode={selection.selectMode}
-          selectedIds={selection.selectedIds}
-          activeMessageId={activeMessageId}
-          playingId={PLAYING_ID}
-          onRowClick={handleRowClick}
-        />
-      </div>
-      <MessageDetailPane message={activeMessage} />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <MessagesPageClient eventId={event.id} stats={stats} />
+    </HydrationBoundary>
   );
 };

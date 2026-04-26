@@ -1,21 +1,42 @@
 "use client";
 
+import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Warning } from "@ovation/icons/Warning";
 import { Check } from "@ovation/icons/Check";
 import { DeleteWarningItem } from "./DeleteWarningItem";
 
 type DeleteBookModalProps = {
+  coupleName: string;
+  slug: string;
+  pending: boolean;
+  onConfirm: () => void;
   onClose: () => void;
 };
 
-const WARNINGS = [
-  "Guests will no longer be able to view or resubmit messages",
-  "Your ovation.love/lena-and-tomas URL will become available again",
-  "We keep encrypted data for 30 days for recovery \u2014 after that, it\u2019s gone",
-];
+const buildConfirmation = (coupleName: string) =>
+  `delete ${coupleName.toLowerCase()}`;
 
-export const DeleteBookModal = ({ onClose }: DeleteBookModalProps) => {
+export const DeleteBookModal = ({
+  coupleName,
+  slug,
+  pending,
+  onConfirm,
+  onClose,
+}: DeleteBookModalProps) => {
+  const t = useTranslations();
+  const [typed, setTyped] = useState("");
+  const [acknowledged, setAcknowledged] = useState(false);
+  const expected = buildConfirmation(coupleName);
+  const canDelete = typed.trim().toLowerCase() === expected && acknowledged;
+
+  const warnings = [
+    t("settings__delete_modal__warn_view"),
+    t("settings__delete_modal__warn_url", { slug }),
+    t("settings__delete_modal__warn_recovery"),
+  ];
+
   return (
     <div className="bg-foreground/45 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
       <div className="rounded-20 bg-card w-full max-w-lg p-9 shadow-lg">
@@ -23,49 +44,74 @@ export const DeleteBookModal = ({ onClose }: DeleteBookModalProps) => {
           <Warning width={26} height={26} className="text-destructive" />
         </div>
         <h2 className="type-h2 font-serif leading-snug tracking-tight">
-          Delete{" "}
-          <span className="italic">&ldquo;Lena &amp; Tom&aacute;s&rdquo;</span>?
+          {t.rich("settings__delete_modal__title", {
+            name: coupleName,
+            emph: (chunks) => <span className="italic">{chunks}</span>,
+          })}
         </h2>
         <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
-          This will permanently erase{" "}
-          <strong className="text-foreground">142 messages</strong> from{" "}
-          <strong className="text-foreground">88 guests</strong>, all audio,
-          photos, and your Gold Book draft. This cannot be undone.
+          {t("settings__delete_modal__body")}
         </p>
 
         <div className="rounded-12 border-destructive/20 bg-destructive/5 mt-4.5 border p-4">
-          {WARNINGS.map((warning) => (
+          {warnings.map((warning) => (
             <DeleteWarningItem key={warning} text={warning} />
           ))}
         </div>
 
         <div className="mt-5.5">
-          <span className="type-caption text-muted-foreground mb-2 block">
-            Type{" "}
-            <strong className="text-foreground font-mono">
-              delete lena and tom&aacute;s
-            </strong>{" "}
-            to confirm
-          </span>
-          <div className="rounded-12 border-destructive bg-background type-body-small border-2 p-3 font-mono shadow-[0_0_0_4px_var(--destructive)/10]">
-            delete lena and tom
-            <span className="bg-destructive ml-0.5 inline-block h-4 w-0.5 animate-pulse align-middle" />
-          </div>
+          <label
+            htmlFor="delete-confirm"
+            className="type-caption text-muted-foreground mb-2 block"
+          >
+            {t.rich("settings__delete_modal__type_to_confirm", {
+              phrase: expected,
+              strong: (chunks) => (
+                <strong className="text-foreground font-mono">{chunks}</strong>
+              ),
+            })}
+          </label>
+          <input
+            id="delete-confirm"
+            value={typed}
+            onChange={(e) => setTyped(e.target.value)}
+            placeholder={expected}
+            className="rounded-12 border-destructive bg-background type-body-small w-full border-2 p-3 font-mono"
+            autoComplete="off"
+          />
         </div>
 
-        <label className="type-body-small text-muted-foreground mt-3.5 flex items-start gap-2.5">
-          <span className="rounded-4 bg-destructive text-primary-foreground mt-0.5 flex size-4.5 shrink-0 items-center justify-center">
-            <Check width={11} height={11} strokeWidth={3} />
+        <button
+          type="button"
+          onClick={() => setAcknowledged((v) => !v)}
+          className="type-body-small text-muted-foreground mt-3.5 flex items-start gap-2.5 text-left"
+        >
+          <span
+            className={`rounded-4 mt-0.5 flex size-4.5 shrink-0 items-center justify-center ${acknowledged ? "bg-destructive text-primary-foreground" : "border-border bg-card border"}`}
+          >
+            {acknowledged && <Check width={11} height={11} strokeWidth={3} />}
           </span>
-          I&apos;ve exported my data and understand this is permanent.
-        </label>
+          {t("settings__delete_modal__ack")}
+        </button>
 
         <div className="mt-6.5 flex justify-end gap-2.5">
-          <Button variant="outline" className="rounded-full" onClick={onClose}>
-            Keep the book
+          <Button
+            variant="outline"
+            className="rounded-full"
+            onClick={onClose}
+            disabled={pending}
+          >
+            {t("settings__delete_modal__keep")}
           </Button>
-          <Button variant="destructive" className="rounded-full">
-            Delete permanently
+          <Button
+            variant="destructive"
+            className="rounded-full"
+            onClick={onConfirm}
+            disabled={!canDelete || pending}
+          >
+            {pending
+              ? t("settings__delete_modal__deleting")
+              : t("settings__delete_modal__delete")}
           </Button>
         </div>
       </div>

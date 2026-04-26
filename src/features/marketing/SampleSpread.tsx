@@ -8,28 +8,28 @@ export const SampleSpread = () => {
   const t = useTranslations();
 
   return (
-    <section className="py-[120px]">
-      <div className="container mx-auto max-w-[1240px] px-6 lg:px-20">
+    <section className="py-30">
+      <div className="container mx-auto max-w-310 px-6 lg:px-20">
         <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
           <div>
             <Eyebrow className="text-primary">
               {t("marketing__sample__eyebrow")}
             </Eyebrow>
 
-            <h2 className="mt-4 font-serif text-[60px] leading-tight font-semibold tracking-tight">
+            <h2 className="type-display mt-4 font-serif leading-tight font-semibold tracking-tight">
               {t("marketing__sample__title_start")}{" "}
               <span className="italic">
                 {t("marketing__sample__title_end")}
               </span>
             </h2>
 
-            <p className="text-muted-foreground mt-5 max-w-[500px] text-[17px] leading-relaxed">
+            <p className="text-muted-foreground type-body-large mt-5 max-w-125 leading-relaxed">
               {t("marketing__sample__description")}
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-5">
               <div>
-                <p className="text-primary font-serif text-[40px] font-semibold tracking-tight">
+                <p className="text-primary type-h1 font-serif font-semibold tracking-tight">
                   {t("marketing__sample__stat1_value")}
                 </p>
                 <p className="text-muted-foreground mt-1 text-xs leading-snug">
@@ -37,7 +37,7 @@ export const SampleSpread = () => {
                 </p>
               </div>
               <div>
-                <p className="text-primary font-serif text-[40px] font-semibold tracking-tight">
+                <p className="text-primary type-h1 font-serif font-semibold tracking-tight">
                   {t("marketing__sample__stat2_value")}
                 </p>
                 <p className="text-muted-foreground mt-1 text-xs leading-snug">
@@ -45,7 +45,7 @@ export const SampleSpread = () => {
                 </p>
               </div>
               <div>
-                <p className="text-primary font-serif text-[40px] font-semibold tracking-tight">
+                <p className="text-primary type-h1 font-serif font-semibold tracking-tight">
                   {t("marketing__sample__stat3_value")}
                 </p>
                 <p className="text-muted-foreground mt-1 text-xs leading-snug">
@@ -56,15 +56,15 @@ export const SampleSpread = () => {
           </div>
 
           <div className="bg-card border-border relative rounded-3xl border p-10 shadow-xl">
-            <span className="bg-destructive text-primary-foreground absolute -top-3.5 right-8 rounded-full px-3 py-1.5 text-[11px] font-semibold shadow-md">
+            <span className="bg-destructive text-primary-foreground type-overline absolute -top-3.5 right-8 rounded-full px-3 py-1.5 font-semibold shadow-md">
               {t("marketing__sample__saved_tag")}
             </span>
 
-            <p className="text-muted-foreground mb-4 text-[10px] font-bold tracking-widest uppercase">
+            <p className="text-muted-foreground type-overline mb-4 font-bold tracking-widest uppercase">
               {t("marketing__sample__entry_label")}
             </p>
 
-            <blockquote className="font-serif text-[28px] leading-snug font-medium italic">
+            <blockquote className="type-h2 font-serif leading-snug font-medium italic">
               {t("marketing__sample__quote")}
             </blockquote>
 
@@ -88,7 +88,7 @@ export const SampleSpread = () => {
 
               <button
                 type="button"
-                className="bg-primary flex size-[42px] flex-shrink-0 items-center justify-center rounded-full shadow-lg"
+                className="bg-primary flex size-10.5 flex-shrink-0 items-center justify-center rounded-full shadow-lg"
               >
                 <Play
                   width={16}

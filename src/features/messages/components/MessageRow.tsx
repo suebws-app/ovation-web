@@ -3,14 +3,13 @@
 import { Avatar } from "@ovation/ui/components/Avatar";
 import { Heart } from "@ovation/icons/Heart";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
-import { Play } from "@ovation/icons/Play";
-import { Pause } from "@ovation/icons/Pause";
 import { Waveform } from "@/features/dashboard/components/Waveform";
 
-import type { MessageMock } from "../mocks";
+import type { MessageRowView } from "../adapters";
+import { MessagePlayButton } from "./MessagePlayButton";
 
 type MessageRowProps = {
-  message: MessageMock;
+  message: MessageRowView;
   selected?: boolean;
   playing?: boolean;
   index: number;
@@ -61,10 +60,14 @@ export const MessageRow = ({
           <ImageIcon width={12} height={12} className="text-muted-foreground" />
         )}
       </div>
-      <p className="type-caption text-muted-foreground">{message.relation}</p>
-      <p className="type-body-small text-muted-foreground mt-1 truncate font-serif italic">
-        &ldquo;{message.quote}&rdquo;
-      </p>
+      {message.relation && (
+        <p className="type-caption text-muted-foreground">{message.relation}</p>
+      )}
+      {message.quote && (
+        <p className="type-body-small text-muted-foreground mt-1 truncate font-serif italic">
+          &ldquo;{message.quote}&rdquo;
+        </p>
+      )}
     </div>
 
     <div className="tablet:block hidden">
@@ -79,22 +82,6 @@ export const MessageRow = ({
       {message.duration}
     </span>
 
-    <PlayButton playing={playing} />
+    <MessagePlayButton playing={playing} />
   </button>
-);
-
-const PlayButton = ({ playing }: { playing?: boolean }) => (
-  <div
-    className={`flex size-9 items-center justify-center rounded-full ${
-      playing
-        ? "bg-destructive text-primary-foreground shadow-[0_0_0_4px_oklch(0.723_0.135_40/0.15)]"
-        : "border-border bg-card text-foreground border"
-    }`}
-  >
-    {playing ? (
-      <Pause width={13} height={13} />
-    ) : (
-      <Play width={13} height={13} />
-    )}
-  </div>
 );

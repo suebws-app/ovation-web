@@ -1,0 +1,32 @@
+import { useTranslations } from "next-intl";
+import { Button } from "@ovation/ui/components/Button";
+import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Link } from "@/i18n/navigation";
+
+type DashboardEmptyProps = {
+  userName: string;
+};
+
+export const DashboardEmpty = ({ userName }: DashboardEmptyProps) => {
+  const t = useTranslations();
+  return (
+    <div className="rounded-20 border-border bg-card flex flex-col items-start gap-5 border p-8">
+      <Eyebrow className="text-primary">
+        {t("dashboard__empty__eyebrow")}
+      </Eyebrow>
+      <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+        {t("dashboard__empty__title", { name: userName })}
+      </h1>
+      <p className="type-body-small text-muted-foreground max-w-180 leading-relaxed">
+        {t("dashboard__empty__body")}
+      </p>
+      <Button
+        asChild
+        size="lg"
+        className="shadow-primary/40 rounded-full shadow-md"
+      >
+        <Link href="/sign-up/step/3">{t("dashboard__empty__cta")}</Link>
+      </Button>
+    </div>
+  );
+};

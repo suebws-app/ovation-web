@@ -1,30 +1,35 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { OtpInput } from "@ovation/ui/components/OtpInput";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Logo } from "@ovation/ui/components/Logo";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { useSignInStore } from "../useSignInStore";
 import { useRouter } from "@/i18n/navigation";
+import { ShieldIcon } from "../components/ShieldIcon";
 
 export const TwoFactorStep = () => {
+  const t = useTranslations();
   const { formData, updateFormData } = useSignInStore();
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(800px_500px_at_50%_0%,_oklch(0.705_0.120_262.5/0.15),_transparent_60%),radial-gradient(600px_400px_at_90%_100%,_oklch(0.723_0.135_40/0.08),_transparent_60%)]">
-      <div className="w-full max-w-[520px] text-center">
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(800px_500px_at_50%_0%,oklch(0.705_0.120_262.5/0.15),transparent_60%),radial-gradient(600px_400px_at_90%_100%,oklch(0.723_0.135_40/0.08),transparent_60%)]">
+      <div className="w-full max-w-130 text-center">
         <Logo className="mx-auto mb-10 justify-center" />
 
         <ShieldIcon />
 
-        <h1 className="mt-5 font-serif text-[2.5rem] leading-tight font-semibold tracking-tight">
-          Confirm it&apos;s you.
+        <h1 className="type-h1 mt-5 font-serif leading-tight font-semibold tracking-tight">
+          {t("auth__signin__twofactor__title")}
         </h1>
-        <p className="type-body-small text-muted-foreground mx-auto mt-3.5 max-w-[420px] leading-relaxed">
-          We sent a 6-digit code to your phone. It expires in{" "}
-          <strong className="text-destructive">4:52</strong>.
+        <p className="type-body-small text-muted-foreground mx-auto mt-3.5 max-w-105 leading-relaxed">
+          {t.rich("auth__signin__twofactor__body_full", {
+            timer: (chunks) => (
+              <strong className="text-destructive">{chunks}</strong>
+            ),
+          })}
         </p>
 
         <OtpInput
@@ -38,14 +43,14 @@ export const TwoFactorStep = () => {
             type="button"
             className="text-primary cursor-pointer font-semibold"
           >
-            Send again
+            {t("auth__signin__twofactor__resend")}
           </button>
           <span className="opacity-30">&middot;</span>
           <button
             type="button"
             className="text-primary cursor-pointer font-semibold"
           >
-            Use email instead
+            {t("auth__signin__twofactor__use_email")}
           </button>
         </div>
 
@@ -55,33 +60,14 @@ export const TwoFactorStep = () => {
           size="lg"
           className="shadow-primary/40 mt-9 rounded-full px-10 shadow-md"
         >
-          Verify &amp; continue
+          {t("auth__signin__twofactor__verify")}
           <ArrowRight width={16} height={16} />
         </Button>
 
         <p className="type-caption text-muted-foreground mt-11 font-serif italic">
-          Last sign-in: Madrid &middot; 3 days ago
+          {t("auth__signin__twofactor__last_signin")}
         </p>
       </div>
     </div>
   );
 };
-
-const ShieldIcon = () => (
-  <div className="rounded-20 bg-primary/10 mb-1 inline-flex size-18 items-center justify-center">
-    <svg
-      width="30"
-      height="30"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      className="text-primary"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect x="2" y="4" width="20" height="16" rx="2" />
-      <path d="M2 8h20M8 15h4" />
-    </svg>
-  </div>
-);

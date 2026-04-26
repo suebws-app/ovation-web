@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Badge } from "@ovation/ui/components/Badge";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
@@ -9,35 +10,42 @@ import { SettingsToggle } from "./SettingsToggle";
 import { SettingsRadio } from "./SettingsRadio";
 
 export const SettingsPrivacySection = () => {
+  const t = useTranslations();
   return (
     <>
-      <span className="type-overline text-primary">Settings</span>
+      <span className="type-overline text-primary">
+        {t("settings__privacy__eyebrow")}
+      </span>
       <h1 className="type-display mt-2 font-serif tracking-tight">
-        Privacy &amp; <span className="text-primary italic">visibility</span>
+        {t("settings__privacy__title_a")}{" "}
+        <span className="text-primary italic">
+          {t("settings__privacy__title_b")}
+        </span>
       </h1>
       <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
-        Control who can see your book, who can leave messages, and who can see
-        them. Defaults are private &mdash; change only what you want to open up.
+        {t("settings__privacy__subtitle")}
       </p>
 
       <div className="mt-9">
-        <SettingsSectionTitle title="Book visibility" />
+        <SettingsSectionTitle
+          title={t("settings__privacy__visibility__title")}
+        />
         <SettingsCard>
           <SettingsRow
-            title="Private"
-            description="Only you, your partner, and invited guests can see anything."
+            title={t("settings__privacy__visibility__private__title")}
+            description={t("settings__privacy__visibility__private__desc")}
           >
             <SettingsRadio on={true} />
           </SettingsRow>
           <SettingsRow
-            title="Unlisted"
-            description="Anyone with the link can view \u2014 but it won\u2019t appear in search."
+            title={t("settings__privacy__visibility__unlisted__title")}
+            description={t("settings__privacy__visibility__unlisted__desc")}
           >
             <SettingsRadio on={false} />
           </SettingsRow>
           <SettingsRow
-            title="Public"
-            description="Discoverable in Ovation\u2019s gallery of wedding books (curated, opt-in)."
+            title={t("settings__privacy__visibility__public__title")}
+            description={t("settings__privacy__visibility__public__desc")}
             last
           >
             <SettingsRadio on={false} />
@@ -46,23 +54,23 @@ export const SettingsPrivacySection = () => {
       </div>
 
       <div className="mt-9">
-        <SettingsSectionTitle title="Who can leave messages" />
+        <SettingsSectionTitle title={t("settings__privacy__senders__title")} />
         <SettingsCard>
           <SettingsRow
-            title="Invited guests only"
-            description="Only people who scanned a QR card you sent, or used your invite link."
+            title={t("settings__privacy__senders__invited__title")}
+            description={t("settings__privacy__senders__invited__desc")}
           >
             <SettingsRadio on={true} />
           </SettingsRow>
           <SettingsRow
-            title="Anyone with the link"
-            description="Useful if you\u2019re sharing over WhatsApp or Instagram."
+            title={t("settings__privacy__senders__anyone__title")}
+            description={t("settings__privacy__senders__anyone__desc")}
           >
             <SettingsRadio on={false} />
           </SettingsRow>
           <SettingsRow
-            title="Require guest to sign in"
-            description="Guests enter their email before leaving a message. Catches pranksters."
+            title={t("settings__privacy__senders__signin__title")}
+            description={t("settings__privacy__senders__signin__desc")}
             last
           >
             <SettingsToggle on={false} />
@@ -71,24 +79,24 @@ export const SettingsPrivacySection = () => {
       </div>
 
       <div className="mt-9">
-        <SettingsSectionTitle title="Message review" />
+        <SettingsSectionTitle title={t("settings__privacy__review__title")} />
         <SettingsCard>
           <SettingsRow
-            title="Review before publishing"
-            description="Every message waits in your queue until you approve it. Turn off for a more live feel."
+            title={t("settings__privacy__review__before__title")}
+            description={t("settings__privacy__review__before__desc")}
           >
             <SettingsToggle on={true} />
           </SettingsRow>
           <SettingsRow
-            title="Auto-flag strong language"
+            title={t("settings__privacy__review__flag__title")}
             description={
               <>
-                Uses on-device filtering.{" "}
+                {t("settings__privacy__review__flag__desc_a")}{" "}
                 <button
                   type="button"
                   className="text-primary cursor-pointer font-semibold"
                 >
-                  See word list &rarr;
+                  {t("settings__privacy__review__flag__desc_b")}
                 </button>
               </>
             }
@@ -96,8 +104,8 @@ export const SettingsPrivacySection = () => {
             <SettingsToggle on={true} />
           </SettingsRow>
           <SettingsRow
-            title="Auto-publish from family"
-            description="Messages from guests you tagged as \u2018family\u2019 skip the queue."
+            title={t("settings__privacy__review__autopublish__title")}
+            description={t("settings__privacy__review__autopublish__desc")}
             last
           >
             <SettingsToggle on={false} />
@@ -107,25 +115,25 @@ export const SettingsPrivacySection = () => {
 
       <div className="mt-9">
         <SettingsSectionTitle
-          title="What guests see"
-          description="Controls what a guest sees when they visit ovation.love/lena-and-tomas."
+          title={t("settings__privacy__what_guests__title")}
+          description={t("settings__privacy__what_guests__desc")}
         />
         <SettingsCard>
           <SettingsRow
-            title="Show total message count"
-            description='A "142 messages from 88 guests" stat on the welcome screen.'
+            title={t("settings__privacy__what_guests__count__title")}
+            description={t("settings__privacy__what_guests__count__desc")}
           >
             <SettingsToggle on={true} />
           </SettingsRow>
           <SettingsRow
-            title="Show other guests\u2019 messages"
-            description="Lets guests browse what others left (after yours is recorded)."
+            title={t("settings__privacy__what_guests__others__title")}
+            description={t("settings__privacy__what_guests__others__desc")}
           >
             <SettingsToggle on={false} />
           </SettingsRow>
           <SettingsRow
-            title="Show who has & hasn\u2019t contributed"
-            description="A read-only list. Only visible to co-owners by default."
+            title={t("settings__privacy__what_guests__contributed__title")}
+            description={t("settings__privacy__what_guests__contributed__desc")}
             last
           >
             <SettingsToggle on={false} />
@@ -134,26 +142,28 @@ export const SettingsPrivacySection = () => {
       </div>
 
       <div className="mt-9">
-        <SettingsSectionTitle title="Transcripts & AI" />
+        <SettingsSectionTitle title={t("settings__privacy__ai__title")} />
         <SettingsCard>
           <SettingsRow
-            title="Transcribe every message"
-            description="We use on-device speech recognition. Transcripts never leave your book."
+            title={t("settings__privacy__ai__transcribe__title")}
+            description={t("settings__privacy__ai__transcribe__desc")}
           >
             <SettingsToggle on={true} />
           </SettingsRow>
           <SettingsRow
-            title="Let guests see their transcript"
-            description="Guests can correct their own transcript before submitting."
+            title={t("settings__privacy__ai__guest_see__title")}
+            description={t("settings__privacy__ai__guest_see__desc")}
           >
             <SettingsToggle on={true} />
           </SettingsRow>
           <SettingsRow
-            title="Allow AI suggestions"
-            description="Claude can propose thank-you notes and book layouts. Off means pure manual."
+            title={t("settings__privacy__ai__suggestions__title")}
+            description={t("settings__privacy__ai__suggestions__desc")}
             last
           >
-            <Badge variant="secondary">On-device only</Badge>
+            <Badge variant="secondary">
+              {t("settings__privacy__ai__suggestions__badge")}
+            </Badge>
             <SettingsToggle on={true} />
           </SettingsRow>
         </SettingsCard>
@@ -161,9 +171,9 @@ export const SettingsPrivacySection = () => {
 
       <div className="mt-10 flex justify-end gap-2.5">
         <Button variant="outline" className="rounded-full">
-          Discard changes
+          {t("settings__privacy__discard")}
         </Button>
-        <Button className="rounded-full">Save changes</Button>
+        <Button className="rounded-full">{t("settings__privacy__save")}</Button>
       </div>
     </>
   );

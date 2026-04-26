@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/navigation";
+import { ArrowUpRight } from "@ovation/icons/ArrowUpRight";
 
 type QuickLinkProps = {
   label: string;
@@ -13,18 +14,6 @@ export const QuickLink = ({ label, href, icon }: QuickLinkProps) => (
   >
     <span className="text-muted-foreground inline-flex">{icon}</span>
     <span className="flex-1">{label}</span>
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="opacity-40"
-    >
-      <path d="M7 17L17 7M8 7h9v9" />
-    </svg>
+    <ArrowUpRight width={12} height={12} className="opacity-40" />
   </Link>
 );

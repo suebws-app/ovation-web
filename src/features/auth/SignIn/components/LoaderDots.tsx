@@ -1,3 +1,5 @@
+import { LoaderDot } from "./LoaderDot";
+
 const COLORS = [
   "oklch(0.705 0.120 262.5)",
   "oklch(0.723 0.135 40)",
@@ -15,11 +17,4 @@ export const LoaderDots = ({ activeIndex = 1 }: LoaderDotsProps) => (
       <LoaderDot key={i} color={color} active={i === activeIndex} />
     ))}
   </div>
-);
-
-const LoaderDot = ({ color, active }: { color: string; active: boolean }) => (
-  <span
-    className="size-2.5 rounded-full transition-opacity"
-    style={{ background: color, opacity: active ? 1 : 0.4 }}
-  />
 );

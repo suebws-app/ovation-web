@@ -3,36 +3,14 @@
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { cn } from "@ovation/ui/utils/cn";
+import { SocialIcon } from "./SocialIcon";
+import { FooterColumn } from "./FooterColumn";
 
-const SocialIcon = ({ label }: { label: string }) => (
-  <div className="border-border text-muted-foreground flex size-9 items-center justify-center rounded-full border text-xs font-bold">
-    {label}
-  </div>
-);
+type RootFooterProps = {
+  className?: string;
+};
 
-const FooterLink = ({ link }: { link: string }) => (
-  <a
-    key={link}
-    className="text-foreground hover:text-primary cursor-pointer text-sm"
-  >
-    {link}
-  </a>
-);
-
-const FooterColumn = ({ col }: { col: { title: string; links: string[] } }) => (
-  <div key={col.title}>
-    <div className="text-muted-foreground mb-3.5 text-[11px] font-bold tracking-widest uppercase">
-      {col.title}
-    </div>
-    <div className="flex flex-col gap-2.5">
-      {col.links.map((link) => (
-        <FooterLink key={link} link={link} />
-      ))}
-    </div>
-  </div>
-);
-
-export const RootFooter = ({ className }: { className?: string }) => {
+export const RootFooter = ({ className }: RootFooterProps) => {
   const t = useTranslations();
 
   const columns = [
@@ -81,11 +59,11 @@ export const RootFooter = ({ className }: { className?: string }) => {
 
   return (
     <footer className={cn("border-border bg-card border-t", className)}>
-      <div className="mx-auto max-w-[1240px] px-6 pt-16 pb-10 lg:px-20">
+      <div className="mx-auto max-w-310 px-6 pt-16 pb-10 lg:px-20">
         <div className="grid grid-cols-2 gap-10 pb-10 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
             <Logo className="mb-4" />
-            <p className="text-muted-foreground max-w-[280px] text-sm leading-relaxed">
+            <p className="text-muted-foreground max-w-70 text-sm leading-relaxed">
               {t("common__footer__tagline")}
             </p>
             <div className="mt-5 flex gap-2.5">

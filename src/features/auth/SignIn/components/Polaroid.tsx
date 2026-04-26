@@ -18,11 +18,11 @@ export const Polaroid = ({
   tint,
 }: PolaroidProps) => (
   <div
-    className="rounded-4 bg-card absolute w-[130px] p-2 pb-7 shadow-lg"
+    className="rounded-4 bg-card absolute w-32.5 p-2 pb-7 shadow-lg"
     style={{ top, left, right, transform: `rotate(${rotation}deg)` }}
   >
     <div
-      className="text-primary-foreground flex h-[130px] w-full items-center justify-center rounded-sm font-serif text-4xl font-semibold"
+      className="text-primary-foreground flex h-32.5 w-full items-center justify-center rounded-sm font-serif text-4xl font-semibold"
       style={{ background: `linear-gradient(160deg, ${tint}, ${tint}AA)` }}
     >
       {initial}

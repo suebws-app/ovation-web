@@ -1,48 +1,53 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Plus } from "@ovation/icons/Plus";
 import { KioskConfigCard } from "./KioskConfigCard";
 import { KioskConfigRow } from "./KioskConfigRow";
 import { KioskToggle } from "./KioskToggle";
 import { KioskLanguageChip } from "./KioskLanguageChip";
 
+const WELCOME_MAX = 180;
+
 export const KioskConfigRight = () => {
+  const t = useTranslations();
+  const placeholder = t("kiosk__config__welcome__note_placeholder");
+
   return (
     <div className="flex flex-col gap-5">
       <KioskConfigCard
-        title="Welcome screen"
-        description="What guests see before they tap record."
+        title={t("kiosk__config__welcome_section__title")}
+        description={t("kiosk__config__welcome_section__desc")}
       >
         <div className="border-border border-b py-5">
           <div className="type-caption text-muted-foreground mb-2 font-semibold">
-            Welcome note
+            {t("kiosk__config__welcome__note_label")}
           </div>
           <div className="rounded-12 border-border bg-card type-body-small min-h-24 border p-3.5 leading-relaxed">
-            <span className="text-primary font-serif italic">
-              Hola! Bienvenue.
-            </span>{" "}
-            Leave us a message &mdash; a story, a song, a bad dance move.
-            We&apos;ll cherish it.
+            {placeholder}
             <span className="type-caption text-muted-foreground float-right">
-              112 / 180
+              {t("kiosk__config__welcome__counter", {
+                count: placeholder.length,
+                max: WELCOME_MAX,
+              })}
             </span>
           </div>
         </div>
         <KioskConfigRow
-          title="Show couple photo"
-          description="Faded into the background behind your names."
+          title={t("kiosk__config__welcome__photo__title")}
+          description={t("kiosk__config__welcome__photo__desc")}
         >
           <KioskToggle on={false} />
         </KioskConfigRow>
         <KioskConfigRow
-          title="Language picker"
-          description="Let guests switch before recording. We detect their device language first."
+          title={t("kiosk__config__welcome__lang_picker__title")}
+          description={t("kiosk__config__welcome__lang_picker__desc")}
         >
           <KioskToggle on={true} />
         </KioskConfigRow>
         <KioskConfigRow
-          title="Ambient sound cue"
-          description="A soft chime plays when a guest taps record. Friendly and clear."
+          title={t("kiosk__config__welcome__chime__title")}
+          description={t("kiosk__config__welcome__chime__desc")}
           last
         >
           <KioskToggle on={true} />
@@ -50,49 +55,58 @@ export const KioskConfigRight = () => {
       </KioskConfigCard>
 
       <KioskConfigCard
-        title="Languages on device"
-        description="The main one is shown first. Add any your guests speak."
+        title={t("kiosk__config__languages_section__title")}
+        description={t("kiosk__config__languages_section__desc")}
       >
         <div className="flex flex-wrap gap-2 py-5">
           <KioskLanguageChip
-            flag="\ud83c\uddf5\ud83c\uddf9"
-            label="Portuguese"
+            flag="\uD83C\uDDF5\uD83C\uDDF9"
+            label="Português"
             isMain
           />
-          <KioskLanguageChip flag="\ud83c\uddec\ud83c\udde7" label="English" />
-          <KioskLanguageChip flag="\ud83c\uddea\ud83c\uddf8" label="Spanish" />
-          <KioskLanguageChip flag="\ud83c\uddeb\ud83c\uddf7" label="French" />
+          <KioskLanguageChip
+            flag="\uD83C\uDDEC\uD83C\uDDE7"
+            label={t("language__en")}
+          />
+          <KioskLanguageChip
+            flag="\uD83C\uDDEA\uD83C\uDDF8"
+            label={t("language__es")}
+          />
+          <KioskLanguageChip
+            flag="\uD83C\uDDEB\uD83C\uDDF7"
+            label={t("language__fr")}
+          />
           <button
             type="button"
             className="border-border type-caption text-muted-foreground inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-dashed px-3 py-2 font-semibold"
           >
             <Plus width={12} height={12} />
-            Add language
+            {t("kiosk__config__languages__add")}
           </button>
         </div>
       </KioskConfigCard>
 
       <KioskConfigCard
-        title="Offline safety"
-        description="Venue WiFi dies. We planned for it."
+        title={t("kiosk__config__offline_section__title")}
+        description={t("kiosk__config__offline_section__desc")}
       >
         <KioskConfigRow
-          title="Store messages locally if offline"
-          description="Messages save to the device and sync the moment WiFi is back."
+          title={t("kiosk__config__offline__store__title")}
+          description={t("kiosk__config__offline__store__desc")}
         >
           <KioskToggle on={true} />
         </KioskConfigRow>
         <KioskConfigRow
-          title="Max local storage"
-          description="Roughly 200 audio messages at 90s each. You\u2019ll be fine."
+          title={t("kiosk__config__offline__storage__title")}
+          description={t("kiosk__config__offline__storage__desc")}
         >
           <span className="border-border bg-card type-body-small rounded-full border px-3.5 py-2">
-            1.5 GB
+            {t("kiosk__config__offline__storage__value")}
           </span>
         </KioskConfigRow>
         <KioskConfigRow
-          title="Notify us if sync falls behind"
-          description="Email and push, if more than 20 messages are queued."
+          title={t("kiosk__config__offline__notify__title")}
+          description={t("kiosk__config__offline__notify__desc")}
           last
         >
           <KioskToggle on={true} />

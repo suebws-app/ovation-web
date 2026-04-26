@@ -1,4 +1,5 @@
 import { cn } from "@ovation/ui/utils/cn";
+import { WaveformBar } from "./WaveformBar";
 
 const seededRandom = (seed: number) => {
   const x = Math.sin(seed + 1) * 10000;
@@ -25,7 +26,7 @@ export const Waveform = ({
   const filledCount = Math.floor(data.length * progress);
 
   return (
-    <div className={cn("flex items-center gap-[2px]", className)}>
+    <div className={cn("flex items-center gap-0.5", className)}>
       {data.map((h, i) => (
         <WaveformBar
           key={i}
@@ -36,19 +37,3 @@ export const Waveform = ({
     </div>
   );
 };
-
-const WaveformBar = ({
-  height,
-  filled,
-}: {
-  height: number;
-  filled: boolean;
-}) => (
-  <span
-    className={cn(
-      "w-[2.5px] rounded-full transition-colors",
-      filled ? "bg-primary" : "bg-primary/20",
-    )}
-    style={{ height }}
-  />
-);

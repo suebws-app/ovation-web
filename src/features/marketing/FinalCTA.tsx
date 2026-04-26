@@ -9,32 +9,32 @@ export const FinalCTA = () => {
   const t = useTranslations();
 
   return (
-    <section className="pb-[100px]">
-      <div className="mx-auto max-w-[1240px] px-6 lg:px-20">
-        <div className="from-warm-cream to-warm-panel border-warm-panel relative overflow-hidden rounded-[32px] border bg-gradient-to-br p-12 shadow-2xl lg:p-[72px_80px]">
-          <div className="bg-destructive/30 pointer-events-none absolute top-[-120px] right-[-80px] size-[360px] rounded-full blur-3xl" />
-          <div className="bg-primary/25 pointer-events-none absolute bottom-[-120px] left-[-40px] size-[320px] rounded-full blur-3xl" />
-          <div className="bg-secondary/20 pointer-events-none absolute top-10 left-[45%] size-[180px] rounded-full blur-3xl" />
+    <section className="pb-25">
+      <div className="mx-auto max-w-310 px-6 lg:px-20">
+        <div className="from-warm-cream to-warm-panel border-warm-panel relative overflow-hidden rounded-4xl border bg-linear-to-br p-12 shadow-2xl lg:p-[72px_80px]">
+          <div className="bg-destructive/30 pointer-events-none absolute -top-30 -right-20 size-90 rounded-full blur-3xl" />
+          <div className="bg-primary/25 pointer-events-none absolute -bottom-30 -left-10 size-80 rounded-full blur-3xl" />
+          <div className="bg-secondary/20 pointer-events-none absolute top-10 left-[45%] size-45 rounded-full blur-3xl" />
 
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
             <div className="relative">
               <Eyebrow className="text-destructive">
                 {t("marketing__cta__eyebrow")}
               </Eyebrow>
-              <h2 className="text-foreground mt-3.5 font-serif text-5xl leading-none font-semibold tracking-tight lg:text-[64px]">
+              <h2 className="text-foreground lg:type-display mt-3.5 font-serif text-5xl leading-none font-semibold tracking-tight">
                 {t("marketing__cta__title_line1")}
                 <br />
                 <span className="text-primary italic">
                   {t("marketing__cta__title_line2")}
                 </span>
               </h2>
-              <p className="text-muted-foreground mt-5 max-w-[460px] text-base leading-relaxed">
+              <p className="text-muted-foreground mt-5 max-w-115 text-base leading-relaxed">
                 {t("marketing__cta__description")}
               </p>
             </div>
 
             <div className="relative">
-              <p className="text-muted-foreground text-[11px] font-bold tracking-widest uppercase">
+              <p className="text-muted-foreground type-overline font-bold tracking-widest uppercase">
                 {t("marketing__cta__quick_start")}
               </p>
 

@@ -1,21 +1,7 @@
 import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
-import { Check } from "@ovation/icons/Check";
 import { Button } from "@ovation/ui/components/Button";
-
-type PricingFeatureProps = {
-  feat: string;
-  highlighted: boolean;
-};
-
-const PricingFeature = ({ feat, highlighted }: PricingFeatureProps) => (
-  <li className="flex items-start gap-2.5 text-sm">
-    <span className={cn(highlighted ? "text-destructive" : "text-primary")}>
-      <Check className="mt-0.5 size-4 shrink-0" strokeWidth={2.2} />
-    </span>
-    {feat}
-  </li>
-);
+import { PricingFeature } from "./PricingFeature";
 
 type PricingCardProps = {
   tierKey: "essential" | "keepsake" | "gold";
@@ -54,23 +40,21 @@ export const PricingCard = ({
     >
       {highlighted && (
         <>
-          <div className="bg-primary text-primary-foreground absolute -top-3.5 left-8 rounded-full px-3 py-1.5 text-[11px] font-bold tracking-wider shadow-md">
-            MOST CHOSEN
+          <div className="bg-primary text-primary-foreground type-overline absolute -top-3.5 left-8 rounded-full px-3 py-1.5 font-bold tracking-wider shadow-md">
+            {t("common__most_chosen")}
           </div>
           <div className="bg-destructive/20 pointer-events-none absolute top-0 right-0 size-55 translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
         </>
       )}
 
-      <span className="text-muted-foreground text-[10px] font-bold tracking-widest uppercase">
+      <span className="text-muted-foreground type-overline font-bold tracking-widest uppercase">
         {t(tagKey)}
       </span>
 
-      <p className="mt-1.5 font-serif text-[30px] font-semibold">
-        {t(nameKey)}
-      </p>
+      <p className="type-h1 mt-1.5 font-serif font-semibold">{t(nameKey)}</p>
 
       <div className="mt-3 flex items-end gap-1.5">
-        <span className="font-serif text-[56px] leading-none font-semibold tracking-tight">
+        <span className="type-display font-serif leading-none font-semibold tracking-tight">
           {t(priceKey, { price })}
         </span>
         <span className="text-muted-foreground mb-2.5 text-sm">

@@ -1,23 +1,37 @@
-export const DashboardGreeting = () => {
-  const name = "Lena";
-  const date = "14 June 2026";
-  const venue = "Mas de la Calma";
-  const newMessages = 12;
+import { useTranslations } from "next-intl";
 
+type DashboardGreetingProps = {
+  name: string;
+  date: string;
+  venue: string;
+  newMessages: number;
+};
+
+export const DashboardGreeting = ({
+  name,
+  date,
+  venue,
+  newMessages,
+}: DashboardGreetingProps) => {
+  const t = useTranslations();
+  const subtitle = [date, venue].filter(Boolean).join(" \u00b7 ");
   return (
     <div className="tablet:mb-12 mb-8">
-      <p className="type-body-small text-muted-foreground">
-        {date} &middot; {venue}
-      </p>
-      <h1 className="tablet:text-[3.5rem] mt-3 max-w-205 font-serif text-[2rem] leading-[1.05] font-semibold tracking-tight">
-        Good morning, {name}.
+      {subtitle && (
+        <p className="type-body-small text-muted-foreground">{subtitle}</p>
+      )}
+      <h1 className="tablet:type-display type-h1 mt-3 max-w-205 font-serif leading-[1.05] font-semibold tracking-tight">
+        {t("dashboard__greeting", { name })}
       </h1>
       <p className="type-h4 text-muted-foreground mt-3.5 max-w-160 leading-snug font-normal">
-        You have{" "}
-        <strong className="text-foreground">
-          {newMessages} new voice messages
-        </strong>{" "}
-        waiting. Want to keep listening?
+        {newMessages > 0
+          ? t.rich("dashboard__greeting_lead", {
+              count: newMessages,
+              strong: (chunks) => (
+                <strong className="text-foreground">{chunks}</strong>
+              ),
+            })
+          : t("dashboard__greeting_lead_empty")}
       </p>
     </div>
   );

@@ -1,14 +1,26 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Check } from "@ovation/icons/Check";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
+import { eventsClient } from "@/lib/api/events-client";
+import { paymentsClient } from "@/lib/api/payments-client";
+import { ApiError } from "@/lib/api/client";
+import { env } from "@/lib/utils/env";
+import { uploadToTarget } from "@/lib/media/uploadToTarget";
+import type { CheckoutPlanTier, CoverPhotoContentType } from "@/lib/api/types";
+import { Link } from "@/i18n/navigation";
 import { NextStepCard } from "../components/NextStepCard";
 import { ConfettiDot } from "../components/ConfettiDot";
 import { useSignUpStore } from "../useSignUpStore";
-import { Link } from "@/i18n/navigation";
+import { CompletionCreatingState } from "../components/CompletionCreatingState";
+import { CompletionRedirectingState } from "../components/CompletionRedirectingState";
+import { CompletionErrorState } from "../components/CompletionErrorState";
+import { CompletionSuccessIcon } from "../components/CompletionSuccessIcon";
 
 const CONFETTI = [
   {
@@ -69,73 +81,261 @@ const CONFETTI = [
   },
 ];
 
-const NEXT_STEPS = [
-  {
-    emoji: "\uD83D\uDCEC",
-    title: "Your QR cards are printing",
-    description: "Ships soon \u2014 arrives in 5\u20137 days",
-  },
-  {
-    emoji: "\u2709\uFE0F",
-    title: "Invite your partner",
-    description: "They\u2019ll get co-owner access",
-  },
-  {
-    emoji: "\uD83C\uDFA8",
-    title: "Customize your book",
-    description: "Fonts, colors, welcome message",
-  },
-];
+const toIsoDate = (date: Date | null): string | undefined => {
+  if (!date) return undefined;
+  if (Number.isNaN(date.getTime())) return undefined;
+  return date.toISOString().slice(0, 10);
+};
+
+type CreationState =
+  | { kind: "creating" }
+  | { kind: "redirecting" }
+  | { kind: "ready"; slug: string }
+  | { kind: "error"; message: string };
+
+const PLAN_TIER_BY_ID: Record<string, CheckoutPlanTier | null> = {
+  essential: null,
+  keepsake: "premium",
+  gold: "bundle",
+};
+
+const ALLOWED_COVER_MIMES: Record<string, CoverPhotoContentType> = {
+  "image/jpeg": "image/jpeg",
+  "image/png": "image/png",
+  "image/webp": "image/webp",
+  "image/heic": "image/heic",
+};
+
+const uploadCoverPhoto = async (
+  eventId: string,
+  file: File,
+): Promise<string | null> => {
+  const contentType = ALLOWED_COVER_MIMES[file.type];
+  if (!contentType) return null;
+  const result = await eventsClient.coverUploadUrl(eventId, contentType);
+  await uploadToTarget(
+    {
+      url: result.uploadUrl,
+      key: result.key,
+    },
+    file,
+  );
+  return result.publicUrl;
+};
 
 export const CompletionStep = () => {
-  const { formData } = useSignUpStore();
-  const bookUrl = formData.bookUrl || "your-book";
+  const t = useTranslations();
+  const formData = useSignUpStore((s) => s.formData);
+  const updateFormData = useSignUpStore((s) => s.updateFormData);
+  const [state, setState] = useState<CreationState>({ kind: "creating" });
+  const [retryToken, setRetryToken] = useState(0);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      const partnerA =
+        formData.partner1Name?.trim() || t("signup__partner_a_default");
+      const partnerB =
+        formData.partner2Name?.trim() || t("signup__partner_b_default");
+
+      try {
+        const created = await eventsClient.create({
+          partnerAName: partnerA,
+          partnerBName: partnerB,
+          weddingDate: toIsoDate(formData.weddingDate),
+          venueName: formData.venue?.trim() || undefined,
+        });
+        if (cancelled) return;
+
+        let finalSlug = created.event.slug;
+        const desiredSlug = formData.bookUrl?.trim();
+        if (
+          desiredSlug &&
+          desiredSlug !== finalSlug &&
+          /^[a-z0-9-]{4,20}$/.test(desiredSlug)
+        ) {
+          try {
+            const updated = await eventsClient.update(created.event.id, {
+              slug: desiredSlug,
+            });
+            finalSlug = updated.event.slug;
+          } catch {
+            // Slug clash — keep auto-generated
+          }
+        }
+
+        if (cancelled) return;
+        updateFormData({ bookUrl: finalSlug });
+
+        if (formData.coverFile) {
+          try {
+            const publicUrl = await uploadCoverPhoto(
+              created.event.id,
+              formData.coverFile,
+            );
+            if (publicUrl) {
+              await eventsClient
+                .update(created.event.id, { couplePhotoUrl: publicUrl })
+                .catch(() => undefined);
+            }
+          } catch {
+            // Non-fatal — book is created; user can add cover later
+          }
+          if (cancelled) return;
+        }
+
+        const planTier = PLAN_TIER_BY_ID[formData.selectedPlan ?? ""] ?? null;
+        if (planTier) {
+          setState({ kind: "redirecting" });
+          try {
+            const checkout = await paymentsClient.createCheckoutSession({
+              eventId: created.event.id,
+              orderType: "plan",
+              planTier,
+              successUrl: `${env.APP_URL}/checkout/{CHECKOUT_SESSION_ID}/success`,
+              cancelUrl: `${env.APP_URL}/checkout/{CHECKOUT_SESSION_ID}/cancel`,
+            });
+            if (cancelled) return;
+            window.location.assign(checkout.checkoutUrl);
+            return;
+          } catch (error) {
+            if (cancelled) return;
+            setState({
+              kind: "error",
+              message: ApiError.isApiError(error)
+                ? `${error.message}`
+                : t("signup__completion__error_checkout_default"),
+            });
+            return;
+          }
+        }
+
+        setState({ kind: "ready", slug: finalSlug });
+      } catch (error) {
+        if (cancelled) return;
+        setState({
+          kind: "error",
+          message: ApiError.isApiError(error)
+            ? error.message
+            : t("signup__completion__error_create_default"),
+        });
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    retryToken,
+    formData.partner1Name,
+    formData.partner2Name,
+    formData.weddingDate,
+    formData.venue,
+    formData.bookUrl,
+    formData.selectedPlan,
+    formData.coverFile,
+    updateFormData,
+    t,
+  ]);
+
+  if (state.kind === "creating") {
+    return <CompletionCreatingState />;
+  }
+
+  if (state.kind === "redirecting") {
+    return <CompletionRedirectingState />;
+  }
+
+  if (state.kind === "error") {
+    return (
+      <CompletionErrorState
+        message={state.message}
+        onRetry={() => {
+          setState({ kind: "creating" });
+          setRetryToken((n) => n + 1);
+        }}
+      />
+    );
+  }
+
+  const handleCopy = async () => {
+    if (typeof navigator === "undefined" || !navigator.clipboard) return;
+    try {
+      await navigator.clipboard.writeText(`ovation.love/${state.slug}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  };
 
   return (
-    <div className="relative min-h-[calc(100vh-89px)] bg-[radial-gradient(900px_500px_at_50%_20%,_oklch(0.705_0.120_262.5/0.18),_transparent_60%),radial-gradient(700px_500px_at_10%_90%,_oklch(0.833_0.132_151.8/0.10),_transparent_60%),radial-gradient(700px_500px_at_90%_80%,_oklch(0.723_0.135_40/0.10),_transparent_60%)]">
+    <div className="relative min-h-[calc(100vh-89px)] bg-[radial-gradient(900px_500px_at_50%_20%,oklch(0.705_0.120_262.5/0.18),transparent_60%),radial-gradient(700px_500px_at_10%_90%,oklch(0.833_0.132_151.8/0.10),transparent_60%),radial-gradient(700px_500px_at_90%_80%,oklch(0.723_0.135_40/0.10),transparent_60%)]">
       {CONFETTI.map((dot, i) => (
         <ConfettiDot key={i} {...dot} />
       ))}
 
       <div className="tablet:px-20 flex min-h-[calc(100vh-89px)] items-center justify-center px-6">
-        <div className="relative max-w-[740px] text-center">
-          <SuccessIcon />
+        <div className="relative max-w-185 text-center">
+          <CompletionSuccessIcon />
 
           <Eyebrow className="text-primary">
-            Step 7 &middot; Your book is live
+            {t("signup__completion__success_step")}
           </Eyebrow>
-          <h1 className="tablet:text-[4.5rem] mt-4.5 font-serif text-[3rem] leading-none font-semibold tracking-tight">
-            Your book is
+          <h1 className="tablet:type-display type-display mt-4.5 font-serif leading-none font-semibold tracking-tight">
+            {t("signup__completion__success_title_a")}
             <br />
-            <span className="text-primary italic">open.</span>
+            <span className="text-primary italic">
+              {t("signup__completion__success_title_b")}
+            </span>
           </h1>
-          <p className="type-body-large text-muted-foreground mx-auto mt-5 max-w-[540px] leading-relaxed">
-            <strong className="text-foreground">ovation.love/{bookUrl}</strong>{" "}
-            is yours. Share the link with anyone you want, or wait for your QR
-            cards to arrive.
+          <p className="type-body-large text-muted-foreground mx-auto mt-5 max-w-135 leading-relaxed">
+            {t.rich("signup__completion__success_body", {
+              slug: state.slug,
+              strong: (chunks) => (
+                <strong className="text-foreground">{chunks}</strong>
+              ),
+            })}
           </p>
 
-          <div className="rounded-16 border-border bg-card mx-auto mt-9 flex max-w-[480px] items-center gap-3 border px-4.5 py-3.5 shadow-sm">
+          <div className="rounded-16 border-border bg-card mx-auto mt-9 flex max-w-120 items-center gap-3 border px-4.5 py-3.5 shadow-sm">
             <LinkIcon
               width={16}
               height={16}
               className="text-muted-foreground"
             />
             <span className="type-body-small text-foreground flex-1 text-left font-mono">
-              ovation.love/{bookUrl}
+              ovation.love/{state.slug}
             </span>
             <button
               type="button"
+              onClick={handleCopy}
               className="border-border bg-card type-caption text-foreground hover:bg-muted cursor-pointer rounded-full border px-3.5 py-2 font-semibold transition-colors"
             >
-              Copy
+              {copied
+                ? t("signup__completion__copied")
+                : t("signup__completion__copy")}
             </button>
           </div>
 
           <div className="tablet:grid-cols-3 mt-9 grid gap-3.5 text-left">
-            {NEXT_STEPS.map((step) => (
-              <NextStepCard key={step.title} {...step} />
-            ))}
+            <NextStepCard
+              emoji="\uD83D\uDCEC"
+              title={t("signup__completion__next_share_title")}
+              description={t("signup__completion__next_share_body")}
+            />
+            <NextStepCard
+              emoji="\u2709\uFE0F"
+              title={t("signup__completion__next_dashboard_title")}
+              description={t("signup__completion__next_dashboard_body")}
+            />
+            <NextStepCard
+              emoji="\uD83C\uDFA8"
+              title={t("signup__completion__next_customize_title")}
+              description={t("signup__completion__next_customize_body")}
+            />
           </div>
 
           <div className="mt-9 flex flex-wrap justify-center gap-3">
@@ -144,8 +344,8 @@ export const CompletionStep = () => {
               size="lg"
               className="shadow-primary/40 rounded-full shadow-md"
             >
-              <Link href="/dashboard">
-                Open your dashboard
+              <Link href="/app">
+                {t("signup__completion__open_dashboard")}
                 <ArrowRight width={15} height={15} />
               </Link>
             </Button>
@@ -155,7 +355,9 @@ export const CompletionStep = () => {
               size="lg"
               className="rounded-full"
             >
-              <Link href={`/g/${bookUrl}`}>Preview guest view</Link>
+              <Link href={`/g/${state.slug}`}>
+                {t("signup__completion__preview_guest")}
+              </Link>
             </Button>
           </div>
         </div>
@@ -164,13 +366,3 @@ export const CompletionStep = () => {
   );
 };
 
-const SuccessIcon = () => (
-  <div className="bg-secondary mb-7.5 inline-flex size-25 items-center justify-center rounded-full shadow-[0_0_0_14px_oklch(0.833_0.132_151.8/0.15),0_0_0_30px_oklch(0.833_0.132_151.8/0.07),0_20px_50px_oklch(0.833_0.132_151.8/0.45)]">
-    <Check
-      width={44}
-      height={44}
-      className="text-primary-foreground"
-      strokeWidth={3}
-    />
-  </div>
-);

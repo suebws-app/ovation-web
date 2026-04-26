@@ -1,3 +1,146 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Button } from "@ovation/ui/components/Button";
+import { Input } from "@ovation/ui/components/Input";
+import { Label } from "@ovation/ui/components/Label";
+import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Logo } from "@ovation/ui/components/Logo";
+import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { Link, useRouter } from "@/i18n/navigation";
+import { authClient } from "@/lib/api/auth-client";
+import { ApiError } from "@/lib/api/client";
+import {
+  getResetPasswordSchema,
+  type ResetPasswordFields,
+} from "./resetPasswordSchema";
+
 export const ResetPasswordPage = () => {
-  return <div>{/* TODO: New password form */}</div>;
+  const t = useTranslations();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const accessToken =
+    searchParams.get("access_token") ?? searchParams.get("token") ?? "";
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const schema = useMemo(() => getResetPasswordSchema(t), [t]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ResetPasswordFields>({
+    defaultValues: { newPassword: "", confirmPassword: "" },
+    resolver: standardSchemaResolver(schema),
+    mode: "onTouched",
+    reValidateMode: "onChange",
+  });
+
+  const onSubmit = async (values: ResetPasswordFields) => {
+    setSubmitError(null);
+    if (!accessToken) {
+      setSubmitError(t("auth__reset__missing_token"));
+      return;
+    }
+    try {
+      await authClient.resetPassword({
+        accessToken,
+        newPassword: values.newPassword,
+      });
+      router.replace("/sign-in?reset=ok");
+    } catch (error) {
+      setSubmitError(
+        ApiError.isApiError(error)
+          ? error.message
+          : t("auth__reset__error_generic"),
+      );
+    }
+  };
+
+  return (
+    <div className="tablet:px-20 mx-auto flex min-h-screen w-full max-w-130 flex-col px-6 py-12">
+      <Logo />
+      <div className="mt-16 flex flex-1 flex-col">
+        <Eyebrow className="text-primary mb-2.5">
+          {t("auth__reset__eyebrow")}
+        </Eyebrow>
+        <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+          {t("auth__reset__title")}
+          <br />
+          <span className="text-primary italic">
+            {t("auth__reset__title_emphasis")}
+          </span>
+        </h1>
+        <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
+          {t("auth__reset__subtitle")}
+        </p>
+
+        <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-9">
+          <div className="space-y-5">
+            <div>
+              <Label htmlFor="new-password" className="mb-2">
+                {t("auth__reset__new_password_label")}
+              </Label>
+              <Input
+                id="new-password"
+                type="password"
+                autoComplete="new-password"
+                placeholder={t("auth__reset__new_password_placeholder")}
+                aria-invalid={Boolean(errors.newPassword)}
+                {...register("newPassword")}
+              />
+              {errors.newPassword && (
+                <p className="type-caption text-destructive mt-1.5">
+                  {errors.newPassword.message}
+                </p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="confirm-password" className="mb-2">
+                {t("auth__reset__confirm_password_label")}
+              </Label>
+              <Input
+                id="confirm-password"
+                type="password"
+                autoComplete="new-password"
+                placeholder={t("auth__reset__confirm_password_placeholder")}
+                aria-invalid={Boolean(errors.confirmPassword)}
+                {...register("confirmPassword")}
+              />
+              {errors.confirmPassword && (
+                <p className="type-caption text-destructive mt-1.5">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {submitError && (
+            <p className="type-body-small text-destructive mt-4" role="alert">
+              {submitError}
+            </p>
+          )}
+
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            size="lg"
+            className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
+          >
+            {isSubmitting ? t("auth__reset__saving") : t("auth__reset__submit")}
+            <ArrowRight width={16} height={16} />
+          </Button>
+        </form>
+
+        <p className="type-body-small text-muted-foreground mt-9 text-center">
+          <Link href="/sign-in" className="text-foreground font-semibold">
+            {t("auth__reset__back_signin")}
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 };

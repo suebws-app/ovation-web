@@ -1,55 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@ovation/ui/utils/cn";
+import { useTranslations } from "next-intl";
+import { FilterTab } from "./FilterTab";
 
-const FILTERS = ["All", "Printed", "Digital", "Physical", "Gifts"];
+const FILTER_KEYS = [
+  "keepsakes__filter__all",
+  "keepsakes__filter__printed",
+  "keepsakes__filter__digital",
+  "keepsakes__filter__physical",
+  "keepsakes__filter__gifts",
+];
 
 type FilterTabsProps = {
   onChange?: (filter: string) => void;
 };
 
 export const FilterTabs = ({ onChange }: FilterTabsProps) => {
-  const [active, setActive] = useState("All");
+  const t = useTranslations();
+  const [activeKey, setActiveKey] = useState(FILTER_KEYS[0]);
 
-  const handleClick = (filter: string) => {
-    setActive(filter);
-    onChange?.(filter);
+  const handleClick = (key: string) => {
+    setActiveKey(key);
+    onChange?.(t(key));
   };
 
   return (
     <div className="flex gap-1.5 overflow-auto">
-      {FILTERS.map((f) => (
+      {FILTER_KEYS.map((key) => (
         <FilterTab
-          key={f}
-          label={f}
-          active={active === f}
-          onClick={() => handleClick(f)}
+          key={key}
+          label={t(key)}
+          active={activeKey === key}
+          onClick={() => handleClick(key)}
         />
       ))}
     </div>
   );
 };
-
-const FilterTab = ({
-  label,
-  active,
-  onClick,
-}: {
-  label: string;
-  active: boolean;
-  onClick: () => void;
-}) => (
-  <button
-    type="button"
-    onClick={onClick}
-    className={cn(
-      "type-caption cursor-pointer rounded-full px-3 py-1.5 font-semibold whitespace-nowrap transition-colors",
-      active
-        ? "bg-foreground text-background"
-        : "border-border bg-card text-muted-foreground hover:bg-muted border",
-    )}
-  >
-    {label}
-  </button>
-);

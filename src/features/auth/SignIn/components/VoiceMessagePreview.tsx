@@ -1,3 +1,5 @@
+import { VoiceWaveformBar } from "./VoiceWaveformBar";
+
 type VoiceMessagePreviewProps = {
   name: string;
   role: string;
@@ -5,6 +7,8 @@ type VoiceMessagePreviewProps = {
   initial: string;
   tint: string;
 };
+
+const HEIGHTS = [0.4, 0.7, 1, 0.8, 0.5, 0.9, 0.6, 0.3];
 
 export const VoiceMessagePreview = ({
   name,
@@ -27,16 +31,9 @@ export const VoiceMessagePreview = ({
       </p>
     </div>
     <div className="ml-2 flex items-center gap-0.5">
-      {[0.4, 0.7, 1, 0.8, 0.5, 0.9, 0.6, 0.3].map((h, i) => (
-        <WaveformBar key={i} height={h} />
+      {HEIGHTS.map((h, i) => (
+        <VoiceWaveformBar key={i} height={h} />
       ))}
     </div>
   </div>
-);
-
-const WaveformBar = ({ height }: { height: number }) => (
-  <span
-    className="w-[3px] rounded-full bg-white"
-    style={{ height: `${height * 22}px` }}
-  />
 );
