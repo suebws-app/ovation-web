@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
-import { Check } from "@ovation/icons/Check";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { paymentsClient } from "@/lib/api/payments-client";
