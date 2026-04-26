@@ -3,7 +3,10 @@ type WaveformBarProps = {
   variant: "primary" | "mini";
 };
 
-export const HowItWorksWaveformBar = ({ height, variant }: WaveformBarProps) => (
+export const HowItWorksWaveformBar = ({
+  height,
+  variant,
+}: WaveformBarProps) => (
   <div
     className={
       variant === "primary"

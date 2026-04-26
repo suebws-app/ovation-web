@@ -12,7 +12,10 @@ type SendArgs = {
 
 const send = async ({ to, subject, html }: SendArgs) => {
   if (!resend) {
-    console.warn("[email] RESEND_API_KEY missing — email skipped", { to, subject });
+    console.warn("[email] RESEND_API_KEY missing — email skipped", {
+      to,
+      subject,
+    });
     return;
   }
   await resend.emails.send({ from: env.EMAIL_FROM, to, subject, html });

@@ -35,7 +35,9 @@ export const HowItWorksStep = ({
         </span>
       </div>
 
-      <div className="flex h-40 items-center justify-center">{illustration}</div>
+      <div className="flex h-40 items-center justify-center">
+        {illustration}
+      </div>
 
       <div className="mt-auto">
         <h3 className="type-h2 font-serif font-semibold">{title}</h3>

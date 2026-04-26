@@ -38,7 +38,9 @@ export const SectionButton = ({
     >
       <Icon width={14} height={14} />
       {t(section.labelKey)}
-      {filled && <span className="bg-secondary ml-auto size-1.5 rounded-full" />}
+      {filled && (
+        <span className="bg-secondary ml-auto size-1.5 rounded-full" />
+      )}
       {!open && <Plus width={12} height={12} className="ml-auto opacity-60" />}
     </button>
   );

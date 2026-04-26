@@ -4,10 +4,7 @@ import { betterAuth } from "better-auth";
 import { nextCookies } from "better-auth/next-js";
 import { Pool } from "pg";
 import { env } from "@/lib/utils/env";
-import {
-  sendResetPasswordEmail,
-  sendVerificationEmail,
-} from "./email-sender";
+import { sendResetPasswordEmail, sendVerificationEmail } from "./email-sender";
 
 if (env.IS_PRODUCTION) {
   if (!env.AUTH_COOKIE_SECRET) {

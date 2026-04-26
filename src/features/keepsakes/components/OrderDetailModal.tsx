@@ -29,8 +29,7 @@ export const OrderDetailModal = ({
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const order = data?.order;
-  const canRefund =
-    order?.status === "paid" || order?.status === "delivered";
+  const canRefund = order?.status === "paid" || order?.status === "delivered";
 
   const handleRefund = async () => {
     setSubmitError(null);

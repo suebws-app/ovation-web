@@ -69,7 +69,9 @@ export const PhotoTile = ({
 
         {showSelect && <PhotoSelectIndicator selected={selected} />}
         {favorited && <PhotoFavouriteIndicator />}
-        {hasAudio && audioDuration && <PhotoAudioBadge duration={audioDuration} />}
+        {hasAudio && audioDuration && (
+          <PhotoAudioBadge duration={audioDuration} />
+        )}
 
         <div className="type-caption absolute right-2 bottom-2 left-2 flex items-baseline justify-between font-semibold text-white drop-shadow-sm">
           <span className="truncate">{name}</span>
