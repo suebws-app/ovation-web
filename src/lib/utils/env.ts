@@ -13,6 +13,10 @@ export const env = {
 
   // Better Auth secret + OAuth providers (server-only)
   BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET ?? "",
+  TRUSTED_ORIGINS: (process.env.TRUSTED_ORIGINS ?? "http://localhost:3000")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean),
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   APPLE_CLIENT_ID: process.env.APPLE_CLIENT_ID,
