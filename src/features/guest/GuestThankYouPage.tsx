@@ -62,7 +62,7 @@ export const GuestThankYouPage = async ({ params }: GuestThankYouPageProps) => {
 
         {event.submissionOpen && !event.limitReached && (
           <Button asChild className="mt-9 rounded-full" variant="outline">
-            <Link href={`/g/${slug}/record`}>{t("guest__thank_you__cta")}</Link>
+            <Link href={`/g/${slug}/compose`}>{t("guest__thank_you__cta")}</Link>
           </Button>
         )}
 
