@@ -41,8 +41,8 @@ pnpm start:dev   # leave running on :3001
 # 2. Configure ovation-web env
 cd ../ovation-web
 cp .env.example .env.local
-# Use the same AUTH_COOKIE_SECRET / AUTH_HASH_PEPPER / AUTH_INTERNAL_SECRET
-# values you set in ovation-api/.env. They must match.
+# Use the same AUTH_COOKIE_SECRET / AUTH_HASH_PEPPER values you set in
+# ovation-api/.env. They must match.
 
 # 3. Install + run
 pnpm install
