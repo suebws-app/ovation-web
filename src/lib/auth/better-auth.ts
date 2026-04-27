@@ -119,6 +119,18 @@ export const auth = betterAuth({
       trustedProviders: ["google"], // never apple — relay emails
       allowDifferentEmails: false,
     },
+    fields: {
+      userId: "user_id",
+      accountId: "account_id",
+      providerId: "provider_id",
+      accessToken: "access_token",
+      refreshToken: "refresh_token",
+      idToken: "id_token",
+      accessTokenExpiresAt: "access_token_expires_at",
+      refreshTokenExpiresAt: "refresh_token_expires_at",
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   },
 
   user: {
@@ -153,6 +165,47 @@ export const auth = betterAuth({
     // Account linking and password change require the session to have
     // re-authenticated within the last 5 minutes.
     freshAge: 5 * 60,
+    fields: {
+      userId: "user_id",
+      expiresAt: "expires_at",
+      ipAddress: "ip_address",
+      userAgent: "user_agent",
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+    additionalFields: {
+      csrfToken: {
+        type: "string",
+        required: true,
+        fieldName: "csrf_token",
+      },
+      lastUsedAt: {
+        type: "date",
+        required: true,
+        fieldName: "last_used_at",
+      },
+      freshAuthAt: {
+        type: "date",
+        required: true,
+        fieldName: "fresh_auth_at",
+      },
+      lastIpHash: {
+        type: "string",
+        required: false,
+        fieldName: "last_ip_hash",
+      },
+      lastUaHash: {
+        type: "string",
+        required: false,
+        fieldName: "last_ua_hash",
+      },
+      riskScore: {
+        type: "number",
+        required: true,
+        defaultValue: 0,
+        fieldName: "risk_score",
+      },
+    },
   },
 
   rateLimit: {
@@ -252,6 +305,9 @@ export const auth = betterAuth({
       sameSite: "lax",
       secure: env.IS_PRODUCTION,
       httpOnly: true,
+    },
+    database: {
+      generateId: "uuid",
     },
   },
 
