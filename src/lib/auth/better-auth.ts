@@ -174,27 +174,9 @@ export const auth = betterAuth({
       updatedAt: "updated_at",
     },
     additionalFields: {
-<<<<<<< Updated upstream
-      csrfToken: {
-        type: "string",
-        required: true,
-        fieldName: "csrf_token",
-      },
-      lastUsedAt: {
-        type: "date",
-        required: true,
-        fieldName: "last_used_at",
-      },
-      freshAuthAt: {
-        type: "date",
-        required: true,
-        fieldName: "fresh_auth_at",
-      },
-=======
       csrfToken: { type: "string", required: true, fieldName: "csrf_token" },
       lastUsedAt: { type: "date", required: true, fieldName: "last_used_at" },
       freshAuthAt: { type: "date", required: true, fieldName: "fresh_auth_at" },
->>>>>>> Stashed changes
       lastIpHash: {
         type: "string",
         required: false,
@@ -205,16 +187,7 @@ export const auth = betterAuth({
         required: false,
         fieldName: "last_ua_hash",
       },
-<<<<<<< Updated upstream
-      riskScore: {
-        type: "number",
-        required: true,
-        defaultValue: 0,
-        fieldName: "risk_score",
-      },
-=======
       riskScore: { type: "number", required: true, fieldName: "risk_score" },
->>>>>>> Stashed changes
     },
   },
 
