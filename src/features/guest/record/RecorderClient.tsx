@@ -28,10 +28,8 @@ type RecorderClientProps = {
 
 const findTarget = (
   targets: UploadTarget[],
-  hint: "audio" | "video" | "photo",
-): UploadTarget | undefined =>
-  targets.find((target) => target.key.includes(`/${hint}/`)) ??
-  targets.find((target) => target.key.startsWith(`${hint}/`));
+  kind: "audio" | "video" | "photo",
+): UploadTarget | undefined => targets.find((target) => target.kind === kind);
 
 const newIdempotencyKey = (): string => {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {

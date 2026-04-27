@@ -76,7 +76,7 @@ export const auth = betterAuth({
 
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: true,
+    requireEmailVerification: false,
     minPasswordLength: 8,
     autoSignIn: true,
     sendResetPassword: async ({ user, url }) => {
@@ -174,6 +174,7 @@ export const auth = betterAuth({
       updatedAt: "updated_at",
     },
     additionalFields: {
+<<<<<<< Updated upstream
       csrfToken: {
         type: "string",
         required: true,
@@ -189,6 +190,11 @@ export const auth = betterAuth({
         required: true,
         fieldName: "fresh_auth_at",
       },
+=======
+      csrfToken: { type: "string", required: true, fieldName: "csrf_token" },
+      lastUsedAt: { type: "date", required: true, fieldName: "last_used_at" },
+      freshAuthAt: { type: "date", required: true, fieldName: "fresh_auth_at" },
+>>>>>>> Stashed changes
       lastIpHash: {
         type: "string",
         required: false,
@@ -199,17 +205,21 @@ export const auth = betterAuth({
         required: false,
         fieldName: "last_ua_hash",
       },
+<<<<<<< Updated upstream
       riskScore: {
         type: "number",
         required: true,
         defaultValue: 0,
         fieldName: "risk_score",
       },
+=======
+      riskScore: { type: "number", required: true, fieldName: "risk_score" },
+>>>>>>> Stashed changes
     },
   },
 
   rateLimit: {
-    enabled: true,
+    enabled: false,
     storage: "database",
     modelName: "rate_limit",
     window: 60,
@@ -296,6 +306,9 @@ export const auth = betterAuth({
   },
 
   advanced: {
+    database: {
+      generateId: "uuid",
+    },
     cookiePrefix: "ovation",
     useSecureCookies: env.IS_PRODUCTION,
     crossSubDomainCookies: env.COOKIE_DOMAIN

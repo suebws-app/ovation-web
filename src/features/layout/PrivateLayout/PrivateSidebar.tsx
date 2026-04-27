@@ -12,10 +12,11 @@ import {
   SidebarGroupLabel,
 } from "@ovation/ui/components/Sidebar";
 import { Logo } from "@ovation/ui/components/Logo";
-import { Avatar } from "@ovation/ui/components/Avatar";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import type { User } from "@/lib/api/types";
 import { SidebarNavItem } from "./SidebarNavItem";
+import { NavUser } from "./NavUser";
 import { Home } from "@ovation/icons/Home";
 import { MessageSquare } from "@ovation/icons/MessageSquare";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
@@ -27,7 +28,11 @@ import { UserPlus } from "@ovation/icons/UserPlus";
 import { HelpCircle } from "@ovation/icons/HelpCircle";
 import { Users } from "@ovation/icons/Users";
 
-export const PrivateSideBar = () => {
+type PrivateSideBarProps = {
+  user: User;
+};
+
+export const PrivateSideBar = ({ user }: PrivateSideBarProps) => {
   const t = useTranslations();
   const pathname = usePathname();
 
@@ -104,16 +109,7 @@ export const PrivateSideBar = () => {
       </SidebarContent>
 
       <SidebarFooter className="border-sidebar-border border-t">
-        <div className="flex items-center gap-3">
-          <Avatar
-            initials={t("sidebar__couple_initials")}
-            tint="#EFC9A8"
-            size="md"
-          />
-          <span className="type-body-small text-foreground font-semibold">
-            {t("sidebar__couple_name")}
-          </span>
-        </div>
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );

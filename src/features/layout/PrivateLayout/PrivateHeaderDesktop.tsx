@@ -11,9 +11,16 @@ import {
   BreadcrumbSeparator,
 } from "@ovation/ui/components/Breadcrumb";
 import { isLocale } from "@/lib/utils/isLocale";
+import type { Subscription } from "@/lib/api/types";
 import { KeepsakesActions } from "./KeepsakesActions";
 
-export const PrivateHeaderDesktop = () => {
+type PrivateHeaderDesktopProps = {
+  subscription: Subscription | null;
+};
+
+export const PrivateHeaderDesktop = ({
+  subscription,
+}: PrivateHeaderDesktopProps) => {
   const pathname = usePathname();
   const segments = pathname
     .split("/")
@@ -52,7 +59,7 @@ export const PrivateHeaderDesktop = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      {isKeepsakes && <KeepsakesActions />}
+      {isKeepsakes && <KeepsakesActions subscription={subscription} />}
     </header>
   );
 };

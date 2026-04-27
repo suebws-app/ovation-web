@@ -23,7 +23,7 @@ export const StyleOption = ({
   >
     <div
       className={cn(
-        "rounded-10 p-2 transition-all",
+        "rounded-10 flex items-center justify-center p-2 transition-all",
         active
           ? "border-primary shadow-input border-2"
           : "border-border border",

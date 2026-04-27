@@ -8,6 +8,8 @@ import { QRTabButton } from "./QRTabButton";
 type QRStageProps = {
   coupleName: string;
   shortUrl: string;
+  dark: string;
+  light: string;
 };
 
 const displayUrl = (raw: string): string => {
@@ -19,7 +21,17 @@ const displayUrl = (raw: string): string => {
   }
 };
 
-export const QRStage = ({ coupleName, shortUrl }: QRStageProps) => {
+const buildLogoSrc = (background: string, foreground: string) => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="${background}"/><text x="24" y="33" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="700" fill="${foreground}">O</text></svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+};
+
+export const QRStage = ({
+  coupleName,
+  shortUrl,
+  dark,
+  light,
+}: QRStageProps) => {
   const t = useTranslations();
   const [activeTab, setActiveTab] = useState(0);
   const tabs = [
@@ -27,6 +39,8 @@ export const QRStage = ({ coupleName, shortUrl }: QRStageProps) => {
     t("qr__stage__tab_with_photo"),
     t("qr__stage__tab_poster"),
   ];
+
+  const logoSrc = buildLogoSrc(dark, light);
 
   return (
     <div className="rounded-20 from-primary to-primary/80 tablet:p-12 relative flex flex-col items-center gap-5 overflow-hidden bg-gradient-to-br p-7">
@@ -54,14 +68,23 @@ export const QRStage = ({ coupleName, shortUrl }: QRStageProps) => {
         </p>
       </div>
 
-      <div className="rounded-16 bg-card relative p-5 shadow-lg">
+      <div
+        className="rounded-16 relative p-5 shadow-lg"
+        style={{ background: light }}
+      >
         <QRCodeSVG
           value={shortUrl}
           size={220}
-          level="M"
+          level="H"
           marginSize={0}
-          fgColor="#2D2D2D"
-          bgColor="#ffffff"
+          fgColor={dark}
+          bgColor={light}
+          imageSettings={{
+            src: logoSrc,
+            height: 44,
+            width: 44,
+            excavate: true,
+          }}
         />
       </div>
 

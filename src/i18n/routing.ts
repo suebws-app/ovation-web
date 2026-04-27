@@ -4,5 +4,5 @@ import { locales, defaultLocale } from "./config";
 export const routing = defineRouting({
   locales,
   defaultLocale,
-  localePrefix: "as-needed", // no /en prefix for default locale
+  localePrefix: "always",
 });

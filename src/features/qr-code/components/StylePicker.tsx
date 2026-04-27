@@ -1,34 +1,39 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { cn } from "@ovation/ui/utils/cn";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { StyleOption } from "./StyleOption";
+import type { QRStyle } from "./QRCodeStudio";
 
-export const StylePicker = () => {
+type StylePickerProps = {
+  selectedId: string;
+  onSelectStyle: (style: QRStyle) => void;
+};
+
+export const StylePicker = ({
+  selectedId,
+  onSelectStyle,
+}: StylePickerProps) => {
   const t = useTranslations();
-  const [selected, setSelected] = useState("classic");
-  const [showLogo, setShowLogo] = useState(true);
 
-  const styles = [
+  const styles: Array<QRStyle & { label: string }> = [
     {
       id: "classic",
       label: t("qr_code__style__classic"),
       dark: "#2D2D2D",
-      light: "#fff",
+      light: "#ffffff",
     },
     {
       id: "blue",
       label: t("qr_code__style__cornflower"),
       dark: "#5a7fd4",
-      light: "#fff",
+      light: "#ffffff",
     },
     {
       id: "peach",
       label: t("qr_code__style__peach"),
       dark: "#EC8662",
-      light: "#fff",
+      light: "#ffffff",
     },
     {
       id: "sand",
@@ -50,28 +55,13 @@ export const StylePicker = () => {
             label={s.label}
             dark={s.dark}
             light={s.light}
-            active={selected === s.id}
-            onClick={() => setSelected(s.id)}
+            active={selectedId === s.id}
+            onClick={() =>
+              onSelectStyle({ id: s.id, dark: s.dark, light: s.light })
+            }
           />
         ))}
       </div>
-      <label className="type-caption text-muted-foreground mt-3.5 flex cursor-pointer items-center gap-2">
-        <span
-          className={cn(
-            "relative inline-block h-5 w-8.5 rounded-full transition-colors",
-            showLogo ? "bg-primary shadow-input" : "bg-border",
-          )}
-          onClick={() => setShowLogo(!showLogo)}
-        >
-          <span
-            className={cn(
-              "bg-card absolute top-0.5 size-4 rounded-full shadow-sm transition-all",
-              showLogo ? "left-4" : "left-0.5",
-            )}
-          />
-        </span>
-        {t("qr_code__style__include_logo")}
-      </label>
     </div>
   );
 };

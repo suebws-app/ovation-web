@@ -1,7 +1,7 @@
 import type { UploadTarget } from "@/lib/api/types";
 
 export const uploadToTarget = async (
-  target: UploadTarget,
+  target: Pick<UploadTarget, "url" | "key" | "fields">,
   blob: Blob,
 ): Promise<void> => {
   if (target.fields) {

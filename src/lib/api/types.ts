@@ -9,7 +9,7 @@ export const SUPPORTED_LANGUAGES = [
 
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
-export type EventStatus = "draft" | "active" | "archived";
+export type EventStatus = "draft" | "active" | "paused" | "archived";
 
 export type PlanTier = "essentials" | "premium" | "bundle";
 
@@ -72,6 +72,7 @@ export type Event = {
   planTier: PlanTier | string | null;
   messageLimit: number | null;
   status: EventStatus | string;
+  submissionsEnabled: boolean;
   defaultLanguage: SupportedLanguage | string;
   createdAt: string;
   updatedAt: string;
@@ -134,6 +135,7 @@ export type UpdateEventInput = Partial<CreateEventInput> & {
   defaultLanguage?: SupportedLanguage;
   slug?: string;
   kioskPin?: string;
+  submissionsEnabled?: boolean;
 };
 
 export type ListEventsQuery = {
@@ -213,6 +215,7 @@ export type UploadTarget = {
   key: string;
   url: string;
   fields?: Record<string, string>;
+  kind: "audio" | "video" | "photo";
 };
 
 export type UploadUrlsResult = {
@@ -353,6 +356,31 @@ export type CheckoutSessionResult = {
   orderId: string;
   checkoutUrl: string;
   providerSessionId: string;
+};
+
+export type Plan = {
+  id: string;
+  code: string;
+  name: string;
+  description: string | null;
+  priceCents: number;
+  currency: string;
+  messageLimit: number | null;
+  storageDays: number | null;
+  creditCents: number;
+  sortOrder: number;
+};
+
+export type Subscription = {
+  id: string;
+  eventId: string;
+  planId: string;
+  planCode: string;
+  planName: string;
+  status: string;
+  creditCentsRemaining: number;
+  activatedAt: string;
+  expiresAt: string | null;
 };
 
 export type CoverPhotoContentType =

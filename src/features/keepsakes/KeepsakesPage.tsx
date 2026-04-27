@@ -12,7 +12,7 @@ import { TestimonialStrip } from "./components/TestimonialStrip";
 export const KeepsakesPage = async () => {
   const [catalog, ordersResult, eventsResult] = await Promise.all([
     keepsakesApi.catalog(),
-    ordersApi.list({ limit: 5 }).catch((error) => {
+    ordersApi.list({ limit: 5, orderType: "keepsake" }).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404)
         return { items: [], nextCursor: null };
       throw error;

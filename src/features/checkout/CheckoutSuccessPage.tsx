@@ -7,6 +7,7 @@ import { Check } from "@ovation/icons/Check";
 import { ApiError } from "@/lib/api/client";
 import { ordersApi } from "@/lib/api/orders";
 import { Link } from "@/i18n/navigation";
+import { PlanActivatedSuccess } from "./PlanActivatedSuccess";
 import {
   formatOrderDate,
   formatPrice,
@@ -30,6 +31,11 @@ export const CheckoutSuccessPage = async ({
 
   if (!result) notFound();
   const { order } = result;
+
+  if (order.orderType === "plan") {
+    return <PlanActivatedSuccess />;
+  }
+
   const progress = progressFor(order.status);
   const currency = "EUR";
 
