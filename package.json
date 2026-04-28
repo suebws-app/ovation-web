@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@vidstack/react": "^1.12.13",
     "@ovation/icons": "workspace:*",
     "@ovation/illustrations": "workspace:*",
     "@ovation/ui": "workspace:*",
