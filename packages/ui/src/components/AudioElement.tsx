@@ -26,7 +26,7 @@ export const AudioElement = forwardRef<MediaPlayerInstance, AudioElementProps>(
       onError={(detail) => {
         console.error("[audio] vidstack error", detail);
       }}
-      className={cn("sr-only", className)}
+      className={cn("hidden", className)}
     >
       <MediaProvider />
     </MediaPlayer>
