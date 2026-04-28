@@ -1,6 +1,6 @@
 "use client";
 
-import { AudioElement } from "@ovation/ui/components/AudioElement";
+import { AudioMount } from "@ovation/ui/components/AudioMount";
 import type { EventStats } from "@/lib/api/types";
 import type { AudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import { MessageToolbar } from "./components/MessageToolbar";
@@ -36,7 +36,7 @@ export const MessagesPageClient = ({
           <ConnectedBatchFooter />
         </div>
         <ConnectedMessageDetailPane player={player} />
-        <AudioElement ref={player.playerRef} src={player.src} />
+        <AudioMount player={player} />
       </div>
     </MessagesEventProvider>
   );
