@@ -28,6 +28,8 @@ export type CreateMessageInput = {
   submissionSource: SubmissionSource;
   submissionLanguage?: string | null;
   clientCreatedAt?: string | null;
+  _honeypot?: string;
+  _t?: number;
 };
 
 export const publicClient = {

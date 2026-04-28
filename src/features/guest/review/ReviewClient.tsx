@@ -68,6 +68,7 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
   const [progressLabel, setProgressLabel] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [idempotencyKey] = useState(newIdempotencyKey);
+  const [pageLoadedAt] = useState(() => Date.now());
 
   const hasNote = note.trim().length > 0;
   const hasAnyContent = Boolean(audio || video || photo) || hasNote;
@@ -138,6 +139,8 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
         submissionSource,
         submissionLanguage: locale,
         clientCreatedAt: new Date().toISOString(),
+        _honeypot: "",
+        _t: pageLoadedAt,
       });
 
       reset();
