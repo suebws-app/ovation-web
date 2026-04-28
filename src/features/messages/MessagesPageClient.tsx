@@ -22,6 +22,7 @@ import type {
 import { messagesClient } from "@/lib/api/messages-client";
 import { downloadManyMessages } from "@/lib/media/downloadMessageAssets";
 
+import { AudioElement } from "@ovation/ui/components/AudioElement";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 
 import { MessageBatchFooter } from "./components/MessageBatchFooter";
@@ -312,7 +313,7 @@ export const MessagesPageClient = ({
           if (player.playingId === activeMessage?.id) player.seekRatio(ratio);
         }}
       />
-      <audio ref={player.audioRef} {...player.audioProps} className="hidden" />
+      <AudioElement ref={player.playerRef} src={player.src} />
     </div>
   );
 };

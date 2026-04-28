@@ -7,6 +7,7 @@ import {
   useMessageDetail,
   useUpdateMessage,
 } from "@/lib/query/messagesQueries";
+import { AudioElement } from "@ovation/ui/components/AudioElement";
 import { MessageDetailPane } from "./components/MessageDetailPane";
 import { useMessageAudioPlayer } from "./hooks/useMessageAudioPlayer";
 import {
@@ -101,7 +102,7 @@ export const MessageDetailPageClient = ({
         }}
         fullScreen
       />
-      <audio ref={player.audioRef} {...player.audioProps} className="hidden" />
+      <AudioElement ref={player.playerRef} src={player.src} />
     </div>
   );
 };
