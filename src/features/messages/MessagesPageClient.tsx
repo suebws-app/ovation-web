@@ -36,7 +36,7 @@ export const MessagesPageClient = ({
           <ConnectedBatchFooter />
         </div>
         <ConnectedMessageDetailPane player={player} />
-        <AudioElement ref={player.playerRef} src={player.src} />
+        <AudioElement src={player.src} />
       </div>
     </MessagesEventProvider>
   );
