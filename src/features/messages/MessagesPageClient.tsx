@@ -29,7 +29,7 @@ import { MessageDayList } from "./components/MessageDayList";
 import { MessageDetailPane } from "./components/MessageDetailPane";
 import { MessageToolbar } from "./components/MessageToolbar";
 import { toMessageRowView } from "./adapters";
-import { useMessageAudioPlayer } from "./useMessageAudioPlayer";
+import { useMessageAudioPlayer } from "./hooks/useMessageAudioPlayer";
 import { formatDurationLong } from "./utils";
 
 type MessagesPageClientProps = {
@@ -312,16 +312,7 @@ export const MessagesPageClient = ({
           if (player.playingId === activeMessage?.id) player.seekRatio(ratio);
         }}
       />
-      <audio
-        ref={player.audioRef}
-        onPlay={player.handlePlay}
-        onPause={player.handlePause}
-        onTimeUpdate={player.handleTimeUpdate}
-        onLoadedMetadata={player.handleLoadedMetadata}
-        onDurationChange={player.handleDurationChange}
-        onEnded={player.handleEnded}
-        className="hidden"
-      />
+      <audio ref={player.audioRef} {...player.audioProps} className="hidden" />
     </div>
   );
 };

@@ -8,7 +8,7 @@ import {
   useUpdateMessage,
 } from "@/lib/query/messagesQueries";
 import { MessageDetailPane } from "./components/MessageDetailPane";
-import { useMessageAudioPlayer } from "./useMessageAudioPlayer";
+import { useMessageAudioPlayer } from "./hooks/useMessageAudioPlayer";
 import {
   formatDurationShort,
   initialsFrom,
@@ -101,16 +101,7 @@ export const MessageDetailPageClient = ({
         }}
         fullScreen
       />
-      <audio
-        ref={player.audioRef}
-        onPlay={player.handlePlay}
-        onPause={player.handlePause}
-        onTimeUpdate={player.handleTimeUpdate}
-        onLoadedMetadata={player.handleLoadedMetadata}
-        onDurationChange={player.handleDurationChange}
-        onEnded={player.handleEnded}
-        className="hidden"
-      />
+      <audio ref={player.audioRef} {...player.audioProps} className="hidden" />
     </div>
   );
 };
