@@ -17,6 +17,11 @@ import {
 import { downloadMessageAssets } from "@/lib/media/downloadMessageAssets";
 import { formatTimeShort } from "../adapters";
 
+import { MediaPlayer, MediaProvider } from "@vidstack/react";
+import {
+  defaultLayoutIcons,
+  DefaultVideoLayout,
+} from "@vidstack/react/player/layouts/default";
 import Image from "next/image";
 import type { MessageRowView } from "../adapters";
 
@@ -225,12 +230,17 @@ export const MessageDetailPane = ({
               </a>
             )}
             {videoUrl && (
-              <video
-                src={videoUrl}
-                controls
-                preload="metadata"
-                className="rounded-12 bg-muted block aspect-square size-full h-40 w-40 object-cover"
-              />
+              <div className="rounded-12 bg-muted block aspect-square size-full h-40 w-40 overflow-hidden">
+                <MediaPlayer
+                  src={videoUrl}
+                  viewType="video"
+                  load="visible"
+                  className="size-full"
+                >
+                  <MediaProvider />
+                  <DefaultVideoLayout icons={defaultLayoutIcons} />
+                </MediaPlayer>
+              </div>
             )}
           </div>
         </div>
