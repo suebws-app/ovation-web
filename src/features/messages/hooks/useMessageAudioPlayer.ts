@@ -2,7 +2,7 @@
 
 import { useCallback } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { useHtmlAudioPlayer } from "@ovation/ui/hooks/useHtmlAudioPlayer";
+import { useAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import { messagesClient } from "@/lib/api/messages-client";
 import { queryKeys } from "@/lib/query/keys";
 import type { MessageDetail } from "@/lib/api/types";
@@ -24,5 +24,5 @@ export const useMessageAudioPlayer = (eventId: string) => {
     [eventId, qc],
   );
 
-  return useHtmlAudioPlayer({ resolveSrc });
+  return useAudioPlayer({ resolveSrc });
 };
