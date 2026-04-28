@@ -55,8 +55,7 @@ export const MessagesFilterRail = () => {
   };
 
   const allSelected =
-    messageViews.length > 0 &&
-    messageViews.every((m) => selectedIds.has(m.id));
+    messageViews.length > 0 && messageViews.every((m) => selectedIds.has(m.id));
 
   const handleToggleAll = () => {
     if (allSelected) clearSelection();

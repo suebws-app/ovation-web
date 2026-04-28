@@ -19,9 +19,7 @@ export type AudioPlayer = {
   seekRatio: (ratio: number) => void;
 };
 
-export const useAudioPlayer = (
-  options: UseAudioPlayerOptions,
-): AudioPlayer => {
+export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
   const { resolveSrc } = options;
   const playerRef = useRef<MediaPlayerInstance | null>(null);
   const [playingId, setPlayingId] = useState<string | null>(null);
