@@ -29,6 +29,7 @@ export class ApiError extends Error {
 export type ApiFetchOptions = Omit<RequestInit, "body"> & {
   body?: unknown;
   query?: Record<string, string | number | boolean | undefined>;
+  skipCsrf?: boolean;
 };
 
 export type Paginated<T> = {
@@ -61,8 +62,9 @@ export const buildRequestInit = (
   options: ApiFetchOptions,
   authHeader?: string,
 ): RequestInit => {
-  const { body, query, headers, ...rest } = options;
+  const { body, query, headers, skipCsrf, ...rest } = options;
   void query;
+  void skipCsrf;
   return {
     ...rest,
     cache: rest.cache ?? "no-store",
@@ -121,11 +123,10 @@ export const clientFetch = async <T>(
 ): Promise<T> => {
   const method = (options.method ?? "GET").toUpperCase();
   const init = buildRequestInit(options);
-  const res = await fetchWithCsrfRetry(
-    buildClientUrl(path, options.query),
-    init,
-    method,
-  );
+  const url = buildClientUrl(path, options.query);
+  const res = options.skipCsrf
+    ? await fetch(url, init)
+    : await fetchWithCsrfRetry(url, init, method);
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T }>(res);
   return (json?.data ?? (undefined as T)) as T;
@@ -137,11 +138,10 @@ export const clientFetchPaginated = async <T>(
 ): Promise<Paginated<T>> => {
   const method = (options.method ?? "GET").toUpperCase();
   const init = buildRequestInit(options);
-  const res = await fetchWithCsrfRetry(
-    buildClientUrl(path, options.query),
-    init,
-    method,
-  );
+  const url = buildClientUrl(path, options.query);
+  const res = options.skipCsrf
+    ? await fetch(url, init)
+    : await fetchWithCsrfRetry(url, init, method);
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
   return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };
