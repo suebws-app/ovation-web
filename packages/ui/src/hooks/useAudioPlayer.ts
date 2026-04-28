@@ -19,6 +19,18 @@ export type AudioPlayer = {
   seekRatio: (ratio: number) => void;
 };
 
+const waitForCanPlay = (player: MediaPlayerInstance) =>
+  new Promise<void>((resolve) => {
+    if (player.state.canPlay) {
+      resolve();
+      return;
+    }
+    const off = player.listen("can-play", () => {
+      off();
+      resolve();
+    });
+  });
+
 export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
   const { resolveSrc } = options;
   const playerRef = useRef<MediaPlayerInstance | null>(null);
@@ -53,8 +65,10 @@ export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
 
       const url = await resolveSrc(id);
       if (!url) return;
+
       setSrc(url);
       setPlayingId(id);
+      await waitForCanPlay(player);
       await player.play().catch((err) => {
         console.error("[audio] play failed", err);
       });
