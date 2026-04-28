@@ -1,0 +1,81 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Checkbox } from "@ovation/ui/components/Checkbox";
+import {
+  FilterChipRail,
+  type FilterChipItem,
+} from "@/components/FilterChipRail";
+import type { MessageFilter } from "@/lib/api/types";
+import {
+  useFilter,
+  useMessagesStore,
+  useSelectedIds,
+} from "../store/useMessagesStore";
+import { useMessageList } from "../hooks/useMessageList";
+
+const FILTER_VALUES: { labelKey: string; value: MessageFilter }[] = [
+  { labelKey: "messages__filter__all", value: "all" },
+  { labelKey: "messages__filter__favourites", value: "favorites" },
+  { labelKey: "messages__filter__with_photo", value: "with_photo" },
+  { labelKey: "messages__filter__with_video", value: "with_video" },
+  { labelKey: "messages__filter__audio_only", value: "audio_only" },
+];
+
+export const MessagesFilterRail = () => {
+  const t = useTranslations();
+  const filter = useFilter();
+  const setFilter = useMessagesStore((s) => s.setFilter);
+  const selectAll = useMessagesStore((s) => s.selectAll);
+  const clearSelection = useMessagesStore((s) => s.clearSelection);
+  const selectedIds = useSelectedIds();
+  const { messageViews } = useMessageList();
+
+  const filterChips = FILTER_VALUES.map((c) => ({
+    label: t(c.labelKey),
+    value: c.value,
+  }));
+
+  const chipItems: FilterChipItem[] = filterChips.map((c) => ({
+    label: c.label,
+    count:
+      c.value === "all"
+        ? messageViews.length
+        : c.value === "favorites" && filter === "favorites"
+          ? messageViews.length
+          : undefined,
+  }));
+
+  const activeChipLabel =
+    filterChips.find((c) => c.value === filter)?.label ?? filterChips[0].label;
+
+  const handleChipSelect = (label: string) => {
+    const next = filterChips.find((c) => c.label === label);
+    if (next) setFilter(next.value);
+  };
+
+  const allSelected =
+    messageViews.length > 0 &&
+    messageViews.every((m) => selectedIds.has(m.id));
+
+  const handleToggleAll = () => {
+    if (allSelected) clearSelection();
+    else selectAll(messageViews.map((m) => m.id));
+  };
+
+  return (
+    <FilterChipRail
+      chips={chipItems}
+      activeLabel={activeChipLabel}
+      onSelect={handleChipSelect}
+      leading={
+        <Checkbox
+          checked={allSelected}
+          onChange={handleToggleAll}
+          aria-label={t("messages__select_all")}
+          className="mr-1 ml-2.5"
+        />
+      }
+    />
+  );
+};
