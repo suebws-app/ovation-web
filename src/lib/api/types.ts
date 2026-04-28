@@ -96,6 +96,7 @@ export type MessageSummary = {
   audioDurationSec: number | null;
   transcriptSnippet: string | null;
   isFavorite: boolean;
+  isGoldBookSelected: boolean;
   createdAt: string;
   photoThumbUrl: string | null;
 };
@@ -112,6 +113,7 @@ export type MessageDetail = {
   transcriptLanguage: string | null;
   transcriptStatus: TranscriptStatus | string;
   isFavorite: boolean;
+  isGoldBookSelected: boolean;
   coupleNotes: string | null;
   audioTrimStartSec: number | null;
   audioTrimEndSec: number | null;
@@ -154,9 +156,11 @@ export type ListMessagesQuery = {
 
 export type UpdateMessageInput = {
   isFavorite?: boolean;
+  isGoldBookSelected?: boolean;
   coupleNotes?: string | null;
   audioTrimStartSec?: number | null;
   audioTrimEndSec?: number | null;
+  audioDurationSec?: number | null;
 };
 
 export type UpdateProfileInput = {
@@ -215,6 +219,7 @@ export type UploadTarget = {
   key: string;
   url: string;
   fields?: Record<string, string>;
+  headers?: Record<string, string>;
   kind: "audio" | "video" | "photo";
 };
 

@@ -19,7 +19,7 @@ export const QRCodePage = async () => {
   const event = events.items[0];
   if (!event) return <QRCodeEmpty />;
 
-  const [qr, subResult] = await Promise.all([
+  const [qr, subResult, stats] = await Promise.all([
     eventsApi
       .qrCode(event.id, { format: "svg", size: 512 })
       .catch((error) => {
@@ -30,6 +30,10 @@ export const QRCodePage = async () => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
     }),
+    eventsApi.stats(event.id).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
   ]);
 
   const subscription = subResult?.subscription ?? null;
@@ -37,7 +41,7 @@ export const QRCodePage = async () => {
 
   return (
     <div className="mx-auto min-w-0">
-      <QRCodeHeader />
+      <QRCodeHeader guestSlug={event.slug} />
       {showActivation && (
         <div className="mt-6">
           <ActivateLinkBanner />
@@ -59,7 +63,12 @@ export const QRCodePage = async () => {
         />
       </div>
       <div className="mt-4">
-        <QRStatsCard />
+        <QRStatsCard
+          totalMessages={stats?.totalMessages ?? 0}
+          photoMessages={stats?.photoMessages ?? 0}
+          videoMessages={stats?.videoMessages ?? 0}
+          audioMessages={stats?.audioMessages ?? 0}
+        />
       </div>
       <div className="mt-4">
         <OrderCtaStrip />

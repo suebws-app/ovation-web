@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { getBlobDuration } from "@/lib/media/getBlobDuration";
 
 const MAX_DURATION_SEC = 180;
 
@@ -53,12 +54,16 @@ export const useAudioRecorder = () => {
   useEffect(() => {
     return () => {
       stopTracks();
-      if (recording?.url) URL.revokeObjectURL(recording.url);
     };
-  }, [recording?.url, stopTracks]);
+  }, [stopTracks]);
 
   const start = useCallback(async () => {
     setError(null);
+    if (typeof window !== "undefined" && window.isSecureContext === false) {
+      setError(t("guest__record__audio__error_insecure"));
+      setState("denied");
+      return;
+    }
     if (
       typeof navigator === "undefined" ||
       !navigator.mediaDevices?.getUserMedia
@@ -78,11 +83,15 @@ export const useAudioRecorder = () => {
       recorder.ondataavailable = (e) => {
         if (e.data.size > 0) chunksRef.current.push(e.data);
       };
-      recorder.onstop = () => {
+      recorder.onstop = async () => {
         const blob = new Blob(chunksRef.current, { type: mimeType });
         const url = URL.createObjectURL(blob);
+        const wallClock = Math.round(
+          (Date.now() - startedAtRef.current) / 1000,
+        );
+        const measured = await getBlobDuration(blob);
         const durationSec = Math.min(
-          Math.round((Date.now() - startedAtRef.current) / 1000),
+          Math.round(measured > 0 ? measured : wallClock),
           MAX_DURATION_SEC,
         );
         setRecording({ blob, url, durationSec, mimeType });
@@ -103,12 +112,18 @@ export const useAudioRecorder = () => {
         }
       }, 200);
     } catch (e) {
+      console.error("[useAudioRecorder] getUserMedia failed", e);
       setState("denied");
-      setError(
-        e instanceof Error
-          ? t("guest__record__audio__error_denied")
-          : t("guest__record__audio__error_other"),
-      );
+      const name = e instanceof Error ? e.name : "";
+      const key =
+        name === "NotAllowedError" || name === "SecurityError"
+          ? "guest__record__audio__error_denied"
+          : name === "NotFoundError" || name === "OverconstrainedError"
+            ? "guest__record__audio__error_not_found"
+            : name === "NotReadableError" || name === "TrackStartError"
+              ? "guest__record__audio__error_in_use"
+              : "guest__record__audio__error_other";
+      setError(t(key));
     }
   }, [stopTracks, t]);
 

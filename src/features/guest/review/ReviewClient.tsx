@@ -69,16 +69,17 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [idempotencyKey] = useState(newIdempotencyKey);
   const [pageLoadedAt] = useState(() => Date.now());
+  const [submitted, setSubmitted] = useState(false);
 
   const hasNote = note.trim().length > 0;
   const hasAnyContent = Boolean(audio || video || photo) || hasNote;
   const canSubmit = guestName.trim().length > 0 && hasAnyContent && !submitting;
 
   useEffect(() => {
-    if (!hasAnyContent) {
+    if (!hasAnyContent && !submitting && !submitted) {
       router.replace(`/g/${slug}/compose`);
     }
-  }, [hasAnyContent, router, slug]);
+  }, [hasAnyContent, submitting, submitted, router, slug]);
 
   const handleSubmit = async () => {
     setSubmitError(null);
@@ -143,6 +144,7 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
         _t: pageLoadedAt,
       });
 
+      setSubmitted(true);
       reset();
       const successHref =
         submissionSource === "kiosk"
@@ -165,7 +167,7 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
 
   return (
     <div className="flex flex-1 flex-col">
-      <div className="flex flex-1 flex-col gap-6 px-5 pt-5 pb-9 tablet:px-8 small-desktop:px-10 small-desktop:py-9">
+      <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-5 pb-9">
         <WizardHeader
           backHref={`/g/${slug}/photo`}
           step={3}
@@ -197,9 +199,7 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
               meta={t("guest__compose__voice_captured", {
                 duration: formatTime(audio.durationSec),
               })}
-              preview={
-                <audio src={audio.url} controls className="w-full" />
-              }
+              preview={<audio src={audio.url} controls className="w-full" />}
             />
           )}
           {video && (
@@ -226,7 +226,7 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
               iconClassName="bg-secondary"
               title={t("guest__compose__note_title")}
               preview={
-                <p className="bg-background/60 type-body rounded-12 p-3.5 font-serif italic leading-relaxed">
+                <p className="bg-background/60 type-body rounded-12 p-3.5 font-serif leading-relaxed italic">
                   {note}
                 </p>
               }

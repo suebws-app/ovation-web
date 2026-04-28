@@ -2,6 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { WhatsApp } from "@ovation/icons/WhatsApp";
+import { Mail } from "@ovation/icons/Mail";
+import { Sms } from "@ovation/icons/Sms";
+import { AirDrop } from "@ovation/icons/AirDrop";
 import { ShareChannel } from "./ShareChannel";
 
 type ShareCardProps = {
@@ -10,28 +14,59 @@ type ShareCardProps = {
 
 export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
   const t = useTranslations();
+  const shareUrl = `https://ovation.love/${url}`;
+  const shareBody = `${t("qr_code__share__suggested_a")}${shareUrl}${t("qr_code__share__suggested_b")}`;
+  const encodedBody = encodeURIComponent(shareBody);
+  const subject = encodeURIComponent(t("qr_code__share__email_subject"));
+
+  const handleAirdrop = async () => {
+    const nav =
+      typeof navigator === "undefined"
+        ? null
+        : (navigator as Navigator & {
+            share?: (data: { text?: string; url?: string }) => Promise<void>;
+          });
+    if (nav?.share) {
+      try {
+        await nav.share({ text: shareBody, url: shareUrl });
+        return;
+      } catch {
+        return;
+      }
+    }
+    if (nav?.clipboard) {
+      try {
+        await nav.clipboard.writeText(shareUrl);
+      } catch {
+        return;
+      }
+    }
+  };
+
   const channels = [
     {
       id: "whatsapp",
       label: t("qr_code__share__channel_whatsapp"),
       color: "#25D366",
+      href: `https://wa.me/?text=${encodedBody}`,
+      Icon: WhatsApp,
     },
     {
       id: "email",
       label: t("qr_code__share__channel_email"),
       color: "oklch(0.705 0.120 262.5)",
+      href: `mailto:?subject=${subject}&body=${encodedBody}`,
+      Icon: Mail,
     },
     {
       id: "messages",
       label: t("qr_code__share__channel_messages"),
       color: "#2CBE4E",
+      href: `sms:?&body=${encodedBody}`,
+      Icon: Sms,
     },
-    {
-      id: "airdrop",
-      label: t("qr_code__share__channel_airdrop"),
-      color: "#0C84FE",
-    },
-  ];
+  ] as const;
+
   return (
     <div className="rounded-16 border-border bg-card border p-4.5">
       <Eyebrow className="text-muted-foreground mb-3">
@@ -39,8 +74,20 @@ export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
       </Eyebrow>
       <div className="grid grid-cols-4 gap-2.5">
         {channels.map((c) => (
-          <ShareChannel key={c.id} {...c} />
+          <ShareChannel
+            key={c.id}
+            label={c.label}
+            color={c.color}
+            href={c.href}
+            Icon={c.Icon}
+          />
         ))}
+        <ShareChannel
+          label={t("qr_code__share__channel_airdrop")}
+          color="#0C84FE"
+          onClick={handleAirdrop}
+          Icon={AirDrop}
+        />
       </div>
 
       <div className="rounded-10 border-border bg-background mt-3.5 border border-dashed p-3">

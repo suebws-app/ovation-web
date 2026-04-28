@@ -66,6 +66,8 @@ export type MessageRowView = {
   duration: string;
   durationSec: number;
   favorited: boolean;
+  inGoldBook: boolean;
+  hasAudio: boolean;
   hasPhoto: boolean;
   language?: string;
   listens: number;
@@ -87,6 +89,8 @@ export const toMessageRowView = (
   duration: formatDurationShort(m.audioDurationSec),
   durationSec: m.audioDurationSec ?? 0,
   favorited: m.isFavorite,
+  inGoldBook: m.isGoldBookSelected,
+  hasAudio: m.hasAudio,
   hasPhoto: m.hasPhoto,
   listens: 0,
   time: formatTimeShort(m.createdAt),

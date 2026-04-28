@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { routing } from "@/i18n/routing";
 import { AppProviders } from "@/features/layout/AppProviders";
 
@@ -36,10 +37,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className="h-full antialiased" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body className="flex min-h-full flex-col">
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
         <NextIntlClientProvider messages={messages}>
           <AppProviders>{children}</AppProviders>
         </NextIntlClientProvider>

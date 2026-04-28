@@ -1,7 +1,7 @@
 import type { UploadTarget } from "@/lib/api/types";
 
 export const uploadToTarget = async (
-  target: Pick<UploadTarget, "url" | "key" | "fields">,
+  target: Pick<UploadTarget, "url" | "key" | "fields" | "headers">,
   blob: Blob,
 ): Promise<void> => {
   if (target.fields) {
@@ -17,10 +17,11 @@ export const uploadToTarget = async (
     return;
   }
 
+  const headers = target.headers ?? { "Content-Type": blob.type };
   const res = await fetch(target.url, {
     method: "PUT",
     body: blob,
-    headers: { "Content-Type": blob.type },
+    headers,
   });
   if (!res.ok) {
     throw new Error(`Upload failed (${res.status} ${res.statusText})`);

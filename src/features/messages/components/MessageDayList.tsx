@@ -7,11 +7,16 @@ import { MessageRow } from "./MessageRow";
 
 type MessageDayListProps = {
   messages: MessageRowView[];
-  selectMode: boolean;
   selectedIds: Set<string>;
   activeMessageId: string | null;
   playingId: string | null;
+  isPlaying?: boolean;
+  playingProgress?: number;
+  playingDuration?: number;
+  playingCurrentTime?: number;
   onRowClick: (id: string) => void;
+  onRowPlay?: (id: string) => void;
+  onRowToggleSelect?: (id: string) => void;
 };
 
 const groupLabel = (createdAt: string): string => {
@@ -38,19 +43,23 @@ const groupMessages = (messages: MessageRowView[]) => {
 
 export const MessageDayList = ({
   messages,
-  selectMode,
   selectedIds,
   activeMessageId,
   playingId,
+  isPlaying = false,
+  playingProgress = 0,
+  playingDuration = 0,
+  playingCurrentTime = 0,
   onRowClick,
+  onRowPlay,
+  onRowToggleSelect,
 }: MessageDayListProps) => {
   const groups = groupMessages(messages);
   const groupOffsets = groups.reduce<number[]>((acc, group, idx) => {
     const prev = idx === 0 ? 0 : acc[idx - 1] + groups[idx - 1].items.length;
     return [...acc, prev];
   }, []);
-  const isHighlighted = (id: string) =>
-    selectMode ? selectedIds.has(id) : id === activeMessageId;
+  const isHighlighted = (id: string) => id === activeMessageId;
 
   return (
     <div className="flex-1 overflow-auto">
@@ -66,9 +75,26 @@ export const MessageDayList = ({
               key={message.id}
               message={message}
               selected={isHighlighted(message.id)}
-              playing={message.id === playingId}
+              checked={selectedIds.has(message.id)}
+              isCurrent={message.id === playingId}
+              playing={message.id === playingId && isPlaying}
+              progress={message.id === playingId ? playingProgress : 0}
+              currentTime={
+                message.id === playingId ? playingCurrentTime : 0
+              }
+              durationOverride={
+                message.id === playingId && playingDuration > 0
+                  ? playingDuration
+                  : undefined
+              }
               index={groupOffsets[groupIdx] + itemIdx}
               onClick={() => onRowClick(message.id)}
+              onPlay={onRowPlay ? () => onRowPlay(message.id) : undefined}
+              onToggleSelect={
+                onRowToggleSelect
+                  ? () => onRowToggleSelect(message.id)
+                  : undefined
+              }
             />
           ))}
         </section>

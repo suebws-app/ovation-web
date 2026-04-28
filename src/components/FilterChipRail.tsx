@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { Chip } from "@ovation/ui/components/Chip";
 import { cn } from "@ovation/ui/utils/cn";
 
@@ -13,6 +14,7 @@ type FilterChipRailProps = {
   activeLabel: string;
   onSelect: (label: string) => void;
   className?: string;
+  leading?: ReactNode;
 };
 
 export const FilterChipRail = ({
@@ -20,13 +22,15 @@ export const FilterChipRail = ({
   activeLabel,
   onSelect,
   className,
+  leading,
 }: FilterChipRailProps) => (
   <div
     className={cn(
-      "border-border bg-card flex gap-2 overflow-auto border-b px-4 py-3",
+      "border-border bg-card flex items-center gap-2 overflow-auto border-b px-4 py-3",
       className,
     )}
   >
+    {leading}
     {chips.map((chip) => (
       <Chip
         key={chip.label}

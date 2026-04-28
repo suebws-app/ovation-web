@@ -27,11 +27,20 @@ export const messagesClient = {
     eventId: string,
     messageId: string,
     input: UpdateMessageInput,
-  ): Promise<{ message: { id: string; isFavorite: boolean } }> =>
-    clientFetch<{ message: { id: string; isFavorite: boolean } }>(
-      itemPath(eventId, messageId),
-      { method: "PATCH", body: input },
-    ),
+  ): Promise<{
+    message: {
+      id: string;
+      isFavorite: boolean;
+      isGoldBookSelected: boolean;
+    };
+  }> =>
+    clientFetch<{
+      message: {
+        id: string;
+        isFavorite: boolean;
+        isGoldBookSelected: boolean;
+      };
+    }>(itemPath(eventId, messageId), { method: "PATCH", body: input }),
 
   remove: (eventId: string, messageId: string): Promise<void> =>
     clientFetch<void>(itemPath(eventId, messageId), { method: "DELETE" }),

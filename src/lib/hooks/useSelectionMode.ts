@@ -20,6 +20,10 @@ export const useSelectionMode = <T>() => {
 
   const clear = useCallback(() => setSelectedIds(new Set()), []);
 
+  const selectAll = useCallback((items: T[]) => {
+    setSelectedIds(new Set(items));
+  }, []);
+
   const toggleSelectMode = useCallback(() => {
     setSelectMode((prev) => {
       if (prev) {
@@ -34,6 +38,7 @@ export const useSelectionMode = <T>() => {
     selectedIds,
     toggleSelect,
     clear,
+    selectAll,
     toggleSelectMode,
   };
 };

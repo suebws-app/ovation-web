@@ -1,6 +1,8 @@
 "use client";
 
 import { Avatar } from "@ovation/ui/components/Avatar";
+import { Checkbox } from "@ovation/ui/components/Checkbox";
+import { Book } from "@ovation/icons/Book";
 import { Heart } from "@ovation/icons/Heart";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
 import { Waveform } from "@/features/dashboard/components/Waveform";
@@ -11,27 +13,68 @@ import { MessagePlayButton } from "./MessagePlayButton";
 type MessageRowProps = {
   message: MessageRowView;
   selected?: boolean;
+  checked?: boolean;
   playing?: boolean;
+  isCurrent?: boolean;
+  progress?: number;
+  currentTime?: number;
+  durationOverride?: number;
   index: number;
   onClick?: () => void;
+  onPlay?: () => void;
+  onToggleSelect?: () => void;
+};
+
+const formatSec = (sec: number): string => {
+  if (!Number.isFinite(sec) || sec < 0) return "0:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s.toString().padStart(2, "0")}`;
 };
 
 export const MessageRow = ({
   message,
   selected,
+  checked = false,
   playing,
+  isCurrent,
+  progress = 0,
+  currentTime = 0,
+  durationOverride,
   index,
   onClick,
+  onPlay,
+  onToggleSelect,
 }: MessageRowProps) => (
-  <button
-    type="button"
+  <div
+    role="button"
+    tabIndex={0}
     onClick={onClick}
-    className={`border-border tablet:grid-cols-[48px_1fr_100px_50px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[48px_1fr_48px] items-center gap-3 border-b px-4 py-3 text-left transition-colors ${
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onClick?.();
+      }
+    }}
+    className={`border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors ${
       selected
         ? "border-l-primary bg-primary/5 border-l-3"
         : "hover:bg-muted/50 border-l-3 border-l-transparent"
     }`}
   >
+    <span
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+      className="inline-flex"
+    >
+      <Checkbox
+        checked={checked}
+        onChange={() => onToggleSelect?.()}
+        aria-label={`Select message from ${message.name}`}
+      />
+    </span>
+
     <Avatar
       initials={message.initials}
       tint={message.tint}
@@ -50,6 +93,9 @@ export const MessageRow = ({
             height={13}
             className="fill-destructive text-destructive"
           />
+        )}
+        {message.inGoldBook && (
+          <Book width={13} height={13} className="text-[#9A6B2F]" />
         )}
         {message.language && (
           <span className="rounded-4 bg-primary/10 type-caption text-primary px-1.5 py-0.5 font-bold tracking-wider uppercase">
@@ -71,17 +117,42 @@ export const MessageRow = ({
     </div>
 
     <div className="tablet:block hidden">
-      <Waveform
-        bars={message.wave.slice(0, 24)}
-        height={28}
-        progress={playing ? 0.42 : 0}
-      />
+      {message.hasAudio && (
+        <Waveform
+          bars={message.wave.slice(0, 24)}
+          height={28}
+          progress={isCurrent ? progress : 0}
+        />
+      )}
     </div>
 
-    <span className="type-caption text-muted-foreground tablet:block tablet:text-right hidden font-mono">
-      {message.duration}
+    <span className="type-caption text-muted-foreground tablet:text-right block font-mono">
+      {message.hasAudio
+        ? `${formatSec(isCurrent ? currentTime : 0)}/${message.duration}`
+        : ""}
     </span>
 
-    <MessagePlayButton playing={playing} />
-  </button>
+    {message.hasAudio ? (
+      <span
+        role="button"
+        tabIndex={0}
+        onClick={(e) => {
+          e.stopPropagation();
+          onPlay?.();
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            e.stopPropagation();
+            onPlay?.();
+          }
+        }}
+        className="inline-flex"
+      >
+        <MessagePlayButton playing={playing} />
+      </span>
+    ) : (
+      <span />
+    )}
+  </div>
 );

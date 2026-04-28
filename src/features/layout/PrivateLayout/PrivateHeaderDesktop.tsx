@@ -35,7 +35,7 @@ export const PrivateHeaderDesktop = ({
   const isKeepsakes = segments.includes("keepsakes");
 
   return (
-    <header className="max-w-container desktop:flex mx-auto hidden h-16 w-full items-center justify-between py-3">
+    <header className="max-w-container desktop:flex mx-auto hidden h-16 w-full items-center justify-between px-6 py-3">
       <Breadcrumb>
         <BreadcrumbList className="type-caption">
           {parentCrumbs.map((crumb, i) => {

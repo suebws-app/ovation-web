@@ -2,8 +2,13 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { Link } from "@/i18n/navigation";
 
-export const QRCodeHeader = () => {
+type QRCodeHeaderProps = {
+  guestSlug?: string;
+};
+
+export const QRCodeHeader = ({ guestSlug }: QRCodeHeaderProps) => {
   const t = useTranslations();
   return (
     <div className="desktop:flex-row desktop:items-end desktop:justify-between flex flex-col gap-5">
@@ -19,11 +24,15 @@ export const QRCodeHeader = () => {
         </p>
       </div>
       <div className="desktop:flex hidden shrink-0 gap-2">
-        <Button variant="outline" className="rounded-full whitespace-nowrap">
-          {t("qr__header__preview")}
-        </Button>
-        <Button className="shadow-primary/40 rounded-full whitespace-nowrap shadow-md">
-          {t("qr__header__order_cards")}
+        <Button
+          asChild
+          variant="outline"
+          className="rounded-full whitespace-nowrap"
+          disabled={!guestSlug}
+        >
+          <Link href={guestSlug ? `/g/${guestSlug}` : "#"} target="_blank">
+            {t("qr__header__preview")}
+          </Link>
         </Button>
       </div>
     </div>
