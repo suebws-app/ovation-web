@@ -1,4 +1,4 @@
-import type { MessageSummary } from "@/lib/api/types";
+import type { MessageDetail, MessageSummary } from "@/lib/api/types";
 
 const TINTS = [
   "#EFC9A8",
@@ -92,6 +92,28 @@ export const toMessageRowView = (
   inGoldBook: m.isGoldBookSelected,
   hasAudio: m.hasAudio,
   hasPhoto: m.hasPhoto,
+  listens: 0,
+  time: formatTimeShort(m.createdAt),
+  createdAt: m.createdAt,
+  wave: waveFrom(m.id),
+});
+
+export const toMessageRowViewFromDetail = (
+  m: MessageDetail,
+  anonymous: string,
+): MessageRowView => ({
+  id: m.id,
+  name: m.guestNames || anonymous,
+  relation: "",
+  quote: m.transcript ? m.transcript.slice(0, 120) : "",
+  initials: initialsFrom(m.guestNames),
+  tint: tintFrom(m.id),
+  duration: formatDurationShort(m.audioDurationSec),
+  durationSec: m.audioDurationSec ?? 0,
+  favorited: m.isFavorite,
+  inGoldBook: m.isGoldBookSelected,
+  hasAudio: Boolean(m.audioUrl),
+  hasPhoto: Boolean(m.photoUrl),
   listens: 0,
   time: formatTimeShort(m.createdAt),
   createdAt: m.createdAt,
