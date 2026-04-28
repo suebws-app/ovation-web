@@ -10,17 +10,6 @@ export const generateStaticParams = () => {
   return routing.locales.map((locale) => ({ locale }));
 };
 
-const themeScript = `(function(){
-  try {
-    var d = document.documentElement;
-    var t = JSON.parse(localStorage.getItem('theme') || '{}');
-    var v = t && t.state && t.state.theme;
-    if (v === 'dark' || (v !== 'light' && matchMedia('(prefers-color-scheme:dark)').matches)) {
-      d.classList.add('dark');
-    }
-  } catch(e) {}
-})()`;
-
 export default async function LocaleLayout({
   children,
   params,
@@ -39,10 +28,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="h-full antialiased" suppressHydrationWarning>
       <head>
-        <script
-          id="theme-init"
-          dangerouslySetInnerHTML={{ __html: themeScript }}
-        />
+        <script src="/theme-init.js" />
       </head>
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider messages={messages}>
