@@ -55,10 +55,8 @@ export const MessageDetailPane = ({
   onToggleGoldBook,
   togglePending,
   isPlayingActive = false,
-  isCurrentTrack = false,
   progress = 0,
   currentTime = 0,
-  playerDuration = 0,
   onTogglePlay,
   onSeek,
   fullScreen = false,
@@ -232,9 +230,12 @@ export const MessageDetailPane = ({
             {videoUrl && (
               <div className="rounded-12 bg-muted block aspect-square size-full h-40 w-40 overflow-hidden">
                 <MediaPlayer
-                  src={videoUrl}
+                  src={[{ src: videoUrl, type: "video/mp4" }]}
                   viewType="video"
                   load="visible"
+                  onError={(detail) => {
+                    console.error("[video] vidstack error", detail);
+                  }}
                   className="size-full"
                 >
                   <MediaProvider />
