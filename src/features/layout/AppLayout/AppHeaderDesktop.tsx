@@ -14,13 +14,11 @@ import { isLocale } from "@/lib/utils/isLocale";
 import type { Subscription } from "@/lib/api/types";
 import { KeepsakesActions } from "./KeepsakesActions";
 
-type PrivateHeaderDesktopProps = {
+type AppHeaderDesktopProps = {
   subscription: Subscription | null;
 };
 
-export const PrivateHeaderDesktop = ({
-  subscription,
-}: PrivateHeaderDesktopProps) => {
+export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
   const pathname = usePathname();
   const segments = pathname
     .split("/")

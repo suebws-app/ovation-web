@@ -11,6 +11,7 @@ import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Logo } from "@ovation/ui/components/Logo";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import {
   getForgotPasswordSchema,
@@ -42,7 +43,7 @@ export const ForgotPasswordPage = () => {
     setStatus({ kind: "idle" });
     const { error } = await authClient.requestPasswordReset({
       email: values.email,
-      redirectTo: "/reset-password",
+      redirectTo: appRoutes.auth.resetPassword,
     });
     if (error) {
       // Always present a success state; never confirm whether email exists
@@ -120,7 +121,10 @@ export const ForgotPasswordPage = () => {
 
         <p className="type-body-small text-muted-foreground mt-9 text-center">
           {t("auth__forgot__remembered")}{" "}
-          <Link href="/sign-in" className="text-foreground font-semibold">
+          <Link
+            href={appRoutes.auth.signIn}
+            className="text-foreground font-semibold"
+          >
             {t("auth__forgot__back_signin")}
           </Link>
         </p>

@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 type DashboardEmptyProps = {
   userName: string;
@@ -25,7 +26,9 @@ export const DashboardEmpty = ({ userName }: DashboardEmptyProps) => {
         size="lg"
         className="shadow-primary/40 rounded-full shadow-md"
       >
-        <Link href="/sign-up/step/3">{t("dashboard__empty__cta")}</Link>
+        <Link href={appRoutes.auth.signUpStep(3)}>
+          {t("dashboard__empty__cta")}
+        </Link>
       </Button>
     </div>
   );

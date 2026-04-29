@@ -16,6 +16,7 @@ import { SocialAuthButtons } from "../../components/SocialAuthButtons";
 import { ChecklistItem } from "../components/ChecklistItem";
 import { useSignUpStore } from "../useSignUpStore";
 import { Link, useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import {
   getCreateAccountSchema,
@@ -61,7 +62,7 @@ export const CreateAccountStep = () => {
       return;
     }
     updateFormData({ email: values.email, agreedToTerms: true });
-    router.push("/sign-up/step/2");
+    router.push(appRoutes.auth.signUpStep(2));
   };
 
   const setupSteps = [
@@ -179,7 +180,7 @@ export const CreateAccountStep = () => {
                       {t.rich("auth__signup__create_account__terms_label", {
                         terms: (chunks) => (
                           <Link
-                            href="/terms"
+                            href={appRoutes.legal.terms}
                             className="text-primary font-semibold"
                           >
                             {chunks}
@@ -187,7 +188,7 @@ export const CreateAccountStep = () => {
                         ),
                         privacy: (chunks) => (
                           <Link
-                            href="/privacy"
+                            href={appRoutes.legal.privacy}
                             className="text-primary font-semibold"
                           >
                             {chunks}
@@ -226,7 +227,10 @@ export const CreateAccountStep = () => {
 
           <p className="type-body-small text-muted-foreground mt-4.5 text-center">
             {t("auth__signup__create_account__has_account")}{" "}
-            <Link href="/sign-in" className="text-foreground font-semibold">
+            <Link
+              href={appRoutes.auth.signIn}
+              className="text-foreground font-semibold"
+            >
               {t("auth__signup__create_account__signin_cta")}
             </Link>
           </p>

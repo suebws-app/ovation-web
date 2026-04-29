@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 export const OrderCtaStrip = () => {
   const t = useTranslations();
@@ -25,7 +26,9 @@ export const OrderCtaStrip = () => {
         size="lg"
         className="shadow-primary/40 tablet:w-auto w-full rounded-full shadow-md"
       >
-        <Link href="/app/qr-code/order">{t("qr_code__order__cta")}</Link>
+        <Link href={appRoutes.app.qrCodeOrder}>
+          {t("qr_code__order__cta")}
+        </Link>
       </Button>
     </div>
   );

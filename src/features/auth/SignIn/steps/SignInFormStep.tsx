@@ -16,6 +16,7 @@ import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { SocialAuthButtons } from "../../components/SocialAuthButtons";
 import { SignInBrandPanel } from "../components/SignInBrandPanel";
 import { Link, useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import { getSignInSchema, type SignInFields } from "../signInSchema";
 
@@ -48,7 +49,7 @@ export const SignInFormStep = () => {
       setSubmitError(error.message ?? t("auth__signin__error_generic"));
       return;
     }
-    const redirectTo = searchParams.get("redirect") ?? "/app";
+    const redirectTo = searchParams.get("redirect") ?? appRoutes.app.root;
     router.replace(redirectTo);
     router.refresh();
   };
@@ -134,7 +135,7 @@ export const SignInFormStep = () => {
               )}
             />
             <Link
-              href="/forgot-password"
+              href={appRoutes.auth.forgotPassword}
               className="type-body-small text-primary font-semibold"
             >
               {t("auth__forgot_password")}
@@ -161,7 +162,10 @@ export const SignInFormStep = () => {
 
           <p className="type-body-small text-muted-foreground mt-4.5 text-center">
             {t("auth__signin__no_account")}{" "}
-            <Link href="/sign-up" className="text-foreground font-semibold">
+            <Link
+              href={appRoutes.auth.signUp}
+              className="text-foreground font-semibold"
+            >
               {t("auth__signin__signup_cta")}
             </Link>
           </p>

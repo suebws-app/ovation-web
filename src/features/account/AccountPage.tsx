@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
+import { appRoutes } from "@/lib/routes";
 
 export const AccountPage = () => {
-  redirect("/app/settings");
+  redirect(appRoutes.app.settings);
 };

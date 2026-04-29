@@ -1,18 +1,19 @@
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
-import { PrivateLayout } from "@/features/layout/PrivateLayout/PrivateLayout";
+import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 import { eventsApi } from "@/lib/api/events";
 import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { ApiError } from "@/lib/api/client";
+import { appRoutes } from "@/lib/routes";
 
-export default async function AppLayout({
+export default async function AppRootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const user = await getCurrentUser();
   if (!user) {
-    redirect("/sign-in");
+    redirect(appRoutes.auth.signIn);
   }
 
   const events = await eventsApi.list({ limit: 1 }).catch(() => null);
@@ -26,8 +27,8 @@ export default async function AppLayout({
   const subscription = subResult?.subscription ?? null;
 
   return (
-    <PrivateLayout user={user} subscription={subscription}>
+    <AppLayout user={user} subscription={subscription}>
       {children}
-    </PrivateLayout>
+    </AppLayout>
   );
 }

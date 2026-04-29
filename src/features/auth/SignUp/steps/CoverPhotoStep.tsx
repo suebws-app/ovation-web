@@ -12,6 +12,7 @@ import { CoverOption } from "../components/CoverOption";
 import { CoverPattern } from "../components/CoverPattern";
 import { useSignUpStore } from "../useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 const COVER_OPTIONS = [
   {
@@ -208,7 +209,7 @@ export const CoverPhotoStep = () => {
           </div>
 
           <Button
-            onClick={() => router.push("/sign-up/step/5")}
+            onClick={() => router.push(appRoutes.auth.signUpStep(5))}
             size="lg"
             className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
           >

@@ -5,12 +5,19 @@ import { locales } from "./i18n/config";
 
 const intlMiddleware = createMiddleware(routing);
 
-const PROTECTED_PREFIXES = ["/app", "/account"];
+const PROTECTED_PREFIXES = ["/app", "/settings"];
 const AUTH_PREFIXES = [
   "/sign-in",
   "/sign-up",
   "/forgot-password",
   "/reset-password",
+];
+const MARKETING_PREFIXES = [
+  "/about",
+  "/examples",
+  "/how-it-works",
+  "/pricing",
+  "/legal",
 ];
 
 const stripLocalePrefix = (pathname: string): string => {
@@ -49,12 +56,12 @@ export const proxy = (request: Request) => {
   }
 
   const isOnboardingStep = pathnameWithoutLocale.startsWith("/sign-up/step");
+  const isHomepage = pathnameWithoutLocale === "/";
+  const isMarketing = matchesPrefix(pathnameWithoutLocale, MARKETING_PREFIXES);
+  const isAuthPage =
+    matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES) && !isOnboardingStep;
 
-  if (
-    matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES) &&
-    isAuthenticated &&
-    !isOnboardingStep
-  ) {
+  if (isAuthenticated && (isHomepage || isMarketing || isAuthPage)) {
     return Response.redirect(new URL("/app", request.url));
   }
 

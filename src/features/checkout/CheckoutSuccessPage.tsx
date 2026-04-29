@@ -7,6 +7,7 @@ import { Check } from "@ovation/icons/Check";
 import { ApiError } from "@/lib/api/client";
 import { ordersApi } from "@/lib/api/orders";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { PlanActivatedSuccess } from "./PlanActivatedSuccess";
 import {
   formatOrderDate,
@@ -143,10 +144,12 @@ export const CheckoutSuccessPage = async ({
 
         <div className="flex justify-center gap-2">
           <Button asChild className="rounded-full">
-            <Link href="/app">{t("checkout__success__back_dashboard")}</Link>
+            <Link href={appRoutes.app.root}>
+              {t("checkout__success__back_dashboard")}
+            </Link>
           </Button>
           <Button asChild variant="outline" className="rounded-full">
-            <Link href="/app/keepsakes">
+            <Link href={appRoutes.app.keepsakes}>
               {t("checkout__success__keep_shopping")}
             </Link>
           </Button>

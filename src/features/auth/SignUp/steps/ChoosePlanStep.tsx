@@ -5,6 +5,7 @@ import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { PlanCard } from "../components/PlanCard";
 import { useSignUpStore } from "../useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 export const ChoosePlanStep = () => {
   const t = useTranslations();
@@ -55,7 +56,7 @@ export const ChoosePlanStep = () => {
 
   const handleSelectPlan = (planId: string) => {
     updateFormData({ selectedPlan: planId });
-    router.push("/sign-up/step/7");
+    router.push(appRoutes.auth.signUpStep(7));
   };
 
   return (
@@ -99,7 +100,7 @@ export const ChoosePlanStep = () => {
             type="button"
             onClick={() => {
               updateFormData({ selectedPlan: "essential" });
-              router.push("/sign-up/step/7");
+              router.push(appRoutes.auth.signUpStep(7));
             }}
             className="text-primary cursor-pointer font-semibold"
           >

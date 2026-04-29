@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { ThemeToggle } from "@ovation/ui/components/ThemeToggle";
 import { cn } from "@ovation/ui/utils/cn";
@@ -19,28 +20,37 @@ export const RootHeader = ({ className }: { className?: string }) => {
       )}
     >
       <div className="mx-auto flex h-19 items-center justify-between px-6 lg:px-20">
-        <Link href="/">
+        <Link href={appRoutes.home}>
           <Logo />
         </Link>
 
         <nav className="text-muted-foreground hidden items-center gap-8 text-sm md:flex">
           <Link
-            href="/how-it-works"
+            href={appRoutes.marketing.howItWorks}
             className="hover:text-foreground font-medium"
           >
             {t("marketing__nav__how_it_works")}
           </Link>
-          <Link href="/keepsakes" className="hover:text-foreground font-medium">
+          <Link
+            href={appRoutes.marketing.keepsakes}
+            className="hover:text-foreground font-medium"
+          >
             {t("marketing__nav__keepsakes")}
           </Link>
-          <Link href="/pricing" className="hover:text-foreground font-medium">
+          <Link
+            href={appRoutes.marketing.pricing}
+            className="hover:text-foreground font-medium"
+          >
             {t("marketing__nav__pricing")}
           </Link>
-          <Link href="/stories" className="hover:text-foreground font-medium">
+          <Link
+            href={appRoutes.marketing.stories}
+            className="hover:text-foreground font-medium"
+          >
             {t("marketing__nav__stories")}
           </Link>
           <Link
-            href="/for-planners"
+            href={appRoutes.marketing.forPlanners}
             className="hover:text-foreground font-medium"
           >
             {t("marketing__nav__for_planners")}
@@ -50,7 +60,7 @@ export const RootHeader = ({ className }: { className?: string }) => {
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <Link
-            href="/sign-in"
+            href={appRoutes.auth.signIn}
             className="text-foreground hidden text-sm font-medium md:block"
           >
             {t("marketing__nav__sign_in")}
