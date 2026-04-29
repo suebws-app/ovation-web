@@ -2,14 +2,8 @@ import { ApiError } from "@/lib/api/client";
 import { eventsApi } from "@/lib/api/events";
 import { invitationsApi } from "@/lib/api/invitations";
 import { env } from "@/lib/utils/env";
-import { GuestActions } from "./components/GuestActions";
-import { GuestDirectory } from "./components/GuestDirectory";
-import { GuestFilterChips } from "./components/GuestFilterChips";
-import { GuestGroupsStrip } from "./components/GuestGroupsStrip";
-import { GuestHero } from "./components/GuestHero";
-import { GuestStatBar } from "./components/GuestStatBar";
 import { GuestsEmptyState } from "./components/GuestsEmptyState";
-import { InvitationFunnelCard } from "./components/InvitationFunnelCard";
+import { GuestsPageClient } from "./GuestsPageClient";
 
 const ignoreNotFound = <T,>(error: unknown, fallback: T): T => {
   if (ApiError.isApiError(error) && error.status === 404) return fallback;
@@ -29,17 +23,11 @@ export const GuestsPage = async () => {
   const inviteUrl = `${env.APP_URL}/g/${event.slug}`;
 
   return (
-    <div className="flex flex-col gap-6">
-      <GuestHero
-        totalMessages={stats?.totalMessages ?? 0}
-        inviteUrl={inviteUrl}
-      />
-      {stats && <GuestStatBar stats={stats} invitations={invitations} />}
-      {invitations && <InvitationFunnelCard invitations={invitations} />}
-      <GuestFilterChips />
-      <GuestDirectory />
-      <GuestGroupsStrip />
-      <GuestActions />
-    </div>
+    <GuestsPageClient
+      eventId={event.id}
+      stats={stats}
+      invitations={invitations}
+      inviteUrl={inviteUrl}
+    />
   );
 };

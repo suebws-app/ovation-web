@@ -38,17 +38,6 @@ export const GuestStatBar = ({ stats, invitations }: GuestStatBarProps) => {
       icon: Heart,
       tone: "accent" as const,
     },
-    {
-      value: invitations?.totals.sent ?? 0,
-      label: t("guests__stats__invites"),
-      sub: t("guests__stats__invites_sub", {
-        opened: invitations?.totals.opened ?? 0,
-      }),
-      icon: Mail,
-      tone: invitations?.totals.sent
-        ? ("primary" as const)
-        : ("muted" as const),
-    },
   ];
 
   return (

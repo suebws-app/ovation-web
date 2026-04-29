@@ -1,41 +1,56 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Chip } from "@ovation/ui/components/Chip";
-import { Sort } from "@ovation/icons/Sort";
+import type { GuestFilter, GuestRow } from "../adapters";
 
-export const GuestFilterChips = () => {
+type GuestFilterChipsProps = {
+  guests: GuestRow[];
+  active: GuestFilter;
+  onSelect: (filter: GuestFilter) => void;
+};
+
+const FILTERS: { value: GuestFilter; labelKey: string }[] = [
+  { value: "all", labelKey: "guests__chips__all" },
+  { value: "favorites", labelKey: "guests__chips__favourited" },
+  { value: "with_photo", labelKey: "guests__chips__with_photo" },
+  { value: "with_audio", labelKey: "guests__chips__with_audio" },
+  { value: "with_video", labelKey: "guests__chips__with_video" },
+];
+
+const countFor = (guests: GuestRow[], filter: GuestFilter): number => {
+  switch (filter) {
+    case "favorites":
+      return guests.filter((g) => g.isFavorite).length;
+    case "with_photo":
+      return guests.filter((g) => g.hasPhoto).length;
+    case "with_audio":
+      return guests.filter((g) => g.hasAudio).length;
+    case "with_video":
+      return guests.filter((g) => g.hasVideo).length;
+    default:
+      return guests.length;
+  }
+};
+
+export const GuestFilterChips = ({
+  guests,
+  active,
+  onSelect,
+}: GuestFilterChipsProps) => {
   const t = useTranslations();
-  const chips = [
-    { label: t("guests__chips__all"), count: 112 },
-    { label: t("guests__chips__contributed"), count: 78 },
-    { label: t("guests__chips__still"), count: 34 },
-    { label: t("guests__chips__thank_owed"), count: 47 },
-    { label: t("guests__chips__favourited"), count: 14 },
-    { label: t("guests__chips__with_photo"), count: 63 },
-    { label: t("guests__chips__no_email"), count: 8 },
-  ];
-  const [activeFilter, setActiveFilter] = useState(chips[0].label);
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      {chips.map((chip) => (
+      {FILTERS.map((f) => (
         <Chip
-          key={chip.label}
-          label={chip.label}
-          count={chip.count}
-          active={activeFilter === chip.label}
-          onClick={() => setActiveFilter(chip.label)}
+          key={f.value}
+          label={t(f.labelKey)}
+          count={countFor(guests, f.value)}
+          active={active === f.value}
+          onClick={() => onSelect(f.value)}
         />
       ))}
-      <button
-        type="button"
-        className="border-border bg-card type-caption text-muted-foreground ml-auto inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3.5 py-2 font-semibold"
-      >
-        <Sort width={13} height={13} />
-        {t("guests__chips__sort_recent")}
-      </button>
     </div>
   );
 };
