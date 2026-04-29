@@ -1,41 +1,38 @@
 "use client";
 
+import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { cn } from "@ovation/ui/utils/cn";
 import type { PhotoView } from "../adapters";
-import { PhotoSelectIndicator } from "./PhotoSelectIndicator";
 import { PhotoFavouriteIndicator } from "./PhotoFavouriteIndicator";
-import { PhotoAudioBadge } from "./PhotoAudioBadge";
 
 type PhotoTileProps = {
   tile: PhotoView;
   height: number;
   selected?: boolean;
-  showSelect?: boolean;
   onClick?: () => void;
+  onToggleSelect?: () => void;
 };
 
 export const PhotoTile = ({
   tile,
   height,
   selected = false,
-  showSelect = false,
   onClick,
+  onToggleSelect,
 }: PhotoTileProps) => {
-  const {
-    thumbUrl,
-    monogram,
-    name,
-    tint,
-    favorited,
-    hasAudio,
-    audioDuration,
-    time,
-  } = tile;
+  const { thumbUrl, monogram, name, tint, favorited, time } = tile;
 
   return (
-    <button
-      type="button"
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
       className={cn(
         "group rounded-12 relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-all hover:scale-[1.02] hover:shadow-md",
         selected ? "ring-secondary ring-[3px] ring-offset-1" : "shadow-sm",
@@ -67,17 +64,27 @@ export const PhotoTile = ({
           </div>
         )}
 
-        {showSelect && <PhotoSelectIndicator selected={selected} />}
-        {favorited && <PhotoFavouriteIndicator />}
-        {hasAudio && audioDuration && (
-          <PhotoAudioBadge duration={audioDuration} />
-        )}
+        <span
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
+          className="absolute top-2 left-2"
+        >
+          <Checkbox
+            checked={selected}
+            onChange={() => onToggleSelect?.()}
+            aria-label={`Select photo from ${name}`}
+            className="bg-white/90"
+          />
+        </span>
 
-        <div className="type-caption absolute right-2 bottom-2 left-2 flex items-baseline justify-between font-semibold text-white drop-shadow-sm">
+        {favorited && <PhotoFavouriteIndicator />}
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="type-caption absolute right-2.5 bottom-2 left-2.5 flex items-baseline justify-between gap-2 font-semibold text-white">
           <span className="truncate">{name}</span>
-          <span className="font-mono opacity-85">{time}</span>
+          <span className="shrink-0 font-mono opacity-85">{time}</span>
         </div>
       </div>
-    </button>
+    </div>
   );
 };

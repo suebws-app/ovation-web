@@ -155,6 +155,7 @@ export type ListMessagesQuery = {
   sort?: MessageSort;
   cursor?: string;
   limit?: number;
+  includeOwnerUploads?: boolean;
 };
 
 export type UpdateMessageInput = {

@@ -98,6 +98,42 @@ export const downloadMessageAssets = async (
   triggerSave(zipBlob, `${guest}.zip`);
 };
 
+export type PhotoDownloadInput = {
+  guestName: string;
+  photoUrl: string;
+  createdAt: string;
+};
+
+const formatStamp = (iso: string): string => {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "unknown-time";
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}_${pad(d.getHours())}-${pad(d.getMinutes())}-${pad(d.getSeconds())}`;
+};
+
+export const downloadPhotosFlat = async (
+  inputs: PhotoDownloadInput[],
+  zipName: string,
+): Promise<void> => {
+  const files: { name: string; blob: Blob }[] = [];
+  const usedNames = new Map<string, number>();
+  const folder = sanitize(zipName);
+  for (const input of inputs) {
+    const blob = await tryFetchBlob(input.photoUrl);
+    if (!blob) continue;
+    const ext = extFromUrl(input.photoUrl, "jpg");
+    const base = `${sanitize(input.guestName)}_${formatStamp(input.createdAt)}`;
+    const seen = usedNames.get(base) ?? 0;
+    usedNames.set(base, seen + 1);
+    const fileName =
+      seen === 0 ? `${base}.${ext}` : `${base} (${seen + 1}).${ext}`;
+    files.push({ name: `${folder}/${fileName}`, blob });
+  }
+  if (files.length === 0) return;
+  const zipBlob = await createZipBlob(files);
+  triggerSave(zipBlob, `${zipName}.zip`);
+};
+
 export const downloadManyMessages = async (
   inputs: DownloadInputs[],
   zipName: string,

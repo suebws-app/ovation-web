@@ -4,11 +4,27 @@ import type {
   MessageDetail,
   MessageSummary,
   UpdateMessageInput,
+  UploadTarget,
 } from "./types";
 
 const listPath = (eventId: string) => `/events/${eventId}/messages`;
 const itemPath = (eventId: string, messageId: string) =>
   `/events/${eventId}/messages/${messageId}`;
+
+export type OwnerUploadUrlInput = {
+  photoContentType?: string | null;
+  videoContentType?: string | null;
+};
+
+export type OwnerCreateMessageInput = {
+  photoKey?: string | null;
+  photoWidth?: number | null;
+  photoHeight?: number | null;
+  videoKey?: string | null;
+  videoDurationSec?: number | null;
+  videoMimeType?: string | null;
+  clientCreatedAt?: string | null;
+};
 
 export const messagesClient = {
   list: (
@@ -53,5 +69,23 @@ export const messagesClient = {
     clientFetch<{ jobId: string }>(
       `${itemPath(eventId, messageId)}/retranscribe`,
       { method: "POST", body: language ? { language } : {} },
+    ),
+
+  ownerUploadUrls: (
+    eventId: string,
+    input: OwnerUploadUrlInput,
+  ): Promise<{ uploadTargets: UploadTarget[] }> =>
+    clientFetch<{ uploadTargets: UploadTarget[] }>(
+      `${listPath(eventId)}/upload-url`,
+      { method: "POST", body: input },
+    ),
+
+  ownerCreate: (
+    eventId: string,
+    input: OwnerCreateMessageInput,
+  ): Promise<{ message: { id: string; status: string } }> =>
+    clientFetch<{ message: { id: string; status: string } }>(
+      `${listPath(eventId)}/upload`,
+      { method: "POST", body: input },
     ),
 };

@@ -13,6 +13,10 @@ export const queryKeys = {
     lists: (eventId: string) => ["messages", eventId, "list"] as const,
     list: (eventId: string, input: ListMessagesQuery = {}) =>
       ["messages", eventId, "list", input] as const,
+    infiniteList: (
+      eventId: string,
+      input: Omit<ListMessagesQuery, "cursor"> = {},
+    ) => ["messages", eventId, "list", "infinite", input] as const,
     detail: (eventId: string, messageId: string) =>
       ["messages", eventId, "detail", messageId] as const,
   },
