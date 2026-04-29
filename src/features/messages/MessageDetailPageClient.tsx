@@ -45,7 +45,7 @@ export const MessageDetailPageClient = ({
           {t("messages__detail__back")}
         </button>
         <ConnectedMessageDetailPane player={player} fullScreen />
-        <AudioElement ref={player.playerRef} src={player.src} />
+        <AudioElement player={player} />
       </div>
     </MessagesEventProvider>
   );

@@ -150,11 +150,8 @@ export const useUpdateMessage = (eventId: string) => {
         });
       }
     },
-    onSettled: (_data, _err, { messageId }) => {
-      qc.invalidateQueries({ queryKey: queryKeys.messages.all(eventId) });
-      qc.invalidateQueries({
-        queryKey: queryKeys.messages.detail(eventId, messageId),
-      });
+    onSettled: () => {
+      qc.invalidateQueries({ queryKey: queryKeys.messages.lists(eventId) });
     },
   });
 };

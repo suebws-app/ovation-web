@@ -18,10 +18,10 @@ export const PrivateLayout = ({
   return (
     <SidebarProvider>
       <PrivateSideBar user={user} />
-      <div className="flex w-full flex-1 flex-col overflow-hidden pb-6">
+      <div className="flex w-full flex-1 flex-col overflow-hidden">
         <PrivateHeaderDesktop subscription={subscription} />
         <PrivateHeaderMobile />
-        <SidebarInset>{children}</SidebarInset>
+        <SidebarInset className="min-h-0">{children}</SidebarInset>
       </div>
     </SidebarProvider>
   );

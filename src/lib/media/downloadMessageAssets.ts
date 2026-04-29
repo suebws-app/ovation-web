@@ -38,31 +38,46 @@ export type DownloadInputs = {
   writtenNote?: string | null;
 };
 
+const tryFetchBlob = async (url: string): Promise<Blob | null> => {
+  try {
+    return await fetchBlob(url);
+  } catch (err) {
+    console.warn(`[export] skip missing asset ${url}`, err);
+    return null;
+  }
+};
+
 const buildFilesForMessage = async (
   input: DownloadInputs,
   prefix: string,
 ): Promise<{ name: string; blob: Blob }[]> => {
   const files: { name: string; blob: Blob }[] = [];
   if (input.audioUrl) {
-    const blob = await fetchBlob(input.audioUrl);
-    files.push({
-      name: `${prefix}/audio.${extFromUrl(input.audioUrl, "webm")}`,
-      blob,
-    });
+    const blob = await tryFetchBlob(input.audioUrl);
+    if (blob) {
+      files.push({
+        name: `${prefix}/audio.${extFromUrl(input.audioUrl, "webm")}`,
+        blob,
+      });
+    }
   }
   if (input.videoUrl) {
-    const blob = await fetchBlob(input.videoUrl);
-    files.push({
-      name: `${prefix}/video.${extFromUrl(input.videoUrl, "mp4")}`,
-      blob,
-    });
+    const blob = await tryFetchBlob(input.videoUrl);
+    if (blob) {
+      files.push({
+        name: `${prefix}/video.${extFromUrl(input.videoUrl, "mp4")}`,
+        blob,
+      });
+    }
   }
   if (input.photoUrl) {
-    const blob = await fetchBlob(input.photoUrl);
-    files.push({
-      name: `${prefix}/photo.${extFromUrl(input.photoUrl, "jpg")}`,
-      blob,
-    });
+    const blob = await tryFetchBlob(input.photoUrl);
+    if (blob) {
+      files.push({
+        name: `${prefix}/photo.${extFromUrl(input.photoUrl, "jpg")}`,
+        blob,
+      });
+    }
   }
   if (input.writtenNote && input.writtenNote.trim()) {
     files.push({
@@ -86,15 +101,17 @@ export const downloadMessageAssets = async (
 export const downloadManyMessages = async (
   inputs: DownloadInputs[],
   zipName: string,
+  rootFolder?: string,
 ): Promise<void> => {
   const all: { name: string; blob: Blob }[] = [];
   const usedNames = new Map<string, number>();
+  const root = rootFolder ? `${sanitize(rootFolder)}/` : "";
   for (const input of inputs) {
     const base = sanitize(input.guestName);
     const seen = usedNames.get(base) ?? 0;
     const folder = seen === 0 ? base : `${base} (${seen + 1})`;
     usedNames.set(base, seen + 1);
-    const files = await buildFilesForMessage(input, folder);
+    const files = await buildFilesForMessage(input, `${root}${folder}`);
     all.push(...files);
   }
   if (all.length === 0) return;

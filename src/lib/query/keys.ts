@@ -10,6 +10,7 @@ export const queryKeys = {
   },
   messages: {
     all: (eventId: string) => ["messages", eventId] as const,
+    lists: (eventId: string) => ["messages", eventId, "list"] as const,
     list: (eventId: string, input: ListMessagesQuery = {}) =>
       ["messages", eventId, "list", input] as const,
     detail: (eventId: string, messageId: string) =>

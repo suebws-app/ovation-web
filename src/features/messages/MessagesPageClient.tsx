@@ -28,15 +28,15 @@ export const MessagesPageClient = ({
     <MessagesEventProvider eventId={eventId}>
       <MessagesStoreReset />
       <DurationSync player={player} />
-      <div className="flex min-h-screen w-full flex-1">
-        <div className="bg-card relative flex w-full flex-1 flex-col">
+      <div className="flex h-full w-full flex-1 overflow-auto">
+        <div className="bg-card relative flex h-full min-h-0 w-full flex-1 flex-col overflow-y-auto">
           <MessageToolbar stats={stats} />
-          <MessagesFilterRail />
+          <MessagesFilterRail stats={stats} />
           <MessagesListBody player={player} />
           <ConnectedBatchFooter />
         </div>
         <ConnectedMessageDetailPane player={player} />
-        <AudioElement ref={player.playerRef} src={player.src} />
+        <AudioElement player={player} />
       </div>
     </MessagesEventProvider>
   );

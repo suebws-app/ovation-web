@@ -1,43 +1,39 @@
 "use client";
 
-import {
-  MediaPlayer,
-  MediaProvider,
-  type MediaPlayerInstance,
-  type MediaPlayerProps,
-} from "@vidstack/react";
-import { forwardRef } from "react";
+import { MediaPlayer, MediaProvider, type MediaPlayerProps } from "@vidstack/react";
+import type { AudioPlayer } from "../hooks/useAudioPlayer";
 import { cn } from "../utils/cn";
 
 type AudioElementProps = {
-  src: string | null;
+  player: AudioPlayer;
   className?: string;
 };
 
 const buildSrc = (src: string | null): MediaPlayerProps["src"] =>
   src ? [{ src, type: "audio/mpeg" }] : "";
 
-export const AudioElement = forwardRef<MediaPlayerInstance, AudioElementProps>(
-  ({ src, className }, ref) => (
-    <MediaPlayer
-      ref={ref}
-      src={buildSrc(src)}
-      viewType="audio"
-      onError={(detail) => {
-        console.error("[audio] vidstack error", detail);
-      }}
-      style={{
-        position: "absolute",
-        width: 0,
-        height: 0,
-        overflow: "hidden",
-        pointerEvents: "none",
-      }}
-      className={cn("hidden", className)}
-    >
-      <MediaProvider />
-    </MediaPlayer>
-  ),
+export const AudioElement = ({ player, className }: AudioElementProps) => (
+  <MediaPlayer
+    ref={player.playerRef}
+    src={buildSrc(player.src)}
+    viewType="audio"
+    streamType="on-demand"
+    onTimeUpdate={player.onTimeUpdate}
+    onDurationChange={player.onDurationChange}
+    onPlay={player.onPlay}
+    onPause={player.onPause}
+    onError={(detail) => {
+      console.error("[audio] vidstack error", detail);
+    }}
+    style={{
+      position: "absolute",
+      width: 0,
+      height: 0,
+      overflow: "hidden",
+      pointerEvents: "none",
+    }}
+    className={cn("hidden", className)}
+  >
+    <MediaProvider />
+  </MediaPlayer>
 );
-
-AudioElement.displayName = "AudioElement";

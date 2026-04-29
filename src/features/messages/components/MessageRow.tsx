@@ -9,6 +9,7 @@ import { Waveform } from "@/features/dashboard/components/Waveform";
 
 import type { MessageRowView } from "../adapters";
 import { MessagePlayButton } from "./MessagePlayButton";
+import { cn } from "@ovation/ui/utils/cn";
 
 type MessageRowProps = {
   message: MessageRowView;
@@ -47,27 +48,14 @@ export const MessageRow = ({
   onToggleSelect,
 }: MessageRowProps) => (
   <div
-    role="button"
-    tabIndex={0}
-    onClick={onClick}
-    onKeyDown={(e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        onClick?.();
-      }
-    }}
-    className={`border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors ${
+    className={cn(
+      "border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors",
       selected
         ? "border-l-primary bg-primary/5 border-l-3"
-        : "hover:bg-muted/50 border-l-3 border-l-transparent"
-    }`}
+        : "hover:bg-muted/50 border-l-3 border-l-transparent",
+    )}
   >
-    <span
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-      className="inline-flex"
-    >
+    <span className="inline-flex">
       <Checkbox
         checked={checked}
         onChange={() => onToggleSelect?.()}
@@ -75,14 +63,38 @@ export const MessageRow = ({
       />
     </span>
 
-    <Avatar
-      initials={message.initials}
-      tint={message.tint}
-      size="lg"
-      className={index % 2 ? "rotate-2" : "-rotate-2"}
-    />
+    <span
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
+      className="inline-flex cursor-pointer"
+    >
+      <Avatar
+        initials={message.initials}
+        tint={message.tint}
+        size="lg"
+        className={index % 2 ? "rotate-2" : "-rotate-2"}
+      />
+    </span>
 
-    <div className="min-w-0">
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
+      className="min-w-0 cursor-pointer"
+    >
       <div className="flex items-center gap-2">
         <span className="type-body text-foreground font-semibold">
           {message.name}
@@ -136,14 +148,10 @@ export const MessageRow = ({
       <span
         role="button"
         tabIndex={0}
-        onClick={(e) => {
-          e.stopPropagation();
-          onPlay?.();
-        }}
+        onClick={() => onPlay?.()}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            e.stopPropagation();
             onPlay?.();
           }
         }}

@@ -106,7 +106,10 @@ export type MessageDetail = {
   guestNames: string;
   audioUrl: string | null;
   audioDurationSec: number | null;
+  audioMimeType: string | null;
   videoUrl: string | null;
+  videoDurationSec: number | null;
+  videoMimeType: string | null;
   photoUrl: string | null;
   writtenNote: string | null;
   transcript: string | null;

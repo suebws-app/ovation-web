@@ -38,8 +38,8 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="h-full antialiased" suppressHydrationWarning>
-      <body className="flex min-h-full flex-col">
+    <html lang={locale} className="h-dvh antialiased" suppressHydrationWarning>
+      <body className="flex max-h-dvh flex-1 flex-col">
         <Script
           id="theme-init"
           strategy="beforeInteractive"

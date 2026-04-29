@@ -17,7 +17,12 @@ import {
 import { downloadMessageAssets } from "@/lib/media/downloadMessageAssets";
 import { formatTimeShort } from "../adapters";
 
-import { MediaPlayer, MediaProvider } from "@vidstack/react";
+import {
+  MediaPlayer,
+  MediaProvider,
+  isHTMLVideoElement,
+  type MediaLoadedMetadataEvent,
+} from "@vidstack/react";
 import {
   defaultLayoutIcons,
   DefaultVideoLayout,
@@ -105,6 +110,7 @@ export const MessageDetailPane = ({
 
   const audioUrl = detail?.message.audioUrl ?? null;
   const videoUrl = detail?.message.videoUrl ?? null;
+  const videoMimeType = detail?.message.videoMimeType ?? "video/mp4";
   const photoUrl = detail?.message.photoUrl ?? null;
   const writtenNote = detail?.message.writtenNote ?? null;
   const hasAudio = Boolean(audioUrl);
@@ -145,7 +151,7 @@ export const MessageDetailPane = ({
       </div>
 
       {hasAudio && (
-        <div className="rounded-16 bg-foreground text-background relative overflow-hidden p-4.5">
+        <div className="rounded-16 bg-foreground text-background relative min-h-fit overflow-hidden p-4.5">
           <div
             className="pointer-events-none absolute inset-0"
             style={{
@@ -230,9 +236,35 @@ export const MessageDetailPane = ({
             {videoUrl && (
               <div className="rounded-12 bg-muted block aspect-square size-full h-40 w-40 overflow-hidden">
                 <MediaPlayer
-                  src={[{ src: videoUrl, type: "video/mp4" }]}
+                  src={[
+                    {
+                      src: videoUrl,
+                      type: videoMimeType as "video/mp4" | "video/webm",
+                    },
+                  ]}
                   viewType="video"
-                  load="visible"
+                  streamType="on-demand"
+                  load="eager"
+                  preload="metadata"
+                  onLoadedMetadata={(nativeEvent: MediaLoadedMetadataEvent) => {
+                    const el = nativeEvent.trigger?.target;
+                    if (!isHTMLVideoElement(el)) return;
+                    if (Number.isFinite(el.duration) && el.duration > 0) return;
+                    const onSeeked = () => {
+                      el.removeEventListener("seeked", onSeeked);
+                      try {
+                        el.currentTime = 0;
+                      } catch {
+                        /* noop */
+                      }
+                    };
+                    el.addEventListener("seeked", onSeeked);
+                    try {
+                      el.currentTime = Number.MAX_SAFE_INTEGER;
+                    } catch {
+                      el.removeEventListener("seeked", onSeeked);
+                    }
+                  }}
                   onError={(detail) => {
                     console.error("[video] vidstack error", detail);
                   }}
