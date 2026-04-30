@@ -9,8 +9,25 @@ import { Heart } from "@ovation/icons/Heart";
 import { Download } from "@ovation/icons/Download";
 import { Book } from "@ovation/icons/Book";
 import { cn } from "@ovation/ui/utils/cn";
+import {
+  MediaPlayer,
+  MediaProvider,
+  isHTMLVideoElement,
+  type MediaLoadedMetadataEvent,
+} from "@vidstack/react";
+import {
+  defaultLayoutIcons,
+  DefaultVideoLayout,
+} from "@vidstack/react/player/layouts/default";
 import { useUpdateMedia } from "@/lib/query/galleryQueries";
 import type { PhotoView } from "../adapters";
+
+type VideoMime = "video/mp4" | "video/webm";
+
+const mimeFromUrl = (url: string): VideoMime => {
+  const ext = extFromUrl(url, "mp4");
+  return ext === "webm" ? "video/webm" : "video/mp4";
+};
 
 type PhotoLightboxProps = {
   eventId: string;
@@ -177,7 +194,7 @@ export const PhotoLightbox = ({
       role="dialog"
       aria-modal="true"
       aria-label={t("photos__lightbox__aria_label")}
-      className="fixed inset-0 z-50 flex flex-col bg-black/90 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex flex-col bg-[#1a1a1a]"
       onClick={onClose}
     >
       <div
@@ -253,12 +270,47 @@ export const PhotoLightbox = ({
         onPointerUp={handlePointerUp}
       >
         {fullUrl && photo.type === "video" ? (
-          <video
-            src={fullUrl}
-            controls
-            playsInline
-            className="max-h-full max-w-full touch-none object-contain select-none"
-          />
+          <div className="flex h-full max-h-full w-full max-w-full items-center justify-center">
+            <MediaPlayer
+              key={fullUrl}
+              src={[
+                {
+                  src: fullUrl,
+                  type: mimeFromUrl(fullUrl),
+                },
+              ]}
+              viewType="video"
+              streamType="on-demand"
+              load="eager"
+              preload="metadata"
+              onLoadedMetadata={(nativeEvent: MediaLoadedMetadataEvent) => {
+                const el = nativeEvent.trigger?.target;
+                if (!isHTMLVideoElement(el)) return;
+                if (Number.isFinite(el.duration) && el.duration > 0) return;
+                const onSeeked = () => {
+                  el.removeEventListener("seeked", onSeeked);
+                  try {
+                    el.currentTime = 0;
+                  } catch {
+                    /* noop */
+                  }
+                };
+                el.addEventListener("seeked", onSeeked);
+                try {
+                  el.currentTime = Number.MAX_SAFE_INTEGER;
+                } catch {
+                  el.removeEventListener("seeked", onSeeked);
+                }
+              }}
+              onError={(detail) => {
+                console.error("[video] vidstack error", detail);
+              }}
+              className="max-h-full max-w-full"
+            >
+              <MediaProvider />
+              <DefaultVideoLayout icons={defaultLayoutIcons} />
+            </MediaPlayer>
+          </div>
         ) : fullUrl ? (
           <img
             src={fullUrl}

@@ -50,7 +50,7 @@ export const PhotoTile = ({
         }
       }}
       className={cn(
-        "group rounded-12 relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-all hover:scale-[1.02] hover:shadow-md",
+        "group rounded-12 relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-transform hover:scale-[1.02] hover:shadow-md",
         selected ? "ring-secondary ring-[3px] ring-offset-1" : "shadow-sm",
       )}
       style={{ breakInside: "avoid" }}
@@ -69,7 +69,7 @@ export const PhotoTile = ({
         ) : isVideo && url ? (
           <video
             src={`${url}#t=0.1`}
-            preload="metadata"
+            preload="none"
             muted
             playsInline
             disablePictureInPicture

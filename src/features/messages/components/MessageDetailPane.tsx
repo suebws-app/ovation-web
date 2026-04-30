@@ -249,8 +249,8 @@ export const MessageDetailPane = ({
                   ]}
                   viewType="video"
                   streamType="on-demand"
-                  load="eager"
-                  preload="metadata"
+                  load="visible"
+                  preload="none"
                   onLoadedMetadata={(nativeEvent: MediaLoadedMetadataEvent) => {
                     const el = nativeEvent.trigger?.target;
                     if (!isHTMLVideoElement(el)) return;
