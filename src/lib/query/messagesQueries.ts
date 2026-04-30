@@ -53,9 +53,7 @@ export const useMessageDetail = (eventId: string, messageId: string | null) =>
 type ListSnapshot = Paginated<MessageSummary>;
 type InfiniteSnapshot = InfiniteData<Paginated<MessageSummary>, string | null>;
 
-const isInfiniteSnapshot = (
-  value: unknown,
-): value is InfiniteSnapshot =>
+const isInfiniteSnapshot = (value: unknown): value is InfiniteSnapshot =>
   typeof value === "object" &&
   value !== null &&
   Array.isArray((value as { pages?: unknown }).pages);
@@ -65,7 +63,7 @@ const isFlatSnapshot = (value: unknown): value is ListSnapshot =>
   value !== null &&
   Array.isArray((value as { items?: unknown }).items);
 
-const patchMessageInList = (
+const patchInList = (
   list: ListSnapshot,
   messageId: string,
   patch: Partial<MessageSummary>,
@@ -74,7 +72,7 @@ const patchMessageInList = (
   items: list.items.map((m) => (m.id === messageId ? { ...m, ...patch } : m)),
 });
 
-const removeMessageFromList = (
+const removeFromList = (
   list: ListSnapshot,
   messageId: string,
 ): ListSnapshot => ({
@@ -82,9 +80,41 @@ const removeMessageFromList = (
   items: list.items.filter((m) => m.id !== messageId),
 });
 
+const transformAllLists = (
+  qc: ReturnType<typeof useQueryClient>,
+  eventId: string,
+  transform: (snapshot: ListSnapshot) => ListSnapshot,
+): { previous: [readonly unknown[], unknown][] } => {
+  const entries = qc.getQueriesData<unknown>({
+    queryKey: queryKeys.messages.all(eventId),
+  });
+  const previous: [readonly unknown[], unknown][] = [];
+  for (const [key, snapshot] of entries) {
+    if (isInfiniteSnapshot(snapshot)) {
+      previous.push([key, snapshot]);
+      qc.setQueryData<InfiniteSnapshot>(key, {
+        ...snapshot,
+        pages: snapshot.pages.map(transform),
+      });
+    } else if (isFlatSnapshot(snapshot)) {
+      previous.push([key, snapshot]);
+      qc.setQueryData<ListSnapshot>(key, transform(snapshot));
+    }
+  }
+  return { previous };
+};
+
+const restoreSnapshots = (
+  qc: ReturnType<typeof useQueryClient>,
+  previous: [readonly unknown[], unknown][],
+) => {
+  for (const [key, snapshot] of previous) {
+    qc.setQueryData(key, snapshot);
+  }
+};
+
 type UpdateContext = {
-  previousFlatLists: [readonly unknown[], ListSnapshot][];
-  previousInfiniteLists: [readonly unknown[], InfiniteSnapshot][];
+  previous: [readonly unknown[], unknown][];
   previousDetail:
     | { key: readonly unknown[]; data: { message: MessageDetail } | undefined }
     | null;
@@ -110,37 +140,14 @@ export const useUpdateMessage = (eventId: string) => {
       await qc.cancelQueries({ queryKey: queryKeys.messages.all(eventId) });
 
       const patch: Partial<MessageSummary> = {};
-      if (typeof input.isFavorite === "boolean") {
+      if (typeof input.isFavorite === "boolean")
         patch.isFavorite = input.isFavorite;
-      }
-      if (typeof input.isGoldBookSelected === "boolean") {
+      if (typeof input.isGoldBookSelected === "boolean")
         patch.isGoldBookSelected = input.isGoldBookSelected;
-      }
 
-      const allEntries = qc.getQueriesData<unknown>({
-        queryKey: queryKeys.messages.all(eventId),
-      });
-
-      const previousFlatLists: [readonly unknown[], ListSnapshot][] = [];
-      const previousInfiniteLists: [readonly unknown[], InfiniteSnapshot][] = [];
-
-      allEntries.forEach(([key, snapshot]) => {
-        if (isInfiniteSnapshot(snapshot)) {
-          previousInfiniteLists.push([key, snapshot]);
-          qc.setQueryData<InfiniteSnapshot>(key, {
-            ...snapshot,
-            pages: snapshot.pages.map((p) =>
-              patchMessageInList(p, messageId, patch),
-            ),
-          });
-        } else if (isFlatSnapshot(snapshot)) {
-          previousFlatLists.push([key, snapshot]);
-          qc.setQueryData<ListSnapshot>(
-            key,
-            patchMessageInList(snapshot, messageId, patch),
-          );
-        }
-      });
+      const { previous } = transformAllLists(qc, eventId, (snap) =>
+        patchInList(snap, messageId, patch),
+      );
 
       const detailKey = queryKeys.messages.detail(eventId, messageId);
       const detailSnapshot = qc.getQueryData<{ message: MessageDetail }>(
@@ -148,51 +155,24 @@ export const useUpdateMessage = (eventId: string) => {
       );
       if (detailSnapshot) {
         qc.setQueryData<{ message: MessageDetail }>(detailKey, {
-          message: {
-            ...detailSnapshot.message,
-            isFavorite:
-              typeof input.isFavorite === "boolean"
-                ? input.isFavorite
-                : detailSnapshot.message.isFavorite,
-            isGoldBookSelected:
-              typeof input.isGoldBookSelected === "boolean"
-                ? input.isGoldBookSelected
-                : detailSnapshot.message.isGoldBookSelected,
-            coupleNotes:
-              input.coupleNotes !== undefined
-                ? input.coupleNotes
-                : detailSnapshot.message.coupleNotes,
-            audioTrimStartSec:
-              input.audioTrimStartSec !== undefined
-                ? input.audioTrimStartSec
-                : detailSnapshot.message.audioTrimStartSec,
-            audioTrimEndSec:
-              input.audioTrimEndSec !== undefined
-                ? input.audioTrimEndSec
-                : detailSnapshot.message.audioTrimEndSec,
-          },
+          message: { ...detailSnapshot.message, ...patch },
         });
       }
 
       return {
-        previousFlatLists,
-        previousInfiniteLists,
+        previous,
         previousDetail: { key: detailKey, data: detailSnapshot },
       };
     },
-    onError: (err, _vars, context) => {
-      console.error("[useUpdateMessage] failed", err);
-      context?.previousFlatLists.forEach(([key, snapshot]) => {
-        qc.setQueryData(key, snapshot);
-      });
-      context?.previousInfiniteLists.forEach(([key, snapshot]) => {
-        qc.setQueryData(key, snapshot);
-      });
-      if (context?.previousDetail) {
-        qc.setQueryData(
-          context.previousDetail.key,
-          context.previousDetail.data,
-        );
+    onError: (_err, _vars, context) => {
+      if (context) {
+        restoreSnapshots(qc, context.previous);
+        if (context.previousDetail) {
+          qc.setQueryData(
+            context.previousDetail.key,
+            context.previousDetail.data,
+          );
+        }
       }
     },
     onSuccess: (response, { messageId }) => {
@@ -214,10 +194,7 @@ export const useUpdateMessage = (eventId: string) => {
   });
 };
 
-type DeleteContext = {
-  previousFlatLists: [readonly unknown[], ListSnapshot][];
-  previousInfiniteLists: [readonly unknown[], InfiniteSnapshot][];
-};
+type DeleteContext = { previous: [readonly unknown[], unknown][] };
 
 export const useDeleteMessage = (eventId: string) => {
   const qc = useQueryClient();
@@ -225,38 +202,12 @@ export const useDeleteMessage = (eventId: string) => {
     mutationFn: (messageId) => messagesClient.remove(eventId, messageId),
     onMutate: async (messageId) => {
       await qc.cancelQueries({ queryKey: queryKeys.messages.all(eventId) });
-      const allEntries = qc.getQueriesData<unknown>({
-        queryKey: queryKeys.messages.all(eventId),
-      });
-      const previousFlatLists: [readonly unknown[], ListSnapshot][] = [];
-      const previousInfiniteLists: [readonly unknown[], InfiniteSnapshot][] =
-        [];
-      allEntries.forEach(([key, snapshot]) => {
-        if (isInfiniteSnapshot(snapshot)) {
-          previousInfiniteLists.push([key, snapshot]);
-          qc.setQueryData<InfiniteSnapshot>(key, {
-            ...snapshot,
-            pages: snapshot.pages.map((p) =>
-              removeMessageFromList(p, messageId),
-            ),
-          });
-        } else if (isFlatSnapshot(snapshot)) {
-          previousFlatLists.push([key, snapshot]);
-          qc.setQueryData<ListSnapshot>(
-            key,
-            removeMessageFromList(snapshot, messageId),
-          );
-        }
-      });
-      return { previousFlatLists, previousInfiniteLists };
+      return transformAllLists(qc, eventId, (snap) =>
+        removeFromList(snap, messageId),
+      );
     },
     onError: (_err, _id, context) => {
-      context?.previousFlatLists.forEach(([key, snapshot]) => {
-        qc.setQueryData(key, snapshot);
-      });
-      context?.previousInfiniteLists.forEach(([key, snapshot]) => {
-        qc.setQueryData(key, snapshot);
-      });
+      if (context) restoreSnapshots(qc, context.previous);
     },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: queryKeys.messages.all(eventId) });

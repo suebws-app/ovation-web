@@ -48,9 +48,9 @@ export const MessagesFilterRail = ({ stats }: MessagesFilterRailProps) => {
       case "favorites":
         return stats.favorites;
       case "with_photo":
-        return stats.photoMessages;
+        return stats.photoCount;
       case "with_video":
-        return stats.videoMessages;
+        return stats.videoCount;
       case "audio_only":
         return stats.audioMessages;
       default:

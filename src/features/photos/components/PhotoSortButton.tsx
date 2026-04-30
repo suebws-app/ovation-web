@@ -18,8 +18,6 @@ import {
 const OPTIONS: { value: PhotoSort; labelKey: string }[] = [
   { value: "newest", labelKey: "photos__sort__newest" },
   { value: "oldest", labelKey: "photos__sort__oldest" },
-  { value: "name_asc", labelKey: "photos__sort__name_asc" },
-  { value: "name_desc", labelKey: "photos__sort__name_desc" },
 ];
 
 export const PhotoSortButton = () => {

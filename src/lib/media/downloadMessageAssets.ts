@@ -98,9 +98,10 @@ export const downloadMessageAssets = async (
   triggerSave(zipBlob, `${guest}.zip`);
 };
 
-export type PhotoDownloadInput = {
+export type MediaDownloadInput = {
   guestName: string;
-  photoUrl: string;
+  mediaUrl: string;
+  type: "photo" | "video";
   createdAt: string;
 };
 
@@ -111,17 +112,18 @@ const formatStamp = (iso: string): string => {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}_${pad(d.getHours())}-${pad(d.getMinutes())}-${pad(d.getSeconds())}`;
 };
 
-export const downloadPhotosFlat = async (
-  inputs: PhotoDownloadInput[],
+export const downloadMediaFlat = async (
+  inputs: MediaDownloadInput[],
   zipName: string,
 ): Promise<void> => {
   const files: { name: string; blob: Blob }[] = [];
   const usedNames = new Map<string, number>();
   const folder = sanitize(zipName);
   for (const input of inputs) {
-    const blob = await tryFetchBlob(input.photoUrl);
+    const blob = await tryFetchBlob(input.mediaUrl);
     if (!blob) continue;
-    const ext = extFromUrl(input.photoUrl, "jpg");
+    const fallback = input.type === "video" ? "mp4" : "jpg";
+    const ext = extFromUrl(input.mediaUrl, fallback);
     const base = `${sanitize(input.guestName)}_${formatStamp(input.createdAt)}`;
     const seen = usedNames.get(base) ?? 0;
     usedNames.set(base, seen + 1);

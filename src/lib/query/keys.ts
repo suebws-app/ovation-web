@@ -24,7 +24,13 @@ export const queryKeys = {
     all: (eventId: string) => ["gallery", eventId] as const,
     infiniteList: (
       eventId: string,
-      input: { type?: "photo" | "video" | "all"; limit?: number } = {},
+      input: {
+        type?: "photo" | "video" | "all";
+        filter?: "all" | "favorites" | "gold_book";
+        sort?: "newest" | "oldest";
+        search?: string;
+        limit?: number;
+      } = {},
     ) => ["gallery", eventId, "infinite", input] as const,
   },
   user: {

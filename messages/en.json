@@ -721,6 +721,7 @@
   "photos__select_all": "Select all",
   "photos__filter__chip_all": "All",
   "photos__filter__chip_favourites": "♥ Favourites",
+  "photos__filter__chip_gold_book": "Gold Book",
   "photos__filter__chip_with_audio": "With audio",
   "photos__lightbox__aria_label": "Photo viewer",
   "photos__lightbox__counter": "{current} / {total}",

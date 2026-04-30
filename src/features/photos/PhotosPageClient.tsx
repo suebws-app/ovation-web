@@ -12,7 +12,7 @@ import { PhotoLightbox } from "./components/PhotoLightbox";
 import { PhotoToolbar } from "./components/PhotoToolbar";
 import { PhotosFilterRail } from "./components/PhotosFilterRail";
 import { usePhotoBulkActions } from "./hooks/usePhotoBulkActions";
-import { toPhotoViewFromGallery, type PhotoView } from "./adapters";
+import { toPhotoViewFromGallery } from "./adapters";
 import {
   useLightboxIndex,
   usePhotoSearch,
@@ -20,8 +20,6 @@ import {
   usePhotoSort,
   usePhotosStore,
   useSubFilter,
-  type PhotoSort,
-  type PhotoSubFilter,
 } from "./store/usePhotosStore";
 
 type PhotosPageClientProps = {
@@ -30,34 +28,6 @@ type PhotosPageClientProps = {
 };
 
 const PAGE_SIZE = 20;
-
-const applySubFilter = (photos: PhotoView[], filter: PhotoSubFilter) => {
-  if (filter === "favorites") return photos.filter((p) => p.favorited);
-  return photos;
-};
-
-const applyClientSort = (photos: PhotoView[], sort: PhotoSort) => {
-  if (sort === "name_asc") {
-    return [...photos].sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
-    );
-  }
-  if (sort === "name_desc") {
-    return [...photos].sort((a, b) =>
-      b.name.localeCompare(a.name, undefined, { sensitivity: "base" }),
-    );
-  }
-  if (sort === "oldest") {
-    return [...photos].sort((a, b) => a.createdAt.localeCompare(b.createdAt));
-  }
-  return [...photos].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-};
-
-const applySearch = (photos: PhotoView[], search: string) => {
-  if (!search) return photos;
-  const needle = search.toLowerCase();
-  return photos.filter((p) => p.name.toLowerCase().includes(needle));
-};
 
 export const PhotosPageClient = ({
   eventId,
@@ -83,22 +53,22 @@ export const PhotosPageClient = ({
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteGallery(eventId, { type: "all", limit: PAGE_SIZE });
+  } = useInfiniteGallery(eventId, {
+    type: "all",
+    filter: subFilter,
+    sort,
+    search: trimmedSearch || undefined,
+    limit: PAGE_SIZE,
+  });
 
   const anonymous = t("common__anonymous");
-  const allPhotos = useMemo(
+  const photos = useMemo(
     () =>
       (data?.pages ?? []).flatMap((page) =>
         page.items.map((m) => toPhotoViewFromGallery(m, anonymous)),
       ),
     [data?.pages, anonymous],
   );
-
-  const photos = useMemo(() => {
-    const filtered = applySubFilter(allPhotos, subFilter);
-    const searched = applySearch(filtered, trimmedSearch);
-    return applyClientSort(searched, sort);
-  }, [allPhotos, subFilter, sort, trimmedSearch]);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -125,7 +95,7 @@ export const PhotosPageClient = ({
 
   const bulk = usePhotoBulkActions(eventId, photos);
 
-  const totalCount = allPhotos.length;
+  const totalCount = photos.length;
 
   return (
     <div className="flex h-full w-full flex-1 overflow-auto">
@@ -134,41 +104,41 @@ export const PhotosPageClient = ({
         className="bg-card relative flex h-full min-h-0 w-full flex-1 flex-col overflow-y-auto"
       >
         <PhotoToolbar eventId={eventId} totalCount={totalCount} />
-      <PhotosFilterRail photos={photos} stats={stats} />
-      {isPending ? (
-        <p className="type-body-small text-muted-foreground p-8 text-center">
-          {t("photos__loading")}
-        </p>
-      ) : isError ? (
-        <p className="type-body-small text-destructive p-8 text-center">
-          {t("photos__error")}
-        </p>
-      ) : (
-        <>
-          <PhotoGallery
-            photos={photos}
-            selectedIds={selectedIds}
-            onTileClick={handleTileClick}
-            onToggleSelect={toggleSelected}
-          />
-          <div ref={sentinelRef} aria-hidden className="h-px" />
-          {isFetchingNextPage && (
-            <p className="type-caption text-muted-foreground p-4 text-center">
-              {t("photos__lightbox__loading_more")}
-            </p>
-          )}
-        </>
-      )}
+        <PhotosFilterRail photos={photos} stats={stats} />
+        {isPending ? (
+          <p className="type-body-small text-muted-foreground p-8 text-center">
+            {t("photos__loading")}
+          </p>
+        ) : isError ? (
+          <p className="type-body-small text-destructive p-8 text-center">
+            {t("photos__error")}
+          </p>
+        ) : (
+          <>
+            <PhotoGallery
+              photos={photos}
+              selectedIds={selectedIds}
+              onTileClick={handleTileClick}
+              onToggleSelect={toggleSelected}
+            />
+            <div ref={sentinelRef} aria-hidden className="h-px" />
+            {isFetchingNextPage && (
+              <p className="type-caption text-muted-foreground p-4 text-center">
+                {t("photos__lightbox__loading_more")}
+              </p>
+            )}
+          </>
+        )}
 
-      <PhotoBatchFooter
-        count={bulk.selectedCount}
-        allFavorited={bulk.allFavorited}
-        allInGoldBook={bulk.allInGoldBook}
-        bulkPending={bulk.isPending}
-        onBulkFavorite={bulk.bulkFavorite}
-        onBulkGoldBook={bulk.bulkGoldBook}
-        onBulkDownload={bulk.bulkDownload}
-      />
+        <PhotoBatchFooter
+          count={bulk.selectedCount}
+          allFavorited={bulk.allFavorited}
+          allInGoldBook={bulk.allInGoldBook}
+          bulkPending={bulk.isPending}
+          onBulkFavorite={bulk.bulkFavorite}
+          onBulkGoldBook={bulk.bulkGoldBook}
+          onBulkDownload={bulk.bulkDownload}
+        />
 
         {lightboxIndex !== null && photos[lightboxIndex] && (
           <PhotoLightbox

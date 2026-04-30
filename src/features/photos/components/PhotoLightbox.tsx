@@ -127,20 +127,20 @@ export const PhotoLightbox = ({
 
   if (!photo) return null;
 
-  const fullUrl = photo.fullUrl ?? photo.thumbUrl;
-  const favorited = photo.favorited;
-  const inGoldBook = photo.inGoldBook;
+  const fullUrl = photo.url ?? photo.thumbUrl;
+  const favorited = photo.isFavorite;
+  const inGoldBook = photo.isGoldBookSelected;
 
   const handleToggleFavorite = () => {
     update.mutate({
-      mediaId: photo.mediaId,
+      mediaId: photo.id,
       patch: { isFavorite: !favorited },
     });
   };
 
   const handleToggleGoldBook = () => {
     update.mutate({
-      mediaId: photo.mediaId,
+      mediaId: photo.id,
       patch: { isGoldBookSelected: !inGoldBook },
     });
   };

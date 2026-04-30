@@ -20,9 +20,9 @@ export const MessageToolbar = ({ stats }: MessageToolbarProps) => {
       return t("messages__toolbar__subtitle_empty");
     }
     const parts: string[] = [];
-    if (stats.photoMessages > 0) {
+    if (stats.photoCount > 0) {
       parts.push(
-        t("messages__toolbar__subtitle_photos", { count: stats.photoMessages }),
+        t("messages__toolbar__subtitle_photos", { count: stats.photoCount }),
       );
     }
     if (stats.favorites > 0) {

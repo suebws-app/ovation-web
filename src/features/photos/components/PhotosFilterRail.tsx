@@ -23,6 +23,7 @@ type PhotosFilterRailProps = {
 const FILTER_VALUES: { labelKey: string; value: PhotoSubFilter }[] = [
   { labelKey: "photos__filter__chip_all", value: "all" },
   { labelKey: "photos__filter__chip_favourites", value: "favorites" },
+  { labelKey: "photos__filter__chip_gold_book", value: "gold_book" },
 ];
 
 export const PhotosFilterRail = ({ photos, stats }: PhotosFilterRailProps) => {
@@ -36,17 +37,12 @@ export const PhotosFilterRail = ({ photos, stats }: PhotosFilterRailProps) => {
   const chips = FILTER_VALUES.map((c) => ({
     label: t(c.labelKey),
     value: c.value,
+    count: c.value === "all" ? stats?.photoCount : undefined,
   }));
-
-  const countForChip = (value: PhotoSubFilter): number | undefined => {
-    if (!stats) return undefined;
-    if (value === "all") return stats.photoMessages;
-    return undefined;
-  };
 
   const chipItems: FilterChipItem[] = chips.map((c) => ({
     label: c.label,
-    count: countForChip(c.value),
+    count: c.count,
   }));
 
   const activeLabel =

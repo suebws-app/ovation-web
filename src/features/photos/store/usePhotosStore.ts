@@ -2,8 +2,8 @@
 
 import { create } from "zustand";
 
-export type PhotoSubFilter = "all" | "favorites";
-export type PhotoSort = "newest" | "oldest" | "name_asc" | "name_desc";
+export type PhotoSubFilter = "all" | "favorites" | "gold_book";
+export type PhotoSort = "newest" | "oldest";
 
 type PhotosState = {
   subFilter: PhotoSubFilter;

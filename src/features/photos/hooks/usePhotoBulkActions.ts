@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useMutation } from "@tanstack/react-query";
 import { useUpdateMedia } from "@/lib/query/galleryQueries";
-import { downloadPhotosFlat } from "@/lib/media/downloadMessageAssets";
+import { downloadMediaFlat } from "@/lib/media/downloadMessageAssets";
 import { usePhotoSelectedIds } from "../store/usePhotosStore";
 import type { PhotoView } from "../adapters";
 
@@ -28,9 +28,10 @@ export const usePhotoBulkActions = (
   );
 
   const allFavorited =
-    selectedViews.length > 0 && selectedViews.every((p) => p.favorited);
+    selectedViews.length > 0 && selectedViews.every((p) => p.isFavorite);
   const allInGoldBook =
-    selectedViews.length > 0 && selectedViews.every((p) => p.inGoldBook);
+    selectedViews.length > 0 &&
+    selectedViews.every((p) => p.isGoldBookSelected);
 
   const mutation = useMutation({
     mutationFn: async (input: BulkInput) => {
@@ -38,7 +39,7 @@ export const usePhotoBulkActions = (
         await Promise.all(
           input.views.map((v) =>
             updateMedia.mutateAsync({
-              mediaId: v.mediaId,
+              mediaId: v.id,
               patch: { isFavorite: input.nextValue },
             }),
           ),
@@ -49,21 +50,22 @@ export const usePhotoBulkActions = (
         await Promise.all(
           input.views.map((v) =>
             updateMedia.mutateAsync({
-              mediaId: v.mediaId,
+              mediaId: v.id,
               patch: { isGoldBookSelected: input.nextValue },
             }),
           ),
         );
         return;
       }
-      const photoInputs = input.views
-        .filter((v) => v.fullUrl || v.thumbUrl)
+      const mediaInputs = input.views
+        .filter((v) => v.url || v.thumbUrl)
         .map((v) => ({
           guestName: v.name || anonymous,
-          photoUrl: (v.fullUrl ?? v.thumbUrl) as string,
+          mediaUrl: (v.url ?? v.thumbUrl) as string,
+          type: v.type,
           createdAt: v.createdAt,
         }));
-      await downloadPhotosFlat(photoInputs, "photos");
+      await downloadMediaFlat(mediaInputs, "media");
     },
   });
 

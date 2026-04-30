@@ -81,8 +81,8 @@ export type Event = {
 export type EventStats = {
   totalMessages: number;
   audioMessages: number;
-  videoMessages: number;
-  photoMessages: number;
+  videoCount: number;
+  photoCount: number;
   writtenMessages: number;
   favorites: number;
 };
@@ -103,18 +103,7 @@ export type MessageSummary = {
   photoThumbUrl: string | null;
 };
 
-export type MessageMediaItem = {
-  id: string;
-  type: "photo" | "video";
-  uploaderType: "guest" | "owner";
-  messageId: string | null;
-  url: string | null;
-  thumbUrl: string | null;
-  width: number | null;
-  height: number | null;
-  durationSec: number | null;
-  createdAt: string;
-};
+export type MessageMediaItem = GalleryItem;
 
 export type MessageDetail = {
   id: string;
@@ -122,7 +111,7 @@ export type MessageDetail = {
   audioUrl: string | null;
   audioDurationSec: number | null;
   audioMimeType: string | null;
-  media: MessageMediaItem[];
+  media: GalleryItem[];
   writtenNote: string | null;
   transcript: string | null;
   transcriptLanguage: string | null;

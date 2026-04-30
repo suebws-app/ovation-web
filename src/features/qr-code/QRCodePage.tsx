@@ -70,8 +70,8 @@ export const QRCodePage = async () => {
       <div className="mt-4">
         <QRStatsCard
           totalMessages={stats?.totalMessages ?? 0}
-          photoMessages={stats?.photoMessages ?? 0}
-          videoMessages={stats?.videoMessages ?? 0}
+          photoCount={stats?.photoCount ?? 0}
+          videoCount={stats?.videoCount ?? 0}
           audioMessages={stats?.audioMessages ?? 0}
         />
       </div>

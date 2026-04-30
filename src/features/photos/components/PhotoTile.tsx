@@ -24,17 +24,19 @@ export const PhotoTile = ({
 }: PhotoTileProps) => {
   const {
     thumbUrl,
-    fullUrl,
+    url,
     type,
     monogram,
     name,
     tint,
-    favorited,
-    inGoldBook,
+    isFavorite,
+    isGoldBookSelected,
     time,
   } = tile;
   const isVideo = type === "video";
-  const previewUrl = thumbUrl ?? (isVideo ? null : fullUrl);
+  const previewUrl = thumbUrl ?? (isVideo ? null : url);
+  const favorited = isFavorite;
+  const inGoldBook = isGoldBookSelected;
 
   return (
     <div
@@ -64,9 +66,9 @@ export const PhotoTile = ({
             loading="lazy"
             className="size-full object-cover"
           />
-        ) : isVideo && fullUrl ? (
+        ) : isVideo && url ? (
           <video
-            src={`${fullUrl}#t=0.1`}
+            src={`${url}#t=0.1`}
             preload="metadata"
             muted
             playsInline

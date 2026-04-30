@@ -7,7 +7,7 @@ import {
   mediaClient,
   type MediaFinalizeItem,
   type MediaUploadItem,
-} from "@/lib/api/messages-client";
+} from "@/lib/api/media-client";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import { queryKeys } from "@/lib/query/keys";
 
@@ -103,6 +103,7 @@ export const usePhotoUpload = (eventId: string) => {
 
       await mediaClient.finalize(eventId, finalizeItems);
 
+      qc.invalidateQueries({ queryKey: queryKeys.gallery.all(eventId) });
       qc.invalidateQueries({ queryKey: queryKeys.messages.all(eventId) });
       qc.invalidateQueries({ queryKey: queryKeys.events.stats(eventId) });
     } catch (err) {

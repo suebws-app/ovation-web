@@ -25,9 +25,9 @@ export const GuestStatBar = ({ stats, invitations }: GuestStatBarProps) => {
       tone: "primary" as const,
     },
     {
-      value: stats.photoMessages,
+      value: stats.photoCount,
       label: t("guests__stats__with_photo"),
-      sub: t("guests__stats__with_photo_sub", { count: stats.videoMessages }),
+      sub: t("guests__stats__with_photo_sub", { count: stats.videoCount }),
       icon: ImageIcon,
       tone: "primary" as const,
     },
