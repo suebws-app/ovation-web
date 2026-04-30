@@ -75,11 +75,13 @@ export const MessageDetailPane = ({
     if (!detail?.message || !message) return;
     setDownloading(true);
     try {
+      const photoItem = detail.message.media.find((m) => m.type === "photo");
+      const videoItem = detail.message.media.find((m) => m.type === "video");
       await downloadMessageAssets({
         guestName: message.name,
         audioUrl: detail.message.audioUrl,
-        videoUrl: detail.message.videoUrl,
-        photoUrl: detail.message.photoUrl,
+        videoUrl: videoItem?.url ?? null,
+        photoUrl: photoItem?.url ?? null,
         writtenNote: detail.message.writtenNote,
       });
     } catch (err) {
@@ -109,13 +111,16 @@ export const MessageDetailPane = ({
   }
 
   const audioUrl = detail?.message.audioUrl ?? null;
-  const videoUrl = detail?.message.videoUrl ?? null;
-  const videoMimeType = detail?.message.videoMimeType ?? "video/mp4";
-  const photoUrl = detail?.message.photoUrl ?? null;
+  const mediaItems = detail?.message.media ?? [];
+  const firstVideo = mediaItems.find((m) => m.type === "video");
+  const firstPhoto = mediaItems.find((m) => m.type === "photo");
+  const videoUrl = firstVideo?.url ?? null;
+  const videoMimeType = "video/mp4";
+  const photoUrl = firstPhoto?.url ?? null;
   const writtenNote = detail?.message.writtenNote ?? null;
   const hasAudio = Boolean(audioUrl);
   const hasNote = Boolean(writtenNote && writtenNote.trim());
-  const hasMedia = Boolean(photoUrl || videoUrl);
+  const hasMedia = mediaItems.length > 0;
   const transcript =
     detail?.message.transcript ??
     message.quote ??

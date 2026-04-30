@@ -1,14 +1,19 @@
 import { clientFetch } from "./client";
 import type {
   CreateMessageResult,
+  GalleryFeed,
   PublicEvent,
   UploadUrlsResult,
 } from "./types";
 
+export type UploadMediaItem = {
+  type: "photo" | "video";
+  contentType: string;
+};
+
 export type UploadUrlRequest = {
   audioContentType?: string | null;
-  videoContentType?: string | null;
-  photoContentType?: string | null;
+  media?: UploadMediaItem[];
 };
 
 export type SubmissionSource = "kiosk" | "qr_scan" | "direct_link";
@@ -18,18 +23,19 @@ export type CreateMessageInput = {
   audioKey?: string | null;
   audioDurationSec?: number | null;
   audioMimeType?: string | null;
-  videoKey?: string | null;
-  videoDurationSec?: number | null;
-  videoMimeType?: string | null;
-  photoKey?: string | null;
-  photoWidth?: number | null;
-  photoHeight?: number | null;
+  mediaIds?: string[];
   writtenNote?: string | null;
   submissionSource: SubmissionSource;
   submissionLanguage?: string | null;
   clientCreatedAt?: string | null;
   _honeypot?: string;
   _t?: number;
+};
+
+export type GalleryQuery = {
+  type?: "photo" | "video" | "all";
+  cursor?: string;
+  limit?: number;
 };
 
 export const publicClient = {
@@ -54,6 +60,18 @@ export const publicClient = {
       headers: { "Idempotency-Key": idempotencyKey },
       skipCsrf: true,
     }),
+
+  getGallery: (slug: string, query: GalleryQuery = {}) => {
+    const params = new URLSearchParams();
+    if (query.type) params.set("type", query.type);
+    if (query.cursor) params.set("cursor", query.cursor);
+    if (query.limit !== undefined) params.set("limit", String(query.limit));
+    const qs = params.toString();
+    return clientFetch<GalleryFeed>(
+      `/public/events/${slug}/gallery${qs ? `?${qs}` : ""}`,
+      { skipCsrf: true },
+    );
+  },
 
   recordInvitationOpen: (slug: string, channel: string | null) =>
     clientFetch<void>(`/public/events/${slug}/invitations/open`, {

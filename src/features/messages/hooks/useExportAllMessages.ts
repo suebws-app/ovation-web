@@ -59,11 +59,13 @@ export const useExportAllMessages = () => {
               queryKey: detailKey,
               queryFn: () => messagesClient.get(eventId, summary.id),
             }));
+          const photo = cached.message.media.find((m) => m.type === "photo");
+          const video = cached.message.media.find((m) => m.type === "video");
           return {
             guestName: cached.message.guestNames || anonymous,
             audioUrl: cached.message.audioUrl,
-            videoUrl: cached.message.videoUrl,
-            photoUrl: cached.message.photoUrl,
+            videoUrl: video?.url ?? null,
+            photoUrl: photo?.url ?? null,
             writtenNote: cached.message.writtenNote,
           };
         }),

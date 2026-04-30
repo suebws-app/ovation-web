@@ -93,12 +93,27 @@ export type MessageSummary = {
   hasAudio: boolean;
   hasVideo: boolean;
   hasPhoto: boolean;
+  mediaCount: number;
   audioDurationSec: number | null;
   transcriptSnippet: string | null;
+  writtenNote: string | null;
   isFavorite: boolean;
   isGoldBookSelected: boolean;
   createdAt: string;
   photoThumbUrl: string | null;
+};
+
+export type MessageMediaItem = {
+  id: string;
+  type: "photo" | "video";
+  uploaderType: "guest" | "owner";
+  messageId: string | null;
+  url: string | null;
+  thumbUrl: string | null;
+  width: number | null;
+  height: number | null;
+  durationSec: number | null;
+  createdAt: string;
 };
 
 export type MessageDetail = {
@@ -107,10 +122,7 @@ export type MessageDetail = {
   audioUrl: string | null;
   audioDurationSec: number | null;
   audioMimeType: string | null;
-  videoUrl: string | null;
-  videoDurationSec: number | null;
-  videoMimeType: string | null;
-  photoUrl: string | null;
+  media: MessageMediaItem[];
   writtenNote: string | null;
   transcript: string | null;
   transcriptLanguage: string | null;
@@ -219,16 +231,49 @@ export type PublicEvent = {
   limitReached: boolean;
 };
 
-export type UploadTarget = {
+export type AudioUploadTarget = {
+  kind: "audio";
   key: string;
   url: string;
-  fields?: Record<string, string>;
   headers?: Record<string, string>;
-  kind: "audio" | "video" | "photo";
+  maxSizeBytes: number;
+  expiresAt: string;
+};
+
+export type MediaUploadTarget = {
+  mediaId: string;
+  type: "photo" | "video";
+  key: string;
+  url: string;
+  headers?: Record<string, string>;
+  maxSizeBytes: number;
+  expiresAt: string;
 };
 
 export type UploadUrlsResult = {
-  uploadTargets: UploadTarget[];
+  audioTargets: AudioUploadTarget[];
+  mediaTargets: MediaUploadTarget[];
+};
+
+export type GalleryItem = {
+  id: string;
+  type: "photo" | "video";
+  uploaderType: "guest" | "owner";
+  uploaderName: string | null;
+  messageId: string | null;
+  url: string | null;
+  thumbUrl: string | null;
+  width: number | null;
+  height: number | null;
+  durationSec: number | null;
+  isFavorite: boolean;
+  isGoldBookSelected: boolean;
+  createdAt: string;
+};
+
+export type GalleryFeed = {
+  data: GalleryItem[];
+  nextCursor: string | null;
 };
 
 export type CreateMessageResult = {

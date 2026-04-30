@@ -1,29 +1,41 @@
 import { clientFetch, clientFetchPaginated, type Paginated } from "./client";
 import type {
+  GalleryItem,
   ListMessagesQuery,
+  MediaUploadTarget,
   MessageDetail,
   MessageSummary,
   UpdateMessageInput,
-  UploadTarget,
 } from "./types";
 
 const listPath = (eventId: string) => `/events/${eventId}/messages`;
 const itemPath = (eventId: string, messageId: string) =>
   `/events/${eventId}/messages/${messageId}`;
+const mediaPath = (eventId: string) => `/events/${eventId}/media`;
 
-export type OwnerUploadUrlInput = {
-  photoContentType?: string | null;
-  videoContentType?: string | null;
+export type MediaUploadItem = {
+  type: "photo" | "video";
+  contentType: string;
+};
+
+export type MediaFinalizeItem = {
+  mediaId: string;
+  width?: number | null;
+  height?: number | null;
+  durationSec?: number | null;
+  sizeBytes?: number | null;
 };
 
 export type OwnerCreateMessageInput = {
-  photoKey?: string | null;
-  photoWidth?: number | null;
-  photoHeight?: number | null;
-  videoKey?: string | null;
-  videoDurationSec?: number | null;
-  videoMimeType?: string | null;
+  mediaIds: string[];
+  writtenNote?: string | null;
   clientCreatedAt?: string | null;
+};
+
+export type GalleryQuery = {
+  type?: "photo" | "video" | "all";
+  cursor?: string;
+  limit?: number;
 };
 
 export const messagesClient = {
@@ -71,15 +83,6 @@ export const messagesClient = {
       { method: "POST", body: language ? { language } : {} },
     ),
 
-  ownerUploadUrls: (
-    eventId: string,
-    input: OwnerUploadUrlInput,
-  ): Promise<{ uploadTargets: UploadTarget[] }> =>
-    clientFetch<{ uploadTargets: UploadTarget[] }>(
-      `${listPath(eventId)}/upload-url`,
-      { method: "POST", body: input },
-    ),
-
   ownerCreate: (
     eventId: string,
     input: OwnerCreateMessageInput,
@@ -88,4 +91,54 @@ export const messagesClient = {
       `${listPath(eventId)}/upload`,
       { method: "POST", body: input },
     ),
+};
+
+export const mediaClient = {
+  uploadUrls: (
+    eventId: string,
+    items: MediaUploadItem[],
+  ): Promise<{ uploadTargets: MediaUploadTarget[] }> =>
+    clientFetch<{ uploadTargets: MediaUploadTarget[] }>(
+      `${mediaPath(eventId)}/upload-urls`,
+      { method: "POST", body: { items } },
+    ),
+
+  finalize: (
+    eventId: string,
+    items: MediaFinalizeItem[],
+  ): Promise<{ finalized: number }> =>
+    clientFetch<{ finalized: number }>(
+      `${mediaPath(eventId)}/finalize`,
+      { method: "POST", body: { items } },
+    ),
+
+  gallery: (
+    eventId: string,
+    query: GalleryQuery = {},
+  ): Promise<Paginated<GalleryItem>> => {
+    const queryParams: Record<string, string | number | undefined> = {};
+    if (query.type) queryParams.type = query.type;
+    if (query.cursor) queryParams.cursor = query.cursor;
+    if (query.limit !== undefined) queryParams.limit = query.limit;
+    return clientFetchPaginated<GalleryItem>(mediaPath(eventId), {
+      query: queryParams,
+    });
+  },
+
+  remove: (eventId: string, mediaId: string): Promise<void> =>
+    clientFetch<void>(`${mediaPath(eventId)}/${mediaId}`, { method: "DELETE" }),
+
+  update: (
+    eventId: string,
+    mediaId: string,
+    input: { isFavorite?: boolean; isGoldBookSelected?: boolean },
+  ): Promise<{
+    media: { id: string; isFavorite: boolean; isGoldBookSelected: boolean };
+  }> =>
+    clientFetch<{
+      media: { id: string; isFavorite: boolean; isGoldBookSelected: boolean };
+    }>(`${mediaPath(eventId)}/${mediaId}`, {
+      method: "PATCH",
+      body: input,
+    }),
 };

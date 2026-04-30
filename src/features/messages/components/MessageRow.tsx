@@ -48,14 +48,26 @@ export const MessageRow = ({
   onToggleSelect,
 }: MessageRowProps) => (
   <div
+    role="button"
+    tabIndex={0}
+    onClick={onClick}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onClick?.();
+      }
+    }}
     className={cn(
-      "border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors",
+      "border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors",
       selected
         ? "border-l-primary bg-primary/5 border-l-3"
         : "hover:bg-muted/50 border-l-3 border-l-transparent",
     )}
   >
-    <span className="inline-flex">
+    <span
+      className="inline-flex"
+      onClick={(e) => e.stopPropagation()}
+    >
       <Checkbox
         checked={checked}
         onChange={() => onToggleSelect?.()}
@@ -63,18 +75,7 @@ export const MessageRow = ({
       />
     </span>
 
-    <span
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClick?.();
-        }
-      }}
-      className="inline-flex cursor-pointer"
-    >
+    <span className="inline-flex">
       <Avatar
         initials={message.initials}
         tint={message.tint}
@@ -83,18 +84,7 @@ export const MessageRow = ({
       />
     </span>
 
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClick?.();
-        }
-      }}
-      className="min-w-0 cursor-pointer"
-    >
+    <div className="min-w-0">
       <div className="flex items-center gap-2">
         <span className="type-body text-foreground font-semibold">
           {message.name}
@@ -121,14 +111,17 @@ export const MessageRow = ({
       {message.relation && (
         <p className="type-caption text-muted-foreground">{message.relation}</p>
       )}
-      {message.quote && (
+      {(message.note || message.quote) && (
         <p className="type-body-small text-muted-foreground mt-1 truncate font-serif italic">
-          &ldquo;{message.quote}&rdquo;
+          &ldquo;{message.note || message.quote}&rdquo;
         </p>
       )}
     </div>
 
-    <div className="tablet:block hidden">
+    <div
+      className="tablet:block hidden"
+      onClick={(e) => e.stopPropagation()}
+    >
       {message.hasAudio && (
         <Waveform
           bars={message.wave.slice(0, 24)}
@@ -138,7 +131,10 @@ export const MessageRow = ({
       )}
     </div>
 
-    <span className="type-caption text-muted-foreground tablet:text-right block font-mono">
+    <span
+      className="type-caption text-muted-foreground tablet:text-right block font-mono"
+      onClick={(e) => e.stopPropagation()}
+    >
       {message.hasAudio
         ? `${formatSec(isCurrent ? currentTime : 0)}/${message.duration}`
         : ""}
@@ -148,10 +144,14 @@ export const MessageRow = ({
       <span
         role="button"
         tabIndex={0}
-        onClick={() => onPlay?.()}
+        onClick={(e) => {
+          e.stopPropagation();
+          onPlay?.();
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
+            e.stopPropagation();
             onPlay?.();
           }
         }}

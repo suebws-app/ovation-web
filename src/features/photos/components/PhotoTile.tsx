@@ -1,6 +1,8 @@
 "use client";
 
 import { Checkbox } from "@ovation/ui/components/Checkbox";
+import { Book } from "@ovation/icons/Book";
+import { Video } from "@ovation/icons/Video";
 import { cn } from "@ovation/ui/utils/cn";
 import type { PhotoView } from "../adapters";
 import { PhotoFavouriteIndicator } from "./PhotoFavouriteIndicator";
@@ -20,7 +22,19 @@ export const PhotoTile = ({
   onClick,
   onToggleSelect,
 }: PhotoTileProps) => {
-  const { thumbUrl, monogram, name, tint, favorited, time } = tile;
+  const {
+    thumbUrl,
+    fullUrl,
+    type,
+    monogram,
+    name,
+    tint,
+    favorited,
+    inGoldBook,
+    time,
+  } = tile;
+  const isVideo = type === "video";
+  const previewUrl = thumbUrl ?? (isVideo ? null : fullUrl);
 
   return (
     <div
@@ -43,11 +57,20 @@ export const PhotoTile = ({
         className="relative flex w-full items-center justify-center overflow-hidden"
         style={{ height }}
       >
-        {thumbUrl ? (
+        {previewUrl ? (
           <img
-            src={thumbUrl}
+            src={previewUrl}
             alt={name}
             loading="lazy"
+            className="size-full object-cover"
+          />
+        ) : isVideo && fullUrl ? (
+          <video
+            src={`${fullUrl}#t=0.1`}
+            preload="metadata"
+            muted
+            playsInline
+            disablePictureInPicture
             className="size-full object-cover"
           />
         ) : (
@@ -64,6 +87,13 @@ export const PhotoTile = ({
           </div>
         )}
 
+        {isVideo && (
+          <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 type-caption font-medium text-white">
+            <Video width={11} height={11} />
+            <span>Video</span>
+          </span>
+        )}
+
         <span
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => e.stopPropagation()}
@@ -77,7 +107,18 @@ export const PhotoTile = ({
           />
         </span>
 
-        {favorited && <PhotoFavouriteIndicator />}
+        <div className="absolute top-2 right-2 flex items-center gap-1">
+          {inGoldBook && (
+            <Book
+              width={16}
+              height={16}
+              fill="oklch(0.85 0.15 95)"
+              stroke="oklch(0.45 0.12 80)"
+              strokeWidth={1.5}
+            />
+          )}
+          {favorited && <PhotoFavouriteIndicator />}
+        </div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/70 to-transparent" />
         <div className="type-caption absolute right-2.5 bottom-2 left-2.5 flex items-baseline justify-between gap-2 font-semibold text-white">

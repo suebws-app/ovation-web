@@ -20,6 +20,13 @@ export const queryKeys = {
     detail: (eventId: string, messageId: string) =>
       ["messages", eventId, "detail", messageId] as const,
   },
+  gallery: {
+    all: (eventId: string) => ["gallery", eventId] as const,
+    infiniteList: (
+      eventId: string,
+      input: { type?: "photo" | "video" | "all"; limit?: number } = {},
+    ) => ["gallery", eventId, "infinite", input] as const,
+  },
   user: {
     me: () => ["user", "me"] as const,
   },

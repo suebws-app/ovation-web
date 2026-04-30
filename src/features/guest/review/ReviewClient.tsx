@@ -11,9 +11,8 @@ import { Video } from "@ovation/icons/Video";
 import { MessageSquare } from "@ovation/icons/MessageSquare";
 import { Camera } from "@ovation/icons/Camera";
 import { ApiError } from "@/lib/api/client";
-import { publicClient } from "@/lib/api/public-client";
+import { publicClient, type UploadMediaItem } from "@/lib/api/public-client";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
-import type { UploadTarget } from "@/lib/api/types";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
@@ -24,11 +23,6 @@ const formatTime = (sec: number): string => {
   const s = sec % 60;
   return `${m}:${s.toString().padStart(2, "0")}`;
 };
-
-const findTarget = (
-  targets: UploadTarget[],
-  kind: "audio" | "video" | "photo",
-): UploadTarget | undefined => targets.find((target) => target.kind === kind);
 
 const newIdempotencyKey = (): string => {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
@@ -86,20 +80,22 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
     setSubmitting(true);
     try {
       let audioKey: string | null = null;
-      let videoKey: string | null = null;
-      let photoKey: string | null = null;
+      const mediaIds: string[] = [];
 
       const needUpload = audio || video || photo;
       if (needUpload) {
         setProgressLabel(t("guest__record__progress_preparing"));
+        const mediaRequest: UploadMediaItem[] = [];
+        if (video) mediaRequest.push({ type: "video", contentType: video.mimeType });
+        if (photo) mediaRequest.push({ type: "photo", contentType: photo.file.type });
+
         const uploadResult = await publicClient.uploadUrls(slug, {
           audioContentType: audio?.mimeType ?? null,
-          videoContentType: video?.mimeType ?? null,
-          photoContentType: photo?.file.type ?? null,
+          media: mediaRequest.length > 0 ? mediaRequest : undefined,
         });
 
         if (audio) {
-          const target = findTarget(uploadResult.uploadTargets, "audio");
+          const target = uploadResult.audioTargets[0];
           if (!target)
             throw new Error(t("guest__record__error_no_audio_target"));
           setProgressLabel(t("guest__record__progress_audio"));
@@ -107,20 +103,20 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
           audioKey = target.key;
         }
         if (video) {
-          const target = findTarget(uploadResult.uploadTargets, "video");
+          const target = uploadResult.mediaTargets.find((m) => m.type === "video");
           if (!target)
             throw new Error(t("guest__record__error_no_video_target"));
           setProgressLabel(t("guest__record__progress_video"));
           await uploadToTarget(target, video.blob);
-          videoKey = target.key;
+          mediaIds.push(target.mediaId);
         }
         if (photo) {
-          const target = findTarget(uploadResult.uploadTargets, "photo");
+          const target = uploadResult.mediaTargets.find((m) => m.type === "photo");
           if (!target)
             throw new Error(t("guest__record__error_no_photo_target"));
           setProgressLabel(t("guest__record__progress_photo"));
           await uploadToTarget(target, photo.file);
-          photoKey = target.key;
+          mediaIds.push(target.mediaId);
         }
       }
 
@@ -130,12 +126,7 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
         audioKey,
         audioDurationSec: audio?.durationSec ?? null,
         audioMimeType: audio?.mimeType ?? null,
-        videoKey,
-        videoDurationSec: video?.durationSec ?? null,
-        videoMimeType: video?.mimeType ?? null,
-        photoKey,
-        photoWidth: photo?.width ?? null,
-        photoHeight: photo?.height ?? null,
+        mediaIds: mediaIds.length > 0 ? mediaIds : undefined,
         writtenNote: hasNote ? note.trim() : null,
         submissionSource,
         submissionLanguage: locale,

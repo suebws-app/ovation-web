@@ -2,7 +2,6 @@
 
 import { MediaPlayer, MediaProvider, type MediaPlayerProps } from "@vidstack/react";
 import type { AudioPlayer } from "../hooks/useAudioPlayer";
-import { cn } from "../utils/cn";
 
 type AudioElementProps = {
   player: AudioPlayer;
@@ -18,6 +17,8 @@ export const AudioElement = ({ player, className }: AudioElementProps) => (
     src={buildSrc(player.src)}
     viewType="audio"
     streamType="on-demand"
+    load="eager"
+    preload="auto"
     onTimeUpdate={player.onTimeUpdate}
     onDurationChange={player.onDurationChange}
     onPlay={player.onPlay}
@@ -26,13 +27,16 @@ export const AudioElement = ({ player, className }: AudioElementProps) => (
       console.error("[audio] vidstack error", detail);
     }}
     style={{
-      position: "absolute",
-      width: 0,
-      height: 0,
-      overflow: "hidden",
+      position: "fixed",
+      bottom: 0,
+      right: 0,
+      width: 1,
+      height: 1,
+      opacity: 0,
       pointerEvents: "none",
+      zIndex: -1,
     }}
-    className={cn("hidden", className)}
+    className={className}
   >
     <MediaProvider />
   </MediaPlayer>

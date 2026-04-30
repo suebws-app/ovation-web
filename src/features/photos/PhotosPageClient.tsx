@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useTranslations } from "next-intl";
 
-import { useInfiniteMessagesList } from "@/lib/query/messagesQueries";
-import type { EventStats, MessageSort } from "@/lib/api/types";
+import { useInfiniteGallery } from "@/lib/query/galleryQueries";
+import type { EventStats } from "@/lib/api/types";
 
 import { PhotoBatchFooter } from "./components/PhotoBatchFooter";
 import { PhotoGallery } from "./components/PhotoGallery";
@@ -12,7 +12,7 @@ import { PhotoLightbox } from "./components/PhotoLightbox";
 import { PhotoToolbar } from "./components/PhotoToolbar";
 import { PhotosFilterRail } from "./components/PhotosFilterRail";
 import { usePhotoBulkActions } from "./hooks/usePhotoBulkActions";
-import { toPhotoView, type PhotoView } from "./adapters";
+import { toPhotoViewFromGallery, type PhotoView } from "./adapters";
 import {
   useLightboxIndex,
   usePhotoSearch,
@@ -47,12 +47,16 @@ const applyClientSort = (photos: PhotoView[], sort: PhotoSort) => {
       b.name.localeCompare(a.name, undefined, { sensitivity: "base" }),
     );
   }
-  return photos;
+  if (sort === "oldest") {
+    return [...photos].sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+  }
+  return [...photos].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 };
 
-const toServerSort = (sort: PhotoSort): MessageSort => {
-  if (sort === "oldest") return "oldest";
-  return "newest";
+const applySearch = (photos: PhotoView[], search: string) => {
+  if (!search) return photos;
+  const needle = search.toLowerCase();
+  return photos.filter((p) => p.name.toLowerCase().includes(needle));
 };
 
 export const PhotosPageClient = ({
@@ -72,17 +76,6 @@ export const PhotosPageClient = ({
 
   const trimmedSearch = search.trim();
 
-  const query = useMemo(
-    () => ({
-      filter: "with_photo" as const,
-      sort: toServerSort(sort),
-      limit: PAGE_SIZE,
-      includeOwnerUploads: true,
-      ...(trimmedSearch ? { search: trimmedSearch } : {}),
-    }),
-    [sort, trimmedSearch],
-  );
-
   const {
     data,
     isPending,
@@ -90,21 +83,22 @@ export const PhotosPageClient = ({
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteMessagesList(eventId, query);
+  } = useInfiniteGallery(eventId, { type: "all", limit: PAGE_SIZE });
 
   const anonymous = t("common__anonymous");
   const allPhotos = useMemo(
     () =>
       (data?.pages ?? []).flatMap((page) =>
-        page.items.map((m) => toPhotoView(m, anonymous)),
+        page.items.map((m) => toPhotoViewFromGallery(m, anonymous)),
       ),
     [data?.pages, anonymous],
   );
 
   const photos = useMemo(() => {
     const filtered = applySubFilter(allPhotos, subFilter);
-    return applyClientSort(filtered, sort);
-  }, [allPhotos, subFilter, sort]);
+    const searched = applySearch(filtered, trimmedSearch);
+    return applyClientSort(searched, sort);
+  }, [allPhotos, subFilter, sort, trimmedSearch]);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -131,7 +125,7 @@ export const PhotosPageClient = ({
 
   const bulk = usePhotoBulkActions(eventId, photos);
 
-  const totalCount = stats?.photoMessages ?? allPhotos.length;
+  const totalCount = allPhotos.length;
 
   return (
     <div className="flex h-full w-full flex-1 overflow-auto">
@@ -169,8 +163,10 @@ export const PhotosPageClient = ({
       <PhotoBatchFooter
         count={bulk.selectedCount}
         allFavorited={bulk.allFavorited}
+        allInGoldBook={bulk.allInGoldBook}
         bulkPending={bulk.isPending}
         onBulkFavorite={bulk.bulkFavorite}
+        onBulkGoldBook={bulk.bulkGoldBook}
         onBulkDownload={bulk.bulkDownload}
       />
 

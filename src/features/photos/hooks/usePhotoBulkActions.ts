@@ -2,26 +2,23 @@
 
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useUpdateMessage } from "@/lib/query/messagesQueries";
-import { queryKeys } from "@/lib/query/keys";
-import { messagesClient } from "@/lib/api/messages-client";
+import { useMutation } from "@tanstack/react-query";
+import { useUpdateMedia } from "@/lib/query/galleryQueries";
 import { downloadPhotosFlat } from "@/lib/media/downloadMessageAssets";
-import type { MessageDetail } from "@/lib/api/types";
 import { usePhotoSelectedIds } from "../store/usePhotosStore";
 import type { PhotoView } from "../adapters";
 
 type BulkInput =
-  | { kind: "favorite"; ids: string[]; nextValue: boolean }
-  | { kind: "download"; ids: string[] };
+  | { kind: "favorite"; views: PhotoView[]; nextValue: boolean }
+  | { kind: "gold_book"; views: PhotoView[]; nextValue: boolean }
+  | { kind: "download"; views: PhotoView[] };
 
 export const usePhotoBulkActions = (
   eventId: string,
   photos: PhotoView[],
 ) => {
-  const qc = useQueryClient();
   const selectedIds = usePhotoSelectedIds();
-  const updateMessage = useUpdateMessage(eventId);
+  const updateMedia = useUpdateMedia(eventId);
   const t = useTranslations();
   const anonymous = t("common__anonymous");
 
@@ -32,53 +29,57 @@ export const usePhotoBulkActions = (
 
   const allFavorited =
     selectedViews.length > 0 && selectedViews.every((p) => p.favorited);
+  const allInGoldBook =
+    selectedViews.length > 0 && selectedViews.every((p) => p.inGoldBook);
 
   const mutation = useMutation({
     mutationFn: async (input: BulkInput) => {
       if (input.kind === "favorite") {
         await Promise.all(
-          input.ids.map((id) =>
-            updateMessage.mutateAsync({
-              messageId: id,
-              input: { isFavorite: input.nextValue },
+          input.views.map((v) =>
+            updateMedia.mutateAsync({
+              mediaId: v.mediaId,
+              patch: { isFavorite: input.nextValue },
             }),
           ),
         );
         return;
       }
-      const inputs = await Promise.all(
-        input.ids.map(async (id) => {
-          const detailKey = queryKeys.messages.detail(eventId, id);
-          const cached =
-            qc.getQueryData<{ message: MessageDetail }>(detailKey) ??
-            (await qc.fetchQuery<{ message: MessageDetail }>({
-              queryKey: detailKey,
-              queryFn: () => messagesClient.get(eventId, id),
-            }));
-          return {
-            guestName: cached.message.guestNames || anonymous,
-            photoUrl: cached.message.photoUrl,
-            createdAt: cached.message.createdAt,
-          };
-        }),
-      );
-      const photoInputs = inputs.flatMap((i) =>
-        i.photoUrl
-          ? [{ guestName: i.guestName, photoUrl: i.photoUrl, createdAt: i.createdAt }]
-          : [],
-      );
+      if (input.kind === "gold_book") {
+        await Promise.all(
+          input.views.map((v) =>
+            updateMedia.mutateAsync({
+              mediaId: v.mediaId,
+              patch: { isGoldBookSelected: input.nextValue },
+            }),
+          ),
+        );
+        return;
+      }
+      const photoInputs = input.views
+        .filter((v) => v.fullUrl || v.thumbUrl)
+        .map((v) => ({
+          guestName: v.name || anonymous,
+          photoUrl: (v.fullUrl ?? v.thumbUrl) as string,
+          createdAt: v.createdAt,
+        }));
       await downloadPhotosFlat(photoInputs, "photos");
     },
   });
 
-  const ids = Array.from(selectedIds);
-
   return {
     bulkFavorite: () =>
-      mutation.mutate({ kind: "favorite", ids, nextValue: !allFavorited }),
-    bulkDownload: () => mutation.mutate({ kind: "download", ids }),
+      mutation.mutate({ kind: "favorite", views: selectedViews, nextValue: !allFavorited }),
+    bulkGoldBook: () =>
+      mutation.mutate({
+        kind: "gold_book",
+        views: selectedViews,
+        nextValue: !allInGoldBook,
+      }),
+    bulkDownload: () => mutation.mutate({ kind: "download", views: selectedViews }),
     isPending: mutation.isPending,
     allFavorited,
+    allInGoldBook,
     selectedCount: selectedIds.size,
   };
 };

@@ -23,17 +23,20 @@ export const Waveform = ({
 }: WaveformProps) => {
   const data =
     bars ?? Array.from({ length: barCount }, (_, i) => seededRandom(i));
-  const filledCount = Math.floor(data.length * progress);
+  const playhead = data.length * progress;
 
   return (
     <div className={cn("flex items-center gap-0.5", className)}>
-      {data.map((h, i) => (
-        <WaveformBar
-          key={i}
-          height={Math.max(h * height, 3)}
-          filled={i < filledCount}
-        />
-      ))}
+      {data.map((h, i) => {
+        const barFill = Math.min(1, Math.max(0, playhead - i));
+        return (
+          <WaveformBar
+            key={i}
+            height={Math.max(h * height, 3)}
+            fill={barFill}
+          />
+        );
+      })}
     </div>
   );
 };

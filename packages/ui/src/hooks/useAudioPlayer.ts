@@ -28,7 +28,13 @@ export type AudioPlayer = {
 
 const waitForCanPlay = (player: MediaPlayerInstance) =>
   new Promise<void>((resolve) => {
-    if (player.state.canPlay) {
+    let alreadyReady = false;
+    try {
+      alreadyReady = Boolean(player.state?.canPlay);
+    } catch {
+      alreadyReady = false;
+    }
+    if (alreadyReady) {
       resolve();
       return;
     }
@@ -59,12 +65,16 @@ export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
       if (!player) return;
 
       if (playingId === id) {
-        if (player.paused) {
-          await player.play().catch((err) => {
+        if (paused) {
+          player.play().catch((err) => {
             console.error("[audio] play failed", err);
           });
         } else {
-          player.pause();
+          try {
+            player.pause();
+          } catch (err) {
+            console.error("[audio] pause failed", err);
+          }
         }
         return;
       }
@@ -76,12 +86,18 @@ export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
       setPlayingId(id);
       setCurrentTime(0);
       setDuration(0);
-      await waitForCanPlay(player);
-      await player.play().catch((err) => {
-        console.error("[audio] play failed", err);
+      requestAnimationFrame(() => {
+        player.play().catch(async (err) => {
+          if (err?.code === 4 || /not ready/i.test(String(err?.message ?? ""))) {
+            await waitForCanPlay(player);
+            player.play().catch((e) => console.error("[audio] play failed", e));
+            return;
+          }
+          console.error("[audio] play failed", err);
+        });
       });
     },
-    [resolveSrc, playingId],
+    [resolveSrc, playingId, paused],
   );
 
   const seekRatio = useCallback((ratio: number) => {

@@ -10,9 +10,6 @@ const isBelowSmallDesktop = () =>
 
 export const useResponsiveRowOpen = (player: AudioPlayer) => {
   const router = useRouter();
-  const toggleActiveMessageId = useMessagesStore(
-    (s) => s.toggleActiveMessageId,
-  );
   const setActiveMessageId = useMessagesStore((s) => s.setActiveMessageId);
 
   const openRow = (id: string) => {
@@ -20,7 +17,7 @@ export const useResponsiveRowOpen = (player: AudioPlayer) => {
       router.push(`/app/messages/${id}`);
       return;
     }
-    toggleActiveMessageId(id);
+    setActiveMessageId(id);
   };
 
   const playRow = (id: string) => {

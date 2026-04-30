@@ -7,11 +7,9 @@ import { ChevronRight } from "@ovation/icons/ChevronRight";
 import { XIcon } from "@ovation/icons/XIcon";
 import { Heart } from "@ovation/icons/Heart";
 import { Download } from "@ovation/icons/Download";
+import { Book } from "@ovation/icons/Book";
 import { cn } from "@ovation/ui/utils/cn";
-import {
-  useMessageDetail,
-  useUpdateMessage,
-} from "@/lib/query/messagesQueries";
+import { useUpdateMedia } from "@/lib/query/galleryQueries";
 import type { PhotoView } from "../adapters";
 
 type PhotoLightboxProps = {
@@ -67,8 +65,7 @@ export const PhotoLightbox = ({
   const t = useTranslations();
   const total = photos.length;
   const photo = photos[index] ?? null;
-  const { data: detail } = useMessageDetail(eventId, photo?.id ?? null);
-  const update = useUpdateMessage(eventId);
+  const update = useUpdateMedia(eventId);
 
   const dragStartX = useRef<number | null>(null);
   const activeThumbRef = useRef<HTMLButtonElement | null>(null);
@@ -130,13 +127,21 @@ export const PhotoLightbox = ({
 
   if (!photo) return null;
 
-  const fullUrl = detail?.message.photoUrl ?? photo.thumbUrl;
+  const fullUrl = photo.fullUrl ?? photo.thumbUrl;
   const favorited = photo.favorited;
+  const inGoldBook = photo.inGoldBook;
 
   const handleToggleFavorite = () => {
     update.mutate({
-      messageId: photo.id,
-      input: { isFavorite: !favorited },
+      mediaId: photo.mediaId,
+      patch: { isFavorite: !favorited },
+    });
+  };
+
+  const handleToggleGoldBook = () => {
+    update.mutate({
+      mediaId: photo.mediaId,
+      patch: { isGoldBookSelected: !inGoldBook },
     });
   };
 
@@ -203,6 +208,23 @@ export const PhotoLightbox = ({
               className={favorited ? "fill-destructive text-destructive" : ""}
             />
           </button>
+          <button
+            type="button"
+            onClick={handleToggleGoldBook}
+            disabled={update.isPending}
+            aria-label={
+              inGoldBook
+                ? t("photos__detail__remove_from_gold_book")
+                : t("photos__detail__add_to_gold_book")
+            }
+            className="hover:bg-white/10 flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors disabled:opacity-50"
+          >
+            <Book
+              width={16}
+              height={16}
+              className={inGoldBook ? "fill-yellow-400 text-yellow-400" : ""}
+            />
+          </button>
           {fullUrl && (
             <button
               type="button"
@@ -230,7 +252,14 @@ export const PhotoLightbox = ({
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
       >
-        {fullUrl ? (
+        {fullUrl && photo.type === "video" ? (
+          <video
+            src={fullUrl}
+            controls
+            playsInline
+            className="max-h-full max-w-full touch-none object-contain select-none"
+          />
+        ) : fullUrl ? (
           <img
             src={fullUrl}
             alt={photo.name}

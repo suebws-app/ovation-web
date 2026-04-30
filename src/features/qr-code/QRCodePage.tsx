@@ -17,7 +17,12 @@ const coupleNameOf = (partnerA: string, partnerB: string) =>
 export const QRCodePage = async () => {
   const events = await eventsApi.list({ limit: 1 });
   const event = events.items[0];
-  if (!event) return <QRCodeEmpty />;
+  if (!event)
+    return (
+      <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+        <QRCodeEmpty />
+      </div>
+    );
 
   const [qr, subResult, stats] = await Promise.all([
     eventsApi
@@ -40,7 +45,7 @@ export const QRCodePage = async () => {
   const showActivation = !subscription;
 
   return (
-    <div className="mx-auto min-w-0">
+    <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6">
       <QRCodeHeader guestSlug={event.slug} />
       {showActivation && (
         <div className="mt-6">
