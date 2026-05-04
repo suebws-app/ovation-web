@@ -295,6 +295,47 @@ export type KeepsakeCatalog = {
   products: KeepsakeProduct[];
 };
 
+export type KeepsakeProductDetail = {
+  id: string;
+  sku: string;
+  slug: string;
+  productType: string;
+  name: string;
+  description: string | null;
+  basePriceCents: number;
+  currency: string;
+  category: string;
+  heroImageUrl: string | null;
+  isActive: boolean;
+  isFeatured: boolean;
+  sortOrder: number;
+  leadTimeMinDays: number | null;
+  leadTimeMaxDays: number | null;
+};
+
+export type KeepsakeProductVariant = {
+  id: string;
+  sku: string;
+  name: string;
+  priceCents: number | null;
+  currency: string;
+  attributes: Record<string, unknown>;
+  isActive: boolean;
+  sortOrder: number;
+};
+
+export type KeepsakeCustomizationSchema = {
+  productType: string;
+  schemaJson: Record<string, unknown>;
+  version: number;
+};
+
+export type KeepsakeProductDetailResult = {
+  product: KeepsakeProductDetail;
+  variants: KeepsakeProductVariant[];
+  customizationSchema: KeepsakeCustomizationSchema | null;
+};
+
 export type JobStatusValue =
   | "queued"
   | "running"
@@ -373,6 +414,7 @@ export type CheckoutPlanTier = "essentials" | "premium" | "bundle";
 
 export type CheckoutItem = {
   productSku: string;
+  productVariantId?: string;
   quantity: number;
   customization?: Record<string, unknown>;
 };
