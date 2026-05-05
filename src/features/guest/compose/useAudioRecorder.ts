@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { getBlobDuration } from "@/lib/media/getBlobDuration";
 
-const MAX_DURATION_SEC = 180;
+const DEFAULT_MAX_DURATION_SEC = 180;
 
 export type AudioRecording = {
   blob: Blob;
@@ -29,7 +29,7 @@ const pickMimeType = (): string => {
   return "audio/webm";
 };
 
-export const useAudioRecorder = () => {
+export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
   const t = useTranslations();
   const [state, setState] = useState<RecorderState>("idle");
   const [recording, setRecording] = useState<AudioRecording | null>(null);
@@ -41,6 +41,8 @@ export const useAudioRecorder = () => {
   const chunksRef = useRef<Blob[]>([]);
   const startedAtRef = useRef<number>(0);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const maxDurationRef = useRef(maxDurationSec);
+  maxDurationRef.current = maxDurationSec;
 
   const stopTracks = useCallback(() => {
     streamRef.current?.getTracks().forEach((track) => track.stop());
@@ -92,7 +94,7 @@ export const useAudioRecorder = () => {
         const measured = await getBlobDuration(blob);
         const durationSec = Math.min(
           Math.round(measured > 0 ? measured : wallClock),
-          MAX_DURATION_SEC,
+          maxDurationRef.current,
         );
         setRecording({ blob, url, durationSec, mimeType });
         setState("idle");
@@ -107,7 +109,7 @@ export const useAudioRecorder = () => {
       tickRef.current = setInterval(() => {
         const seconds = Math.floor((Date.now() - startedAtRef.current) / 1000);
         setElapsed(seconds);
-        if (seconds >= MAX_DURATION_SEC) {
+        if (seconds >= maxDurationRef.current) {
           recorder.stop();
         }
       }, 200);
@@ -145,7 +147,7 @@ export const useAudioRecorder = () => {
     recording,
     elapsed,
     error,
-    maxDurationSec: MAX_DURATION_SEC,
+    maxDurationSec: maxDurationRef.current,
     start,
     stop,
     reset,

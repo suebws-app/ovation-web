@@ -1,15 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { Mic } from "@ovation/icons/Mic";
+import { useSearchParams } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import { useRouter, usePathname } from "@/i18n/navigation";
 import { Lock } from "@ovation/icons/Lock";
 import { Finger } from "@ovation/icons/Finger";
+import { LogOut } from "@ovation/icons/LogOut";
 import type { PublicEvent } from "@/lib/api/types";
 import { useFullscreen } from "@/lib/hooks/useFullscreen";
 import { useWakeLock } from "@/lib/hooks/useWakeLock";
 import { KioskLiveLanguagePill } from "./KioskLiveLanguagePill";
+import { KioskFullscreenGuard } from "./KioskFullscreenGuard";
+import { KioskExitDialog } from "./KioskExitDialog";
 
 type KioskLiveFrameProps = {
   slug: string;
@@ -47,30 +50,56 @@ export const KioskLiveFrame = ({
 }: KioskLiveFrameProps) => {
   const t = useTranslations();
   const router = useRouter();
+  const pathname = usePathname();
+  const currentLocale = useLocale();
   const searchParams = useSearchParams();
   const dateLabel = formatWeddingDate(event.weddingDate);
   const recordHref = `/g/${slug}/record?source=kiosk`;
   const handleStart = () => router.push(recordHref);
   const isClosed = !event.submissionOpen || event.limitReached;
-  const [showThanks, setShowThanks] = useState(
-    () => searchParams.get("submitted") === "1",
-  );
-  const coupleName = `${event.partnerAName} & ${event.partnerBName}`;
+  const showThanks = searchParams.get("submitted") === "1";
+  const [exitOpen, setExitOpen] = useState(false);
 
   const {
     isFullscreen,
     isSupported: fullscreenSupported,
     enter: enterFullscreen,
+    exit: exitFullscreen,
   } = useFullscreen();
+
+  const fullscreenLockActive =
+    enableWakeLock && fullscreenSupported && event.kiosk.fullscreenLock;
+
+  const handleExitClick = async () => {
+    if (event.kiosk.exitPin) {
+      setExitOpen(true);
+      return;
+    }
+    try {
+      await exitFullscreen();
+    } catch {
+      // ignore
+    }
+    router.push("/app/kiosk");
+  };
+
+  const handleManualExitConfirm = async () => {
+    setExitOpen(false);
+    try {
+      await exitFullscreen();
+    } catch {
+      // ignore
+    }
+    router.push("/app/kiosk");
+  };
 
   useWakeLock(enableWakeLock);
 
   useEffect(() => {
     if (!showThanks) return;
     const timeout = setTimeout(() => {
-      setShowThanks(false);
       router.replace(`/kiosk/${slug}`);
-    }, 3500);
+    }, 4000);
     return () => clearTimeout(timeout);
   }, [showThanks, router, slug]);
 
@@ -89,22 +118,24 @@ export const KioskLiveFrame = ({
         }}
       />
 
+      <KioskFullscreenGuard
+        active={fullscreenLockActive}
+        exitPin={event.kiosk.exitPin}
+        exitHref="/app/kiosk"
+      />
+      <KioskExitDialog
+        open={exitOpen}
+        expectedPin={event.kiosk.exitPin}
+        onCancel={() => setExitOpen(false)}
+        onConfirm={handleManualExitConfirm}
+      />
+
       {showThanks && (
-        <div className="bg-foreground/85 absolute inset-0 z-30 flex flex-col items-center justify-center text-center backdrop-blur-sm">
-          <div className="rounded-20 bg-secondary/20 inline-flex size-24 items-center justify-center">
-            <Mic
-              width={48}
-              height={48}
-              className="text-secondary"
-              strokeWidth={1.8}
-            />
+        <div className="pointer-events-none fixed top-6 left-1/2 z-40 -translate-x-1/2">
+          <div className="rounded-16 bg-foreground text-background type-body-small flex items-center gap-2.5 px-5 py-3 font-semibold shadow-lg">
+            <span className="bg-secondary inline-flex size-2 rounded-full" />
+            {t("kiosk__toast__sent")}
           </div>
-          <p className="text-background mt-9 font-serif text-5xl leading-tight font-semibold">
-            {t("kiosk__live__thank_you_title")}
-          </p>
-          <p className="text-background/75 mt-3 max-w-md font-serif text-xl italic">
-            {t("kiosk__live__thank_you_body", { names: coupleName })}
-          </p>
         </div>
       )}
 
@@ -121,21 +152,32 @@ export const KioskLiveFrame = ({
             <Lock width={11} height={11} /> {t("kiosk__live__locked")}
           </span>
         </div>
-        {enableWakeLock && fullscreenSupported && !isFullscreen && (
+        <div className="flex items-center gap-2">
+          {enableWakeLock && fullscreenSupported && !isFullscreen && (
+            <button
+              type="button"
+              onClick={enterFullscreen}
+              className="border-border bg-card/70 type-caption hover:bg-card cursor-pointer rounded-full border px-3 py-1.5 font-semibold transition-colors"
+            >
+              {t("kiosk__live__go_fullscreen")}
+            </button>
+          )}
           <button
             type="button"
-            onClick={enterFullscreen}
-            className="border-border bg-card/70 type-caption hover:bg-card cursor-pointer rounded-full border px-3 py-1.5 font-semibold transition-colors"
+            onClick={handleExitClick}
+            className="border-border bg-card/70 type-caption hover:bg-card inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold transition-colors"
           >
-            {t("kiosk__live__go_fullscreen")}
+            <LogOut width={12} height={12} />
+            {t("kiosk__exit__button")}
           </button>
-        )}
+        </div>
       </div>
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-20 text-center">
         <div className="type-overline text-primary tracking-widest">
           {t("kiosk__live__welcome_overline")}
         </div>
+
         <h1
           className="mt-3.5 font-serif leading-none font-semibold tracking-tight"
           style={{ fontSize: 96 }}
@@ -160,29 +202,36 @@ export const KioskLiveFrame = ({
           type="button"
           onClick={handleStart}
           disabled={isClosed}
-          className="border-card bg-destructive relative mt-13 flex size-35 cursor-pointer items-center justify-center rounded-full border-8 shadow-lg disabled:opacity-50"
+          className="border-card bg-destructive text-card type-h3 motion-safe:animate-tap-pulse relative mt-13 flex cursor-pointer items-center justify-center rounded-full border-4 px-12 py-6 font-serif font-semibold tracking-tight shadow-lg disabled:opacity-50"
           style={{
             boxShadow:
               "0 20px 50px oklch(0.72 0.14 40 / 0.45), 0 0 0 1px oklch(0.72 0.14 40 / 0.18)",
           }}
         >
-          <div className="border-destructive/40 pointer-events-none absolute -inset-10 rounded-full border-2 opacity-50" />
-          <div className="border-destructive/25 pointer-events-none absolute -inset-18 rounded-full border opacity-35" />
-          <Mic width={54} height={54} className="text-card" strokeWidth={1.8} />
+          <span
+            className="border-destructive/40 pointer-events-none absolute -inset-6 rounded-full border-2 motion-safe:animate-pulse"
+            aria-hidden
+          />
+          <span
+            className="border-destructive/25 pointer-events-none absolute -inset-12 rounded-full border motion-safe:animate-pulse"
+            aria-hidden
+            style={{ animationDelay: "0.6s" }}
+          />
+          <span className="relative">
+            {isClosed ? t("kiosk__live__closed") : t("kiosk__tap_to_start")}
+          </span>
         </button>
-        <div className="type-body mt-5 font-semibold">
-          {isClosed
-            ? t("kiosk__live__closed")
-            : t("kiosk__live__tap_to_record")}
-        </div>
-        <div className="type-body-small text-muted-foreground mt-1">
-          {t("kiosk__live__caption")}
+        <div className="type-body-small text-muted-foreground mt-10">
+          {t("kiosk__live__caption", {
+            seconds: event.kiosk.maxDurationSeconds,
+          })}
         </div>
       </div>
 
       <div className="relative z-10 flex items-center justify-between px-7 py-5.5">
         <div className="flex flex-wrap gap-2">
-          {event.supportedLanguages.map((lang) => {
+          {event.kiosk.welcomeShowLanguagePicker &&
+            event.supportedLanguages.map((lang) => {
             const meta = LANGUAGE_LABELS[lang] ?? {
               flag: "\uD83C\uDF10",
               label: lang.toUpperCase(),
@@ -192,7 +241,11 @@ export const KioskLiveFrame = ({
                 key={lang}
                 flag={meta.flag}
                 label={meta.label}
-                active={lang === event.defaultLanguage}
+                active={lang === currentLocale}
+                onClick={() => {
+                  if (lang === currentLocale) return;
+                  router.replace(pathname, { locale: lang });
+                }}
               />
             );
           })}

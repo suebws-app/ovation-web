@@ -16,11 +16,12 @@ const formatTime = (sec: number): string => {
 
 type VoicePanelProps = {
   onCaptured: () => void;
+  maxDurationSec?: number;
 };
 
-export const VoicePanel = ({ onCaptured }: VoicePanelProps) => {
+export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
   const t = useTranslations();
-  const recorder = useAudioRecorder();
+  const recorder = useAudioRecorder(maxDurationSec);
   const setAudio = useGuestSubmissionStore((s) => s.setAudio);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export const VoicePanel = ({ onCaptured }: VoicePanelProps) => {
     <div className="bg-card border-border rounded-16 flex flex-col items-center gap-4_5 border p-6_5 text-center">
       <p className="type-body-small text-muted-foreground max-w-sm">
         {t("guest__record__audio__hint", {
-          minutes: Math.round(recorder.maxDurationSec / 60),
+          seconds: recorder.maxDurationSec,
         })}
       </p>
 
@@ -47,6 +48,9 @@ export const VoicePanel = ({ onCaptured }: VoicePanelProps) => {
         <>
           <div className="type-h1 font-serif font-semibold tabular-nums">
             {formatTime(recorder.elapsed)}
+            <span className="type-body-small text-muted-foreground ml-2">
+              / {formatTime(recorder.maxDurationSec)}
+            </span>
           </div>
           <Button
             type="button"

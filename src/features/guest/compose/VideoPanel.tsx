@@ -16,11 +16,12 @@ const formatTime = (sec: number): string => {
 
 type VideoPanelProps = {
   onCaptured: () => void;
+  maxDurationSec?: number;
 };
 
-export const VideoPanel = ({ onCaptured }: VideoPanelProps) => {
+export const VideoPanel = ({ onCaptured, maxDurationSec }: VideoPanelProps) => {
   const t = useTranslations();
-  const recorder = useVideoRecorder();
+  const recorder = useVideoRecorder(maxDurationSec);
   const setVideo = useGuestSubmissionStore((s) => s.setVideo);
   const previewRef = useRef<HTMLVideoElement | null>(null);
 

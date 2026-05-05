@@ -11,10 +11,16 @@ import { StickyCTA } from "./shell/StickyCTA";
 
 type GuestThankYouPageProps = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export const GuestThankYouPage = async ({ params }: GuestThankYouPageProps) => {
+export const GuestThankYouPage = async ({
+  params,
+  searchParams,
+}: GuestThankYouPageProps) => {
   const { slug } = await params;
+  const search = await searchParams;
+  const isKioskSession = search.source === "kiosk";
   const t = await getTranslations();
 
   const event = await publicApi.getEvent(slug).catch((error) => {
@@ -64,7 +70,7 @@ export const GuestThankYouPage = async ({ params }: GuestThankYouPageProps) => {
           </div>
         </div>
 
-        {canSubmitAnother && (
+        {canSubmitAnother && !isKioskSession && (
           <StickyCTA>
             <Button
               asChild

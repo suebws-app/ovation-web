@@ -24,7 +24,6 @@ import { Star } from "@ovation/icons/Star";
 import { Settings } from "@ovation/icons/Settings";
 import { QrCode } from "@ovation/icons/QrCode";
 import { Monitor } from "@ovation/icons/Monitor";
-import { UserPlus } from "@ovation/icons/UserPlus";
 import { HelpCircle } from "@ovation/icons/HelpCircle";
 import { Users } from "@ovation/icons/Users";
 
@@ -62,12 +61,7 @@ export const PrivateSideBar = ({ user }: PrivateSideBarProps) => {
   const quickLinks = [
     { label: t("sidebar__quick__qr"), href: "/app/qr-code", icon: QrCode },
     { label: t("sidebar__quick__kiosk"), href: "/app/kiosk", icon: Monitor },
-    {
-      label: t("sidebar__quick__invite"),
-      href: "/app/invite",
-      icon: UserPlus,
-    },
-    { label: t("sidebar__quick__help"), href: "/help", icon: HelpCircle },
+    { label: t("sidebar__quick__help"), href: "/app/help", icon: HelpCircle },
   ];
 
   return (

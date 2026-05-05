@@ -1,12 +1,26 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ChevronDown } from "@ovation/icons/ChevronDown";
 import { KioskConfigCard } from "./KioskConfigCard";
 import { KioskConfigRow } from "./KioskConfigRow";
 import { KioskToggle } from "./KioskToggle";
+import { KioskStepSlider } from "./KioskStepSlider";
+import { KioskPinInput } from "./KioskPinInput";
+import {
+  KIOSK_MAX_DURATION_OPTIONS,
+  type KioskMaxDurationSeconds,
+  type KioskSettings,
+  type UpdateKioskSettingsInput,
+} from "@/lib/api/types";
 
-export const KioskConfigLeft = () => {
+const MAX_DURATION_LABELS = ["15s", "30s", "60s", "90s", "2m", "3m"] as const;
+
+type KioskConfigLeftProps = {
+  settings: KioskSettings;
+  onPatch: (changes: UpdateKioskSettingsInput) => void;
+};
+
+export const KioskConfigLeft = ({ settings, onPatch }: KioskConfigLeftProps) => {
   const t = useTranslations();
   return (
     <div className="flex flex-col gap-5">
@@ -18,20 +32,29 @@ export const KioskConfigLeft = () => {
           title={t("kiosk__config__what__audio__title")}
           description={t("kiosk__config__what__audio__desc")}
         >
-          <KioskToggle on={true} />
+          <KioskToggle
+            on={settings.captureAudio}
+            onChange={(captureAudio) => onPatch({ captureAudio })}
+          />
         </KioskConfigRow>
         <KioskConfigRow
           title={t("kiosk__config__what__photo__title")}
           description={t("kiosk__config__what__photo__desc")}
         >
-          <KioskToggle on={true} />
+          <KioskToggle
+            on={settings.capturePhoto}
+            onChange={(capturePhoto) => onPatch({ capturePhoto })}
+          />
         </KioskConfigRow>
         <KioskConfigRow
           title={t("kiosk__config__what__video__title")}
           description={t("kiosk__config__what__video__desc")}
           last
         >
-          <KioskToggle on={false} />
+          <KioskToggle
+            on={settings.captureVideo}
+            onChange={(captureVideo) => onPatch({ captureVideo })}
+          />
         </KioskConfigRow>
       </KioskConfigCard>
 
@@ -44,44 +67,19 @@ export const KioskConfigLeft = () => {
             <span className="type-body-small font-semibold">
               {t("kiosk__config__time__max_label")}
             </span>
-            <span className="type-body-small text-muted-foreground">
-              {t.rich("kiosk__config__time__max_value", {
-                strong: (chunks) => (
-                  <strong className="text-foreground">{chunks}</strong>
-                ),
-              })}
+            <span className="type-body-small text-foreground font-semibold">
+              {settings.maxDurationSeconds < 60
+                ? `${settings.maxDurationSeconds}s`
+                : `${Math.round(settings.maxDurationSeconds / 60)}m`}
             </span>
           </div>
-          <div className="bg-border relative mt-3.5 h-1.5 rounded-full">
-            <div className="bg-primary absolute inset-y-0 left-0 w-[45%] rounded-full" />
-            <div
-              className="border-primary bg-card absolute top-1/2 size-5 -translate-y-1/2 rounded-full border-2 shadow-sm"
-              style={{ left: "calc(45% - 10px)" }}
-            />
-          </div>
-          <div className="type-caption text-muted-foreground mt-2 flex justify-between">
-            <span>15s</span>
-            <span>30s</span>
-            <span>60s</span>
-            <span>90s</span>
-            <span>2m</span>
-            <span>3m</span>
-          </div>
+          <KioskStepSlider<KioskMaxDurationSeconds>
+            value={settings.maxDurationSeconds as KioskMaxDurationSeconds}
+            steps={KIOSK_MAX_DURATION_OPTIONS}
+            labels={MAX_DURATION_LABELS}
+            onChange={(maxDurationSeconds) => onPatch({ maxDurationSeconds })}
+          />
         </div>
-        <KioskConfigRow
-          title={t("kiosk__config__time__return__title")}
-          description={t("kiosk__config__time__return__desc")}
-          last
-        >
-          <span className="border-border bg-card type-body-small inline-flex items-center gap-2 rounded-full border px-3.5 py-2">
-            {t("kiosk__config__time__return__value")}
-            <ChevronDown
-              width={12}
-              height={12}
-              className="text-muted-foreground"
-            />
-          </span>
-        </KioskConfigRow>
       </KioskConfigCard>
 
       <KioskConfigCard
@@ -92,33 +90,29 @@ export const KioskConfigLeft = () => {
           title={t("kiosk__config__lockdown__fullscreen__title")}
           description={t("kiosk__config__lockdown__fullscreen__desc")}
         >
-          <KioskToggle on={true} />
-        </KioskConfigRow>
-        <KioskConfigRow
-          title={t("kiosk__config__lockdown__guided__title")}
-          description={t("kiosk__config__lockdown__guided__desc")}
-        >
-          <button
-            type="button"
-            className="border-border bg-card type-caption cursor-pointer rounded-full border px-3 py-2 font-semibold"
-          >
-            {t("kiosk__config__lockdown__guided__cta")}
-          </button>
+          <KioskToggle
+            on={settings.fullscreenLock}
+            onChange={(fullscreenLock) => onPatch({ fullscreenLock })}
+          />
         </KioskConfigRow>
         <KioskConfigRow
           title={t("kiosk__config__lockdown__pin__title")}
           description={t("kiosk__config__lockdown__pin__desc")}
         >
-          <span className="border-border bg-card type-body-small rounded-full border px-3.5 py-2 font-mono tracking-widest">
-            &bull; &bull; &bull; &bull;
-          </span>
+          <KioskPinInput
+            value={settings.exitPin}
+            onChange={(exitPin) => onPatch({ exitPin })}
+          />
         </KioskConfigRow>
         <KioskConfigRow
           title={t("kiosk__config__lockdown__airplane__title")}
           description={t("kiosk__config__lockdown__airplane__desc")}
           last
         >
-          <KioskToggle on={true} />
+          <KioskToggle
+            on={settings.airplaneMode}
+            onChange={(airplaneMode) => onPatch({ airplaneMode })}
+          />
         </KioskConfigRow>
       </KioskConfigCard>
     </div>

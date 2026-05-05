@@ -14,6 +14,7 @@ export type UploadMediaItem = {
 export type UploadUrlRequest = {
   audioContentType?: string | null;
   media?: UploadMediaItem[];
+  source?: SubmissionSource;
 };
 
 export type SubmissionSource = "kiosk" | "qr_scan" | "direct_link";

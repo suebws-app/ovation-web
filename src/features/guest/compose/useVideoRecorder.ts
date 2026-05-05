@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { getBlobDuration } from "@/lib/media/getBlobDuration";
 
-const MAX_DURATION_SEC = 60;
+const DEFAULT_MAX_DURATION_SEC = 60;
 
 export type VideoRecording = {
   blob: Blob;
@@ -30,7 +30,7 @@ const pickMimeType = (): string => {
   return "video/webm";
 };
 
-export const useVideoRecorder = () => {
+export const useVideoRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
   const t = useTranslations();
   const [state, setState] = useState<RecorderState>("idle");
   const [recording, setRecording] = useState<VideoRecording | null>(null);
@@ -43,6 +43,8 @@ export const useVideoRecorder = () => {
   const chunksRef = useRef<Blob[]>([]);
   const startedAtRef = useRef<number>(0);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const maxDurationRef = useRef(maxDurationSec);
+  maxDurationRef.current = maxDurationSec;
 
   const stopTracks = useCallback(() => {
     streamRef.current?.getTracks().forEach((track) => track.stop());
@@ -117,7 +119,7 @@ export const useVideoRecorder = () => {
         const measured = await getBlobDuration(blob);
         const durationSec = Math.min(
           Math.round(measured > 0 ? measured : wallClock),
-          MAX_DURATION_SEC,
+          maxDurationRef.current,
         );
         setRecording({ blob, url, durationSec, mimeType });
         setState("idle");
@@ -132,7 +134,7 @@ export const useVideoRecorder = () => {
       tickRef.current = setInterval(() => {
         const seconds = Math.floor((Date.now() - startedAtRef.current) / 1000);
         setElapsed(seconds);
-        if (seconds >= MAX_DURATION_SEC) recorder.stop();
+        if (seconds >= maxDurationRef.current) recorder.stop();
       }, 200);
     } catch (e) {
       console.error("[useVideoRecorder] getUserMedia failed", e);
@@ -168,7 +170,7 @@ export const useVideoRecorder = () => {
     recording,
     elapsed,
     error,
-    maxDurationSec: MAX_DURATION_SEC,
+    maxDurationSec: maxDurationRef.current,
     start,
     stop,
     reset,

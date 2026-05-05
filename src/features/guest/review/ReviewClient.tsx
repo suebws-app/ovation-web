@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
@@ -16,6 +16,7 @@ import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
+import { KioskFullscreenGuard } from "@/features/kiosk-setup/components/KioskFullscreenGuard";
 import { ReviewItem } from "./ReviewItem";
 
 const formatTime = (sec: number): string => {
@@ -41,14 +42,23 @@ const readSubmissionSource = (
 
 type ReviewClientProps = {
   slug: string;
+  exitPin: string | null;
+  fullscreenLock: boolean;
+  capturePhoto: boolean;
+  sourceParam: string | null;
 };
 
-export const ReviewClient = ({ slug }: ReviewClientProps) => {
+export const ReviewClient = ({
+  slug,
+  exitPin,
+  fullscreenLock,
+  capturePhoto,
+  sourceParam,
+}: ReviewClientProps) => {
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const submissionSource = readSubmissionSource(searchParams.get("source"));
+  const submissionSource = readSubmissionSource(sourceParam);
 
   const guestName = useGuestSubmissionStore((s) => s.guestName);
   const setGuestName = useGuestSubmissionStore((s) => s.setGuestName);
@@ -58,22 +68,16 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
   const photo = useGuestSubmissionStore((s) => s.photo);
   const reset = useGuestSubmissionStore((s) => s.reset);
 
+  const sessionStartAt = useGuestSubmissionStore((s) => s.sessionStartAt);
   const [submitting, setSubmitting] = useState(false);
   const [progressLabel, setProgressLabel] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [idempotencyKey] = useState(newIdempotencyKey);
-  const [pageLoadedAt] = useState(() => Date.now());
   const [submitted, setSubmitted] = useState(false);
 
   const hasNote = note.trim().length > 0;
   const hasAnyContent = Boolean(audio || video || photo) || hasNote;
   const canSubmit = guestName.trim().length > 0 && hasAnyContent && !submitting;
-
-  useEffect(() => {
-    if (!hasAnyContent && !submitting && !submitted) {
-      router.replace(`/g/${slug}/compose`);
-    }
-  }, [hasAnyContent, submitting, submitted, router, slug]);
 
   const handleSubmit = async () => {
     setSubmitError(null);
@@ -92,6 +96,7 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
         const uploadResult = await publicClient.uploadUrls(slug, {
           audioContentType: audio?.mimeType ?? null,
           media: mediaRequest.length > 0 ? mediaRequest : undefined,
+          source: submissionSource,
         });
 
         if (audio) {
@@ -132,14 +137,14 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
         submissionLanguage: locale,
         clientCreatedAt: new Date().toISOString(),
         _honeypot: "",
-        _t: pageLoadedAt,
+        _t: sessionStartAt ?? Date.now() - 5000,
       });
 
       setSubmitted(true);
       reset();
       const successHref =
         submissionSource === "kiosk"
-          ? `/kiosk/${slug}?submitted=1`
+          ? `/${locale}/kiosk/${slug}?submitted=1`
           : `/g/${slug}/thank-you`;
       router.replace(successHref);
     } catch (error) {
@@ -156,13 +161,24 @@ export const ReviewClient = ({ slug }: ReviewClientProps) => {
     }
   };
 
+  const isKioskSession = submissionSource === "kiosk";
+  const sourceQuery = isKioskSession ? "?source=kiosk" : "";
+  const backHref = capturePhoto
+    ? `/g/${slug}/photo${sourceQuery}`
+    : `/g/${slug}/compose${sourceQuery}`;
+
   return (
     <div className="flex flex-1 flex-col">
+      <KioskFullscreenGuard
+        active={isKioskSession && fullscreenLock}
+        exitPin={exitPin}
+        exitHref="/app/kiosk"
+      />
       <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-5 pb-9">
         <WizardHeader
-          backHref={`/g/${slug}/photo`}
-          step={3}
-          totalSteps={3}
+          backHref={backHref}
+          step={capturePhoto ? 3 : 2}
+          totalSteps={capturePhoto ? 3 : 2}
           title={t("guest__review__title")}
           subtitle={t("guest__review__subtitle")}
         />
