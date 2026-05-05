@@ -9,6 +9,7 @@ import { Waveform } from "@/features/dashboard/components/Waveform";
 
 import type { MessageRowView } from "../adapters";
 import { MessagePlayButton } from "./MessagePlayButton";
+import { cn } from "@ovation/ui/utils/cn";
 
 type MessageRowProps = {
   message: MessageRowView;
@@ -56,17 +57,16 @@ export const MessageRow = ({
         onClick?.();
       }
     }}
-    className={`border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors ${
+    className={cn(
+      "border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors",
       selected
         ? "border-l-primary bg-primary/5 border-l-3"
-        : "hover:bg-muted/50 border-l-3 border-l-transparent"
-    }`}
+        : "hover:bg-muted/50 border-l-3 border-l-transparent",
+    )}
   >
     <span
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
       className="inline-flex"
+      onClick={(e) => e.stopPropagation()}
     >
       <Checkbox
         checked={checked}
@@ -75,12 +75,14 @@ export const MessageRow = ({
       />
     </span>
 
-    <Avatar
-      initials={message.initials}
-      tint={message.tint}
-      size="lg"
-      className={index % 2 ? "rotate-2" : "-rotate-2"}
-    />
+    <span className="inline-flex">
+      <Avatar
+        initials={message.initials}
+        tint={message.tint}
+        size="lg"
+        className={index % 2 ? "rotate-2" : "-rotate-2"}
+      />
+    </span>
 
     <div className="min-w-0">
       <div className="flex items-center gap-2">
@@ -109,14 +111,17 @@ export const MessageRow = ({
       {message.relation && (
         <p className="type-caption text-muted-foreground">{message.relation}</p>
       )}
-      {message.quote && (
+      {(message.note || message.quote) && (
         <p className="type-body-small text-muted-foreground mt-1 truncate font-serif italic">
-          &ldquo;{message.quote}&rdquo;
+          &ldquo;{message.note || message.quote}&rdquo;
         </p>
       )}
     </div>
 
-    <div className="tablet:block hidden">
+    <div
+      className="tablet:block hidden"
+      onClick={(e) => e.stopPropagation()}
+    >
       {message.hasAudio && (
         <Waveform
           bars={message.wave.slice(0, 24)}
@@ -126,7 +131,10 @@ export const MessageRow = ({
       )}
     </div>
 
-    <span className="type-caption text-muted-foreground tablet:text-right block font-mono">
+    <span
+      className="type-caption text-muted-foreground tablet:text-right block font-mono"
+      onClick={(e) => e.stopPropagation()}
+    >
       {message.hasAudio
         ? `${formatSec(isCurrent ? currentTime : 0)}/${message.duration}`
         : ""}

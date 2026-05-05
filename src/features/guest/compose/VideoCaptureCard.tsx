@@ -15,7 +15,11 @@ const formatTime = (sec: number): string => {
   return `${m}:${s.toString().padStart(2, "0")}`;
 };
 
-export const VideoCaptureCard = () => {
+type VideoCaptureCardProps = {
+  maxDurationSec?: number;
+};
+
+export const VideoCaptureCard = ({ maxDurationSec }: VideoCaptureCardProps = {}) => {
   const t = useTranslations();
   const video = useGuestSubmissionStore((s) => s.video);
   const setVideo = useGuestSubmissionStore((s) => s.setVideo);
@@ -34,7 +38,9 @@ export const VideoCaptureCard = () => {
             ? t("guest__compose__video_captured", {
                 duration: formatTime(video.durationSec),
               })
-            : t("guest__compose__video_subtitle")
+            : t("guest__compose__video_subtitle", {
+                seconds: maxDurationSec ?? 60,
+              })
         }
         filled={Boolean(video)}
       />
@@ -69,7 +75,12 @@ export const VideoCaptureCard = () => {
         </>
       )}
 
-      {open && <VideoPanel onCaptured={() => setEditing(false)} />}
+      {open && (
+        <VideoPanel
+          onCaptured={() => setEditing(false)}
+          maxDurationSec={maxDurationSec}
+        />
+      )}
 
       {!video && !editing && (
         <Button

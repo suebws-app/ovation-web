@@ -1,7 +1,12 @@
-import type { UploadTarget } from "@/lib/api/types";
+type UploadTargetLike = {
+  url: string;
+  key: string;
+  headers?: Record<string, string>;
+  fields?: Record<string, string>;
+};
 
 export const uploadToTarget = async (
-  target: Pick<UploadTarget, "url" | "key" | "fields" | "headers">,
+  target: UploadTargetLike,
   blob: Blob,
 ): Promise<void> => {
   if (target.fields) {

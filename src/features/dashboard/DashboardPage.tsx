@@ -43,7 +43,9 @@ export const DashboardPage = async () => {
 
   if (!event) {
     return (
-      <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
+      <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+        <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
+      </div>
     );
   }
 
@@ -69,7 +71,7 @@ export const DashboardPage = async () => {
   const newMessages = stats?.totalMessages ?? messageViews.length;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex h-full w-full flex-1 flex-col gap-6 overflow-y-auto p-6">
       <DashboardGreeting
         name={greetingName(user.fullName, user.email)}
         date={formatWeddingDate(event.weddingDate)}
@@ -79,6 +81,7 @@ export const DashboardPage = async () => {
       <ResumeCard />
       {stats && <StatLine stats={stats} />}
       <MessageList
+        eventId={event.id}
         messages={messageViews}
         totalCount={stats?.totalMessages ?? messageViews.length}
       />

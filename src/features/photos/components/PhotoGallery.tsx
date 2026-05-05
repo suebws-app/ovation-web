@@ -6,16 +6,16 @@ import { PhotoTile } from "./PhotoTile";
 
 type PhotoGalleryProps = {
   photos: PhotoView[];
-  selectMode: boolean;
   selectedIds: Set<string>;
   onTileClick: (id: string) => void;
+  onToggleSelect: (id: string) => void;
 };
 
 export const PhotoGallery = ({
   photos,
-  selectMode,
   selectedIds,
   onTileClick,
+  onToggleSelect,
 }: PhotoGalleryProps) => {
   const t = useTranslations();
 
@@ -33,7 +33,7 @@ export const PhotoGallery = ({
   }
 
   return (
-    <div className="tablet:p-6 flex-1 overflow-auto p-4">
+    <div className="tablet:p-6 p-4">
       <div className="tablet:columns-3 large-desktop:columns-4 columns-2 gap-3">
         {photos.map((tile, i) => (
           <PhotoTile
@@ -41,8 +41,8 @@ export const PhotoGallery = ({
             tile={tile}
             height={heightFor(i)}
             selected={selectedIds.has(tile.id)}
-            showSelect={selectMode}
             onClick={() => onTileClick(tile.id)}
+            onToggleSelect={() => onToggleSelect(tile.id)}
           />
         ))}
       </div>

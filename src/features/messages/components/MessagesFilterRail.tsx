@@ -6,13 +6,17 @@ import {
   FilterChipRail,
   type FilterChipItem,
 } from "@/components/FilterChipRail";
-import type { MessageFilter } from "@/lib/api/types";
+import type { EventStats, MessageFilter } from "@/lib/api/types";
 import {
   useFilter,
   useMessagesStore,
   useSelectedIds,
 } from "../store/useMessagesStore";
 import { useMessageList } from "../hooks/useMessageList";
+
+type MessagesFilterRailProps = {
+  stats: EventStats | null;
+};
 
 const FILTER_VALUES: { labelKey: string; value: MessageFilter }[] = [
   { labelKey: "messages__filter__all", value: "all" },
@@ -22,7 +26,7 @@ const FILTER_VALUES: { labelKey: string; value: MessageFilter }[] = [
   { labelKey: "messages__filter__audio_only", value: "audio_only" },
 ];
 
-export const MessagesFilterRail = () => {
+export const MessagesFilterRail = ({ stats }: MessagesFilterRailProps) => {
   const t = useTranslations();
   const filter = useFilter();
   const setFilter = useMessagesStore((s) => s.setFilter);
@@ -36,14 +40,27 @@ export const MessagesFilterRail = () => {
     value: c.value,
   }));
 
+  const countForChip = (value: MessageFilter): number | undefined => {
+    if (!stats) return undefined;
+    switch (value) {
+      case "all":
+        return stats.totalMessages;
+      case "favorites":
+        return stats.favorites;
+      case "with_photo":
+        return stats.photoCount;
+      case "with_video":
+        return stats.videoCount;
+      case "audio_only":
+        return stats.audioMessages;
+      default:
+        return undefined;
+    }
+  };
+
   const chipItems: FilterChipItem[] = filterChips.map((c) => ({
     label: c.label,
-    count:
-      c.value === "all"
-        ? messageViews.length
-        : c.value === "favorites" && filter === "favorites"
-          ? messageViews.length
-          : undefined,
+    count: countForChip(c.value),
   }));
 
   const activeChipLabel =

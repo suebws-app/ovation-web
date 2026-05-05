@@ -8,7 +8,7 @@ type StatLineProps = {
 export const StatLine = ({ stats }: StatLineProps) => {
   const items = [
     { value: String(stats.totalMessages), label: "messages" },
-    { value: String(stats.photoMessages), label: "photos" },
+    { value: String(stats.photoCount), label: "photos" },
     { value: String(stats.audioMessages), label: "audio" },
     { value: String(stats.favorites), label: "favourites" },
   ];

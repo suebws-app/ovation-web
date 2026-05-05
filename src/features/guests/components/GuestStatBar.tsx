@@ -25,9 +25,9 @@ export const GuestStatBar = ({ stats, invitations }: GuestStatBarProps) => {
       tone: "primary" as const,
     },
     {
-      value: stats.photoMessages,
+      value: stats.photoCount,
       label: t("guests__stats__with_photo"),
-      sub: t("guests__stats__with_photo_sub", { count: stats.videoMessages }),
+      sub: t("guests__stats__with_photo_sub", { count: stats.videoCount }),
       icon: ImageIcon,
       tone: "primary" as const,
     },
@@ -37,17 +37,6 @@ export const GuestStatBar = ({ stats, invitations }: GuestStatBarProps) => {
       sub: t("guests__stats__favourited_sub"),
       icon: Heart,
       tone: "accent" as const,
-    },
-    {
-      value: invitations?.totals.sent ?? 0,
-      label: t("guests__stats__invites"),
-      sub: t("guests__stats__invites_sub", {
-        opened: invitations?.totals.opened ?? 0,
-      }),
-      icon: Mail,
-      tone: invitations?.totals.sent
-        ? ("primary" as const)
-        : ("muted" as const),
     },
   ];
 

@@ -1,43 +1,56 @@
 "use client";
 
+import { Checkbox } from "@ovation/ui/components/Checkbox";
+import { Book } from "@ovation/icons/Book";
+import { Video } from "@ovation/icons/Video";
 import { cn } from "@ovation/ui/utils/cn";
 import type { PhotoView } from "../adapters";
-import { PhotoSelectIndicator } from "./PhotoSelectIndicator";
 import { PhotoFavouriteIndicator } from "./PhotoFavouriteIndicator";
-import { PhotoAudioBadge } from "./PhotoAudioBadge";
 
 type PhotoTileProps = {
   tile: PhotoView;
   height: number;
   selected?: boolean;
-  showSelect?: boolean;
   onClick?: () => void;
+  onToggleSelect?: () => void;
 };
 
 export const PhotoTile = ({
   tile,
   height,
   selected = false,
-  showSelect = false,
   onClick,
+  onToggleSelect,
 }: PhotoTileProps) => {
   const {
     thumbUrl,
+    url,
+    type,
     monogram,
     name,
     tint,
-    favorited,
-    hasAudio,
-    audioDuration,
+    isFavorite,
+    isGoldBookSelected,
     time,
   } = tile;
+  const isVideo = type === "video";
+  const previewUrl = thumbUrl ?? (isVideo ? null : url);
+  const favorited = isFavorite;
+  const inGoldBook = isGoldBookSelected;
 
   return (
-    <button
-      type="button"
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
       className={cn(
-        "group rounded-12 relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-all hover:scale-[1.02] hover:shadow-md",
+        "group rounded-12 relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-transform hover:scale-[1.02] hover:shadow-md",
         selected ? "ring-secondary ring-[3px] ring-offset-1" : "shadow-sm",
       )}
       style={{ breakInside: "avoid" }}
@@ -46,11 +59,20 @@ export const PhotoTile = ({
         className="relative flex w-full items-center justify-center overflow-hidden"
         style={{ height }}
       >
-        {thumbUrl ? (
+        {previewUrl ? (
           <img
-            src={thumbUrl}
+            src={previewUrl}
             alt={name}
             loading="lazy"
+            className="size-full object-cover"
+          />
+        ) : isVideo && url ? (
+          <video
+            src={`${url}#t=0.1`}
+            preload="none"
+            muted
+            playsInline
+            disablePictureInPicture
             className="size-full object-cover"
           />
         ) : (
@@ -67,17 +89,45 @@ export const PhotoTile = ({
           </div>
         )}
 
-        {showSelect && <PhotoSelectIndicator selected={selected} />}
-        {favorited && <PhotoFavouriteIndicator />}
-        {hasAudio && audioDuration && (
-          <PhotoAudioBadge duration={audioDuration} />
+        {isVideo && (
+          <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 type-caption font-medium text-white">
+            <Video width={11} height={11} />
+            <span>Video</span>
+          </span>
         )}
 
-        <div className="type-caption absolute right-2 bottom-2 left-2 flex items-baseline justify-between font-semibold text-white drop-shadow-sm">
+        <span
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
+          className="absolute top-2 left-2"
+        >
+          <Checkbox
+            checked={selected}
+            onChange={() => onToggleSelect?.()}
+            aria-label={`Select photo from ${name}`}
+            className="bg-white/90"
+          />
+        </span>
+
+        <div className="absolute top-2 right-2 flex items-center gap-1">
+          {inGoldBook && (
+            <Book
+              width={16}
+              height={16}
+              fill="oklch(0.85 0.15 95)"
+              stroke="oklch(0.45 0.12 80)"
+              strokeWidth={1.5}
+            />
+          )}
+          {favorited && <PhotoFavouriteIndicator />}
+        </div>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="type-caption absolute right-2.5 bottom-2 left-2.5 flex items-baseline justify-between gap-2 font-semibold text-white">
           <span className="truncate">{name}</span>
-          <span className="font-mono opacity-85">{time}</span>
+          <span className="shrink-0 font-mono opacity-85">{time}</span>
         </div>
       </div>
-    </button>
+    </div>
   );
 };

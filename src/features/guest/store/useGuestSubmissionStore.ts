@@ -25,6 +25,7 @@ export type PhotoCapture = {
 
 type GuestSubmissionState = {
   slug: string | null;
+  sessionStartAt: number | null;
   guestName: string;
   audio: AudioCapture | null;
   video: VideoCapture | null;
@@ -42,6 +43,7 @@ type GuestSubmissionState = {
 
 const initial = {
   slug: null,
+  sessionStartAt: null,
   guestName: "",
   audio: null,
   video: null,
@@ -68,9 +70,12 @@ export const useGuestSubmissionStore = create<GuestSubmissionState>(
         revoke(get().audio?.url);
         revoke(get().video?.url);
         revoke(get().photo?.url);
-        set({ ...initial, slug });
+        set({ ...initial, slug, sessionStartAt: Date.now() });
       } else {
-        set({ slug });
+        set({
+          slug,
+          sessionStartAt: get().sessionStartAt ?? Date.now(),
+        });
       }
     },
     setGuestName: (guestName) => set({ guestName }),

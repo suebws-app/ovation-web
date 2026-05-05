@@ -61,6 +61,7 @@ export type MessageRowView = {
   name: string;
   relation: string;
   quote: string;
+  note: string;
   initials: string;
   tint: string;
   duration: string;
@@ -84,6 +85,7 @@ export const toMessageRowView = (
   name: m.guestNames || anonymousLabel,
   relation: "",
   quote: m.transcriptSnippet ?? "",
+  note: m.writtenNote?.trim() ?? "",
   initials: initialsFrom(m.guestNames),
   tint: tintFrom(m.id),
   duration: formatDurationShort(m.audioDurationSec),
@@ -106,6 +108,7 @@ export const toMessageRowViewFromDetail = (
   name: m.guestNames || anonymous,
   relation: "",
   quote: m.transcript ? m.transcript.slice(0, 120) : "",
+  note: m.writtenNote?.trim() ?? "",
   initials: initialsFrom(m.guestNames),
   tint: tintFrom(m.id),
   duration: formatDurationShort(m.audioDurationSec),
@@ -113,7 +116,7 @@ export const toMessageRowViewFromDetail = (
   favorited: m.isFavorite,
   inGoldBook: m.isGoldBookSelected,
   hasAudio: Boolean(m.audioUrl),
-  hasPhoto: Boolean(m.photoUrl),
+  hasPhoto: m.media.some((item) => item.type === "photo"),
   listens: 0,
   time: formatTimeShort(m.createdAt),
   createdAt: m.createdAt,

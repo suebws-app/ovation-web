@@ -26,7 +26,7 @@ export const KeepsakesPage = async () => {
   const others = catalog.products.filter((p) => p.sku !== featured?.sku);
 
   return (
-    <div className="min-w-0">
+    <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
       <KeepsakesHero />
       {featured && (
         <KeepsakesFeaturedRow
@@ -35,13 +35,9 @@ export const KeepsakesPage = async () => {
           eventId={eventId}
         />
       )}
-      <div className="mt-5">
-        <BundleBanner />
-      </div>
+      <BundleBanner />
       <KeepsakesCollection products={others} eventId={eventId} />
-      <div className="mt-8">
-        <TestimonialStrip />
-      </div>
+
       <KeepsakesFooter />
     </div>
   );

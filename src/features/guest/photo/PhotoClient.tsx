@@ -9,14 +9,24 @@ import { Link } from "@/i18n/navigation";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
+import { KioskFullscreenGuard } from "@/features/kiosk-setup/components/KioskFullscreenGuard";
 
 const MAX_BYTES = 25 * 1024 * 1024;
 
 type PhotoClientProps = {
   slug: string;
+  exitPin: string | null;
+  fullscreenLock: boolean;
+  sourceParam: string | null;
 };
 
-export const PhotoClient = ({ slug }: PhotoClientProps) => {
+export const PhotoClient = ({
+  slug,
+  exitPin,
+  fullscreenLock,
+  sourceParam,
+}: PhotoClientProps) => {
+  const isKioskSession = sourceParam === "kiosk";
   const t = useTranslations();
   const photo = useGuestSubmissionStore((s) => s.photo);
   const setPhoto = useGuestSubmissionStore((s) => s.setPhoto);
@@ -56,13 +66,18 @@ export const PhotoClient = ({ slug }: PhotoClientProps) => {
     img.src = url;
   };
 
-  const continueHref = `/g/${slug}/review`;
+  const continueHref = `/g/${slug}/review${isKioskSession ? "?source=kiosk" : ""}`;
 
   return (
     <div className="flex flex-1 flex-col">
+      <KioskFullscreenGuard
+        active={isKioskSession && fullscreenLock}
+        exitPin={exitPin}
+        exitHref="/app/kiosk"
+      />
       <div className="flex flex-1 flex-col gap-6 px-5 pt-5 pb-9 tablet:px-8 small-desktop:px-10 small-desktop:py-9">
         <WizardHeader
-          backHref={`/g/${slug}/compose`}
+          backHref={`/g/${slug}/compose${isKioskSession ? "?source=kiosk" : ""}`}
           step={2}
           totalSteps={3}
           title={t("guest__photo__title")}

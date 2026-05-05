@@ -1,16 +1,16 @@
-import { cn } from "@ovation/ui/utils/cn";
-
 type WaveformBarProps = {
   height: number;
-  filled: boolean;
+  fill: number;
 };
 
-export const WaveformBar = ({ height, filled }: WaveformBarProps) => (
+export const WaveformBar = ({ height, fill }: WaveformBarProps) => (
   <span
-    className={cn(
-      "w-[2.5px] rounded-full transition-colors",
-      filled ? "bg-primary" : "bg-primary/20",
-    )}
+    className="bg-primary/20 relative w-[2.5px] overflow-hidden rounded-full"
     style={{ height }}
-  />
+  >
+    <span
+      className="bg-primary absolute inset-x-0 bottom-0 top-0 origin-left rounded-full transition-transform duration-300 ease-linear"
+      style={{ transform: `scaleX(${fill})` }}
+    />
+  </span>
 );

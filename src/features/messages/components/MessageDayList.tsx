@@ -62,7 +62,7 @@ export const MessageDayList = ({
   const isHighlighted = (id: string) => id === activeMessageId;
 
   return (
-    <div className="flex-1 overflow-auto">
+    <div>
       {groups.map((group, groupIdx) => (
         <section key={group.label}>
           <MessageDayHeader
@@ -79,9 +79,7 @@ export const MessageDayList = ({
               isCurrent={message.id === playingId}
               playing={message.id === playingId && isPlaying}
               progress={message.id === playingId ? playingProgress : 0}
-              currentTime={
-                message.id === playingId ? playingCurrentTime : 0
-              }
+              currentTime={message.id === playingId ? playingCurrentTime : 0}
               durationOverride={
                 message.id === playingId && playingDuration > 0
                   ? playingDuration

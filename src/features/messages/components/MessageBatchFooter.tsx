@@ -5,7 +5,6 @@ import { Button } from "@ovation/ui/components/Button";
 import { Book } from "@ovation/icons/Book";
 import { Download } from "@ovation/icons/Download";
 import { Heart } from "@ovation/icons/Heart";
-import { useSidebar } from "@ovation/ui/components/Sidebar";
 import { cn } from "@ovation/ui/utils/cn";
 
 type MessageBatchFooterProps = {
@@ -35,56 +34,63 @@ export const MessageBatchFooter = ({
   return (
     <div
       className={cn(
-        "border-border bg-card shadow-top fixed right-0 bottom-0 left-0 z-50 flex items-center gap-3 border-t px-4 py-3",
-        "desktop:left-(--sidebar-width) small-desktop:right-80",
+        "border-border bg-card shadow-top tablet:flex-row tablet:items-center tablet:gap-3 sticky bottom-0 z-50 mt-auto flex w-full flex-col gap-2 border-t px-4 py-3",
       )}
     >
-      <span className="type-body-small font-semibold">
-        {t("messages__batch__selected", { count })}
-      </span>
-      <span className="type-caption text-muted-foreground">
-        {t("messages__batch__combined_duration", {
-          duration: combinedDuration,
-        })}
-      </span>
-      <div className="ml-auto flex items-center gap-1.5">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
+        <span className="type-body-small font-semibold">
+          {t("messages__batch__selected", { count })}
+        </span>
+        <span className="type-caption text-muted-foreground">
+          {t("messages__batch__combined_duration", {
+            duration: combinedDuration,
+          })}
+        </span>
+      </div>
+      <div className="tablet:ml-auto tablet:flex-nowrap flex flex-wrap items-center gap-1.5">
         <Button
           variant="outline"
           size="sm"
           onClick={onBulkFavorite}
           disabled={bulkPending}
-          className="rounded-full"
+          className="min-w-0 flex-1 shrink whitespace-nowrap rounded-full tablet:flex-none"
         >
           <Heart
             width={13}
             height={13}
             className={allFavorited ? "fill-destructive text-destructive" : ""}
           />
-          {allFavorited
-            ? t("messages__batch__action_unfavourite")
-            : t("messages__batch__action_favourite")}
+          <span className="truncate">
+            {allFavorited
+              ? t("messages__batch__action_unfavourite")
+              : t("messages__batch__action_favourite")}
+          </span>
         </Button>
         <Button
           variant="outline"
           size="sm"
           onClick={onBulkDownload}
           disabled={bulkPending}
-          className="rounded-full"
+          className="min-w-0 flex-1 shrink whitespace-nowrap rounded-full tablet:flex-none"
         >
           <Download width={13} height={13} />
-          {t("messages__batch__action_download")}
+          <span className="truncate">
+            {t("messages__batch__action_download")}
+          </span>
         </Button>
         <Button
           size="sm"
           variant={allInGoldBook ? "secondary" : "default"}
           onClick={onBulkAddToGoldBook}
           disabled={bulkPending}
-          className="rounded-full"
+          className="min-w-0 flex-1 shrink whitespace-nowrap rounded-full tablet:flex-none"
         >
           <Book width={13} height={13} />
-          {allInGoldBook
-            ? t("messages__batch__remove_from_book")
-            : t("messages__batch__add_to_book")}
+          <span className="truncate">
+            {allInGoldBook
+              ? t("messages__batch__remove_from_book")
+              : t("messages__batch__add_to_book")}
+          </span>
         </Button>
       </div>
     </div>

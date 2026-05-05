@@ -1,103 +1,94 @@
+"use client";
+
+import { useLocale, useTranslations } from "next-intl";
 import { Avatar } from "@ovation/ui/components/Avatar";
+import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Heart } from "@ovation/icons/Heart";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
-import { MoreHorizontal } from "@ovation/icons/MoreHorizontal";
+import { Mic } from "@ovation/icons/Mic";
+import { Video } from "@ovation/icons/Video";
+import type { GuestRow as GuestRowData } from "../adapters";
 import { GuestStatusPill } from "./GuestStatusPill";
-import { ContactIcon, type ContactType } from "./ContactIcon";
 
 type GuestRowProps = {
-  initials: string;
-  tint: string;
-  name: string;
-  relation: string;
-  group: string;
-  table: string;
-  contact: string;
-  contactType: ContactType;
-  contributed: boolean;
-  thanked: boolean;
-  favorited: boolean;
-  messageCount: number;
-  hasPhoto: boolean;
-  nudged?: string;
-  wasNudged?: boolean;
-  isLast?: boolean;
+  guest: GuestRowData;
+  selected: boolean;
+  onToggleSelect: () => void;
+  isLast: boolean;
 };
 
 export const GuestRow = ({
-  initials,
-  tint,
-  name,
-  relation,
-  group,
-  table,
-  contact,
-  contactType,
-  contributed,
-  thanked,
-  favorited,
-  messageCount,
-  hasPhoto,
-  nudged,
-  wasNudged,
+  guest,
+  selected,
+  onToggleSelect,
   isLast,
-}: GuestRowProps) => (
-  <div
-    className={`grid grid-cols-[28px_minmax(220px,1.4fr)_140px_150px_150px_120px_36px] items-center gap-3.5 px-6 py-3.5 ${
-      isLast ? "" : "border-border border-b"
-    }`}
-  >
-    <input type="checkbox" className="accent-primary size-4" />
-    <div className="flex min-w-0 items-center gap-3">
-      <Avatar initials={initials} tint={tint} size="md" />
-      <div className="min-w-0">
-        <div className="flex items-center gap-2">
-          <span className="type-body-small font-semibold">{name}</span>
-          {favorited && (
-            <Heart
-              width={12}
-              height={12}
-              fill="var(--destructive)"
-              stroke="none"
-            />
-          )}
-        </div>
-        <div className="type-caption text-muted-foreground truncate">
-          {relation}
+}: GuestRowProps) => {
+  const t = useTranslations();
+  const locale = useLocale();
+  const lastDate = new Date(guest.lastAt);
+  const lastLabel = lastDate.toLocaleString(locale, {
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return (
+    <div
+      className={`grid grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] items-center gap-3.5 px-6 py-3.5 ${
+        isLast ? "" : "border-border border-b"
+      }`}
+    >
+      <Checkbox
+        checked={selected}
+        onChange={onToggleSelect}
+        aria-label={t("guests__row__select_aria", { name: guest.name })}
+      />
+      <div className="flex min-w-0 items-center gap-3">
+        <Avatar initials={guest.initials} tint={guest.tint} size="md" />
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="type-body-small truncate font-semibold">
+              {guest.name}
+            </span>
+            {guest.isFavorite && (
+              <Heart
+                width={12}
+                height={12}
+                fill="var(--destructive)"
+                stroke="none"
+              />
+            )}
+          </div>
+          <div className="type-caption text-muted-foreground">
+            {t("guests__row__contributions", { count: guest.messageCount })}
+          </div>
         </div>
       </div>
+      <div className="type-caption text-muted-foreground flex items-center gap-2">
+        <span className="text-foreground font-semibold">
+          {guest.messageCount}
+        </span>
+        {guest.audioCount > 0 && (
+          <Mic width={12} height={12} className="text-muted-foreground" />
+        )}
+        {guest.photoCount > 0 && (
+          <ImageIcon
+            width={12}
+            height={12}
+            className="text-muted-foreground"
+          />
+        )}
+        {guest.videoCount > 0 && (
+          <Video width={12} height={12} className="text-muted-foreground" />
+        )}
+      </div>
+      <GuestStatusPill
+        contributed={guest.messageCount > 0}
+        thanked={false}
+      />
+      <div className="type-caption text-muted-foreground">{lastLabel}</div>
+      <span aria-hidden />
     </div>
-    <div>
-      <div className="type-caption">{group}</div>
-      <div className="type-caption text-muted-foreground mt-0.5">{table}</div>
-    </div>
-    <div className="type-caption text-muted-foreground flex items-center gap-1.5 overflow-hidden">
-      <ContactIcon type={contactType} />
-      <span className="truncate">{contact}</span>
-    </div>
-    <GuestStatusPill
-      contributed={contributed}
-      thanked={thanked}
-      wasNudged={wasNudged}
-    />
-    <div className="type-caption text-muted-foreground flex items-center gap-2">
-      {contributed ? (
-        <>
-          <span className="text-foreground font-semibold">
-            {messageCount} msg
-          </span>
-          {hasPhoto && (
-            <ImageIcon
-              width={12}
-              height={12}
-              className="text-muted-foreground"
-            />
-          )}
-        </>
-      ) : (
-        <span>{nudged}</span>
-      )}
-    </div>
-    <MoreHorizontal width={16} height={16} className="text-muted-foreground" />
-  </div>
-);
+  );
+};

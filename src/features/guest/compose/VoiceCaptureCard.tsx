@@ -15,7 +15,11 @@ const formatTime = (sec: number): string => {
   return `${m}:${s.toString().padStart(2, "0")}`;
 };
 
-export const VoiceCaptureCard = () => {
+type VoiceCaptureCardProps = {
+  maxDurationSec?: number;
+};
+
+export const VoiceCaptureCard = ({ maxDurationSec }: VoiceCaptureCardProps = {}) => {
   const t = useTranslations();
   const audio = useGuestSubmissionStore((s) => s.audio);
   const setAudio = useGuestSubmissionStore((s) => s.setAudio);
@@ -34,7 +38,9 @@ export const VoiceCaptureCard = () => {
             ? t("guest__compose__voice_captured", {
                 duration: formatTime(audio.durationSec),
               })
-            : t("guest__compose__voice_subtitle")
+            : t("guest__compose__voice_subtitle", {
+                seconds: maxDurationSec ?? 180,
+              })
         }
         filled={Boolean(audio)}
       />
@@ -64,7 +70,12 @@ export const VoiceCaptureCard = () => {
         </>
       )}
 
-      {open && <VoicePanel onCaptured={() => setEditing(false)} />}
+      {open && (
+        <VoicePanel
+          onCaptured={() => setEditing(false)}
+          maxDurationSec={maxDurationSec}
+        />
+      )}
 
       {!audio && !editing && (
         <Button

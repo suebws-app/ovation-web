@@ -1,7 +1,10 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { useMediaStore, type MediaPlayerInstance } from "@vidstack/react";
+import type {
+  MediaPlayerInstance,
+  MediaTimeUpdateEventDetail,
+} from "@vidstack/react";
 
 type UseAudioPlayerOptions = {
   resolveSrc: (id: string) => Promise<string | null>;
@@ -17,11 +20,21 @@ export type AudioPlayer = {
   progress: number;
   toggle: (id: string) => Promise<void>;
   seekRatio: (ratio: number) => void;
+  onTimeUpdate: (detail: MediaTimeUpdateEventDetail) => void;
+  onDurationChange: (duration: number) => void;
+  onPlay: () => void;
+  onPause: () => void;
 };
 
 const waitForCanPlay = (player: MediaPlayerInstance) =>
   new Promise<void>((resolve) => {
-    if (player.state.canPlay) {
+    let alreadyReady = false;
+    try {
+      alreadyReady = Boolean(player.state?.canPlay);
+    } catch {
+      alreadyReady = false;
+    }
+    if (alreadyReady) {
       resolve();
       return;
     }
@@ -36,15 +49,14 @@ export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
   const playerRef = useRef<MediaPlayerInstance | null>(null);
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [src, setSrc] = useState<string | null>(null);
+  const [paused, setPaused] = useState(true);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
-  const { paused, currentTime, duration } = useMediaStore(playerRef);
-
-  const safeDuration = Number.isFinite(duration) ? duration : 0;
-  const safeCurrentTime = Number.isFinite(currentTime) ? currentTime : 0;
   const isPlaying = playingId !== null && !paused;
   const progress =
-    safeDuration > 0
-      ? Math.min(1, Math.max(0, safeCurrentTime / safeDuration))
+    duration > 0
+      ? Math.min(1, Math.max(0, currentTime / duration))
       : 0;
 
   const toggle = useCallback(
@@ -53,12 +65,16 @@ export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
       if (!player) return;
 
       if (playingId === id) {
-        if (player.paused) {
-          await player.play().catch((err) => {
+        if (paused) {
+          player.play().catch((err) => {
             console.error("[audio] play failed", err);
           });
         } else {
-          player.pause();
+          try {
+            player.pause();
+          } catch (err) {
+            console.error("[audio] pause failed", err);
+          }
         }
         return;
       }
@@ -68,12 +84,20 @@ export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
 
       setSrc(url);
       setPlayingId(id);
-      await waitForCanPlay(player);
-      await player.play().catch((err) => {
-        console.error("[audio] play failed", err);
+      setCurrentTime(0);
+      setDuration(0);
+      requestAnimationFrame(() => {
+        player.play().catch(async (err) => {
+          if (err?.code === 4 || /not ready/i.test(String(err?.message ?? ""))) {
+            await waitForCanPlay(player);
+            player.play().catch((e) => console.error("[audio] play failed", e));
+            return;
+          }
+          console.error("[audio] play failed", err);
+        });
       });
     },
-    [resolveSrc, playingId],
+    [resolveSrc, playingId, paused],
   );
 
   const seekRatio = useCallback((ratio: number) => {
@@ -85,15 +109,32 @@ export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
     player.currentTime = clamped * dur;
   }, []);
 
+  const onTimeUpdate = useCallback((detail: MediaTimeUpdateEventDetail) => {
+    setCurrentTime(
+      Number.isFinite(detail.currentTime) ? detail.currentTime : 0,
+    );
+  }, []);
+
+  const onDurationChange = useCallback((d: number) => {
+    setDuration(Number.isFinite(d) && d > 0 ? d : 0);
+  }, []);
+
+  const onPlay = useCallback(() => setPaused(false), []);
+  const onPause = useCallback(() => setPaused(true), []);
+
   return {
     playerRef,
     src,
     playingId,
     isPlaying,
-    currentTime: safeCurrentTime,
-    duration: safeDuration,
+    currentTime,
+    duration,
     progress,
     toggle,
     seekRatio,
+    onTimeUpdate,
+    onDurationChange,
+    onPlay,
+    onPause,
   };
 };

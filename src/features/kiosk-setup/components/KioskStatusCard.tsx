@@ -4,7 +4,8 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Play } from "@ovation/icons/Play";
 import { QrCode } from "@ovation/icons/QrCode";
-import { Link } from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { startKioskOnThisDevice } from "../startKioskOnThisDevice";
 
 type KioskStatusCardProps = {
   slug: string | null;
@@ -12,6 +13,7 @@ type KioskStatusCardProps = {
 
 export const KioskStatusCard = ({ slug }: KioskStatusCardProps) => {
   const t = useTranslations();
+  const router = useRouter();
   return (
     <div className="rounded-20 border-border bg-card w-85 border p-5.5 shadow">
       <div className="type-overline text-muted-foreground flex items-center gap-2.5">
@@ -22,11 +24,12 @@ export const KioskStatusCard = ({ slug }: KioskStatusCardProps) => {
         {t("kiosk__hero__status_lead")}
       </p>
       {slug ? (
-        <Button asChild className="rounded-16 mt-4 w-full shadow-lg">
-          <Link href={`/kiosk/${slug}`}>
-            <Play width={14} height={14} />
-            {t("kiosk__hero__start")}
-          </Link>
+        <Button
+          className="rounded-16 mt-4 w-full shadow-lg"
+          onClick={() => startKioskOnThisDevice(router, slug)}
+        >
+          <Play width={14} height={14} />
+          {t("kiosk__hero__start")}
         </Button>
       ) : (
         <Button disabled className="rounded-16 mt-4 w-full shadow-lg">

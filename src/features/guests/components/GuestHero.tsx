@@ -3,17 +3,22 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Plus } from "@ovation/icons/Plus";
-import { Upload } from "@ovation/icons/Upload";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { ContributionRing } from "./ContributionRing";
 
 type GuestHeroProps = {
   totalMessages: number;
+  totalGuests: number;
+  totalInvited: number;
   inviteUrl: string;
 };
 
-export const GuestHero = ({ totalMessages, inviteUrl }: GuestHeroProps) => {
+export const GuestHero = ({
+  totalMessages,
+  totalGuests,
+  totalInvited,
+  inviteUrl,
+}: GuestHeroProps) => {
   const t = useTranslations();
   const [copied, setCopied] = useState(false);
 
@@ -48,14 +53,6 @@ export const GuestHero = ({ totalMessages, inviteUrl }: GuestHeroProps) => {
             {t("guests__hero__subtitle")}
           </p>
           <div className="mt-6 flex flex-wrap gap-2.5">
-            <Button disabled className="rounded-full shadow-lg">
-              <Plus width={14} height={14} />
-              {t("guests__hero__add")}
-            </Button>
-            <Button disabled variant="outline" className="rounded-full">
-              <Upload width={14} height={14} />
-              {t("guests__hero__import")}
-            </Button>
             <Button
               variant="outline"
               className="rounded-full"
@@ -69,8 +66,8 @@ export const GuestHero = ({ totalMessages, inviteUrl }: GuestHeroProps) => {
           </div>
         </div>
         <ContributionRing
-          value={totalMessages}
-          total={Math.max(totalMessages, 1)}
+          value={totalGuests}
+          total={Math.max(totalInvited, totalGuests, 1)}
         />
       </div>
     </div>

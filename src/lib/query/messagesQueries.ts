@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useInfiniteQuery,
   useMutation,
   useQuery,
   useQueryClient,
@@ -26,6 +27,22 @@ export const useMessagesList = (
     enabled: Boolean(eventId),
   });
 
+export const useInfiniteMessagesList = (
+  eventId: string,
+  input: Omit<ListMessagesQuery, "cursor"> = {},
+) =>
+  useInfiniteQuery({
+    queryKey: queryKeys.messages.infiniteList(eventId, input),
+    queryFn: ({ pageParam }) =>
+      messagesClient.list(eventId, {
+        ...input,
+        cursor: pageParam ?? undefined,
+      }),
+    initialPageParam: null as string | null,
+    getNextPageParam: (last) => last.nextCursor ?? null,
+    enabled: Boolean(eventId),
+  });
+
 export const useMessageDetail = (eventId: string, messageId: string | null) =>
   useQuery({
     queryKey: queryKeys.messages.detail(eventId, messageId ?? ""),
@@ -33,8 +50,71 @@ export const useMessageDetail = (eventId: string, messageId: string | null) =>
     enabled: Boolean(eventId && messageId),
   });
 
+type ListSnapshot = Paginated<MessageSummary>;
+type InfiniteSnapshot = InfiniteData<Paginated<MessageSummary>, string | null>;
+
+const isInfiniteSnapshot = (value: unknown): value is InfiniteSnapshot =>
+  typeof value === "object" &&
+  value !== null &&
+  Array.isArray((value as { pages?: unknown }).pages);
+
+const isFlatSnapshot = (value: unknown): value is ListSnapshot =>
+  typeof value === "object" &&
+  value !== null &&
+  Array.isArray((value as { items?: unknown }).items);
+
+const patchInList = (
+  list: ListSnapshot,
+  messageId: string,
+  patch: Partial<MessageSummary>,
+): ListSnapshot => ({
+  ...list,
+  items: list.items.map((m) => (m.id === messageId ? { ...m, ...patch } : m)),
+});
+
+const removeFromList = (
+  list: ListSnapshot,
+  messageId: string,
+): ListSnapshot => ({
+  ...list,
+  items: list.items.filter((m) => m.id !== messageId),
+});
+
+const transformAllLists = (
+  qc: ReturnType<typeof useQueryClient>,
+  eventId: string,
+  transform: (snapshot: ListSnapshot) => ListSnapshot,
+): { previous: [readonly unknown[], unknown][] } => {
+  const entries = qc.getQueriesData<unknown>({
+    queryKey: queryKeys.messages.all(eventId),
+  });
+  const previous: [readonly unknown[], unknown][] = [];
+  for (const [key, snapshot] of entries) {
+    if (isInfiniteSnapshot(snapshot)) {
+      previous.push([key, snapshot]);
+      qc.setQueryData<InfiniteSnapshot>(key, {
+        ...snapshot,
+        pages: snapshot.pages.map(transform),
+      });
+    } else if (isFlatSnapshot(snapshot)) {
+      previous.push([key, snapshot]);
+      qc.setQueryData<ListSnapshot>(key, transform(snapshot));
+    }
+  }
+  return { previous };
+};
+
+const restoreSnapshots = (
+  qc: ReturnType<typeof useQueryClient>,
+  previous: [readonly unknown[], unknown][],
+) => {
+  for (const [key, snapshot] of previous) {
+    qc.setQueryData(key, snapshot);
+  }
+};
+
 type UpdateContext = {
-  previousLists: [readonly unknown[], Paginated<MessageSummary>][];
+  previous: [readonly unknown[], unknown][];
   previousDetail:
     | { key: readonly unknown[]; data: { message: MessageDetail } | undefined }
     | null;
@@ -59,34 +139,15 @@ export const useUpdateMessage = (eventId: string) => {
     onMutate: async ({ messageId, input }) => {
       await qc.cancelQueries({ queryKey: queryKeys.messages.all(eventId) });
 
-      const previousLists = qc
-        .getQueriesData<Paginated<MessageSummary>>({
-          queryKey: queryKeys.messages.all(eventId),
-        })
-        .filter(
-          (entry): entry is [readonly unknown[], Paginated<MessageSummary>] =>
-            Array.isArray(entry[1]?.items),
-        );
-      previousLists.forEach(([key, snapshot]) => {
-        qc.setQueryData<Paginated<MessageSummary>>(key, {
-          ...snapshot,
-          items: snapshot.items.map((m) =>
-            m.id === messageId
-              ? {
-                  ...m,
-                  isFavorite:
-                    typeof input.isFavorite === "boolean"
-                      ? input.isFavorite
-                      : m.isFavorite,
-                  isGoldBookSelected:
-                    typeof input.isGoldBookSelected === "boolean"
-                      ? input.isGoldBookSelected
-                      : m.isGoldBookSelected,
-                }
-              : m,
-          ),
-        });
-      });
+      const patch: Partial<MessageSummary> = {};
+      if (typeof input.isFavorite === "boolean")
+        patch.isFavorite = input.isFavorite;
+      if (typeof input.isGoldBookSelected === "boolean")
+        patch.isGoldBookSelected = input.isGoldBookSelected;
+
+      const { previous } = transformAllLists(qc, eventId, (snap) =>
+        patchInList(snap, messageId, patch),
+      );
 
       const detailKey = queryKeys.messages.detail(eventId, messageId);
       const detailSnapshot = qc.getQueryData<{ message: MessageDetail }>(
@@ -94,47 +155,24 @@ export const useUpdateMessage = (eventId: string) => {
       );
       if (detailSnapshot) {
         qc.setQueryData<{ message: MessageDetail }>(detailKey, {
-          message: {
-            ...detailSnapshot.message,
-            isFavorite:
-              typeof input.isFavorite === "boolean"
-                ? input.isFavorite
-                : detailSnapshot.message.isFavorite,
-            isGoldBookSelected:
-              typeof input.isGoldBookSelected === "boolean"
-                ? input.isGoldBookSelected
-                : detailSnapshot.message.isGoldBookSelected,
-            coupleNotes:
-              input.coupleNotes !== undefined
-                ? input.coupleNotes
-                : detailSnapshot.message.coupleNotes,
-            audioTrimStartSec:
-              input.audioTrimStartSec !== undefined
-                ? input.audioTrimStartSec
-                : detailSnapshot.message.audioTrimStartSec,
-            audioTrimEndSec:
-              input.audioTrimEndSec !== undefined
-                ? input.audioTrimEndSec
-                : detailSnapshot.message.audioTrimEndSec,
-          },
+          message: { ...detailSnapshot.message, ...patch },
         });
       }
 
       return {
-        previousLists,
+        previous,
         previousDetail: { key: detailKey, data: detailSnapshot },
       };
     },
-    onError: (err, _vars, context) => {
-      console.error("[useUpdateMessage] failed", err);
-      context?.previousLists.forEach(([key, snapshot]) => {
-        qc.setQueryData(key, snapshot);
-      });
-      if (context?.previousDetail) {
-        qc.setQueryData(
-          context.previousDetail.key,
-          context.previousDetail.data,
-        );
+    onError: (_err, _vars, context) => {
+      if (context) {
+        restoreSnapshots(qc, context.previous);
+        if (context.previousDetail) {
+          qc.setQueryData(
+            context.previousDetail.key,
+            context.previousDetail.data,
+          );
+        }
       }
     },
     onSuccess: (response, { messageId }) => {
@@ -150,18 +188,13 @@ export const useUpdateMessage = (eventId: string) => {
         });
       }
     },
-    onSettled: (_data, _err, { messageId }) => {
-      qc.invalidateQueries({ queryKey: queryKeys.messages.all(eventId) });
-      qc.invalidateQueries({
-        queryKey: queryKeys.messages.detail(eventId, messageId),
-      });
+    onSettled: () => {
+      qc.invalidateQueries({ queryKey: queryKeys.messages.lists(eventId) });
     },
   });
 };
 
-type DeleteContext = {
-  previous: [readonly unknown[], Paginated<MessageSummary>][];
-};
+type DeleteContext = { previous: [readonly unknown[], unknown][] };
 
 export const useDeleteMessage = (eventId: string) => {
   const qc = useQueryClient();
@@ -169,26 +202,12 @@ export const useDeleteMessage = (eventId: string) => {
     mutationFn: (messageId) => messagesClient.remove(eventId, messageId),
     onMutate: async (messageId) => {
       await qc.cancelQueries({ queryKey: queryKeys.messages.all(eventId) });
-      const previous = qc
-        .getQueriesData<Paginated<MessageSummary>>({
-          queryKey: queryKeys.messages.all(eventId),
-        })
-        .filter(
-          (entry): entry is [readonly unknown[], Paginated<MessageSummary>] =>
-            Array.isArray(entry[1]?.items),
-        );
-      previous.forEach(([key, snapshot]) => {
-        qc.setQueryData<Paginated<MessageSummary>>(key, {
-          ...snapshot,
-          items: snapshot.items.filter((m) => m.id !== messageId),
-        });
-      });
-      return { previous };
+      return transformAllLists(qc, eventId, (snap) =>
+        removeFromList(snap, messageId),
+      );
     },
     onError: (_err, _id, context) => {
-      context?.previous.forEach(([key, snapshot]) => {
-        qc.setQueryData(key, snapshot);
-      });
+      if (context) restoreSnapshots(qc, context.previous);
     },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: queryKeys.messages.all(eventId) });

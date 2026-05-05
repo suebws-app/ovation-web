@@ -292,9 +292,6 @@ export const auth = betterAuth({
       secure: env.IS_PRODUCTION,
       httpOnly: true,
     },
-    database: {
-      generateId: "uuid",
-    },
   },
 
   plugins: [nextCookies()],

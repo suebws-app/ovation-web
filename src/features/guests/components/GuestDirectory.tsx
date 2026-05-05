@@ -1,205 +1,166 @@
 "use client";
 
+import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Filter } from "@ovation/icons/Filter";
 import { Download } from "@ovation/icons/Download";
-import { GuestTableHead } from "./GuestTableHead";
-import { GuestRow } from "./GuestRow";
+import {
+  applyGuestFilter,
+  applyGuestSearch,
+  applyGuestSort,
+  type GuestRow as GuestRowData,
+} from "../adapters";
+import {
+  useGuestFilter,
+  useGuestPage,
+  useGuestSearch,
+  useGuestSelectedIds,
+  useGuestSort,
+  useGuestsStore,
+} from "../store/useGuestsStore";
+import { useGuestCsvExport } from "../hooks/useGuestCsvExport";
+import { GuestFilterChips } from "./GuestFilterChips";
 import { GuestPagination } from "./GuestPagination";
+import { GuestRow } from "./GuestRow";
+import { GuestSearchInput } from "./GuestSearchInput";
+import { GuestSortButton } from "./GuestSortButton";
+import { GuestTableHead } from "./GuestTableHead";
 
-export const GuestDirectory = () => {
+const PAGE_SIZE = 10;
+
+type GuestDirectoryProps = {
+  guests: GuestRowData[];
+  isPending: boolean;
+  isError: boolean;
+  isFetchingAll: boolean;
+};
+
+export const GuestDirectory = ({
+  guests,
+  isPending,
+  isError,
+  isFetchingAll,
+}: GuestDirectoryProps) => {
   const t = useTranslations();
-  const guests = [
-    {
-      initials: "MD",
-      tint: "#EFC9A8",
-      name: t("guests__directory__name_margot"),
-      relation: t("guests__directory__lena_maid"),
-      group: t("guests__directory__group_wedding_party"),
-      table: t("guests__directory__table_label", { n: 3 }),
-      contact: "margot@hey.com",
-      contactType: "email" as const,
-      contributed: true,
-      favorited: true,
-      messageCount: 1,
-      hasPhoto: true,
-      thanked: false,
-    },
-    {
-      initials: "AP",
-      tint: "#D8C9B2",
-      name: t("guests__directory__name_pilar"),
-      relation: t("guests__directory__tomas_grandmother"),
-      group: t("guests__directory__group_tomas_family"),
-      table: t("guests__directory__table_label", { n: 1 }),
-      contact: "+34 644 812 091",
-      contactType: "phone" as const,
-      contributed: true,
-      favorited: true,
-      messageCount: 1,
-      hasPhoto: false,
-      thanked: true,
-    },
-    {
-      initials: "JE",
-      tint: "#B9C9D9",
-      name: t("guests__directory__name_alvarez"),
-      relation: t("guests__directory__lena_parents"),
-      group: t("guests__directory__group_lena_family"),
-      table: t("guests__directory__table_label", { n: 2 }),
-      contact: "els@alvarez.nl",
-      contactType: "email" as const,
-      contributed: true,
-      favorited: false,
-      messageCount: 2,
-      hasPhoto: true,
-      thanked: true,
-    },
-    {
-      initials: "SO",
-      tint: "#C8B5D9",
-      name: t("guests__directory__name_sam"),
-      relation: t("guests__directory__university_friend"),
-      group: t("guests__directory__group_university_friends"),
-      table: t("guests__directory__table_label", { n: 7 }),
-      contact: "sam.okafor@gmail.com",
-      contactType: "email" as const,
-      contributed: true,
-      favorited: false,
-      messageCount: 1,
-      hasPhoto: false,
-      thanked: false,
-    },
-    {
-      initials: "MB",
-      tint: "#B8D3B6",
-      name: t("guests__directory__name_marco"),
-      relation: t("guests__directory__tomas_brother"),
-      group: t("guests__directory__group_tomas_family"),
-      table: t("guests__directory__table_label", { n: 1 }),
-      contact: "+39 334 221 809",
-      contactType: "phone" as const,
-      contributed: true,
-      favorited: true,
-      messageCount: 1,
-      hasPhoto: true,
-      thanked: false,
-    },
-    {
-      initials: "ID",
-      tint: "#E9BFC4",
-      name: t("guests__directory__name_inge"),
-      relation: t("guests__directory__work_friend"),
-      group: t("guests__directory__group_work_colleagues"),
-      table: t("guests__directory__table_label", { n: 9 }),
-      contact: "inge@studio-nw.be",
-      contactType: "email" as const,
-      contributed: true,
-      favorited: false,
-      messageCount: 1,
-      hasPhoto: true,
-      thanked: true,
-    },
-    {
-      initials: "NH",
-      tint: "#F2D7B3",
-      name: t("guests__directory__name_nora"),
-      relation: t("guests__directory__lena_nieces"),
-      group: t("guests__directory__group_lena_family"),
-      table: t("guests__directory__table_label", { n: 2 }),
-      contact: t("guests__directory__via_els"),
-      contactType: "via" as const,
-      contributed: true,
-      favorited: true,
-      messageCount: 1,
-      hasPhoto: true,
-      thanked: true,
-    },
-    {
-      initials: "RA",
-      tint: "#ADC4D1",
-      name: t("guests__directory__name_renee"),
-      relation: t("guests__directory__school_friend"),
-      group: t("guests__directory__group_university_friends"),
-      table: t("guests__directory__table_label", { n: 8 }),
-      contact: "renee.aerts@mail.com",
-      contactType: "email" as const,
-      contributed: false,
-      favorited: false,
-      messageCount: 0,
-      hasPhoto: false,
-      thanked: false,
-      nudged: t("guests__directory__nudge_sent_2_days"),
-      wasNudged: true,
-    },
-    {
-      initials: "KV",
-      tint: "#B9C9D9",
-      name: t("guests__directory__name_koen"),
-      relation: t("guests__directory__lena_uncle"),
-      group: t("guests__directory__group_lena_family"),
-      table: t("guests__directory__table_label", { n: 4 }),
-      contact: "koen@vanlooy.nl",
-      contactType: "email" as const,
-      contributed: false,
-      favorited: false,
-      messageCount: 0,
-      hasPhoto: false,
-      thanked: false,
-      nudged: t("guests__directory__not_nudged_yet"),
-      wasNudged: false,
-    },
-    {
-      initials: "SP",
-      tint: "#D8C9B2",
-      name: t("guests__directory__name_sofia"),
-      relation: t("guests__directory__tomas_cousin"),
-      group: t("guests__directory__group_tomas_family"),
-      table: t("guests__directory__table_label", { n: 5 }),
-      contact: "+351 912 004 113",
-      contactType: "phone" as const,
-      contributed: true,
-      favorited: false,
-      messageCount: 1,
-      hasPhoto: true,
-      thanked: false,
-    },
-  ];
+  const filter = useGuestFilter();
+  const sort = useGuestSort();
+  const search = useGuestSearch();
+  const page = useGuestPage();
+  const selectedIds = useGuestSelectedIds();
+  const setFilter = useGuestsStore((s) => s.setFilter);
+  const setPage = useGuestsStore((s) => s.setPage);
+  const toggleSelected = useGuestsStore((s) => s.toggleSelected);
+  const selectAll = useGuestsStore((s) => s.selectAll);
+  const clearSelection = useGuestsStore((s) => s.clearSelection);
+
+  const filtered = useMemo(() => {
+    const f = applyGuestFilter(guests, filter);
+    const s = applyGuestSearch(f, search);
+    return applyGuestSort(s, sort);
+  }, [guests, filter, search, sort]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const startIdx = (safePage - 1) * PAGE_SIZE;
+  const pageGuests = filtered.slice(startIdx, startIdx + PAGE_SIZE);
+
+  const allSelected =
+    pageGuests.length > 0 && pageGuests.every((g) => selectedIds.has(g.id));
+
+  const handleToggleAll = () => {
+    if (allSelected) clearSelection();
+    else selectAll(pageGuests.map((g) => g.id));
+  };
+
+  const { exportCsv, isExporting } = useGuestCsvExport();
+
+  const renderBody = () => {
+    if (isPending) {
+      return (
+        <p className="type-body-small text-muted-foreground p-8 text-center">
+          {t("common__loading")}
+        </p>
+      );
+    }
+    if (isError) {
+      return (
+        <p className="type-body-small text-destructive p-8 text-center">
+          {t("common__error")}
+        </p>
+      );
+    }
+    if (filtered.length === 0) {
+      const empty = search.trim()
+        ? t("guests__directory__no_search_results", { query: search })
+        : t("guests__directory__empty_body");
+      return (
+        <p className="type-body-small text-muted-foreground p-8 text-center">
+          {empty}
+        </p>
+      );
+    }
+    return pageGuests.map((guest, i) => (
+      <GuestRow
+        key={guest.id}
+        guest={guest}
+        selected={selectedIds.has(guest.id)}
+        onToggleSelect={() => toggleSelected(guest.id)}
+        isLast={i === pageGuests.length - 1}
+      />
+    ));
+  };
 
   return (
-    <div className="rounded-16 border-border bg-card overflow-hidden border">
-      <div className="border-border flex items-center gap-3 border-b px-6 py-4">
-        <div className="type-body font-serif font-semibold">
-          {t("guests__directory__title")}{" "}
-          <span className="type-body-small text-muted-foreground font-medium">
-            {t("guests__directory__showing_count", { count: 112 })}
-          </span>
+    <div className="flex flex-col gap-4">
+      <GuestFilterChips
+        guests={guests}
+        active={filter}
+        onSelect={setFilter}
+      />
+      <div className="rounded-16 border-border bg-card flex flex-col overflow-hidden border">
+        <div className="border-border tablet:flex-row tablet:items-center flex flex-col gap-3 border-b px-6 py-4">
+          <div className="type-body font-serif font-semibold">
+            {t("guests__directory__title")}{" "}
+            <span className="type-body-small text-muted-foreground font-medium">
+              {t("guests__directory__showing_count", {
+                count: filtered.length,
+              })}
+            </span>
+            {isFetchingAll && (
+              <span className="type-caption text-muted-foreground ml-2">
+                {t("guests__directory__loading_all")}
+              </span>
+            )}
+          </div>
+          <div className="tablet:ml-auto flex flex-wrap items-center gap-2">
+            <GuestSearchInput />
+            <GuestSortButton />
+            <Button
+              size="sm"
+              className="rounded-full"
+              disabled={filtered.length === 0 || isExporting}
+              onClick={() => exportCsv(filtered)}
+            >
+              <Download width={13} height={13} />
+              {t("guests__directory__export")}
+            </Button>
+          </div>
         </div>
-        <div className="ml-auto flex gap-2">
-          <Button variant="outline" size="sm" className="rounded-full">
-            <Filter width={13} height={13} />
-            {t("guests__directory__group_all")}
-          </Button>
-          <Button variant="outline" size="sm" className="rounded-full">
-            <Filter width={13} height={13} />
-            {t("guests__directory__table_any")}
-          </Button>
-          <Button size="sm" className="rounded-full">
-            <Download width={13} height={13} />
-            {t("guests__directory__export")}
-          </Button>
-        </div>
-      </div>
-      <GuestTableHead />
-      {guests.map((guest, i) => (
-        <GuestRow
-          key={guest.initials}
-          {...guest}
-          isLast={i === guests.length - 1}
+        {filtered.length > 0 && (
+          <GuestTableHead
+            allSelected={allSelected}
+            onToggleAll={handleToggleAll}
+          />
+        )}
+        <div className="min-h-160">{renderBody()}</div>
+        <GuestPagination
+          current={safePage}
+          totalPages={totalPages}
+          showing={pageGuests.length}
+          total={filtered.length}
+          onPageChange={setPage}
         />
-      ))}
-      <GuestPagination current={1} total={12} showing={10} of={112} />
+      </div>
     </div>
   );
 };

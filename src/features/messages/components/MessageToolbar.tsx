@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Download } from "@ovation/icons/Download";
 import type { EventStats } from "@/lib/api/types";
+import { useExportAllMessages } from "../hooks/useExportAllMessages";
 
 type MessageToolbarProps = {
   stats: EventStats | null;
@@ -12,15 +13,16 @@ type MessageToolbarProps = {
 export const MessageToolbar = ({ stats }: MessageToolbarProps) => {
   const t = useTranslations();
   const total = stats?.totalMessages ?? 0;
+  const { exportAll, isExporting } = useExportAllMessages();
 
   const buildSubtitle = (): string => {
     if (!stats || stats.totalMessages === 0) {
       return t("messages__toolbar__subtitle_empty");
     }
     const parts: string[] = [];
-    if (stats.photoMessages > 0) {
+    if (stats.photoCount > 0) {
       parts.push(
-        t("messages__toolbar__subtitle_photos", { count: stats.photoMessages }),
+        t("messages__toolbar__subtitle_photos", { count: stats.photoCount }),
       );
     }
     if (stats.favorites > 0) {
@@ -58,7 +60,8 @@ export const MessageToolbar = ({ stats }: MessageToolbarProps) => {
         </div>
         <div className="flex gap-2">
           <Button
-            disabled={total === 0}
+            disabled={total === 0 || isExporting}
+            onClick={exportAll}
             className="rounded-10 bg-foreground text-background hover:bg-foreground/90"
           >
             <Download width={13} height={13} />{" "}

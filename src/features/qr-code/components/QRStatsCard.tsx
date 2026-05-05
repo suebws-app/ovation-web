@@ -7,15 +7,15 @@ import { QRStat } from "./QRStat";
 
 type QRStatsCardProps = {
   totalMessages: number;
-  photoMessages: number;
-  videoMessages: number;
+  photoCount: number;
+  videoCount: number;
   audioMessages: number;
 };
 
 export const QRStatsCard = ({
   totalMessages,
-  photoMessages,
-  videoMessages,
+  photoCount,
+  videoCount,
   audioMessages,
 }: QRStatsCardProps) => {
   const t = useTranslations();
@@ -24,8 +24,8 @@ export const QRStatsCard = ({
       value: String(totalMessages),
       label: t("qr_code__stats__messages_recorded"),
     },
-    { value: String(photoMessages), label: t("qr_code__stats__photos") },
-    { value: String(videoMessages), label: t("qr_code__stats__videos") },
+    { value: String(photoCount), label: t("qr_code__stats__photos") },
+    { value: String(videoCount), label: t("qr_code__stats__videos") },
     { value: String(audioMessages), label: t("qr_code__stats__audio") },
   ];
   return (

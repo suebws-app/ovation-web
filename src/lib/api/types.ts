@@ -81,8 +81,8 @@ export type Event = {
 export type EventStats = {
   totalMessages: number;
   audioMessages: number;
-  videoMessages: number;
-  photoMessages: number;
+  videoCount: number;
+  photoCount: number;
   writtenMessages: number;
   favorites: number;
 };
@@ -93,21 +93,25 @@ export type MessageSummary = {
   hasAudio: boolean;
   hasVideo: boolean;
   hasPhoto: boolean;
+  mediaCount: number;
   audioDurationSec: number | null;
   transcriptSnippet: string | null;
+  writtenNote: string | null;
   isFavorite: boolean;
   isGoldBookSelected: boolean;
   createdAt: string;
   photoThumbUrl: string | null;
 };
 
+export type MessageMediaItem = GalleryItem;
+
 export type MessageDetail = {
   id: string;
   guestNames: string;
   audioUrl: string | null;
   audioDurationSec: number | null;
-  videoUrl: string | null;
-  photoUrl: string | null;
+  audioMimeType: string | null;
+  media: GalleryItem[];
   writtenNote: string | null;
   transcript: string | null;
   transcriptLanguage: string | null;
@@ -152,6 +156,7 @@ export type ListMessagesQuery = {
   sort?: MessageSort;
   cursor?: string;
   limit?: number;
+  includeOwnerUploads?: boolean;
 };
 
 export type UpdateMessageInput = {
@@ -202,6 +207,20 @@ export type InvitationStats = {
   totals: InvitationFunnel;
 };
 
+export type PublicKioskSettings = {
+  captureAudio: boolean;
+  capturePhoto: boolean;
+  captureVideo: boolean;
+  maxDurationSeconds: number;
+  returnAfterSeconds: number;
+  welcomeShowPhoto: boolean;
+  welcomeShowLanguagePicker: boolean;
+  welcomeChime: boolean;
+  fullscreenLock: boolean;
+  guidedMode: boolean;
+  exitPin: string | null;
+};
+
 export type PublicEvent = {
   partnerAName: string;
   partnerBName: string;
@@ -213,18 +232,52 @@ export type PublicEvent = {
   supportedLanguages: string[];
   submissionOpen: boolean;
   limitReached: boolean;
+  kiosk: PublicKioskSettings;
 };
 
-export type UploadTarget = {
+export type AudioUploadTarget = {
+  kind: "audio";
   key: string;
   url: string;
-  fields?: Record<string, string>;
   headers?: Record<string, string>;
-  kind: "audio" | "video" | "photo";
+  maxSizeBytes: number;
+  expiresAt: string;
+};
+
+export type MediaUploadTarget = {
+  mediaId: string;
+  type: "photo" | "video";
+  key: string;
+  url: string;
+  headers?: Record<string, string>;
+  maxSizeBytes: number;
+  expiresAt: string;
 };
 
 export type UploadUrlsResult = {
-  uploadTargets: UploadTarget[];
+  audioTargets: AudioUploadTarget[];
+  mediaTargets: MediaUploadTarget[];
+};
+
+export type GalleryItem = {
+  id: string;
+  type: "photo" | "video";
+  uploaderType: "guest" | "owner";
+  uploaderName: string | null;
+  messageId: string | null;
+  url: string | null;
+  thumbUrl: string | null;
+  width: number | null;
+  height: number | null;
+  durationSec: number | null;
+  isFavorite: boolean;
+  isGoldBookSelected: boolean;
+  createdAt: string;
+};
+
+export type GalleryFeed = {
+  data: GalleryItem[];
+  nextCursor: string | null;
 };
 
 export type CreateMessageResult = {
@@ -255,6 +308,47 @@ export type KeepsakeProduct = {
 
 export type KeepsakeCatalog = {
   products: KeepsakeProduct[];
+};
+
+export type KeepsakeProductDetail = {
+  id: string;
+  sku: string;
+  slug: string;
+  productType: string;
+  name: string;
+  description: string | null;
+  basePriceCents: number;
+  currency: string;
+  category: string;
+  heroImageUrl: string | null;
+  isActive: boolean;
+  isFeatured: boolean;
+  sortOrder: number;
+  leadTimeMinDays: number | null;
+  leadTimeMaxDays: number | null;
+};
+
+export type KeepsakeProductVariant = {
+  id: string;
+  sku: string;
+  name: string;
+  priceCents: number | null;
+  currency: string;
+  attributes: Record<string, unknown>;
+  isActive: boolean;
+  sortOrder: number;
+};
+
+export type KeepsakeCustomizationSchema = {
+  productType: string;
+  schemaJson: Record<string, unknown>;
+  version: number;
+};
+
+export type KeepsakeProductDetailResult = {
+  product: KeepsakeProductDetail;
+  variants: KeepsakeProductVariant[];
+  customizationSchema: KeepsakeCustomizationSchema | null;
 };
 
 export type JobStatusValue =
@@ -335,6 +429,7 @@ export type CheckoutPlanTier = "essentials" | "premium" | "bundle";
 
 export type CheckoutItem = {
   productSku: string;
+  productVariantId?: string;
   quantity: number;
   customization?: Record<string, unknown>;
 };
@@ -400,3 +495,48 @@ export type CoverUploadResult = {
   key: string;
   maxSizeBytes: number;
 };
+
+export const KIOSK_MAX_DURATION_OPTIONS = [15, 30, 60, 90, 120, 180] as const;
+export type KioskMaxDurationSeconds =
+  (typeof KIOSK_MAX_DURATION_OPTIONS)[number];
+
+export const KIOSK_RETURN_AFTER_OPTIONS = [10, 20, 30, 60, 120] as const;
+export type KioskReturnAfterSeconds =
+  (typeof KIOSK_RETURN_AFTER_OPTIONS)[number];
+
+export const KIOSK_OFFLINE_STORAGE_OPTIONS = [
+  100, 250, 500, 1000, 2000, 5000,
+] as const;
+export type KioskOfflineStorageMb =
+  (typeof KIOSK_OFFLINE_STORAGE_OPTIONS)[number];
+
+export const KIOSK_WELCOME_NOTE_MAX = 180;
+
+export type KioskSettings = {
+  id: string;
+  eventId: string;
+  captureAudio: boolean;
+  capturePhoto: boolean;
+  captureVideo: boolean;
+  maxDurationSeconds: number;
+  returnAfterSeconds: number;
+  fullscreenLock: boolean;
+  guidedMode: boolean;
+  exitPin: string | null;
+  airplaneMode: boolean;
+  welcomeNote: string | null;
+  welcomeShowPhoto: boolean;
+  welcomeShowLanguagePicker: boolean;
+  welcomeChime: boolean;
+  offlineStore: boolean;
+  offlineStorageMb: number;
+  offlineNotify: boolean;
+  defaultLanguage: SupportedLanguage | string;
+  supportedLanguages: (SupportedLanguage | string)[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateKioskSettingsInput = Partial<
+  Omit<KioskSettings, "id" | "eventId" | "createdAt" | "updatedAt">
+>;
