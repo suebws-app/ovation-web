@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { Avatar } from "@ovation/ui/components/Avatar";
+import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Heart } from "@ovation/icons/Heart";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
@@ -45,7 +45,14 @@ export const GuestRow = ({
         aria-label={t("guests__row__select_aria", { name: guest.name })}
       />
       <div className="flex min-w-0 items-center gap-3">
-        <Avatar initials={guest.initials} tint={guest.tint} size="md" />
+        <Avatar size="default">
+          <AvatarFallback
+            className="type-body-small text-primary-foreground font-semibold"
+            style={{ background: guest.tint }}
+          >
+            {guest.initials}
+          </AvatarFallback>
+        </Avatar>
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <span className="type-body-small truncate font-semibold">

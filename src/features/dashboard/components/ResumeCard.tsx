@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Avatar } from "@ovation/ui/components/Avatar";
+import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Play } from "@ovation/icons/Play";
 
 export const ResumeCard = () => {
@@ -18,7 +18,14 @@ export const ResumeCard = () => {
 
   return (
     <div className="rounded-20 border-border bg-card tablet:flex-row tablet:items-center tablet:gap-6 tablet:p-7 flex flex-col gap-4 border p-5 shadow-sm">
-      <Avatar initials={initials} tint={tint} size="lg" className="-rotate-3" />
+      <Avatar size="lg" className="-rotate-3">
+        <AvatarFallback
+          className="type-body-small text-primary-foreground font-semibold"
+          style={{ background: tint }}
+        >
+          {initials}
+        </AvatarFallback>
+      </Avatar>
       <div className="flex-1">
         <p className="type-body-small text-muted-foreground">
           {t("dashboard__resume__pick_up")}
