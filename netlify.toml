@@ -2,5 +2,8 @@
   command = "pnpm install --frozen-lockfile && pnpm build"
   publish = ".next"
 
+[build.environment]
+  SECRETS_SCAN_OMIT_PATHS = ".next,.netlify"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
