@@ -10,6 +10,7 @@ import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { HeroShowpiece } from "./HeroShowpiece";
+import { Badge } from "@ovation/ui/components/Badge";
 
 const AVATARS = [
   { initials: "L", tint: "var(--primary)" },
@@ -34,15 +35,16 @@ export const HeroSection = () => {
 
       <div className="section-container relative grid grid-cols-1 items-center gap-15 lg:grid-cols-[1.15fr_1fr]">
         <div className="flex flex-col gap-8">
-          <div className="border-border bg-background inline-flex w-fit items-center gap-2 rounded-full border px-4 py-2 shadow-sm">
+          <Badge
+            variant="outline"
+            className="type-body-small w-fit gap-2 px-4 py-2 font-medium normal-case shadow-sm"
+          >
             <span
-              className="bg-secondary h-2 w-2 rounded-full"
+              className="bg-secondary h-2 w-2 shrink-0 rounded-full"
               aria-hidden="true"
             />
-            <span className="text-foreground type-body-small font-medium">
-              {t("marketing__hero__badge", { count: "2,840", countries: "34" })}
-            </span>
-          </div>
+            {t("marketing__hero__badge", { count: "2,840", countries: "34" })}
+          </Badge>
 
           <SectionTitle as="h1" className="leading-none tracking-tighter">
             <span className="text-foreground block">
