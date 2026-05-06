@@ -13,7 +13,7 @@ export const ExportHeroCard = () => {
           <span className="type-overline text-primary-foreground/85">
             {t("settings__data__hero__eyebrow")}
           </span>
-          <h3 className="type-h2 mt-2.5 font-serif leading-snug font-semibold">
+          <h3 className="type-h2 mt-2.5 leading-snug font-semibold">
             {t("settings__data__hero__title_a")}
             <br />
             <span className="italic">{t("settings__data__hero__title_b")}</span>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 
 type UrlCardProps = {
@@ -36,9 +36,9 @@ export const UrlCard = ({ slug, shortUrl }: UrlCardProps) => {
 
   return (
     <div className="rounded-16 border-border bg-card border p-4.5">
-      <Eyebrow className="text-muted-foreground mb-2.5">
+      <Kicker className="text-muted-foreground mb-2.5">
         {t("qr__url__eyebrow")}
-      </Eyebrow>
+      </Kicker>
       <div className="flex items-center gap-2.5">
         <LinkIcon width={16} height={16} className="text-muted-foreground" />
         <span className="type-body-small text-foreground flex-1 truncate font-mono">

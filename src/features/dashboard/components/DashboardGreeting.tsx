@@ -20,7 +20,7 @@ export const DashboardGreeting = ({
       {subtitle && (
         <p className="type-body-small text-muted-foreground">{subtitle}</p>
       )}
-      <h1 className="tablet:type-display type-h1 mt-3 max-w-205 font-serif leading-[1.05] font-semibold tracking-tight">
+      <h1 className="tablet:type-display type-h0 mt-3 max-w-205 leading-[1.05] font-semibold tracking-tight">
         {t("dashboard__greeting", { name })}
       </h1>
       <p className="type-h4 text-muted-foreground mt-3.5 max-w-160 leading-snug font-normal">

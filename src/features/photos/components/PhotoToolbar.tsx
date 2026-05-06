@@ -16,7 +16,7 @@ export const PhotoToolbar = ({ eventId, totalCount }: PhotoToolbarProps) => {
     <div className="border-border bg-card tablet:px-7 border-b px-4 py-5">
       <div className="desktop:flex-row desktop:items-end desktop:justify-between flex flex-col gap-4">
         <div>
-          <h1 className="desktop:type-h1 type-h2 font-serif leading-tight font-semibold tracking-tight">
+          <h1 className="desktop:type-h1 type-h2 leading-tight font-semibold tracking-tight">
             <span>{t("photos__toolbar__title", { count: totalCount })}</span>
           </h1>
         </div>

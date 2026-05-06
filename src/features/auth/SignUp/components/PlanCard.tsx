@@ -36,9 +36,9 @@ export const PlanCard = ({
       )}
     >
       {highlighted && <MostChosenBadge />}
-      <p className="type-h2 font-serif font-semibold">{name}</p>
+      <p className="type-h2 font-semibold">{name}</p>
       <div className="mt-2.5 flex items-baseline gap-1.5">
-        <span className="type-h1 font-serif font-semibold tracking-tight">
+        <span className="type-h1 font-semibold tracking-tight">
           {price}
         </span>
         <span className="type-caption text-muted-foreground">{per}</span>

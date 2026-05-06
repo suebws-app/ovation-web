@@ -106,7 +106,7 @@ export const SettingsDangerSection = ({
       <span className="type-overline text-destructive">
         {t("settings__danger__eyebrow")}
       </span>
-      <h1 className="type-display mt-2 font-serif tracking-tight">
+      <h1 className="type-display mt-2 tracking-tight">
         {t("settings__danger__title_a")}{" "}
         <span className="text-destructive italic">
           {t("settings__danger__title_b")}

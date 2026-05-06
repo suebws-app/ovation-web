@@ -1,5 +1,3 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 import { LogoName } from "./LogoName";
 
@@ -16,12 +14,12 @@ export const LogoBar = () => {
   const t = useTranslations();
 
   return (
-    <div className="border-border border-t pt-10">
-      <div className="mx-auto max-w-310 px-6 lg:px-20">
+    <div className="border-border border-t">
+      <div className="section-container">
         <p className="text-muted-foreground type-overline mb-6 text-center font-bold tracking-[2.2px] uppercase">
           {t("marketing__logos__title")}
         </p>
-        <div className="flex items-center justify-between opacity-50">
+        <div className="flex flex-wrap items-center justify-between gap-2 opacity-50">
           {LOGOS.map((name) => (
             <LogoName key={name} name={name} />
           ))}

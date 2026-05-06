@@ -12,7 +12,7 @@ export const GuestThankYouCard = () => {
         <span className="type-overline text-primary-foreground/75">
           {t("guests__thankyou__eyebrow")}
         </span>
-        <h3 className="type-h2 mt-2.5 font-serif tracking-tight">
+        <h3 className="type-h2 mt-2.5 tracking-tight">
           {t("guests__thankyou__title_a", { count: 47 })}
           <br />
           {t("guests__thankyou__title_b")}{" "}

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Info } from "@ovation/icons/Info";
 import { SplitLayout } from "../components/SplitLayout";
@@ -44,11 +44,11 @@ export const ClaimUrlStep = () => {
     <SplitLayout
       left={
         <>
-          <Eyebrow className="relative tracking-[2.5px] opacity-80">
+          <Kicker className="relative tracking-[2.5px] opacity-80">
             {t("signup__claim__brand_eyebrow")}
-          </Eyebrow>
+          </Kicker>
           <div className="relative">
-            <p className="type-h1 font-serif leading-tight tracking-tight italic">
+            <p className="type-h1 leading-tight tracking-tight italic">
               {t("signup__claim__brand_lead_a")}{" "}
               <span className="text-primary-foreground italic">
                 {t("signup__claim__brand_lead_b")}
@@ -74,13 +74,13 @@ export const ClaimUrlStep = () => {
       }
       right={
         <>
-          <Eyebrow className="text-primary mb-3">
+          <Kicker className="text-primary mb-3">
             {t("auth__signup__eyebrow_step", {
               step: 5,
               label: t("signup__claim__step_label"),
             })}
-          </Eyebrow>
-          <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+          </Kicker>
+          <h1 className="type-h1 leading-tight font-semibold tracking-tight">
             {t("signup__claim__title_a")}
             <br />
             <span className="text-primary italic">
@@ -92,9 +92,9 @@ export const ClaimUrlStep = () => {
           </p>
 
           <div className="mt-6.5">
-            <Eyebrow className="text-muted-foreground mb-2">
+            <Kicker className="text-muted-foreground mb-2">
               {t("signup__claim__your_link")}
-            </Eyebrow>
+            </Kicker>
             <div className="rounded-16 border-primary bg-card shadow-input flex items-center gap-2 border-2 px-4 py-3.5">
               <span className="type-body-small text-muted-foreground font-mono">
                 ovation.love /
@@ -122,9 +122,9 @@ export const ClaimUrlStep = () => {
           </div>
 
           <div className="mt-5.5">
-            <Eyebrow className="text-muted-foreground mb-2.5">
+            <Kicker className="text-muted-foreground mb-2.5">
               {t("signup__claim__try_one")}
-            </Eyebrow>
+            </Kicker>
             <div className="flex flex-wrap gap-2">
               {suggestions.map((s) => (
                 <UrlSuggestionChip

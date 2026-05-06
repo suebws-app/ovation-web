@@ -15,7 +15,7 @@ export const CountdownCard = ({ days }: CountdownCardProps) => {
       </p>
       <div className="mt-2 flex items-baseline gap-4.5">
         <div>
-          <span className="type-h1 font-serif font-semibold">{days}</span>
+          <span className="type-h1 font-semibold">{days}</span>
           <span className="type-body-small ml-1.5 opacity-70">
             {t("auth__signup__countdown__days")}
           </span>

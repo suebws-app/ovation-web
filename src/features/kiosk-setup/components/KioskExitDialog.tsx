@@ -57,7 +57,7 @@ export const KioskExitDialog = ({
         className="rounded-20 bg-card flex w-full max-w-sm flex-col items-center gap-4 p-7 shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="type-h3 font-serif font-semibold tracking-tight">
+        <h2 className="type-h3 font-semibold tracking-tight">
           {t("kiosk__exit__title")}
         </h2>
         <p className="type-body-small text-muted-foreground text-center">

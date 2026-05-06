@@ -1,12 +1,12 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import type { AudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
+import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import { useMessageList } from "../hooks/useMessageList";
 import { ConnectedMessageDayList } from "./ConnectedMessageDayList";
 
 type Props = {
-  player: AudioPlayer;
+  player: TAudioPlayer;
 };
 
 export const MessagesListBody = ({ player }: Props) => {

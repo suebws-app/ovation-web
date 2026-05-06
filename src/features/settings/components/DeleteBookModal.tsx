@@ -43,7 +43,7 @@ export const DeleteBookModal = ({
         <div className="rounded-16 bg-destructive/15 mb-4.5 flex size-14 items-center justify-center">
           <Warning width={26} height={26} className="text-destructive" />
         </div>
-        <h2 className="type-h2 font-serif leading-snug tracking-tight">
+        <h2 className="type-h2 leading-snug tracking-tight">
           {t.rich("settings__delete_modal__title", {
             name: coupleName,
             emph: (chunks) => <span className="italic">{chunks}</span>,

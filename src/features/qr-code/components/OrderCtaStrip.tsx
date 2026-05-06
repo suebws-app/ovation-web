@@ -11,7 +11,7 @@ export const OrderCtaStrip = () => {
         <p className="type-overline text-destructive tracking-[2px]">
           {t("qr_code__order__eyebrow")}
         </p>
-        <p className="tablet:type-h2 type-h3 mt-1.5 font-serif leading-snug font-semibold tracking-tight">
+        <p className="tablet:type-h2 type-h3 mt-1.5 leading-snug font-semibold tracking-tight">
           {t("qr_code__order__title_a")}{" "}
           <span className="text-destructive italic">
             {t("qr_code__order__title_b")}

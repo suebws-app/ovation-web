@@ -42,7 +42,7 @@ export const WizardHeader = ({
         </span>
       </div>
       <div>
-        <h2 className="type-h2 font-serif font-semibold leading-tight">
+        <h2 className="type-h2 font-semibold leading-tight">
           {title}
         </h2>
         {subtitle && (

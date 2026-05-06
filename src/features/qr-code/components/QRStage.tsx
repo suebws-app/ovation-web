@@ -63,7 +63,7 @@ export const QRStage = ({
         <p className="type-overline tracking-[2px] opacity-85">
           {t("qr__stage__overline")}
         </p>
-        <p className="tablet:type-h1 type-h2 mt-1.5 font-serif font-medium italic">
+        <p className="tablet:type-h1 type-h2 mt-1.5 font-medium italic">
           {coupleName}
         </p>
       </div>

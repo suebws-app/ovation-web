@@ -41,7 +41,7 @@ export const GuestHero = ({
           <span className="type-overline text-primary">
             {t("guests__hero__eyebrow")}
           </span>
-          <h1 className="type-display mt-2.5 font-serif tracking-tight">
+          <h1 className="type-display mt-2.5 tracking-tight">
             {t.rich("guests__hero__title", {
               count: totalMessages,
               emph: (chunks) => (

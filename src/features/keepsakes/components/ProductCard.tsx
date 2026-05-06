@@ -27,7 +27,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
         style={{ background: design.gradient }}
       >
         <p
-          className="type-h2 text-center font-serif leading-tight font-semibold italic"
+          className="type-h2 text-center leading-tight font-semibold italic"
           style={{
             color: dark ? "#fff" : "var(--foreground)",
             textShadow: dark ? "0 2px 12px rgba(0,0,0,0.3)" : "none",
@@ -39,7 +39,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
       </div>
       <div className="flex flex-1 flex-col gap-1.5 p-4.5">
         <div className="flex items-baseline justify-between">
-          <p className="type-h4 font-serif font-semibold">{name}</p>
+          <p className="type-h4 font-semibold">{name}</p>
           <p className="type-body-large text-primary font-serif font-semibold">
             {formatPrice(priceCents, currency)}
           </p>

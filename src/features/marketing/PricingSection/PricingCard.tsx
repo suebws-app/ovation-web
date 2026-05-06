@@ -1,7 +1,8 @@
 import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
+import { Card } from "@ovation/ui/components/Card";
 import { Button } from "@ovation/ui/components/Button";
-import { PricingFeature } from "./PricingFeature";
+import { FeatureListItem } from "@ovation/ui/components/FeatureListItem";
 
 type PricingCardProps = {
   tierKey: "essential" | "keepsake" | "gold";
@@ -30,39 +31,34 @@ export const PricingCard = ({
   const t = useTranslations();
 
   return (
-    <div
+    <Card
       className={cn(
-        "relative flex min-h-146.5 flex-col rounded-3xl border p-8",
-        highlighted
-          ? "border-primary scale-[1.02] border-2 shadow-2xl"
-          : "bg-card border-border shadow-sm",
+        "relative flex min-h-146.5 flex-col rounded-3xl p-8",
+        highlighted && "border-primary scale-[1.02] border-2 shadow-2xl",
       )}
     >
       {highlighted && (
-        <>
-          <div className="bg-primary text-primary-foreground type-overline absolute -top-3.5 left-8 rounded-full px-3 py-1.5 font-bold tracking-wider shadow-md">
-            {t("common__most_chosen")}
-          </div>
-          <div className="bg-destructive/20 pointer-events-none absolute top-0 right-0 size-55 translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
-        </>
+        <div className="bg-primary text-primary-foreground type-overline absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full px-3 py-1.5 font-bold tracking-wider shadow-md">
+          {t("common__most_chosen")}
+        </div>
       )}
 
       <span className="text-muted-foreground type-overline font-bold tracking-widest uppercase">
         {t(tagKey)}
       </span>
 
-      <p className="type-h1 mt-1.5 font-serif font-semibold">{t(nameKey)}</p>
+      <p className="type-h1 mt-1.5 font-semibold">{t(nameKey)}</p>
 
       <div className="mt-3 flex items-end gap-1.5">
-        <span className="type-display font-serif leading-none font-semibold tracking-tight">
+        <span className="type-display leading-none font-semibold tracking-tight">
           {t(priceKey, { price })}
         </span>
-        <span className="text-muted-foreground mb-2.5 text-sm">
+        <span className="text-muted-foreground type-body-small mb-2.5">
           {t(perKey)}
         </span>
       </div>
 
-      <p className="text-muted-foreground mt-2 min-h-12 text-sm">
+      <p className="text-muted-foreground type-body-small mt-2 min-h-12">
         {t(descKey)}
       </p>
 
@@ -70,11 +66,12 @@ export const PricingCard = ({
 
       <ul className="flex flex-1 flex-col gap-3">
         {featKeys.map((featKey) => (
-          <PricingFeature
+          <FeatureListItem
             key={featKey}
-            feat={t(featKey)}
-            highlighted={highlighted}
-          />
+            checkClassName={highlighted ? "text-destructive" : "text-primary"}
+          >
+            {t(featKey)}
+          </FeatureListItem>
         ))}
       </ul>
 
@@ -85,6 +82,6 @@ export const PricingCard = ({
       >
         {t(ctaKey)}
       </Button>
-    </div>
+    </Card>
   );
 };

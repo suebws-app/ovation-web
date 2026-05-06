@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { useSignUpStore } from "../useSignUpStore";
 import { authClient } from "@/lib/auth/client";
 import { MailIcon } from "../components/MailIcon";
@@ -37,13 +37,13 @@ export const VerifyEmailStep = () => {
       <div className="w-full max-w-130 text-center">
         <MailIcon />
 
-        <Eyebrow className="text-primary">
+        <Kicker className="text-primary">
           {t("auth__signup__eyebrow_step", {
             step: 2,
             label: t("auth__verify__step_label"),
           })}
-        </Eyebrow>
-        <h1 className="type-h1 mt-3 font-serif leading-tight font-semibold tracking-tight">
+        </Kicker>
+        <h1 className="type-h1 mt-3 leading-tight font-semibold tracking-tight">
           {t("auth__verify__check_inbox")}
         </h1>
         <p className="type-body-small text-muted-foreground mx-auto mt-3.5 max-w-105 leading-relaxed">

@@ -5,10 +5,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useUpdateMessage } from "@/lib/query/messagesQueries";
 import { queryKeys } from "@/lib/query/keys";
 import type { MessageDetail } from "@/lib/api/types";
-import type { AudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
+import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import { useEventId } from "../context/MessagesEventContext";
 
-export const useAudioDurationSync = (player: AudioPlayer) => {
+export const useAudioDurationSync = (player: TAudioPlayer) => {
   const eventId = useEventId();
   const qc = useQueryClient();
   const updateMessage = useUpdateMessage(eventId);

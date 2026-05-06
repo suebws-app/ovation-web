@@ -202,7 +202,7 @@ export const KioskLiveFrame = ({
           type="button"
           onClick={handleStart}
           disabled={isClosed}
-          className="border-card bg-destructive text-card type-h3 motion-safe:animate-tap-pulse relative mt-13 flex cursor-pointer items-center justify-center rounded-full border-4 px-12 py-6 font-serif font-semibold tracking-tight shadow-lg disabled:opacity-50"
+          className="border-card bg-destructive text-card type-h3 motion-safe:animate-tap-pulse relative mt-13 flex cursor-pointer items-center justify-center rounded-full border-4 px-12 py-6 font-semibold tracking-tight shadow-lg disabled:opacity-50"
           style={{
             boxShadow:
               "0 20px 50px oklch(0.72 0.14 40 / 0.45), 0 0 0 1px oklch(0.72 0.14 40 / 0.18)",

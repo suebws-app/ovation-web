@@ -74,7 +74,7 @@ export const OrderTotalCard = ({
         <span className="type-body font-semibold">
           {t("qr_cards_order__total")}
         </span>
-        <span className="font-serif type-h2 font-semibold tracking-tight">
+        <span className="type-h2 font-semibold tracking-tight">
           {formatEuro(pricing.total)}
         </span>
       </div>

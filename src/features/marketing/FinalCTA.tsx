@@ -1,34 +1,35 @@
-"use client";
-
 import { useTranslations } from "next-intl";
+import { SectionTitle } from "../../components/SectionTitle";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Check } from "@ovation/icons/Check";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Button } from "@ovation/ui/components/Button";
+import { Card } from "@ovation/ui/components/Card";
+import { Kicker } from "@ovation/ui/components/Kicker";
 
 export const FinalCTA = () => {
   const t = useTranslations();
 
   return (
-    <section className="pb-25">
-      <div className="mx-auto max-w-310 px-6 lg:px-20">
-        <div className="from-warm-cream to-warm-panel border-warm-panel relative overflow-hidden rounded-4xl border bg-linear-to-br p-12 shadow-2xl lg:p-[72px_80px]">
+    <section>
+      <div className="section-container">
+        <div className="from-warm-cream to-warm-panel border-warm-panel relative overflow-hidden rounded-4xl border bg-linear-to-br p-6 shadow-2xl md:p-12 lg:p-[72px_80px]">
           <div className="bg-destructive/30 pointer-events-none absolute -top-30 -right-20 size-90 rounded-full blur-3xl" />
           <div className="bg-primary/25 pointer-events-none absolute -bottom-30 -left-10 size-80 rounded-full blur-3xl" />
           <div className="bg-secondary/20 pointer-events-none absolute top-10 left-[45%] size-45 rounded-full blur-3xl" />
 
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
             <div className="relative">
-              <Eyebrow className="text-destructive">
+              <Kicker className="text-destructive">
                 {t("marketing__cta__eyebrow")}
-              </Eyebrow>
-              <h2 className="text-foreground lg:type-display mt-3.5 font-serif text-5xl leading-none font-semibold tracking-tight">
+              </Kicker>
+              <SectionTitle className="text-foreground mt-3.5 leading-none">
                 {t("marketing__cta__title_line1")}
                 <br />
                 <span className="text-primary italic">
                   {t("marketing__cta__title_line2")}
                 </span>
-              </h2>
-              <p className="text-muted-foreground mt-5 max-w-115 text-base leading-relaxed">
+              </SectionTitle>
+              <p className="text-muted-foreground type-body mt-5 max-w-115 leading-relaxed">
                 {t("marketing__cta__description")}
               </p>
             </div>
@@ -38,14 +39,14 @@ export const FinalCTA = () => {
                 {t("marketing__cta__quick_start")}
               </p>
 
-              <div className="bg-card/75 border-border mt-3 flex items-center gap-2.5 rounded-2xl border p-4 backdrop-blur">
-                <span className="text-muted-foreground bg-card border-border rounded-full border px-2.5 py-1 text-xs">
+              <Card className="bg-card/75 mt-3 flex items-center gap-2.5 rounded-2xl p-4 shadow-none backdrop-blur">
+                <span className="text-muted-foreground bg-card border-border type-caption shrink-0 rounded-full border px-2.5 py-1">
                   {t("marketing__cta__domain_prefix")}
                 </span>
-                <span className="text-foreground flex-1 font-serif text-base italic">
+                <span className="text-foreground type-body min-w-0 flex-1 truncate font-serif italic">
                   {t("marketing__cta__domain_placeholder")}
                 </span>
-                <span className="bg-secondary flex size-5.5 items-center justify-center rounded-full">
+                <span className="bg-secondary flex size-5.5 shrink-0 items-center justify-center rounded-full">
                   <Check
                     width={12}
                     height={12}
@@ -53,14 +54,17 @@ export const FinalCTA = () => {
                     strokeWidth={1.5}
                   />
                 </span>
-              </div>
+              </Card>
 
-              <button className="bg-destructive mt-3.5 flex w-full items-center justify-center gap-2 rounded-full py-4.5 text-base font-semibold text-white shadow-xl">
+              <Button
+                variant="destructive"
+                className="bg-destructive mt-3.5 w-full rounded-full shadow-xl"
+              >
                 {t("marketing__cta__button")}
-                <ArrowRight />
-              </button>
+                <ArrowRight width={16} height={16} />
+              </Button>
 
-              <p className="text-muted-foreground mt-3.5 text-center text-xs">
+              <p className="text-muted-foreground type-caption mt-3.5 text-center">
                 {t("marketing__cta__disclaimer")}
               </p>
             </div>

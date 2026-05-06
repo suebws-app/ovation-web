@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Sparkline } from "@ovation/illustrations/Sparkline";
 import { QRStat } from "./QRStat";
 
@@ -30,9 +30,9 @@ export const QRStatsCard = ({
   ];
   return (
     <div className="rounded-16 border-border bg-card border p-4.5">
-      <Eyebrow className="text-muted-foreground">
+      <Kicker className="text-muted-foreground">
         {t("qr_code__stats__eyebrow")}
-      </Eyebrow>
+      </Kicker>
       <div className="mt-3.5 grid grid-cols-4 gap-4">
         {stats.map((s) => (
           <QRStat key={s.label} {...s} />

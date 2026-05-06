@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Check } from "@ovation/icons/Check";
 import { SwatchOption } from "./SwatchOption";
 import { QRCardPreview } from "./QRCardPreview";
@@ -38,10 +38,10 @@ export const DesignStep = ({
         <QRCardPreview cardColor={state.cardColor} className="w-3/4 max-w-sm" />
       </div>
       <div>
-        <Eyebrow className="text-primary">
+        <Kicker className="text-primary">
           {t("qr_cards_order__design__eyebrow")}
-        </Eyebrow>
-        <h1 className="font-serif type-h1 mt-2.5 leading-tight font-semibold tracking-tight">
+        </Kicker>
+        <h1 className="type-h1 mt-2.5 leading-tight font-semibold tracking-tight">
           {t("qr_cards_order__design__title_a")}{" "}
           <span className="text-primary italic">
             {t("qr_cards_order__design__title_b")}

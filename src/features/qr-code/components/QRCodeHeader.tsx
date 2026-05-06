@@ -13,7 +13,7 @@ export const QRCodeHeader = ({ guestSlug }: QRCodeHeaderProps) => {
   return (
     <div className="desktop:flex-row desktop:items-end desktop:justify-between flex flex-col gap-5">
       <div className="min-w-0">
-        <h1 className="tablet:type-h1 type-h1 font-serif leading-tight font-semibold tracking-tight">
+        <h1 className="tablet:type-h1 type-h1 leading-tight font-semibold tracking-tight">
           {t("qr__header__title_a")}{" "}
           <span className="text-primary italic">
             {t("qr__header__title_b")}

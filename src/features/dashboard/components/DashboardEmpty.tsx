@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
@@ -12,10 +12,10 @@ export const DashboardEmpty = ({ userName }: DashboardEmptyProps) => {
   const t = useTranslations();
   return (
     <div className="rounded-20 border-border bg-card flex flex-col items-start gap-5 border p-8">
-      <Eyebrow className="text-primary">
+      <Kicker className="text-primary">
         {t("dashboard__empty__eyebrow")}
-      </Eyebrow>
-      <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+      </Kicker>
+      <h1 className="type-h1 leading-tight font-semibold tracking-tight">
         {t("dashboard__empty__title", { name: userName })}
       </h1>
       <p className="type-body-small text-muted-foreground max-w-180 leading-relaxed">

@@ -8,7 +8,7 @@ export const SettingsSectionTitle = ({
   description,
 }: SettingsSectionTitleProps) => (
   <div className="mb-5">
-    <h2 className="type-h2 font-serif tracking-tight">{title}</h2>
+    <h2 className="type-h2 tracking-tight">{title}</h2>
     {description && (
       <p className="type-body-small text-muted-foreground mt-1.5 max-w-xl leading-relaxed">
         {description}

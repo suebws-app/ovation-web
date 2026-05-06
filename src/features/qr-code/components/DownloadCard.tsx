@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { QRCodeCanvas, QRCodeSVG } from "qrcode.react";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { FormatRow } from "./FormatRow";
 
 type DownloadCardProps = {
@@ -105,9 +105,9 @@ export const DownloadCard = ({
 
   return (
     <div className="rounded-16 border-border bg-card border p-4.5">
-      <Eyebrow className="text-muted-foreground mb-3">
+      <Kicker className="text-muted-foreground mb-3">
         {t("qr_code__download__eyebrow")}
-      </Eyebrow>
+      </Kicker>
       <div className="flex flex-col gap-2">
         {formats.map((f, i) => (
           <FormatRow

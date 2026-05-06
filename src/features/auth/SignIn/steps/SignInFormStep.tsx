@@ -10,7 +10,7 @@ import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Separator } from "@ovation/ui/components/Separator";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { SocialAuthButtons } from "../../components/SocialAuthButtons";
@@ -65,10 +65,10 @@ export const SignInFormStep = () => {
           className="flex w-full flex-1 flex-col justify-center"
           style={{ maxWidth: 440 }}
         >
-          <Eyebrow className="text-primary mb-2.5">
+          <Kicker className="text-primary mb-2.5">
             {t("auth__signin__eyebrow")}
-          </Eyebrow>
-          <h1 className="type-display font-serif leading-[1.05] font-semibold tracking-tight">
+          </Kicker>
+          <h1 className="type-display leading-[1.05] font-semibold tracking-tight">
             {t("auth__signin__title")}
             <br />
             <span className="text-primary italic">

@@ -15,7 +15,7 @@ export const KioskHero = ({ slug }: KioskHeroProps) => {
           <span className="type-overline text-primary">
             {t("kiosk__hero__eyebrow")}
           </span>
-          <h1 className="type-display mt-2.5 font-serif tracking-tight">
+          <h1 className="type-display mt-2.5 tracking-tight">
             {t("kiosk__hero__title_a")}{" "}
             <span className="text-primary italic">
               {t("kiosk__hero__title_b")}

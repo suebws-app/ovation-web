@@ -1,13 +1,16 @@
-"use client";
-
-import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { SectionTitle } from "../../components/SectionTitle";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
-import { FAQItem } from "./FAQItem";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@ovation/ui/components/Accordion";
+import { Kicker } from "@ovation/ui/components/Kicker";
 
 export const FAQSection = () => {
   const t = useTranslations();
-  const [openIndex, setOpenIndex] = useState(0);
 
   const items = [
     { q: t("marketing__faq__q1"), a: t("marketing__faq__a1") },
@@ -18,47 +21,44 @@ export const FAQSection = () => {
     { q: t("marketing__faq__q6"), a: t("marketing__faq__a6") },
   ];
 
-  const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? -1 : index);
-  };
-
   return (
-    <section className="py-30">
-      <div className="mx-auto max-w-310 px-6 lg:px-20">
-        <div className="grid grid-cols-1 gap-20 lg:grid-cols-[1fr_1.5fr]">
+    <section>
+      <div className="section-container">
+        <div className="tablet:gap-20 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.5fr]">
           <div>
-            <p className="text-primary type-overline font-bold tracking-[2.2px] uppercase">
+            <Kicker className="text-primary">
               {t("marketing__faq__eyebrow")}
-            </p>
-            <h2 className="type-display mt-4 font-serif leading-tight font-semibold">
+            </Kicker>
+            <SectionTitle className="mt-4">
               <span className="block">{t("marketing__faq__title_line1")}</span>
               <span className="text-primary block italic">
                 {t("marketing__faq__title_line2")}
               </span>
-            </h2>
+            </SectionTitle>
             <p className="text-muted-foreground type-body-large mt-6 max-w-90 leading-relaxed">
               {t("marketing__faq__subtitle")}
             </p>
             <a
               href={`mailto:${t("marketing__faq__email")}`}
-              className="text-foreground mt-5 inline-flex items-center gap-2 text-sm font-semibold"
+              className="text-foreground type-body-small mt-5 inline-flex items-center gap-2 font-semibold"
             >
               {t("marketing__faq__email")}
               <ArrowRight className="size-3" />
             </a>
           </div>
 
-          <div>
+          <Accordion type="single" collapsible defaultValue="item-0">
             {items.map((item, index) => (
-              <FAQItem
-                key={index}
-                question={item.q}
-                answer={item.a}
-                isOpen={openIndex === index}
-                onToggle={() => handleToggle(index)}
-              />
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="type-h3 py-5.5 font-semibold no-underline hover:no-underline">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground type-body max-w-160 leading-relaxed">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </div>
     </section>

@@ -1,5 +1,3 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
@@ -8,6 +6,7 @@ import { appRoutes } from "@/lib/routes";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { ThemeToggle } from "@ovation/ui/components/ThemeToggle";
 import { cn } from "@ovation/ui/utils/cn";
+import { RootMobileNav } from "./RootMobileNav";
 
 export const RootHeader = ({ className }: { className?: string }) => {
   const t = useTranslations();
@@ -24,51 +23,17 @@ export const RootHeader = ({ className }: { className?: string }) => {
           <Logo />
         </Link>
 
-        <nav className="text-muted-foreground hidden items-center gap-8 text-sm md:flex">
-          <Link
-            href={appRoutes.marketing.howItWorks}
-            className="hover:text-foreground font-medium"
-          >
-            {t("marketing__nav__how_it_works")}
-          </Link>
-          <Link
-            href={appRoutes.marketing.keepsakes}
-            className="hover:text-foreground font-medium"
-          >
-            {t("marketing__nav__keepsakes")}
-          </Link>
-          <Link
-            href={appRoutes.marketing.pricing}
-            className="hover:text-foreground font-medium"
-          >
-            {t("marketing__nav__pricing")}
-          </Link>
-          <Link
-            href={appRoutes.marketing.stories}
-            className="hover:text-foreground font-medium"
-          >
-            {t("marketing__nav__stories")}
-          </Link>
-          <Link
-            href={appRoutes.marketing.forPlanners}
-            className="hover:text-foreground font-medium"
-          >
-            {t("marketing__nav__for_planners")}
-          </Link>
-        </nav>
-
         <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <Link
-            href={appRoutes.auth.signIn}
-            className="text-foreground hidden text-sm font-medium md:block"
-          >
-            {t("marketing__nav__sign_in")}
-          </Link>
-          <Button size="sm" className="gap-1.5">
-            {t("marketing__nav__cta")}
-            <ArrowRight className="size-3.5" />
+          <span className="tablet:block hidden">
+            <ThemeToggle />
+          </span>
+          <Button size="sm" asChild className="hidden gap-1.5 tablet:flex">
+            <Link href={appRoutes.auth.signUp}>
+              {t("marketing__nav__cta")}
+              <ArrowRight className="size-3.5" />
+            </Link>
           </Button>
+          <RootMobileNav />
         </div>
       </div>
     </header>

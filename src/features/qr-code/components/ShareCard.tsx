@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { WhatsApp } from "@ovation/icons/WhatsApp";
 import { Mail } from "@ovation/icons/Mail";
 import { Sms } from "@ovation/icons/Sms";
@@ -69,9 +69,9 @@ export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
 
   return (
     <div className="rounded-16 border-border bg-card border p-4.5">
-      <Eyebrow className="text-muted-foreground mb-3">
+      <Kicker className="text-muted-foreground mb-3">
         {t("qr_code__share__eyebrow")}
-      </Eyebrow>
+      </Kicker>
       <div className="grid grid-cols-4 gap-2.5">
         {channels.map((c) => (
           <ShareChannel

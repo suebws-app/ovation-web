@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type Theme = "light" | "dark" | "system";
+type Theme = "light" | "dark";
 
 type ThemeState = {
   theme: Theme;
@@ -9,27 +9,17 @@ type ThemeState = {
   cycleTheme: () => void;
 };
 
-const CYCLE_ORDER: Theme[] = ["light", "dark", "system"];
-
-const resolveIsDark = (theme: Theme): boolean => {
-  if (theme === "dark") return true;
-  if (theme === "light") return false;
-  return (
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
-};
+const CYCLE_ORDER: Theme[] = ["light", "dark"];
 
 const applyThemeToDOM = (theme: Theme) => {
   if (typeof document === "undefined") return;
-  const isDark = resolveIsDark(theme);
-  document.documentElement.classList.toggle("dark", isDark);
+  document.documentElement.classList.toggle("dark", theme === "dark");
 };
 
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set, get) => ({
-      theme: "system",
+      theme: "light",
 
       setTheme: (theme) => {
         set({ theme });
@@ -50,12 +40,3 @@ export const useThemeStore = create<ThemeState>()(
     },
   ),
 );
-
-if (typeof window !== "undefined") {
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", () => {
-      const { theme } = useThemeStore.getState();
-      if (theme === "system") applyThemeToDOM("system");
-    });
-}

@@ -1,14 +1,14 @@
 import { cn } from "../utils/cn";
 
-type EyebrowProps = {
+type KickerProps = {
   children: React.ReactNode;
   className?: string;
 };
 
-export const Eyebrow = ({ children, className }: EyebrowProps) => (
+export const Kicker = ({ children, className }: KickerProps) => (
   <p
     className={cn(
-      "text-[11px] font-bold tracking-[2.2px] uppercase",
+      "type-overline font-bold uppercase",
       className,
     )}
   >

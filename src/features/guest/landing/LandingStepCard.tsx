@@ -28,12 +28,12 @@ export const LandingStepCard = ({
       {icon}
     </div>
     <div className="min-w-0 flex-1">
-      <h3 className="type-h4 font-serif font-semibold leading-tight">
+      <h3 className="type-h4 font-semibold leading-tight">
         {title}
       </h3>
       <p className="type-body-small text-muted-foreground mt-0.5">{subtitle}</p>
     </div>
-    <span className="type-h3 text-muted-foreground/40 font-serif font-semibold">
+    <span className="type-h3 text-muted-foreground/40 font-semibold">
       {padIndex(index)}
     </span>
   </div>

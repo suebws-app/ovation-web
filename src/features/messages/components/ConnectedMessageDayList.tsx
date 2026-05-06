@@ -1,6 +1,6 @@
 "use client";
 
-import type { AudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
+import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import {
   useActiveMessageId,
   useMessagesStore,
@@ -11,7 +11,7 @@ import { useResponsiveRowOpen } from "../hooks/useResponsiveRowOpen";
 import { MessageDayList } from "./MessageDayList";
 
 type Props = {
-  player: AudioPlayer;
+  player: TAudioPlayer;
 };
 
 export const ConnectedMessageDayList = ({ player }: Props) => {

@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import type { InvitationStats } from "@/lib/api/types";
 
 type InvitationFunnelCardProps = {
@@ -44,9 +44,9 @@ export const InvitationFunnelCard = ({
     <div className="rounded-16 border-border bg-card border p-6">
       <div className="flex items-baseline justify-between">
         <div>
-          <Eyebrow className="text-muted-foreground">
+          <Kicker className="text-muted-foreground">
             {t("guests__funnel__eyebrow")}
-          </Eyebrow>
+          </Kicker>
           <p className="type-body mt-1.5 font-serif font-semibold">
             {t("guests__funnel__title")}
           </p>

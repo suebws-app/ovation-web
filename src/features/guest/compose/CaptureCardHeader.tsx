@@ -26,7 +26,7 @@ export const CaptureCardHeader = ({
       {icon}
     </div>
     <div className="min-w-0 flex-1">
-      <h3 className="type-h4 font-serif font-semibold leading-tight">
+      <h3 className="type-h4 font-semibold leading-tight">
         {title}
       </h3>
       {meta && (

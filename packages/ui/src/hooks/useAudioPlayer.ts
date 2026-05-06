@@ -10,7 +10,7 @@ type UseAudioPlayerOptions = {
   resolveSrc: (id: string) => Promise<string | null>;
 };
 
-export type AudioPlayer = {
+export type TAudioPlayer = {
   playerRef: React.RefObject<MediaPlayerInstance | null>;
   src: string | null;
   playingId: string | null;
@@ -44,7 +44,7 @@ const waitForCanPlay = (player: MediaPlayerInstance) =>
     });
   });
 
-export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
+export const useAudioPlayer = (options: UseAudioPlayerOptions): TAudioPlayer => {
   const { resolveSrc } = options;
   const playerRef = useRef<MediaPlayerInstance | null>(null);
   const [playingId, setPlayingId] = useState<string | null>(null);
@@ -55,9 +55,7 @@ export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
 
   const isPlaying = playingId !== null && !paused;
   const progress =
-    duration > 0
-      ? Math.min(1, Math.max(0, currentTime / duration))
-      : 0;
+    duration > 0 ? Math.min(1, Math.max(0, currentTime / duration)) : 0;
 
   const toggle = useCallback(
     async (id: string) => {
@@ -88,7 +86,10 @@ export const useAudioPlayer = (options: UseAudioPlayerOptions): AudioPlayer => {
       setDuration(0);
       requestAnimationFrame(() => {
         player.play().catch(async (err) => {
-          if (err?.code === 4 || /not ready/i.test(String(err?.message ?? ""))) {
+          if (
+            err?.code === 4 ||
+            /not ready/i.test(String(err?.message ?? ""))
+          ) {
             await waitForCanPlay(player);
             player.play().catch((e) => console.error("[audio] play failed", e));
             return;

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Mail } from "@ovation/icons/Mail";
 import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
@@ -37,10 +37,10 @@ export const VerifyEmailPage = () => {
             strokeWidth={1.75}
           />
         </div>
-        <Eyebrow className="text-primary">
+        <Kicker className="text-primary">
           {t("auth__verify__page_eyebrow")}
-        </Eyebrow>
-        <h1 className="type-h1 mt-3 font-serif leading-tight font-semibold tracking-tight">
+        </Kicker>
+        <h1 className="type-h1 mt-3 leading-tight font-semibold tracking-tight">
           {t("auth__verify__page_missing_title")}
         </h1>
         <p className="type-body-small text-muted-foreground mt-3.5 max-w-105 leading-relaxed">

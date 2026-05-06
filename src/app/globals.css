@@ -4,6 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* ── Fonts ──────────────────────────────────────────────── */
+  --font-sans: var(--font-rubik), "Noto Sans", sans-serif;
+  --font-serif: var(--font-rubik), "Noto Sans", sans-serif;
+
   /* ── Colors (semantic, via CSS vars) ────────────────────── */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -110,6 +114,8 @@
   --animate-pulse-shadow: pulse-shadow 1.25s cubic-bezier(0.66, 0, 0, 1)
     infinite;
   --animate-tap-pulse: tap-pulse 1.8s ease-in-out infinite;
+  --animate-sheet-slide-in-left: sheet-slide-in-left 0.3s ease-out;
+  --animate-sheet-slide-out-left: sheet-slide-out-left 0.3s ease-in;
 }
 
 /* ── Keyframes ──────────────────────────────────────────────── */
@@ -197,6 +203,22 @@
   }
   50% {
     transform: scale(1.06);
+  }
+}
+@keyframes sheet-slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes sheet-slide-out-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
   }
 }
 
@@ -322,6 +344,7 @@
 @layer base {
   html {
     box-sizing: border-box;
+    overflow-y: scroll;
   }
 
   *,
@@ -334,18 +357,33 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  html body[data-scroll-locked] {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
 /* ── Typography Scale ─────────────────────────────────────── */
 
 @utility type-display {
+  font-family: var(--font-serif);
   font-size: 3.75rem;
   line-height: 1;
   letter-spacing: -0.025em;
   font-weight: 700;
 }
 
+@utility type-h0 {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-heading-0);
+  line-height: var(--leading-heading-0);
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
 @utility type-h1 {
+  font-family: var(--font-serif);
   font-size: var(--font-size-heading-1);
   line-height: var(--leading-heading-1);
   letter-spacing: -0.025em;
@@ -353,6 +391,7 @@
 }
 
 @utility type-h2 {
+  font-family: var(--font-serif);
   font-size: var(--font-size-heading-2);
   line-height: var(--leading-heading-2);
   letter-spacing: -0.02em;
@@ -360,6 +399,7 @@
 }
 
 @utility type-h3 {
+  font-family: var(--font-serif);
   font-size: var(--font-size-heading-3);
   line-height: var(--leading-heading-3);
   letter-spacing: -0.015em;
@@ -367,6 +407,7 @@
 }
 
 @utility type-h4 {
+  font-family: var(--font-serif);
   font-size: var(--font-size-heading-4);
   line-height: var(--leading-heading-4);
   letter-spacing: -0.01em;
@@ -457,6 +498,18 @@
 }
 
 /* ── Custom Utilities ─────────────────────────────────────── */
+
+@utility section-container {
+  margin-inline: auto;
+  max-width: 77.5rem;
+  padding-inline: 1.5rem;
+  padding-block: 4rem;
+
+  @media (width >= 1024px) {
+    padding-inline: 5rem;
+    padding-block: 7.5rem;
+  }
+}
 
 @utility hide-scrollbar {
   -ms-overflow-style: none;

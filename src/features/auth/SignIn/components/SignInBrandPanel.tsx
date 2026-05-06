@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { VoiceMessagePreview } from "./VoiceMessagePreview";
 
 export const SignInBrandPanel = () => {
@@ -23,12 +23,12 @@ export const SignInBrandPanel = () => {
         }}
       />
 
-      <Eyebrow className="relative tracking-[2.5px] opacity-70">
+      <Kicker className="relative tracking-[2.5px] opacity-70">
         {t("auth__signin__brand_eyebrow")}
-      </Eyebrow>
+      </Kicker>
 
       <div className="relative">
-        <p className="type-h1 mb-6.5 font-serif leading-tight tracking-tight italic">
+        <p className="type-h1 mb-6.5 leading-tight tracking-tight italic">
           &ldquo;{t("auth__signin__brand_quote")}&rdquo;
         </p>
         <VoiceMessagePreview

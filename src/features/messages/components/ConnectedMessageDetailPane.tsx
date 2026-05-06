@@ -1,12 +1,12 @@
 "use client";
 
-import type { AudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
+import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import { useEventId } from "../context/MessagesEventContext";
 import { useMessageActions } from "../hooks/useMessageActions";
 import { MessageDetailPane } from "./MessageDetailPane";
 
 type Props = {
-  player: AudioPlayer;
+  player: TAudioPlayer;
   fullScreen?: boolean;
 };
 

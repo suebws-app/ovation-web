@@ -7,7 +7,7 @@ export const NudgeCard = () => {
   const t = useTranslations();
   return (
     <div className="rounded-16 border-primary/40 bg-primary/10 tablet:flex-row tablet:items-center tablet:gap-5 tablet:p-6 flex flex-col gap-4 border p-5">
-      <div className="rounded-12 bg-primary text-primary-foreground type-h3 flex size-12 shrink-0 items-center justify-center font-serif font-bold">
+      <div className="rounded-12 bg-primary text-primary-foreground type-h3 flex size-12 shrink-0 items-center justify-center font-bold">
         ✦
       </div>
       <div className="flex-1">

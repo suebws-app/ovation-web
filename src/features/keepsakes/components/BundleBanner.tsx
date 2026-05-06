@@ -19,7 +19,7 @@ export const BundleBanner = () => {
         >
           {t("keepsakes__bundle__eyebrow")}
         </p>
-        <p className="type-h4 mt-1 font-serif leading-snug font-semibold">
+        <p className="type-h4 mt-1 leading-snug font-semibold">
           {t.rich("keepsakes__bundle__title", {
             emph: (chunks) => (
               <span className="italic" style={{ color: "#C88C36" }}>

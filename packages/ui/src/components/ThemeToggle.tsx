@@ -3,7 +3,6 @@
 import { useSyncExternalStore } from "react";
 import { Sun } from "@ovation/icons/Sun";
 import { Moon } from "@ovation/icons/Moon";
-import { Monitor } from "@ovation/icons/Monitor";
 import { useThemeStore } from "../utils/useThemeStore";
 import { cn } from "../utils/cn";
 
@@ -45,7 +44,6 @@ export const ThemeToggle = ({ className }: { className?: string }) => {
     >
       {theme === "light" && <Sun className="size-5" />}
       {theme === "dark" && <Moon className="size-5" />}
-      {theme === "system" && <Monitor className="size-5" />}
     </button>
   );
 };

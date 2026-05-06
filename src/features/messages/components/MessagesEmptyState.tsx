@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
@@ -8,10 +8,10 @@ export const MessagesEmptyState = () => {
   const t = useTranslations();
   return (
     <div className="rounded-20 border-border bg-card mx-auto mt-12 flex max-w-2xl flex-col items-start gap-4 border p-8">
-      <Eyebrow className="text-primary">
+      <Kicker className="text-primary">
         {t("messages__empty__eyebrow")}
-      </Eyebrow>
-      <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+      </Kicker>
+      <h1 className="type-h1 leading-tight font-semibold tracking-tight">
         {t("messages__empty__title")}
       </h1>
       <p className="type-body-small text-muted-foreground leading-relaxed">

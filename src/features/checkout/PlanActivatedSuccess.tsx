@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Check } from "@ovation/icons/Check";
 import { Link } from "@/i18n/navigation";
@@ -24,10 +24,10 @@ export const PlanActivatedSuccess = async () => {
               strokeWidth={2.5}
             />
           </div>
-          <Eyebrow className="text-primary mt-2">
+          <Kicker className="text-primary mt-2">
             {t("plan_activated__eyebrow")}
-          </Eyebrow>
-          <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+          </Kicker>
+          <h1 className="type-h1 leading-tight font-semibold tracking-tight">
             {t("plan_activated__title")}
           </h1>
           <p className="type-body-small text-muted-foreground max-w-md leading-relaxed">

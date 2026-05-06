@@ -21,7 +21,7 @@ export const StepIndicator = ({ step }: StepIndicatorProps) => {
   return (
     <div className="border-border bg-card border-b">
       <div className="tablet:px-10 tablet:py-6 mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-        <span className="font-serif type-h4 font-semibold tracking-tight">
+        <span className="type-h4 font-semibold tracking-tight">
           Ovation
         </span>
         <div className="tablet:flex hidden items-center gap-2">

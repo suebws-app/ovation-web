@@ -49,7 +49,7 @@ export const CoverOption = ({
           strokeWidth={1.8}
         />
       ) : (
-        <span className="type-h3 font-serif text-black/40 italic">
+        <span className="type-h3 text-black/40 italic">
           {initials}
         </span>
       )}

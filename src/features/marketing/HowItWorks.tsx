@@ -1,7 +1,6 @@
-"use client";
-
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
+import { SectionTitle } from "../../components/SectionTitle";
 import { HowItWorksStep1 } from "./HowItWorksStep1";
 import { HowItWorksStep2 } from "./HowItWorksStep2";
 import { HowItWorksStep3 } from "./HowItWorksStep3";
@@ -40,20 +39,20 @@ export const HowItWorks = () => {
   ];
 
   return (
-    <section className="bg-card border-border border-t border-b py-30">
-      <div className="mx-auto max-w-310 px-6 lg:px-20">
-        <div className="mb-14 flex items-end justify-between">
+    <section className="bg-card border-border border-t border-b">
+      <div className="section-container">
+        <div className="mb-14 flex flex-wrap items-end justify-between">
           <div className="max-w-160">
-            <Eyebrow className="text-primary mb-3">
+            <Kicker className="text-primary mb-3">
               {t("marketing__how__eyebrow")}
-            </Eyebrow>
-            <h2 className="type-display font-serif leading-tight font-semibold tracking-tight">
+            </Kicker>
+            <SectionTitle className="leading-tight">
               {t("marketing__how__title_line1")}
               <br />
               <em className="text-primary">
                 {t("marketing__how__title_line2")}
               </em>
-            </h2>
+            </SectionTitle>
           </div>
           <div className="max-w-90">
             <p className="text-muted-foreground">

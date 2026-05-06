@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Download } from "@ovation/icons/Download";
 import { Heart } from "@ovation/icons/Heart";
 import { Pause } from "@ovation/icons/Pause";
@@ -100,9 +100,9 @@ export const MessageDetailPane = ({
       <div
         className={`bg-background ${containerVisibility} max-w-80 flex-col items-center justify-center gap-2 overflow-auto p-8 text-center`}
       >
-        <Eyebrow className="text-muted-foreground">
+        <Kicker className="text-muted-foreground">
           {t("messages__detail__placeholder_eyebrow")}
-        </Eyebrow>
+        </Kicker>
         <p className="type-body-small text-muted-foreground">
           {t("messages__detail__placeholder_body")}
         </p>
@@ -144,9 +144,9 @@ export const MessageDetailPane = ({
         </div>
         <div className="min-w-0 flex-1">
           {message.relation && (
-            <Eyebrow className="text-primary">{message.relation}</Eyebrow>
+            <Kicker className="text-primary">{message.relation}</Kicker>
           )}
-          <p className="type-h4 mt-1 font-serif leading-snug font-semibold">
+          <p className="type-h4 mt-1 leading-snug font-semibold">
             {message.name}
           </p>
           <p className="type-caption text-muted-foreground mt-1">
@@ -218,9 +218,9 @@ export const MessageDetailPane = ({
 
       {hasMedia && (
         <div className="rounded-16 border-border bg-card border p-4.5">
-          <Eyebrow className="text-muted-foreground mb-3">
+          <Kicker className="text-muted-foreground mb-3">
             {t("messages__detail__media_eyebrow")}
-          </Eyebrow>
+          </Kicker>
           <div className="grid grid-cols-2 gap-2">
             {photoUrl && (
               <a
@@ -286,9 +286,9 @@ export const MessageDetailPane = ({
 
       {hasNote && (
         <div className="rounded-16 border-border bg-card border p-4.5">
-          <Eyebrow className="text-muted-foreground">
+          <Kicker className="text-muted-foreground">
             {t("messages__detail__note_eyebrow")}
-          </Eyebrow>
+          </Kicker>
           <p className="type-body-small text-foreground mt-2 leading-relaxed whitespace-pre-wrap">
             {writtenNote}
           </p>
@@ -297,9 +297,9 @@ export const MessageDetailPane = ({
 
       {hasAudio && message.quote && (
         <div className="rounded-8 border-l-3 border-l-[oklch(0.65_0.12_65)] bg-[oklch(0.65_0.12_65/0.1)] px-5 py-4">
-          <Eyebrow className="text-[#9A6B2F]">
+          <Kicker className="text-[#9A6B2F]">
             {t("messages__detail__pulled_quote")}
-          </Eyebrow>
+          </Kicker>
           <p className="type-body-large text-foreground mt-2 font-serif leading-relaxed italic">
             &ldquo;{message.quote}&rdquo;
           </p>
@@ -309,9 +309,9 @@ export const MessageDetailPane = ({
       {hasAudio && (
         <div className="rounded-16 border-border bg-card border p-4.5">
           <div className="mb-2 flex items-center justify-between">
-            <Eyebrow className="text-muted-foreground">
+            <Kicker className="text-muted-foreground">
               {t("messages__detail__transcript_eyebrow")}
-            </Eyebrow>
+            </Kicker>
             {detail?.message.transcriptStatus && (
               <span className="type-caption text-muted-foreground capitalize">
                 {detail.message.transcriptStatus}

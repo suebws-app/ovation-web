@@ -20,7 +20,7 @@ export const KioskStatusCard = ({ slug }: KioskStatusCardProps) => {
         <span className="bg-muted-foreground/50 size-2 rounded-full" />
         {t("kiosk__hero__status_offline")}
       </div>
-      <p className="type-h3 mt-2.5 font-serif leading-snug font-semibold tracking-tight">
+      <p className="type-h3 mt-2.5 leading-snug font-semibold tracking-tight">
         {t("kiosk__hero__status_lead")}
       </p>
       {slug ? (

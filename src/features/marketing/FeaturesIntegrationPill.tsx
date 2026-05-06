@@ -1,3 +1,5 @@
+import { Badge } from "@ovation/ui/components/Badge";
+
 type FeaturesIntegrationPillProps = {
   name: string;
 };
@@ -5,7 +7,7 @@ type FeaturesIntegrationPillProps = {
 export const FeaturesIntegrationPill = ({
   name,
 }: FeaturesIntegrationPillProps) => (
-  <span className="border-border bg-card rounded-xl border px-3 py-2 text-xs font-medium">
+  <Badge variant="outline" className="rounded-12 px-3 py-2">
     {name}
-  </span>
+  </Badge>
 );

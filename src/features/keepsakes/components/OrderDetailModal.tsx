@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { useOrderDetail, useRefundOrder } from "@/lib/query/ordersQueries";
 import { ApiError } from "@/lib/api/client";
 import { formatPrice } from "../designTokens";
@@ -49,11 +49,11 @@ export const OrderDetailModal = ({
     <div className="bg-foreground/45 fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
       <div className="rounded-20 bg-card flex w-full max-w-lg flex-col overflow-hidden p-7 shadow-lg">
         <div className="flex items-baseline justify-between">
-          <Eyebrow className="text-muted-foreground">
+          <Kicker className="text-muted-foreground">
             {t("orders__detail__title")}
-          </Eyebrow>
+          </Kicker>
           {order && (
-            <span className="type-h4 text-primary font-serif font-semibold">
+            <span className="type-h4 text-primary font-semibold">
               {formatPrice(order.totalCents, currency)}
             </span>
           )}

@@ -7,7 +7,7 @@ type QRStatProps = {
 export const QRStat = ({ value, label, positive }: QRStatProps) => (
   <div>
     <p
-      className={`type-h1 font-serif font-semibold tracking-tight ${positive ? "text-secondary" : "text-foreground"}`}
+      className={`type-h1 font-semibold tracking-tight ${positive ? "text-secondary" : "text-foreground"}`}
     >
       {value}
     </p>

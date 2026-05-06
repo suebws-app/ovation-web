@@ -44,7 +44,7 @@ export const MessageToolbar = ({ stats }: MessageToolbarProps) => {
     <div className="border-border bg-card tablet:px-7 border-b px-4 py-5">
       <div className="desktop:flex-row desktop:items-end desktop:justify-between flex flex-col gap-4">
         <div>
-          <h1 className="desktop:type-h1 type-h2 font-serif leading-tight font-semibold tracking-tight">
+          <h1 className="desktop:type-h1 type-h2 leading-tight font-semibold tracking-tight">
             <span>{t("messages__toolbar__count", { count: total })}</span>{" "}
             {total > 0 && (
               <span className="text-primary italic">

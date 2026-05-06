@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Check } from "@ovation/icons/Check";
 import { ApiError } from "@/lib/api/client";
@@ -56,10 +56,10 @@ export const CheckoutSuccessPage = async ({
               strokeWidth={2.5}
             />
           </div>
-          <Eyebrow className="text-secondary mt-2">
+          <Kicker className="text-secondary mt-2">
             {t("checkout__success__eyebrow")}
-          </Eyebrow>
-          <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+          </Kicker>
+          <h1 className="type-h1 leading-tight font-semibold tracking-tight">
             {t("checkout__success__title")}
           </h1>
           <p className="type-body-small text-muted-foreground max-w-md leading-relaxed">
@@ -69,16 +69,16 @@ export const CheckoutSuccessPage = async ({
 
         <div className="rounded-16 bg-card border-border border p-6">
           <div className="flex items-baseline justify-between">
-            <Eyebrow className="text-muted-foreground">
+            <Kicker className="text-muted-foreground">
               {t("checkout__success__order_label", {
                 id: order.id.slice(0, 8),
               })}
-            </Eyebrow>
+            </Kicker>
             <span className="type-caption text-muted-foreground">
               {formatOrderDate(order.createdAt)}
             </span>
           </div>
-          <p className="type-h4 mt-2 font-serif font-semibold">
+          <p className="type-h4 mt-2 font-semibold">
             {t(statusKey(order.status))}
           </p>
 
@@ -119,16 +119,16 @@ export const CheckoutSuccessPage = async ({
             <span className="type-body-small text-muted-foreground">
               {t("checkout__success__total")}
             </span>
-            <span className="type-h4 text-primary font-serif font-semibold">
+            <span className="type-h4 text-primary font-semibold">
               {formatPrice(order.totalCents, currency)}
             </span>
           </div>
 
           {order.tracking?.url && (
             <div className="rounded-12 bg-muted/40 mt-5 border border-dashed p-4">
-              <Eyebrow className="text-muted-foreground">
+              <Kicker className="text-muted-foreground">
                 {t("checkout__success__tracking")}
-              </Eyebrow>
+              </Kicker>
               <a
                 href={order.tracking.url}
                 target="_blank"

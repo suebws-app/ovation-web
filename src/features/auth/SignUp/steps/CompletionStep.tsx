@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { eventsClient } from "@/lib/api/events-client";
@@ -281,10 +281,10 @@ export const CompletionStep = () => {
         <div className="relative max-w-185 text-center">
           <CompletionSuccessIcon />
 
-          <Eyebrow className="text-primary">
+          <Kicker className="text-primary">
             {t("signup__completion__success_step")}
-          </Eyebrow>
-          <h1 className="tablet:type-display type-display mt-4.5 font-serif leading-none font-semibold tracking-tight">
+          </Kicker>
+          <h1 className="tablet:type-display type-display mt-4.5 leading-none font-semibold tracking-tight">
             {t("signup__completion__success_title_a")}
             <br />
             <span className="text-primary italic">

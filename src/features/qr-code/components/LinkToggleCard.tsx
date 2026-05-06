@@ -40,7 +40,7 @@ export const LinkToggleCard = ({ eventId, enabled }: LinkToggleCardProps) => {
         <p className="type-overline text-muted-foreground tracking-[2px]">
           {enabled ? t("link_toggle__active") : t("link_toggle__paused")}
         </p>
-        <p className="tablet:type-h2 type-h3 mt-1.5 font-serif leading-snug font-semibold tracking-tight">
+        <p className="tablet:type-h2 type-h3 mt-1.5 leading-snug font-semibold tracking-tight">
           {enabled ? t("link_toggle__title_on") : t("link_toggle__title_off")}
         </p>
         <p className="type-body-small text-muted-foreground mt-1.5">

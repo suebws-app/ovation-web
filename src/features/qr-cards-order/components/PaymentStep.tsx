@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Lock } from "@ovation/icons/Lock";
 import { AddressField } from "./AddressField";
 import type { OrderState } from "../types";
@@ -19,10 +19,10 @@ export const PaymentStep = ({ state, setField }: PaymentStepProps) => {
   const t = useTranslations();
   return (
     <div>
-      <Eyebrow className="text-primary">
+      <Kicker className="text-primary">
         {t("qr_cards_order__payment__eyebrow")}
-      </Eyebrow>
-      <h1 className="font-serif type-h1 mt-2.5 leading-tight font-semibold tracking-tight">
+      </Kicker>
+      <h1 className="type-h1 mt-2.5 leading-tight font-semibold tracking-tight">
         {t("qr_cards_order__payment__title_a")}{" "}
         <span className="text-primary italic">
           {t("qr_cards_order__payment__title_b")}

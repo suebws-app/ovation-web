@@ -74,7 +74,7 @@ export const HelpCenterPage = () => {
       </div>
 
       <div>
-        <h2 className="type-h2 font-serif tracking-tight">
+        <h2 className="type-h2 tracking-tight">
           {t("help__resources__title")}
         </h2>
         <div className="tablet:grid-cols-2 mt-3.5 grid gap-3.5">
@@ -85,7 +85,7 @@ export const HelpCenterPage = () => {
       </div>
 
       <div>
-        <h2 className="type-h2 font-serif tracking-tight">
+        <h2 className="type-h2 tracking-tight">
           {t("help__faq__title")}
         </h2>
         <p className="type-body-small text-muted-foreground mt-1.5">
@@ -106,7 +106,7 @@ export const HelpCenterPage = () => {
         <span className="type-overline text-secondary tracking-widest">
           {t("help__contact__eyebrow")}
         </span>
-        <h3 className="type-h3 font-serif font-semibold tracking-tight">
+        <h3 className="type-h3 font-semibold tracking-tight">
           {t("help__contact__title")}
         </h3>
         <p className="type-body-small text-background/75 max-w-xl leading-relaxed">

@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/navigation";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { formatPrice } from "../designTokens";
 import type { KeepsakeProductDetail } from "@/lib/api/types";
@@ -29,7 +29,7 @@ export const CustomizerHeader = ({
         style={{ background: design.gradient }}
       >
         <p
-          className="type-h1 text-center font-serif leading-tight font-semibold italic"
+          className="type-h1 text-center leading-tight font-semibold italic"
           style={{
             color: dark ? "#fff" : "var(--foreground)",
             textShadow: dark ? "0 2px 12px rgba(0,0,0,0.3)" : "none",
@@ -40,8 +40,8 @@ export const CustomizerHeader = ({
       </div>
       <div className="flex items-baseline justify-between">
         <div>
-          <Eyebrow className="text-muted-foreground">{product.category}</Eyebrow>
-          <h1 className="type-h2 mt-1 font-serif font-semibold">
+          <Kicker className="text-muted-foreground">{product.category}</Kicker>
+          <h1 className="type-h2 mt-1 font-semibold">
             {product.name}
           </h1>
           {product.description && (
@@ -50,7 +50,7 @@ export const CustomizerHeader = ({
             </p>
           )}
         </div>
-        <span className="type-h3 text-primary font-serif font-semibold">
+        <span className="type-h3 text-primary font-semibold">
           {formatPrice(product.basePriceCents, product.currency)}
         </span>
       </div>

@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Link } from "@/i18n/navigation";
@@ -57,10 +57,10 @@ export const ForgotPasswordPage = () => {
     <div className="tablet:px-20 mx-auto flex min-h-screen w-full max-w-130 flex-col px-6 py-12">
       <Logo />
       <div className="mt-16 flex flex-1 flex-col">
-        <Eyebrow className="text-primary mb-2.5">
+        <Kicker className="text-primary mb-2.5">
           {t("auth__forgot__eyebrow")}
-        </Eyebrow>
-        <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+        </Kicker>
+        <h1 className="type-h1 leading-tight font-semibold tracking-tight">
           {t("auth__forgot__title")}{" "}
           <span className="text-primary italic">
             {t("auth__forgot__title_emphasis")}

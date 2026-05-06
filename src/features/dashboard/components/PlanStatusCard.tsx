@@ -25,14 +25,14 @@ export const PlanStatusCard = ({ subscription }: PlanStatusCardProps) => {
 
   return (
     <div className="rounded-16 border-primary/40 bg-primary/10 tablet:flex-row tablet:items-center tablet:gap-5 tablet:p-6 flex flex-col gap-4 border p-5">
-      <div className="rounded-12 bg-primary text-primary-foreground type-h3 flex size-12 shrink-0 items-center justify-center font-serif font-bold">
+      <div className="rounded-12 bg-primary text-primary-foreground type-h3 flex size-12 shrink-0 items-center justify-center font-bold">
         ✦
       </div>
       <div className="flex-1">
         <p className="type-overline text-primary tracking-[2px]">
           {t("plan_status__eyebrow")}
         </p>
-        <p className="type-h3 mt-1 font-serif font-semibold">
+        <p className="type-h3 mt-1 font-semibold">
           {subscription.planName}
         </p>
         <div className="type-body-small text-muted-foreground mt-2 flex flex-wrap gap-x-4 gap-y-1">

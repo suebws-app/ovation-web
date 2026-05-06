@@ -9,7 +9,7 @@ import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Separator } from "@ovation/ui/components/Separator";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { SplitLayout } from "../components/SplitLayout";
 import { SocialAuthButtons } from "../../components/SocialAuthButtons";
@@ -76,9 +76,9 @@ export const CreateAccountStep = () => {
     <SplitLayout
       left={
         <>
-          <Eyebrow className="relative tracking-[2.5px] opacity-80">
+          <Kicker className="relative tracking-[2.5px] opacity-80">
             {t("auth__signup__brand_eyebrow")}
-          </Eyebrow>
+          </Kicker>
           <p className="relative font-serif text-5xl leading-tight font-medium tracking-tight">
             {t("auth__signup__brand_intro")}
           </p>
@@ -96,13 +96,13 @@ export const CreateAccountStep = () => {
       }
       right={
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <Eyebrow className="text-primary mb-3">
+          <Kicker className="text-primary mb-3">
             {t("auth__signup__eyebrow_step", {
               step: 1,
               label: t("auth__signup__create_account__label"),
             })}
-          </Eyebrow>
-          <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+          </Kicker>
+          <h1 className="type-h1 leading-tight font-semibold tracking-tight">
             {t("auth__signup__create_account__title")}
             <br />
             <span className="text-primary italic">

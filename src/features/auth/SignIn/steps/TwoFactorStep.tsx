@@ -22,7 +22,7 @@ export const TwoFactorStep = () => {
 
         <ShieldIcon />
 
-        <h1 className="type-h1 mt-5 font-serif leading-tight font-semibold tracking-tight">
+        <h1 className="type-h1 mt-5 leading-tight font-semibold tracking-tight">
           {t("auth__signin__twofactor__title")}
         </h1>
         <p className="type-body-small text-muted-foreground mx-auto mt-3.5 max-w-105 leading-relaxed">

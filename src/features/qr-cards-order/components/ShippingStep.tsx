@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { ShippingMethodOption } from "./ShippingMethodOption";
 import { AddressField } from "./AddressField";
 import { formatEuro } from "../pricing";
@@ -54,10 +54,10 @@ export const ShippingStep = ({
 
   return (
     <div>
-      <Eyebrow className="text-primary">
+      <Kicker className="text-primary">
         {t("qr_cards_order__shipping__eyebrow")}
-      </Eyebrow>
-      <h1 className="font-serif type-h1 mt-2.5 leading-tight font-semibold tracking-tight">
+      </Kicker>
+      <h1 className="type-h1 mt-2.5 leading-tight font-semibold tracking-tight">
         {t("qr_cards_order__shipping__title_a")}{" "}
         <span className="text-primary italic">
           {t("qr_cards_order__shipping__title_b")}

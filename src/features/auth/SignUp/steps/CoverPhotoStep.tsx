@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Clock } from "@ovation/icons/Clock";
 import { SplitLayout } from "../components/SplitLayout";
@@ -91,9 +91,9 @@ export const CoverPhotoStep = () => {
     <SplitLayout
       left={
         <>
-          <Eyebrow className="relative tracking-[2.5px] opacity-80">
+          <Kicker className="relative tracking-[2.5px] opacity-80">
             {t("signup__cover__brand_eyebrow")}
-          </Eyebrow>
+          </Kicker>
           <div className="relative">
             <BookPreview
               partner1={formData.partner1Name}
@@ -129,13 +129,13 @@ export const CoverPhotoStep = () => {
       }
       right={
         <>
-          <Eyebrow className="text-primary mb-3">
+          <Kicker className="text-primary mb-3">
             {t("auth__signup__eyebrow_step", {
               step: 4,
               label: t("signup__cover__step_label"),
             })}
-          </Eyebrow>
-          <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+          </Kicker>
+          <h1 className="type-h1 leading-tight font-semibold tracking-tight">
             {t("signup__cover__title_a")}
             <br />
             <span className="text-primary italic">

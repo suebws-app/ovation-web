@@ -24,7 +24,7 @@ export const QRCardPreview = ({
       <p className="type-overline text-muted-foreground tracking-widest">
         The Wedding of
       </p>
-      <p className="type-h3 mt-1.5 font-serif font-medium tracking-tight italic">
+      <p className="type-h3 mt-1.5 font-medium tracking-tight italic">
         {coupleName}
       </p>
       <p className="type-caption text-muted-foreground mt-1.5 font-mono">

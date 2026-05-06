@@ -36,7 +36,7 @@ export const GuestNudgeCard = () => {
         <span className="type-overline text-destructive">
           {t("guests__nudge__eyebrow")}
         </span>
-        <h3 className="type-h2 mt-2.5 font-serif tracking-tight">
+        <h3 className="type-h2 mt-2.5 tracking-tight">
           {t("guests__nudge__title", { count: 34 })}
         </h3>
         <p className="type-body-small text-muted-foreground mt-2.5 max-w-xl leading-relaxed">

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { AudioElement } from "@ovation/ui/components/AudioElement";
+import { AudioPlayer } from "@ovation/ui/components/AudioPlayer";
 import { Link, useRouter } from "@/i18n/navigation";
 import type { MessageRowView } from "@/features/messages/adapters";
 import { useMessageAudioPlayer } from "@/features/messages/hooks/useMessageAudioPlayer";
@@ -59,7 +59,7 @@ export const MessageList = ({
   if (messages.length === 0) {
     return (
       <div className="rounded-20 border-border bg-card border p-8 text-center">
-        <h2 className="type-h2 font-serif font-semibold">
+        <h2 className="type-h2 font-semibold">
           {t("dashboard__messages__empty_title")}
         </h2>
         <p className="type-body-small text-muted-foreground mt-2">
@@ -74,7 +74,7 @@ export const MessageList = ({
   return (
     <div>
       <div className="mb-5 flex items-baseline justify-between">
-        <h2 className="type-h2 font-serif font-semibold">
+        <h2 className="type-h2 font-semibold">
           {t("dashboard__messages__title")}
         </h2>
         <Link
@@ -111,7 +111,7 @@ export const MessageList = ({
           );
         })}
       </div>
-      <AudioElement player={player} />
+      <AudioPlayer player={player} />
       {warmUrls.map((url) => (
         <audio
           key={url}

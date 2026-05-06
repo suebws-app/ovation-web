@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 
 import { decorate } from "../designTokens";
 import { FilterTabs } from "./FilterTabs";
@@ -21,10 +21,10 @@ export const KeepsakesCollection = ({
     <div className="mt-9">
       <div className="tablet:flex-row tablet:items-end tablet:justify-between flex flex-col gap-4.5">
         <div>
-          <Eyebrow className="text-muted-foreground">
+          <Kicker className="text-muted-foreground">
             {t("keepsakes__collection__eyebrow")}
-          </Eyebrow>
-          <h2 className="type-h2 mt-1.5 font-serif font-semibold tracking-tight">
+          </Kicker>
+          <h2 className="type-h2 mt-1.5 font-semibold tracking-tight">
             {t("keepsakes__collection__title")}
           </h2>
         </div>

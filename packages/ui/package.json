@@ -5,6 +5,7 @@
   "sideEffects": false,
   "exports": {
     "./components/*": "./src/components/*.tsx",
+    "./providers/*": "./src/providers/*.tsx",
     "./utils/*": "./src/utils/*.ts",
     "./hooks/*": "./src/hooks/*.ts"
   },

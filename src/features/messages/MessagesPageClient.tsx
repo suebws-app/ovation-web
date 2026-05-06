@@ -1,8 +1,8 @@
 "use client";
 
-import { AudioMount } from "@ovation/ui/components/AudioMount";
+import { AudioPlayer } from "@ovation/ui/components/AudioPlayer";
 import type { EventStats } from "@/lib/api/types";
-import type { AudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
+import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import { MessageToolbar } from "./components/MessageToolbar";
 import { MessagesFilterRail } from "./components/MessagesFilterRail";
 import { MessagesListBody } from "./components/MessagesListBody";
@@ -38,13 +38,13 @@ export const MessagesPageClient = ({
           <ConnectedBatchFooter />
         </div>
         <ConnectedMessageDetailPane player={player} />
-        <AudioMount player={player} />
+        <AudioPlayer player={player} />
       </div>
     </MessagesEventProvider>
   );
 };
 
-const DurationSync = ({ player }: { player: AudioPlayer }) => {
+const DurationSync = ({ player }: { player: TAudioPlayer }) => {
   useAudioDurationSync(player);
   return null;
 };

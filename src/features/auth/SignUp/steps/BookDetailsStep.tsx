@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Calendar } from "@ovation/ui/components/DatePicker";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Calendar as CalendarIcon } from "@ovation/icons/Calendar";
@@ -55,9 +55,9 @@ export const BookDetailsStep = () => {
       blobScale={blobScale}
       left={
         <>
-          <Eyebrow className="relative tracking-[2.5px] opacity-80">
+          <Kicker className="relative tracking-[2.5px] opacity-80">
             {t("signup__book_details__brand_eyebrow")}
-          </Eyebrow>
+          </Kicker>
           <div className="relative">
             <BookPreview
               partner1={partner1Name}
@@ -78,13 +78,13 @@ export const BookDetailsStep = () => {
       }
       right={
         <>
-          <Eyebrow className="text-primary mb-3">
+          <Kicker className="text-primary mb-3">
             {t("auth__signup__eyebrow_step", {
               step: 3,
               label: t("signup__book_details__step_label"),
             })}
-          </Eyebrow>
-          <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+          </Kicker>
+          <h1 className="type-h1 leading-tight font-semibold tracking-tight">
             {t("signup__book_details__title_a")}
             <br />
             <span className="text-primary italic">
@@ -110,7 +110,7 @@ export const BookDetailsStep = () => {
                 placeholder={t("signup__book_details__name_placeholder")}
               />
             </div>
-            <span className="text-muted-foreground type-h1 pb-2.5 font-serif italic">
+            <span className="text-muted-foreground type-h1 pb-2.5 italic">
               &amp;
             </span>
             <div>

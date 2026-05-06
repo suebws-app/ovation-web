@@ -1,7 +1,6 @@
-"use client";
-
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
+import { SectionTitle } from "../../../components/SectionTitle";
 import { PricingCard } from "./PricingCard";
 
 const PRICES = {
@@ -88,15 +87,13 @@ export const PricingSection = () => {
   const t = useTranslations();
 
   return (
-    <section className="bg-card border-border border-t py-30">
-      <div className="mx-auto max-w-310 px-6 lg:px-20">
+    <section className="bg-card border-border border-t">
+      <div className="section-container">
         <div className="mb-14 text-center">
-          <Eyebrow className="text-muted-foreground mb-4">
+          <Kicker className="text-muted-foreground mb-4">
             {t("marketing__pricing__eyebrow")}
-          </Eyebrow>
-          <h2 className="font-serif text-4xl font-semibold tracking-tight lg:text-5xl">
-            {t("marketing__pricing__title")}
-          </h2>
+          </Kicker>
+          <SectionTitle>{t("marketing__pricing__title")}</SectionTitle>
           <p className="text-muted-foreground mx-auto mt-4 max-w-xl">
             {t("marketing__pricing__subtitle")}
           </p>

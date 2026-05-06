@@ -46,7 +46,7 @@ export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
 
       {recorder.state === "recording" ? (
         <>
-          <div className="type-h1 font-serif font-semibold tabular-nums">
+          <div className="type-h1 font-semibold tabular-nums">
             {formatTime(recorder.elapsed)}
             <span className="type-body-small text-muted-foreground ml-2">
               / {formatTime(recorder.maxDurationSec)}

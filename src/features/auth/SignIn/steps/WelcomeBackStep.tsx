@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Polaroid } from "../components/Polaroid";
 import { LoaderDots } from "../components/LoaderDots";
 
@@ -48,10 +48,10 @@ export const WelcomeBackStep = () => {
       ))}
 
       <div className="relative max-w-170 text-center">
-        <Eyebrow className="text-primary mb-4.5 tracking-[2.5px]">
+        <Kicker className="text-primary mb-4.5 tracking-[2.5px]">
           {t("auth__signin__welcome__eyebrow")}
-        </Eyebrow>
-        <h1 className="tablet:type-display type-display font-serif leading-none font-semibold tracking-tight">
+        </Kicker>
+        <h1 className="tablet:type-display type-display leading-none font-semibold tracking-tight">
           {t("auth__signin__welcome__title_a")}
           <br />
           <span className="text-primary italic">

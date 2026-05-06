@@ -8,7 +8,7 @@ const variantClasses = {
   default: "bg-primary text-primary-foreground",
   destructive: "bg-destructive text-primary-foreground",
   secondary: "bg-secondary text-secondary-foreground",
-  outline: "border border-border text-foreground",
+  outline: "border border-border bg-card text-muted-foreground",
 };
 
 export const Badge = ({
@@ -18,7 +18,7 @@ export const Badge = ({
 }: BadgeProps) => (
   <span
     className={cn(
-      "type-caption inline-flex items-center rounded-full px-2 py-0.5 font-bold",
+      "type-overline inline-flex items-center rounded-full px-2 py-0.5 font-bold",
       variantClasses[variant],
       className,
     )}

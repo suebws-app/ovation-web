@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
@@ -18,10 +18,10 @@ export const CompletionErrorState = ({
   const t = useTranslations();
   return (
     <div className="bg-background flex min-h-[calc(100vh-89px)] flex-col items-center justify-center text-center">
-      <Eyebrow className="text-destructive">
+      <Kicker className="text-destructive">
         {t("signup__completion__error_eyebrow")}
-      </Eyebrow>
-      <h1 className="type-h1 mt-3 font-serif leading-tight font-semibold tracking-tight">
+      </Kicker>
+      <h1 className="type-h1 mt-3 leading-tight font-semibold tracking-tight">
         {t("signup__completion__error_title")}
       </h1>
       <p

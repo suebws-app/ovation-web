@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Warning } from "@ovation/icons/Warning";
 import { Link } from "@/i18n/navigation";
@@ -26,10 +26,10 @@ export const CheckoutCancelPage = async ({
         <div className="rounded-16 bg-muted inline-flex size-16 items-center justify-center">
           <Warning width={28} height={28} className="text-muted-foreground" />
         </div>
-        <Eyebrow className="text-muted-foreground">
+        <Kicker className="text-muted-foreground">
           {t("checkout__cancel__eyebrow")}
-        </Eyebrow>
-        <h1 className="type-h1 font-serif leading-tight font-semibold tracking-tight">
+        </Kicker>
+        <h1 className="type-h1 leading-tight font-semibold tracking-tight">
           {t("checkout__cancel__title")}
         </h1>
         <p className="type-body-small text-muted-foreground max-w-md leading-relaxed">

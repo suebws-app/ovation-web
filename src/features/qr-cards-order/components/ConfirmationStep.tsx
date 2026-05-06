@@ -27,7 +27,7 @@ export const ConfirmationStep = ({
       <p className="type-overline text-primary font-semibold tracking-widest">
         {t("qr_cards_order__confirm__eyebrow")}
       </p>
-      <h1 className="font-serif type-h1 mt-3.5 leading-tight font-semibold tracking-tight">
+      <h1 className="type-h1 mt-3.5 leading-tight font-semibold tracking-tight">
         {t("qr_cards_order__confirm__title_a")}
         <br />
         <span className="text-primary italic">
@@ -61,7 +61,7 @@ export const ConfirmationStep = ({
           <p className="type-overline text-muted-foreground font-semibold tracking-wider">
             Charged today
           </p>
-          <p className="font-serif type-h1 mt-1.5 font-semibold tracking-tight">
+          <p className="type-h1 mt-1.5 font-semibold tracking-tight">
             {formatEuro(pricing.total)}
           </p>
           <p className="type-caption text-muted-foreground mt-0.5">

@@ -3,7 +3,7 @@ type LogoNameProps = {
 };
 
 export const LogoName = ({ name }: LogoNameProps) => (
-  <span className="text-foreground type-h3 font-serif font-medium tracking-tight">
+  <span className="text-foreground type-h3 font-medium tracking-tight">
     {name}
   </span>
 );

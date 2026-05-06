@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { FeaturePill } from "./FeaturePill";
@@ -35,10 +35,10 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
         {t("keepsakes__featured__most_ordered")}
       </span>
       <div>
-        <Eyebrow className="tracking-[2px] text-black/55">
+        <Kicker className="tracking-[2px] text-black/55">
           {name} &middot; {formatPrice(priceCents, currency)}
-        </Eyebrow>
-        <h2 className="tablet:type-h1 type-h1 mt-2 font-serif leading-none font-semibold">
+        </Kicker>
+        <h2 className="tablet:type-h1 type-h1 mt-2 leading-none font-semibold">
           {t("keepsakes__featured__title_a")}
           <br />
           {t("keepsakes__featured__title_b")}

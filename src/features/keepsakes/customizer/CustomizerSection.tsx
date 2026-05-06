@@ -17,7 +17,7 @@ export const CustomizerSection = ({
     <section className="rounded-20 border-border bg-card flex flex-col gap-4 border p-6">
       <header className="flex items-baseline justify-between gap-4">
         <div>
-          <h2 className="type-h4 font-serif font-semibold">{title}</h2>
+          <h2 className="type-h4 font-semibold">{title}</h2>
           {description && (
             <p className="type-body-small text-muted-foreground mt-1 leading-relaxed">
               {description}

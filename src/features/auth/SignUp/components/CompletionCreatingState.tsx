@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 
 export const CompletionCreatingState = () => {
   const t = useTranslations();
@@ -10,10 +10,10 @@ export const CompletionCreatingState = () => {
       <div className="bg-primary/15 mb-7 inline-flex size-20 items-center justify-center rounded-full">
         <span className="border-primary size-8 animate-spin rounded-full border-3 border-t-transparent" />
       </div>
-      <Eyebrow className="text-muted-foreground">
+      <Kicker className="text-muted-foreground">
         {t("signup__completion__creating_eyebrow")}
-      </Eyebrow>
-      <h1 className="type-h1 mt-3 font-serif leading-tight font-semibold tracking-tight">
+      </Kicker>
+      <h1 className="type-h1 mt-3 leading-tight font-semibold tracking-tight">
         {t("signup__completion__creating_title")}
       </h1>
       <p className="type-body-small text-muted-foreground mt-3 max-w-md">

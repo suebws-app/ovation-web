@@ -23,7 +23,7 @@ export const ResumeCard = () => {
         <p className="type-body-small text-muted-foreground">
           {t("dashboard__resume__pick_up")}
         </p>
-        <p className="type-h3 mt-1 font-serif leading-snug font-semibold">
+        <p className="type-h3 mt-1 leading-snug font-semibold">
           {name} &middot; {role}
         </p>
         <p className="type-body-small text-muted-foreground mt-1 italic">

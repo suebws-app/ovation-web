@@ -86,7 +86,7 @@ export const GuestGroupsStrip = () => {
   return (
     <div>
       <div className="mb-3.5 flex items-baseline justify-between">
-        <h2 className="type-h2 font-serif tracking-tight">
+        <h2 className="type-h2 tracking-tight">
           {t("guests__groups__title")}
         </h2>
         <button

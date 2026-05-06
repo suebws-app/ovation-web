@@ -49,7 +49,7 @@ export const GuestThankYouPage = async ({
               <p className="type-overline text-muted-foreground tracking-wider">
                 {t("guest__thank_you__eyebrow")}
               </p>
-              <h2 className="type-h2 mt-2.5 font-serif leading-tight font-semibold tracking-tight">
+              <h2 className="type-h2 mt-2.5 leading-tight font-semibold tracking-tight">
                 {t.rich("guest__thank_you__title", {
                   names,
                   emph: (chunks) => (

@@ -39,7 +39,7 @@ export const PartnerCard = ({
     </div>
     <div className="min-w-0 flex-1">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="type-h3 font-serif font-semibold">{name}</span>
+        <span className="type-h3 font-semibold">{name}</span>
         <Badge variant={badgeVariant}>{badgeLabel}</Badge>
       </div>
       <div className="type-body-small text-muted-foreground mt-0.5">{role}</div>

@@ -30,7 +30,7 @@ export const PhoneMockup = ({
           <p className="type-overline text-muted-foreground tracking-wider">
             {t("auth__signup__phone__welcome")}
           </p>
-          <p className="type-h3 mt-1.5 font-serif leading-tight font-semibold">
+          <p className="type-h3 mt-1.5 leading-tight font-semibold">
             {partner1} &amp;{" "}
             <span className="text-primary italic">{partner2}</span>
           </p>

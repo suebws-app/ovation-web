@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { StyleOption } from "./StyleOption";
 import type { QRStyle } from "./QRCodeStudio";
 
@@ -45,9 +45,9 @@ export const StylePicker = ({
 
   return (
     <div className="rounded-16 border-border bg-card border p-4.5">
-      <Eyebrow className="text-muted-foreground mb-3">
+      <Kicker className="text-muted-foreground mb-3">
         {t("qr_code__style__eyebrow")}
-      </Eyebrow>
+      </Kicker>
       <div className="grid grid-cols-4 gap-2.5">
         {styles.map((s) => (
           <StyleOption

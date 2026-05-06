@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { ChevronLeft } from "@ovation/icons/ChevronLeft";
-import { AudioMount } from "@ovation/ui/components/AudioMount";
+import { AudioPlayer } from "@ovation/ui/components/AudioPlayer";
 import { useRouter } from "@/i18n/navigation";
 import { useMessageDetail } from "@/lib/query/messagesQueries";
 import { ConnectedMessageDetailPane } from "./components/ConnectedMessageDetailPane";
@@ -45,7 +45,7 @@ export const MessageDetailPageClient = ({
           {t("messages__detail__back")}
         </button>
         <ConnectedMessageDetailPane player={player} fullScreen />
-        <AudioMount player={player} />
+        <AudioPlayer player={player} />
       </div>
     </MessagesEventProvider>
   );

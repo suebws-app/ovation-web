@@ -1,14 +1,14 @@
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 
 export const KeepsakesHero = () => {
   const t = useTranslations();
   return (
     <div>
-      <Eyebrow className="tracking-[2px] text-[#9A6B2F]">
+      <Kicker className="tracking-[2px] text-[#9A6B2F]">
         {t("keepsakes__hero__eyebrow")}
-      </Eyebrow>
-      <h1 className="tablet:type-display type-h1 mt-2.5 max-w-225 font-serif leading-none font-semibold tracking-tight">
+      </Kicker>
+      <h1 className="tablet:type-display type-h0 mt-2.5 max-w-225 leading-none font-semibold tracking-tight">
         {t("keepsakes__hero__title_a")}
         <br />
         <span className="italic" style={{ color: "#C88C36" }}>

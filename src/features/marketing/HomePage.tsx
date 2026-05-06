@@ -22,11 +22,7 @@ const TestimonialSection = dynamic(() =>
     default: m.TestimonialSection,
   })),
 );
-const PricingSection = dynamic(() =>
-  import("@/features/marketing/PricingSection").then((m) => ({
-    default: m.PricingSection,
-  })),
-);
+
 const FAQSection = dynamic(() =>
   import("@/features/marketing/FAQSection").then((m) => ({
     default: m.FAQSection,
@@ -47,7 +43,6 @@ export const HomePage = () => {
       <SampleSpread />
       <FeaturesGrid />
       <TestimonialSection />
-      <PricingSection />
       <FAQSection />
       <FinalCTA />
     </>

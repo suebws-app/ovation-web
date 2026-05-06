@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Eyebrow } from "@ovation/ui/components/Eyebrow";
+import { Kicker } from "@ovation/ui/components/Kicker";
 import { PlanCard } from "../components/PlanCard";
 import { useSignUpStore } from "../useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
@@ -63,13 +63,13 @@ export const ChoosePlanStep = () => {
     <div className="bg-background min-h-[calc(100vh-89px)]">
       <div className="mx-auto max-w-310 px-14 py-14">
         <div className="mb-10 text-center">
-          <Eyebrow className="text-primary">
+          <Kicker className="text-primary">
             {t("auth__signup__eyebrow_step", {
               step: 6,
               label: t("signup__plan__step_label"),
             })}
-          </Eyebrow>
-          <h1 className="type-display mt-3.5 font-serif leading-tight font-semibold tracking-tight">
+          </Kicker>
+          <h1 className="type-display mt-3.5 leading-tight font-semibold tracking-tight">
             {t("signup__plan__title_a")}{" "}
             <span className="text-primary italic">
               {t("signup__plan__title_b")}

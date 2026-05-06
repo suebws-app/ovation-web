@@ -26,7 +26,7 @@ export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
   if (!slug || !event) {
     return (
       <div>
-        <h2 className="type-h2 font-serif tracking-tight">
+        <h2 className="type-h2 tracking-tight">
           {t("kiosk__preview__title")}
         </h2>
         <div className="rounded-20 border-border bg-card mt-3.5 border p-8 text-center">
@@ -41,7 +41,7 @@ export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
   return (
     <div>
       <div className="mb-3.5 flex items-baseline justify-between">
-        <h2 className="type-h2 font-serif tracking-tight">
+        <h2 className="type-h2 tracking-tight">
           {t("kiosk__preview__title")}
         </h2>
         <Button asChild size="sm" className="rounded-full">
