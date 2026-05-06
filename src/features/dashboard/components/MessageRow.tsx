@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar } from "@ovation/ui/components/Avatar";
+import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { MessagePlayButton } from "@/features/messages/components/MessagePlayButton";
 import { Waveform } from "./Waveform";
 
@@ -57,12 +57,14 @@ export const MessageRow = ({
       }
     }}
   >
-    <Avatar
-      initials={initials}
-      tint={tint}
-      size="lg"
-      className={index % 2 ? "rotate-2" : "-rotate-2"}
-    />
+    <Avatar size="lg" className={index % 2 ? "rotate-2" : "-rotate-2"}>
+      <AvatarFallback
+        className="type-body-small text-primary-foreground font-semibold"
+        style={{ background: tint }}
+      >
+        {initials}
+      </AvatarFallback>
+    </Avatar>
     <div className="min-w-0 flex-1">
       <p className="type-body-large font-serif font-semibold">
         {name}

@@ -19,7 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@ovation/ui/components/DropdownMenu";
-import { Avatar } from "@ovation/ui/components/Avatar";
+import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { useTranslations } from "next-intl";
 import { useRouter, Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
@@ -67,7 +67,11 @@ export const NavUser = ({ user }: NavUserProps) => {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar initials={initialsOf(user)} size="sm" />
+              <Avatar size="sm">
+                <AvatarFallback className="type-caption font-semibold">
+                  {initialsOf(user)}
+                </AvatarFallback>
+              </Avatar>
               <div className="grid flex-1 text-left leading-tight">
                 <span className="type-body-small truncate font-semibold">
                   {displayName(user)}
@@ -87,7 +91,11 @@ export const NavUser = ({ user }: NavUserProps) => {
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5">
-                <Avatar initials={initialsOf(user)} size="sm" />
+                <Avatar size="sm">
+                  <AvatarFallback className="type-caption font-semibold">
+                    {initialsOf(user)}
+                  </AvatarFallback>
+                </Avatar>
                 <div className="grid flex-1 text-left leading-tight">
                   <span className="type-body-small truncate font-semibold">
                     {displayName(user)}

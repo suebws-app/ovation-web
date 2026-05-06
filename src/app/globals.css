@@ -222,18 +222,6 @@
   }
 }
 
-/*
- * Ovation Brand Tokens — Light Mode
- *
- * Brand palette:
- *   Cornflower  #779FEB  — Primary CTAs, links
- *   Jade        #82E19D  — Success, positive
- *   Kernel      #EDB974  — Premium, special
- *   Peachy      #EC8662  — Alerts, recording glow
- *   Danger      #E55353  — Destructive actions
- *   Charcoal    #2D2D2D  — Body text
- *   Off-white   #F9F7F4  — Page background
- */
 :root {
   --radius: 0.625rem;
 

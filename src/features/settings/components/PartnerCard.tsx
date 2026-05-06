@@ -1,4 +1,4 @@
-import { Avatar } from "@ovation/ui/components/Avatar";
+import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Badge } from "@ovation/ui/components/Badge";
 import { Camera } from "@ovation/icons/Camera";
 import { VerifiedDot } from "./VerifiedDot";
@@ -24,12 +24,14 @@ export const PartnerCard = ({
 }: PartnerCardProps) => (
   <div className="rounded-16 border-border bg-card flex gap-4.5 border p-6">
     <div className="relative shrink-0">
-      <Avatar
-        initials={initials}
-        tint={tint}
-        size="lg"
-        className="type-h3 size-16"
-      />
+      <Avatar size="lg" className="type-h3 size-16">
+        <AvatarFallback
+          className="type-body-small text-primary-foreground font-semibold"
+          style={{ background: tint }}
+        >
+          {initials}
+        </AvatarFallback>
+      </Avatar>
       <button
         type="button"
         className="border-border bg-card absolute -right-0.5 -bottom-0.5 flex size-5.5 cursor-pointer items-center justify-center rounded-full border"

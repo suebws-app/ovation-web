@@ -1,4 +1,4 @@
-import { Avatar } from "@ovation/ui/components/Avatar";
+import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { GuestAvatarStack } from "./GuestAvatarStack";
 
 type GroupMember = {
@@ -23,7 +23,14 @@ export const GuestGroupCard = ({
 }: GuestGroupCardProps) => {
   return (
     <div className="rounded-16 border-border bg-card hover:bg-muted/50 cursor-pointer border p-4 transition-colors">
-      <Avatar initials={title[0]} tint={tint} size="md" />
+      <Avatar size="default">
+        <AvatarFallback
+          className="type-body-small text-primary-foreground font-semibold"
+          style={{ background: tint }}
+        >
+          {title[0]}
+        </AvatarFallback>
+      </Avatar>
       <div className="type-body-small mt-3 leading-tight font-semibold">
         {title}
       </div>

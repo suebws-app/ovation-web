@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar } from "@ovation/ui/components/Avatar";
+import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Book } from "@ovation/icons/Book";
 import { Heart } from "@ovation/icons/Heart";
@@ -76,12 +76,14 @@ export const MessageRow = ({
     </span>
 
     <span className="inline-flex">
-      <Avatar
-        initials={message.initials}
-        tint={message.tint}
-        size="lg"
-        className={index % 2 ? "rotate-2" : "-rotate-2"}
-      />
+      <Avatar size="lg" className={index % 2 ? "rotate-2" : "-rotate-2"}>
+        <AvatarFallback
+          className="type-body-small text-primary-foreground font-semibold"
+          style={{ background: message.tint }}
+        >
+          {message.initials}
+        </AvatarFallback>
+      </Avatar>
     </span>
 
     <div className="min-w-0">
