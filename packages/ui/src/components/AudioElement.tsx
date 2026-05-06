@@ -16,9 +16,9 @@ const buildSrc = (src: string | null): MediaPlayerProps["src"] =>
   src ? [{ src, type: "audio/mpeg" }] : "";
 
 export const AudioElement = ({ player, className }: AudioElementProps) => {
-  if (!player) return;
+  if (!player) return null;
 
-  <MediaPlayer
+  return <MediaPlayer
     ref={player.playerRef}
     src={buildSrc(player.src)}
     viewType="audio"
@@ -47,3 +47,4 @@ export const AudioElement = ({ player, className }: AudioElementProps) => {
     <MediaProvider />
   </MediaPlayer>;
 };
+

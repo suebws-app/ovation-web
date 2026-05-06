@@ -9,9 +9,5 @@ type AudioMountProps = {
 };
 
 export const AudioMount = ({ player, className }: AudioMountProps) => (
-  <AudioElement
-    ref={player.playerRef}
-    src={player.src}
-    className={className}
-  />
+  <AudioElement player={player} className={className} />
 );
