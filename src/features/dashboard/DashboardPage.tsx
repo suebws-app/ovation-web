@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { ApiError } from "@/lib/api/client";
+import { appRoutes } from "@/lib/routes";
 import { eventsApi } from "@/lib/api/events";
 import { messagesApi } from "@/lib/api/messages";
 import { subscriptionsApi } from "@/lib/api/subscriptions";
@@ -37,7 +38,7 @@ export const DashboardPage = async () => {
     getCurrentUser(),
     eventsApi.list({ limit: 1 }),
   ]);
-  if (!user) redirect("/sign-in");
+  if (!user) redirect(appRoutes.auth.signIn);
   const event = eventsPage.items[0];
 
   if (!event) {

@@ -13,6 +13,7 @@ import { env } from "@/lib/utils/env";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import type { CheckoutPlanTier, CoverPhotoContentType } from "@/lib/api/types";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { NextStepCard } from "../components/NextStepCard";
 import { ConfettiDot } from "../components/ConfettiDot";
 import { useSignUpStore } from "../useSignUpStore";
@@ -343,7 +344,7 @@ export const CompletionStep = () => {
               size="lg"
               className="shadow-primary/40 rounded-full shadow-md"
             >
-              <Link href="/app">
+              <Link href={appRoutes.app.root}>
                 {t("signup__completion__open_dashboard")}
                 <ArrowRight width={15} height={15} />
               </Link>
@@ -354,7 +355,7 @@ export const CompletionStep = () => {
               size="lg"
               className="rounded-full"
             >
-              <Link href={`/g/${state.slug}`}>
+              <Link href={appRoutes.guest.base(state.slug)}>
                 {t("signup__completion__preview_guest")}
               </Link>
             </Button>

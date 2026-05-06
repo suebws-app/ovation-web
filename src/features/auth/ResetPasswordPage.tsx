@@ -12,6 +12,7 @@ import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Logo } from "@ovation/ui/components/Logo";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Link, useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import {
   getResetPasswordSchema,
@@ -52,7 +53,7 @@ export const ResetPasswordPage = () => {
       setSubmitError(error.message ?? t("auth__reset__error_generic"));
       return;
     }
-    router.replace("/sign-in?reset=ok");
+    router.replace(`${appRoutes.auth.signIn}?reset=ok`);
   };
 
   return (
@@ -131,7 +132,10 @@ export const ResetPasswordPage = () => {
         </form>
 
         <p className="type-body-small text-muted-foreground mt-9 text-center">
-          <Link href="/sign-in" className="text-foreground font-semibold">
+          <Link
+            href={appRoutes.auth.signIn}
+            className="text-foreground font-semibold"
+          >
             {t("auth__reset__back_signin")}
           </Link>
         </p>

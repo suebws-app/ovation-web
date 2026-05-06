@@ -22,6 +22,7 @@ import {
 import { Avatar } from "@ovation/ui/components/Avatar";
 import { useTranslations } from "next-intl";
 import { useRouter, Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { signOut } from "@/lib/auth/client";
 import type { User } from "@/lib/api/types";
 
@@ -52,7 +53,7 @@ export const NavUser = ({ user }: NavUserProps) => {
     try {
       await signOut();
     } finally {
-      router.replace("/sign-in");
+      router.replace(appRoutes.auth.signIn);
       router.refresh();
     }
   };
@@ -100,7 +101,7 @@ export const NavUser = ({ user }: NavUserProps) => {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link href="/app/settings">
+                <Link href={appRoutes.app.settings}>
                   <SettingsIcon />
                   {t("nav_user__settings")}
                 </Link>

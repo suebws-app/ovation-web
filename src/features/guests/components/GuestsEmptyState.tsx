@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 export const GuestsEmptyState = () => {
   const t = useTranslations();
@@ -15,7 +16,9 @@ export const GuestsEmptyState = () => {
         {t("guests__empty__body")}
       </p>
       <Button asChild className="rounded-full">
-        <Link href="/sign-up/step/3">{t("guests__empty__cta")}</Link>
+        <Link href={appRoutes.auth.signUpStep(3)}>
+          {t("guests__empty__cta")}
+        </Link>
       </Button>
     </div>
   );

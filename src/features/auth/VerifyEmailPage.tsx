@@ -7,6 +7,7 @@ import { Button } from "@ovation/ui/components/Button";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Mail } from "@ovation/icons/Mail";
 import { Link, useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 /**
  * Better Auth handles verification clicks at /api/auth/verify-email and
@@ -20,7 +21,7 @@ export const VerifyEmailPage = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("verified") === "1") {
-      router.replace("/app");
+      router.replace(appRoutes.app.root);
     }
   }, [router]);
 
@@ -46,7 +47,9 @@ export const VerifyEmailPage = () => {
           {t("auth__verify__page_missing_body")}
         </p>
         <Button asChild className="mt-9 rounded-full">
-          <Link href="/sign-in">{t("auth__verify__back_to_signin")}</Link>
+          <Link href={appRoutes.auth.signIn}>
+            {t("auth__verify__back_to_signin")}
+          </Link>
         </Button>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 type CompletionErrorStateProps = {
   message: string;
@@ -34,7 +35,9 @@ export const CompletionErrorState = ({
           {t("signup__completion__error_retry")}
         </Button>
         <Button asChild variant="outline" className="rounded-full">
-          <Link href="/app">{t("signup__completion__error_skip")}</Link>
+          <Link href={appRoutes.app.root}>
+            {t("signup__completion__error_skip")}
+          </Link>
         </Button>
       </div>
     </div>

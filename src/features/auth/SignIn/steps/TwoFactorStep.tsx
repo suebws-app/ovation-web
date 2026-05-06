@@ -7,6 +7,7 @@ import { Logo } from "@ovation/ui/components/Logo";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { useSignInStore } from "../useSignInStore";
 import { useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { ShieldIcon } from "../components/ShieldIcon";
 
 export const TwoFactorStep = () => {
@@ -55,7 +56,7 @@ export const TwoFactorStep = () => {
         </div>
 
         <Button
-          onClick={() => router.push("/sign-in/welcome")}
+          onClick={() => router.push(appRoutes.auth.signInWelcome)}
           disabled={formData.otpCode.length < 6}
           size="lg"
           className="shadow-primary/40 mt-9 rounded-full px-10 shadow-md"

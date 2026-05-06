@@ -11,6 +11,7 @@ import { UrlSuggestionChip } from "../components/UrlSuggestionChip";
 import { AvailableBadge } from "../components/AvailableBadge";
 import { useSignUpStore } from "../useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 const URL_SUGGESTIONS = [
   "lena-and-tomas",
@@ -153,7 +154,7 @@ export const ClaimUrlStep = () => {
           </div>
 
           <Button
-            onClick={() => router.push("/sign-up/step/6")}
+            onClick={() => router.push(appRoutes.auth.signUpStep(6))}
             size="lg"
             className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
           >

@@ -4,6 +4,7 @@ import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Warning } from "@ovation/icons/Warning";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 type CheckoutCancelPageProps = {
   params: Promise<{ orderId: string }>;
@@ -41,12 +42,12 @@ export const CheckoutCancelPage = async ({
         </p>
         <div className="mt-3 flex flex-wrap justify-center gap-2">
           <Button asChild className="rounded-full">
-            <Link href="/app/keepsakes">
+            <Link href={appRoutes.app.keepsakes}>
               {t("checkout__cancel__back_keepsakes")}
             </Link>
           </Button>
           <Button asChild variant="outline" className="rounded-full">
-            <Link href="/app">{t("checkout__cancel__skip")}</Link>
+            <Link href={appRoutes.app.root}>{t("checkout__cancel__skip")}</Link>
           </Button>
         </div>
       </main>

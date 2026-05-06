@@ -15,6 +15,7 @@ import { NameOrderOption } from "../components/NameOrderOption";
 import { CountdownCard } from "../components/CountdownCard";
 import { useSignUpStore } from "../useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 export const BookDetailsStep = () => {
   const t = useTranslations();
@@ -46,7 +47,7 @@ export const BookDetailsStep = () => {
     : 0;
 
   const handleContinue = () => {
-    router.push("/sign-up/step/4");
+    router.push(appRoutes.auth.signUpStep(4));
   };
 
   return (

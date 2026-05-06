@@ -4,6 +4,7 @@ import { Eyebrow } from "@ovation/ui/components/Eyebrow";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Check } from "@ovation/icons/Check";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 export const PlanActivatedSuccess = async () => {
   const t = await getTranslations();
@@ -36,10 +37,14 @@ export const PlanActivatedSuccess = async () => {
 
         <div className="flex justify-center gap-2">
           <Button asChild className="rounded-full">
-            <Link href="/app">{t("plan_activated__back_dashboard")}</Link>
+            <Link href={appRoutes.app.root}>
+              {t("plan_activated__back_dashboard")}
+            </Link>
           </Button>
           <Button asChild variant="outline" className="rounded-full">
-            <Link href="/app/qr-code">{t("plan_activated__view_qr")}</Link>
+            <Link href={appRoutes.app.qrCode}>
+              {t("plan_activated__view_qr")}
+            </Link>
           </Button>
         </div>
       </main>

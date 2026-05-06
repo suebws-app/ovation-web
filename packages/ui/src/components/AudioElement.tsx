@@ -1,6 +1,10 @@
 "use client";
 
-import { MediaPlayer, MediaProvider, type MediaPlayerProps } from "@vidstack/react";
+import {
+  MediaPlayer,
+  MediaProvider,
+  type MediaPlayerProps,
+} from "@vidstack/react";
 import type { AudioPlayer } from "../hooks/useAudioPlayer";
 
 type AudioElementProps = {
@@ -11,7 +15,9 @@ type AudioElementProps = {
 const buildSrc = (src: string | null): MediaPlayerProps["src"] =>
   src ? [{ src, type: "audio/mpeg" }] : "";
 
-export const AudioElement = ({ player, className }: AudioElementProps) => (
+export const AudioElement = ({ player, className }: AudioElementProps) => {
+  if (!player) return;
+
   <MediaPlayer
     ref={player.playerRef}
     src={buildSrc(player.src)}
@@ -39,5 +45,5 @@ export const AudioElement = ({ player, className }: AudioElementProps) => (
     className={className}
   >
     <MediaProvider />
-  </MediaPlayer>
-);
+  </MediaPlayer>;
+};

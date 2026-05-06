@@ -8,6 +8,7 @@ import { useRouter } from "@/i18n/navigation";
 import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
+import { appRoutes } from "@/lib/routes";
 import type { Event, User } from "@/lib/api/types";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsCard } from "./SettingsCard";
@@ -66,7 +67,7 @@ export const SettingsDangerSection = ({
     try {
       await eventsClient.remove(event.id);
       setShowDeleteModal(false);
-      router.replace("/app");
+      router.replace(appRoutes.app.root);
       router.refresh();
     } catch (e) {
       setError(
@@ -88,7 +89,7 @@ export const SettingsDangerSection = ({
     try {
       await profileClient.deleteAccount();
       await fetch("/api/auth/signout", { method: "POST" });
-      router.replace("/sign-in");
+      router.replace(appRoutes.auth.signIn);
       router.refresh();
     } catch (e) {
       setError(

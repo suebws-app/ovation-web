@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Check } from "@ovation/icons/Check";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { formatEuro } from "../pricing";
 import type { OrderState } from "../types";
 import type { Pricing } from "../pricing";
@@ -73,7 +74,7 @@ export const ConfirmationStep = ({
 
       <div className="mt-10">
         <Button asChild size="lg" className="rounded-full">
-          <Link href="/app">
+          <Link href={appRoutes.app.root}>
             {t("qr_cards_order__confirm__back_dashboard")}
           </Link>
         </Button>

@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { HeroShowpiece } from "./HeroShowpiece";
 import { HeroAvatarCircle } from "./HeroAvatarCircle";
 
@@ -55,13 +56,15 @@ export const HeroSection = () => {
 
           <div className="flex flex-wrap items-center gap-3">
             <Button size="lg" asChild>
-              <Link href="/sign-up">
+              <Link href={appRoutes.auth.signUp}>
                 {t("marketing__hero__cta_primary")}
                 <ArrowRight width={18} height={18} />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="/sample">{t("marketing__hero__cta_secondary")}</Link>
+              <Link href={appRoutes.marketing.sample}>
+                {t("marketing__hero__cta_secondary")}
+              </Link>
             </Button>
           </div>
 
