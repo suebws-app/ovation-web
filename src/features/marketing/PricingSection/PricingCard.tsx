@@ -3,37 +3,26 @@ import { cn } from "@ovation/ui/utils/cn";
 import { Card } from "@ovation/ui/components/Card";
 import { Button } from "@ovation/ui/components/Button";
 import { FeatureListItem } from "@ovation/ui/components/FeatureListItem";
+import type { Tier } from "./constants";
 
-type PricingCardProps = {
-  tierKey: "essential" | "keepsake" | "gold";
-  highlighted: boolean;
-  tagKey: string;
-  nameKey: string;
-  priceKey: string;
-  perKey: string;
-  descKey: string;
-  ctaKey: string;
-  featKeys: string[];
-  price: string;
-};
+type PricingCardProps = Omit<Tier, "key">;
 
 export const PricingCard = ({
   highlighted,
   tagKey,
   nameKey,
-  priceKey,
+  price,
   perKey,
   descKey,
   ctaKey,
   featKeys,
-  price,
 }: PricingCardProps) => {
   const t = useTranslations();
 
   return (
     <Card
       className={cn(
-        "relative flex min-h-146.5 flex-col rounded-3xl p-8",
+        "relative flex flex-col rounded-3xl p-8",
         highlighted && "border-primary scale-[1.02] border-2 shadow-2xl",
       )}
     >
@@ -51,7 +40,7 @@ export const PricingCard = ({
 
       <div className="mt-3 flex items-end gap-1.5">
         <span className="type-display leading-none font-semibold tracking-tight">
-          {t(priceKey, { price })}
+          {price}
         </span>
         <span className="text-muted-foreground type-body-small mb-2.5">
           {t(perKey)}
@@ -78,7 +67,7 @@ export const PricingCard = ({
       <Button
         size="lg"
         variant={highlighted ? "default" : "outline"}
-        className="w-full self-end rounded-full"
+        className="mt-8 w-full self-end rounded-full"
       >
         {t(ctaKey)}
       </Button>

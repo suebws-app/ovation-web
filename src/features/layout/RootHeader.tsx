@@ -7,6 +7,7 @@ import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { ThemeToggle } from "@ovation/ui/components/ThemeToggle";
 import { cn } from "@ovation/ui/utils/cn";
 import { RootMobileNav } from "./RootMobileNav";
+import { LanguageSelect } from "@/components/LanguageSelect";
 
 export const RootHeader = ({ className }: { className?: string }) => {
   const t = useTranslations();
@@ -24,16 +25,17 @@ export const RootHeader = ({ className }: { className?: string }) => {
         </Link>
 
         <div className="flex items-center gap-3">
-          <span className="tablet:block hidden">
-            <ThemeToggle />
+          <span className="tablet:flex hidden">
+            <LanguageSelect />
           </span>
-          <Button size="sm" asChild className="hidden gap-1.5 tablet:flex">
+
+          <Button size="sm" asChild className="tablet:flex hidden gap-1.5">
             <Link href={appRoutes.auth.signUp}>
               {t("marketing__nav__cta")}
               <ArrowRight className="size-3.5" />
             </Link>
           </Button>
-          <RootMobileNav />
+          <RootMobileNav languageSelect={<LanguageSelect />} />
         </div>
       </div>
     </header>

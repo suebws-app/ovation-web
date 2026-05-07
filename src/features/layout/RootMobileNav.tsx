@@ -1,9 +1,9 @@
 "use client";
 
+import { type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Menu } from "@ovation/icons/Menu";
 import { XIcon } from "@ovation/icons/XIcon";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
 import { ThemeToggle } from "@ovation/ui/components/ThemeToggle";
@@ -18,7 +18,11 @@ import {
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
-export const RootMobileNav = () => {
+type RootMobileNavProps = {
+  languageSelect: ReactNode;
+};
+
+export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
   const t = useTranslations();
 
   return (
@@ -97,10 +101,8 @@ export const RootMobileNav = () => {
         </nav>
 
         <div className="border-border shrink-0 border-t px-6 py-6">
-          <div className="mb-5 flex items-center justify-between">
-            <span className="text-muted-foreground type-body-small font-medium">
-              {t("marketing__nav__theme")}
-            </span>
+          <div className="mb-5 flex items-center gap-4">
+            {languageSelect}
             <ThemeToggle />
           </div>
           <Button asChild className="w-full gap-1.5" variant="outline">

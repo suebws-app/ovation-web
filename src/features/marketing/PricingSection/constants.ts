@@ -1,16 +1,14 @@
-export const PRICES = {
-  essential: "€0",
-  keepsake: "€189",
-  gold: "€389",
-} as const;
-
-const ESSENTIAL_FEAT_KEYS = [
-  "marketing__pricing__essential_feats__unlimited_messages_photos",
-  "marketing__pricing__essential_feats__auto_transcription_38_langs",
-  "marketing__pricing__essential_feats__web_dashboard",
-  "marketing__pricing__essential_feats__30_day_ritual_inbox",
-  "marketing__pricing__essential_feats__lifetime_audio_storage",
-];
+export type Tier = {
+  key: string;
+  highlighted: boolean;
+  tagKey: string;
+  nameKey: string;
+  price: string;
+  perKey: string;
+  descKey: string;
+  ctaKey: string;
+  featKeys: string[];
+};
 
 const KEEPSAKE_FEAT_KEYS = [
   "marketing__pricing__keepsake_feats__up_to_250_guests",
@@ -30,37 +28,31 @@ const GOLD_FEAT_KEYS = [
   "marketing__pricing__gold_feats__25_off_re_prints_forever",
 ];
 
-export type Tier = {
-  key: "essential" | "keepsake" | "gold";
-  highlighted: boolean;
-  tagKey: string;
-  nameKey: string;
-  priceKey: string;
-  perKey: string;
-  descKey: string;
-  ctaKey: string;
-  featKeys: string[];
-};
+const PRO_STARTER_FEAT_KEYS = [
+  "marketing__pricing__pro_starter_feats__up_to_12_events",
+  "marketing__pricing__pro_starter_feats__full_couple_experience",
+  "marketing__pricing__pro_starter_feats__letterpress_qr_cards",
+  "marketing__pricing__pro_starter_feats__client_dashboard",
+  "marketing__pricing__pro_starter_feats__co_pilot_seat",
+];
 
-export const TIERS: Tier[] = [
-  {
-    key: "essential",
-    highlighted: false,
-    tagKey: "marketing__pricing__essential_tag",
-    nameKey: "marketing__pricing__essential_name",
-    priceKey: "marketing__pricing__essential_price",
-    perKey: "marketing__pricing__essential_per",
-    descKey: "marketing__pricing__essential_desc",
-    ctaKey: "marketing__pricing__essential_cta",
-    featKeys: ESSENTIAL_FEAT_KEYS,
-  },
+const PRO_STUDIO_FEAT_KEYS = [
+  "marketing__pricing__pro_studio_feats__unlimited_events",
+  "marketing__pricing__pro_studio_feats__everything_in_starter",
+  "marketing__pricing__pro_studio_feats__multi_seat_access",
+  "marketing__pricing__pro_studio_feats__custom_branding",
+  "marketing__pricing__pro_studio_feats__analytics",
+  "marketing__pricing__pro_studio_feats__account_manager",
+];
+
+export const COUPLES_TIERS: Tier[] = [
   {
     key: "keepsake",
     highlighted: true,
     tagKey: "marketing__pricing__keepsake_tag",
     nameKey: "marketing__pricing__keepsake_name",
-    priceKey: "marketing__pricing__keepsake_price",
-    perKey: "marketing__pricing__keepsake_per",
+    price: "€189",
+    perKey: "marketing__pricing__one_time",
     descKey: "marketing__pricing__keepsake_desc",
     ctaKey: "marketing__pricing__keepsake_cta",
     featKeys: KEEPSAKE_FEAT_KEYS,
@@ -70,10 +62,35 @@ export const TIERS: Tier[] = [
     highlighted: false,
     tagKey: "marketing__pricing__gold_tag",
     nameKey: "marketing__pricing__gold_name",
-    priceKey: "marketing__pricing__gold_price",
-    perKey: "marketing__pricing__gold_per",
+    price: "€389",
+    perKey: "marketing__pricing__one_time",
     descKey: "marketing__pricing__gold_desc",
     ctaKey: "marketing__pricing__gold_cta",
     featKeys: GOLD_FEAT_KEYS,
+  },
+];
+
+export const PRO_TIERS: Tier[] = [
+  {
+    key: "pro_starter",
+    highlighted: false,
+    tagKey: "marketing__pricing__pro_starter_tag",
+    nameKey: "marketing__pricing__pro_starter_name",
+    price: "€49",
+    perKey: "marketing__pricing__per_month",
+    descKey: "marketing__pricing__pro_starter_desc",
+    ctaKey: "marketing__pricing__pro_starter_cta",
+    featKeys: PRO_STARTER_FEAT_KEYS,
+  },
+  {
+    key: "pro_studio",
+    highlighted: true,
+    tagKey: "marketing__pricing__pro_studio_tag",
+    nameKey: "marketing__pricing__pro_studio_name",
+    price: "€129",
+    perKey: "marketing__pricing__per_month",
+    descKey: "marketing__pricing__pro_studio_desc",
+    ctaKey: "marketing__pricing__pro_studio_cta",
+    featKeys: PRO_STUDIO_FEAT_KEYS,
   },
 ];
