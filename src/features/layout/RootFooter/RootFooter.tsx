@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { cn } from "@ovation/ui/utils/cn";
+import { appRoutes } from "@/lib/routes";
 import { SocialIcon } from "./SocialIcon";
 import { FooterColumn } from "./FooterColumn";
 
@@ -16,43 +17,34 @@ export const RootFooter = ({ className }: RootFooterProps) => {
   const columns = [
     {
       title: t("common__footer__product"),
-      linkKeys: [
-        "common__footer__product_links__how_it_works",
-        "common__footer__product_links__gold_book",
-        "common__footer__product_links__keepsakes_store",
-        "common__footer__product_links__pricing",
-        "common__footer__product_links__for_planners",
-        "common__footer__product_links__changelog",
-      ],
-    },
-    {
-      title: t("common__footer__love_notes"),
-      linkKeys: [
-        "common__footer__love_notes_links__sample_book",
-        "common__footer__love_notes_links__couple_stories",
-        "common__footer__love_notes_links__write_a_review",
-        "common__footer__love_notes_links__press",
-        "common__footer__love_notes_links__podcast",
+      links: [
+        { label: t("common__footer__product_links__how_it_works"), href: appRoutes.marketing.howItWorks },
+        { label: t("common__footer__product_links__gold_book"), href: appRoutes.marketing.goldBook },
+        { label: t("common__footer__product_links__keepsakes_store"), href: appRoutes.marketing.keepsakes },
+        { label: t("common__footer__product_links__pricing"), href: appRoutes.marketing.pricing },
+        { label: t("common__footer__product_links__for_planners"), href: appRoutes.marketing.forPlanners },
+        { label: t("common__footer__product_links__changelog"), href: appRoutes.marketing.changelog },
+        { label: t("common__footer__product_links__sample_book"), href: appRoutes.marketing.sample },
       ],
     },
     {
       title: t("common__footer__company"),
-      linkKeys: [
-        "common__footer__company_links__about",
-        "common__footer__company_links__careers",
-        "common__footer__company_links__sustainability",
-        "common__footer__company_links__press_kit",
-        "common__footer__company_links__contact",
+      links: [
+        { label: t("common__footer__company_links__about"), href: appRoutes.marketing.about },
+        { label: t("common__footer__company_links__careers"), href: appRoutes.marketing.careers },
+        { label: t("common__footer__company_links__sustainability"), href: appRoutes.marketing.sustainability },
+        { label: t("common__footer__company_links__press_kit"), href: appRoutes.marketing.pressKit },
+        { label: t("common__footer__company_links__contact"), href: appRoutes.marketing.contact },
       ],
     },
     {
       title: t("common__footer__legal"),
-      linkKeys: [
-        "common__footer__legal_links__privacy",
-        "common__footer__legal_links__terms",
-        "common__footer__legal_links__cookies",
-        "common__footer__legal_links__gdpr",
-        "common__footer__legal_links__dpa_for_planners",
+      links: [
+        { label: t("common__footer__legal_links__privacy"), href: appRoutes.legal.privacy },
+        { label: t("common__footer__legal_links__terms"), href: appRoutes.legal.terms },
+        { label: t("common__footer__legal_links__cookies"), href: appRoutes.legal.cookies },
+        { label: t("common__footer__legal_links__gdpr"), href: appRoutes.legal.gdpr },
+        { label: t("common__footer__legal_links__dpa_for_planners"), href: appRoutes.legal.dpaForPlanners },
       ],
     },
   ];
@@ -60,7 +52,7 @@ export const RootFooter = ({ className }: RootFooterProps) => {
   return (
     <footer className={cn("border-border bg-card border-t", className)}>
       <div className="mx-auto max-w-310 px-6 pt-16 pb-10 lg:px-20">
-        <div className="grid grid-cols-2 gap-10 pb-10 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-10 pb-10 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
             <Logo className="mb-4" />
             <p className="text-muted-foreground max-w-70 text-sm leading-relaxed">
@@ -74,13 +66,7 @@ export const RootFooter = ({ className }: RootFooterProps) => {
           </div>
 
           {columns.map((col) => (
-            <FooterColumn
-              key={col.title}
-              col={{
-                title: col.title,
-                links: col.linkKeys.map((key) => t(key)),
-              }}
-            />
+            <FooterColumn key={col.title} col={col} />
           ))}
         </div>
 
