@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
-import { Calendar } from "@ovation/icons/Calendar";
-import { MapPin } from "@ovation/icons/MapPin";
+import { CalendarIcon } from "@ovation/icons/CalendarIcon";
+import { MapPinIcon } from "@ovation/icons/MapPinIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
 import type { Event, SupportedLanguage } from "@/lib/api/types";
@@ -140,7 +140,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         <SettingsField
           label={t("settings__wedding__date")}
           adornmentRight={
-            <Calendar
+            <CalendarIcon
               width={16}
               height={16}
               className="text-muted-foreground"
@@ -174,7 +174,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         <SettingsField
           label={t("settings__wedding__venue_city")}
           adornmentRight={
-            <MapPin width={16} height={16} className="text-muted-foreground" />
+            <MapPinIcon width={16} height={16} className="text-muted-foreground" />
           }
         >
           <Input

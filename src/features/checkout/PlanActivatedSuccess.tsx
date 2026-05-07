@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
@@ -17,7 +17,7 @@ export const PlanActivatedSuccess = async () => {
       <main className="mx-auto flex w-full max-w-160 flex-col gap-6 px-6 py-10">
         <div className="rounded-20 bg-card border-border flex flex-col items-center gap-3 border p-8 text-center">
           <div className="rounded-16 bg-primary/15 inline-flex size-16 items-center justify-center">
-            <Check
+            <CheckIcon
               width={28}
               height={28}
               className="text-primary"

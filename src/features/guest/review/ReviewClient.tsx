@@ -6,10 +6,10 @@ import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
-import { Mic } from "@ovation/icons/Mic";
-import { Video } from "@ovation/icons/Video";
-import { MessageSquare } from "@ovation/icons/MessageSquare";
-import { Camera } from "@ovation/icons/Camera";
+import { MicIcon } from "@ovation/icons/MicIcon";
+import { VideoIcon } from "@ovation/icons/VideoIcon";
+import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
+import { CameraIcon } from "@ovation/icons/CameraIcon";
 import { ApiError } from "@/lib/api/client";
 import { publicClient, type UploadMediaItem } from "@/lib/api/public-client";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
@@ -200,7 +200,7 @@ export const ReviewClient = ({
         <div className="flex flex-col gap-2.5">
           {audio && (
             <ReviewItem
-              icon={<Mic width={18} height={18} />}
+              icon={<MicIcon width={18} height={18} />}
               iconClassName="bg-primary"
               title={t("guest__compose__voice_title")}
               meta={t("guest__compose__voice_captured", {
@@ -211,7 +211,7 @@ export const ReviewClient = ({
           )}
           {video && (
             <ReviewItem
-              icon={<Video width={18} height={18} />}
+              icon={<VideoIcon width={18} height={18} />}
               iconClassName="bg-destructive"
               title={t("guest__compose__video_title")}
               meta={t("guest__compose__video_captured", {
@@ -229,7 +229,7 @@ export const ReviewClient = ({
           )}
           {hasNote && (
             <ReviewItem
-              icon={<MessageSquare width={18} height={18} />}
+              icon={<MessageSquareIcon width={18} height={18} />}
               iconClassName="bg-secondary"
               title={t("guest__compose__note_title")}
               preview={
@@ -241,7 +241,7 @@ export const ReviewClient = ({
           )}
           {photo && (
             <ReviewItem
-              icon={<Camera width={18} height={18} />}
+              icon={<CameraIcon width={18} height={18} />}
               iconClassName="bg-accent"
               title={t("guest__photo__title")}
               preview={

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Truck } from "@ovation/icons/Truck";
+import { TruckIcon } from "@ovation/icons/TruckIcon";
 import type { Order } from "@/lib/api/types";
 import { progressFor } from "@/features/checkout/orderHelpers";
 import { OrderItem } from "./OrderItem";
@@ -37,7 +37,7 @@ export const OrdersRail = ({ orders }: OrdersRailProps) => {
     <>
       <div className="rounded-20 border-border bg-card flex flex-col gap-3.5 border p-5">
         <div className="flex items-center gap-2">
-          <Truck width={16} height={16} className="text-primary" />
+          <TruckIcon width={16} height={16} className="text-primary" />
           <Kicker className="text-muted-foreground">
             {t("keepsakes__orders__eyebrow")}
           </Kicker>

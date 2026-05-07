@@ -3,7 +3,7 @@ import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { ThemeToggle } from "@ovation/ui/components/ThemeToggle";
 import { cn } from "@ovation/ui/utils/cn";
 import { RootMobileNav } from "./RootMobileNav";
@@ -32,7 +32,7 @@ export const RootHeader = ({ className }: { className?: string }) => {
           <Button size="sm" asChild className="tablet:flex hidden gap-1.5">
             <Link href={appRoutes.auth.signUp}>
               {t("marketing__nav__cta")}
-              <ArrowRight className="size-3.5" />
+              <ArrowRightIcon className="size-3.5" />
             </Link>
           </Button>
           <RootMobileNav languageSelect={<LanguageSelect />} />

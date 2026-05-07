@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ChevronLeft } from "@ovation/icons/ChevronLeft";
-import { ChevronRight } from "@ovation/icons/ChevronRight";
+import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
+import { ChevronRightIcon } from "@ovation/icons/ChevronRightIcon";
 import { GuestPageButton } from "./GuestPageButton";
 
 type GuestPaginationProps = {
@@ -53,7 +53,7 @@ export const GuestPagination = ({
           aria-label={t("guests__pagination__prev")}
           className="border-border bg-card text-foreground flex size-7.5 items-center justify-center rounded-8 border disabled:opacity-40 not-disabled:cursor-pointer"
         >
-          <ChevronLeft width={14} height={14} />
+          <ChevronLeftIcon width={14} height={14} />
         </button>
         {pages.map((page, i) => (
           <GuestPageButton
@@ -73,7 +73,7 @@ export const GuestPagination = ({
           aria-label={t("guests__pagination__next")}
           className="border-border bg-card text-foreground flex size-7.5 items-center justify-center rounded-8 border disabled:opacity-40 not-disabled:cursor-pointer"
         >
-          <ChevronRight width={14} height={14} />
+          <ChevronRightIcon width={14} height={14} />
         </button>
         <span className="type-caption text-muted-foreground ml-2">
           {t("guests__pagination__page_of", {

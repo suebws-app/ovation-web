@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Mail } from "@ovation/icons/Mail";
+import { MailIcon } from "@ovation/icons/MailIcon";
 import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
@@ -30,7 +30,7 @@ export const VerifyEmailPage = () => {
       <Logo />
       <div className="mt-16 flex flex-1 flex-col items-center text-center">
         <div className="rounded-20 bg-primary/10 mb-6 inline-flex size-18 items-center justify-center">
-          <Mail
+          <MailIcon
             width={30}
             height={30}
             className="text-primary"

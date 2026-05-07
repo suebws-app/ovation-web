@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@ovation/ui/utils/cn";
-import { Plus } from "@ovation/icons/Plus";
+import { PlusIcon } from "@ovation/icons/PlusIcon";
 import { CoverSelectedBadge } from "./CoverSelectedBadge";
 
 type CoverOptionProps = {
@@ -42,7 +42,7 @@ export const CoverOption = ({
       }
     >
       {isUpload ? (
-        <Plus
+        <PlusIcon
           width={28}
           height={28}
           className="text-primary"

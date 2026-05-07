@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Upload } from "@ovation/icons/Upload";
+import { UploadIcon } from "@ovation/icons/UploadIcon";
 import { usePhotoUpload } from "../hooks/usePhotoUpload";
 
 type PhotoUploadButtonProps = {
@@ -43,7 +43,7 @@ export const PhotoUploadButton = ({ eventId }: PhotoUploadButtonProps) => {
         disabled={isUploading}
         className="rounded-10 bg-foreground text-background hover:bg-foreground/90"
       >
-        <Upload width={13} height={13} />{" "}
+        <UploadIcon width={13} height={13} />{" "}
         {isUploading
           ? t("photos__toolbar__uploading")
           : t("photos__toolbar__upload")}

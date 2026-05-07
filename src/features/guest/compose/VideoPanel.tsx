@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Stop } from "@ovation/icons/Stop";
-import { Video } from "@ovation/icons/Video";
+import { StopIcon } from "@ovation/icons/StopIcon";
+import { VideoIcon } from "@ovation/icons/VideoIcon";
 import { useVideoRecorder } from "./useVideoRecorder";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 
@@ -60,7 +60,7 @@ export const VideoPanel = ({ onCaptured, maxDurationSec }: VideoPanelProps) => {
             </span>
           </div>
           <Button type="button" onClick={recorder.stop} className="rounded-full">
-            <Stop width={14} height={14} />
+            <StopIcon width={14} height={14} />
             {t("guest__record__video__stop")}
           </Button>
         </>
@@ -75,7 +75,7 @@ export const VideoPanel = ({ onCaptured, maxDurationSec }: VideoPanelProps) => {
             t("guest__record__video__requesting")
           ) : (
             <>
-              <Video width={14} height={14} />
+              <VideoIcon width={14} height={14} />
               {t("guest__record__video__start")}
             </>
           )}

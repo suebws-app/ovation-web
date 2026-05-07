@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { FeaturePill } from "./FeaturePill";
 import { BookMock } from "./BookMock";
@@ -60,7 +60,7 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
             >
               <Link href={`/app/keepsakes/${slug}`}>
                 {t("keepsakes__featured__order_now")}{" "}
-                <ArrowRight width={13} height={13} />
+                <ArrowRightIcon width={13} height={13} />
               </Link>
             </Button>
           ) : (

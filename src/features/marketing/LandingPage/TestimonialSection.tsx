@@ -7,10 +7,14 @@ import { STAT_KEYS } from "./constants";
 export const TestimonialSection = () => {
   const t = useTranslations();
 
-  const stats = STAT_KEYS.map((k) => ({ value: t(k.value), label: t(k.label) }));
+  const stats = STAT_KEYS.map((k) => ({
+    value: t(k.value),
+    label: t(k.label),
+  }));
 
   return (
     <section className="from-primary to-primary/80 text-primary-foreground relative overflow-hidden bg-linear-to-br">
+      <div className="dark:bg-background/90 pointer-events-none absolute inset-0" />
       <div className="bg-destructive/30 pointer-events-none absolute -top-25 -right-20 size-100 rounded-full blur-3xl" />
       <div className="bg-accent/25 pointer-events-none absolute -bottom-20 -left-15 size-80 rounded-full blur-3xl" />
 

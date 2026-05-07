@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Download } from "@ovation/icons/Download";
+import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 import {
   applyGuestFilter,
   applyGuestSearch,
@@ -141,7 +141,7 @@ export const GuestDirectory = ({
               disabled={filtered.length === 0 || isExporting}
               onClick={() => exportCsv(filtered)}
             >
-              <Download width={13} height={13} />
+              <DownloadIcon width={13} height={13} />
               {t("guests__directory__export")}
             </Button>
           </div>

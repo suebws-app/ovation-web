@@ -1,4 +1,4 @@
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Button } from "@ovation/ui/components/Button";
 import { cn } from "@ovation/ui/utils/cn";
 
@@ -27,7 +27,7 @@ export const KioskChecklistItem = ({
         done ? "bg-secondary" : "border-border bg-card border-2",
       )}
     >
-      {done && <Check width={14} height={14} className="text-background" />}
+      {done && <CheckIcon width={14} height={14} className="text-background" />}
     </div>
     <div className="min-w-0 flex-1">
       <div

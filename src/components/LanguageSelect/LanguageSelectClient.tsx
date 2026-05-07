@@ -3,7 +3,7 @@
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { type Locale } from "@/i18n/config";
-import { Globe } from "@ovation/icons/Globe";
+import { GlobeIcon } from "@ovation/icons/GlobeIcon";
 import {
   Select,
   SelectContent,
@@ -40,7 +40,7 @@ export const LanguageSelectClient = ({
   return (
     <Select value={locale} onValueChange={handleChange}>
       <SelectTrigger className="border-none">
-        <Globe className="size-3.5 shrink-0" />
+        <GlobeIcon className="size-3.5 shrink-0" />
         <SelectValue />
       </SelectTrigger>
       <SelectContent position="popper" className="max-h-40">

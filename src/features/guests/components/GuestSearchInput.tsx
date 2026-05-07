@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Search } from "@ovation/icons/Search";
+import { SearchIcon } from "@ovation/icons/SearchIcon";
 import { XIcon } from "@ovation/icons/XIcon";
 import { useGuestSearch, useGuestsStore } from "../store/useGuestsStore";
 
@@ -22,7 +22,7 @@ export const GuestSearchInput = () => {
 
   return (
     <div className="rounded-10 border-border bg-background flex w-64 items-center gap-2.5 border px-3.5 py-2">
-      <Search
+      <SearchIcon
         width={14}
         height={14}
         className="text-muted-foreground"

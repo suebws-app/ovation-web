@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
-import { Heart } from "@ovation/icons/Heart";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { Link } from "@/i18n/navigation";
@@ -39,7 +39,7 @@ export const GuestThankYouPage = async ({
         <div className="flex flex-1 flex-col gap-6 px-5 pt-6 pb-9 tablet:px-8 small-desktop:px-10 small-desktop:py-9">
           <div className="bg-card/65 border-border rounded-16 flex flex-col items-center gap-5 border p-6 text-center backdrop-blur-sm tablet:p-8">
             <div className="bg-destructive/15 rounded-20 flex size-16 items-center justify-center">
-              <Heart
+              <HeartIcon
                 width={28}
                 height={28}
                 className="fill-destructive text-destructive"
@@ -80,7 +80,7 @@ export const GuestThankYouPage = async ({
             >
               <Link href={`/g/${slug}/compose`}>
                 {t("guest__thank_you__cta")}
-                <ArrowRight width={16} height={16} />
+                <ArrowRightIcon width={16} height={16} />
               </Link>
             </Button>
           </StickyCTA>

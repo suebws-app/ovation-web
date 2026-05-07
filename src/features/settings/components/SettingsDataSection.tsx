@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Box } from "@ovation/icons/Box";
+import { BoxIcon } from "@ovation/icons/BoxIcon";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsCard } from "./SettingsCard";
 import { SettingsRow } from "./SettingsRow";
@@ -84,7 +84,7 @@ export const SettingsDataSection = () => {
               last={i === INDIVIDUAL_KEYS.length - 1}
             >
               <Button variant="outline" size="sm" className="rounded-full">
-                <Box width={13} height={13} />
+                <BoxIcon width={13} height={13} />
                 {t("settings__data__download")}
               </Button>
             </SettingsRow>

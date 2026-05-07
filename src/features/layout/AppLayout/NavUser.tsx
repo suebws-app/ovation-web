@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { LogOut } from "@ovation/icons/LogOut";
-import { ChevronsUpDown } from "@ovation/icons/ChevronsUpDown";
-import { Settings as SettingsIcon } from "@ovation/icons/Settings";
+import { LogOutIcon } from "@ovation/icons/LogOutIcon";
+import { ChevronsUpDownIcon } from "@ovation/icons/ChevronsUpDownIcon";
+import { SettingsIcon as SettingsIcon } from "@ovation/icons/SettingsIcon";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -80,7 +80,7 @@ export const NavUser = ({ user }: NavUserProps) => {
                   {user.email}
                 </span>
               </div>
-              <ChevronsUpDown className="ml-auto size-4" />
+              <ChevronsUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -124,10 +124,8 @@ export const NavUser = ({ user }: NavUserProps) => {
               }}
               disabled={signingOut}
             >
-              <LogOut />
-              {signingOut
-                ? t("nav_user__signing_out")
-                : t("nav_user__log_out")}
+              <LogOutIcon />
+              {signingOut ? t("nav_user__signing_out") : t("nav_user__log_out")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

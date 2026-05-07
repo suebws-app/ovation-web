@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { paymentsClient } from "@/lib/api/payments-client";
@@ -346,7 +346,7 @@ export const CompletionStep = () => {
             >
               <Link href={appRoutes.app.root}>
                 {t("signup__completion__open_dashboard")}
-                <ArrowRight width={15} height={15} />
+                <ArrowRightIcon width={15} height={15} />
               </Link>
             </Button>
             <Button

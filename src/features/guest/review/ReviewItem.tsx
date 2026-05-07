@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@ovation/ui/utils/cn";
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 
 type ReviewItemProps = {
   icon: ReactNode;
@@ -37,7 +37,7 @@ export const ReviewItem = ({
           </p>
         )}
       </div>
-      <Check width={18} height={18} className="text-secondary shrink-0" />
+      <CheckIcon width={18} height={18} className="text-secondary shrink-0" />
     </div>
     {preview}
   </div>

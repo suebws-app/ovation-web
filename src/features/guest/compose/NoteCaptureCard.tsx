@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { MessageSquare } from "@ovation/icons/MessageSquare";
-import { Plus } from "@ovation/icons/Plus";
+import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
+import { PlusIcon } from "@ovation/icons/PlusIcon";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 import { CaptureCardHeader } from "./CaptureCardHeader";
 import { NotePanel } from "./NotePanel";
@@ -21,7 +21,7 @@ export const NoteCaptureCard = () => {
   return (
     <div className="bg-card/65 border-border rounded-16 flex flex-col gap-4 border p-4 backdrop-blur-sm">
       <CaptureCardHeader
-        icon={<MessageSquare width={18} height={18} />}
+        icon={<MessageSquareIcon width={18} height={18} />}
         iconClassName="bg-secondary"
         title={t("guest__compose__note_title")}
         meta={
@@ -55,7 +55,7 @@ export const NoteCaptureCard = () => {
           className="w-full rounded-full"
           onClick={() => setEditing(true)}
         >
-          <Plus width={14} height={14} />
+          <PlusIcon width={14} height={14} />
           {t("guest__compose__add_note")}
         </Button>
       )}

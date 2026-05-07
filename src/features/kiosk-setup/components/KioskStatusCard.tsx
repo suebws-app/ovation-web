@@ -2,8 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Play } from "@ovation/icons/Play";
-import { QrCode } from "@ovation/icons/QrCode";
+import { PlayIcon } from "@ovation/icons/PlayIcon";
+import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
 import { useRouter } from "@/i18n/navigation";
 import { startKioskOnThisDevice } from "../startKioskOnThisDevice";
 
@@ -28,17 +28,17 @@ export const KioskStatusCard = ({ slug }: KioskStatusCardProps) => {
           className="rounded-16 mt-4 w-full shadow-lg"
           onClick={() => startKioskOnThisDevice(router, slug)}
         >
-          <Play width={14} height={14} />
+          <PlayIcon width={14} height={14} />
           {t("kiosk__hero__start")}
         </Button>
       ) : (
         <Button disabled className="rounded-16 mt-4 w-full shadow-lg">
-          <Play width={14} height={14} />
+          <PlayIcon width={14} height={14} />
           {t("kiosk__hero__needs_event")}
         </Button>
       )}
       <div className="rounded-10 bg-background type-caption text-muted-foreground mt-3.5 flex items-center gap-2.5 p-3 leading-relaxed">
-        <QrCode width={20} height={20} className="text-primary shrink-0" />
+        <QrCodeIcon width={20} height={20} className="text-primary shrink-0" />
         {t("kiosk__hero__qr_hint")}
       </div>
     </div>

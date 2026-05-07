@@ -1,9 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { WhatsApp } from "@ovation/icons/WhatsApp";
-import { Sms } from "@ovation/icons/Sms";
-import { Mail } from "@ovation/icons/Mail";
+import { WhatsAppIcon } from "@ovation/icons/WhatsAppIcon";
+import { SmsIcon } from "@ovation/icons/SmsIcon";
+import { MailIcon } from "@ovation/icons/MailIcon";
 import { NudgeChannelButton } from "./NudgeChannelButton";
 
 export const GuestNudgeCard = () => {
@@ -11,19 +11,19 @@ export const GuestNudgeCard = () => {
   const channels = [
     {
       label: t("guests__nudge__channel_whatsapp"),
-      icon: WhatsApp,
+      icon: WhatsAppIcon,
       count: 19,
       recommended: true,
     },
     {
       label: t("guests__nudge__channel_sms"),
-      icon: Sms,
+      icon: SmsIcon,
       count: 8,
       recommended: false,
     },
     {
       label: t("guests__nudge__channel_email"),
-      icon: Mail,
+      icon: MailIcon,
       count: 7,
       recommended: false,
     },

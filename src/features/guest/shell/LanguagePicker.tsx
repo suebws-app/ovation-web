@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@ovation/ui/components/Popover";
-import { ChevronDown } from "@ovation/icons/ChevronDown";
+import { ChevronDownIcon } from "@ovation/icons/ChevronDownIcon";
 import { locales } from "@/i18n/config";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { LanguageOption } from "./LanguageOption";
@@ -46,7 +46,7 @@ export const LanguagePicker = () => {
             {currentLocale.toUpperCase()}
           </span>
           <span className="type-body-small font-semibold">{currentLabel}</span>
-          <ChevronDown
+          <ChevronDownIcon
             width={14}
             height={14}
             className="text-muted-foreground"

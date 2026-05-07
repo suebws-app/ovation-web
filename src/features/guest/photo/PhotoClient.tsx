@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Camera } from "@ovation/icons/Camera";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { CameraIcon } from "@ovation/icons/CameraIcon";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { Link } from "@/i18n/navigation";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
@@ -117,7 +117,7 @@ export const PhotoClient = ({
             </>
           ) : (
             <>
-              <Camera width={28} height={28} className="text-primary" />
+              <CameraIcon width={28} height={28} className="text-primary" />
               <p className="type-body-small text-muted-foreground max-w-sm">
                 {t("guest__photo__caption")}
               </p>
@@ -126,7 +126,7 @@ export const PhotoClient = ({
                 className="rounded-full"
                 onClick={() => inputRef.current?.click()}
               >
-                <Camera width={16} height={16} />
+                <CameraIcon width={16} height={16} />
                 {t("guest__record__photo__choose")}
               </Button>
             </>
@@ -157,7 +157,7 @@ export const PhotoClient = ({
               {photo
                 ? t("guest__wizard__continue")
                 : t("guest__photo__skip_continue")}
-              <ArrowRight width={16} height={16} />
+              <ArrowRightIcon width={16} height={16} />
             </Link>
           </Button>
         </div>

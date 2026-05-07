@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Badge } from "@ovation/ui/components/Badge";
-import { Camera } from "@ovation/icons/Camera";
+import { CameraIcon } from "@ovation/icons/CameraIcon";
 import { VerifiedDot } from "./VerifiedDot";
 
 type PartnerCardProps = {
@@ -36,7 +36,7 @@ export const PartnerCard = ({
         type="button"
         className="border-border bg-card absolute -right-0.5 -bottom-0.5 flex size-5.5 cursor-pointer items-center justify-center rounded-full border"
       >
-        <Camera width={11} height={11} />
+        <CameraIcon width={11} height={11} />
       </button>
     </div>
     <div className="min-w-0 flex-1">

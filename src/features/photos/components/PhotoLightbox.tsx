@@ -1,13 +1,15 @@
 "use client";
 
+import "@vidstack/react/player/styles/default/theme.css";
+import "@vidstack/react/player/styles/default/layouts/video.css";
 import { useCallback, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { ChevronLeft } from "@ovation/icons/ChevronLeft";
-import { ChevronRight } from "@ovation/icons/ChevronRight";
+import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
+import { ChevronRightIcon } from "@ovation/icons/ChevronRightIcon";
 import { XIcon } from "@ovation/icons/XIcon";
-import { Heart } from "@ovation/icons/Heart";
-import { Download } from "@ovation/icons/Download";
-import { Book } from "@ovation/icons/Book";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
+import { DownloadIcon } from "@ovation/icons/DownloadIcon";
+import { BookIcon } from "@ovation/icons/BookIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import {
   MediaPlayer,
@@ -219,7 +221,7 @@ export const PhotoLightbox = ({
             }
             className="hover:bg-white/10 flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors disabled:opacity-50"
           >
-            <Heart
+            <HeartIcon
               width={16}
               height={16}
               className={favorited ? "fill-destructive text-destructive" : ""}
@@ -236,7 +238,7 @@ export const PhotoLightbox = ({
             }
             className="hover:bg-white/10 flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors disabled:opacity-50"
           >
-            <Book
+            <BookIcon
               width={16}
               height={16}
               className={inGoldBook ? "fill-yellow-400 text-yellow-400" : ""}
@@ -249,7 +251,7 @@ export const PhotoLightbox = ({
               aria-label={t("photos__detail__download")}
               className="hover:bg-white/10 flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors"
             >
-              <Download width={16} height={16} />
+              <DownloadIcon width={16} height={16} />
             </button>
           )}
           <button
@@ -341,7 +343,7 @@ export const PhotoLightbox = ({
             aria-label={t("photos__lightbox__prev")}
             className="absolute left-4 flex size-11 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/20"
           >
-            <ChevronLeft width={18} height={18} />
+            <ChevronLeftIcon width={18} height={18} />
           </button>
         )}
         {canGoNext && (
@@ -354,7 +356,7 @@ export const PhotoLightbox = ({
             aria-label={t("photos__lightbox__next")}
             className="absolute right-4 flex size-11 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/20"
           >
-            <ChevronRight width={18} height={18} />
+            <ChevronRightIcon width={18} height={18} />
           </button>
         )}
       </div>

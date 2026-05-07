@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Download } from "@ovation/icons/Download";
+import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 import type { EventStats } from "@/lib/api/types";
 import { useExportAllMessages } from "../hooks/useExportAllMessages";
 
@@ -64,7 +64,7 @@ export const MessageToolbar = ({ stats }: MessageToolbarProps) => {
             onClick={exportAll}
             className="rounded-10 bg-foreground text-background hover:bg-foreground/90"
           >
-            <Download width={13} height={13} />{" "}
+            <DownloadIcon width={13} height={13} />{" "}
             {t("messages__toolbar__export_all")}
           </Button>
         </div>

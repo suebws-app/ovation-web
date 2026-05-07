@@ -3,10 +3,10 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
-import { Heart } from "@ovation/icons/Heart";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
-import { Mic } from "@ovation/icons/Mic";
-import { Video } from "@ovation/icons/Video";
+import { MicIcon } from "@ovation/icons/MicIcon";
+import { VideoIcon } from "@ovation/icons/VideoIcon";
 import type { GuestRow as GuestRowData } from "../adapters";
 import { GuestStatusPill } from "./GuestStatusPill";
 
@@ -59,7 +59,7 @@ export const GuestRow = ({
               {guest.name}
             </span>
             {guest.isFavorite && (
-              <Heart
+              <HeartIcon
                 width={12}
                 height={12}
                 fill="var(--destructive)"
@@ -77,7 +77,7 @@ export const GuestRow = ({
           {guest.messageCount}
         </span>
         {guest.audioCount > 0 && (
-          <Mic width={12} height={12} className="text-muted-foreground" />
+          <MicIcon width={12} height={12} className="text-muted-foreground" />
         )}
         {guest.photoCount > 0 && (
           <ImageIcon
@@ -87,7 +87,7 @@ export const GuestRow = ({
           />
         )}
         {guest.videoCount > 0 && (
-          <Video width={12} height={12} className="text-muted-foreground" />
+          <VideoIcon width={12} height={12} className="text-muted-foreground" />
         )}
       </div>
       <GuestStatusPill

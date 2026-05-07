@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Video } from "@ovation/icons/Video";
-import { Plus } from "@ovation/icons/Plus";
+import { VideoIcon } from "@ovation/icons/VideoIcon";
+import { PlusIcon } from "@ovation/icons/PlusIcon";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 import { CaptureCardHeader } from "./CaptureCardHeader";
 import { VideoPanel } from "./VideoPanel";
@@ -30,7 +30,7 @@ export const VideoCaptureCard = ({ maxDurationSec }: VideoCaptureCardProps = {})
   return (
     <div className="bg-card/65 border-border rounded-16 flex flex-col gap-4 border p-4 backdrop-blur-sm">
       <CaptureCardHeader
-        icon={<Video width={18} height={18} />}
+        icon={<VideoIcon width={18} height={18} />}
         iconClassName="bg-destructive"
         title={t("guest__compose__video_title")}
         meta={
@@ -88,7 +88,7 @@ export const VideoCaptureCard = ({ maxDurationSec }: VideoCaptureCardProps = {})
           className="w-full rounded-full"
           onClick={() => setEditing(true)}
         >
-          <Plus width={14} height={14} />
+          <PlusIcon width={14} height={14} />
           {t("guest__compose__add_video")}
         </Button>
       )}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Plus } from "@ovation/icons/Plus";
+import { PlusIcon } from "@ovation/icons/PlusIcon";
 import { SUPPORTED_LANGUAGES, type SupportedLanguage } from "@/lib/api/types";
 import { KioskLanguageChip } from "./KioskLanguageChip";
 
@@ -77,7 +77,7 @@ export const KioskLanguagePicker = ({
             onClick={() => setOpen((v) => !v)}
             className="border-border type-caption text-muted-foreground inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-dashed px-3 py-2 font-semibold"
           >
-            <Plus width={12} height={12} />
+            <PlusIcon width={12} height={12} />
             {t("kiosk__config__languages__add")}
           </button>
           {open && (

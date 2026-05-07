@@ -1,6 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { formatPrice } from "../designTokens";
 import type { KeepsakeProductDetail } from "@/lib/api/types";
 import type { KeepsakeDesign } from "../designTokens";
@@ -21,7 +21,7 @@ export const CustomizerHeader = ({
         href="/app/keepsakes"
         className="text-muted-foreground hover:text-foreground type-caption inline-flex items-center gap-1 self-start tracking-wider"
       >
-        <ArrowRight className="rotate-180" width={12} height={12} />
+        <ArrowRightIcon className="rotate-180" width={12} height={12} />
         Keepsakes
       </Link>
       <div

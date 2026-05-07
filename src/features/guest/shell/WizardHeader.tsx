@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ChevronLeft } from "@ovation/icons/ChevronLeft";
+import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
 import { Link } from "@/i18n/navigation";
 
 type WizardHeaderProps = {
@@ -29,7 +29,7 @@ export const WizardHeader = ({
           href={backHref}
           className="bg-card/85 border-border rounded-full text-foreground inline-flex items-center gap-1.5 border px-3 py-2 backdrop-blur-sm shadow-sm"
         >
-          <ChevronLeft width={14} height={14} />
+          <ChevronLeftIcon width={14} height={14} />
           <span className="type-body-small font-semibold">
             {t("guest__wizard__back")}
           </span>

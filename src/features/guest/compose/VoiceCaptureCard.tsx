@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Mic } from "@ovation/icons/Mic";
-import { Plus } from "@ovation/icons/Plus";
+import { MicIcon } from "@ovation/icons/MicIcon";
+import { PlusIcon } from "@ovation/icons/PlusIcon";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 import { CaptureCardHeader } from "./CaptureCardHeader";
 import { VoicePanel } from "./VoicePanel";
@@ -30,7 +30,7 @@ export const VoiceCaptureCard = ({ maxDurationSec }: VoiceCaptureCardProps = {})
   return (
     <div className="bg-card/65 border-border rounded-16 flex flex-col gap-4 border p-4 backdrop-blur-sm">
       <CaptureCardHeader
-        icon={<Mic width={18} height={18} />}
+        icon={<MicIcon width={18} height={18} />}
         iconClassName="bg-primary"
         title={t("guest__compose__voice_title")}
         meta={
@@ -83,7 +83,7 @@ export const VoiceCaptureCard = ({ maxDurationSec }: VoiceCaptureCardProps = {})
           className="w-full rounded-full"
           onClick={() => setEditing(true)}
         >
-          <Plus width={14} height={14} />
+          <PlusIcon width={14} height={14} />
           {t("guest__compose__add_voice")}
         </Button>
       )}

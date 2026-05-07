@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "../../../components/SectionTitle";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
-import { Check } from "@ovation/icons/Check";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Button } from "@ovation/ui/components/Button";
 import { Card } from "@ovation/ui/components/Card";
 import { Kicker } from "@ovation/ui/components/Kicker";
@@ -47,7 +47,7 @@ export const FinalCTA = () => {
                   {t("marketing__cta__domain_placeholder")}
                 </span>
                 <span className="bg-secondary flex size-5.5 shrink-0 items-center justify-center rounded-full">
-                  <Check
+                  <CheckIcon
                     width={12}
                     height={12}
                     stroke="white"
@@ -61,7 +61,7 @@ export const FinalCTA = () => {
                 className="bg-destructive mt-3.5 w-full rounded-full shadow-xl"
               >
                 {t("marketing__cta__button")}
-                <ArrowRight width={16} height={16} />
+                <ArrowRightIcon width={16} height={16} />
               </Button>
 
               <p className="text-muted-foreground type-caption mt-3.5 text-center">

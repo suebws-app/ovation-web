@@ -1,7 +1,7 @@
-import { Heart } from "@ovation/icons/Heart";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
 
 export const PhotoFavouriteIndicator = () => (
-  <Heart
+  <HeartIcon
     width={16}
     height={16}
     fill="oklch(0.723 0.135 40)"

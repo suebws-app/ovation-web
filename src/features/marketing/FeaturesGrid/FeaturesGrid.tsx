@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Badge } from "@ovation/ui/components/Badge";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Lock } from "@ovation/icons/Lock";
+import { LockIcon } from "@ovation/icons/LockIcon";
 import { FeaturesRitualBar } from "./FeaturesRitualBar";
 import { FeaturesQrCard } from "./FeaturesQrCard";
 import { SectionTitle } from "../../../components/SectionTitle";
@@ -97,7 +97,7 @@ export const FeaturesGrid = () => {
             className="bg-secondary/15"
           >
             <div className="text-muted-foreground type-caption mt-auto flex items-center gap-2">
-              <Lock className="size-3.5 shrink-0" />
+              <LockIcon className="size-3.5 shrink-0" />
               <span>{t("marketing__features__privacy_detail")}</span>
             </div>
           </FeatureCard>

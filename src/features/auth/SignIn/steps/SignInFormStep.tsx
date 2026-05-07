@@ -12,7 +12,7 @@ import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Separator } from "@ovation/ui/components/Separator";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { SocialAuthButtons } from "../../components/SocialAuthButtons";
 import { SignInBrandPanel } from "../components/SignInBrandPanel";
 import { Link, useRouter } from "@/i18n/navigation";
@@ -157,7 +157,7 @@ export const SignInFormStep = () => {
             {isSubmitting
               ? t("auth__signin__submit_pending")
               : t("auth__signin__submit")}
-            <ArrowRight width={16} height={16} />
+            <ArrowRightIcon width={16} height={16} />
           </Button>
 
           <p className="type-body-small text-muted-foreground mt-4.5 text-center">

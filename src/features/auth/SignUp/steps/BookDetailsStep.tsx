@@ -7,8 +7,8 @@ import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Calendar } from "@ovation/ui/components/DatePicker";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
-import { Calendar as CalendarIcon } from "@ovation/icons/Calendar";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { SplitLayout } from "../components/SplitLayout";
 import { BookPreview } from "../components/BookPreview";
 import { NameOrderOption } from "../components/NameOrderOption";
@@ -226,7 +226,7 @@ export const BookDetailsStep = () => {
             className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
           >
             {t("signup__book_details__continue")}
-            <ArrowRight width={16} height={16} />
+            <ArrowRightIcon width={16} height={16} />
           </Button>
         </>
       }

@@ -10,7 +10,7 @@ import { Label } from "@ovation/ui/components/Label";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Separator } from "@ovation/ui/components/Separator";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { SplitLayout } from "../components/SplitLayout";
 import { SocialAuthButtons } from "../../components/SocialAuthButtons";
 import { ChecklistItem } from "../components/ChecklistItem";
@@ -222,7 +222,7 @@ export const CreateAccountStep = () => {
             {isSubmitting
               ? t("auth__signup__create_account__submit_pending")
               : t("auth__signup__create_account__submit")}
-            <ArrowRight width={16} height={16} />
+            <ArrowRightIcon width={16} height={16} />
           </Button>
 
           <p className="type-body-small text-muted-foreground mt-4.5 text-center">

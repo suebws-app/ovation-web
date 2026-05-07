@@ -1,5 +1,5 @@
 import { cn } from "../utils/cn";
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 
 type FeatureListItemProps = {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export const FeatureListItem = ({
 }: FeatureListItemProps) => (
   <li className={cn("type-body-small flex items-start gap-2.5", className)}>
     <span className={checkClassName}>
-      <Check className="mt-0.5 size-4 shrink-0" strokeWidth={2.2} />
+      <CheckIcon className="mt-0.5 size-4 shrink-0" strokeWidth={2.2} />
     </span>
     {children}
   </li>

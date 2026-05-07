@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Eye } from "@ovation/icons/Eye";
+import { EyeIcon } from "@ovation/icons/EyeIcon";
 import { Link } from "@/i18n/navigation";
 import type { PublicEvent } from "@/lib/api/types";
 import { KioskLiveFrame } from "./KioskLiveFrame";
@@ -46,7 +46,7 @@ export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
         </h2>
         <Button asChild size="sm" className="rounded-full">
           <Link href={`/g/${slug}`}>
-            <Eye width={13} height={13} />
+            <EyeIcon width={13} height={13} />
             {t("kiosk__preview__open_as_guest")}
           </Link>
         </Button>

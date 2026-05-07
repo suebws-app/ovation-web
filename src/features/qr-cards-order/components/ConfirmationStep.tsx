@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { formatEuro } from "../pricing";
@@ -22,7 +22,7 @@ export const ConfirmationStep = ({
   return (
     <div className="mx-auto max-w-3xl text-center">
       <span className="bg-secondary text-secondary-foreground ring-secondary/20 mx-auto mb-6 flex size-20 items-center justify-center rounded-full ring-8">
-        <Check width={40} height={40} strokeWidth={3} />
+        <CheckIcon width={40} height={40} strokeWidth={3} />
       </span>
       <p className="type-overline text-primary font-semibold tracking-widest">
         {t("qr_cards_order__confirm__eyebrow")}

@@ -1,4 +1,4 @@
-import { Star } from "@ovation/icons/Star";
+import { StarIcon } from "@ovation/icons/StarIcon";
 
 type TestimonialCardProps = {
   quote: string;
@@ -14,7 +14,7 @@ export const TestimonialCard = ({
   <div className="relative">
     <div className="mb-2.5 flex gap-0.5">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star
+        <StarIcon
           key={i}
           width={12}
           height={12}

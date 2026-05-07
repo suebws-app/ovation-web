@@ -1,5 +1,5 @@
 import { cn } from "@ovation/ui/utils/cn";
-import { Download } from "@ovation/icons/Download";
+import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 
 type FormatRowProps = {
   ext: string;
@@ -52,7 +52,7 @@ export const FormatRow = ({
           : "border-border bg-card text-foreground hover:bg-muted border",
       )}
     >
-      <Download width={15} height={15} strokeWidth={1.7} />
+      <DownloadIcon width={15} height={15} strokeWidth={1.7} />
     </button>
   </div>
 );

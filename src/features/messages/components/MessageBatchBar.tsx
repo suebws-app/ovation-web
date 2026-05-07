@@ -2,10 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Book } from "@ovation/icons/Book";
-import { Check } from "@ovation/icons/Check";
-import { Download } from "@ovation/icons/Download";
-import { Heart } from "@ovation/icons/Heart";
+import { BookIcon } from "@ovation/icons/BookIcon";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
+import { DownloadIcon } from "@ovation/icons/DownloadIcon";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
 
 type MessageBatchBarProps = {
   count: number;
@@ -44,7 +44,7 @@ export const MessageBatchBar = ({
             : "border-border bg-card text-transparent"
         }`}
       >
-        <Check width={13} height={13} strokeWidth={2.5} />
+        <CheckIcon width={13} height={13} strokeWidth={2.5} />
       </button>
 
       <span className="type-body-small font-semibold">
@@ -68,7 +68,7 @@ export const MessageBatchBar = ({
               disabled={bulkPending}
               className="rounded-full"
             >
-              <Heart width={13} height={13} />
+              <HeartIcon width={13} height={13} />
               {t("messages__batch__action_favourite")}
             </Button>
             <Button
@@ -78,7 +78,7 @@ export const MessageBatchBar = ({
               disabled={bulkPending}
               className="rounded-full"
             >
-              <Download width={13} height={13} />
+              <DownloadIcon width={13} height={13} />
               {t("messages__batch__action_download")}
             </Button>
             <Button
@@ -87,7 +87,7 @@ export const MessageBatchBar = ({
               disabled={bulkPending}
               className="rounded-full"
             >
-              <Book width={13} height={13} />
+              <BookIcon width={13} height={13} />
               {t("messages__batch__add_to_book")}
             </Button>
           </div>

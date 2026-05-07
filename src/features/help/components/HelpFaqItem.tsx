@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "@ovation/icons/ChevronDown";
+import { ChevronDownIcon } from "@ovation/icons/ChevronDownIcon";
 import { cn } from "@ovation/ui/utils/cn";
 
 type HelpFaqItemProps = {
@@ -20,7 +20,7 @@ export const HelpFaqItem = ({ question, answer }: HelpFaqItemProps) => {
         aria-expanded={open}
       >
         <span className="type-body-small font-semibold">{question}</span>
-        <ChevronDown
+        <ChevronDownIcon
           width={16}
           height={16}
           className={cn(
