@@ -6,7 +6,7 @@ import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { ClockIcon } from "@ovation/icons/ClockIcon";
-import { SplitLayout } from "../components/SplitLayout";
+import { AuthSplitLayout } from "../../components/AuthSplitLayout";
 import { BookPreview } from "../components/BookPreview";
 import { CoverOption } from "../components/CoverOption";
 import { CoverPattern } from "../components/CoverPattern";
@@ -88,8 +88,8 @@ export const CoverPhotoStep = () => {
   };
 
   return (
-    <SplitLayout
-      left={
+    <AuthSplitLayout
+      panel={
         <>
           <Kicker className="relative tracking-[2.5px] opacity-80">
             {t("signup__cover__brand_eyebrow")}
@@ -127,97 +127,96 @@ export const CoverPhotoStep = () => {
           </p>
         </>
       }
-      right={
-        <>
-          <Kicker className="text-primary mb-3">
-            {t("auth__signup__eyebrow_step", {
-              step: 4,
-              label: t("signup__cover__step_label"),
-            })}
-          </Kicker>
-          <h1 className="type-h1 leading-tight font-semibold tracking-tight">
-            {t("signup__cover__title_a")}
-            <br />
-            <span className="text-primary italic">
-              {t("signup__cover__title_b")}
-            </span>
-          </h1>
-          <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
-            {t("signup__cover__subtitle")}
-          </p>
+    >
+      <>
+        <Kicker className="text-primary mb-3">
+          {t("auth__signup__eyebrow_step", {
+            step: 4,
+            label: t("signup__cover__step_label"),
+          })}
+        </Kicker>
+        <h1 className="type-h1 leading-tight font-semibold tracking-tight">
+          {t("signup__cover__title_a")}
+          <br />
+          <span className="text-primary italic">
+            {t("signup__cover__title_b")}
+          </span>
+        </h1>
+        <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
+          {t("signup__cover__subtitle")}
+        </p>
 
-          <div className="mt-7 grid grid-cols-3 gap-3">
-            {COVER_OPTIONS.map((option) => (
-              <CoverOption
-                key={option.id}
-                label={t(option.labelKey)}
-                tint={option.tint}
-                isUpload={option.isUpload}
-                selected={formData.coverType === option.id}
-                initials={`${formData.partner1Name?.[0] ?? "L"}&${formData.partner2Name?.[0] ?? "T"}`}
-                onClick={() => handleSelectPreset(option.id)}
-              />
-            ))}
-          </div>
+        <div className="mt-7 grid grid-cols-3 gap-3">
+          {COVER_OPTIONS.map((option) => (
+            <CoverOption
+              key={option.id}
+              label={t(option.labelKey)}
+              tint={option.tint}
+              isUpload={option.isUpload}
+              selected={formData.coverType === option.id}
+              initials={`${formData.partner1Name?.[0] ?? "L"}&${formData.partner2Name?.[0] ?? "T"}`}
+              onClick={() => handleSelectPreset(option.id)}
+            />
+          ))}
+        </div>
 
-          <input
-            ref={inputRef}
-            type="file"
-            accept={ACCEPT_MIME}
-            className="hidden"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) handleFile(file);
-              e.target.value = "";
-            }}
-          />
+        <input
+          ref={inputRef}
+          type="file"
+          accept={ACCEPT_MIME}
+          className="hidden"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) handleFile(file);
+            e.target.value = "";
+          }}
+        />
 
-          {formData.coverFile && (
-            <div className="rounded-12 bg-primary/5 mt-4 flex items-center gap-3 p-3">
-              <div className="size-10 overflow-hidden rounded-md">
-                {formData.coverFilePreview && (
-                  <img
-                    src={formData.coverFilePreview}
-                    alt=""
-                    className="size-full object-cover"
-                  />
-                )}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="type-body-small text-foreground truncate font-semibold">
-                  {formData.coverFile.name}
-                </p>
-                <p className="type-caption text-muted-foreground">
-                  {t("signup__cover__file_size", {
-                    size: (formData.coverFile.size / (1024 * 1024)).toFixed(1),
-                  })}
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={handlePickFile}
-                className="type-caption text-primary cursor-pointer font-semibold"
-              >
-                {t("signup__cover__change")}
-              </button>
+        {formData.coverFile && (
+          <div className="rounded-12 bg-primary/5 mt-4 flex items-center gap-3 p-3">
+            <div className="size-10 overflow-hidden rounded-md">
+              {formData.coverFilePreview && (
+                <img
+                  src={formData.coverFilePreview}
+                  alt=""
+                  className="size-full object-cover"
+                />
+              )}
             </div>
-          )}
-
-          <div className="type-body-small text-muted-foreground mt-6 flex items-center gap-2.5">
-            <ClockIcon width={14} height={14} />
-            {t("signup__cover__skip")}
+            <div className="min-w-0 flex-1">
+              <p className="type-body-small text-foreground truncate font-semibold">
+                {formData.coverFile.name}
+              </p>
+              <p className="type-caption text-muted-foreground">
+                {t("signup__cover__file_size", {
+                  size: (formData.coverFile.size / (1024 * 1024)).toFixed(1),
+                })}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={handlePickFile}
+              className="type-caption text-primary cursor-pointer font-semibold"
+            >
+              {t("signup__cover__change")}
+            </button>
           </div>
+        )}
 
-          <Button
-            onClick={() => router.push(appRoutes.auth.signUpStep(5))}
-            size="lg"
-            className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
-          >
-            {t("signup__cover__continue")}
-            <ArrowRightIcon width={16} height={16} />
-          </Button>
-        </>
-      }
-    />
+        <div className="type-body-small text-muted-foreground mt-6 flex items-center gap-2.5">
+          <ClockIcon width={14} height={14} />
+          {t("signup__cover__skip")}
+        </div>
+
+        <Button
+          onClick={() => router.push(appRoutes.auth.signUpUrl)}
+          size="lg"
+          className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
+        >
+          {t("signup__cover__continue")}
+          <ArrowRightIcon width={16} height={16} />
+        </Button>
+      </>
+    </AuthSplitLayout>
   );
 };

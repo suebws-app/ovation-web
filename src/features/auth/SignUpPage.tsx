@@ -1,5 +1,1 @@
-import { SignUpFlow } from "@/features/auth/SignUp/SignUpFlow";
-
-export const SignUpPage = () => {
-  return <SignUpFlow step={1} />;
-};
+export { CreateAccountStep as SignUpPage } from "@/features/auth/SignUp/steps/CreateAccountStep";

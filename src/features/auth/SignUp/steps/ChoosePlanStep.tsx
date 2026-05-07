@@ -56,7 +56,7 @@ export const ChoosePlanStep = () => {
 
   const handleSelectPlan = (planId: string) => {
     updateFormData({ selectedPlan: planId });
-    router.push(appRoutes.auth.signUpStep(7));
+    router.push(appRoutes.auth.signUpDone);
   };
 
   return (
@@ -100,7 +100,7 @@ export const ChoosePlanStep = () => {
             type="button"
             onClick={() => {
               updateFormData({ selectedPlan: "essential" });
-              router.push(appRoutes.auth.signUpStep(7));
+              router.push(appRoutes.auth.signUpDone);
             }}
             className="text-primary cursor-pointer font-semibold"
           >

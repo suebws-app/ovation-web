@@ -21,10 +21,7 @@ type SignUpFormData = {
 };
 
 type SignUpStore = {
-  step: number;
-  totalSteps: number;
   formData: SignUpFormData;
-  setStep: (step: number) => void;
   updateFormData: (data: Partial<SignUpFormData>) => void;
 };
 
@@ -47,10 +44,7 @@ const initialFormData: SignUpFormData = {
 };
 
 export const useSignUpStore = create<SignUpStore>((set) => ({
-  step: 1,
-  totalSteps: 7,
   formData: initialFormData,
-  setStep: (step) => set({ step }),
   updateFormData: (data) =>
     set((state) => ({ formData: { ...state.formData, ...data } })),
 }));
