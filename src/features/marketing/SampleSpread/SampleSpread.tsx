@@ -4,6 +4,7 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 import { SampleAudio } from "./SampleAudio";
 import { SectionTitle } from "@/components/SectionTitle";
 import { Badge } from "@ovation/ui/components/Badge";
+import { SAMPLE_STAT_KEYS } from "./constants";
 
 type Stat = { value: string; label: string };
 
@@ -19,20 +20,7 @@ const StatItem = ({ value, label }: Stat) => (
 export const SampleSpread = () => {
   const t = useTranslations();
 
-  const stats: Stat[] = [
-    {
-      value: t("marketing__sample__stat1_value"),
-      label: t("marketing__sample__stat1_label"),
-    },
-    {
-      value: t("marketing__sample__stat2_value"),
-      label: t("marketing__sample__stat2_label"),
-    },
-    {
-      value: t("marketing__sample__stat3_value"),
-      label: t("marketing__sample__stat3_label"),
-    },
-  ];
+  const stats: Stat[] = SAMPLE_STAT_KEYS.map((k) => ({ value: t(k.value), label: t(k.label) }));
 
   return (
     <section>

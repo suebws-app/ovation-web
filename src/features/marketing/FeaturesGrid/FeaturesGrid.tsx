@@ -2,32 +2,17 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@ovation/ui/components/Badge";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Lock } from "@ovation/icons/Lock";
-import { FeaturesRitualBar } from "../FeaturesRitualBar";
-import { FeaturesQrCard } from "../FeaturesQrCard";
+import { FeaturesRitualBar } from "./FeaturesRitualBar";
+import { FeaturesQrCard } from "./FeaturesQrCard";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { FeatureCard } from "./FeatureCard";
-
-const GOLD_BOOK_PRICE = "€189";
-
-const LANGUAGES = [
-  "English",
-  "Español",
-  "Français",
-  "Deutsch",
-  "Italiano",
-  "Português",
-];
-
-const INTEGRATIONS = ["Zola", "WeddingWire", "The Knot", "Joy", "Planners.io"];
-
-const RITUAL_BARS = Array.from({ length: 30 }, (_, i) => i);
-
-const QR_ROTATIONS = [
-  "rotate-[-8deg]",
-  "rotate-[-4deg]",
-  "rotate-[0deg]",
-  "rotate-[4deg]",
-];
+import {
+  GOLD_BOOK_PRICE,
+  INTEGRATIONS,
+  LANGUAGES,
+  QR_ROTATIONS,
+  RITUAL_BARS,
+} from "./constants";
 
 export const FeaturesGrid = () => {
   const t = useTranslations();
