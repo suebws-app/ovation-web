@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Search } from "@ovation/icons/Search";
+import { SearchIcon } from "@ovation/icons/SearchIcon";
 import { XIcon } from "@ovation/icons/XIcon";
 import { usePhotoSearch, usePhotosStore } from "../store/usePhotosStore";
 
@@ -22,7 +22,7 @@ export const PhotoSearchInput = () => {
 
   return (
     <div className="rounded-10 border-border bg-background flex flex-1 items-center gap-2.5 border px-3.5 py-2.5">
-      <Search
+      <SearchIcon
         width={15}
         height={15}
         className="text-muted-foreground"

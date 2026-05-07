@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CreditCard } from "@ovation/icons/CreditCard";
+import { CreditCardIcon } from "@ovation/icons/CreditCardIcon";
 import {
   Select,
   SelectContent,
@@ -20,7 +20,7 @@ export const CurrencySelect = () => {
   return (
     <Select value={currency} onValueChange={(v) => setCurrency(v as Currency)}>
       <SelectTrigger className="border-none">
-        <CreditCard className="size-3.5 shrink-0" />
+        <CreditCardIcon className="size-3.5 shrink-0" />
         <SelectValue />
       </SelectTrigger>
       <SelectContent position="popper" className="max-h-40">

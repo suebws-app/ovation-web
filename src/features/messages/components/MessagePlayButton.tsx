@@ -1,5 +1,5 @@
-import { Play } from "@ovation/icons/Play";
-import { Pause } from "@ovation/icons/Pause";
+import { PlayIcon } from "@ovation/icons/PlayIcon";
+import { PauseIcon } from "@ovation/icons/PauseIcon";
 
 type MessagePlayButtonProps = {
   playing?: boolean;
@@ -14,9 +14,9 @@ export const MessagePlayButton = ({ playing }: MessagePlayButtonProps) => (
     }`}
   >
     {playing ? (
-      <Pause width={13} height={13} />
+      <PauseIcon width={13} height={13} />
     ) : (
-      <Play width={13} height={13} />
+      <PlayIcon width={13} height={13} />
     )}
   </div>
 );

@@ -1,5 +1,5 @@
 import type { ComponentType, SVGProps } from "react";
-import { ArrowUpRight } from "@ovation/icons/ArrowUpRight";
+import { ArrowUpRightIcon } from "@ovation/icons/ArrowUpRightIcon";
 
 type HelpResourceCardProps = {
   title: string;
@@ -28,7 +28,7 @@ export const HelpResourceCard = ({
     <div className="min-w-0 flex-1">
       <div className="flex items-center gap-2">
         <span className="type-body-small font-semibold">{title}</span>
-        <ArrowUpRight
+        <ArrowUpRightIcon
           width={14}
           height={14}
           className="text-muted-foreground group-hover:text-primary transition-colors"

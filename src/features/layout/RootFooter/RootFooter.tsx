@@ -114,8 +114,8 @@ export const RootFooter = ({ className }: RootFooterProps) => {
               {t("common__footer__tagline")}
             </p>
             <div className="mt-5 flex gap-2.5">
-              {["IG", "TT", "YT", "PN"].map((label) => (
-                <SocialIcon key={label} label={label} />
+              {(["IG", "TT"] as const).map((platform) => (
+                <SocialIcon key={platform} platform={platform} />
               ))}
             </div>
           </div>

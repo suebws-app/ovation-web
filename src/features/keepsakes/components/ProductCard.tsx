@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { ProductTag } from "./ProductTag";
 import { slugForSku } from "../slug";
@@ -62,7 +62,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
             >
               <Link href={`/app/keepsakes/${slug}`}>
                 {t("keepsakes__product__order")}{" "}
-                <ArrowRight width={12} height={12} />
+                <ArrowRightIcon width={12} height={12} />
               </Link>
             </Button>
           ) : (

@@ -2,8 +2,8 @@
 
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
-import { Book } from "@ovation/icons/Book";
-import { Heart } from "@ovation/icons/Heart";
+import { BookIcon } from "@ovation/icons/BookIcon";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
 import { Waveform } from "@/features/dashboard/components/Waveform";
 
@@ -92,14 +92,14 @@ export const MessageRow = ({
           {message.name}
         </span>
         {message.favorited && (
-          <Heart
+          <HeartIcon
             width={13}
             height={13}
             className="fill-destructive text-destructive"
           />
         )}
         {message.inGoldBook && (
-          <Book width={13} height={13} className="text-[#9A6B2F]" />
+          <BookIcon width={13} height={13} className="text-[#9A6B2F]" />
         )}
         {message.language && (
           <span className="rounded-4 bg-primary/10 type-caption text-primary px-1.5 py-0.5 font-bold tracking-wider uppercase">

@@ -1,9 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Check } from "@ovation/icons/Check";
-import { Mic } from "@ovation/icons/Mic";
-import { Hourglass } from "@ovation/icons/Hourglass";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
+import { MicIcon } from "@ovation/icons/MicIcon";
+import { HourglassIcon } from "@ovation/icons/HourglassIcon";
 import { PillBase } from "./PillBase";
 
 type GuestStatusPillProps = {
@@ -21,7 +21,7 @@ export const GuestStatusPill = ({
   if (contributed && thanked) {
     return (
       <PillBase className="bg-secondary/20 text-secondary-foreground">
-        <Check width={11} height={11} />
+        <CheckIcon width={11} height={11} />
         {t("guests__pill__contributed_thanked")}
       </PillBase>
     );
@@ -30,7 +30,7 @@ export const GuestStatusPill = ({
   if (contributed) {
     return (
       <PillBase className="bg-primary/15 text-primary">
-        <Mic width={11} height={11} />
+        <MicIcon width={11} height={11} />
         {t("guests__pill__contributed")}
       </PillBase>
     );
@@ -39,7 +39,7 @@ export const GuestStatusPill = ({
   if (wasNudged) {
     return (
       <PillBase className="bg-accent/25 text-accent-foreground">
-        <Hourglass width={11} height={11} />
+        <HourglassIcon width={11} height={11} />
         {t("guests__pill__nudged")}
       </PillBase>
     );
@@ -47,7 +47,7 @@ export const GuestStatusPill = ({
 
   return (
     <PillBase className="bg-muted text-muted-foreground">
-      <Hourglass width={11} height={11} />
+      <HourglassIcon width={11} height={11} />
       {t("guests__pill__awaiting")}
     </PillBase>
   );

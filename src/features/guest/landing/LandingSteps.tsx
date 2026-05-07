@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
-import { Mic } from "@ovation/icons/Mic";
-import { Camera } from "@ovation/icons/Camera";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { MicIcon } from "@ovation/icons/MicIcon";
+import { CameraIcon } from "@ovation/icons/CameraIcon";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { LandingStepCard } from "./LandingStepCard";
 
 export const LandingSteps = async () => {
@@ -16,21 +16,21 @@ export const LandingSteps = async () => {
           index={1}
           title={t("guest__landing__step_one_title")}
           subtitle={t("guest__landing__step_one_subtitle")}
-          icon={<Mic width={18} height={18} />}
+          icon={<MicIcon width={18} height={18} />}
           iconClassName="bg-primary"
         />
         <LandingStepCard
           index={2}
           title={t("guest__landing__step_two_title")}
           subtitle={t("guest__landing__step_two_subtitle")}
-          icon={<Camera width={18} height={18} />}
+          icon={<CameraIcon width={18} height={18} />}
           iconClassName="bg-destructive"
         />
         <LandingStepCard
           index={3}
           title={t("guest__landing__step_three_title")}
           subtitle={t("guest__landing__step_three_subtitle")}
-          icon={<ArrowRight width={18} height={18} />}
+          icon={<ArrowRightIcon width={18} height={18} />}
           iconClassName="bg-secondary"
         />
       </div>

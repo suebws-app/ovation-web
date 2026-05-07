@@ -2,16 +2,16 @@
 
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
-import { Home } from "@ovation/icons/Home";
-import { MessageSquare } from "@ovation/icons/MessageSquare";
+import { HomeIcon } from "@ovation/icons/HomeIcon";
+import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
-import { Star } from "@ovation/icons/Star";
-import { Settings } from "@ovation/icons/Settings";
-import { QrCode } from "@ovation/icons/QrCode";
-import { Monitor } from "@ovation/icons/Monitor";
-import { UserPlus } from "@ovation/icons/UserPlus";
-import { HelpCircle } from "@ovation/icons/HelpCircle";
-import { Users } from "@ovation/icons/Users";
+import { StarIcon } from "@ovation/icons/StarIcon";
+import { SettingsIcon } from "@ovation/icons/SettingsIcon";
+import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
+import { MonitorIcon } from "@ovation/icons/MonitorIcon";
+import { UserPlusIcon } from "@ovation/icons/UserPlusIcon";
+import { HelpCircleIcon } from "@ovation/icons/HelpCircleIcon";
+import { UsersIcon } from "@ovation/icons/UsersIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
 import { appRoutes } from "@/lib/routes";
@@ -23,11 +23,15 @@ type Translator = ReturnType<typeof useTranslations>;
 const buildGroups = (t: Translator): SidebarNavGroup[] => [
   {
     items: [
-      { label: t("sidebar__nav__home"), href: appRoutes.app.root, icon: Home },
+      {
+        label: t("sidebar__nav__home"),
+        href: appRoutes.app.root,
+        icon: HomeIcon,
+      },
       {
         label: t("sidebar__nav__messages"),
         href: appRoutes.app.messages,
-        icon: MessageSquare,
+        icon: MessageSquareIcon,
         badge: 12,
       },
       {
@@ -38,36 +42,40 @@ const buildGroups = (t: Translator): SidebarNavGroup[] => [
       {
         label: t("sidebar__nav__keepsakes"),
         href: appRoutes.app.keepsakes,
-        icon: Star,
+        icon: StarIcon,
       },
       {
         label: t("sidebar__nav__guests"),
         href: appRoutes.app.guests,
-        icon: Users,
+        icon: UsersIcon,
         badge: 112,
       },
       {
         label: t("sidebar__nav__settings"),
         href: appRoutes.app.settings,
-        icon: Settings,
+        icon: SettingsIcon,
       },
     ],
   },
   {
     label: t("sidebar__quick__title"),
     items: [
-      { label: t("sidebar__quick__qr"), href: appRoutes.app.qrCode, icon: QrCode },
+      {
+        label: t("sidebar__quick__qr"),
+        href: appRoutes.app.qrCode,
+        icon: QrCodeIcon,
+      },
       {
         label: t("sidebar__quick__kiosk"),
         href: appRoutes.app.kiosk,
-        icon: Monitor,
+        icon: MonitorIcon,
       },
       {
         label: t("sidebar__quick__invite"),
         href: "/app/invite",
-        icon: UserPlus,
+        icon: UserPlusIcon,
       },
-      { label: t("sidebar__quick__help"), href: "/help", icon: HelpCircle },
+      { label: t("sidebar__quick__help"), href: "/help", icon: HelpCircleIcon },
     ],
   },
 ];
@@ -81,6 +89,10 @@ export const AppSideBar = ({ user }: AppSideBarProps) => {
   const groups = buildGroups(t);
 
   return (
-    <Sidebar header={<Logo />} groups={groups} footer={<NavUser user={user} />} />
+    <Sidebar
+      header={<Logo />}
+      groups={groups}
+      footer={<NavUser user={user} />}
+    />
   );
 };

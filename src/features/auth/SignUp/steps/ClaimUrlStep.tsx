@@ -3,8 +3,8 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
-import { Info } from "@ovation/icons/Info";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+import { InfoIcon } from "@ovation/icons/InfoIcon";
 import { SplitLayout } from "../components/SplitLayout";
 import { PhoneMockup } from "../components/PhoneMockup";
 import { UrlSuggestionChip } from "../components/UrlSuggestionChip";
@@ -137,7 +137,7 @@ export const ClaimUrlStep = () => {
           </div>
 
           <div className="rounded-12 bg-primary/10 mt-8 flex items-start gap-2.5 p-3.5">
-            <Info
+            <InfoIcon
               width={18}
               height={18}
               className="text-primary mt-0.5 shrink-0"
@@ -159,7 +159,7 @@ export const ClaimUrlStep = () => {
             className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
           >
             {t("signup__claim__continue")}
-            <ArrowRight width={16} height={16} />
+            <ArrowRightIcon width={16} height={16} />
           </Button>
         </>
       }

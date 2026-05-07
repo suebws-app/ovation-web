@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/navigation";
-import { ArrowUpRight } from "@ovation/icons/ArrowUpRight";
+import { ArrowUpRightIcon } from "@ovation/icons/ArrowUpRightIcon";
 
 type QuickLinkProps = {
   label: string;
@@ -14,6 +14,6 @@ export const QuickLink = ({ label, href, icon }: QuickLinkProps) => (
   >
     <span className="text-muted-foreground inline-flex">{icon}</span>
     <span className="flex-1">{label}</span>
-    <ArrowUpRight width={12} height={12} className="opacity-40" />
+    <ArrowUpRightIcon width={12} height={12} className="opacity-40" />
   </Link>
 );

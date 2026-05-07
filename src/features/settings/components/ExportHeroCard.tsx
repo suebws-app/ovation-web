@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Box } from "@ovation/icons/Box";
+import { BoxIcon } from "@ovation/icons/BoxIcon";
 
 export const ExportHeroCard = () => {
   const t = useTranslations();
@@ -26,7 +26,7 @@ export const ExportHeroCard = () => {
           type="button"
           className="bg-card type-body-small text-primary inline-flex cursor-pointer items-center gap-2 rounded-full px-6 py-3.5 font-bold shadow-lg"
         >
-          <Box width={16} height={16} />
+          <BoxIcon width={16} height={16} />
           {t("settings__data__hero__cta")}
         </button>
       </div>

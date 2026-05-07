@@ -1,4 +1,4 @@
-export const Brightness = (props: React.SVGProps<SVGSVGElement>) => {
+export const BrightnessIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

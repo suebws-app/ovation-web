@@ -1,4 +1,4 @@
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 
 type PlanFeatureProps = {
   label: string;
@@ -6,7 +6,7 @@ type PlanFeatureProps = {
 
 export const PlanFeature = ({ label }: PlanFeatureProps) => (
   <div className="type-body-small flex items-start gap-2">
-    <Check
+    <CheckIcon
       width={14}
       height={14}
       className="text-primary mt-0.5 shrink-0"

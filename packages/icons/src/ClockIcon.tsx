@@ -1,4 +1,4 @@
-export const Clock = (props: React.SVGProps<SVGSVGElement>) => {
+export const ClockIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

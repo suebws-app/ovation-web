@@ -1,4 +1,4 @@
-export const AirDrop = (props: React.SVGProps<SVGSVGElement>) => {
+export const AirDropIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

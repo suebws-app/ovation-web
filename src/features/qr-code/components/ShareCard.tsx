@@ -2,10 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { WhatsApp } from "@ovation/icons/WhatsApp";
-import { Mail } from "@ovation/icons/Mail";
-import { Sms } from "@ovation/icons/Sms";
-import { AirDrop } from "@ovation/icons/AirDrop";
+import { WhatsAppIcon } from "@ovation/icons/WhatsAppIcon";
+import { MailIcon } from "@ovation/icons/MailIcon";
+import { SmsIcon } from "@ovation/icons/SmsIcon";
+import { AirDropIcon } from "@ovation/icons/AirDropIcon";
 import { ShareChannel } from "./ShareChannel";
 
 type ShareCardProps = {
@@ -49,21 +49,21 @@ export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
       label: t("qr_code__share__channel_whatsapp"),
       color: "#25D366",
       href: `https://wa.me/?text=${encodedBody}`,
-      Icon: WhatsApp,
+      Icon: WhatsAppIcon,
     },
     {
       id: "email",
       label: t("qr_code__share__channel_email"),
       color: "oklch(0.705 0.120 262.5)",
       href: `mailto:?subject=${subject}&body=${encodedBody}`,
-      Icon: Mail,
+      Icon: MailIcon,
     },
     {
       id: "messages",
       label: t("qr_code__share__channel_messages"),
       color: "#2CBE4E",
       href: `sms:?&body=${encodedBody}`,
-      Icon: Sms,
+      Icon: SmsIcon,
     },
   ] as const;
 
@@ -86,7 +86,7 @@ export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
           label={t("qr_code__share__channel_airdrop")}
           color="#0C84FE"
           onClick={handleAirdrop}
-          Icon={AirDrop}
+          Icon={AirDropIcon}
         />
       </div>
 

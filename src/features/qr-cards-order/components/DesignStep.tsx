@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { SwatchOption } from "./SwatchOption";
 import { QRCardPreview } from "./QRCardPreview";
 import type { OrderState } from "../types";
@@ -101,7 +101,7 @@ export const DesignStep = ({
             }
           >
             {state.proofConfirmed && (
-              <Check width={12} height={12} strokeWidth={3} />
+              <CheckIcon width={12} height={12} strokeWidth={3} />
             )}
           </span>
           <span className="type-body-small text-muted-foreground leading-relaxed">

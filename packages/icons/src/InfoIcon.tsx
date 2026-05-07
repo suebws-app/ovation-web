@@ -1,4 +1,4 @@
-export const Info = (props: React.SVGProps<SVGSVGElement>) => {
+export const InfoIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

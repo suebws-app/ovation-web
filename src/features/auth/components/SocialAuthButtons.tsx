@@ -5,8 +5,8 @@ import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
 import { authClient } from "@/lib/auth/client";
 import { SocialAuthButton } from "./SocialAuthButton";
-import { AppleIconBox } from "./AppleIconBox";
-import { GoogleIconBox } from "./GoogleIconBox";
+import { AppleIcon } from "@ovation/icons/AppleIcon";
+import { GoogleIcon } from "@ovation/icons/GoogleIcon";
 
 type SocialAuthButtonsProps = {
   action?: "sign-up" | "sign-in";
@@ -46,14 +46,14 @@ export const SocialAuthButtons = ({
         <SocialAuthButton
           provider="Apple"
           label={label}
-          icon={<AppleIconBox />}
-          disabled={pending !== null}
+          icon={<AppleIcon />}
+          disabled={true}
           onClick={() => handleProvider("apple")}
         />
         <SocialAuthButton
           provider="Google"
           label={label}
-          icon={<GoogleIconBox />}
+          icon={<GoogleIcon />}
           disabled={pending !== null}
           onClick={() => handleProvider("google")}
         />

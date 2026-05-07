@@ -7,8 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@ovation/ui/components/DropdownMenu";
-import { Sort } from "@ovation/icons/Sort";
-import { Check } from "@ovation/icons/Check";
+import { SortIcon } from "@ovation/icons/SortIcon";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { useGuestSort, useGuestsStore } from "../store/useGuestsStore";
 import type { GuestSort } from "../adapters";
 
@@ -35,7 +35,7 @@ export const GuestSortButton = () => {
           type="button"
           className="border-border bg-card type-caption text-muted-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3.5 py-2 font-semibold transition-colors"
         >
-          <Sort width={13} height={13} />
+          <SortIcon width={13} height={13} />
           {t(activeLabel)}
         </button>
       </DropdownMenuTrigger>
@@ -46,7 +46,7 @@ export const GuestSortButton = () => {
             onSelect={() => setSort(opt.value)}
           >
             <span className="flex-1">{t(opt.labelKey)}</span>
-            {sort === opt.value && <Check width={12} height={12} />}
+            {sort === opt.value && <CheckIcon width={12} height={12} />}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

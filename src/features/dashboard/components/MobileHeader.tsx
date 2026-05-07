@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
-import { Menu } from "@ovation/icons/Menu";
+import { MenuIcon } from "@ovation/icons/MenuIcon";
 
 type MobileHeaderProps = {
   onMenuToggle: () => void;
@@ -19,7 +19,7 @@ export const MobileHeader = ({ onMenuToggle }: MobileHeaderProps) => {
         className="rounded-10 text-foreground hover:bg-muted flex size-10 cursor-pointer items-center justify-center transition-colors"
         aria-label={t("dashboard__mobile_header__menu")}
       >
-        <Menu width={22} height={22} />
+        <MenuIcon width={22} height={22} />
       </button>
     </header>
   );

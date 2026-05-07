@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 
 type StepIndicatorProps = {
   step: number;
@@ -42,7 +42,7 @@ export const StepIndicator = ({ step }: StepIndicatorProps) => {
                     }
                   >
                     {completed ? (
-                      <Check width={12} height={12} strokeWidth={2.5} />
+                      <CheckIcon width={12} height={12} strokeWidth={2.5} />
                     ) : (
                       i + 1
                     )}

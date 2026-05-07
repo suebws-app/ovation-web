@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ChevronLeft } from "@ovation/icons/ChevronLeft";
+import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
 import { AudioPlayer } from "@ovation/ui/components/AudioPlayer";
 import { useRouter } from "@/i18n/navigation";
 import { useMessageDetail } from "@/lib/query/messagesQueries";
@@ -41,7 +41,7 @@ export const MessageDetailPageClient = ({
           onClick={() => router.back()}
           className="border-border bg-card text-foreground hover:bg-muted/50 type-body-small flex cursor-pointer items-center gap-1 border-b px-4 py-3 text-left font-semibold"
         >
-          <ChevronLeft width={16} height={16} />
+          <ChevronLeftIcon width={16} height={16} />
           {t("messages__detail__back")}
         </button>
         <ConnectedMessageDetailPane player={player} fullScreen />

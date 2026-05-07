@@ -1,4 +1,4 @@
-export const Check = (props: React.SVGProps<SVGSVGElement>) => {
+export const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width={12}

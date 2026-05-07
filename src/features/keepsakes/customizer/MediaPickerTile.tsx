@@ -1,6 +1,6 @@
 "use client";
 
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import type { GalleryItem } from "@/lib/api/types";
 
 type MediaPickerTileProps = {
@@ -40,7 +40,7 @@ export const MediaPickerTile = ({
       )}
       {selected && (
         <span className="bg-primary text-primary-foreground absolute right-1.5 top-1.5 flex size-6 items-center justify-center rounded-full">
-          <Check width={14} height={14} />
+          <CheckIcon width={14} height={14} />
         </span>
       )}
     </button>

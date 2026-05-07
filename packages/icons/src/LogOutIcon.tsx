@@ -1,4 +1,4 @@
-export const LogOut = (props: React.SVGProps<SVGSVGElement>) => {
+export const LogOutIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

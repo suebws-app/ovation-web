@@ -1,4 +1,4 @@
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { cn } from "@ovation/ui/utils/cn";
 
 type VerifiedDotProps = {
@@ -19,7 +19,7 @@ export const VerifiedDot = ({ ok = true }: VerifiedDotProps) => (
       )}
     >
       {ok ? (
-        <Check width={10} height={10} strokeWidth={3.5} />
+        <CheckIcon width={10} height={10} strokeWidth={3.5} />
       ) : (
         <span className="type-caption font-bold">!</span>
       )}

@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
-import { Play } from "@ovation/icons/Play";
+import { PlayIcon } from "@ovation/icons/PlayIcon";
 
 export const ResumeCard = () => {
   const t = useTranslations();
@@ -45,7 +45,7 @@ export const ResumeCard = () => {
         size="lg"
         className="shadow-primary/40 tablet:w-auto w-full gap-2.5 rounded-full shadow-md"
       >
-        <Play width={16} height={16} />
+        <PlayIcon width={16} height={16} />
         {t("dashboard__resume__continue")}
       </Button>
     </div>

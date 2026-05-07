@@ -2,9 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Download } from "@ovation/icons/Download";
-import { Heart } from "@ovation/icons/Heart";
-import { Book } from "@ovation/icons/Book";
+import { DownloadIcon } from "@ovation/icons/DownloadIcon";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
+import { BookIcon } from "@ovation/icons/BookIcon";
 import { cn } from "@ovation/ui/utils/cn";
 
 type PhotoBatchFooterProps = {
@@ -46,7 +46,7 @@ export const PhotoBatchFooter = ({
           disabled={bulkPending}
           className="tablet:flex-none min-w-0 flex-1 shrink rounded-full whitespace-nowrap"
         >
-          <Heart
+          <HeartIcon
             width={13}
             height={13}
             className={allFavorited ? "fill-destructive text-destructive" : ""}
@@ -64,7 +64,7 @@ export const PhotoBatchFooter = ({
           disabled={bulkPending}
           className="tablet:flex-none min-w-0 flex-1 shrink rounded-full whitespace-nowrap"
         >
-          <Book
+          <BookIcon
             width={13}
             height={13}
             className={
@@ -84,7 +84,7 @@ export const PhotoBatchFooter = ({
           disabled={bulkPending}
           className="tablet:flex-none min-w-0 flex-1 shrink rounded-full whitespace-nowrap"
         >
-          <Download width={13} height={13} />
+          <DownloadIcon width={13} height={13} />
           <span className="truncate">
             {t("photos__batch__action_download")}
           </span>

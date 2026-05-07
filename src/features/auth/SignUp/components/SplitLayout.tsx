@@ -25,6 +25,7 @@ export const SplitLayout = ({
       )}
     >
       <div className="from-primary to-primary/80 text-primary-foreground desktop:flex desktop:items-center desktop:justify-center relative hidden overflow-hidden bg-gradient-to-br">
+        <div className="dark:bg-background/90 pointer-events-none absolute inset-0" />
         <DecorativeBlob
           className="-top-20 -right-20"
           color="destructive"

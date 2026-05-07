@@ -1,8 +1,8 @@
 "use client";
 
 import { Checkbox } from "@ovation/ui/components/Checkbox";
-import { Book } from "@ovation/icons/Book";
-import { Video } from "@ovation/icons/Video";
+import { BookIcon } from "@ovation/icons/BookIcon";
+import { VideoIcon } from "@ovation/icons/VideoIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import type { PhotoView } from "../adapters";
 import { PhotoFavouriteIndicator } from "./PhotoFavouriteIndicator";
@@ -91,7 +91,7 @@ export const PhotoTile = ({
 
         {isVideo && (
           <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 type-caption font-medium text-white">
-            <Video width={11} height={11} />
+            <VideoIcon width={11} height={11} />
             <span>Video</span>
           </span>
         )}
@@ -111,7 +111,7 @@ export const PhotoTile = ({
 
         <div className="absolute top-2 right-2 flex items-center gap-1">
           {inGoldBook && (
-            <Book
+            <BookIcon
               width={16}
               height={16}
               fill="oklch(0.85 0.15 95)"

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Play } from "@ovation/icons/Play";
+import { PlayIcon } from "@ovation/icons/PlayIcon";
 import { useRouter } from "@/i18n/navigation";
 import { startKioskOnThisDevice } from "../startKioskOnThisDevice";
 
@@ -30,12 +30,12 @@ export const KioskFooter = ({ slug, isSaving, saveError }: KioskFooterProps) => 
             className="rounded-full shadow-lg"
             onClick={() => startKioskOnThisDevice(router, slug)}
           >
-            <Play width={13} height={13} />
+            <PlayIcon width={13} height={13} />
             {t("kiosk__footer__start")}
           </Button>
         ) : (
           <Button disabled className="rounded-full shadow-lg">
-            <Play width={13} height={13} />
+            <PlayIcon width={13} height={13} />
             {t("kiosk__footer__start")}
           </Button>
         )}

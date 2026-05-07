@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
-import { Check } from "@ovation/icons/Check";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Card } from "@ovation/ui/components/Card";
-import { HeroAudio } from "./HeroAudio";
+import { HeroAudioLazy } from "./HeroAudioLazy";
 
 export const HeroShowpiece = () => {
   const t = useTranslations();
@@ -23,7 +23,7 @@ export const HeroShowpiece = () => {
 
       <div className="bg-card border-border absolute top-4 left-44 z-4 flex rotate-[4deg] items-center gap-2 rounded-full border px-3 py-2 shadow-lg">
         <span className="bg-secondary text-secondary-foreground flex h-5 w-5 items-center justify-center rounded-full">
-          <Check />
+          <CheckIcon />
         </span>
         <div>
           <p className="text-foreground type-caption leading-none font-semibold">
@@ -55,7 +55,7 @@ export const HeroShowpiece = () => {
         <blockquote className="text-foreground/80 mt-4 font-serif type-body-small leading-relaxed italic">
           {t("marketing__showpiece__quote")}
         </blockquote>
-        <HeroAudio />
+        <HeroAudioLazy />
       </Card>
 
       <Card className="absolute right-4 bottom-10 z-2 w-44 rotate-[7deg] overflow-hidden rounded-2xl shadow-xl">

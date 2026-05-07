@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
-import { Clock } from "@ovation/icons/Clock";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+import { ClockIcon } from "@ovation/icons/ClockIcon";
 import { SplitLayout } from "../components/SplitLayout";
 import { BookPreview } from "../components/BookPreview";
 import { CoverOption } from "../components/CoverOption";
@@ -204,7 +204,7 @@ export const CoverPhotoStep = () => {
           )}
 
           <div className="type-body-small text-muted-foreground mt-6 flex items-center gap-2.5">
-            <Clock width={14} height={14} />
+            <ClockIcon width={14} height={14} />
             {t("signup__cover__skip")}
           </div>
 
@@ -214,7 +214,7 @@ export const CoverPhotoStep = () => {
             className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
           >
             {t("signup__cover__continue")}
-            <ArrowRight width={16} height={16} />
+            <ArrowRightIcon width={16} height={16} />
           </Button>
         </>
       }

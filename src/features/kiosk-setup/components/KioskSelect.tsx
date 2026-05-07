@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown } from "@ovation/icons/ChevronDown";
+import { ChevronDownIcon } from "@ovation/icons/ChevronDownIcon";
 import { cn } from "@ovation/ui/utils/cn";
 
 type KioskSelectOption<T extends string | number> = {
@@ -30,7 +30,7 @@ export const KioskSelect = <T extends string | number>({
       )}
     >
       {options.find((o) => o.value === value)?.label}
-      <ChevronDown
+      <ChevronDownIcon
         width={12}
         height={12}
         className="text-muted-foreground"

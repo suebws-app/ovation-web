@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Warning } from "@ovation/icons/Warning";
+import { WarningIcon } from "@ovation/icons/WarningIcon";
 import { useRouter } from "@/i18n/navigation";
 import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
@@ -135,7 +135,7 @@ export const SettingsDangerSection = ({
                   "repeating-linear-gradient(135deg, var(--destructive) / 0.08 0 12px, var(--destructive) / 0.14 12px 24px)",
               }}
             >
-              <Warning width={14} height={14} />
+              <WarningIcon width={14} height={14} />
               {t("settings__danger__final_warning")}
             </div>
             <div className="bg-card px-7">
@@ -175,7 +175,7 @@ export const SettingsDangerSection = ({
                   className="rounded-full"
                   onClick={() => setShowDeleteModal(true)}
                 >
-                  <Warning width={13} height={13} />
+                  <WarningIcon width={13} height={13} />
                   {t("settings__danger__delete_book_action")}
                 </Button>
               </SettingsRow>

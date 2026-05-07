@@ -1,4 +1,4 @@
-export const Grid = (props: React.SVGProps<SVGSVGElement>) => {
+export const GridIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

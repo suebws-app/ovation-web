@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
-import { Lock } from "@ovation/icons/Lock";
-import { Finger } from "@ovation/icons/Finger";
-import { LogOut } from "@ovation/icons/LogOut";
+import { LockIcon } from "@ovation/icons/LockIcon";
+import { FingerIcon } from "@ovation/icons/FingerIcon";
+import { LogOutIcon } from "@ovation/icons/LogOutIcon";
 import type { PublicEvent } from "@/lib/api/types";
 import { useFullscreen } from "@/lib/hooks/useFullscreen";
 import { useWakeLock } from "@/lib/hooks/useWakeLock";
@@ -149,7 +149,7 @@ export const KioskLiveFrame = ({
           </span>
           <span className="opacity-50">&middot;</span>
           <span className="inline-flex items-center gap-1">
-            <Lock width={11} height={11} /> {t("kiosk__live__locked")}
+            <LockIcon width={11} height={11} /> {t("kiosk__live__locked")}
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -167,7 +167,7 @@ export const KioskLiveFrame = ({
             onClick={handleExitClick}
             className="border-border bg-card/70 type-caption hover:bg-card inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold transition-colors"
           >
-            <LogOut width={12} height={12} />
+            <LogOutIcon width={12} height={12} />
             {t("kiosk__exit__button")}
           </button>
         </div>
@@ -251,7 +251,7 @@ export const KioskLiveFrame = ({
           })}
         </div>
         <div className="type-caption text-muted-foreground flex items-center gap-2">
-          <Finger width={13} height={13} />
+          <FingerIcon width={13} height={13} />
           {t("kiosk__live__exit_hint")}
         </div>
       </div>

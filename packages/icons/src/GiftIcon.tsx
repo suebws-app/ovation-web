@@ -1,4 +1,4 @@
-export const Gift = (props: React.SVGProps<SVGSVGElement>) => {
+export const GiftIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

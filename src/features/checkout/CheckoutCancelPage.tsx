@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
-import { Warning } from "@ovation/icons/Warning";
+import { WarningIcon } from "@ovation/icons/WarningIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
@@ -24,7 +24,7 @@ export const CheckoutCancelPage = async ({
 
       <main className="mx-auto flex w-full max-w-140 flex-col items-center gap-6 px-6 py-12 text-center">
         <div className="rounded-16 bg-muted inline-flex size-16 items-center justify-center">
-          <Warning width={28} height={28} className="text-muted-foreground" />
+          <WarningIcon width={28} height={28} className="text-muted-foreground" />
         </div>
         <Kicker className="text-muted-foreground">
           {t("checkout__cancel__eyebrow")}

@@ -1,8 +1,8 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { Sun } from "@ovation/icons/Sun";
-import { Moon } from "@ovation/icons/Moon";
+import { SunIcon } from "@ovation/icons/SunIcon";
+import { MoonIcon } from "@ovation/icons/MoonIcon";
 import { useThemeStore } from "../utils/useThemeStore";
 import { cn } from "../utils/cn";
 
@@ -42,8 +42,8 @@ export const ThemeToggle = ({ className }: { className?: string }) => {
       )}
       aria-label={`Current theme: ${theme}. Click to switch.`}
     >
-      {theme === "light" && <Sun className="size-4" />}
-      {theme === "dark" && <Moon className="size-4" />}
+      {theme === "light" && <SunIcon className="size-4" />}
+      {theme === "dark" && <MoonIcon className="size-4" />}
     </button>
   );
 };

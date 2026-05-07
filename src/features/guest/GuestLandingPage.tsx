@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { Link } from "@/i18n/navigation";
@@ -50,7 +50,7 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
             >
               <Link href={`/g/${slug}/compose`}>
                 {t("guest__landing__cta_record")}
-                <ArrowRight width={16} height={16} />
+                <ArrowRightIcon width={16} height={16} />
               </Link>
             </Button>
           </StickyCTA>

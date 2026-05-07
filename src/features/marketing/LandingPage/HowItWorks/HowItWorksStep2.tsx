@@ -1,4 +1,4 @@
-import { Mic } from "@ovation/icons/Mic";
+import { MicIcon } from "@ovation/icons/MicIcon";
 import { HowItWorksWaveformBar } from "./HowItWorksWaveformBar";
 import { WAVEFORM_HEIGHTS } from "./constants";
 
@@ -18,7 +18,7 @@ export const HowItWorksStep2 = () => (
             "0 0 0 8px color-mix(in oklch, var(--destructive) 20%, transparent), 0 0 0 16px color-mix(in oklch, var(--destructive) 10%, transparent)",
         }}
       />
-      <Mic className="text-primary-foreground" width={32} height={32} />
+      <MicIcon className="text-primary-foreground" width={32} height={32} />
     </div>
     <div className="flex h-8 items-end gap-0.5">
       {WAVEFORM_HEIGHTS.map((h, i) => (

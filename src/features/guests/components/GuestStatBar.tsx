@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
-import { Mic } from "@ovation/icons/Mic";
+import { MicIcon } from "@ovation/icons/MicIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
-import { Heart } from "@ovation/icons/Heart";
-import { Mail } from "@ovation/icons/Mail";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
+import { MailIcon } from "@ovation/icons/MailIcon";
 import type { EventStats, InvitationStats } from "@/lib/api/types";
 import { GuestStatCard } from "./GuestStatCard";
 
@@ -21,7 +21,7 @@ export const GuestStatBar = ({ stats, invitations }: GuestStatBarProps) => {
         audio: stats.audioMessages,
         written: stats.writtenMessages,
       }),
-      icon: Mic,
+      icon: MicIcon,
       tone: "primary" as const,
     },
     {
@@ -35,7 +35,7 @@ export const GuestStatBar = ({ stats, invitations }: GuestStatBarProps) => {
       value: stats.favorites,
       label: t("guests__stats__favourited"),
       sub: t("guests__stats__favourited_sub"),
-      icon: Heart,
+      icon: HeartIcon,
       tone: "accent" as const,
     },
   ];

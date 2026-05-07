@@ -9,7 +9,7 @@ import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
@@ -114,7 +114,7 @@ export const ForgotPasswordPage = () => {
               {isSubmitting
                 ? t("auth__forgot__sending")
                 : t("auth__forgot__submit")}
-              <ArrowRight width={16} height={16} />
+              <ArrowRightIcon width={16} height={16} />
             </Button>
           </form>
         )}

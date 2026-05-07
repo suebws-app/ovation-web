@@ -1,14 +1,16 @@
 "use client";
 
+import "@vidstack/react/player/styles/default/theme.css";
+import "@vidstack/react/player/styles/default/layouts/video.css";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Download } from "@ovation/icons/Download";
-import { Heart } from "@ovation/icons/Heart";
-import { Pause } from "@ovation/icons/Pause";
-import { Play } from "@ovation/icons/Play";
-import { Star } from "@ovation/icons/Star";
+import { DownloadIcon } from "@ovation/icons/DownloadIcon";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
+import { PauseIcon } from "@ovation/icons/PauseIcon";
+import { PlayIcon } from "@ovation/icons/PlayIcon";
+import { StarIcon } from "@ovation/icons/StarIcon";
 import { Waveform } from "@/features/dashboard/components/Waveform";
 import {
   useMessageDetail,
@@ -171,9 +173,9 @@ export const MessageDetailPane = ({
               className="bg-destructive text-primary-foreground flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full border-none shadow-[0_0_0_6px_oklch(0.723_0.135_40/0.15)]"
             >
               {isPlayingActive ? (
-                <Pause width={14} height={14} />
+                <PauseIcon width={14} height={14} />
               ) : (
-                <Play width={14} height={14} />
+                <PlayIcon width={14} height={14} />
               )}
             </button>
             <div className="min-w-0 flex-1">
@@ -351,7 +353,7 @@ export const MessageDetailPane = ({
           onClick={handleDownload}
           disabled={downloading || !detail?.message}
         >
-          <Download width={14} height={14} /> {t("messages__detail__download")}
+          <DownloadIcon width={14} height={14} /> {t("messages__detail__download")}
         </Button>
         <Button
           variant="outline"
@@ -359,7 +361,7 @@ export const MessageDetailPane = ({
           onClick={onToggleFavorite}
           disabled={togglePending}
         >
-          <Heart
+          <HeartIcon
             width={14}
             height={14}
             className={
@@ -377,14 +379,14 @@ export const MessageDetailPane = ({
 
       {message.listens > 0 && (
         <div className="type-caption text-muted-foreground flex items-center gap-2">
-          <Play width={10} height={10} />
+          <PlayIcon width={10} height={10} />
           <span>
             {t("messages__detail__played_times", { count: message.listens })}
           </span>
           {message.favorited && (
             <>
               <span>&middot;</span>
-              <Star
+              <StarIcon
                 width={11}
                 height={11}
                 className="fill-[#9A6B2F] text-[#9A6B2F]"

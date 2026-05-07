@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Lock } from "@ovation/icons/Lock";
+import { LockIcon } from "@ovation/icons/LockIcon";
 import { AddressField } from "./AddressField";
 import type { OrderState } from "../types";
 
@@ -86,7 +86,7 @@ export const PaymentStep = ({ state, setField }: PaymentStepProps) => {
       </div>
 
       <div className="rounded-12 bg-secondary/15 border-secondary/40 mt-6 flex items-start gap-2.5 border p-3.5">
-        <Lock width={18} height={18} className="text-secondary mt-0.5 shrink-0" />
+        <LockIcon width={18} height={18} className="text-secondary mt-0.5 shrink-0" />
         <p className="type-body-small text-secondary leading-relaxed">
           {t("qr_cards_order__payment__stripe_note")}
         </p>

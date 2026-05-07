@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Mic } from "@ovation/icons/Mic";
-import { Stop } from "@ovation/icons/Stop";
+import { MicIcon } from "@ovation/icons/MicIcon";
+import { StopIcon } from "@ovation/icons/StopIcon";
 import { useAudioRecorder } from "./useAudioRecorder";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 
@@ -58,7 +58,7 @@ export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
             size="lg"
             className="rounded-full"
           >
-            <Stop width={16} height={16} />
+            <StopIcon width={16} height={16} />
             {t("guest__record__audio__stop")}
           </Button>
         </>
@@ -74,7 +74,7 @@ export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
             t("guest__record__audio__requesting")
           ) : (
             <>
-              <Mic width={16} height={16} />
+              <MicIcon width={16} height={16} />
               {t("guest__record__audio__start")}
             </>
           )}

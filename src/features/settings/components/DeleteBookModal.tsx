@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Warning } from "@ovation/icons/Warning";
-import { Check } from "@ovation/icons/Check";
+import { WarningIcon } from "@ovation/icons/WarningIcon";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { DeleteWarningItem } from "./DeleteWarningItem";
 
 type DeleteBookModalProps = {
@@ -41,7 +41,7 @@ export const DeleteBookModal = ({
     <div className="bg-foreground/45 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
       <div className="rounded-20 bg-card w-full max-w-lg p-9 shadow-lg">
         <div className="rounded-16 bg-destructive/15 mb-4.5 flex size-14 items-center justify-center">
-          <Warning width={26} height={26} className="text-destructive" />
+          <WarningIcon width={26} height={26} className="text-destructive" />
         </div>
         <h2 className="type-h2 leading-snug tracking-tight">
           {t.rich("settings__delete_modal__title", {
@@ -89,7 +89,7 @@ export const DeleteBookModal = ({
           <span
             className={`rounded-4 mt-0.5 flex size-4.5 shrink-0 items-center justify-center ${acknowledged ? "bg-destructive text-primary-foreground" : "border-border bg-card border"}`}
           >
-            {acknowledged && <Check width={11} height={11} strokeWidth={3} />}
+            {acknowledged && <CheckIcon width={11} height={11} strokeWidth={3} />}
           </span>
           {t("settings__delete_modal__ack")}
         </button>

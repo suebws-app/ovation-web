@@ -2,9 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Book } from "@ovation/icons/Book";
-import { Download } from "@ovation/icons/Download";
-import { Heart } from "@ovation/icons/Heart";
+import { BookIcon } from "@ovation/icons/BookIcon";
+import { DownloadIcon } from "@ovation/icons/DownloadIcon";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { cn } from "@ovation/ui/utils/cn";
 
 type MessageBatchFooterProps = {
@@ -55,7 +55,7 @@ export const MessageBatchFooter = ({
           disabled={bulkPending}
           className="min-w-0 flex-1 shrink whitespace-nowrap rounded-full tablet:flex-none"
         >
-          <Heart
+          <HeartIcon
             width={13}
             height={13}
             className={allFavorited ? "fill-destructive text-destructive" : ""}
@@ -73,7 +73,7 @@ export const MessageBatchFooter = ({
           disabled={bulkPending}
           className="min-w-0 flex-1 shrink whitespace-nowrap rounded-full tablet:flex-none"
         >
-          <Download width={13} height={13} />
+          <DownloadIcon width={13} height={13} />
           <span className="truncate">
             {t("messages__batch__action_download")}
           </span>
@@ -85,7 +85,7 @@ export const MessageBatchFooter = ({
           disabled={bulkPending}
           className="min-w-0 flex-1 shrink whitespace-nowrap rounded-full tablet:flex-none"
         >
-          <Book width={13} height={13} />
+          <BookIcon width={13} height={13} />
           <span className="truncate">
             {allInGoldBook
               ? t("messages__batch__remove_from_book")

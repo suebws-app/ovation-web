@@ -8,6 +8,7 @@ export const SignInBrandPanel = () => {
   const t = useTranslations();
   return (
     <div className="from-primary to-primary/80 text-primary-foreground desktop:flex desktop:flex-col desktop:justify-between relative hidden overflow-hidden bg-gradient-to-br p-14">
+      <div className="dark:bg-background/90 pointer-events-none absolute inset-0" />
       <div
         className="pointer-events-none absolute -top-20 -right-20 size-80 rounded-full"
         style={{

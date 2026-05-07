@@ -1,4 +1,4 @@
-export const Swatch = (props: React.SVGProps<SVGSVGElement>) => {
+export const SwatchIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Lock } from "@ovation/icons/Lock";
+import { LockIcon } from "@ovation/icons/LockIcon";
 
 type PhoneMockupProps = {
   url: string;
@@ -23,7 +23,7 @@ export const PhoneMockup = ({
     <div className="bg-card self-center rounded-[28px] border-[10px] border-black/15 p-3 shadow-lg">
       <div className="rounded-20 bg-background text-foreground flex min-h-70 flex-col gap-2.5 p-4">
         <div className="rounded-8 border-border bg-card type-caption text-muted-foreground flex items-center gap-1.5 border px-2.5 py-1.5 font-mono">
-          <Lock width={8} height={8} />
+          <LockIcon width={8} height={8} />
           ovation.love/{url}
         </div>
         <div className="mt-3.5 text-center">

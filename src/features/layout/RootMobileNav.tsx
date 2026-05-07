@@ -2,7 +2,7 @@
 
 import { type ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { Menu } from "@ovation/icons/Menu";
+import { MenuIcon } from "@ovation/icons/MenuIcon";
 import { XIcon } from "@ovation/icons/XIcon";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
@@ -32,7 +32,7 @@ export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
           aria-label="Open menu"
           className="text-foreground hover:bg-muted tablet:hidden flex size-9 items-center justify-center rounded-full transition"
         >
-          <Menu className="size-5" />
+          <MenuIcon className="size-5" />
         </button>
       </SheetTrigger>
 

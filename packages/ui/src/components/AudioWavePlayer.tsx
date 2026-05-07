@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback } from "react";
-import { Play } from "@ovation/icons/Play";
-import { Pause } from "@ovation/icons/Pause";
+import { PlayIcon } from "@ovation/icons/PlayIcon";
+import { PauseIcon } from "@ovation/icons/PauseIcon";
 import { cn } from "../utils/cn";
 import { AudioPlayer } from "./AudioPlayer";
 import { Waveform } from "./Waveform";
@@ -47,9 +47,9 @@ export const AudioWavePlayer = ({
         className="bg-primary text-primary-foreground hover:bg-primary/90 flex size-9 shrink-0 items-center justify-center rounded-full shadow-md transition"
       >
         {isPlaying ? (
-          <Pause width={13} height={13} />
+          <PauseIcon width={13} height={13} />
         ) : (
-          <Play width={13} height={13} />
+          <PlayIcon width={13} height={13} />
         )}
       </button>
       {wave && (

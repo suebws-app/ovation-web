@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
-import { Book } from "@ovation/icons/Book";
-import { Mail } from "@ovation/icons/Mail";
-import { MessageSquare } from "@ovation/icons/MessageSquare";
-import { Video } from "@ovation/icons/Video";
+import { BookIcon } from "@ovation/icons/BookIcon";
+import { MailIcon } from "@ovation/icons/MailIcon";
+import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
+import { VideoIcon } from "@ovation/icons/VideoIcon";
 import { HelpFaqItem } from "./components/HelpFaqItem";
 import { HelpResourceCard } from "./components/HelpResourceCard";
 
@@ -23,27 +23,27 @@ export const HelpCenterPage = () => {
     {
       title: t("help__resource__guide__title"),
       description: t("help__resource__guide__desc"),
-      icon: Book,
+      icon: BookIcon,
       href: "https://ovation.help/guide",
       external: true,
     },
     {
       title: t("help__resource__videos__title"),
       description: t("help__resource__videos__desc"),
-      icon: Video,
+      icon: VideoIcon,
       href: "https://ovation.help/videos",
       external: true,
     },
     {
       title: t("help__resource__chat__title"),
       description: t("help__resource__chat__desc"),
-      icon: MessageSquare,
+      icon: MessageSquareIcon,
       href: "mailto:support@ovation.app",
     },
     {
       title: t("help__resource__email__title"),
       description: t("help__resource__email__desc"),
-      icon: Mail,
+      icon: MailIcon,
       href: "mailto:support@ovation.app",
     },
   ];
@@ -116,7 +116,7 @@ export const HelpCenterPage = () => {
           href="mailto:support@ovation.app"
           className="bg-secondary text-foreground type-body-small mt-2 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-semibold"
         >
-          <Mail width={14} height={14} />
+          <MailIcon width={14} height={14} />
           support@ovation.app
         </a>
       </div>

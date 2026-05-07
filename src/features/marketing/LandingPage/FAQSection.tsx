@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { FAQ_ITEM_KEYS } from "./constants";
-import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import {
   Accordion,
   AccordionContent,
@@ -37,7 +37,7 @@ export const FAQSection = () => {
               className="text-foreground type-body-small mt-5 inline-flex items-center gap-2 font-semibold"
             >
               {t("marketing__faq__email")}
-              <ArrowRight className="size-3" />
+              <ArrowRightIcon className="size-3" />
             </a>
           </div>
 
