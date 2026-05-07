@@ -1,8 +1,9 @@
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { SectionTitle } from "../../../components/SectionTitle";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@ovation/ui/components/Tabs";
 import { PricingCard } from "./PricingCard";
-import { PRICES, TIERS } from "./constants";
+import { COUPLES_TIERS, PRO_TIERS } from "./constants";
 
 export const PricingSection = () => {
   const t = useTranslations();
@@ -10,7 +11,7 @@ export const PricingSection = () => {
   return (
     <section className="bg-card border-border border-t">
       <div className="section-container">
-        <div className="mb-14 text-center">
+        <div className="mb-10 text-center">
           <Kicker className="text-muted-foreground mb-4">
             {t("marketing__pricing__eyebrow")}
           </Kicker>
@@ -20,23 +21,32 @@ export const PricingSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-3">
-          {TIERS.map((tier) => (
-            <PricingCard
-              key={tier.key}
-              tierKey={tier.key}
-              highlighted={tier.highlighted}
-              tagKey={tier.tagKey}
-              nameKey={tier.nameKey}
-              priceKey={tier.priceKey}
-              perKey={tier.perKey}
-              descKey={tier.descKey}
-              ctaKey={tier.ctaKey}
-              featKeys={tier.featKeys}
-              price={PRICES[tier.key]}
-            />
-          ))}
-        </div>
+        <Tabs defaultValue="couples" className="items-center">
+          <TabsList className="mb-10">
+            <TabsTrigger value="couples">
+              {t("marketing__pricing__tab_couples")}
+            </TabsTrigger>
+            <TabsTrigger value="professionals">
+              {t("marketing__pricing__tab_professionals")}
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="couples">
+            <div className="mx-auto grid max-w-3xl grid-cols-1 gap-5 tablet:grid-cols-2">
+              {COUPLES_TIERS.map(({ key, ...tier }) => (
+                <PricingCard key={key} {...tier} />
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="professionals">
+            <div className="mx-auto grid max-w-3xl grid-cols-1 gap-5 tablet:grid-cols-2">
+              {PRO_TIERS.map(({ key, ...tier }) => (
+                <PricingCard key={key} {...tier} />
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );

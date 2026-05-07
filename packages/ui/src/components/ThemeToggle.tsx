@@ -37,13 +37,13 @@ export const ThemeToggle = ({ className }: { className?: string }) => {
     <button
       onClick={cycleTheme}
       className={cn(
-        "text-muted-foreground hover:bg-muted hover:text-foreground inline-flex size-10 items-center justify-center rounded-lg transition",
+        "text-muted-foreground hover:bg-muted hover:text-foreground inline-flex size-8 items-center justify-center rounded-lg transition",
         className,
       )}
       aria-label={`Current theme: ${theme}. Click to switch.`}
     >
-      {theme === "light" && <Sun className="size-5" />}
-      {theme === "dark" && <Moon className="size-5" />}
+      {theme === "light" && <Sun className="size-4" />}
+      {theme === "dark" && <Moon className="size-4" />}
     </button>
   );
 };
