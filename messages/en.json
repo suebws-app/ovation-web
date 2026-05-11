@@ -152,7 +152,7 @@
   "guest__recording__submit": "Send message",
   "guest__recording__uploading": "Sending your message...",
   "guest__recording__upload_failed": "Upload failed — we'll retry automatically",
-  "guest__thank_you__title": "Thank you!",
+  "guest__thank_you__title": "Your message reached <emph>{names}</emph>.",
   "guest__thank_you__message": "Your message has been sent to {names}",
   "guest__thank_you__share_prompt": "Share the love",
   "account__title": "Account",
@@ -332,7 +332,6 @@
   "errors__event_not_active": "This guestbook is closed.",
   "errors__rate_limited": "Slow down a moment, then try again.",
   "errors__generic": "Something went wrong. Reference: {traceId}",
-
   "validation__email_required": "Email is required",
   "validation__email_invalid": "Enter a valid email",
   "validation__password_required": "Password is required",
@@ -358,7 +357,6 @@
   "validation__shipping_postal_max": "Postal code is too long",
   "validation__shipping_country_required": "Country is required",
   "validation__shipping_country_format": "Use the 2-letter country code",
-
   "auth__signin__eyebrow": "Welcome back",
   "auth__signin__title": "Sign in to your",
   "auth__signin__title_emphasis": "wedding book.",
@@ -378,7 +376,6 @@
   "auth__signin__brand_caption": "87 voices, 1h 42m of stories, 64 photos — held safely for you to revisit whenever you want.",
   "auth__voice_message__name": "Margot Devreese",
   "auth__voice_message__role": "Maid of honour",
-
   "auth__signup__eyebrow_step": "Step {step} · {label}",
   "auth__signup__create_account__label": "Create account",
   "auth__signup__create_account__title": "Start your",
@@ -402,7 +399,6 @@
   "auth__signup__brand_step__name_book": "Name your book",
   "auth__signup__brand_step__cover_link": "Cover photo & link",
   "auth__signup__brand_step__choose_plan": "Choose a plan",
-
   "auth__verify__step_label": "Verify email",
   "auth__verify__check_inbox": "Check your inbox.",
   "auth__verify__sent_to": "We sent a confirmation link to <email></email>. Click it to finish setting up your wedding book — we'll bring you right back here.",
@@ -423,7 +419,6 @@
   "auth__verify__page_error_title": "Verification failed.",
   "auth__verify__page_error_default": "We couldn't verify this link. Try again.",
   "auth__verify__back_to_signin": "Back to sign in",
-
   "auth__forgot__eyebrow": "Forgot password",
   "auth__forgot__title": "Reset your",
   "auth__forgot__title_emphasis": "password.",
@@ -435,7 +430,6 @@
   "auth__forgot__error_generic": "Couldn't send reset email. Please try again.",
   "auth__forgot__remembered": "Remembered it?",
   "auth__forgot__back_signin": "Back to sign in →",
-
   "auth__reset__eyebrow": "Reset password",
   "auth__reset__title": "Choose a new",
   "auth__reset__title_emphasis": "password.",
@@ -449,7 +443,6 @@
   "auth__reset__missing_token": "Reset link is missing or expired. Request a new one.",
   "auth__reset__error_generic": "Couldn't reset password. Please try again.",
   "auth__reset__back_signin": "← Back to sign in",
-
   "auth__oauth_callback__exchanging_eyebrow": "Almost there",
   "auth__oauth_callback__exchanging_title": "Signing you in…",
   "auth__oauth_callback__exchanging_body": "Confirming your account with the provider.",
@@ -465,7 +458,74 @@
   "auth__oauth__error_start": "Couldn't start sign-in. Please try again.",
   "auth__social__signin_label": "Continue with",
   "auth__social__signup_label": "Sign up with",
-
+  "signup__role__eyebrow": "Get started",
+  "signup__role__title": "Who are you setting this up for?",
+  "signup__role__couple_card__title": "Planning my own wedding",
+  "signup__role__couple_card__desc": "Create a wedding book your guests will love — voice messages, photos, and a keepsake you keep forever.",
+  "signup__role__pro_card__title": "I'm a wedding professional",
+  "signup__role__pro_card__desc": "Manage Ovation events for your clients as a photographer, planner, or agency.",
+  "signup__pro_business__step_label": "Your business",
+  "signup__pro_business__title": "Tell us about",
+  "signup__pro_business__title_b": "your business.",
+  "signup__pro_business__subtitle": "Just a name — you can update this any time in your settings.",
+  "signup__pro_business__name_label": "Business or studio name",
+  "signup__pro_business__name_placeholder": "e.g. Golden Hour Photography",
+  "signup__pro_business__continue": "Continue",
+  "signup__pro_plan__step_label": "Choose a plan",
+  "signup__pro_plan__title": "Pick your",
+  "signup__pro_plan__title_b": "plan.",
+  "signup__pro_plan__subtitle": "14-day free trial on all plans. No card required until the trial ends.",
+  "signup__pro_plan__continue": "Start free trial",
+  "signup__pro_done__eyebrow": "You're in",
+  "signup__pro_done__title": "Account created.",
+  "signup__pro_done__subtitle": "Your professional account is ready. Start your 14-day free trial and create your first event.",
+  "signup__pro_done__cta": "Start free trial",
+  "signup__pro_done__checkout_error": "Something went wrong starting your trial. Please try again.",
+  "app__pro__dashboard__eyebrow": "Welcome",
+  "app__pro__dashboard__title": "Your professional dashboard.",
+  "app__pro__dashboard__body": "Create events for your clients, manage guest experiences, and track everything in one place.",
+  "app__pro__dashboard__cta": "Create your first event",
+  "app__pro__dashboard__new_event": "New event",
+  "app__pro__dashboard__manage_billing": "Manage billing",
+  "app__pro__dashboard__plan_label": "Plan",
+  "app__pro__dashboard__status_trialing": "Free trial",
+  "app__pro__dashboard__status_active": "Active",
+  "app__pro__dashboard__status_past_due": "Payment due",
+  "app__pro__dashboard__status_cancelled": "Cancelled",
+  "app__pro__dashboard__trial_ends": "Trial ends {date}",
+  "app__pro__dashboard__renews": "Renews {date}",
+  "app__pro__dashboard__events_label": "Events this year",
+  "app__pro__dashboard__events_of": "{count} of {limit}",
+  "app__pro__dashboard__events_unlimited": "Unlimited",
+  "app__pro__events__title": "Your events",
+  "app__pro__events__new_event": "New event",
+  "app__pro__events__empty": "No events yet. Create your first event.",
+  "app__pro__events__partner_names": "{a} & {b}",
+  "app__pro__events__wedding_date": "Wedding date",
+  "app__pro__events__venue": "Venue",
+  "app__pro__events__view": "View",
+  "app__pro__new_event__title": "Create event",
+  "app__pro__new_event__subtitle": "Fill in the couple's details to get started.",
+  "app__pro__new_event__partner_a": "Partner A name",
+  "app__pro__new_event__partner_b": "Partner B name",
+  "app__pro__new_event__wedding_date": "Wedding date",
+  "app__pro__new_event__venue_name": "Venue name",
+  "app__pro__new_event__venue_name_placeholder": "e.g. Villa Rosa",
+  "app__pro__new_event__venue_city": "Venue city",
+  "app__pro__new_event__venue_city_placeholder": "e.g. Tuscany",
+  "app__pro__new_event__create": "Create event",
+  "app__pro__new_event__quota_error": "You've reached the 12-event limit. Upgrade to Pro Studio for unlimited events.",
+  "app__pro__new_event__upgrade_cta": "Upgrade to Studio",
+  "settings__billing__pro_plan": "Plan",
+  "settings__billing__pro_status": "Status",
+  "settings__billing__pro_renews": "Next renewal",
+  "settings__billing__pro_trial_ends": "Trial ends",
+  "settings__billing__pro_cancelled": "Cancelled",
+  "settings__billing__manage_btn": "Manage billing in Stripe",
+  "settings__billing__no_sub": "No active subscription.",
+  "errors__pro_required": "A professional account is required.",
+  "errors__pro_event_limit_reached": "You've reached the 12-event limit on the Starter plan. Upgrade to Studio for unlimited events.",
+  "errors__pro_subscription_required": "An active Pro subscription is required to create events.",
   "signup__book_details__step_label": "Your book",
   "signup__book_details__title_a": "Names, date",
   "signup__book_details__title_b": "& place.",
@@ -485,7 +545,6 @@
   "signup__book_details__brand_eyebrow": "Cover preview",
   "signup__book_details__brand_caption": "Your cover updates as you type. This is how guests see your book.",
   "signup__book_details__countdown_days": "{days, plural, one {# day} other {# days}} away",
-
   "signup__cover__step_label": "Cover photo",
   "signup__cover__title_a": "Pick a",
   "signup__cover__title_b": "first look.",
@@ -502,7 +561,6 @@
   "signup__cover__option_rose": "Rose",
   "signup__cover__file_size": "{size} MB · uploads after you finish setup",
   "signup__cover__change": "Change",
-
   "signup__claim__step_label": "Claim your link",
   "signup__claim__title_a": "Pick your",
   "signup__claim__title_b": "web address.",
@@ -516,7 +574,6 @@
   "signup__claim__brand_eyebrow": "Your guest link",
   "signup__claim__brand_lead_a": "This short URL is where guests",
   "signup__claim__brand_lead_b": "land after the scan.",
-
   "signup__plan__step_label": "Choose a plan",
   "signup__plan__title_a": "One book,",
   "signup__plan__title_b": "three ways.",
@@ -546,7 +603,6 @@
   "signup__plan__gold__feature_2": "The Gold Book (printed)",
   "signup__plan__gold__feature_3": "Priority support",
   "signup__plan__gold__feature_4": "Early access to new features",
-
   "signup__completion__creating_eyebrow": "Setting up",
   "signup__completion__creating_title": "Building your book…",
   "signup__completion__creating_body": "Reserving your link and opening up the guestbook.",
@@ -573,7 +629,6 @@
   "signup__completion__next_dashboard_body": "Listen to messages as they arrive",
   "signup__completion__next_customize_title": "Customize your book",
   "signup__completion__next_customize_body": "Cover photo, welcome note, languages",
-
   "dashboard__greeting": "Good morning, {name}.",
   "dashboard__greeting_lead": "You have <strong>{count, plural, one {# message} other {# messages}}</strong> from your guests. Want to keep listening?",
   "dashboard__greeting_lead_empty": "No messages yet — share your link to start collecting voices.",
@@ -593,7 +648,6 @@
   "dashboard__nudge__action": "Open editor",
   "dashboard__nudge__activate_title": "Your guest link isn't active yet",
   "dashboard__nudge__activate_description": "Pick a plan to publish your link so guests can leave messages.",
-
   "activate_link__cta": "Activate Link",
   "activate_link__eyebrow": "Activate your guest link",
   "activate_link__title_a": "Pick a plan to",
@@ -607,22 +661,18 @@
   "activate_link__banner__eyebrow": "LINK INACTIVE",
   "activate_link__banner__title": "Activate your link to start collecting messages",
   "activate_link__banner__body": "Your QR code works only after you choose a plan.",
-
   "plan_status__eyebrow": "ACTIVE PLAN",
   "plan_status__credit": "{amount} credit",
   "plan_status__days_left": "{days} days storage left",
   "plan_status__lifetime": "Lifetime storage",
-
   "plan_activated__eyebrow": "PLAN ACTIVATED",
   "plan_activated__title": "Your guest link is live",
   "plan_activated__body": "Your plan is active. Share your QR code with guests to start collecting messages.",
   "plan_activated__back_dashboard": "Open dashboard",
   "plan_activated__view_qr": "View QR code",
-
   "nav_user__settings": "Settings",
   "nav_user__log_out": "Log out",
   "nav_user__signing_out": "Signing out…",
-
   "link_toggle__active": "LINK ACTIVE",
   "link_toggle__paused": "LINK PAUSED",
   "link_toggle__title_on": "Guests can leave messages",
@@ -637,7 +687,6 @@
   "dashboard__empty__title": "Hi {name} — let's build your wedding book.",
   "dashboard__empty__body": "Set up your event to start collecting voice messages, photos, and notes from your guests.",
   "dashboard__empty__cta": "Create your event",
-
   "messages__toolbar__count": "{count, plural, one {# message} other {# messages}}.",
   "messages__toolbar__voices": "{count, plural, one {# voice} other {# voices}}.",
   "messages__toolbar__subtitle_photos": "{count} with photos",
@@ -686,15 +735,14 @@
   "messages__empty__title": "Set up your event to collect messages.",
   "messages__empty__body": "Once your event is live, every voice message your guests leave will appear here.",
   "messages__empty__cta": "Create your event",
-
   "photos__toolbar__title_a": "{count} photographs.",
-  "photos__toolbar__title_b": "Memories from your guests.",
+  "photos__toolbar__title_b": "{count} faces.",
   "photos__toolbar__title": "{count, plural, =0 {No photographs yet.} one {# photograph.} other {# photographs.}}",
-  "photos__toolbar__subtitle": "Memories captured by you and your guests.",
+  "photos__toolbar__subtitle": "From 14 Jun — 15 Jun · 42 paired with messages · 22 unmatched",
   "photos__toolbar__upload": "Upload photos",
   "photos__toolbar__uploading": "Uploading…",
   "photos__toolbar__export": "Export CSV",
-  "photos__toolbar__search_placeholder": "Search by guest name…",
+  "photos__toolbar__search_placeholder": "Search people, venues, moments…",
   "photos__toolbar__search_clear": "Clear search",
   "photos__sort__newest": "Newest first",
   "photos__sort__oldest": "Oldest first",
@@ -737,7 +785,6 @@
   "photos__lightbox__prev": "Previous photo",
   "photos__lightbox__next": "Next photo",
   "photos__lightbox__loading_more": "Loading more…",
-
   "guests__hero__eyebrow": "Guests",
   "guests__hero__title": "<emph>{count}</emph> {count, plural, one {message} other {messages}} received so far.",
   "guests__hero__subtitle": "Track contributions and share your invite link. A full guest directory is coming soon — for now, every voice that's come in is reflected in the messages list.",
@@ -772,7 +819,6 @@
   "guests__empty__title": "Set up your event to start tracking guests.",
   "guests__empty__body": "Once your event is live, every message and invitation will be reflected here.",
   "guests__empty__cta": "Create your event",
-
   "qr__header__title_a": "Your",
   "qr__header__title_b": "QR code.",
   "qr__header__subtitle": "Any guest who scans this lands directly on your welcome screen. Download, share, whatever you like — napkins included.",
@@ -790,7 +836,6 @@
   "qr__empty__title": "Create your event to get a QR code.",
   "qr__empty__body": "Once your event is set up, we'll generate a scannable code your guests can use to leave messages.",
   "qr__empty__cta": "Create your event",
-
   "keepsakes__featured__most_ordered": "★ Most ordered",
   "keepsakes__featured__title_a": "Every voice,",
   "keepsakes__featured__title_b": "printed in gold.",
@@ -825,7 +870,6 @@
   "keepsakes__order__pay": "Pay {amount}",
   "keepsakes__order__starting": "Starting checkout…",
   "keepsakes__order__error_default": "Couldn't start checkout. Please try again.",
-
   "settings__profile__eyebrow": "Settings",
   "settings__profile__title_a": "Your",
   "settings__profile__title_b": "profile",
@@ -921,7 +965,6 @@
   "settings__sidebar__danger": "Danger zone",
   "settings__sidebar__your_book": "Your book",
   "settings__not_connected": "This section isn't connected yet.",
-
   "kiosk__hero__eyebrow": "Kiosk mode",
   "kiosk__hero__title_a": "Turn any phone or tablet into a",
   "kiosk__hero__title_b": "guestbook",
@@ -947,7 +990,6 @@
   "kiosk__preview__tablet": "Tablet · landscape",
   "kiosk__preview__phone": "Phone · portrait",
   "kiosk__preview__locked": "Phone · locked screen",
-
   "guest__landing__welcome_overline": "You're at the wedding of",
   "guest__landing__date_label": "{date}",
   "guest__landing__cta_record": "Leave a message",
@@ -956,7 +998,6 @@
   "guest__landing__closed_not_open": "Messages are not open yet. Check back soon.",
   "guest__landing__closed_other": "Messages aren't accepting submissions right now.",
   "guest__thank_you__eyebrow": "Thank you",
-  "guest__thank_you__title": "Your message reached <emph>{names}</emph>.",
   "guest__thank_you__body": "They'll hear it soon — sometimes when they need it most. Your words have made the keepsake just a little more real.",
   "guest__thank_you__cta": "Leave another message",
   "guest__thank_you__caption": "Your contribution stays private to the couple. We never share guest messages with third parties.",
@@ -1056,7 +1097,6 @@
   "guest__photo__skip_continue": "Skip — Continue",
   "guest__review__title": "Review & send",
   "guest__review__subtitle": "Take a quick look. When you're ready, we'll send it straight to the couple.",
-
   "checkout__success__eyebrow": "Order received",
   "checkout__success__title": "Thank you. The order's in.",
   "checkout__success__body": "We'll email a confirmation in a moment. Watch this page or your inbox for production and shipping updates.",
@@ -1079,14 +1119,12 @@
   "order__status__in_production": "In production",
   "order__status__shipped": "Shipped",
   "order__status__delivered": "Delivered",
-
   "language__en": "English",
   "language__fr": "French",
   "language__nl": "Dutch",
   "language__de": "German",
   "language__es": "Spanish",
   "language__it": "Italian",
-
   "keepsakes__hero__eyebrow": "The keepsake studio",
   "keepsakes__hero__title_a": "Turn your guests' voices into",
   "keepsakes__hero__title_b": "something you can hold.",
@@ -1109,7 +1147,6 @@
   "keepsakes__filters__digital": "Digital",
   "keepsakes__filters__physical": "Physical",
   "keepsakes__filters__gifts": "Gifts",
-
   "kiosk__checklist__title": "Wedding-day checklist",
   "kiosk__checklist__progress": "<strong>{done} of {total}</strong> ready · ~2 min to finish",
   "kiosk__checklist__charger__title": "Charger plugged in",
@@ -1125,7 +1162,6 @@
   "kiosk__checklist__test__title": "Tested a message yourself",
   "kiosk__checklist__test__desc": "Catches obvious bugs early",
   "kiosk__checklist__test__cta": "Run test",
-
   "kiosk__config__what_section__title": "What guests can leave",
   "kiosk__config__what_section__desc": "Pick one or more. Audio is the magic; a photo is the cherry.",
   "kiosk__config__what__audio__title": "Audio message",
@@ -1176,9 +1212,7 @@
   "kiosk__config__offline__storage__value": "1.5 GB",
   "kiosk__config__offline__notify__title": "Notify us if sync falls behind",
   "kiosk__config__offline__notify__desc": "Email and push, if more than 20 messages are queued.",
-
   "kiosk__toast__sent": "Message sent — thank you!",
-
   "help__hero__eyebrow": "Help center",
   "help__hero__title_a": "Need a hand? We've",
   "help__hero__title_b": "got you",
@@ -1223,7 +1257,6 @@
   "kiosk__footer__save_template": "Save as template",
   "kiosk__footer__start": "Start kiosk on this device",
   "kiosk__config__lockdown__guided__on": "Guided mode on",
-
   "settings__privacy__eyebrow": "Settings",
   "settings__privacy__title_a": "Privacy &",
   "settings__privacy__title_b": "visibility",
@@ -1268,7 +1301,6 @@
   "settings__privacy__ai__suggestions__badge": "On-device only",
   "settings__privacy__discard": "Discard changes",
   "settings__privacy__save": "Save changes",
-
   "settings__data__eyebrow": "Settings",
   "settings__data__title_a": "Data &",
   "settings__data__title_b": "export",
@@ -1305,7 +1337,6 @@
   "settings__data__rights__report__action": "Request",
   "settings__data__rights__optout__title": "Ask us to stop using your data for service improvement",
   "settings__data__rights__optout__desc": "We use anonymized patterns to tune transcription and layout. Opt out any time.",
-
   "marketing__showpiece__caption_margot": "Margot · 2:22",
   "marketing__showpiece__just_arrived": "Just arrived",
   "marketing__showpiece__caption_abuela": "Abuela Carmen · 1:47",
@@ -1313,26 +1344,21 @@
   "marketing__showpiece__person_role": "Maid of honour · 2 days after",
   "marketing__showpiece__quote": "“You’ve built something so beautiful together — watching you both today, I kept thinking how lucky I am to call you my dearest friend.”",
   "marketing__showpiece__caption_joan": "Joan, father of the bride",
-
   "auth__signup__countdown__label": "Countdown",
   "auth__signup__countdown__days": "days",
   "auth__signup__countdown__hint": "Plenty of time to gather voices.",
-
   "auth__signup__phone__welcome": "Welcome",
   "auth__signup__phone__cta": "Leave a voice message",
-
   "auth__signin__welcome__eyebrow": "Signed in · Preparing your book",
   "auth__signin__welcome__title_a": "Welcome back,",
   "auth__signin__welcome__title_b": "Lena & Tomás.",
   "auth__signin__welcome__body_voices_full": "Gathering <voices>{voicesCount} new voices</voices>, <photos>{photosCount} new photos</photos>, and queueing them the way you left them.",
-
   "auth__signin__twofactor__title": "Confirm it’s you.",
   "auth__signin__twofactor__body_full": "We sent a 6-digit code to your phone. It expires in <timer>4:52</timer>.",
   "auth__signin__twofactor__resend": "Send again",
   "auth__signin__twofactor__use_email": "Use email instead",
   "auth__signin__twofactor__verify": "Verify & continue",
   "auth__signin__twofactor__last_signin": "Last sign-in: Madrid · 3 days ago",
-
   "sidebar__nav__home": "Home",
   "sidebar__nav__messages": "Messages",
   "sidebar__nav__photos": "Photos",
@@ -1345,7 +1371,6 @@
   "sidebar__quick__invite": "Invite guests",
   "sidebar__quick__help": "Help center",
   "sidebar__couple_name": "Lena & Tomás",
-
   "qr_code__share__eyebrow": "Share directly",
   "qr_code__share__channel_whatsapp": "WhatsApp",
   "qr_code__share__channel_email": "Email",
@@ -1355,7 +1380,6 @@
   "qr_code__share__suggested_label": "Suggested message",
   "qr_code__share__suggested_a": "“Hi! Would you record a short voice message for our wedding book? Scan the code or tap —",
   "qr_code__share__suggested_b": ". Love, L&T”",
-
   "qr_code__stats__eyebrow": "How it’s doing",
   "qr_code__stats__messages_recorded": "Messages recorded",
   "qr_code__stats__photos": "Photos",
@@ -1363,30 +1387,25 @@
   "qr_code__stats__audio": "Audio",
   "qr_code__stats__30_days_ago": "30 days ago",
   "qr_code__stats__today": "Today",
-
   "qr_code__download__eyebrow": "Download",
   "qr_code__download__png_desc": "2048 × 2048",
   "qr_code__download__svg_desc": "Vector",
   "qr_code__download__pdf_desc": "Print-ready · A4 card sheet",
   "qr_code__download__eps_desc": "Vector for Illustrator",
-
   "qr_code__style__eyebrow": "Style",
   "qr_code__style__classic": "Classic",
   "qr_code__style__cornflower": "Cornflower",
   "qr_code__style__peach": "Peach",
   "qr_code__style__sand": "Sand on ink",
   "qr_code__style__include_logo": "Include logo in centre",
-
   "qr_code__footer__print": "Print A4 sheet",
   "qr_code__footer__embed": "Copy embed code",
   "qr_code__footer__open_guest": "Open guest view",
-
   "qr_code__order__eyebrow": "Want it on paper?",
   "qr_code__order__title_a": "Letterpress QR cards —",
   "qr_code__order__title_b": "from €1.89 each.",
   "qr_code__order__body": "Hand-printed in Lisbon. Ships to Girona in 5–7 days.",
   "qr_code__order__cta": "Order cards",
-
   "qr_cards_order__step_quantity": "Quantity",
   "qr_cards_order__step_design": "Design",
   "qr_cards_order__step_shipping": "Shipping",
@@ -1460,9 +1479,7 @@
   "qr_cards_order__confirm__title_b": "their way.",
   "qr_cards_order__confirm__body": "We've sent a receipt to your email.",
   "qr_cards_order__confirm__back_dashboard": "Back to dashboard",
-
   "dashboard__mobile_header__menu": "Open menu",
-
   "photos__filter__albums": "Albums",
   "photos__filter__album_all": "All photos",
   "photos__filter__album_favourites": "Favourites",
@@ -1488,17 +1505,10 @@
   "photos__filter__pair_cta": "Review matches",
   "photos__filter__storage": "Storage",
   "photos__filter__storage_quota": "/ 5 GB",
-
-  "photos__toolbar__title_a": "{count} photographs.",
-  "photos__toolbar__title_b": "{count} faces.",
-  "photos__toolbar__subtitle": "From 14 Jun — 15 Jun · 42 paired with messages · 22 unmatched",
-  "photos__toolbar__upload": "Upload photos",
   "photos__toolbar__sort_by_reception": "By reception",
-  "photos__toolbar__search_placeholder": "Search people, venues, moments…",
   "photos__toolbar__chip_reception": "Reception",
   "photos__toolbar__chip_with_audio": "With audio",
   "photos__toolbar__chip_family": "Family",
-
   "photos__batch__selected": "{count} photos selected",
   "photos__batch__clear": "Clear",
   "photos__batch__of_total": "· of {total}",
@@ -1508,12 +1518,10 @@
   "photos__batch__action_tag": "Tag",
   "photos__batch__action_pair": "Pair with message",
   "photos__batch__use_in_book": "Use in Gold Book",
-
   "guests__pill__contributed_thanked": "Contributed · Thanked",
   "guests__pill__contributed": "Contributed",
   "guests__pill__nudged": "Nudged",
   "guests__pill__awaiting": "Awaiting",
-
   "guests__directory__title": "Directory",
   "guests__directory__showing_count": "· showing {count}",
   "guests__directory__group_all": "Group: all",
@@ -1549,7 +1557,6 @@
   "guests__directory__name_koen": "Koen Van Looy",
   "guests__directory__name_sofia": "Sofia Pereira",
   "guests__directory__table_label": "Table {n}",
-
   "guests__nudge__eyebrow": "Follow-up",
   "guests__nudge__title": "Nudge {count} guests who haven’t recorded yet",
   "guests__nudge__body": "We’ll send a warm one-liner with your link. You can preview and edit before anything goes out. WhatsApp works best — 3× the response rate of email.",
@@ -1559,16 +1566,13 @@
   "guests__nudge__best": "BEST",
   "guests__nudge__preview_label": "Preview:",
   "guests__nudge__preview_body": "“Hi Renée — Lena & Tomás here. The book is closing soon; would love a quick voice note. 30 seconds is plenty. ovation.love/lena-tomas”",
-
   "guests__table__col_guest": "Guest",
   "guests__table__col_group_table": "Group · Table",
   "guests__table__col_contact": "Contact",
   "guests__table__col_status": "Status",
   "guests__table__col_activity": "Activity",
-
   "guests__groups__title": "Groups",
   "guests__groups__edit": "Edit groups →",
-
   "guests__chips__all": "All guests",
   "guests__chips__contributed": "Contributed",
   "guests__chips__still": "Still to hear",
@@ -1577,7 +1581,6 @@
   "guests__chips__with_photo": "With photo",
   "guests__chips__no_email": "No email yet",
   "guests__chips__sort_recent": "Most recent first",
-
   "guests__thankyou__eyebrow": "Thank-you notes",
   "guests__thankyou__title_a": "{count} guests are waiting",
   "guests__thankyou__title_b": "for a",
@@ -1586,41 +1589,35 @@
   "guests__thankyou__body": "Pre-addressed postcards with each guest’s own photo and a quote they said. We print, stamp, and ship.",
   "guests__thankyou__cta": "Review the batch",
   "guests__thankyou__price": "€39 for {count} cards · ships in 1–2 weeks",
-
   "keepsakes__footer__legal": "Every keepsake is carbon-neutral · printed in Portugal · shipped worldwide",
-
   "common__most_chosen": "MOST CHOSEN",
-
   "sidebar__credit_available": "★ {amount} credit available",
   "sidebar__cart": "Cart · {count}",
   "sidebar__couple_initials": "L&T",
-
+  "sidebar__pro__events": "Events",
+  "sidebar__pro__event_back": "All events",
+  "sidebar__pro__subscription": "Subscription",
   "auth__social__sign_up_with": "Sign up with",
   "auth__social__continue_with": "Continue with",
   "auth__social__error_default": "Couldn’t start sign-in. Please try again.",
-
   "signup__partner_a_default": "Partner A",
   "signup__partner_b_default": "Partner B",
   "signup__partner_1_fallback": "Partner 1",
   "signup__partner_2_fallback": "Partner 2",
   "signup__pricing__choose": "Choose {name}",
   "signup__book_preview__volume": "Ovation · Volume I",
-
   "auth__signin__welcome__polaroid_margot": "Margot",
   "auth__signin__welcome__polaroid_angela": "Angela",
   "auth__signin__welcome__polaroid_joan": "Joan",
   "auth__signin__welcome__polaroid_elise": "Elise",
-
   "photos__filter__person_margot": "Margot",
   "photos__filter__person_joan": "Joan",
   "photos__filter__person_angela": "Angela",
   "photos__filter__person_elise": "Elise",
   "photos__filter__person_carlos": "Carlos",
   "photos__filter__person_marco": "Marco",
-
   "dashboard__resume__name": "Margot Devreese",
   "dashboard__resume__role": "Maid of honour",
-
   "settings__wedding__placeholder_partner_a": "Lena",
   "settings__wedding__placeholder_partner_b": "Tomás",
   "settings__wedding__lang_en": "English",
@@ -1629,7 +1626,6 @@
   "settings__wedding__lang_de": "German",
   "settings__wedding__lang_es": "Spanish",
   "settings__wedding__lang_it": "Italian",
-
   "guests__pagination__showing": "Showing {showing} of {total}",
   "guests__pagination__prev": "Previous page",
   "guests__pagination__next": "Next page",
@@ -1653,53 +1649,40 @@
   "guests__sort__most_messages": "Most messages",
   "guests__table__col_messages": "Messages",
   "guests__table__col_last_seen": "Last activity",
-
   "marketing__testimonial__couple_initials": "SR",
-
   "guest__record__schema__name_required": "Please enter your name",
   "guest__record__schema__name_too_long": "Name is too long",
   "guest__record__schema__note_required": "Write something before sharing",
   "guest__record__schema__note_too_long": "Notes are limited to 200 characters",
-
   "keepsakes__design__fallback__subtitle": "Keepsake",
   "keepsakes__design__fallback__headline": "A piece of the day, kept.",
   "keepsakes__design__fallback__tagline": "",
-
   "keepsakes__design__gold_book__subtitle": "Hardcover",
   "keepsakes__design__gold_book__headline": "Their voices, your book.",
   "keepsakes__design__gold_book__tagline": "A printed hardcover with every guest message, photo, and transcript.",
-
   "keepsakes__design__video_montage__subtitle": "Digital",
   "keepsakes__design__video_montage__headline": "Their words. Their faces. One reel.",
   "keepsakes__design__video_montage__tagline": "A 3-minute film stitched from every voice and photo your guests left.",
-
   "keepsakes__design__audio_vinyl__subtitle": "Pressed vinyl",
   "keepsakes__design__audio_vinyl__headline": "Side A: speeches. Side B: chaos.",
   "keepsakes__design__audio_vinyl__tagline": "A real 12\" record from your guest audio. Side A: speeches. Side B: chaos.",
-
   "keepsakes__design__digital_album__subtitle": "Shareable link",
   "keepsakes__design__digital_album__headline": "A living album, link-shareable.",
   "keepsakes__design__digital_album__tagline": "A living album guests can revisit. Share a single link — plays on any device.",
-
   "keepsakes__design__thank_you_cards__subtitle": "Set of 50",
   "keepsakes__design__thank_you_cards__headline": "Say thanks — in their own photo.",
   "keepsakes__design__thank_you_cards__tagline": "Each card features the guest’s own photo and a snippet of what they said.",
-
   "keepsakes__design__canvas_print__subtitle": "Framed print",
   "keepsakes__design__canvas_print__headline": "One favourite, on the wall.",
   "keepsakes__design__canvas_print__tagline": "One favourite quote, typeset on archival canvas. Ready to hang.",
-
   "keepsakes__filter__all": "All",
   "keepsakes__filter__printed": "Printed",
   "keepsakes__filter__digital": "Digital",
   "keepsakes__filter__physical": "Physical",
   "keepsakes__filter__gifts": "Gifts",
-
   "common__anonymous": "Anonymous",
-
   "messages__detail__retranscribe": "Re-transcribe",
   "messages__detail__retranscribe_pending": "Queueing…",
-
   "orders__detail__title": "Order details",
   "orders__detail__status": "Status",
   "orders__detail__placed": "Placed",
@@ -1715,9 +1698,7 @@
   "orders__detail__refund_cancel": "Cancel",
   "orders__detail__close": "Close",
   "orders__detail__refunded": "Refunded {amount}",
-
   "common__footer__product_links__sample_book": "Sample book",
-
   "marketing__gold_book__eyebrow": "Our signature keepsake",
   "marketing__gold_book__title_line1": "Every voice,",
   "marketing__gold_book__title_line2": "bound in gold.",
@@ -1732,11 +1713,9 @@
   "marketing__gold_book__feature4_body": "Every message transcribed and translated automatically.",
   "marketing__gold_book__cta": "Order your Gold Book",
   "marketing__gold_book__ships": "Ships in 14 days · Free EU delivery",
-
   "marketing__changelog__eyebrow": "What's new",
   "marketing__changelog__title": "Changelog",
   "marketing__changelog__description": "Every update, every improvement — shipped with care.",
-
   "marketing__for_planners__eyebrow": "For professionals",
   "marketing__for_planners__title_line1": "Offer your clients",
   "marketing__for_planners__title_line2": "something unforgettable.",
@@ -1751,7 +1730,6 @@
   "marketing__for_planners__benefit4_body": "Dedicated onboarding and a direct line for day-of questions.",
   "marketing__for_planners__cta": "Apply to partner",
   "marketing__for_planners__cta_secondary": "See how it works",
-
   "marketing__about__eyebrow": "Our story",
   "marketing__about__title_line1": "Built by people who",
   "marketing__about__title_line2": "cried at weddings.",
@@ -1761,7 +1739,6 @@
   "marketing__about__founded": "Founded 2024 · Barcelona & Amsterdam",
   "marketing__about__team_eyebrow": "The team",
   "marketing__about__team_description": "We are a small, international team who have attended more weddings than we can count and cried at most of them.",
-
   "marketing__careers__eyebrow": "Join us",
   "marketing__careers__title_line1": "Small team.",
   "marketing__careers__title_line2": "Big feelings.",
@@ -1779,7 +1756,6 @@
   "marketing__careers__no_openings": "No open positions right now — but we are always interested in hearing from exceptional people.",
   "marketing__careers__speculative": "Send a speculative application",
   "marketing__careers__email": "careers@ovation.wedding",
-
   "marketing__sustainability__eyebrow": "Our commitments",
   "marketing__sustainability__title_line1": "Made with care,",
   "marketing__sustainability__title_line2": "for the world too.",
@@ -1793,7 +1769,6 @@
   "marketing__sustainability__commitment4_title": "Long-lived by design",
   "marketing__sustainability__commitment4_body": "We build for heirlooms, not for landfill. Linen covers, archival-quality inks, lay-flat binding.",
   "marketing__sustainability__footer_note": "We are not perfect. But we are honest about where we are and serious about where we are going.",
-
   "marketing__press_kit__eyebrow": "Media",
   "marketing__press_kit__title": "Press kit",
   "marketing__press_kit__description": "Everything you need to write about Ovation — boilerplate, brand assets, and a direct line to our press contact.",
@@ -1804,7 +1779,6 @@
   "marketing__press_kit__assets_label": "Brand assets",
   "marketing__press_kit__assets_description": "Logos in SVG and PNG, brand colours, and approved photography.",
   "marketing__press_kit__download": "Download assets",
-
   "marketing__contact__eyebrow": "Get in touch",
   "marketing__contact__title": "We would love to hear from you.",
   "marketing__contact__description": "Questions, feedback, press, partnerships — reach us at the address below and we will reply within one business day.",
@@ -1816,15 +1790,12 @@
   "marketing__contact__press_email": "press@ovation.wedding",
   "marketing__contact__planners_label": "Planner partnerships",
   "marketing__contact__planners_email": "planners@ovation.wedding",
-
   "marketing__gdpr__title": "GDPR",
   "marketing__gdpr__subtitle": "General Data Protection Regulation",
   "marketing__gdpr__last_updated": "Last updated: 1 January 2026",
-
   "marketing__dpa__title": "Data Processing Agreement",
   "marketing__dpa__subtitle": "For wedding planners and professional event coordinators",
   "marketing__dpa__last_updated": "Last updated: 1 January 2026",
-
   "marketing__changelog__entry1_version": "v1.3",
   "marketing__changelog__entry1_date": "April 2026",
   "marketing__changelog__entry1_description": "Kiosk mode. Set up a tablet at your venue and let guests record without needing a QR code link.",
@@ -1837,7 +1808,6 @@
   "marketing__changelog__entry4_version": "v1.0",
   "marketing__changelog__entry4_date": "January 2026",
   "marketing__changelog__entry4_description": "Ovation launches. Voice messages, photo uploads, and the first Gold Books ship to couples in Spain and the Netherlands.",
-
   "marketing__keepsakes__eyebrow": "The collection",
   "marketing__keepsakes__title_line1": "Every voice,",
   "marketing__keepsakes__title_line2": "a keepsake.",
@@ -1861,7 +1831,6 @@
   "marketing__keepsakes__product6_description": "A single message, printed large on museum-quality canvas.",
   "marketing__keepsakes__product6_price": "from €79",
   "marketing__keepsakes__shipping_note": "All physical products ship within 14 days. Free delivery within the EU.",
-
   "marketing__privacy__title": "Privacy Policy",
   "marketing__privacy__last_updated": "Last updated: 1 January 2026",
   "marketing__privacy__section1_heading": "Who we are",
@@ -1880,7 +1849,6 @@
   "marketing__privacy__section7_body": "Depending on where you are located, you may have the right to access, correct, delete, or export your personal data, to restrict or object to processing, and to withdraw consent at any time. To exercise any of these rights, please contact us at <link>privacy@ovation.wedding</link>. We will respond within 30 days.",
   "marketing__privacy__section8_heading": "Contact",
   "marketing__privacy__section8_body": "For privacy-related enquiries, write to us at <link>privacy@ovation.wedding</link> or at our registered office: Ovation Keepsakes, S.L., Carrer de Provença 123, 08036 Barcelona, Spain.",
-
   "marketing__terms__title": "Terms of Service",
   "marketing__terms__last_updated": "Last updated: 1 January 2026",
   "marketing__terms__section1_heading": "Acceptance",
@@ -1897,7 +1865,6 @@
   "marketing__terms__section6_body": "To the maximum extent permitted by applicable law, Ovation is not liable for any indirect, incidental, special, consequential, or punitive damages, including loss of data or recordings. Our total liability for any claim shall not exceed the amount you paid to Ovation in the 12 months preceding the claim.",
   "marketing__terms__section7_heading": "Governing law",
   "marketing__terms__section7_body": "These Terms are governed by the laws of Spain. Any disputes shall be subject to the exclusive jurisdiction of the courts of Barcelona, except where mandatory consumer protection law in your country of residence provides otherwise.",
-
   "marketing__cookies__title": "Cookie Policy",
   "marketing__cookies__last_updated": "Last updated: 1 January 2026",
   "marketing__cookies__section1_heading": "What are cookies",
@@ -1911,7 +1878,6 @@
   "marketing__cookies__section2_marketing_body": "may be set by our advertising partners to measure the effectiveness of campaigns. These cookies are set only with your explicit consent.",
   "marketing__cookies__section3_heading": "Managing your preferences",
   "marketing__cookies__section3_body": "You can update your cookie preferences at any time using our cookie settings panel. You may also control cookies through your browser settings. For questions, contact us at <link>privacy@ovation.wedding</link>.",
-
   "marketing__gdpr__section1_heading": "Overview",
   "marketing__gdpr__section1_body": "Ovation Keepsakes, S.L. is committed to protecting the personal data of every individual whose information we process. This document explains how we comply with the General Data Protection Regulation (EU) 2016/679 in our role as a data controller for couples and guests who use our platform.",
   "marketing__gdpr__section2_heading": "Data we process",
@@ -1948,7 +1914,6 @@
   "marketing__gdpr__section6_body": "We retain account data for as long as your account is active, and for up to 12 months after deletion. Guest voice recordings and photos are retained for the duration of the couple's subscription and deleted within 90 days of account closure. Financial records are retained for 7 years as required by Spanish tax law.",
   "marketing__gdpr__section7_heading": "Contact",
   "marketing__gdpr__section7_body": "Our data protection contact is reachable at <link>privacy@ovation.wedding</link>. Our registered address is Ovation Keepsakes, S.L., Carrer de Provença 123, 08036 Barcelona, Spain. If you believe we have not adequately addressed your concern, you have the right to lodge a complaint with the Spanish data protection authority (AEPD).",
-
   "marketing__dpa__section1_heading": "Parties",
   "marketing__dpa__section1_body": "This Data Processing Agreement is entered into between Ovation Keepsakes, S.L. (\"Processor\") and the wedding planner or professional event coordinator (\"Controller\") who has accepted our Planner Partner Terms. This DPA governs the processing of personal data carried out by the Processor on behalf of the Controller.",
   "marketing__dpa__section2_heading": "Scope",

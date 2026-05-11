@@ -3,6 +3,7 @@ import { cn } from "@ovation/ui/utils/cn";
 import { Card } from "@ovation/ui/components/Card";
 import { Button } from "@ovation/ui/components/Button";
 import { FeatureListItem } from "@ovation/ui/components/FeatureListItem";
+import { Link } from "@/i18n/navigation";
 import type { Tier } from "./constants";
 
 type PricingCardProps = Omit<Tier, "key">;
@@ -16,6 +17,7 @@ export const PricingCard = ({
   descKey,
   ctaKey,
   featKeys,
+  href,
 }: PricingCardProps) => {
   const t = useTranslations();
 
@@ -68,8 +70,9 @@ export const PricingCard = ({
         size="lg"
         variant={highlighted ? "default" : "outline"}
         className="mt-8 w-full self-end rounded-full"
+        asChild
       >
-        {t(ctaKey)}
+        <Link href={href}>{t(ctaKey)}</Link>
       </Button>
     </Card>
   );

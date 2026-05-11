@@ -41,7 +41,7 @@ export const ForPlannersPage = () => {
         <div className="section-container">
           <div className="flex flex-wrap gap-4">
             <Button size="lg" asChild>
-              <Link href={appRoutes.auth.signUp}>{t("marketing__for_planners__cta")}</Link>
+              <Link href={`${appRoutes.auth.signUp}?as=pro`}>{t("marketing__for_planners__cta")}</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href={appRoutes.marketing.howItWorks}>{t("marketing__for_planners__cta_secondary")}</Link>

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { AuthSplitLayout } from "../../components/AuthSplitLayout";
@@ -31,6 +32,8 @@ const CreateAccountPanel = async () => {
 
 export const CreateAccountStep = () => (
   <AuthSplitLayout panel={<CreateAccountPanel />}>
-    <CreateAccountForm />
+    <Suspense>
+      <CreateAccountForm />
+    </Suspense>
   </AuthSplitLayout>
 );

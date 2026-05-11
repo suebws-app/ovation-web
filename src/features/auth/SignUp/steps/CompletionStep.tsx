@@ -11,7 +11,11 @@ import { paymentsClient } from "@/lib/api/payments-client";
 import { ApiError } from "@/lib/api/client";
 import { env } from "@/lib/utils/env";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
-import type { CheckoutPlanTier, CoverPhotoContentType } from "@/lib/api/types";
+import type {
+  CheckoutPlanTier,
+  CoverPhotoContentType,
+  ProCheckoutSessionInput,
+} from "@/lib/api/types";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { NextStepCard } from "../components/NextStepCard";
@@ -186,6 +190,36 @@ export const CompletionStep = () => {
           if (cancelled) return;
         }
 
+        const isPro = formData.accountType === "pro";
+        if (isPro && formData.selectedPlan) {
+          setState({ kind: "redirecting" });
+          try {
+            const origin = typeof window !== "undefined" ? window.location.origin : env.APP_URL;
+            const checkout = await paymentsClient.createProCheckoutSession({
+              planCode: formData.selectedPlan as ProCheckoutSessionInput["planCode"],
+              successUrl: `${origin}${appRoutes.app.events}?welcome=1`,
+              cancelUrl: `${origin}${appRoutes.auth.signUpPlan}`,
+            });
+            if (cancelled) return;
+            window.location.assign(checkout.checkoutUrl);
+            return;
+          } catch (error) {
+            if (cancelled) return;
+            setState({
+              kind: "error",
+              message: ApiError.isApiError(error)
+                ? `${error.message}`
+                : t("signup__completion__error_checkout_default"),
+            });
+            return;
+          }
+        }
+
+        if (isPro) {
+          window.location.assign(`${appRoutes.app.eventMessages(created.event.id)}`);
+          return;
+        }
+
         const planTier = PLAN_TIER_BY_ID[formData.selectedPlan ?? ""] ?? null;
         if (planTier) {
           setState({ kind: "redirecting" });
@@ -236,6 +270,7 @@ export const CompletionStep = () => {
     formData.bookUrl,
     formData.selectedPlan,
     formData.coverFile,
+    formData.accountType,
     updateFormData,
     t,
   ]);

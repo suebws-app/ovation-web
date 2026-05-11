@@ -7,6 +7,8 @@ type SignUpFormData = {
   password: string;
   agreedToTerms: boolean;
   otpCode: string;
+  accountType: "couple" | "pro" | "";
+  businessName: string;
   partner1Name: string;
   partner2Name: string;
   displayOrder: string;
@@ -30,6 +32,8 @@ const initialFormData: SignUpFormData = {
   password: "",
   agreedToTerms: false,
   otpCode: "",
+  accountType: "",
+  businessName: "",
   partner1Name: "",
   partner2Name: "",
   displayOrder: "",

@@ -90,7 +90,7 @@ export const auth = betterAuth({
   },
 
   emailVerification: {
-    sendOnSignUp: true,
+    sendOnSignUp: false,
     autoSignInAfterVerification: true,
     expiresIn: 60 * 60 * 24,
     sendVerificationEmail: async ({ user, url }) => {
@@ -154,6 +154,12 @@ export const auth = betterAuth({
         defaultValue: "user",
         required: false,
         fieldName: "role",
+      },
+      accountType: {
+        type: "string",
+        defaultValue: "couple",
+        required: false,
+        fieldName: "account_type",
       },
     },
   },

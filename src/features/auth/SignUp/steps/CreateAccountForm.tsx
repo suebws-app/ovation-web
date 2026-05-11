@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
@@ -24,11 +25,20 @@ import {
 export const CreateAccountForm = () => {
   const t = useTranslations();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const updateFormData = useSignUpStore((s) => s.updateFormData);
   const storedEmail = useSignUpStore((s) => s.formData.email);
   const storedAgreed = useSignUpStore((s) => s.formData.agreedToTerms);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const schema = useMemo(() => getCreateAccountSchema(t), [t]);
+
+  useEffect(() => {
+    const as = searchParams.get("as");
+    const plan = searchParams.get("plan");
+    if (as === "pro") updateFormData({ accountType: "pro" });
+    else if (as === "couple") updateFormData({ accountType: "couple" });
+    if (plan) updateFormData({ selectedPlan: plan });
+  }, [searchParams, updateFormData]);
 
   const {
     register,
@@ -48,10 +58,18 @@ export const CreateAccountForm = () => {
 
   const onSubmit = async (values: CreateAccountFields) => {
     setSubmitError(null);
-    const { error } = await authClient.signUp.email({
+    const accountType = useSignUpStore.getState().formData.accountType || "couple";
+    const signUpEmail = authClient.signUp.email as (opts: {
+      email: string;
+      password: string;
+      name: string;
+      accountType?: string;
+    }) => Promise<{ error?: { message?: string } | null }>;
+    const { error } = await signUpEmail({
       email: values.email,
       password: values.password,
       name: values.email.split("@")[0] ?? values.email,
+      accountType,
     });
     if (error) {
       setSubmitError(
@@ -60,7 +78,7 @@ export const CreateAccountForm = () => {
       return;
     }
     updateFormData({ email: values.email, agreedToTerms: true });
-    router.push(appRoutes.auth.signUpVerify);
+    router.push(appRoutes.auth.signUpPlan);
   };
 
   return (
@@ -68,7 +86,7 @@ export const CreateAccountForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Kicker className="text-primary mb-3">
           {t("auth__signup__eyebrow_step", {
-            step: 1,
+            step: 5,
             label: t("auth__signup__create_account__label"),
           })}
         </Kicker>
