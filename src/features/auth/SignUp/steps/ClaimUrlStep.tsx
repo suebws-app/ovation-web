@@ -20,7 +20,10 @@ export const ClaimUrlStep = () => {
       venue={formData.venue}
       bookUrl={formData.bookUrl}
       onBookUrlChange={(url) => updateFormData({ bookUrl: url })}
-      onContinue={() => router.push(appRoutes.auth.signUp)}
+      onContinue={() => {
+        const accountType = formData.accountType || "couple";
+        router.push(`${appRoutes.auth.signUp}?as=${accountType}`);
+      }}
       headerSlot={
         <Kicker className="text-primary mb-3">
           {t("auth__signup__eyebrow_step", {
