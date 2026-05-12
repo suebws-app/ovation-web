@@ -1,8 +1,12 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
 
 import { decorate } from "../designTokens";
-import { FilterTabs } from "./FilterTabs";
+import { matchesFilter } from "../filterMap";
+import { FilterTabs, type KeepsakeFilter } from "./FilterTabs";
 import { ProductCard } from "./ProductCard";
 import type { KeepsakeProduct } from "@/lib/api/types";
 
@@ -16,7 +20,14 @@ export const KeepsakesCollection = ({
   eventId,
 }: KeepsakesCollectionProps) => {
   const t = useTranslations();
-  const decorated = products.map(decorate);
+  const [filter, setFilter] = useState<KeepsakeFilter>("all");
+
+  const filtered = useMemo(
+    () =>
+      products.filter((product) => matchesFilter(product.sku, filter)).map(decorate),
+    [products, filter],
+  );
+
   return (
     <div className="mt-9">
       <div className="tablet:flex-row tablet:items-end tablet:justify-between flex flex-col gap-4.5">
@@ -28,14 +39,24 @@ export const KeepsakesCollection = ({
             {t("keepsakes__collection__title")}
           </h2>
         </div>
-        <FilterTabs />
+        <FilterTabs active={filter} onChange={setFilter} />
       </div>
 
-      <div className="tablet:grid-cols-2 desktop:grid-cols-3 mt-4.5 grid gap-4.5">
-        {decorated.map((product) => (
-          <ProductCard key={product.sku} product={product} eventId={eventId} />
-        ))}
-      </div>
+      {filtered.length === 0 ? (
+        <p className="type-body-small text-muted-foreground mt-6">
+          {t("keepsakes__collection__empty")}
+        </p>
+      ) : (
+        <div className="tablet:grid-cols-2 desktop:grid-cols-3 mt-4.5 grid gap-4.5">
+          {filtered.map((product) => (
+            <ProductCard
+              key={product.sku}
+              product={product}
+              eventId={eventId}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

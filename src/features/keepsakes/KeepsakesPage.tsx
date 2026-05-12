@@ -23,7 +23,6 @@ export const KeepsakesPage = async () => {
   const eventId = eventsResult.items[0]?.id ?? null;
   const featured =
     catalog.products.find((p) => p.sku === "gold_book") ?? catalog.products[0];
-  const others = catalog.products.filter((p) => p.sku !== featured?.sku);
 
   return (
     <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
@@ -36,7 +35,7 @@ export const KeepsakesPage = async () => {
         />
       )}
       <BundleBanner />
-      <KeepsakesCollection products={others} eventId={eventId} />
+      <KeepsakesCollection products={catalog.products} eventId={eventId} />
 
       <KeepsakesFooter />
     </div>

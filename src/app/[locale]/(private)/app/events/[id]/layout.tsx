@@ -1,6 +1,7 @@
 import { eventsApi } from "@/lib/api/events";
 import { EventContextProvider } from "@/features/events/EventContext";
 import { EventLabelSync } from "@/features/events/EventLabelSync";
+import { LastEventCookieSync } from "@/features/events/LastEventCookieSync";
 
 export default async function Layout({
   params,
@@ -27,6 +28,7 @@ export default async function Layout({
   return (
     <EventContextProvider id={id}>
       <EventLabelSync label={label} />
+      <LastEventCookieSync eventId={id} />
       {children}
     </EventContextProvider>
   );

@@ -7,12 +7,12 @@ import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
 import { useRouter } from "@/i18n/navigation";
 
-type LinkToggleCardProps = {
+type LinkActiveCardProps = {
   eventId: string;
   enabled: boolean;
 };
 
-export const LinkToggleCard = ({ eventId, enabled }: LinkToggleCardProps) => {
+export const LinkActiveCard = ({ eventId, enabled }: LinkActiveCardProps) => {
   const t = useTranslations();
   const router = useRouter();
   const [pending, startTransition] = useTransition();

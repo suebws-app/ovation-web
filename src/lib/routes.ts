@@ -54,6 +54,8 @@ export const appRoutes = {
     photos: "/app/photos",
     guests: "/app/guests",
     kiosk: "/app/kiosk",
+    link: "/app/link",
+    help: "/app/help",
     account: "/app/account",
     events: "/app/events",
     eventsNew: "/app/events/new",
@@ -68,6 +70,7 @@ export const appRoutes = {
     eventKeepsakes: (id: string) => `/app/events/${id}/keepsakes`,
     eventQrCode: (id: string) => `/app/events/${id}/qr-code`,
     eventKiosk: (id: string) => `/app/events/${id}/kiosk`,
+    eventLink: (id: string) => `/app/events/${id}/link`,
   },
 
   settings: {

@@ -16,8 +16,10 @@ export default async function AppRootLayout({
     redirect(appRoutes.auth.signIn);
   }
 
-  const events = await eventsApi.list({ limit: 1 }).catch(() => null);
-  const event = events?.items[0] ?? null;
+  const eventsLimit = user.accountType === "pro" ? 100 : 1;
+  const events = await eventsApi.list({ limit: eventsLimit }).catch(() => null);
+  const eventsList = events?.items ?? [];
+  const event = eventsList[0] ?? null;
   const subResult = event
     ? await subscriptionsApi.get(event.id).catch((error) => {
         if (ApiError.isApiError(error) && error.status === 404) return null;
@@ -27,7 +29,7 @@ export default async function AppRootLayout({
   const subscription = subResult?.subscription ?? null;
 
   return (
-    <AppLayout user={user} subscription={subscription}>
+    <AppLayout user={user} subscription={subscription} events={eventsList}>
       {children}
     </AppLayout>
   );

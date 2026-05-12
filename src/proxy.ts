@@ -55,6 +55,14 @@ export const proxy = (request: Request) => {
     return Response.redirect(loginUrl);
   }
 
+  if (pathnameWithoutLocale === "/settings") {
+    const target = new URL(request.url);
+    target.pathname = pathname.endsWith("/")
+      ? `${pathname}profile`
+      : `${pathname}/profile`;
+    return Response.redirect(target);
+  }
+
   const isSignUpStep = pathnameWithoutLocale.startsWith("/sign-up/");
   const isHomepage = pathnameWithoutLocale === "/";
   const isMarketing = matchesPrefix(pathnameWithoutLocale, MARKETING_PREFIXES);

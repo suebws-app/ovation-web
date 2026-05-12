@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
+import { EventSwitcher } from "./EventSwitcher";
+import type { Event } from "@/lib/api/types";
 import { HomeIcon } from "@ovation/icons/HomeIcon";
 import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
@@ -9,11 +11,9 @@ import { StarIcon } from "@ovation/icons/StarIcon";
 import { SettingsIcon } from "@ovation/icons/SettingsIcon";
 import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
 import { MonitorIcon } from "@ovation/icons/MonitorIcon";
-import { UserPlusIcon } from "@ovation/icons/UserPlusIcon";
 import { HelpCircleIcon } from "@ovation/icons/HelpCircleIcon";
 import { UsersIcon } from "@ovation/icons/UsersIcon";
-import { GridIcon } from "@ovation/icons/GridIcon";
-import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
+import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
 import { usePathname } from "next/navigation";
@@ -74,6 +74,11 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
     label: t("sidebar__quick__title"),
     items: [
       {
+        label: t("sidebar__quick__link"),
+        href: appRoutes.app.link,
+        icon: LinkIcon,
+      },
+      {
         label: t("sidebar__quick__qr"),
         href: appRoutes.app.qrCode,
         icon: QrCodeIcon,
@@ -84,36 +89,15 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
         icon: MonitorIcon,
       },
       {
-        label: t("sidebar__quick__invite"),
-        href: "/app/invite",
-        icon: UserPlusIcon,
+        label: t("sidebar__quick__help"),
+        href: appRoutes.app.help,
+        icon: HelpCircleIcon,
       },
-      { label: t("sidebar__quick__help"), href: "/help", icon: HelpCircleIcon },
     ],
   },
 ];
 
-const buildProGlobalGroups = (t: Translator): SidebarNavGroup[] => [
-  {
-    items: [
-      {
-        label: t("sidebar__pro__events"),
-        href: appRoutes.app.events,
-        icon: GridIcon,
-      },
-      {
-        label: t("sidebar__nav__settings"),
-        href: appRoutes.settings.root,
-        icon: SettingsIcon,
-      },
-      {
-        label: t("sidebar__pro__subscription"),
-        href: appRoutes.settings.billing,
-        icon: StarIcon,
-      },
-    ],
-  },
-];
+const buildProGlobalGroups = (_t: Translator): SidebarNavGroup[] => [];
 
 const buildProEventGroups = (
   t: Translator,
@@ -121,11 +105,6 @@ const buildProEventGroups = (
 ): SidebarNavGroup[] => [
   {
     items: [
-      {
-        label: t("sidebar__pro__event_back"),
-        href: appRoutes.app.events,
-        icon: ChevronLeftIcon,
-      },
       {
         label: t("sidebar__nav__messages"),
         href: appRoutes.app.eventMessages(eventId),
@@ -147,6 +126,11 @@ const buildProEventGroups = (
         icon: StarIcon,
       },
       {
+        label: t("sidebar__quick__link"),
+        href: appRoutes.app.eventLink(eventId),
+        icon: LinkIcon,
+      },
+      {
         label: t("sidebar__quick__qr"),
         href: appRoutes.app.eventQrCode(eventId),
         icon: QrCodeIcon,
@@ -162,14 +146,16 @@ const buildProEventGroups = (
 
 type AppSideBarProps = {
   user: User;
+  events: Event[];
 };
 
-export const AppSideBar = ({ user }: AppSideBarProps) => {
+export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   const t = useTranslations();
   const eventId = useProEventId();
+  const isPro = user.accountType === "pro";
 
   let groups: SidebarNavGroup[];
-  if (user.accountType === "pro") {
+  if (isPro) {
     groups = eventId
       ? buildProEventGroups(t, eventId)
       : buildProGlobalGroups(t);
@@ -177,9 +163,20 @@ export const AppSideBar = ({ user }: AppSideBarProps) => {
     groups = buildCoupleGroups(t);
   }
 
+  const header = isPro ? (
+    <div className="flex items-center gap-2">
+      <Logo iconOnly />
+      <div className="flex-1 min-w-0">
+        <EventSwitcher events={events} activeEventId={eventId} />
+      </div>
+    </div>
+  ) : (
+    <Logo />
+  );
+
   return (
     <Sidebar
-      header={<Logo />}
+      header={header}
       groups={groups}
       footer={<NavUser user={user} />}
     />

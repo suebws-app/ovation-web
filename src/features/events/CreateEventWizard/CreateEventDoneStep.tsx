@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { eventsClient } from "@/lib/api/events-client";
@@ -30,13 +30,17 @@ type DoneState =
 
 export const CreateEventDoneStep = () => {
   const t = useTranslations();
-  const { formData, reset } = useCreateEventStore();
   const router = useRouter();
   const [state, setState] = useState<DoneState>({ kind: "creating" });
   const [retryToken, setRetryToken] = useState(0);
+  const startedForTokenRef = useRef<number | null>(null);
 
   useEffect(() => {
+    if (startedForTokenRef.current === retryToken) return;
+    startedForTokenRef.current = retryToken;
+
     let cancelled = false;
+    const { formData, reset } = useCreateEventStore.getState();
 
     (async () => {
       try {
@@ -89,6 +93,7 @@ export const CreateEventDoneStep = () => {
         router.push(appRoutes.app.eventMessages(created.event.id));
       } catch (error) {
         if (cancelled) return;
+        startedForTokenRef.current = null;
         setState({
           kind: "error",
           message: ApiError.isApiError(error)
@@ -101,7 +106,7 @@ export const CreateEventDoneStep = () => {
     return () => {
       cancelled = true;
     };
-  }, [retryToken, formData, reset, router, t]);
+  }, [retryToken, router, t]);
 
   if (state.kind === "error") {
     return (
