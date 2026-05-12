@@ -75,6 +75,6 @@ export const sendResetPasswordEmail = async (
   await send({
     to,
     subject: subjects[lang]!,
-    html: `<p>${subjects[lang]}</p><p><a href="${url}" rel="noreferrer">${cta[lang]}</a></p><p>This link expires in 1 hour. If you didn’t request this, ignore the email.</p>`,
+    html: `<p>${subjects[lang]}</p><p><a href="${url}" rel="noreferrer">${cta[lang]}</a></p><p>This link expires in 1 hour. If you didn't request this, ignore the email.</p>`,
   });
 };

@@ -1,16 +1,20 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { PlanCard } from "../components/PlanCard";
+import { PlanOptionCard } from "../components/PlanOptionCard";
 import { useSignUpStore } from "../useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { PRO_TIERS } from "@/features/marketing/PricingSection/constants";
 
 export const ChoosePlanStep = () => {
   const t = useTranslations();
-  const { updateFormData } = useSignUpStore();
+  const { formData, updateFormData } = useSignUpStore();
   const router = useRouter();
+  const isPro = formData.accountType === "pro";
 
   const PLANS = [
     {
@@ -54,10 +58,77 @@ export const ChoosePlanStep = () => {
     },
   ];
 
-  const handleSelectPlan = (planId: string) => {
+  const handleSelectCouplePlan = (planId: string) => {
     updateFormData({ selectedPlan: planId });
-    router.push(appRoutes.auth.signUpStep(7));
+    router.push(appRoutes.auth.signUpDone);
   };
+
+  const handleSelectProPlan = (planKey: string) => {
+    updateFormData({ selectedPlan: planKey });
+  };
+
+  const handleProContinue = () => {
+    if (!formData.selectedPlan) updateFormData({ selectedPlan: "pro_starter" });
+    router.push(appRoutes.auth.signUpDone);
+  };
+
+  if (isPro) {
+    return (
+      <div className="flex min-h-[calc(100vh-89px)] items-center justify-center px-6 py-16">
+        <div className="w-full max-w-2xl">
+          <Kicker className="text-primary mb-3">
+            {t("auth__signup__eyebrow_step", {
+              step: 6,
+              label: t("signup__pro_plan__step_label"),
+            })}
+          </Kicker>
+          <h1 className="type-h1 leading-tight font-semibold tracking-tight">
+            {t("signup__pro_plan__title")}
+            <br />
+            <span className="text-primary italic">
+              {t("signup__pro_plan__title_b")}
+            </span>
+          </h1>
+          <p className="text-muted-foreground type-body-small mt-3 leading-relaxed">
+            {t("signup__pro_plan__subtitle")}
+          </p>
+
+          <div className="mt-10 grid grid-cols-1 gap-5 tablet:grid-cols-2">
+            {PRO_TIERS.map(
+              ({ key, highlighted, tagKey, nameKey, price, perKey, descKey, featKeys }) => {
+                const isSelected =
+                  formData.selectedPlan === key ||
+                  (!formData.selectedPlan && highlighted);
+                return (
+                  <PlanOptionCard
+                    key={key}
+                    planKey={key}
+                    isSelected={isSelected}
+                    tagLabel={t(tagKey)}
+                    name={t(nameKey)}
+                    price={price}
+                    per={t(perKey)}
+                    desc={t(descKey)}
+                    features={featKeys.map((k) => t(k))}
+                    onSelect={handleSelectProPlan}
+                  />
+                );
+              },
+            )}
+          </div>
+
+          <Button
+            type="button"
+            onClick={handleProContinue}
+            size="lg"
+            className="shadow-primary/40 mt-8 w-full rounded-full shadow-md"
+          >
+            {t("signup__pro_plan__continue")}
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-background min-h-[calc(100vh-89px)]">
@@ -90,7 +161,7 @@ export const ChoosePlanStep = () => {
               description={plan.description}
               features={plan.features}
               highlighted={plan.highlighted}
-              onSelect={() => handleSelectPlan(plan.id)}
+              onSelect={() => handleSelectCouplePlan(plan.id)}
             />
           ))}
         </div>
@@ -100,7 +171,7 @@ export const ChoosePlanStep = () => {
             type="button"
             onClick={() => {
               updateFormData({ selectedPlan: "essential" });
-              router.push(appRoutes.auth.signUpStep(7));
+              router.push(appRoutes.auth.signUpDone);
             }}
             className="text-primary cursor-pointer font-semibold"
           >

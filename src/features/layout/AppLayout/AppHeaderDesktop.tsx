@@ -11,8 +11,11 @@ import {
   BreadcrumbSeparator,
 } from "@ovation/ui/components/Breadcrumb";
 import { isLocale } from "@/lib/utils/isLocale";
+import { useCurrentEventStore } from "@/features/events/useCurrentEventStore";
 import type { Subscription } from "@/lib/api/types";
 import { KeepsakesActions } from "./KeepsakesActions";
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 type AppHeaderDesktopProps = {
   subscription: Subscription | null;
@@ -20,6 +23,7 @@ type AppHeaderDesktopProps = {
 
 export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
   const pathname = usePathname();
+  const eventLabel = useCurrentEventStore((s) => s.label);
   const segments = pathname
     .split("/")
     .filter(Boolean)
@@ -39,11 +43,12 @@ export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
           {parentCrumbs.map((crumb, i) => {
             const href =
               i === 0 ? "/app" : `/app/${segments.slice(0, i).join("/")}`;
+            const label = UUID_RE.test(crumb) && eventLabel ? eventLabel : crumb;
             return (
               <React.Fragment key={crumb}>
                 <BreadcrumbItem>
                   <BreadcrumbLink href={href} className="capitalize">
-                    {crumb}
+                    {label}
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
@@ -52,7 +57,7 @@ export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
           })}
           <BreadcrumbItem>
             <BreadcrumbPage className="font-semibold capitalize">
-              {lastCrumb}
+              {UUID_RE.test(lastCrumb) && eventLabel ? eventLabel : lastCrumb}
             </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>

@@ -8,6 +8,7 @@ export type Tier = {
   descKey: string;
   ctaKey: string;
   featKeys: string[];
+  href: string;
 };
 
 const KEEPSAKE_FEAT_KEYS = [
@@ -56,6 +57,7 @@ export const COUPLES_TIERS: Tier[] = [
     descKey: "marketing__pricing__keepsake_desc",
     ctaKey: "marketing__pricing__keepsake_cta",
     featKeys: KEEPSAKE_FEAT_KEYS,
+    href: "/sign-up?plan=keepsake",
   },
   {
     key: "gold",
@@ -67,6 +69,7 @@ export const COUPLES_TIERS: Tier[] = [
     descKey: "marketing__pricing__gold_desc",
     ctaKey: "marketing__pricing__gold_cta",
     featKeys: GOLD_FEAT_KEYS,
+    href: "/sign-up?plan=gold",
   },
 ];
 
@@ -81,6 +84,7 @@ export const PRO_TIERS: Tier[] = [
     descKey: "marketing__pricing__pro_starter_desc",
     ctaKey: "marketing__pricing__pro_starter_cta",
     featKeys: PRO_STARTER_FEAT_KEYS,
+    href: "/sign-up?as=pro&plan=pro_starter",
   },
   {
     key: "pro_studio",
@@ -92,5 +96,6 @@ export const PRO_TIERS: Tier[] = [
     descKey: "marketing__pricing__pro_studio_desc",
     ctaKey: "marketing__pricing__pro_studio_cta",
     featKeys: PRO_STUDIO_FEAT_KEYS,
+    href: "/sign-up?as=pro&plan=pro_studio",
   },
 ];

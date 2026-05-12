@@ -7,6 +7,8 @@ type SignUpFormData = {
   password: string;
   agreedToTerms: boolean;
   otpCode: string;
+  accountType: "couple" | "pro" | "";
+  businessName: string;
   partner1Name: string;
   partner2Name: string;
   displayOrder: string;
@@ -21,10 +23,7 @@ type SignUpFormData = {
 };
 
 type SignUpStore = {
-  step: number;
-  totalSteps: number;
   formData: SignUpFormData;
-  setStep: (step: number) => void;
   updateFormData: (data: Partial<SignUpFormData>) => void;
 };
 
@@ -33,6 +32,8 @@ const initialFormData: SignUpFormData = {
   password: "",
   agreedToTerms: false,
   otpCode: "",
+  accountType: "",
+  businessName: "",
   partner1Name: "",
   partner2Name: "",
   displayOrder: "",
@@ -47,10 +48,7 @@ const initialFormData: SignUpFormData = {
 };
 
 export const useSignUpStore = create<SignUpStore>((set) => ({
-  step: 1,
-  totalSteps: 7,
   formData: initialFormData,
-  setStep: (step) => set({ step }),
   updateFormData: (data) =>
     set((state) => ({ formData: { ...state.formData, ...data } })),
 }));

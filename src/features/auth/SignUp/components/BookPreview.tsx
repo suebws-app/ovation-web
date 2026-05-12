@@ -35,7 +35,7 @@ export const BookPreview = ({
         <p className="type-overline text-muted-foreground tracking-[2px]">
           {t("signup__book_preview__volume")}
         </p>
-        <p className="mt-2 font-serif text-4xl leading-none font-medium tracking-tight break-words italic">
+        <p className="mt-2 font-serif text-4xl leading-none font-medium tracking-tight wrap-break-word italic">
           {partner1 || t("signup__partner_1_fallback")}
           <br />
           &amp; {partner2 || t("signup__partner_2_fallback")}

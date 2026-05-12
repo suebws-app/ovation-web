@@ -39,6 +39,7 @@ export const DashboardPage = async () => {
     eventsApi.list({ limit: 1 }),
   ]);
   if (!user) redirect(appRoutes.auth.signIn);
+  if (user.accountType === "pro") redirect(appRoutes.app.events);
   const event = eventsPage.items[0];
 
   if (!event) {

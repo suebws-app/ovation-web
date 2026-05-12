@@ -11,7 +11,9 @@ export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
-export type PlanTier = "essentials" | "premium" | "bundle";
+export type PlanTier = "essentials" | "premium" | "bundle" | "pro_starter" | "pro_studio";
+
+export type AccountType = "couple" | "pro";
 
 export type TranscriptStatus =
   | "pending"
@@ -44,6 +46,8 @@ export type User = {
   avatarUrl: string | null;
   preferredLanguage: SupportedLanguage | string;
   role: string;
+  accountType: AccountType;
+  stripeCustomerId: string | null;
   emailPreferences: EmailPreferences | null;
   createdAt: string;
   updatedAt: string;
@@ -481,6 +485,38 @@ export type Subscription = {
   creditCentsRemaining: number;
   activatedAt: string;
   expiresAt: string | null;
+};
+
+export type ProSubscription = {
+  id: string;
+  planId: string;
+  planCode: string;
+  planName: string;
+  status: string;
+  currentPeriodStart: string | null;
+  currentPeriodEnd: string | null;
+  cancelAtPeriodEnd: boolean;
+  activatedAt: string;
+  expiresAt: string | null;
+};
+
+export type ProCheckoutSessionInput = {
+  planCode: "pro_starter" | "pro_studio";
+  successUrl: string;
+  cancelUrl: string;
+};
+
+export type ProCheckoutSessionResult = {
+  checkoutUrl: string;
+  sessionId: string;
+};
+
+export type BillingPortalSessionInput = {
+  returnUrl?: string;
+};
+
+export type BillingPortalSessionResult = {
+  url: string;
 };
 
 export type CoverPhotoContentType =

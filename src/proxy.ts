@@ -55,11 +55,11 @@ export const proxy = (request: Request) => {
     return Response.redirect(loginUrl);
   }
 
-  const isOnboardingStep = pathnameWithoutLocale.startsWith("/sign-up/step");
+  const isSignUpStep = pathnameWithoutLocale.startsWith("/sign-up/");
   const isHomepage = pathnameWithoutLocale === "/";
   const isMarketing = matchesPrefix(pathnameWithoutLocale, MARKETING_PREFIXES);
   const isAuthPage =
-    matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES) && !isOnboardingStep;
+    matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES) && !isSignUpStep;
 
   if (isAuthenticated && (isHomepage || isMarketing || isAuthPage)) {
     return Response.redirect(new URL("/app", request.url));
