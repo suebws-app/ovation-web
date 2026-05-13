@@ -86,7 +86,7 @@ export const CreateAccountForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Kicker className="text-primary mb-3">
           {t("auth__signup__eyebrow_step", {
-            step: 5,
+            step: 3,
             label: t("auth__signup__create_account__label"),
           })}
         </Kicker>

@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import { ApiError } from "@/lib/api/client";
 import { appRoutes } from "@/lib/routes";
@@ -34,12 +35,21 @@ const greetingName = (fullName: string | null, email: string): string => {
 export const DashboardPage = async () => {
   const t = await getTranslations();
   const anonymous = t("common__anonymous");
-  const [user, eventsPage] = await Promise.all([
-    getCurrentUser(),
-    eventsApi.list({ limit: 1 }),
-  ]);
+  const user = await getCurrentUser();
   if (!user) redirect(appRoutes.auth.signIn);
-  if (user.accountType === "pro") redirect(appRoutes.app.events);
+  if (user.accountType === "pro") {
+    const proEventsPage = await eventsApi.list({ limit: 100 });
+    const cookieStore = await cookies();
+    const lastEventId = cookieStore.get("ovation_last_event_id")?.value;
+    const target = lastEventId
+      ? proEventsPage.items.find((e) => e.id === lastEventId)
+      : null;
+    const fallback = proEventsPage.items[0];
+    if (target) redirect(appRoutes.app.event(target.id));
+    if (fallback) redirect(appRoutes.app.event(fallback.id));
+    redirect(appRoutes.app.events);
+  }
+  const eventsPage = await eventsApi.list({ limit: 1 });
   const event = eventsPage.items[0];
 
   if (!event) {
@@ -79,7 +89,7 @@ export const DashboardPage = async () => {
         venue={event.venueName ?? ""}
         newMessages={newMessages}
       />
-      <ResumeCard />
+      <ResumeCard message={messageViews.find((m) => m.hasAudio) ?? null} />
       {stats && <StatLine stats={stats} />}
       <MessageList
         eventId={event.id}

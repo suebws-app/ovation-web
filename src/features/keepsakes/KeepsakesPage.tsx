@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { keepsakesApi } from "@/lib/api/keepsakes";
 import { ordersApi } from "@/lib/api/orders";
 import { eventsApi } from "@/lib/api/events";
@@ -10,6 +11,8 @@ import { KeepsakesHero } from "./components/KeepsakesHero";
 import { TestimonialStrip } from "./components/TestimonialStrip";
 
 export const KeepsakesPage = async () => {
+  const cookieStore = await cookies();
+  const lastEventId = cookieStore.get("ovation_last_event_id")?.value ?? null;
   const [catalog, ordersResult, eventsResult] = await Promise.all([
     keepsakesApi.catalog(),
     ordersApi.list({ limit: 5, orderType: "keepsake" }).catch((error) => {
@@ -17,13 +20,16 @@ export const KeepsakesPage = async () => {
         return { items: [], nextCursor: null };
       throw error;
     }),
-    eventsApi.list({ limit: 1 }),
+    eventsApi.list({ limit: 100 }),
   ]);
 
-  const eventId = eventsResult.items[0]?.id ?? null;
+  const eventId =
+    (lastEventId &&
+      eventsResult.items.find((e) => e.id === lastEventId)?.id) ||
+    eventsResult.items[0]?.id ||
+    null;
   const featured =
     catalog.products.find((p) => p.sku === "gold_book") ?? catalog.products[0];
-  const others = catalog.products.filter((p) => p.sku !== featured?.sku);
 
   return (
     <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
@@ -36,7 +42,7 @@ export const KeepsakesPage = async () => {
         />
       )}
       <BundleBanner />
-      <KeepsakesCollection products={others} eventId={eventId} />
+      <KeepsakesCollection products={catalog.products} eventId={eventId} />
 
       <KeepsakesFooter />
     </div>

@@ -47,6 +47,10 @@ export type User = {
   preferredLanguage: SupportedLanguage | string;
   role: string;
   accountType: AccountType;
+  planTier: PlanTier | string | null;
+  planPurchasedAt: string | null;
+  messageLimit: number | null;
+  storageExpiresAt: string | null;
   stripeCustomerId: string | null;
   emailPreferences: EmailPreferences | null;
   createdAt: string;
@@ -73,10 +77,7 @@ export type Event = {
   welcomeMessage: string | null;
   themeColor: string;
   couplePhotoUrl: string | null;
-  planTier: PlanTier | string | null;
-  messageLimit: number | null;
   status: EventStatus | string;
-  submissionsEnabled: boolean;
   defaultLanguage: SupportedLanguage | string;
   createdAt: string;
   updatedAt: string;
@@ -89,6 +90,7 @@ export type EventStats = {
   photoCount: number;
   writtenMessages: number;
   favorites: number;
+  unreadMessages: number;
 };
 
 export type MessageSummary = {
@@ -391,16 +393,19 @@ export type Order = {
   currency: string;
   subtotalCents: number;
   totalCents: number;
+  productSku: string;
+  productName: string;
+  quantity: number;
+  unitPriceCents: number;
+  customization: Record<string, unknown>;
+  fulfillmentStatus: string;
   paymentProvider: string | null;
   createdAt: string;
 };
 
 export type OrderItem = {
   id: string;
-  productSku: string;
-  productName: string;
-  quantity: number;
-  unitPriceCents: number;
+  mediaId: string;
 };
 
 export type OrderTracking = {
@@ -414,7 +419,13 @@ export type OrderDetail = {
   orderType: string;
   status: OrderStatus;
   totalCents: number;
-  items: OrderItem[];
+  productSku: string;
+  productName: string;
+  quantity: number;
+  unitPriceCents: number;
+  customization: Record<string, unknown>;
+  fulfillmentStatus: string;
+  mediaIds: string[];
   tracking: OrderTracking | null;
   createdAt: string;
 };
@@ -436,6 +447,7 @@ export type CheckoutItem = {
   productVariantId?: string;
   quantity: number;
   customization?: Record<string, unknown>;
+  photoIds?: string[];
 };
 
 export type CheckoutShippingAddress = {
@@ -532,29 +544,34 @@ export type CoverUploadResult = {
   maxSizeBytes: number;
 };
 
-export const KIOSK_MAX_DURATION_OPTIONS = [15, 30, 60, 90, 120, 180] as const;
-export type KioskMaxDurationSeconds =
-  (typeof KIOSK_MAX_DURATION_OPTIONS)[number];
+export const LINK_MAX_DURATION_OPTIONS = [15, 30, 60, 90, 120, 180] as const;
+export type LinkMaxDurationSeconds =
+  (typeof LINK_MAX_DURATION_OPTIONS)[number];
 
 export const KIOSK_RETURN_AFTER_OPTIONS = [10, 20, 30, 60, 120] as const;
 export type KioskReturnAfterSeconds =
   (typeof KIOSK_RETURN_AFTER_OPTIONS)[number];
 
-export const KIOSK_OFFLINE_STORAGE_OPTIONS = [
-  100, 250, 500, 1000, 2000, 5000,
-] as const;
-export type KioskOfflineStorageMb =
-  (typeof KIOSK_OFFLINE_STORAGE_OPTIONS)[number];
-
 export const KIOSK_WELCOME_NOTE_MAX = 180;
 
-export type KioskSettings = {
+export type LinkSettings = {
   id: string;
   eventId: string;
   captureAudio: boolean;
   capturePhoto: boolean;
   captureVideo: boolean;
   maxDurationSeconds: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateLinkSettingsInput = Partial<
+  Omit<LinkSettings, "id" | "eventId" | "createdAt" | "updatedAt">
+>;
+
+export type KioskSettings = {
+  id: string;
+  eventId: string;
   returnAfterSeconds: number;
   fullscreenLock: boolean;
   guidedMode: boolean;
@@ -564,9 +581,6 @@ export type KioskSettings = {
   welcomeShowPhoto: boolean;
   welcomeShowLanguagePicker: boolean;
   welcomeChime: boolean;
-  offlineStore: boolean;
-  offlineStorageMb: number;
-  offlineNotify: boolean;
   defaultLanguage: SupportedLanguage | string;
   supportedLanguages: (SupportedLanguage | string)[];
   createdAt: string;

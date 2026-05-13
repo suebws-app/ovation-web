@@ -1,7 +1,10 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
+import { EventSwitcher } from "./EventSwitcher";
+import type { Event } from "@/lib/api/types";
 import { HomeIcon } from "@ovation/icons/HomeIcon";
 import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
@@ -9,11 +12,10 @@ import { StarIcon } from "@ovation/icons/StarIcon";
 import { SettingsIcon } from "@ovation/icons/SettingsIcon";
 import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
 import { MonitorIcon } from "@ovation/icons/MonitorIcon";
-import { UserPlusIcon } from "@ovation/icons/UserPlusIcon";
 import { HelpCircleIcon } from "@ovation/icons/HelpCircleIcon";
 import { UsersIcon } from "@ovation/icons/UsersIcon";
-import { GridIcon } from "@ovation/icons/GridIcon";
-import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
+import { LinkIcon } from "@ovation/icons/LinkIcon";
+import { BoxIcon } from "@ovation/icons/BoxIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
 import { usePathname } from "next/navigation";
@@ -21,19 +23,116 @@ import { appRoutes } from "@/lib/routes";
 import type { User } from "@/lib/api/types";
 import { isLocale } from "@/lib/utils/isLocale";
 import { NavUser } from "./NavUser";
+import { eventsClient } from "@/lib/api/events-client";
 
-const useProEventId = (): string | null => {
-  const pathname = usePathname();
-  const segments = pathname.split("/").filter(Boolean).filter((s) => !isLocale(s));
-  if (segments[0] === "app" && segments[1] === "events" && segments[2] && segments[2] !== "new") {
+const LAST_EVENT_COOKIE = "ovation_last_event_id";
+const LAST_EVENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+const readLastEventCookie = (): string | null => {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie.match(/(?:^|;\s*)ovation_last_event_id=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+};
+
+const eventIdFromPath = (pathname: string): string | null => {
+  const segments = pathname
+    .split("/")
+    .filter(Boolean)
+    .filter((s) => !isLocale(s));
+  if (
+    segments[0] === "app" &&
+    segments[1] === "events" &&
+    segments[2] &&
+    segments[2] !== "new"
+  ) {
     return segments[2];
   }
   return null;
 };
 
+const useProEventId = (events: Event[]): string | null => {
+  const pathname = usePathname();
+  const fromPath = eventIdFromPath(pathname);
+  const [fallback, setFallback] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (fromPath) {
+      document.cookie = `${LAST_EVENT_COOKIE}=${fromPath}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
+      setFallback(fromPath);
+      return;
+    }
+    const stored = readLastEventCookie();
+    if (stored && events.some((e) => e.id === stored)) {
+      setFallback(stored);
+    } else if (events[0]) {
+      setFallback(events[0].id);
+    } else {
+      setFallback(null);
+    }
+  }, [fromPath, events]);
+
+  return fromPath ?? fallback;
+};
+
 type Translator = ReturnType<typeof useTranslations>;
 
-const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
+type SidebarCounts = {
+  messages: number;
+  guests: number;
+};
+
+const useSidebarCounts = (eventId: string | null): SidebarCounts => {
+  const pathname = usePathname();
+  const [counts, setCounts] = useState<SidebarCounts>({
+    messages: 0,
+    guests: 0,
+  });
+  const clearedDuringFetchRef = useRef<{ messages: boolean; guests: boolean }>({
+    messages: false,
+    guests: false,
+  });
+
+  useEffect(() => {
+    if (!eventId) {
+      setCounts({ messages: 0, guests: 0 });
+      return;
+    }
+    clearedDuringFetchRef.current = { messages: false, guests: false };
+    const controller = new AbortController();
+    Promise.all([
+      eventsClient.stats(eventId, controller.signal).catch(() => null),
+      eventsClient
+        .invitationStats(eventId, controller.signal)
+        .catch(() => null),
+    ]).then(([stats, invitations]) => {
+      if (controller.signal.aborted) return;
+      const cleared = clearedDuringFetchRef.current;
+      setCounts({
+        messages: cleared.messages ? 0 : (stats?.unreadMessages ?? 0),
+        guests: cleared.guests ? 0 : (invitations?.totals.sent ?? 0),
+      });
+    });
+    return () => controller.abort();
+  }, [eventId, pathname]);
+
+  useEffect(() => {
+    const handler: EventListener = (e) => {
+      const detail = (e as CustomEvent<{ kind: "messages" | "guests" }>)
+        .detail;
+      clearedDuringFetchRef.current[detail.kind] = true;
+      setCounts((prev) => ({ ...prev, [detail.kind]: 0 }));
+    };
+    window.addEventListener("sidebar-clear-badge", handler);
+    return () => window.removeEventListener("sidebar-clear-badge", handler);
+  }, []);
+
+  return counts;
+};
+
+const buildCoupleGroups = (
+  t: Translator,
+  counts: SidebarCounts,
+): SidebarNavGroup[] => [
   {
     items: [
       {
@@ -45,7 +144,7 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
         label: t("sidebar__nav__messages"),
         href: appRoutes.app.messages,
         icon: MessageSquareIcon,
-        badge: 12,
+        badge: counts.messages > 0 ? counts.messages : undefined,
       },
       {
         label: t("sidebar__nav__photos"),
@@ -58,10 +157,15 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
         icon: StarIcon,
       },
       {
+        label: t("sidebar__nav__orders"),
+        href: appRoutes.app.orders,
+        icon: BoxIcon,
+      },
+      {
         label: t("sidebar__nav__guests"),
         href: appRoutes.app.guests,
         icon: UsersIcon,
-        badge: 112,
+        badge: counts.guests > 0 ? counts.guests : undefined,
       },
       {
         label: t("sidebar__nav__settings"),
@@ -74,6 +178,11 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
     label: t("sidebar__quick__title"),
     items: [
       {
+        label: t("sidebar__quick__link"),
+        href: appRoutes.app.link,
+        icon: LinkIcon,
+      },
+      {
         label: t("sidebar__quick__qr"),
         href: appRoutes.app.qrCode,
         icon: QrCodeIcon,
@@ -84,32 +193,22 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
         icon: MonitorIcon,
       },
       {
-        label: t("sidebar__quick__invite"),
-        href: "/app/invite",
-        icon: UserPlusIcon,
+        label: t("sidebar__quick__help"),
+        href: appRoutes.app.help,
+        icon: HelpCircleIcon,
       },
-      { label: t("sidebar__quick__help"), href: "/help", icon: HelpCircleIcon },
     ],
   },
 ];
 
 const buildProGlobalGroups = (t: Translator): SidebarNavGroup[] => [
   {
+    label: t("sidebar__pro__all"),
     items: [
       {
-        label: t("sidebar__pro__events"),
-        href: appRoutes.app.events,
-        icon: GridIcon,
-      },
-      {
-        label: t("sidebar__nav__settings"),
-        href: appRoutes.settings.root,
-        icon: SettingsIcon,
-      },
-      {
-        label: t("sidebar__pro__subscription"),
-        href: appRoutes.settings.billing,
-        icon: StarIcon,
+        label: t("sidebar__nav__all_orders"),
+        href: appRoutes.app.orders,
+        icon: BoxIcon,
       },
     ],
   },
@@ -118,23 +217,21 @@ const buildProGlobalGroups = (t: Translator): SidebarNavGroup[] => [
 const buildProEventGroups = (
   t: Translator,
   eventId: string,
+  counts: SidebarCounts,
 ): SidebarNavGroup[] => [
   {
     items: [
       {
-        label: t("sidebar__pro__event_back"),
-        href: appRoutes.app.events,
-        icon: ChevronLeftIcon,
-      },
-      {
         label: t("sidebar__nav__messages"),
         href: appRoutes.app.eventMessages(eventId),
         icon: MessageSquareIcon,
+        badge: counts.messages > 0 ? counts.messages : undefined,
       },
       {
         label: t("sidebar__nav__guests"),
         href: appRoutes.app.eventGuests(eventId),
         icon: UsersIcon,
+        badge: counts.guests > 0 ? counts.guests : undefined,
       },
       {
         label: t("sidebar__nav__photos"),
@@ -145,6 +242,16 @@ const buildProEventGroups = (
         label: t("sidebar__nav__keepsakes"),
         href: appRoutes.app.eventKeepsakes(eventId),
         icon: StarIcon,
+      },
+      {
+        label: t("sidebar__nav__orders"),
+        href: appRoutes.app.eventOrders(eventId),
+        icon: BoxIcon,
+      },
+      {
+        label: t("sidebar__quick__link"),
+        href: appRoutes.app.eventLink(eventId),
+        icon: LinkIcon,
       },
       {
         label: t("sidebar__quick__qr"),
@@ -162,24 +269,42 @@ const buildProEventGroups = (
 
 type AppSideBarProps = {
   user: User;
+  events: Event[];
 };
 
-export const AppSideBar = ({ user }: AppSideBarProps) => {
+export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   const t = useTranslations();
-  const eventId = useProEventId();
+  const eventId = useProEventId(events);
+  const isPro = user.accountType === "pro";
+  const coupleEventId = !isPro ? (events[0]?.id ?? null) : null;
+  const counts = useSidebarCounts(isPro ? eventId : coupleEventId);
 
   let groups: SidebarNavGroup[];
-  if (user.accountType === "pro") {
+  if (isPro) {
     groups = eventId
-      ? buildProEventGroups(t, eventId)
+      ? [
+          ...buildProEventGroups(t, eventId, counts),
+          ...buildProGlobalGroups(t),
+        ]
       : buildProGlobalGroups(t);
   } else {
-    groups = buildCoupleGroups(t);
+    groups = buildCoupleGroups(t, counts);
   }
+
+  const header = isPro ? (
+    <div className="flex items-center gap-2">
+      <Logo iconOnly />
+      <div className="flex-1 min-w-0">
+        <EventSwitcher events={events} activeEventId={eventId} />
+      </div>
+    </div>
+  ) : (
+    <Logo />
+  );
 
   return (
     <Sidebar
-      header={<Logo />}
+      header={header}
       groups={groups}
       footer={<NavUser user={user} />}
     />

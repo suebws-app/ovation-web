@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LogOutIcon } from "@ovation/icons/LogOutIcon";
 import { ChevronsUpDownIcon } from "@ovation/icons/ChevronsUpDownIcon";
 import { SettingsIcon as SettingsIcon } from "@ovation/icons/SettingsIcon";
+import { StarIcon } from "@ovation/icons/StarIcon";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -112,6 +113,12 @@ export const NavUser = ({ user }: NavUserProps) => {
                 <Link href={appRoutes.app.settings}>
                   <SettingsIcon />
                   {t("nav_user__settings")}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href={appRoutes.settings.billing}>
+                  <StarIcon />
+                  {t("nav_user__subscription")}
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>

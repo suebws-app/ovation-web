@@ -14,3 +14,10 @@ export const ordersApi = {
   get: (orderId: string) =>
     apiFetch<{ order: OrderDetail }>(`/payments/orders/${orderId}`),
 };
+
+export const planPurchasesApi = {
+  get: (id: string) =>
+    apiFetch<{ purchase: { id: string; status: string; planCode: string } }>(
+      `/payments/plan-purchases/${id}`,
+    ),
+};

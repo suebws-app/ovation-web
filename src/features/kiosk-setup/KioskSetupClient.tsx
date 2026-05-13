@@ -34,10 +34,6 @@ export const KioskSetupClient = ({
       supportedLanguages: settings.supportedLanguages,
       kiosk: {
         ...publicEvent.kiosk,
-        captureAudio: settings.captureAudio,
-        capturePhoto: settings.capturePhoto,
-        captureVideo: settings.captureVideo,
-        maxDurationSeconds: settings.maxDurationSeconds,
         returnAfterSeconds: settings.returnAfterSeconds,
         welcomeShowPhoto: settings.welcomeShowPhoto,
         welcomeShowLanguagePicker: settings.welcomeShowLanguagePicker,
@@ -51,8 +47,15 @@ export const KioskSetupClient = ({
   return (
     <>
       <KioskHero slug={slug} />
-      <KioskChecklist />
-      <KioskConfigGrid settings={settings} onPatch={patch} />
+      <KioskChecklist
+        eventId={eventId}
+        onTestClick={() => {
+          if (typeof window !== "undefined") {
+            window.open(`/kiosk/${slug}`, "_blank", "noopener");
+          }
+        }}
+      />
+      <KioskConfigGrid settings={settings} eventId={eventId} onPatch={patch} />
       <KioskPreview slug={slug} event={previewEvent} />
       <KioskFooter slug={slug} isSaving={isSaving} saveError={error} />
     </>

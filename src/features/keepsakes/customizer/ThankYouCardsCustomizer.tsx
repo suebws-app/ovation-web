@@ -4,8 +4,10 @@ import { useState } from "react";
 import { CustomizerSection } from "./CustomizerSection";
 import { OptionGroup } from "./OptionGroup";
 import { VariantSelector } from "./VariantSelector";
+import { MediaPicker } from "./MediaPicker";
 import { CustomizerCheckoutForm } from "./CustomizerCheckoutForm";
 import type {
+  Event,
   KeepsakeProductDetail,
   KeepsakeProductVariant,
 } from "@/lib/api/types";
@@ -22,18 +24,26 @@ type ThankYouCardsCustomizerProps = {
   product: KeepsakeProductDetail;
   variants: KeepsakeProductVariant[];
   eventId: string | null;
+  event?: Event | null;
 };
 
 export const ThankYouCardsCustomizer = ({
   product,
   variants,
   eventId,
+  event,
 }: ThankYouCardsCustomizerProps) => {
   const [design, setDesign] = useState<Design>("minimal");
   const [variantId, setVariantId] = useState<string | null>(
     variants[0]?.id ?? null,
   );
   const [messageText, setMessageText] = useState("");
+  const [photoIds, setPhotoIds] = useState<string[]>([]);
+
+  const togglePhoto = (id: string) =>
+    setPhotoIds((prev) =>
+      prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id],
+    );
 
   const selectedVariant = variants.find((v) => v.id === variantId) ?? null;
   const quantity =
@@ -82,12 +92,28 @@ export const ThankYouCardsCustomizer = ({
             className="rounded-12 border-border bg-background type-body-small focus-visible:ring-ring focus-visible:ring-offset-background w-full resize-none border p-3 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
           />
         </CustomizerSection>
+
+        <CustomizerSection
+          title="Photos"
+          description="Pick photos to print on the card (optional)."
+          badge={`${photoIds.length} selected`}
+        >
+          <MediaPicker
+            eventId={eventId}
+            type="photo"
+            selectedIds={photoIds}
+            onToggle={togglePhoto}
+            emptyHint="No photos yet. Invite guests to upload."
+          />
+        </CustomizerSection>
       </div>
 
       <CustomizerCheckoutForm
         product={product}
         eventId={eventId}
+        event={event}
         customization={customization}
+        photoIds={photoIds}
         selectedVariant={selectedVariant}
         isReady={isReady}
         notReadyMessage="Pick a quantity to continue."

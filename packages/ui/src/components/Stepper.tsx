@@ -17,9 +17,11 @@ export const Stepper = ({
 
   return (
     <div className={cn("flex items-center gap-3", className)}>
-      <span className="type-caption text-muted-foreground font-mono">
-        Step {padded(currentStep)} of {padded(totalSteps)}
-      </span>
+      {currentStep > 0 && (
+        <span className="type-caption text-muted-foreground font-mono">
+          Step {padded(currentStep)} of {padded(totalSteps)}
+        </span>
+      )}
       <div className="flex gap-1">
         {Array.from({ length: totalSteps }).map((_, i) => (
           <StepperBar key={i} active={i < currentStep} />

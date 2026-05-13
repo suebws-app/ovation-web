@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { eventsClient } from "@/lib/api/events-client";
@@ -8,7 +8,6 @@ import { ApiError } from "@/lib/api/client";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import type { CoverPhotoContentType } from "@/lib/api/types";
 import { useCreateEventStore } from "@/features/events/useCreateEventStore";
-import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
 const toIsoDate = (date: Date | null): string | undefined => {
@@ -28,25 +27,32 @@ type DoneState =
   | { kind: "creating" }
   | { kind: "error"; message: string };
 
+const LAST_EVENT_COOKIE = "ovation_last_event_id";
+const LAST_EVENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
 export const CreateEventDoneStep = () => {
   const t = useTranslations();
-  const { formData, reset } = useCreateEventStore();
-  const router = useRouter();
+  const tRef = useRef(t);
+  tRef.current = t;
   const [state, setState] = useState<DoneState>({ kind: "creating" });
   const [retryToken, setRetryToken] = useState(0);
+  const startedForTokenRef = useRef<number | null>(null);
 
   useEffect(() => {
-    let cancelled = false;
+    if (startedForTokenRef.current === retryToken) return;
+    startedForTokenRef.current = retryToken;
+
+    const { formData, reset } = useCreateEventStore.getState();
 
     (async () => {
       try {
+        const tr = tRef.current;
         const created = await eventsClient.create({
-          partnerAName: formData.partner1Name.trim() || t("signup__partner_a_default"),
-          partnerBName: formData.partner2Name.trim() || t("signup__partner_b_default"),
+          partnerAName: formData.partner1Name.trim() || tr("signup__partner_a_default"),
+          partnerBName: formData.partner2Name.trim() || tr("signup__partner_b_default"),
           weddingDate: toIsoDate(formData.weddingDate),
           venueName: formData.venue?.trim() || undefined,
         });
-        if (cancelled) return;
 
         const desiredSlug = formData.bookUrl?.trim();
         if (
@@ -60,8 +66,6 @@ export const CreateEventDoneStep = () => {
             // Slug clash — keep auto-generated
           }
         }
-
-        if (cancelled) return;
 
         if (formData.coverFile) {
           try {
@@ -82,26 +86,22 @@ export const CreateEventDoneStep = () => {
           } catch {
             // Non-fatal
           }
-          if (cancelled) return;
         }
 
+        document.cookie = `${LAST_EVENT_COOKIE}=${created.event.id}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
         reset();
-        router.push(appRoutes.app.eventMessages(created.event.id));
+        window.location.assign(appRoutes.app.eventMessages(created.event.id));
       } catch (error) {
-        if (cancelled) return;
+        startedForTokenRef.current = null;
         setState({
           kind: "error",
           message: ApiError.isApiError(error)
             ? error.message
-            : t("signup__completion__error_create_default"),
+            : tRef.current("signup__completion__error_create_default"),
         });
       }
     })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [retryToken, formData, reset, router, t]);
+  }, [retryToken]);
 
   if (state.kind === "error") {
     return (

@@ -46,6 +46,7 @@ export const appRoutes = {
     root: "/app",
     settings: "/settings",
     keepsakes: "/app/keepsakes",
+    orders: "/app/orders",
     qrCode: "/app/qr-code",
     qrCodeOrder: "/app/qr-code/order",
     activate: "/app/activate",
@@ -54,6 +55,8 @@ export const appRoutes = {
     photos: "/app/photos",
     guests: "/app/guests",
     kiosk: "/app/kiosk",
+    link: "/app/link",
+    help: "/app/help",
     account: "/app/account",
     events: "/app/events",
     eventsNew: "/app/events/new",
@@ -66,8 +69,12 @@ export const appRoutes = {
     eventGuests: (id: string) => `/app/events/${id}/guests`,
     eventPhotos: (id: string) => `/app/events/${id}/photos`,
     eventKeepsakes: (id: string) => `/app/events/${id}/keepsakes`,
+    eventKeepsakeCustomizer: (id: string, slug: string) =>
+      `/app/events/${id}/keepsakes/${slug}`,
+    eventOrders: (id: string) => `/app/events/${id}/orders`,
     eventQrCode: (id: string) => `/app/events/${id}/qr-code`,
     eventKiosk: (id: string) => `/app/events/${id}/kiosk`,
+    eventLink: (id: string) => `/app/events/${id}/link`,
   },
 
   settings: {

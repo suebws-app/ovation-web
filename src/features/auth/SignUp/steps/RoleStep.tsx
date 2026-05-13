@@ -14,10 +14,7 @@ export const RoleStep = () => {
     <div className="flex min-h-[calc(100vh-89px)] items-center justify-center px-6 py-16">
       <div className="w-full max-w-130">
         <Kicker className="text-primary mb-3">
-          {t("auth__signup__eyebrow_step", {
-            step: 1,
-            label: t("signup__role__eyebrow"),
-          })}
+          {t("signup__role__eyebrow")}
         </Kicker>
         <h1 className="type-h1 leading-tight font-semibold tracking-tight">
           {t("signup__role__title")}

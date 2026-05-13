@@ -77,10 +77,7 @@ export const ChoosePlanStep = () => {
       <div className="flex min-h-[calc(100vh-89px)] items-center justify-center px-6 py-16">
         <div className="w-full max-w-2xl">
           <Kicker className="text-primary mb-3">
-            {t("auth__signup__eyebrow_step", {
-              step: 6,
-              label: t("signup__pro_plan__step_label"),
-            })}
+            {t("signup__pro_plan__step_label")}
           </Kicker>
           <h1 className="type-h1 leading-tight font-semibold tracking-tight">
             {t("signup__pro_plan__title")}
@@ -135,10 +132,7 @@ export const ChoosePlanStep = () => {
       <div className="mx-auto max-w-310 px-14 py-14">
         <div className="mb-10 text-center">
           <Kicker className="text-primary">
-            {t("auth__signup__eyebrow_step", {
-              step: 6,
-              label: t("signup__plan__step_label"),
-            })}
+            {t("signup__plan__step_label")}
           </Kicker>
           <h1 className="type-display mt-3.5 leading-tight font-semibold tracking-tight">
             {t("signup__plan__title_a")}{" "}

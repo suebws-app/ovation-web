@@ -1,40 +1,38 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Stepper } from "@ovation/ui/components/Stepper";
 
 const STEP_BY_SEGMENT: Record<string, number> = {
-  "sign-up": 1,
-  verify: 2,
-  book: 3,
-  cover: 4,
-  url: 5,
-  plan: 6,
-  done: 7,
+  book: 1,
+  cover: 2,
+  url: 2,
 };
 
-const TOTAL_STEPS = 7;
+const TOTAL_STEPS = 3;
 
 const useSignUpStep = () => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const segment = pathname.split("/").pop() ?? "";
-  return STEP_BY_SEGMENT[segment] ?? 1;
+  if (segment === "sign-up") {
+    return searchParams.get("as") ? 3 : null;
+  }
+  return STEP_BY_SEGMENT[segment] ?? null;
 };
 
 export const SignUpHeader = () => {
   const step = useSignUpStep();
 
   return (
-    <header className="border-border tablet:px-14 flex items-center justify-between border-b px-6 py-7">
+    <header className="border-border tablet:px-14 relative flex items-center border-b px-6 py-7">
       <Logo />
-      <Stepper currentStep={step} totalSteps={TOTAL_STEPS} />
-      <button
-        type="button"
-        className="type-body-small text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
-      >
-        Save &amp; finish later
-      </button>
+      {step !== null && (
+        <div className="pointer-events-none absolute inset-x-0 flex justify-center">
+          <Stepper currentStep={step} totalSteps={TOTAL_STEPS} />
+        </div>
+      )}
     </header>
   );
 };

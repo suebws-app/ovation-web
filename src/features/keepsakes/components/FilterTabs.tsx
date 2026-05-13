@@ -1,38 +1,41 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { FilterTab } from "./FilterTab";
 
-const FILTER_KEYS = [
-  "keepsakes__filter__all",
-  "keepsakes__filter__printed",
-  "keepsakes__filter__digital",
-  "keepsakes__filter__physical",
-  "keepsakes__filter__gifts",
-];
+export const KEEPSAKE_FILTERS = [
+  "all",
+  "printed",
+  "digital",
+  "physical",
+  "gifts",
+] as const;
 
-type FilterTabsProps = {
-  onChange?: (filter: string) => void;
+export type KeepsakeFilter = (typeof KEEPSAKE_FILTERS)[number];
+
+const LABEL_KEY: Record<KeepsakeFilter, string> = {
+  all: "keepsakes__filter__all",
+  printed: "keepsakes__filter__printed",
+  digital: "keepsakes__filter__digital",
+  physical: "keepsakes__filter__physical",
+  gifts: "keepsakes__filter__gifts",
 };
 
-export const FilterTabs = ({ onChange }: FilterTabsProps) => {
+type FilterTabsProps = {
+  active: KeepsakeFilter;
+  onChange: (filter: KeepsakeFilter) => void;
+};
+
+export const FilterTabs = ({ active, onChange }: FilterTabsProps) => {
   const t = useTranslations();
-  const [activeKey, setActiveKey] = useState(FILTER_KEYS[0]);
-
-  const handleClick = (key: string) => {
-    setActiveKey(key);
-    onChange?.(t(key));
-  };
-
   return (
     <div className="flex gap-1.5 overflow-auto">
-      {FILTER_KEYS.map((key) => (
+      {KEEPSAKE_FILTERS.map((key) => (
         <FilterTab
           key={key}
-          label={t(key)}
-          active={activeKey === key}
-          onClick={() => handleClick(key)}
+          label={t(LABEL_KEY[key])}
+          active={active === key}
+          onClick={() => onChange(key)}
         />
       ))}
     </div>

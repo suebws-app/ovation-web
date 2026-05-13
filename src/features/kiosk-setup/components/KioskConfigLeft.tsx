@@ -1,86 +1,46 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { KioskConfigCard } from "./KioskConfigCard";
 import { KioskConfigRow } from "./KioskConfigRow";
 import { KioskToggle } from "./KioskToggle";
-import { KioskStepSlider } from "./KioskStepSlider";
 import { KioskPinInput } from "./KioskPinInput";
-import {
-  KIOSK_MAX_DURATION_OPTIONS,
-  type KioskMaxDurationSeconds,
-  type KioskSettings,
-  type UpdateKioskSettingsInput,
+import type {
+  KioskSettings,
+  UpdateKioskSettingsInput,
 } from "@/lib/api/types";
-
-const MAX_DURATION_LABELS = ["15s", "30s", "60s", "90s", "2m", "3m"] as const;
 
 type KioskConfigLeftProps = {
   settings: KioskSettings;
+  eventId: string | null;
   onPatch: (changes: UpdateKioskSettingsInput) => void;
 };
 
-export const KioskConfigLeft = ({ settings, onPatch }: KioskConfigLeftProps) => {
+export const KioskConfigLeft = ({
+  settings,
+  eventId,
+  onPatch,
+}: KioskConfigLeftProps) => {
   const t = useTranslations();
+  const linkHref = eventId ? appRoutes.app.eventLink(eventId) : appRoutes.app.link;
   return (
     <div className="flex flex-col gap-5">
-      <KioskConfigCard
-        title={t("kiosk__config__what_section__title")}
-        description={t("kiosk__config__what_section__desc")}
-      >
-        <KioskConfigRow
-          title={t("kiosk__config__what__audio__title")}
-          description={t("kiosk__config__what__audio__desc")}
-        >
-          <KioskToggle
-            on={settings.captureAudio}
-            onChange={(captureAudio) => onPatch({ captureAudio })}
-          />
-        </KioskConfigRow>
-        <KioskConfigRow
-          title={t("kiosk__config__what__photo__title")}
-          description={t("kiosk__config__what__photo__desc")}
-        >
-          <KioskToggle
-            on={settings.capturePhoto}
-            onChange={(capturePhoto) => onPatch({ capturePhoto })}
-          />
-        </KioskConfigRow>
-        <KioskConfigRow
-          title={t("kiosk__config__what__video__title")}
-          description={t("kiosk__config__what__video__desc")}
-          last
-        >
-          <KioskToggle
-            on={settings.captureVideo}
-            onChange={(captureVideo) => onPatch({ captureVideo })}
-          />
-        </KioskConfigRow>
-      </KioskConfigCard>
-
-      <KioskConfigCard
-        title={t("kiosk__config__time_section__title")}
-        description={t("kiosk__config__time_section__desc")}
-      >
-        <div className="py-5">
-          <div className="flex items-baseline justify-between">
-            <span className="type-body-small font-semibold">
-              {t("kiosk__config__time__max_label")}
-            </span>
-            <span className="type-body-small text-foreground font-semibold">
-              {settings.maxDurationSeconds < 60
-                ? `${settings.maxDurationSeconds}s`
-                : `${Math.round(settings.maxDurationSeconds / 60)}m`}
-            </span>
-          </div>
-          <KioskStepSlider<KioskMaxDurationSeconds>
-            value={settings.maxDurationSeconds as KioskMaxDurationSeconds}
-            steps={KIOSK_MAX_DURATION_OPTIONS}
-            labels={MAX_DURATION_LABELS}
-            onChange={(maxDurationSeconds) => onPatch({ maxDurationSeconds })}
-          />
+      <div className="rounded-16 border-border bg-card flex flex-col gap-2 border px-7 py-5">
+        <div className="type-h3 font-semibold">
+          {t("kiosk__config__link_redirect__title")}
         </div>
-      </KioskConfigCard>
+        <div className="type-caption text-muted-foreground">
+          {t("kiosk__config__link_redirect__desc")}
+        </div>
+        <Link
+          href={linkHref}
+          className="text-primary type-body-small mt-1 font-semibold hover:underline"
+        >
+          {t("kiosk__config__link_redirect__cta")}
+        </Link>
+      </div>
 
       <KioskConfigCard
         title={t("kiosk__config__lockdown_section__title")}

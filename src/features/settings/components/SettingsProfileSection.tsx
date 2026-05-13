@@ -15,6 +15,7 @@ export const SettingsProfileSection = ({
   event,
 }: SettingsProfileSectionProps) => {
   const t = useTranslations();
+  const isPro = user.accountType === "pro";
   return (
     <>
       <span className="type-overline text-primary">
@@ -42,26 +43,27 @@ export const SettingsProfileSection = ({
         </SettingsCard>
       </div>
 
-      {event ? (
-        <div className="mt-11">
-          <SettingsSectionTitle
-            title={t("settings__profile__wedding_details")}
-            description={t("settings__profile__wedding_details_description")}
-          />
-          <SettingsCard>
-            <div className="py-5.5">
-              <WeddingDetailsForm event={event} />
-            </div>
-          </SettingsCard>
-        </div>
-      ) : (
-        <div className="mt-11">
-          <SettingsSectionTitle
-            title={t("settings__profile__wedding_details")}
-            description={t("settings__profile__wedding_details_no_event")}
-          />
-        </div>
-      )}
+      {!isPro &&
+        (event ? (
+          <div className="mt-11">
+            <SettingsSectionTitle
+              title={t("settings__profile__wedding_details")}
+              description={t("settings__profile__wedding_details_description")}
+            />
+            <SettingsCard>
+              <div className="py-5.5">
+                <WeddingDetailsForm event={event} />
+              </div>
+            </SettingsCard>
+          </div>
+        ) : (
+          <div className="mt-11">
+            <SettingsSectionTitle
+              title={t("settings__profile__wedding_details")}
+              description={t("settings__profile__wedding_details_no_event")}
+            />
+          </div>
+        ))}
     </>
   );
 };
