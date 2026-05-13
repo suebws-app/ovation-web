@@ -1,1 +1,1 @@
-export { CoverPhotoStep as default } from "@/features/auth/SignUp/steps/CoverPhotoStep";
+export { CoverAndUrlStep as default } from "@/features/auth/SignUp/steps/CoverAndUrlStep";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { EventSwitcher } from "./EventSwitcher";
@@ -23,6 +23,7 @@ import { appRoutes } from "@/lib/routes";
 import type { User } from "@/lib/api/types";
 import { isLocale } from "@/lib/utils/isLocale";
 import { NavUser } from "./NavUser";
+import { eventsClient } from "@/lib/api/events-client";
 
 const LAST_EVENT_COOKIE = "ovation_last_event_id";
 const LAST_EVENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
@@ -75,7 +76,63 @@ const useProEventId = (events: Event[]): string | null => {
 
 type Translator = ReturnType<typeof useTranslations>;
 
-const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
+type SidebarCounts = {
+  messages: number;
+  guests: number;
+};
+
+const useSidebarCounts = (eventId: string | null): SidebarCounts => {
+  const pathname = usePathname();
+  const [counts, setCounts] = useState<SidebarCounts>({
+    messages: 0,
+    guests: 0,
+  });
+  const clearedDuringFetchRef = useRef<{ messages: boolean; guests: boolean }>({
+    messages: false,
+    guests: false,
+  });
+
+  useEffect(() => {
+    if (!eventId) {
+      setCounts({ messages: 0, guests: 0 });
+      return;
+    }
+    clearedDuringFetchRef.current = { messages: false, guests: false };
+    const controller = new AbortController();
+    Promise.all([
+      eventsClient.stats(eventId, controller.signal).catch(() => null),
+      eventsClient
+        .invitationStats(eventId, controller.signal)
+        .catch(() => null),
+    ]).then(([stats, invitations]) => {
+      if (controller.signal.aborted) return;
+      const cleared = clearedDuringFetchRef.current;
+      setCounts({
+        messages: cleared.messages ? 0 : (stats?.unreadMessages ?? 0),
+        guests: cleared.guests ? 0 : (invitations?.totals.sent ?? 0),
+      });
+    });
+    return () => controller.abort();
+  }, [eventId, pathname]);
+
+  useEffect(() => {
+    const handler: EventListener = (e) => {
+      const detail = (e as CustomEvent<{ kind: "messages" | "guests" }>)
+        .detail;
+      clearedDuringFetchRef.current[detail.kind] = true;
+      setCounts((prev) => ({ ...prev, [detail.kind]: 0 }));
+    };
+    window.addEventListener("sidebar-clear-badge", handler);
+    return () => window.removeEventListener("sidebar-clear-badge", handler);
+  }, []);
+
+  return counts;
+};
+
+const buildCoupleGroups = (
+  t: Translator,
+  counts: SidebarCounts,
+): SidebarNavGroup[] => [
   {
     items: [
       {
@@ -87,7 +144,7 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
         label: t("sidebar__nav__messages"),
         href: appRoutes.app.messages,
         icon: MessageSquareIcon,
-        badge: 12,
+        badge: counts.messages > 0 ? counts.messages : undefined,
       },
       {
         label: t("sidebar__nav__photos"),
@@ -108,7 +165,7 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
         label: t("sidebar__nav__guests"),
         href: appRoutes.app.guests,
         icon: UsersIcon,
-        badge: 112,
+        badge: counts.guests > 0 ? counts.guests : undefined,
       },
       {
         label: t("sidebar__nav__settings"),
@@ -160,6 +217,7 @@ const buildProGlobalGroups = (t: Translator): SidebarNavGroup[] => [
 const buildProEventGroups = (
   t: Translator,
   eventId: string,
+  counts: SidebarCounts,
 ): SidebarNavGroup[] => [
   {
     items: [
@@ -167,11 +225,13 @@ const buildProEventGroups = (
         label: t("sidebar__nav__messages"),
         href: appRoutes.app.eventMessages(eventId),
         icon: MessageSquareIcon,
+        badge: counts.messages > 0 ? counts.messages : undefined,
       },
       {
         label: t("sidebar__nav__guests"),
         href: appRoutes.app.eventGuests(eventId),
         icon: UsersIcon,
+        badge: counts.guests > 0 ? counts.guests : undefined,
       },
       {
         label: t("sidebar__nav__photos"),
@@ -216,14 +276,19 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   const t = useTranslations();
   const eventId = useProEventId(events);
   const isPro = user.accountType === "pro";
+  const coupleEventId = !isPro ? (events[0]?.id ?? null) : null;
+  const counts = useSidebarCounts(isPro ? eventId : coupleEventId);
 
   let groups: SidebarNavGroup[];
   if (isPro) {
     groups = eventId
-      ? [...buildProEventGroups(t, eventId), ...buildProGlobalGroups(t)]
+      ? [
+          ...buildProEventGroups(t, eventId, counts),
+          ...buildProGlobalGroups(t),
+        ]
       : buildProGlobalGroups(t);
   } else {
-    groups = buildCoupleGroups(t);
+    groups = buildCoupleGroups(t, counts);
   }
 
   const header = isPro ? (

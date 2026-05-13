@@ -1,1 +1,1 @@
-export { ClaimUrlStep as default } from "@/features/auth/SignUp/steps/ClaimUrlStep";
+export { SignUpUrlRedirect as default } from "@/features/auth/SignUp/steps/SignUpUrlRedirect";

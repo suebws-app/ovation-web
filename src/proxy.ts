@@ -63,11 +63,16 @@ export const proxy = (request: Request) => {
     return Response.redirect(target);
   }
 
-  const isSignUpStep = pathnameWithoutLocale.startsWith("/sign-up/");
+  const POST_AUTH_SIGNUP_STEPS = ["/sign-up/plan", "/sign-up/done"];
+  const isPostAuthSignUpStep = POST_AUTH_SIGNUP_STEPS.some(
+    (p) =>
+      pathnameWithoutLocale === p || pathnameWithoutLocale.startsWith(`${p}/`),
+  );
   const isHomepage = pathnameWithoutLocale === "/";
   const isMarketing = matchesPrefix(pathnameWithoutLocale, MARKETING_PREFIXES);
   const isAuthPage =
-    matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES) && !isSignUpStep;
+    matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES) &&
+    !isPostAuthSignUpStep;
 
   if (isAuthenticated && (isHomepage || isMarketing || isAuthPage)) {
     return Response.redirect(new URL("/app", request.url));

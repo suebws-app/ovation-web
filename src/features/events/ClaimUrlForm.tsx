@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
@@ -9,13 +10,11 @@ import { AuthSplitLayout } from "@/features/auth/components/AuthSplitLayout";
 import { PhoneMockup } from "@/features/auth/SignUp/components/PhoneMockup";
 import { UrlSuggestionChip } from "@/features/auth/SignUp/components/UrlSuggestionChip";
 import { AvailableBadge } from "@/features/auth/SignUp/components/AvailableBadge";
+import { eventsClient } from "@/lib/api/events-client";
 
-const URL_SUGGESTIONS = [
-  "lena-and-tomas",
-  "serra-navarro",
-  "lt2026",
-  "book-of-lena",
-];
+type SlugStatus = "idle" | "invalid" | "checking" | "available" | "taken";
+
+const SLUG_PATTERN = /^[a-z0-9-]{4,20}$/;
 
 type ClaimUrlFormProps = {
   partner1Name: string;
@@ -42,6 +41,38 @@ export const ClaimUrlForm = ({
 }: ClaimUrlFormProps) => {
   const t = useTranslations();
   const slug = bookUrl || "";
+  const [status, setStatus] = useState<SlugStatus>("idle");
+
+  useEffect(() => {
+    if (slug.length === 0) {
+      setStatus("idle");
+      return;
+    }
+    if (!SLUG_PATTERN.test(slug)) {
+      setStatus("invalid");
+      return;
+    }
+    setStatus("checking");
+    const controller = new AbortController();
+    const timer = setTimeout(() => {
+      eventsClient
+        .checkSlug(slug, controller.signal)
+        .then((res) => {
+          if (!controller.signal.aborted) {
+            setStatus(res.available ? "available" : "taken");
+          }
+        })
+        .catch(() => {
+          if (!controller.signal.aborted) setStatus("idle");
+        });
+    }, 400);
+    return () => {
+      controller.abort();
+      clearTimeout(timer);
+    };
+  }, [slug]);
+
+  const canContinue = slug.length === 0 || status === "available";
 
   const generateSlug = () => {
     const p1 = partner1Name?.toLowerCase() || "partner1";
@@ -49,13 +80,31 @@ export const ClaimUrlForm = ({
     return `${p1}-and-${p2}`;
   };
 
-  const suggestions = partner1Name
-    ? [
-        generateSlug(),
-        `${partner1Name?.[0]?.toLowerCase() ?? ""}${partner2Name?.[0]?.toLowerCase() ?? ""}2026`,
-        `book-of-${partner1Name?.toLowerCase() ?? "us"}`,
-      ]
-    : URL_SUGGESTIONS;
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => {
+      eventsClient
+        .slugSuggestions(
+          {
+            partnerAName: partner1Name?.trim() || undefined,
+            partnerBName: partner2Name?.trim() || undefined,
+          },
+          controller.signal,
+        )
+        .then((res) => {
+          if (!controller.signal.aborted) setSuggestions(res.suggestions);
+        })
+        .catch(() => {
+          if (!controller.signal.aborted) setSuggestions([]);
+        });
+    }, 300);
+    return () => {
+      controller.abort();
+      clearTimeout(timer);
+    };
+  }, [partner1Name, partner2Name]);
 
   return (
     <AuthSplitLayout
@@ -119,8 +168,23 @@ export const ClaimUrlForm = ({
               placeholder={generateSlug()}
               className="type-body-small text-foreground placeholder:text-muted-foreground flex-1 bg-transparent font-medium outline-none"
             />
-            {slug.length >= 3 && (
+            {status === "available" && (
               <AvailableBadge label={t("signup__claim__available")} />
+            )}
+            {status === "checking" && (
+              <span className="type-caption text-muted-foreground">
+                {t("signup__claim__checking")}
+              </span>
+            )}
+            {status === "taken" && (
+              <span className="type-caption text-destructive font-semibold">
+                {t("signup__claim__taken")}
+              </span>
+            )}
+            {status === "invalid" && (
+              <span className="type-caption text-destructive font-semibold">
+                {t("signup__claim__invalid")}
+              </span>
             )}
           </div>
           <p className="type-caption text-muted-foreground mt-2">
@@ -128,20 +192,22 @@ export const ClaimUrlForm = ({
           </p>
         </div>
 
-        <div className="mt-5.5">
-          <Kicker className="text-muted-foreground mb-2.5">
-            {t("signup__claim__try_one")}
-          </Kicker>
-          <div className="flex flex-wrap gap-2">
-            {suggestions.map((s) => (
-              <UrlSuggestionChip
-                key={s}
-                slug={s}
-                onClick={() => onBookUrlChange(s)}
-              />
-            ))}
+        {suggestions.length > 0 && (
+          <div className="mt-5.5">
+            <Kicker className="text-muted-foreground mb-2.5">
+              {t("signup__claim__try_one")}
+            </Kicker>
+            <div className="flex flex-wrap gap-2">
+              {suggestions.map((s) => (
+                <UrlSuggestionChip
+                  key={s}
+                  slug={s}
+                  onClick={() => onBookUrlChange(s)}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="rounded-12 bg-primary/10 mt-8 flex items-start gap-2.5 p-3.5">
           <InfoIcon
@@ -162,6 +228,7 @@ export const ClaimUrlForm = ({
 
         <Button
           onClick={onContinue}
+          disabled={!canContinue}
           size="lg"
           className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
         >

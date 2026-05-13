@@ -45,7 +45,7 @@ export const BookDetailsStep = () => {
       headerSlot={
         <Kicker className="text-primary mb-3">
           {t("auth__signup__eyebrow_step", {
-            step: 2,
+            step: 1,
             label: t("signup__book_details__step_label"),
           })}
         </Kicker>

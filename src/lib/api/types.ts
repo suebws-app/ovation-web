@@ -90,6 +90,7 @@ export type EventStats = {
   photoCount: number;
   writtenMessages: number;
   favorites: number;
+  unreadMessages: number;
 };
 
 export type MessageSummary = {

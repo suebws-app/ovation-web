@@ -1,14 +1,14 @@
-import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Logo } from "@ovation/ui/components/Logo";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { ApiError } from "@/lib/api/client";
-import { ordersApi } from "@/lib/api/orders";
+import { ordersApi, planPurchasesApi } from "@/lib/api/orders";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { PlanActivatedSuccess } from "./PlanActivatedSuccess";
+import { PendingOrderSuccess } from "./PendingOrderSuccess";
 import {
   formatOrderDate,
   formatPrice,
@@ -20,22 +20,45 @@ type CheckoutSuccessPageProps = {
   params: Promise<{ orderId: string }>;
 };
 
+const isMissing = (error: unknown) =>
+  ApiError.isApiError(error) &&
+  (error.status === 404 || error.status === 403);
+
+const fetchCheckout = async (
+  id: string,
+): Promise<
+  | { kind: "order"; result: Awaited<ReturnType<typeof ordersApi.get>> }
+  | { kind: "plan" }
+  | null
+> => {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const result = await ordersApi.get(id);
+      return { kind: "order", result };
+    } catch (error) {
+      if (!isMissing(error)) throw error;
+    }
+    try {
+      await planPurchasesApi.get(id);
+      return { kind: "plan" };
+    } catch (error) {
+      if (!isMissing(error)) throw error;
+    }
+    if (attempt < 2) await new Promise((r) => setTimeout(r, 800));
+  }
+  return null;
+};
+
 export const CheckoutSuccessPage = async ({
   params,
 }: CheckoutSuccessPageProps) => {
   const { orderId } = await params;
   const t = await getTranslations();
-  const result = await ordersApi.get(orderId).catch((error) => {
-    if (ApiError.isApiError(error) && error.status === 404) return null;
-    throw error;
-  });
+  const fetched = await fetchCheckout(orderId);
 
-  if (!result) notFound();
-  const { order } = result;
-
-  if (order.orderType === "plan") {
-    return <PlanActivatedSuccess />;
-  }
+  if (!fetched) return <PendingOrderSuccess orderId={orderId} />;
+  if (fetched.kind === "plan") return <PlanActivatedSuccess />;
+  const { order } = fetched.result;
 
   const progress = progressFor(order.status);
   const currency = "EUR";
