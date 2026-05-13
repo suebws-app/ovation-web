@@ -11,6 +11,7 @@ import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { MapPinIcon } from "@ovation/icons/MapPinIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
+import { env } from "@/lib/utils/env";
 import type { Event, SupportedLanguage } from "@/lib/api/types";
 import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
 import { SettingsField } from "./SettingsField";
@@ -213,7 +214,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         >
           <div className="rounded-12 border-border bg-card flex items-center gap-2 border px-3.5">
             <span className="type-body-small text-muted-foreground">
-              ovation.love/
+              {env.APP_URL}/
             </span>
             <input
               type="text"

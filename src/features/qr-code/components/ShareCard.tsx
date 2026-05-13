@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { env } from "@/lib/utils/env";
 import { WhatsAppIcon } from "@ovation/icons/WhatsAppIcon";
 import { MailIcon } from "@ovation/icons/MailIcon";
 import { SmsIcon } from "@ovation/icons/SmsIcon";
@@ -14,7 +15,7 @@ type ShareCardProps = {
 
 export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
   const t = useTranslations();
-  const shareUrl = `https://ovation.love/${url}`;
+  const shareUrl = `${env.APP_URL}/${url}`;
   const shareBody = `${t("qr_code__share__suggested_a")}${shareUrl}${t("qr_code__share__suggested_b")}`;
   const encodedBody = encodeURIComponent(shareBody);
   const subject = encodeURIComponent(t("qr_code__share__email_subject"));
@@ -96,7 +97,7 @@ export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
         </p>
         <p className="type-body-small text-foreground mt-1 font-serif italic">
           {t("qr_code__share__suggested_a")}{" "}
-          <span className="font-mono not-italic">ovation.love/{url}</span>
+          <span className="font-mono not-italic">{env.APP_URL}/{url}</span>
           {t("qr_code__share__suggested_b")}
         </p>
       </div>
