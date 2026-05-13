@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { LockIcon } from "@ovation/icons/LockIcon";
+import { env } from "@/lib/utils/env";
 
 type PhoneMockupProps = {
   url: string;
@@ -24,7 +25,7 @@ export const PhoneMockup = ({
       <div className="rounded-20 bg-background text-foreground flex min-h-70 flex-col gap-2.5 p-4">
         <div className="rounded-8 border-border bg-card type-caption text-muted-foreground flex items-center gap-1.5 border px-2.5 py-1.5 font-mono">
           <LockIcon width={8} height={8} />
-          ovation.love/{url}
+          {env.APP_URL}/{url}
         </div>
         <div className="mt-3.5 text-center">
           <p className="type-overline text-muted-foreground tracking-wider">

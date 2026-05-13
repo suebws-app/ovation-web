@@ -20,6 +20,9 @@ importers:
       '@ovation/ui':
         specifier: workspace:*
         version: link:packages/ui
+      '@paddle/paddle-js':
+        specifier: ^1.6.4
+        version: 1.6.4
       '@radix-ui/react-slot':
         specifier: ^1.2.4
         version: 1.2.4(@types/react@19.2.14)(react@19.2.4)
@@ -800,6 +803,9 @@ packages:
   '@opentelemetry/semantic-conventions@1.40.0':
     resolution: {integrity: sha512-cifvXDhcqMwwTlTK04GBNeIe7yyo28Mfby85QXFe1Yk8nmi36Ab/5UQwptOx84SsoGNRg+EVSjwzfSZMy6pmlw==}
     engines: {node: '>=14'}
+
+  '@paddle/paddle-js@1.6.4':
+    resolution: {integrity: sha512-ncfnS6I8mCX6krZ3Sgz2iAYivGmhdI81yt9mT6prtPj4Ipd9J3M12LCJRUFL4FB7BYeeuV04c33RSEnbZUBCaA==}
 
   '@parcel/watcher-android-arm64@2.5.6':
     resolution: {integrity: sha512-YQxSS34tPF/6ZG7r/Ih9xy+kP/WwediEUsqmtf0cuCV5TPPKw/PQHRhueUo6JdeFJaqV3pyjm0GdYjZotbRt/A==}
@@ -5045,6 +5051,8 @@ snapshots:
   '@open-draft/until@2.1.0': {}
 
   '@opentelemetry/semantic-conventions@1.40.0': {}
+
+  '@paddle/paddle-js@1.6.4': {}
 
   '@parcel/watcher-android-arm64@2.5.6':
     optional: true

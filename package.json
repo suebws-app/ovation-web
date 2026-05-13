@@ -16,6 +16,7 @@
     "@ovation/icons": "workspace:*",
     "@ovation/illustrations": "workspace:*",
     "@ovation/ui": "workspace:*",
+    "@paddle/paddle-js": "^1.6.4",
     "@radix-ui/react-slot": "^1.2.4",
     "@tanstack/react-query": "^5.100.5",
     "@vidstack/react": "^1.12.13",

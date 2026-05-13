@@ -6,6 +6,7 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { InfoIcon } from "@ovation/icons/InfoIcon";
 import { AuthSplitLayout } from "@/features/auth/components/AuthSplitLayout";
+import { env } from "@/lib/utils/env";
 import { PhoneMockup } from "@/features/auth/SignUp/components/PhoneMockup";
 import { UrlSuggestionChip } from "@/features/auth/SignUp/components/UrlSuggestionChip";
 import { AvailableBadge } from "@/features/auth/SignUp/components/AvailableBadge";
@@ -106,7 +107,7 @@ export const ClaimUrlForm = ({
           </Kicker>
           <div className="rounded-16 border-primary bg-card shadow-input flex items-center gap-2 border-2 px-4 py-3.5">
             <span className="type-body-small text-muted-foreground font-mono">
-              ovation.love /
+              {env.APP_URL} /
             </span>
             <input
               type="text"

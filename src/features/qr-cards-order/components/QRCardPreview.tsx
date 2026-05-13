@@ -1,3 +1,5 @@
+import { env } from "@/lib/utils/env";
+
 type QRCardPreviewProps = {
   coupleName?: string;
   date?: string;
@@ -9,7 +11,7 @@ type QRCardPreviewProps = {
 export const QRCardPreview = ({
   coupleName = "Lena & Tomás",
   date = "14 · VI · 2026",
-  url = "ovation.love/lena-and-tomas",
+  url = `${env.APP_URL}/lena-and-tomas`,
   cardColor,
   className,
 }: QRCardPreviewProps) => (

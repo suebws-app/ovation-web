@@ -502,13 +502,15 @@ export type ProSubscription = {
 
 export type ProCheckoutSessionInput = {
   planCode: "pro_starter" | "pro_studio";
+  eventId: string;
   successUrl: string;
   cancelUrl: string;
 };
 
 export type ProCheckoutSessionResult = {
+  orderId: string;
   checkoutUrl: string;
-  sessionId: string;
+  providerSessionId: string;
 };
 
 export type BillingPortalSessionInput = {
