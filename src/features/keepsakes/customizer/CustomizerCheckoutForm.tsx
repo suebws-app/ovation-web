@@ -14,7 +14,10 @@ import {
 } from "../orderShippingSchema";
 import { formatPrice } from "../designTokens";
 import { CustomizerShippingFields } from "./CustomizerShippingFields";
+import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import type {
+  Event,
   KeepsakeProductDetail,
   KeepsakeProductVariant,
 } from "@/lib/api/types";
@@ -22,7 +25,9 @@ import type {
 type CustomizerCheckoutFormProps = {
   product: KeepsakeProductDetail;
   eventId: string | null;
+  event?: Event | null;
   customization: Record<string, unknown>;
+  photoIds?: string[];
   selectedVariant?: KeepsakeProductVariant | null;
   isReady: boolean;
   notReadyMessage?: string;
@@ -30,10 +35,19 @@ type CustomizerCheckoutFormProps = {
   requiresShipping?: boolean;
 };
 
+const eventDisplayName = (event: Event, fallback: string): string => {
+  const a = event.partnerAName?.trim();
+  const b = event.partnerBName?.trim();
+  if (a && b) return `${a} & ${b}`;
+  return a || b || fallback;
+};
+
 export const CustomizerCheckoutForm = ({
   product,
   eventId,
+  event,
   customization,
+  photoIds,
   selectedVariant,
   isReady,
   notReadyMessage,
@@ -74,6 +88,7 @@ export const CustomizerCheckoutForm = ({
             productVariantId: selectedVariant?.id,
             quantity: 1,
             customization,
+            photoIds: photoIds && photoIds.length > 0 ? photoIds : undefined,
           },
         ],
         shippingAddress: requiresShipping
@@ -108,6 +123,24 @@ export const CustomizerCheckoutForm = ({
       noValidate
       className="rounded-20 border-border bg-card desktop:sticky desktop:top-6 flex flex-col gap-5 border p-6 self-start"
     >
+      {event && (
+        <div className="rounded-12 border-border bg-muted/30 flex items-center justify-between gap-3 border px-3 py-2.5">
+          <div className="flex flex-col gap-0.5 min-w-0">
+            <span className="type-caption text-muted-foreground">
+              {t("keepsakes__order__for_event")}
+            </span>
+            <span className="type-body-small font-semibold truncate">
+              {eventDisplayName(event, t("event_switcher__untitled"))}
+            </span>
+          </div>
+          <Link
+            href={appRoutes.app.event(event.id)}
+            className="type-caption text-primary font-semibold hover:underline shrink-0"
+          >
+            {t("keepsakes__order__change_event")}
+          </Link>
+        </div>
+      )}
       {children}
       {requiresShipping && (
         <CustomizerShippingFields register={register} errors={errors} />

@@ -1,1 +1,1 @@
-export { KeepsakeCustomizerPage as default } from "@/features/keepsakes/customizer/KeepsakeCustomizerPage";
+export { LegacyKeepsakeCustomizerRedirect as default } from "@/features/keepsakes/customizer/LegacyKeepsakeCustomizerRedirect";

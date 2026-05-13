@@ -161,6 +161,26 @@ export const auth = betterAuth({
         required: false,
         fieldName: "account_type",
       },
+      planTier: {
+        type: "string",
+        required: false,
+        fieldName: "plan_tier",
+      },
+      planPurchasedAt: {
+        type: "date",
+        required: false,
+        fieldName: "plan_purchased_at",
+      },
+      messageLimit: {
+        type: "number",
+        required: false,
+        fieldName: "message_limit",
+      },
+      storageExpiresAt: {
+        type: "date",
+        required: false,
+        fieldName: "storage_expires_at",
+      },
     },
   },
 

@@ -8,7 +8,7 @@ import { OptionGroup } from "./OptionGroup";
 import { AudioMessagePicker } from "./AudioMessagePicker";
 import { MediaPicker } from "./MediaPicker";
 import { CustomizerCheckoutForm } from "./CustomizerCheckoutForm";
-import type { KeepsakeProductDetail } from "@/lib/api/types";
+import type { Event, KeepsakeProductDetail } from "@/lib/api/types";
 
 type Style = "cinematic" | "romantic" | "upbeat";
 
@@ -21,24 +21,31 @@ const STYLE_OPTIONS: Array<{ value: Style; label: string; hint: string }> = [
 type VideoMontageCustomizerProps = {
   product: KeepsakeProductDetail;
   eventId: string | null;
+  event?: Event | null;
 };
 
 export const VideoMontageCustomizer = ({
   product,
   eventId,
+  event,
 }: VideoMontageCustomizerProps) => {
   const [style, setStyle] = useState<Style>("cinematic");
   const [durationSec, setDurationSec] = useState(120);
   const [musicTrackId, setMusicTrackId] = useState("");
   const [messageIds, setMessageIds] = useState<string[]>([]);
-  const [mediaIds, setMediaIds] = useState<string[]>([]);
+  const [photoIds, setPhotoIds] = useState<string[]>([]);
+  const [videoIds, setVideoIds] = useState<string[]>([]);
 
   const toggleMessage = (id: string) =>
     setMessageIds((prev) =>
       prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id],
     );
-  const toggleMedia = (id: string) =>
-    setMediaIds((prev) =>
+  const togglePhoto = (id: string) =>
+    setPhotoIds((prev) =>
+      prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id],
+    );
+  const toggleVideo = (id: string) =>
+    setVideoIds((prev) =>
       prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id],
     );
 
@@ -47,10 +54,11 @@ export const VideoMontageCustomizer = ({
     durationSec,
     musicTrackId: musicTrackId.trim() || undefined,
     messageIds,
-    mediaIds,
+    videoIds,
   };
 
-  const isReady = messageIds.length > 0 || mediaIds.length > 0;
+  const isReady =
+    messageIds.length > 0 || photoIds.length > 0 || videoIds.length > 0;
 
   return (
     <div className="desktop:grid-cols-[1fr_400px] grid grid-cols-1 gap-6">
@@ -109,16 +117,30 @@ export const VideoMontageCustomizer = ({
         </CustomizerSection>
 
         <CustomizerSection
-          title="Photos & videos"
-          description="Visual moments to mix into the montage."
-          badge={`${mediaIds.length} selected`}
+          title="Photos"
+          description="Photos to mix into the montage."
+          badge={`${photoIds.length} selected`}
         >
           <MediaPicker
             eventId={eventId}
-            type="all"
-            selectedIds={mediaIds}
-            onToggle={toggleMedia}
-            emptyHint="No photos or videos yet."
+            type="photo"
+            selectedIds={photoIds}
+            onToggle={togglePhoto}
+            emptyHint="No photos yet."
+          />
+        </CustomizerSection>
+
+        <CustomizerSection
+          title="Videos"
+          description="Video clips to weave into the montage."
+          badge={`${videoIds.length} selected`}
+        >
+          <MediaPicker
+            eventId={eventId}
+            type="video"
+            selectedIds={videoIds}
+            onToggle={toggleVideo}
+            emptyHint="No videos yet."
           />
         </CustomizerSection>
       </div>
@@ -126,7 +148,9 @@ export const VideoMontageCustomizer = ({
       <CustomizerCheckoutForm
         product={product}
         eventId={eventId}
+        event={event}
         customization={customization}
+        photoIds={photoIds}
         isReady={isReady}
         notReadyMessage="Pick at least one audio message or media item."
         requiresShipping={false}

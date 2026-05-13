@@ -4,6 +4,7 @@ import { ApiError } from "@/lib/api/client";
 import { ActivateLinkBanner } from "@/features/activate-link";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { getCurrentUser } from "@/lib/auth/session";
 import { getTranslations } from "next-intl/server";
 import { OrderCtaStrip } from "./components/OrderCtaStrip";
 import { QRCodeDesktopFooter } from "./components/QRCodeDesktopFooter";
@@ -23,6 +24,7 @@ export const EventQRCodePage = async ({
 }) => {
   const { id } = await params;
   const t = await getTranslations();
+  const user = await getCurrentUser();
   const eventResult = await eventsApi.get(id).catch(() => null);
   const event = eventResult?.event ?? null;
 
@@ -52,7 +54,8 @@ export const EventQRCodePage = async ({
   ]);
 
   const subscription = subResult?.subscription ?? null;
-  const showActivation = !subscription;
+  const isPro = user?.accountType === "pro";
+  const showActivation = !subscription && !isPro;
 
   return (
     <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6">

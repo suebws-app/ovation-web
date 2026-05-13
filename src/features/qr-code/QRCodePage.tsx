@@ -4,6 +4,7 @@ import { ApiError } from "@/lib/api/client";
 import { ActivateLinkBanner } from "@/features/activate-link";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { getCurrentUser } from "@/lib/auth/session";
 import { getTranslations } from "next-intl/server";
 import { OrderCtaStrip } from "./components/OrderCtaStrip";
 import { QRCodeDesktopFooter } from "./components/QRCodeDesktopFooter";
@@ -18,6 +19,7 @@ const coupleNameOf = (partnerA: string, partnerB: string) =>
 
 export const QRCodePage = async () => {
   const t = await getTranslations();
+  const user = await getCurrentUser();
   const events = await eventsApi.list({ limit: 1 });
   const event = events.items[0];
   if (!event)
@@ -28,12 +30,10 @@ export const QRCodePage = async () => {
     );
 
   const [qr, subResult, stats] = await Promise.all([
-    eventsApi
-      .qrCode(event.id, { format: "svg", size: 512 })
-      .catch((error) => {
-        if (ApiError.isApiError(error) && error.status === 404) return null;
-        throw error;
-      }),
+    eventsApi.qrCode(event.id, { format: "svg", size: 512 }).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
     subscriptionsApi.get(event.id).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
@@ -45,7 +45,8 @@ export const QRCodePage = async () => {
   ]);
 
   const subscription = subResult?.subscription ?? null;
-  const showActivation = !subscription;
+  const isPro = user?.accountType === "pro";
+  const showActivation = !subscription && !isPro;
 
   return (
     <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6">

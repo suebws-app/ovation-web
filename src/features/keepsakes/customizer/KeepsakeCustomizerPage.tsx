@@ -11,28 +11,34 @@ import { DigitalAlbumCustomizer } from "./DigitalAlbumCustomizer";
 import { ThankYouCardsCustomizer } from "./ThankYouCardsCustomizer";
 import { CanvasPrintCustomizer } from "./CanvasPrintCustomizer";
 import type {
+  Event,
   KeepsakeProductDetail,
   KeepsakeProductVariant,
 } from "@/lib/api/types";
 
 type KeepsakeCustomizerPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ id: string; slug: string }>;
 };
 
 export const KeepsakeCustomizerPage = async ({
   params,
 }: KeepsakeCustomizerPageProps) => {
-  const { slug } = await params;
+  const { id, slug } = await params;
 
-  const detail = await keepsakesApi.productBySlug(slug).catch((error) => {
-    if (ApiError.isApiError(error) && error.status === 404) return null;
-    throw error;
-  });
+  const [detail, eventResult] = await Promise.all([
+    keepsakesApi.productBySlug(slug).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
+    eventsApi.get(id).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
+  ]);
 
-  if (!detail) notFound();
+  if (!detail || !eventResult) notFound();
 
-  const eventsResult = await eventsApi.list({ limit: 1 });
-  const eventId = eventsResult.items[0]?.id ?? null;
+  const event = eventResult.event;
   const design = designFor(detail.product.sku);
 
   return (
@@ -42,7 +48,7 @@ export const KeepsakeCustomizerPage = async ({
         productType={detail.product.productType}
         product={detail.product}
         variants={detail.variants}
-        eventId={eventId}
+        event={event}
       />
     </div>
   );
@@ -52,15 +58,16 @@ type SwitchProps = {
   productType: string;
   product: KeepsakeProductDetail;
   variants: KeepsakeProductVariant[];
-  eventId: string | null;
+  event: Event;
 };
 
 const KeepsakeCustomizerSwitch = ({
   productType,
   product,
   variants,
-  eventId,
+  event,
 }: SwitchProps) => {
+  const eventId = event.id;
   switch (productType) {
     case "gold_book":
       return (
@@ -68,26 +75,41 @@ const KeepsakeCustomizerSwitch = ({
           product={product}
           variants={variants}
           eventId={eventId}
+          event={event}
         />
       );
     case "video_montage":
-      return <VideoMontageCustomizer product={product} eventId={eventId} />;
+      return (
+        <VideoMontageCustomizer
+          product={product}
+          eventId={eventId}
+          event={event}
+        />
+      );
     case "audio_vinyl":
       return (
         <AudioVinylCustomizer
           product={product}
           variants={variants}
           eventId={eventId}
+          event={event}
         />
       );
     case "digital_album":
-      return <DigitalAlbumCustomizer product={product} eventId={eventId} />;
+      return (
+        <DigitalAlbumCustomizer
+          product={product}
+          eventId={eventId}
+          event={event}
+        />
+      );
     case "thank_you_cards":
       return (
         <ThankYouCardsCustomizer
           product={product}
           variants={variants}
           eventId={eventId}
+          event={event}
         />
       );
     case "canvas_print":
@@ -96,9 +118,16 @@ const KeepsakeCustomizerSwitch = ({
           product={product}
           variants={variants}
           eventId={eventId}
+          event={event}
         />
       );
     default:
-      return <DigitalAlbumCustomizer product={product} eventId={eventId} />;
+      return (
+        <DigitalAlbumCustomizer
+          product={product}
+          eventId={eventId}
+          event={event}
+        />
+      );
   }
 };

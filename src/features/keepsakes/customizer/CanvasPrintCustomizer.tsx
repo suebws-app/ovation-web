@@ -6,6 +6,7 @@ import { MediaPicker } from "./MediaPicker";
 import { VariantSelector } from "./VariantSelector";
 import { CustomizerCheckoutForm } from "./CustomizerCheckoutForm";
 import type {
+  Event,
   KeepsakeProductDetail,
   KeepsakeProductVariant,
 } from "@/lib/api/types";
@@ -14,12 +15,14 @@ type CanvasPrintCustomizerProps = {
   product: KeepsakeProductDetail;
   variants: KeepsakeProductVariant[];
   eventId: string | null;
+  event?: Event | null;
 };
 
 export const CanvasPrintCustomizer = ({
   product,
   variants,
   eventId,
+  event,
 }: CanvasPrintCustomizerProps) => {
   const [variantId, setVariantId] = useState<string | null>(
     variants[0]?.id ?? null,
@@ -73,7 +76,9 @@ export const CanvasPrintCustomizer = ({
       <CustomizerCheckoutForm
         product={product}
         eventId={eventId}
+        event={event}
         customization={customization}
+        photoIds={selectedMediaIds}
         selectedVariant={selectedVariant}
         isReady={isReady}
         notReadyMessage="Pick a size and at least one photo."

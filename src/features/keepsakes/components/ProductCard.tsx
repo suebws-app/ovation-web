@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+import { appRoutes } from "@/lib/routes";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { ProductTag } from "./ProductTag";
 import { slugForSku } from "../slug";
@@ -54,13 +55,13 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
           {t(design.taglineKey) || description}
         </p>
         <div className="mt-auto flex gap-2 pt-3.5">
-          {canOrder ? (
+          {canOrder && eventId ? (
             <Button
               asChild
               size="sm"
               className="bg-foreground text-background hover:bg-foreground/90 flex-1 rounded-full"
             >
-              <Link href={`/app/keepsakes/${slug}`}>
+              <Link href={appRoutes.app.eventKeepsakeCustomizer(eventId, slug)}>
                 {t("keepsakes__product__order")}{" "}
                 <ArrowRightIcon width={12} height={12} />
               </Link>

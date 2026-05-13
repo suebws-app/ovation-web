@@ -47,6 +47,10 @@ export type User = {
   preferredLanguage: SupportedLanguage | string;
   role: string;
   accountType: AccountType;
+  planTier: PlanTier | string | null;
+  planPurchasedAt: string | null;
+  messageLimit: number | null;
+  storageExpiresAt: string | null;
   stripeCustomerId: string | null;
   emailPreferences: EmailPreferences | null;
   createdAt: string;
@@ -73,8 +77,6 @@ export type Event = {
   welcomeMessage: string | null;
   themeColor: string;
   couplePhotoUrl: string | null;
-  planTier: PlanTier | string | null;
-  messageLimit: number | null;
   status: EventStatus | string;
   defaultLanguage: SupportedLanguage | string;
   createdAt: string;
@@ -390,16 +392,19 @@ export type Order = {
   currency: string;
   subtotalCents: number;
   totalCents: number;
+  productSku: string;
+  productName: string;
+  quantity: number;
+  unitPriceCents: number;
+  customization: Record<string, unknown>;
+  fulfillmentStatus: string;
   paymentProvider: string | null;
   createdAt: string;
 };
 
 export type OrderItem = {
   id: string;
-  productSku: string;
-  productName: string;
-  quantity: number;
-  unitPriceCents: number;
+  mediaId: string;
 };
 
 export type OrderTracking = {
@@ -413,7 +418,13 @@ export type OrderDetail = {
   orderType: string;
   status: OrderStatus;
   totalCents: number;
-  items: OrderItem[];
+  productSku: string;
+  productName: string;
+  quantity: number;
+  unitPriceCents: number;
+  customization: Record<string, unknown>;
+  fulfillmentStatus: string;
+  mediaIds: string[];
   tracking: OrderTracking | null;
   createdAt: string;
 };
@@ -435,6 +446,7 @@ export type CheckoutItem = {
   productVariantId?: string;
   quantity: number;
   customization?: Record<string, unknown>;
+  photoIds?: string[];
 };
 
 export type CheckoutShippingAddress = {

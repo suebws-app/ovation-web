@@ -89,31 +89,30 @@ export const CheckoutSuccessPage = async ({
             />
           </div>
 
-          {order.items.length > 0 && (
-            <div className="border-border mt-5 divide-y border-t pt-3">
-              {order.items.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-baseline justify-between py-3"
-                >
-                  <div>
-                    <p className="type-body-small font-semibold">
-                      {item.productName}
-                    </p>
-                    <p className="type-caption text-muted-foreground">
-                      {t("checkout__success__qty_unit", {
-                        qty: item.quantity,
-                        unit: formatPrice(item.unitPriceCents, currency),
-                      })}
-                    </p>
-                  </div>
-                  <p className="type-body-small font-mono">
-                    {formatPrice(item.unitPriceCents * item.quantity, currency)}
+          <div className="border-border mt-5 divide-y border-t pt-3">
+            <div className="flex items-baseline justify-between py-3">
+              <div>
+                <p className="type-body-small font-semibold">
+                  {order.productName}
+                </p>
+                <p className="type-caption text-muted-foreground">
+                  {t("checkout__success__qty_unit", {
+                    qty: order.quantity,
+                    unit: formatPrice(order.unitPriceCents, currency),
+                  })}
+                </p>
+                {order.mediaIds.length > 0 && (
+                  <p className="type-caption text-muted-foreground mt-1">
+                    {order.mediaIds.length} photo
+                    {order.mediaIds.length === 1 ? "" : "s"} selected
                   </p>
-                </div>
-              ))}
+                )}
+              </div>
+              <p className="type-body-small font-mono">
+                {formatPrice(order.unitPriceCents * order.quantity, currency)}
+              </p>
             </div>
-          )}
+          </div>
 
           <div className="border-border mt-3 flex items-baseline justify-between border-t pt-4">
             <span className="type-body-small text-muted-foreground">

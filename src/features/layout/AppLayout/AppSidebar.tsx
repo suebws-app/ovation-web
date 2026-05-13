@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { EventSwitcher } from "./EventSwitcher";
@@ -14,6 +15,7 @@ import { MonitorIcon } from "@ovation/icons/MonitorIcon";
 import { HelpCircleIcon } from "@ovation/icons/HelpCircleIcon";
 import { UsersIcon } from "@ovation/icons/UsersIcon";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
+import { BoxIcon } from "@ovation/icons/BoxIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
 import { usePathname } from "next/navigation";
@@ -22,13 +24,53 @@ import type { User } from "@/lib/api/types";
 import { isLocale } from "@/lib/utils/isLocale";
 import { NavUser } from "./NavUser";
 
-const useProEventId = (): string | null => {
-  const pathname = usePathname();
-  const segments = pathname.split("/").filter(Boolean).filter((s) => !isLocale(s));
-  if (segments[0] === "app" && segments[1] === "events" && segments[2] && segments[2] !== "new") {
+const LAST_EVENT_COOKIE = "ovation_last_event_id";
+const LAST_EVENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+const readLastEventCookie = (): string | null => {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie.match(/(?:^|;\s*)ovation_last_event_id=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+};
+
+const eventIdFromPath = (pathname: string): string | null => {
+  const segments = pathname
+    .split("/")
+    .filter(Boolean)
+    .filter((s) => !isLocale(s));
+  if (
+    segments[0] === "app" &&
+    segments[1] === "events" &&
+    segments[2] &&
+    segments[2] !== "new"
+  ) {
     return segments[2];
   }
   return null;
+};
+
+const useProEventId = (events: Event[]): string | null => {
+  const pathname = usePathname();
+  const fromPath = eventIdFromPath(pathname);
+  const [fallback, setFallback] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (fromPath) {
+      document.cookie = `${LAST_EVENT_COOKIE}=${fromPath}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
+      setFallback(fromPath);
+      return;
+    }
+    const stored = readLastEventCookie();
+    if (stored && events.some((e) => e.id === stored)) {
+      setFallback(stored);
+    } else if (events[0]) {
+      setFallback(events[0].id);
+    } else {
+      setFallback(null);
+    }
+  }, [fromPath, events]);
+
+  return fromPath ?? fallback;
 };
 
 type Translator = ReturnType<typeof useTranslations>;
@@ -56,6 +98,11 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
         label: t("sidebar__nav__keepsakes"),
         href: appRoutes.app.keepsakes,
         icon: StarIcon,
+      },
+      {
+        label: t("sidebar__nav__orders"),
+        href: appRoutes.app.orders,
+        icon: BoxIcon,
       },
       {
         label: t("sidebar__nav__guests"),
@@ -97,7 +144,18 @@ const buildCoupleGroups = (t: Translator): SidebarNavGroup[] => [
   },
 ];
 
-const buildProGlobalGroups = (_t: Translator): SidebarNavGroup[] => [];
+const buildProGlobalGroups = (t: Translator): SidebarNavGroup[] => [
+  {
+    label: t("sidebar__pro__all"),
+    items: [
+      {
+        label: t("sidebar__nav__all_orders"),
+        href: appRoutes.app.orders,
+        icon: BoxIcon,
+      },
+    ],
+  },
+];
 
 const buildProEventGroups = (
   t: Translator,
@@ -126,6 +184,11 @@ const buildProEventGroups = (
         icon: StarIcon,
       },
       {
+        label: t("sidebar__nav__orders"),
+        href: appRoutes.app.eventOrders(eventId),
+        icon: BoxIcon,
+      },
+      {
         label: t("sidebar__quick__link"),
         href: appRoutes.app.eventLink(eventId),
         icon: LinkIcon,
@@ -151,13 +214,13 @@ type AppSideBarProps = {
 
 export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   const t = useTranslations();
-  const eventId = useProEventId();
+  const eventId = useProEventId(events);
   const isPro = user.accountType === "pro";
 
   let groups: SidebarNavGroup[];
   if (isPro) {
     groups = eventId
-      ? buildProEventGroups(t, eventId)
+      ? [...buildProEventGroups(t, eventId), ...buildProGlobalGroups(t)]
       : buildProGlobalGroups(t);
   } else {
     groups = buildCoupleGroups(t);

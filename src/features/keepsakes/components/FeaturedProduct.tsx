@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+import { appRoutes } from "@/lib/routes";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { FeaturePill } from "./FeaturePill";
 import { BookMock } from "./BookMock";
@@ -52,13 +53,13 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
           ))}
         </div>
         <div className="mt-5 flex flex-wrap items-center gap-2.5">
-          {canOrder ? (
+          {canOrder && eventId ? (
             <Button
               asChild
               size="lg"
               className="bg-foreground text-background hover:bg-foreground/90 rounded-full"
             >
-              <Link href={`/app/keepsakes/${slug}`}>
+              <Link href={appRoutes.app.eventKeepsakeCustomizer(eventId, slug)}>
                 {t("keepsakes__featured__order_now")}{" "}
                 <ArrowRightIcon width={13} height={13} />
               </Link>
