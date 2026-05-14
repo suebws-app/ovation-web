@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import type { Order } from "@/lib/api/types";
 import {
   formatOrderDate,
@@ -27,7 +28,9 @@ export const OrderCard = ({
   statusLabel,
   photoCountLabel,
   onClick,
-}: OrderCardProps) => (
+}: OrderCardProps) => {
+  const t = useTranslations();
+  return (
   <button
     type="button"
     onClick={onClick}
@@ -36,7 +39,8 @@ export const OrderCard = ({
     <div className="flex items-baseline justify-between gap-3">
       <div className="flex flex-col gap-0.5">
         <span className="type-body-small font-semibold">
-          {order.productName}
+          {order.productName ? t(order.productName) : ""}
+          {order.variantName ? ` — ${order.variantName}` : ""}
         </span>
         <span className="type-caption text-muted-foreground">
           {formatOrderDate(order.createdAt)} · #{order.id.slice(0, 8)}
@@ -66,4 +70,5 @@ export const OrderCard = ({
       />
     </div>
   </button>
-);
+  );
+};

@@ -306,6 +306,7 @@ export type KeepsakeProduct = {
   sku: KeepsakeSku;
   name: string;
   description: string;
+  subtitle: string | null;
   priceCents: number;
   currency: string;
   imageUrl?: string | null;
@@ -323,6 +324,7 @@ export type KeepsakeProductDetail = {
   productType: string;
   name: string;
   description: string | null;
+  subtitle: string | null;
   basePriceCents: number;
   currency: string;
   category: string;
@@ -395,6 +397,8 @@ export type Order = {
   totalCents: number;
   productSku: string;
   productName: string;
+  variantSku: string | null;
+  variantName: string | null;
   quantity: number;
   unitPriceCents: number;
   customization: Record<string, unknown>;
@@ -421,6 +425,8 @@ export type OrderDetail = {
   totalCents: number;
   productSku: string;
   productName: string;
+  variantSku: string | null;
+  variantName: string | null;
   quantity: number;
   unitPriceCents: number;
   customization: Record<string, unknown>;
@@ -428,6 +434,11 @@ export type OrderDetail = {
   mediaIds: string[];
   tracking: OrderTracking | null;
   createdAt: string;
+};
+
+export type OrderSession = {
+  orders: OrderDetail[];
+  totalCents: number;
 };
 
 export type QrCodeFormat = "png" | "svg";
@@ -453,6 +464,7 @@ export type CheckoutItem = {
 export type CheckoutShippingAddress = {
   name: string;
   line1: string;
+  line2?: string;
   city: string;
   country: string;
   postalCode: string;
@@ -464,8 +476,33 @@ export type CheckoutSessionInput = {
   planTier?: CheckoutPlanTier;
   items?: CheckoutItem[] | null;
   shippingAddress?: CheckoutShippingAddress;
+  promoCode?: string;
   successUrl: string;
   cancelUrl: string;
+};
+
+export type CartTotalsItem = {
+  productSku: string;
+  productVariantId?: string;
+  quantity: number;
+};
+
+export type CartTotalsInput = {
+  eventId: string;
+  items: CartTotalsItem[];
+  shippingCountry?: string;
+  promoCode?: string;
+};
+
+export type CartTotalsResult = {
+  currency: string;
+  subtotalCents: number;
+  promoDiscountCents?: number;
+  shippingCents: number;
+  taxCents: number;
+  totalCents: number;
+  vatRate: number;
+  freeShipping: boolean;
 };
 
 export type CheckoutSessionResult = {

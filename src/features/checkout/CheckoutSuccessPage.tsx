@@ -58,9 +58,12 @@ export const CheckoutSuccessPage = async ({
 
   if (!fetched) return <PendingOrderSuccess orderId={orderId} />;
   if (fetched.kind === "plan") return <PlanActivatedSuccess />;
-  const { order } = fetched.result;
+  const { order, session } = fetched.result;
+  const sessionOrders = session?.orders ?? [order];
+  const sessionTotalCents =
+    session?.totalCents ??
+    sessionOrders.reduce((sum, o) => sum + o.totalCents, 0);
 
-  const progress = progressFor(order.status);
   const currency = "EUR";
 
   return (
@@ -108,33 +111,39 @@ export const CheckoutSuccessPage = async ({
           <div className="bg-border mt-3 h-1.5 overflow-hidden rounded-full">
             <div
               className="bg-primary h-full rounded-full transition-all"
-              style={{ width: `${progress}%` }}
+              style={{ width: `${progressFor(order.status)}%` }}
             />
           </div>
 
           <div className="border-border mt-5 divide-y border-t pt-3">
-            <div className="flex items-baseline justify-between py-3">
-              <div>
-                <p className="type-body-small font-semibold">
-                  {order.productName}
-                </p>
-                <p className="type-caption text-muted-foreground">
-                  {t("checkout__success__qty_unit", {
-                    qty: order.quantity,
-                    unit: formatPrice(order.unitPriceCents, currency),
-                  })}
-                </p>
-                {order.mediaIds.length > 0 && (
-                  <p className="type-caption text-muted-foreground mt-1">
-                    {order.mediaIds.length} photo
-                    {order.mediaIds.length === 1 ? "" : "s"} selected
+            {sessionOrders.map((row) => (
+              <div
+                key={row.id}
+                className="flex items-baseline justify-between py-3"
+              >
+                <div>
+                  <p className="type-body-small font-semibold">
+                    {row.productName ? t(row.productName) : ""}
+                    {row.variantName ? ` — ${row.variantName}` : ""}
                   </p>
-                )}
+                  <p className="type-caption text-muted-foreground">
+                    {t("checkout__success__qty_unit", {
+                      qty: row.quantity,
+                      unit: formatPrice(row.unitPriceCents, currency),
+                    })}
+                  </p>
+                  {row.mediaIds.length > 0 && (
+                    <p className="type-caption text-muted-foreground mt-1">
+                      {row.mediaIds.length} photo
+                      {row.mediaIds.length === 1 ? "" : "s"} selected
+                    </p>
+                  )}
+                </div>
+                <p className="type-body-small font-mono">
+                  {formatPrice(row.unitPriceCents * row.quantity, currency)}
+                </p>
               </div>
-              <p className="type-body-small font-mono">
-                {formatPrice(order.unitPriceCents * order.quantity, currency)}
-              </p>
-            </div>
+            ))}
           </div>
 
           <div className="border-border mt-3 flex items-baseline justify-between border-t pt-4">
@@ -142,7 +151,7 @@ export const CheckoutSuccessPage = async ({
               {t("checkout__success__total")}
             </span>
             <span className="type-h4 text-primary font-semibold">
-              {formatPrice(order.totalCents, currency)}
+              {formatPrice(sessionTotalCents, currency)}
             </span>
           </div>
 

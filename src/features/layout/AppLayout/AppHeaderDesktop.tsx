@@ -34,7 +34,7 @@ export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
 
   const lastCrumb = crumbs[crumbs.length - 1];
   const parentCrumbs = crumbs.slice(0, -1);
-  const isKeepsakes = segments.includes("keepsakes");
+  const isKeepsakes = segments.includes("keepsakes") || segments.includes("cart");
 
   return (
     <header className="max-w-container desktop:flex mx-auto hidden h-16 w-full items-center justify-between px-6 py-3">

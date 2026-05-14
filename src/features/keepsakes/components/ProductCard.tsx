@@ -40,19 +40,19 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
       </div>
       <div className="flex flex-1 flex-col gap-1.5 p-4.5">
         <div className="flex items-baseline justify-between">
-          <p className="type-h4 font-semibold">{name}</p>
+          <p className="type-h4 font-semibold">{name ? t(name) : ""}</p>
           <p className="type-body-large text-primary font-serif font-semibold">
             {formatPrice(priceCents, currency)}
           </p>
         </div>
         <p className="type-caption text-muted-foreground tracking-wider">
-          {t(design.subtitleKey)}
+          {product.subtitle ? t(product.subtitle) : t(design.subtitleKey)}
           {timelineDays
             ? ` · ${t("keepsakes__product__ships_in", { days: timelineDays })}`
             : ""}
         </p>
         <p className="type-body-small text-foreground mt-1.5 leading-relaxed">
-          {t(design.taglineKey) || description}
+          {t(design.taglineKey) || (description ? t(description) : "")}
         </p>
         <div className="mt-auto flex gap-2 pt-3.5">
           {canOrder && eventId ? (
@@ -75,12 +75,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
               {t("keepsakes__product__create_first")}
             </Button>
           )}
-          <Button
-            disabled
-            variant="outline"
-            size="sm"
-            className="rounded-full"
-          >
+          <Button disabled variant="outline" size="sm" className="rounded-full">
             {t("keepsakes__product__preview")}
           </Button>
         </div>

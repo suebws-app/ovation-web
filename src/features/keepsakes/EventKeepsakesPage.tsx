@@ -17,11 +17,13 @@ export const EventKeepsakesPage = async ({
 
   const [catalog, ordersResult] = await Promise.all([
     keepsakesApi.catalog(),
-    ordersApi.list({ limit: 5, orderType: "keepsake" }).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404)
-        return { items: [], nextCursor: null };
-      throw error;
-    }),
+    ordersApi
+      .list({ eventId: id, limit: 5, orderType: "keepsake" })
+      .catch((error) => {
+        if (ApiError.isApiError(error) && error.status === 404)
+          return { items: [], nextCursor: null };
+        throw error;
+      }),
   ]);
 
   const featured =

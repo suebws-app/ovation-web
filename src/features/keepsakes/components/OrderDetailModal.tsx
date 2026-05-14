@@ -77,7 +77,7 @@ export const OrderDetailModal = ({
               </p>
               <div className="flex flex-col gap-1.5">
                 <OrderItemLine
-                  label={`${order.productName} × ${order.quantity}`}
+                  label={`${order.productName ? t(order.productName) : ""}${order.variantName ? ` — ${order.variantName}` : ""} × ${order.quantity}`}
                   value={formatPrice(
                     order.unitPriceCents * order.quantity,
                     currency,
