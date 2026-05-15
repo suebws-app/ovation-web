@@ -57,7 +57,7 @@ export const CheckoutSuccessPage = async ({
   const fetched = await fetchCheckout(orderId);
 
   if (!fetched) return <PendingOrderSuccess orderId={orderId} />;
-  if (fetched.kind === "plan") return <PlanActivatedSuccess />;
+  if (fetched.kind === "plan") return <PlanActivatedSuccess orderId={orderId} />;
   const { order, session } = fetched.result;
   const sessionOrders = session?.orders ?? [order];
   const sessionTotalCents =

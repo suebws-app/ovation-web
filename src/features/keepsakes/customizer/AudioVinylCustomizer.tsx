@@ -19,6 +19,7 @@ type AudioVinylCustomizerProps = {
   variants: KeepsakeProductVariant[];
   eventId: string | null;
   event?: Event | null;
+  isPro?: boolean;
 };
 
 export const AudioVinylCustomizer = ({
@@ -26,6 +27,7 @@ export const AudioVinylCustomizer = ({
   variants,
   eventId,
   event,
+  isPro = false,
 }: AudioVinylCustomizerProps) => {
   const [variantId, setVariantId] = useState<string | null>(
     variants[0]?.id ?? null,
@@ -137,6 +139,7 @@ export const AudioVinylCustomizer = ({
         selectedVariant={selectedVariant}
         isReady={isReady}
         notReadyMessage="Pick a sleeve and at least one track."
+        showEventBadge={isPro}
       />
     </div>
   );

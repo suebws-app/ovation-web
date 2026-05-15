@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { keepsakesApi } from "@/lib/api/keepsakes";
 import { eventsApi } from "@/lib/api/events";
 import { ApiError } from "@/lib/api/client";
+import { getCurrentUser } from "@/lib/auth/session";
 import { designFor } from "../designTokens";
 import { CustomizerHeader } from "./CustomizerHeader";
 import { GoldBookCustomizer } from "./GoldBookCustomizer";
@@ -25,7 +26,7 @@ export const KeepsakeCustomizerPage = async ({
 }: KeepsakeCustomizerPageProps) => {
   const { id, slug } = await params;
 
-  const [detail, eventResult] = await Promise.all([
+  const [detail, eventResult, user] = await Promise.all([
     keepsakesApi.productBySlug(slug).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
@@ -34,21 +35,24 @@ export const KeepsakeCustomizerPage = async ({
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
     }),
+    getCurrentUser(),
   ]);
 
   if (!detail || !eventResult) notFound();
 
   const event = eventResult.event;
   const design = designFor(detail.product.sku);
+  const isPro = user?.accountType === "pro";
 
   return (
     <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
-      <CustomizerHeader product={detail.product} design={design} />
+      <CustomizerHeader product={detail.product} design={design} eventId={event.id} />
       <KeepsakeCustomizerSwitch
         productType={detail.product.productType}
         product={detail.product}
         variants={detail.variants}
         event={event}
+        isPro={isPro}
       />
     </div>
   );
@@ -59,6 +63,7 @@ type SwitchProps = {
   product: KeepsakeProductDetail;
   variants: KeepsakeProductVariant[];
   event: Event;
+  isPro: boolean;
 };
 
 const KeepsakeCustomizerSwitch = ({
@@ -66,6 +71,7 @@ const KeepsakeCustomizerSwitch = ({
   product,
   variants,
   event,
+  isPro,
 }: SwitchProps) => {
   const eventId = event.id;
   switch (productType) {
@@ -76,6 +82,7 @@ const KeepsakeCustomizerSwitch = ({
           variants={variants}
           eventId={eventId}
           event={event}
+          isPro={isPro}
         />
       );
     case "video_montage":
@@ -84,6 +91,7 @@ const KeepsakeCustomizerSwitch = ({
           product={product}
           eventId={eventId}
           event={event}
+          isPro={isPro}
         />
       );
     case "audio_vinyl":
@@ -93,6 +101,7 @@ const KeepsakeCustomizerSwitch = ({
           variants={variants}
           eventId={eventId}
           event={event}
+          isPro={isPro}
         />
       );
     case "digital_album":
@@ -101,6 +110,7 @@ const KeepsakeCustomizerSwitch = ({
           product={product}
           eventId={eventId}
           event={event}
+          isPro={isPro}
         />
       );
     case "thank_you_cards":
@@ -110,6 +120,7 @@ const KeepsakeCustomizerSwitch = ({
           variants={variants}
           eventId={eventId}
           event={event}
+          isPro={isPro}
         />
       );
     case "canvas_print":
@@ -119,6 +130,7 @@ const KeepsakeCustomizerSwitch = ({
           variants={variants}
           eventId={eventId}
           event={event}
+          isPro={isPro}
         />
       );
     default:
@@ -127,6 +139,7 @@ const KeepsakeCustomizerSwitch = ({
           product={product}
           eventId={eventId}
           event={event}
+          isPro={isPro}
         />
       );
   }

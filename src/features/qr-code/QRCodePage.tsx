@@ -49,7 +49,7 @@ export const QRCodePage = async () => {
   const showActivation = !subscription && !isPro;
 
   return (
-    <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6">
+    <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6 pb-28 tablet:pb-6">
       <QRCodeHeader guestSlug={event.slug} />
       {showActivation && (
         <div className="mt-6">

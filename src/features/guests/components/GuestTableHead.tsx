@@ -14,14 +14,14 @@ export const GuestTableHead = ({
 }: GuestTableHeadProps) => {
   const t = useTranslations();
   const columns = [
-    t("guests__table__col_guest"),
-    t("guests__table__col_messages"),
-    t("guests__table__col_status"),
-    t("guests__table__col_last_seen"),
-    "",
+    { label: t("guests__table__col_guest"), hideMobile: false },
+    { label: t("guests__table__col_messages"), hideMobile: true },
+    { label: t("guests__table__col_status"), hideMobile: true },
+    { label: t("guests__table__col_last_seen"), hideMobile: true },
+    { label: "", hideMobile: true },
   ];
   return (
-    <div className="border-border bg-background grid grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] items-center gap-3.5 border-b px-6 py-3">
+    <div className="border-border bg-background tablet:grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] tablet:gap-3.5 tablet:px-6 grid grid-cols-[28px_1fr_36px] items-center gap-3 border-b px-4 py-3">
       <Checkbox
         checked={allSelected}
         onChange={onToggleAll}
@@ -29,10 +29,10 @@ export const GuestTableHead = ({
       />
       {columns.map((col, i) => (
         <div
-          key={`${col}-${i}`}
-          className="type-overline text-muted-foreground"
+          key={`${col.label}-${i}`}
+          className={`type-overline text-muted-foreground ${col.hideMobile ? "tablet:block hidden" : ""}`}
         >
-          {col}
+          {col.label}
         </div>
       ))}
     </div>

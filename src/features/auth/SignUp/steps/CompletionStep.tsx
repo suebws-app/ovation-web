@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { eventsClient } from "@/lib/api/events-client";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { ApiError } from "@/lib/api/client";
+import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { env } from "@/lib/utils/env";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import type {
@@ -23,7 +24,7 @@ import { CompletionSuccessView } from "../components/CompletionSuccessView";
 type CreationState =
   | { kind: "creating" }
   | { kind: "redirecting" }
-  | { kind: "checkout"; transactionId: string; orderId: string; successUrl: string; email: string }
+  | { kind: "checkout"; transactionId: string; orderId: string; successUrl: string; email: string; isPro: boolean }
   | { kind: "ready"; slug: string }
   | { kind: "error"; message: string };
 
@@ -65,6 +66,8 @@ const uploadCoverPhoto = async (eventId: string, file: File): Promise<string | n
 const getOrigin = () =>
   typeof window !== "undefined" ? window.location.origin : env.APP_URL;
 
+const inflightRunsByToken = new Map<number, Promise<CreationState>>();
+
 export const CompletionStep = () => {
   const t = useTranslations();
   const formData = useSignUpStore((s) => s.formData);
@@ -72,127 +75,176 @@ export const CompletionStep = () => {
   const [state, setState] = useState<CreationState>({ kind: "creating" });
   const [retryToken, setRetryToken] = useState(0);
 
+  const stashPendingEventData = useCallback(() => {
+    if (typeof window === "undefined") return;
+    const { bookUrl } = useSignUpStore.getState().formData;
+    const partnerA = formData.partner1Name?.trim() || t("signup__partner_a_default");
+    const partnerB = formData.partner2Name?.trim() || t("signup__partner_b_default");
+    const payload = {
+      partnerAName: partnerA,
+      partnerBName: partnerB,
+      weddingDate: toIsoDate(formData.weddingDate) ?? null,
+      venueName: formData.venue?.trim() || null,
+      desiredSlug: bookUrl.trim() || null,
+    };
+    window.sessionStorage?.setItem(
+      "ovation_pending_event_data",
+      JSON.stringify(payload),
+    );
+  }, [
+    formData.partner1Name,
+    formData.partner2Name,
+    formData.weddingDate,
+    formData.venue,
+    t,
+  ]);
+
+  const handleCheckoutCompleted = useCallback(
+    (orderId: string) => {
+      if (formData.accountType === "pro") {
+        stashPendingEventData();
+      }
+      window.location.assign(appRoutes.checkout.success(orderId));
+    },
+    [formData.accountType, stashPendingEventData],
+  );
+
   useEffect(() => {
-    let cancelled = false;
+    const token = retryToken;
+    let mounted = true;
+
+    const safeSetState = (next: CreationState) => {
+      if (mounted) setState(next);
+    };
 
     const run = async () => {
-      const { email, bookUrl } = useSignUpStore.getState().formData;
-      const partnerA = formData.partner1Name?.trim() || t("signup__partner_a_default");
-      const partnerB = formData.partner2Name?.trim() || t("signup__partner_b_default");
-      const successUrl = `${getOrigin()}${appRoutes.auth.signUpDone}`;
-      const cancelUrl = `${getOrigin()}${appRoutes.auth.signUpPlan}`;
+      const existing = inflightRunsByToken.get(token);
+      if (existing) {
+        const result = await existing;
+        safeSetState(result);
+        return;
+      }
 
-      try {
-        const { event } = await eventsClient.create({
-          partnerAName: partnerA,
-          partnerBName: partnerB,
-          weddingDate: toIsoDate(formData.weddingDate),
-          venueName: formData.venue?.trim() || undefined,
-        });
-        if (cancelled) return;
-
-        let finalSlug = event.slug;
-        const desiredSlug = bookUrl.trim();
-        if (desiredSlug && desiredSlug !== finalSlug && /^[a-z0-9-]{4,20}$/.test(desiredSlug)) {
-          try {
-            const updated = await eventsClient.update(event.id, { slug: desiredSlug });
-            finalSlug = updated.event.slug;
-          } catch {
-            finalSlug = event.slug;
-          }
-        }
-
-        if (cancelled) return;
-        updateFormData({ bookUrl: finalSlug });
-
-        if (formData.coverFile) {
-          try {
-            const publicUrl = await uploadCoverPhoto(event.id, formData.coverFile);
-            if (publicUrl) {
-              await eventsClient.update(event.id, { couplePhotoUrl: publicUrl }).catch(() => undefined);
-            }
-          } catch {
-            // intentional fall-through: cover upload is non-fatal
-          }
-          if (cancelled) return;
-        }
-
+      const work = (async (): Promise<CreationState> => {
+        invalidateCsrfToken();
+        const { email } = useSignUpStore.getState().formData;
+        const partnerATrim = formData.partner1Name?.trim() ?? "";
+        const partnerBTrim = formData.partner2Name?.trim() ?? "";
+        const successUrl = `${getOrigin()}${appRoutes.auth.signUpDone}`;
+        const cancelUrl = `${getOrigin()}${appRoutes.auth.signUpPlan}`;
         const isPro = formData.accountType === "pro";
 
-        if (isPro && formData.selectedPlan) {
-          setState({ kind: "redirecting" });
+        if (isPro) {
+          if (!formData.selectedPlan) {
+            window.location.assign(appRoutes.auth.signUpPlan);
+            return { kind: "redirecting" };
+          }
+          safeSetState({ kind: "redirecting" });
           try {
             const checkout = await paymentsClient.createProCheckoutSession({
               planCode: formData.selectedPlan as ProCheckoutSessionInput["planCode"],
-              eventId: event.id,
               successUrl,
               cancelUrl,
             });
-            if (cancelled) return;
             const txnId = extractTransactionId(checkout.checkoutUrl);
             if (txnId) {
-              setState({ kind: "checkout", transactionId: txnId, orderId: checkout.orderId, successUrl, email });
-            } else {
-              window.location.assign(checkout.checkoutUrl);
+              return { kind: "checkout", transactionId: txnId, orderId: checkout.orderId, successUrl, email, isPro: true };
             }
+            window.location.assign(checkout.checkoutUrl);
+            return { kind: "redirecting" };
           } catch (error) {
-            if (!cancelled) {
-              setState({
-                kind: "error",
-                message: ApiError.isApiError(error) ? error.message : t("signup__completion__error_checkout_default"),
-              });
+            console.error("[signup] pro checkout failed", error);
+            return {
+              kind: "error",
+              message: ApiError.isApiError(error) ? error.message : t("signup__completion__error_checkout_default"),
+            };
+          }
+        }
+
+        if (!partnerATrim && !partnerBTrim) {
+          window.location.assign(appRoutes.app.root);
+          return { kind: "redirecting" };
+        }
+
+        const partnerA = partnerATrim || t("signup__partner_a_default");
+        const partnerB = partnerBTrim || t("signup__partner_b_default");
+        const { bookUrl } = useSignUpStore.getState().formData;
+
+        try {
+          const { event } = await eventsClient.create({
+            partnerAName: partnerA,
+            partnerBName: partnerB,
+            weddingDate: toIsoDate(formData.weddingDate),
+            venueName: formData.venue?.trim() || undefined,
+          });
+
+          let finalSlug = event.slug;
+          const desiredSlug = bookUrl.trim();
+          if (desiredSlug && desiredSlug !== finalSlug && /^[a-z0-9-]{4,20}$/.test(desiredSlug)) {
+            try {
+              const updated = await eventsClient.update(event.id, { slug: desiredSlug });
+              finalSlug = updated.event.slug;
+            } catch {
+              finalSlug = event.slug;
             }
           }
-          return;
-        }
+          updateFormData({ bookUrl: finalSlug });
 
-        if (isPro) {
-          window.location.assign(appRoutes.app.eventMessages(event.id));
-          return;
-        }
-
-        const planTier = PLAN_TIER_BY_ID[formData.selectedPlan ?? ""] ?? null;
-        if (planTier) {
-          setState({ kind: "redirecting" });
-          try {
-            const checkout = await paymentsClient.createCheckoutSession({
-              eventId: event.id,
-              orderType: "plan",
-              planTier,
-              successUrl,
-              cancelUrl,
-            });
-            if (cancelled) return;
-            const txnId = extractTransactionId(checkout.checkoutUrl);
-            if (txnId) {
-              setState({ kind: "checkout", transactionId: txnId, orderId: checkout.orderId, successUrl, email });
-            } else {
-              window.location.assign(checkout.checkoutUrl);
-            }
-          } catch (error) {
-            if (!cancelled) {
-              setState({
-                kind: "error",
-                message: ApiError.isApiError(error) ? error.message : t("signup__completion__error_checkout_default"),
-              });
+          if (formData.coverFile) {
+            try {
+              const publicUrl = await uploadCoverPhoto(event.id, formData.coverFile);
+              if (publicUrl) {
+                await eventsClient.update(event.id, { couplePhotoUrl: publicUrl }).catch(() => undefined);
+              }
+            } catch {
+              // non-fatal
             }
           }
-          return;
-        }
 
-        setState({ kind: "ready", slug: finalSlug });
-      } catch (error) {
-        if (cancelled) return;
-        setState({
-          kind: "error",
-          message: ApiError.isApiError(error) ? error.message : t("signup__completion__error_create_default"),
-        });
-      }
+          const planTier = PLAN_TIER_BY_ID[formData.selectedPlan ?? ""] ?? null;
+          if (planTier) {
+            safeSetState({ kind: "redirecting" });
+            try {
+              const checkout = await paymentsClient.createCheckoutSession({
+                eventId: event.id,
+                orderType: "plan",
+                planTier,
+                successUrl,
+                cancelUrl,
+              });
+              const txnId = extractTransactionId(checkout.checkoutUrl);
+              if (txnId) {
+                return { kind: "checkout", transactionId: txnId, orderId: checkout.orderId, successUrl, email, isPro: false };
+              }
+              window.location.assign(checkout.checkoutUrl);
+              return { kind: "redirecting" };
+            } catch (error) {
+              console.error("[signup] couple checkout failed", error);
+              return {
+                kind: "error",
+                message: ApiError.isApiError(error) ? error.message : t("signup__completion__error_checkout_default"),
+              };
+            }
+          }
+
+          return { kind: "ready", slug: finalSlug };
+        } catch (error) {
+          console.error("[signup] event creation failed", error);
+          return {
+            kind: "error",
+            message: ApiError.isApiError(error) ? error.message : t("signup__completion__error_create_default"),
+          };
+        }
+      })();
+
+      inflightRunsByToken.set(token, work);
+      const result = await work;
+      safeSetState(result);
     };
 
     run();
     return () => {
-      cancelled = true;
+      mounted = false;
     };
   }, [
     retryToken,
@@ -216,6 +268,7 @@ export const CompletionStep = () => {
         orderId={state.orderId}
         successUrl={state.successUrl}
         email={state.email}
+        onCompleted={handleCheckoutCompleted}
       />
     );
   }

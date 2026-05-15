@@ -551,7 +551,7 @@ export type ProSubscription = {
 
 export type ProCheckoutSessionInput = {
   planCode: "pro_starter" | "pro_studio";
-  eventId: string;
+  eventId?: string;
   successUrl: string;
   cancelUrl: string;
 };

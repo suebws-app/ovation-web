@@ -16,6 +16,7 @@ type CanvasPrintCustomizerProps = {
   variants: KeepsakeProductVariant[];
   eventId: string | null;
   event?: Event | null;
+  isPro?: boolean;
 };
 
 export const CanvasPrintCustomizer = ({
@@ -23,6 +24,7 @@ export const CanvasPrintCustomizer = ({
   variants,
   eventId,
   event,
+  isPro = false,
 }: CanvasPrintCustomizerProps) => {
   const [variantId, setVariantId] = useState<string | null>(
     variants[0]?.id ?? null,
@@ -82,6 +84,7 @@ export const CanvasPrintCustomizer = ({
         selectedVariant={selectedVariant}
         isReady={isReady}
         notReadyMessage="Pick a size and at least one photo."
+        showEventBadge={isPro}
       />
     </div>
   );

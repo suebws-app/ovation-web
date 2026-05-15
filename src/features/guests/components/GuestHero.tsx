@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
-import { ContributionRing } from "./ContributionRing";
 
 type GuestHeroProps = {
   totalMessages: number;
@@ -65,10 +64,6 @@ export const GuestHero = ({
             </Button>
           </div>
         </div>
-        <ContributionRing
-          value={totalGuests}
-          total={Math.max(totalInvited, totalGuests, 1)}
-        />
       </div>
     </div>
   );

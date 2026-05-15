@@ -8,11 +8,13 @@ import type { KeepsakeDesign } from "../designTokens";
 type CustomizerHeaderProps = {
   product: KeepsakeProductDetail;
   design: KeepsakeDesign;
+  eventId: string;
 };
 
 export const CustomizerHeader = ({
   product,
   design,
+  eventId,
 }: CustomizerHeaderProps) => {
   const t = useTranslations();
   const dark = Boolean(design.dark);
@@ -21,7 +23,7 @@ export const CustomizerHeader = ({
   return (
     <div className="flex flex-col gap-4">
       <Link
-        href="/app/keepsakes"
+        href={`/app/events/${eventId}/keepsakes`}
         className="text-muted-foreground hover:text-foreground type-caption inline-flex items-center gap-1 self-start tracking-wider"
       >
         <ArrowRightIcon className="rotate-180" width={12} height={12} />

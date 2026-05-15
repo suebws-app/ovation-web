@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { PlanCard } from "../components/PlanCard";
@@ -14,7 +16,16 @@ export const ChoosePlanStep = () => {
   const t = useTranslations();
   const { formData, updateFormData } = useSignUpStore();
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const as = searchParams.get("as");
+    if (as === "pro") updateFormData({ accountType: "pro" });
+    else if (as === "couple") updateFormData({ accountType: "couple" });
+  }, [searchParams, updateFormData]);
+
   const isPro = formData.accountType === "pro";
+  const [showPlanError, setShowPlanError] = useState(false);
 
   const PLANS = [
     {
@@ -65,10 +76,14 @@ export const ChoosePlanStep = () => {
 
   const handleSelectProPlan = (planKey: string) => {
     updateFormData({ selectedPlan: planKey });
+    setShowPlanError(false);
   };
 
   const handleProContinue = () => {
-    if (!formData.selectedPlan) updateFormData({ selectedPlan: "pro_starter" });
+    if (!formData.selectedPlan) {
+      setShowPlanError(true);
+      return;
+    }
     router.push(appRoutes.auth.signUpDone);
   };
 
@@ -92,10 +107,8 @@ export const ChoosePlanStep = () => {
 
           <div className="mt-10 grid grid-cols-1 gap-5 tablet:grid-cols-2">
             {PRO_TIERS.map(
-              ({ key, highlighted, tagKey, nameKey, price, perKey, descKey, featKeys }) => {
-                const isSelected =
-                  formData.selectedPlan === key ||
-                  (!formData.selectedPlan && highlighted);
+              ({ key, tagKey, nameKey, price, perKey, descKey, featKeys }) => {
+                const isSelected = formData.selectedPlan === key;
                 return (
                   <PlanOptionCard
                     key={key}
@@ -114,9 +127,16 @@ export const ChoosePlanStep = () => {
             )}
           </div>
 
+          {showPlanError && !formData.selectedPlan && (
+            <p className="text-destructive type-body-small mt-6 text-center">
+              {t("signup__pro_plan__select_required")}
+            </p>
+          )}
+
           <Button
             type="button"
             onClick={handleProContinue}
+            disabled={!formData.selectedPlan}
             size="lg"
             className="shadow-primary/40 mt-8 w-full rounded-full shadow-md"
           >

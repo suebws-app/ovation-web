@@ -26,6 +26,7 @@ export const ActivateLinkPage = async () => {
   if (subResult?.subscription) redirect(appRoutes.app.root);
 
   const { plans } = await plansApi.list();
+  const couplePlans = plans.filter((plan) => !plan.code.startsWith("pro_"));
 
-  return <ActivateLinkPicker eventId={event.id} plans={plans} />;
+  return <ActivateLinkPicker eventId={event.id} plans={couplePlans} />;
 };
