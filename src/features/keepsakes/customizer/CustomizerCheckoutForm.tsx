@@ -27,6 +27,7 @@ type CustomizerCheckoutFormProps = {
   notReadyMessage?: string;
   children?: ReactNode;
   requiresShipping?: boolean;
+  showEventBadge?: boolean;
 };
 
 const eventDisplayName = (event: Event, fallback: string): string => {
@@ -47,6 +48,7 @@ export const CustomizerCheckoutForm = ({
   notReadyMessage,
   children,
   requiresShipping = true,
+  showEventBadge = true,
 }: CustomizerCheckoutFormProps) => {
   const t = useTranslations();
   const add = useCartStore((s) => s.add);
@@ -122,7 +124,7 @@ export const CustomizerCheckoutForm = ({
 
   return (
     <div className="rounded-20 border-border bg-card desktop:sticky desktop:top-6 flex flex-col gap-5 border p-6 self-start">
-      {event && (
+      {event && showEventBadge && (
         <div className="rounded-12 border-border bg-muted/30 flex items-center justify-between gap-3 border px-3 py-2.5">
           <div className="flex flex-col gap-0.5 min-w-0">
             <span className="type-caption text-muted-foreground">

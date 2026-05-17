@@ -35,7 +35,7 @@ export const GuestRow = ({
 
   return (
     <div
-      className={`grid grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] items-center gap-3.5 px-6 py-3.5 ${
+      className={`tablet:grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] tablet:gap-3.5 grid grid-cols-[28px_1fr_36px] items-center gap-3 px-4 py-3.5 tablet:px-6 ${
         isLast ? "" : "border-border border-b"
       }`}
     >
@@ -53,7 +53,7 @@ export const GuestRow = ({
             {guest.initials}
           </AvatarFallback>
         </Avatar>
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             <span className="type-body-small truncate font-semibold">
               {guest.name}
@@ -70,9 +70,27 @@ export const GuestRow = ({
           <div className="type-caption text-muted-foreground">
             {t("guests__row__contributions", { count: guest.messageCount })}
           </div>
+          <div className="tablet:hidden mt-2 flex flex-wrap items-center gap-2">
+            <GuestStatusPill
+              contributed={guest.messageCount > 0}
+              thanked={false}
+            />
+            <span className="type-caption text-muted-foreground">
+              {lastLabel}
+            </span>
+            {guest.audioCount > 0 && (
+              <MicIcon width={12} height={12} className="text-muted-foreground" />
+            )}
+            {guest.photoCount > 0 && (
+              <ImageIcon width={12} height={12} className="text-muted-foreground" />
+            )}
+            {guest.videoCount > 0 && (
+              <VideoIcon width={12} height={12} className="text-muted-foreground" />
+            )}
+          </div>
         </div>
       </div>
-      <div className="type-caption text-muted-foreground flex items-center gap-2">
+      <div className="tablet:flex type-caption text-muted-foreground hidden items-center gap-2">
         <span className="text-foreground font-semibold">
           {guest.messageCount}
         </span>
@@ -90,11 +108,15 @@ export const GuestRow = ({
           <VideoIcon width={12} height={12} className="text-muted-foreground" />
         )}
       </div>
-      <GuestStatusPill
-        contributed={guest.messageCount > 0}
-        thanked={false}
-      />
-      <div className="type-caption text-muted-foreground">{lastLabel}</div>
+      <div className="tablet:block hidden">
+        <GuestStatusPill
+          contributed={guest.messageCount > 0}
+          thanked={false}
+        />
+      </div>
+      <div className="tablet:block type-caption text-muted-foreground hidden">
+        {lastLabel}
+      </div>
       <span aria-hidden />
     </div>
   );

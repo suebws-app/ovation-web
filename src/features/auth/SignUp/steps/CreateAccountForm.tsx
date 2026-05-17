@@ -17,6 +17,7 @@ import { useSignUpStore } from "../useSignUpStore";
 import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
+import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import {
   getCreateAccountSchema,
   type CreateAccountFields,
@@ -77,6 +78,12 @@ export const CreateAccountForm = () => {
       );
       return;
     }
+    if (typeof window !== "undefined") {
+      window.sessionStorage?.removeItem("ovation_signup_event_created");
+      window.sessionStorage?.removeItem("ovation_signup_event_id");
+      window.sessionStorage?.removeItem("ovation_pending_event_data");
+    }
+    invalidateCsrfToken();
     updateFormData({ email: values.email, agreedToTerms: true });
     router.push(appRoutes.auth.signUpPlan);
   };

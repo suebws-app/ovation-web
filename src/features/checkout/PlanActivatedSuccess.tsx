@@ -5,11 +5,17 @@ import { Logo } from "@ovation/ui/components/Logo";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { PendingEventCreator } from "./PendingEventCreator";
 
-export const PlanActivatedSuccess = async () => {
+type PlanActivatedSuccessProps = {
+  orderId: string;
+};
+
+export const PlanActivatedSuccess = async ({ orderId }: PlanActivatedSuccessProps) => {
   const t = await getTranslations();
   return (
     <div className="bg-background min-h-screen">
+      <PendingEventCreator orderId={orderId} />
       <header className="px-6 py-6">
         <Logo />
       </header>

@@ -44,6 +44,19 @@ export const CreateEventDoneStep = () => {
 
     const { formData, reset } = useCreateEventStore.getState();
 
+    if (
+      !formData.partner1Name.trim() &&
+      !formData.partner2Name.trim() &&
+      !formData.weddingDate &&
+      !formData.venue?.trim() &&
+      !formData.bookUrl?.trim() &&
+      !formData.coverFile
+    ) {
+      reset();
+      window.location.assign(appRoutes.app.root);
+      return;
+    }
+
     (async () => {
       try {
         const tr = tRef.current;

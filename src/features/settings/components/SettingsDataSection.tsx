@@ -1,61 +1,103 @@
 "use client";
 
+import { useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { BoxIcon } from "@ovation/icons/BoxIcon";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@ovation/ui/components/Select";
+import type { Event } from "@/lib/api/types";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsCard } from "./SettingsCard";
 import { SettingsRow } from "./SettingsRow";
-import { SettingsToggle } from "./SettingsToggle";
 import { ExportHeroCard } from "./ExportHeroCard";
-import { PastExportRow } from "./PastExportRow";
+import {
+  useEventDataExport,
+  type ExportKind,
+} from "../hooks/useEventDataExport";
 
-const INDIVIDUAL_KEYS = [
+type IndividualEntry = {
+  titleKey: string;
+  descKey: string;
+  kind: ExportKind | null;
+};
+
+const INDIVIDUAL_ENTRIES: IndividualEntry[] = [
   {
     titleKey: "settings__data__individual__audio__title",
     descKey: "settings__data__individual__audio__desc",
+    kind: "audio",
   },
   {
     titleKey: "settings__data__individual__transcripts__title",
     descKey: "settings__data__individual__transcripts__desc",
+    kind: "transcripts",
   },
   {
     titleKey: "settings__data__individual__photos__title",
     descKey: "settings__data__individual__photos__desc",
+    kind: "photos",
   },
   {
     titleKey: "settings__data__individual__pdf__title",
     descKey: "settings__data__individual__pdf__desc",
+    kind: null,
   },
   {
     titleKey: "settings__data__individual__guests__title",
     descKey: "settings__data__individual__guests__desc",
+    kind: "guests",
   },
 ];
 
-const PAST_EXPORTS_DATA = [
-  {
-    date: "Oct 12, 2025",
-    titleKey: "settings__data__past__title_archive",
-    size: "2.1 GB",
-    status: "ready" as const,
-  },
-  {
-    date: "Sep 28, 2025",
-    titleKey: "settings__data__past__title_audio",
-    size: "1.8 GB",
-    status: "expired" as const,
-  },
-  {
-    date: "Sep 14, 2025",
-    titleKey: "settings__data__past__title_transcripts",
-    size: "3.2 MB",
-    status: "ready" as const,
-  },
-];
+const coupleNameOf = (partnerA: string, partnerB: string) =>
+  [partnerA, partnerB].filter(Boolean).join(" & ");
 
-export const SettingsDataSection = () => {
+type SettingsDataSectionProps = {
+  events: Event[];
+  initialEventId: string | null;
+  isPro: boolean;
+};
+
+export const SettingsDataSection = ({
+  events,
+  initialEventId,
+  isPro,
+}: SettingsDataSectionProps) => {
   const t = useTranslations();
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(
+    initialEventId,
+  );
+  const { run, pending, isBusy, isAvailable } = useEventDataExport(
+    selectedEventId,
+    { events },
+  );
+
+  const selectedEvent = useMemo(
+    () => events.find((e) => e.id === selectedEventId) ?? null,
+    [events, selectedEventId],
+  );
+
+  const eventLabel = selectedEvent
+    ? coupleNameOf(selectedEvent.partnerAName, selectedEvent.partnerBName) ||
+      selectedEvent.slug
+    : null;
+
+  const savedScrollRef = useRef(0);
+  const handleSelectOpenChange = (open: boolean) => {
+    if (open) {
+      savedScrollRef.current = window.scrollY;
+    } else {
+      const target = savedScrollRef.current;
+      requestAnimationFrame(() => window.scrollTo(0, target));
+    }
+  };
+
   return (
     <>
       <span className="type-overline text-primary">
@@ -71,68 +113,115 @@ export const SettingsDataSection = () => {
         {t("settings__data__subtitle")}
       </p>
 
-      <ExportHeroCard />
-
-      <div className="mt-9">
-        <SettingsSectionTitle title={t("settings__data__individual__title")} />
-        <SettingsCard>
-          {INDIVIDUAL_KEYS.map((entry, i) => (
+      {isPro && events.length > 0 && (
+        <div className="mt-8">
+          <SettingsSectionTitle
+            title={t("settings__data__all_events__title")}
+            description={t("settings__data__all_events__desc")}
+          />
+          <SettingsCard>
             <SettingsRow
-              key={entry.titleKey}
-              title={t(entry.titleKey)}
-              description={t(entry.descKey)}
-              last={i === INDIVIDUAL_KEYS.length - 1}
+              title={t("settings__data__all_events__row_title")}
+              description={t("settings__data__all_events__row_desc", {
+                count: events.length,
+              })}
+              last
             >
-              <Button variant="outline" size="sm" className="rounded-full">
+              <Button
+                variant="outline"
+                size="sm"
+                className="rounded-full"
+                disabled={isBusy}
+                onClick={() => run("allEventsExcel")}
+              >
                 <BoxIcon width={13} height={13} />
-                {t("settings__data__download")}
+                {pending === "allEventsExcel"
+                  ? t("common__loading")
+                  : t("settings__data__all_events__cta")}
               </Button>
             </SettingsRow>
-          ))}
-        </SettingsCard>
-      </div>
-
-      <div className="mt-9">
-        <SettingsSectionTitle title={t("settings__data__past__title")} />
-        <SettingsCard>
-          {PAST_EXPORTS_DATA.map((item, i) => (
-            <PastExportRow
-              key={`${item.date}-${item.titleKey}`}
-              date={item.date}
-              title={t(item.titleKey)}
-              size={item.size}
-              status={item.status}
-              last={i === PAST_EXPORTS_DATA.length - 1}
-            />
-          ))}
-        </SettingsCard>
-        <p className="type-caption text-muted-foreground mt-2.5">
-          {t("settings__data__past__expiry_note")}
-        </p>
-      </div>
+          </SettingsCard>
+        </div>
+      )}
 
       <div className="mt-9">
         <SettingsSectionTitle
-          title={t("settings__data__rights__title")}
-          description={t("settings__data__rights__desc")}
+          title={t("settings__data__per_event__title")}
+          description={t("settings__data__per_event__desc")}
         />
-        <SettingsCard>
-          <SettingsRow
-            title={t("settings__data__rights__report__title")}
-            description={t("settings__data__rights__report__desc")}
-          >
-            <Button variant="outline" size="sm" className="rounded-full">
-              {t("settings__data__rights__report__action")}
-            </Button>
-          </SettingsRow>
-          <SettingsRow
-            title={t("settings__data__rights__optout__title")}
-            description={t("settings__data__rights__optout__desc")}
-            last
-          >
-            <SettingsToggle on={false} />
-          </SettingsRow>
-        </SettingsCard>
+        <div className="rounded-12 border-border bg-card flex flex-col gap-2 border px-4 py-3 tablet:flex-row tablet:items-center tablet:justify-between">
+          <div className="min-w-0">
+            <div className="type-caption text-muted-foreground">
+              {t("settings__data__active_event")}
+            </div>
+            <div className="type-body-small truncate font-semibold">
+              {eventLabel ?? "—"}
+              {selectedEvent?.weddingDate && (
+                <span className="text-muted-foreground ml-2 font-normal">
+                  · {selectedEvent.weddingDate}
+                </span>
+              )}
+            </div>
+          </div>
+          {events.length > 1 && (
+            <Select
+              value={selectedEventId ?? undefined}
+              onValueChange={(v) => setSelectedEventId(v)}
+              onOpenChange={handleSelectOpenChange}
+            >
+              <SelectTrigger className="min-w-60">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent position="popper" className="max-h-72">
+                {events.map((ev) => (
+                  <SelectItem key={ev.id} value={ev.id}>
+                    {coupleNameOf(ev.partnerAName, ev.partnerBName) || ev.slug}
+                    {ev.weddingDate ? ` · ${ev.weddingDate}` : ""}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        </div>
+
+        <ExportHeroCard
+          onDownload={() => run("everything")}
+          disabled={!isAvailable || isBusy}
+          loading={pending === "everything"}
+          eventLabel={eventLabel}
+        />
+
+        <div className="mt-6">
+          <SettingsCard>
+            {INDIVIDUAL_ENTRIES.map((entry, i) => {
+              const disabled = entry.kind === null || !isAvailable || isBusy;
+              const loading = entry.kind !== null && pending === entry.kind;
+              return (
+                <SettingsRow
+                  key={entry.titleKey}
+                  title={t(entry.titleKey)}
+                  description={t(entry.descKey)}
+                  last={i === INDIVIDUAL_ENTRIES.length - 1}
+                >
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full"
+                    disabled={disabled}
+                    onClick={() => {
+                      if (entry.kind) run(entry.kind);
+                    }}
+                  >
+                    <BoxIcon width={13} height={13} />
+                    {loading
+                      ? t("common__loading")
+                      : t("settings__data__download")}
+                  </Button>
+                </SettingsRow>
+              );
+            })}
+          </SettingsCard>
+        </div>
       </div>
     </>
   );
