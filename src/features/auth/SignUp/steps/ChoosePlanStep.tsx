@@ -11,12 +11,14 @@ import { useSignUpStore } from "../useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { PRO_TIERS } from "@/features/marketing/PricingSection/constants";
+import { useRedirectOnBackNavigation } from "@/lib/hooks/useRedirectOnBackNavigation";
 
 export const ChoosePlanStep = () => {
   const t = useTranslations();
   const { formData, updateFormData } = useSignUpStore();
   const router = useRouter();
   const searchParams = useSearchParams();
+  useRedirectOnBackNavigation(appRoutes.home);
 
   useEffect(() => {
     const as = searchParams.get("as");
@@ -105,7 +107,7 @@ export const ChoosePlanStep = () => {
             {t("signup__pro_plan__subtitle")}
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-5 tablet:grid-cols-2">
+          <div className="tablet:grid-cols-2 mt-10 grid grid-cols-1 gap-5">
             {PRO_TIERS.map(
               ({ key, tagKey, nameKey, price, perKey, descKey, featKeys }) => {
                 const isSelected = formData.selectedPlan === key;
