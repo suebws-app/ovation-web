@@ -5,10 +5,14 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { PlanCard } from "@/features/auth/SignUp/components/PlanCard";
+import { CompletionRedirectingState } from "@/features/auth/SignUp/components/CompletionRedirectingState";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { ApiError } from "@/lib/api/client";
-import { env } from "@/lib/utils/env";
-import type { Plan, CheckoutPlanTier } from "@/lib/api/types";
+import type {
+  Plan,
+  CheckoutPlanTier,
+  ProCheckoutSessionInput,
+} from "@/lib/api/types";
 
 const formatPrice = (cents: number, currency: string) => {
   if (cents === 0) return "Free";
@@ -16,8 +20,10 @@ const formatPrice = (cents: number, currency: string) => {
   return `${symbol}${(cents / 100).toFixed(0)}`;
 };
 
-const formatPer = (cents: number) =>
-  cents === 0 ? "free, forever" : "one-time";
+const formatPer = (cents: number, isPro: boolean) => {
+  if (cents === 0) return "free, forever";
+  return isPro ? "per month" : "one-time";
+};
 
 const buildFeatures = (plan: Plan): string[] => {
   const features: string[] = [];
@@ -35,55 +41,54 @@ const buildFeatures = (plan: Plan): string[] => {
   return features;
 };
 
-type ActivateLinkPickerProps = {
-  eventId: string;
-  plans: Plan[];
-};
+const getOrigin = () =>
+  typeof window !== "undefined" ? window.location.origin : "";
 
-export const ActivateLinkPicker = ({
-  eventId,
-  plans,
-}: ActivateLinkPickerProps) => {
+type PlansPickerProps =
+  | { mode: "couple"; eventId: string; plans: Plan[] }
+  | { mode: "pro"; plans: Plan[] };
+
+export const PlansPicker = (props: PlansPickerProps) => {
   const t = useTranslations();
   const router = useRouter();
-  const [pendingCode, setPendingCode] = useState<string | null>(null);
+  const [redirecting, setRedirecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setPendingCode(null);
+    setRedirecting(false);
     setError(null);
     const handlePageShow = (event: PageTransitionEvent) => {
-      console.log(
-        "[ActivateLinkPicker] pageshow fired, persisted:",
-        event.persisted,
-      );
-      setPendingCode(null);
+      setRedirecting(false);
       setError(null);
-      if (event.persisted) {
-        router.refresh();
-      }
+      if (event.persisted) router.refresh();
     };
     window.addEventListener("pageshow", handlePageShow);
     return () => window.removeEventListener("pageshow", handlePageShow);
   }, [router]);
 
   const handleSelectPlan = async (planCode: string) => {
-    console.log("[ActivateLinkPicker] selecting plan", planCode);
-    setPendingCode(planCode);
+    setRedirecting(true);
     setError(null);
+    const successUrl = `${getOrigin()}/checkout/{CHECKOUT_SESSION_ID}/success`;
+    const cancelUrl = `${getOrigin()}/checkout/{CHECKOUT_SESSION_ID}/cancel`;
     try {
-      const checkout = await paymentsClient.createCheckoutSession({
-        eventId,
-        orderType: "plan",
-        planTier: planCode as CheckoutPlanTier,
-        successUrl: `${env.APP_URL}/checkout/{CHECKOUT_SESSION_ID}/success`,
-        cancelUrl: `${env.APP_URL}/checkout/{CHECKOUT_SESSION_ID}/cancel`,
-      });
-      console.log("[ActivateLinkPicker] checkout created", checkout);
+      const checkout =
+        props.mode === "pro"
+          ? await paymentsClient.createProCheckoutSession({
+              planCode: planCode as ProCheckoutSessionInput["planCode"],
+              successUrl,
+              cancelUrl,
+            })
+          : await paymentsClient.createCheckoutSession({
+              eventId: props.eventId,
+              orderType: "plan",
+              planTier: planCode as CheckoutPlanTier,
+              successUrl,
+              cancelUrl,
+            });
       window.location.assign(checkout.checkoutUrl);
     } catch (err) {
-      console.error("[ActivateLinkPicker] checkout failed", err);
-      setPendingCode(null);
+      setRedirecting(false);
       setError(
         ApiError.isApiError(err)
           ? err.message
@@ -92,8 +97,11 @@ export const ActivateLinkPicker = ({
     }
   };
 
-  const sorted = [...plans].sort((a, b) => a.sortOrder - b.sortOrder);
+  if (redirecting) return <CompletionRedirectingState />;
+
+  const sorted = [...props.plans].sort((a, b) => a.sortOrder - b.sortOrder);
   const highlightCode = sorted.find((p) => p.priceCents > 0)?.code;
+  const isPro = props.mode === "pro";
 
   return (
     <div className="bg-background min-h-[calc(100vh-89px)]">
@@ -119,23 +127,15 @@ export const ActivateLinkPicker = ({
               key={plan.id}
               name={plan.name}
               price={formatPrice(plan.priceCents, plan.currency)}
-              per={formatPer(plan.priceCents)}
+              per={formatPer(plan.priceCents, isPro)}
               description={plan.description ?? ""}
               features={buildFeatures(plan)}
               highlighted={plan.code === highlightCode}
-              onSelect={() => {
-                console.log("[ActivateLinkPicker] click", plan.code, "pending:", pendingCode);
-                handleSelectPlan(plan.code);
-              }}
+              onSelect={() => handleSelectPlan(plan.code)}
             />
           ))}
         </div>
 
-        {pendingCode && (
-          <p className="type-body-small text-muted-foreground mt-6 text-center">
-            {t("activate_link__redirecting")}
-          </p>
-        )}
         {error && (
           <p className="type-body-small text-destructive mt-6 text-center">
             {error}

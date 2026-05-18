@@ -3,6 +3,7 @@ import type { Event, Subscription, User } from "@/lib/api/types";
 import { AppSideBar } from "./AppSidebar";
 import { AppHeaderDesktop } from "./AppHeaderDesktop";
 import { AppHeaderMobile } from "./AppHeaderMobile";
+import { SubscriptionAlert } from "./SubscriptionAlert";
 
 type AppLayoutProps = {
   user: User;
@@ -23,7 +24,10 @@ export const AppLayout = ({
       <div className="flex w-full flex-1 flex-col overflow-hidden pb-6">
         <AppHeaderDesktop subscription={subscription} />
         <AppHeaderMobile />
-        <SidebarInset>{children}</SidebarInset>
+        <SubscriptionAlert subscription={subscription} planTier={user.planTier} />
+        <SidebarInset className="min-h-0 flex-1 overflow-hidden">
+          {children}
+        </SidebarInset>
       </div>
     </SidebarProvider>
   );

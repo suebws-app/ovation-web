@@ -1,9 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ActivateLinkButton } from "./ActivateLinkButton";
+import { PlansButton } from "./PlansButton";
 
-export const ActivateLinkBanner = () => {
+export const PlansBanner = () => {
   const t = useTranslations();
   return (
     <div className="rounded-16 border-primary/40 from-primary/10 to-accent/10 tablet:flex-row tablet:items-center tablet:gap-5 tablet:p-6 flex flex-col gap-4 border bg-gradient-to-br p-5">
@@ -21,7 +21,7 @@ export const ActivateLinkBanner = () => {
           {t("activate_link__banner__body")}
         </p>
       </div>
-      <ActivateLinkButton className="shadow-primary/40 tablet:w-auto w-full shadow-md" />
+      <PlansButton className="shadow-primary/40 tablet:w-auto w-full shadow-md" />
     </div>
   );
 };

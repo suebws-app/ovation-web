@@ -1,4 +1,7 @@
 {
   "sidebar__admin__title": "Admin",
-  "sidebar__admin__orders": "Orders"
+  "sidebar__admin__orders": "Orders",
+  "app__no_subscription__title": "Sin suscripción activa",
+  "app__no_subscription__description": "Suscríbete para desbloquear mensajes, fotos y recuerdos impresos para tu evento.",
+  "app__no_subscription__cta": "Suscribirse"
 }

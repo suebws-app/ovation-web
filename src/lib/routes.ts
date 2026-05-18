@@ -50,7 +50,7 @@ export const appRoutes = {
     orders: "/app/orders",
     qrCode: "/app/qr-code",
     qrCodeOrder: "/app/qr-code/order",
-    activate: "/app/activate",
+    plans: "/app/plans",
     messages: "/app/messages",
     message: (messageId: string) => `/app/messages/${messageId}`,
     photos: "/app/photos",
@@ -96,7 +96,6 @@ export const appRoutes = {
     record: (slug: string) => `/g/${slug}/record`,
     compose: (slug: string) => `/g/${slug}/compose`,
     review: (slug: string) => `/g/${slug}/review`,
-    photo: (slug: string) => `/g/${slug}/photo`,
     thankYou: (slug: string) => `/g/${slug}/thank-you`,
   },
 

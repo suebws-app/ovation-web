@@ -1,7 +1,7 @@
 import { eventsApi } from "@/lib/api/events";
 import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { ApiError } from "@/lib/api/client";
-import { ActivateLinkBanner } from "@/features/activate-link";
+import { PlansBanner } from "@/features/plans";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -53,7 +53,7 @@ export const QRCodePage = async () => {
       <QRCodeHeader guestSlug={event.slug} />
       {showActivation && (
         <div className="mt-6">
-          <ActivateLinkBanner />
+          <PlansBanner />
         </div>
       )}
       {subscription && (

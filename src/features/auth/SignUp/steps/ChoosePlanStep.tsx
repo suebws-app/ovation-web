@@ -12,19 +12,31 @@ import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { PRO_TIERS } from "@/features/marketing/PricingSection/constants";
 
-export const ChoosePlanStep = () => {
+type ChoosePlanStepProps = {
+  initialAccountType?: "couple" | "pro" | null;
+};
+
+export const ChoosePlanStep = ({ initialAccountType }: ChoosePlanStepProps = {}) => {
   const t = useTranslations();
   const { formData, updateFormData } = useSignUpStore();
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const as = searchParams.get("as");
-    if (as === "pro") updateFormData({ accountType: "pro" });
-    else if (as === "couple") updateFormData({ accountType: "couple" });
-  }, [searchParams, updateFormData]);
+  const asParam = searchParams.get("as");
 
-  const isPro = formData.accountType === "pro";
+  useEffect(() => {
+    if (asParam === "pro") updateFormData({ accountType: "pro" });
+    else if (asParam === "couple") updateFormData({ accountType: "couple" });
+    else if (initialAccountType && !formData.accountType) {
+      updateFormData({ accountType: initialAccountType });
+    }
+  }, [asParam, initialAccountType, formData.accountType, updateFormData]);
+
+  const resolvedAccountType =
+    asParam === "pro" || asParam === "couple"
+      ? asParam
+      : formData.accountType || initialAccountType || "";
+  const isPro = resolvedAccountType === "pro";
   const [showPlanError, setShowPlanError] = useState(false);
 
   const PLANS = [

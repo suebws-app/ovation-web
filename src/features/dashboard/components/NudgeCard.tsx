@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ActivateLinkButton } from "@/features/activate-link";
+import { PlansButton } from "@/features/plans";
 
 export const NudgeCard = () => {
   const t = useTranslations();
@@ -18,7 +18,7 @@ export const NudgeCard = () => {
           {t("dashboard__nudge__activate_description")}
         </p>
       </div>
-      <ActivateLinkButton
+      <PlansButton
         variant="outline"
         className="tablet:w-auto w-full bg-transparent"
       />

@@ -6,13 +6,19 @@ import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { ApiError } from "@/lib/api/client";
 import { getCurrentUser } from "@/lib/auth/session";
 import { appRoutes } from "@/lib/routes";
-import { ActivateLinkPicker } from "./components/ActivateLinkPicker";
+import { PlansPicker } from "./components/PlansPicker";
 
-export const ActivateLinkPage = async () => {
+export const PlansPage = async () => {
   noStore();
   const user = await getCurrentUser();
-  if (user?.accountType === "pro") {
-    redirect(user.planTier ? appRoutes.app.root : appRoutes.auth.signUpPlan);
+  if (!user) redirect(appRoutes.auth.signIn);
+
+  const { plans } = await plansApi.list();
+
+  if (user.accountType === "pro") {
+    if (user.planTier) redirect(appRoutes.app.root);
+    const proPlans = plans.filter((plan) => plan.code.startsWith("pro_"));
+    return <PlansPicker mode="pro" plans={proPlans} />;
   }
 
   const events = await eventsApi.list({ limit: 1 });
@@ -25,8 +31,6 @@ export const ActivateLinkPage = async () => {
   });
   if (subResult?.subscription) redirect(appRoutes.app.root);
 
-  const { plans } = await plansApi.list();
   const couplePlans = plans.filter((plan) => !plan.code.startsWith("pro_"));
-
-  return <ActivateLinkPicker eventId={event.id} plans={couplePlans} />;
+  return <PlansPicker mode="couple" plans={couplePlans} eventId={event.id} />;
 };

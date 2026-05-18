@@ -38,7 +38,11 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
       <InvitationOpenTracker slug={slug} />
       <div className="flex flex-1 flex-col">
         <div className="flex flex-1 flex-col gap-6 px-5 pt-6 pb-9 tablet:px-8 small-desktop:px-10 small-desktop:py-9">
-          <LandingSteps />
+          <LandingSteps
+            captureAudio={event.kiosk.captureAudio}
+            captureVideo={event.kiosk.captureVideo}
+            capturePhoto={event.kiosk.capturePhoto}
+          />
           <TrustNote message={t("guest__landing__trust_note")} />
         </div>
         {canSubmit ? (

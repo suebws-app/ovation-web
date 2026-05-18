@@ -217,7 +217,8 @@ export type PublicKioskSettings = {
   captureAudio: boolean;
   capturePhoto: boolean;
   captureVideo: boolean;
-  maxDurationSeconds: number;
+  maxVideoDurationSeconds: number;
+  maxAudioDurationSeconds: number;
   returnAfterSeconds: number;
   welcomeShowPhoto: boolean;
   welcomeShowLanguagePicker: boolean;
@@ -583,7 +584,7 @@ export type CoverUploadResult = {
   maxSizeBytes: number;
 };
 
-export const LINK_MAX_DURATION_OPTIONS = [15, 30, 60, 90, 120, 180] as const;
+export const LINK_MAX_DURATION_OPTIONS = [15, 30, 45, 60] as const;
 export type LinkMaxDurationSeconds =
   (typeof LINK_MAX_DURATION_OPTIONS)[number];
 
@@ -599,7 +600,8 @@ export type LinkSettings = {
   captureAudio: boolean;
   capturePhoto: boolean;
   captureVideo: boolean;
-  maxDurationSeconds: number;
+  maxVideoDurationSeconds: number;
+  maxAudioDurationSeconds: number;
   createdAt: string;
   updatedAt: string;
 };

@@ -10,7 +10,7 @@ import {
   type UpdateLinkSettingsInput,
 } from "@/lib/api/types";
 
-const MAX_DURATION_LABELS = ["15s", "30s", "60s", "90s", "2m", "3m"] as const;
+const MAX_DURATION_LABELS = ["15s", "30s", "45s", "1m"] as const;
 
 const readoutFor = (seconds: number): string => {
   const index = LINK_MAX_DURATION_OPTIONS.indexOf(
@@ -20,20 +20,20 @@ const readoutFor = (seconds: number): string => {
   return seconds < 60 ? `${seconds}s` : `${Math.round(seconds / 60)}m`;
 };
 
-type LinkMaxDurationCardProps = {
+type LinkVideoDurationCardProps = {
   settings: LinkSettings;
   onPatch: (changes: UpdateLinkSettingsInput) => void;
 };
 
-export const LinkMaxDurationCard = ({
+export const LinkVideoDurationCard = ({
   settings,
   onPatch,
-}: LinkMaxDurationCardProps) => {
+}: LinkVideoDurationCardProps) => {
   const t = useTranslations();
   return (
     <KioskConfigCard
-      title={t("link_settings__duration__title")}
-      description={t("link_settings__duration__desc")}
+      title={t("link_settings__video_duration__title")}
+      description={t("link_settings__video_duration__desc")}
     >
       <div className="py-5">
         <div className="flex items-baseline justify-between">
@@ -41,14 +41,16 @@ export const LinkMaxDurationCard = ({
             {t("kiosk__config__time__max_label")}
           </span>
           <span className="type-body-small text-foreground font-semibold">
-            {readoutFor(settings.maxDurationSeconds)}
+            {readoutFor(settings.maxVideoDurationSeconds)}
           </span>
         </div>
         <KioskStepSlider<LinkMaxDurationSeconds>
-          value={settings.maxDurationSeconds as LinkMaxDurationSeconds}
+          value={settings.maxVideoDurationSeconds as LinkMaxDurationSeconds}
           steps={LINK_MAX_DURATION_OPTIONS}
           labels={MAX_DURATION_LABELS}
-          onChange={(maxDurationSeconds) => onPatch({ maxDurationSeconds })}
+          onChange={(maxVideoDurationSeconds) =>
+            onPatch({ maxVideoDurationSeconds })
+          }
         />
       </div>
     </KioskConfigCard>
