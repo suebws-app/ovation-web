@@ -62,7 +62,7 @@ export const CurrentSubscriptionCard = async ({
 
       <div className="flex flex-wrap gap-3">
         <Button asChild variant="default" size="sm" className="rounded-full">
-          <Link href={appRoutes.app.plans}>
+          <Link href={`${appRoutes.app.plans}?upgrade=1`}>
             {t("settings__billing__upgrade_btn")}
           </Link>
         </Button>

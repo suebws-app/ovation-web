@@ -41,7 +41,7 @@ export const SettingsBillingPage = async () => {
           {t("settings__billing__no_sub")}
         </p>
         <Button asChild variant="default" size="sm" className="rounded-full">
-          <Link href={appRoutes.app.plans}>
+          <Link href={`${appRoutes.app.plans}?upgrade=1`}>
             {t("settings__billing__upgrade_btn")}
           </Link>
         </Button>

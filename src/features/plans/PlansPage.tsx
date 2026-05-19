@@ -8,15 +8,22 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { appRoutes } from "@/lib/routes";
 import { PlansPicker } from "./components/PlansPicker";
 
-export const PlansPage = async () => {
+type PlansPageProps = {
+  searchParams?: Promise<{ upgrade?: string }>;
+};
+
+export const PlansPage = async ({ searchParams }: PlansPageProps) => {
   noStore();
   const user = await getCurrentUser();
   if (!user) redirect(appRoutes.auth.signIn);
 
+  const params = (await searchParams) ?? {};
+  const isUpgrade = params.upgrade === "1";
+
   const { plans } = await plansApi.list();
 
   if (user.accountType === "pro") {
-    if (user.planTier) redirect(appRoutes.app.root);
+    if (user.planTier && !isUpgrade) redirect(appRoutes.app.root);
     const proPlans = plans.filter((plan) => plan.code.startsWith("pro_"));
     return <PlansPicker mode="pro" plans={proPlans} />;
   }
@@ -29,7 +36,7 @@ export const PlansPage = async () => {
     if (ApiError.isApiError(error) && error.status === 404) return null;
     throw error;
   });
-  if (subResult?.subscription) redirect(appRoutes.app.root);
+  if (subResult?.subscription && !isUpgrade) redirect(appRoutes.app.root);
 
   const couplePlans = plans.filter((plan) => !plan.code.startsWith("pro_"));
   return <PlansPicker mode="couple" plans={couplePlans} eventId={event.id} />;
