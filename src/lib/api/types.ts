@@ -537,17 +537,35 @@ export type Subscription = {
   expiresAt: string | null;
 };
 
-export type ProSubscription = {
+export type MySubscriptionStatus =
+  | "active"
+  | "cancellation_scheduled"
+  | "expired";
+
+export type MySubscription = {
   id: string;
-  planId: string;
   planCode: string;
   planName: string;
-  status: string;
+  status: MySubscriptionStatus;
   currentPeriodStart: string | null;
   currentPeriodEnd: string | null;
   cancelAtPeriodEnd: boolean;
+  cancelledAt: string | null;
   activatedAt: string;
   expiresAt: string | null;
+};
+
+export type MySubscriptionHistoryItem = {
+  id: string;
+  planCode: string;
+  planName: string | null;
+  totalCents: number;
+  currency: string;
+  status: string;
+  paymentCompletedAt: string | null;
+  refundedAt: string | null;
+  refundAmountCents: number | null;
+  createdAt: string;
 };
 
 export type ProCheckoutSessionInput = {
