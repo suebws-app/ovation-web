@@ -37,5 +37,6 @@
   "plans__dre__activate_btn": "Activate DRE",
   "plan_status__free_plan": "Free plan",
   "plan_status__active_plan": "Active plan",
-  "plan_status__free_description": "Your link is live. Upgrade for longer storage and more guests."
+  "plan_status__free_description": "Your link is live. Upgrade for longer storage and more guests.",
+  "activate_link__cta": "Subscribe"
 }
