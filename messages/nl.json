@@ -3,7 +3,7 @@
   "sidebar__admin__orders": "Orders",
   "app__no_subscription__title": "Free Plan",
   "app__no_subscription__description": "Upgrade for bigger storage, longer retention, and unlimited messages.",
-  "app__no_subscription__cta": "Abonneren",
+  "app__no_subscription__cta": "Upgrade",
   "settings__billing__history_title": "Billing history",
   "settings__billing__history_col_date": "Date",
   "settings__billing__history_col_plan": "Plan",
@@ -38,5 +38,5 @@
   "plan_status__free_plan": "Free plan",
   "plan_status__active_plan": "Active plan",
   "plan_status__free_description": "Your link is live. Upgrade for longer storage and more guests.",
-  "activate_link__cta": "Subscribe"
+  "activate_link__cta": "Upgrade"
 }
