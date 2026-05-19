@@ -1,7 +1,7 @@
 import { apiFetch } from "./server";
 import type {
-  MySubscription,
-  MySubscriptionHistoryItem,
+  MeBillingOverview,
+  MeBillingHistoryItem,
   Subscription,
 } from "./types";
 
@@ -11,11 +11,10 @@ export const subscriptionsApi = {
       `/events/${eventId}/subscription`,
     ),
 
-  getMine: () =>
-    apiFetch<{ subscription: MySubscription | null }>(`/subscriptions/me`),
+  getMine: () => apiFetch<MeBillingOverview>(`/subscriptions/me`),
 
   getMyHistory: () =>
-    apiFetch<{ items: MySubscriptionHistoryItem[] }>(
+    apiFetch<{ items: MeBillingHistoryItem[] }>(
       `/subscriptions/me/history`,
     ),
 };

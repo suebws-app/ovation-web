@@ -537,25 +537,34 @@ export type Subscription = {
   expiresAt: string | null;
 };
 
-export type MySubscriptionStatus =
-  | "active"
-  | "cancellation_scheduled"
-  | "expired";
-
-export type MySubscription = {
-  id: string;
+export type BasePlanInfo = {
   planCode: string;
   planName: string;
-  status: MySubscriptionStatus;
-  currentPeriodStart: string | null;
-  currentPeriodEnd: string | null;
-  cancelAtPeriodEnd: boolean;
-  cancelledAt: string | null;
   activatedAt: string;
   expiresAt: string | null;
 };
 
-export type MySubscriptionHistoryItem = {
+export type DreState =
+  | "none"
+  | "pending"
+  | "active"
+  | "cancellation_scheduled"
+  | "expired";
+
+export type DreInfo = {
+  state: DreState;
+  intentCreatedAt: string | null;
+  currentPeriodEnd: string | null;
+  cancelAtPeriodEnd: boolean;
+  paddleSubscriptionId: string | null;
+};
+
+export type MeBillingOverview = {
+  basePlan: BasePlanInfo | null;
+  dre: DreInfo | null;
+};
+
+export type MeBillingHistoryItem = {
   id: string;
   planCode: string;
   planName: string | null;
@@ -566,6 +575,16 @@ export type MySubscriptionHistoryItem = {
   refundedAt: string | null;
   refundAmountCents: number | null;
   createdAt: string;
+};
+
+export type DreCheckoutSessionInput = {
+  successUrl: string;
+  cancelUrl: string;
+};
+
+export type DreCheckoutSessionResult = {
+  checkoutUrl: string;
+  providerSessionId: string;
 };
 
 export type ProCheckoutSessionInput = {
