@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import type { MySubscription } from "@/lib/api/types";
-import { ManageBillingButton } from "./ManageBillingButton";
 import { CancelSubscriptionButton } from "./CancelSubscriptionButton";
 
 const formatDate = (iso: string | null, locale: string) => {
@@ -59,7 +58,6 @@ export const CurrentSubscriptionCard = async ({
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <ManageBillingButton label={t("settings__billing__manage_btn")} />
         <CancelSubscriptionButton
           cancelAtPeriodEnd={subscription.cancelAtPeriodEnd}
           periodEnd={subscription.currentPeriodEnd}

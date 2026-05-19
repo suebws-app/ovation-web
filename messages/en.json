@@ -525,7 +525,6 @@
   "settings__billing__pro_renews": "Next renewal",
   "settings__billing__pro_trial_ends": "Trial ends",
   "settings__billing__pro_cancelled": "Cancelled",
-  "settings__billing__manage_btn": "Manage billing in Stripe",
   "settings__billing__no_sub": "No active subscription.",
   "settings__billing__history_title": "Billing history",
   "settings__billing__history_col_date": "Date",
