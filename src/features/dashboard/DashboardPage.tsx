@@ -12,7 +12,6 @@ import { DashboardGreeting } from "./components/DashboardGreeting";
 import { ResumeCard } from "./components/ResumeCard";
 import { StatLine } from "./components/StatLine";
 import { MessageList } from "./components/MessageList";
-import { NudgeCard } from "./components/NudgeCard";
 import { PlanStatusCard } from "./components/PlanStatusCard";
 import { DashboardEmpty } from "./components/DashboardEmpty";
 
@@ -96,14 +95,11 @@ export const DashboardPage = async () => {
         messages={messageViews}
         totalCount={stats?.totalMessages ?? messageViews.length}
       />
-      {subscription ? (
-        <PlanStatusCard subscription={subscription} />
-      ) : (
-        <NudgeCard
-          planTier={user.planTier}
-          storageExpiresAt={user.storageExpiresAt}
-        />
-      )}
+      <PlanStatusCard
+        subscription={subscription}
+        planTier={user.planTier}
+        storageExpiresAt={user.storageExpiresAt}
+      />
     </div>
   );
 };

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import type { Subscription } from "@/lib/api/types";
+import { PlansButton } from "@/features/plans";
 
 const formatCredit = (cents: number) =>
   cents === 0 ? null : `€${(cents / 100).toFixed(0)}`;
@@ -15,13 +16,27 @@ const formatDaysLeft = (expiresAt: string | null) => {
 };
 
 type PlanStatusCardProps = {
-  subscription: Subscription;
+  subscription: Subscription | null;
+  planTier?: string | null;
+  storageExpiresAt?: string | null;
 };
 
-export const PlanStatusCard = ({ subscription }: PlanStatusCardProps) => {
+export const PlanStatusCard = ({
+  subscription,
+  planTier,
+  storageExpiresAt,
+}: PlanStatusCardProps) => {
   const t = useTranslations();
-  const credit = formatCredit(subscription.creditCentsRemaining);
-  const daysLeft = formatDaysLeft(subscription.expiresAt);
+
+  const credit = subscription ? formatCredit(subscription.creditCentsRemaining) : null;
+  const expiresIso = subscription?.expiresAt ?? storageExpiresAt ?? null;
+  const daysLeft = formatDaysLeft(expiresIso);
+  const lifetime = subscription
+    ? subscription.expiresAt === null
+    : !!planTier && expiresIso === null;
+  const isFree = !subscription && !planTier;
+
+  const planName = subscription?.planName ?? (isFree ? t("plan_status__free_plan") : t("plan_status__active_plan"));
 
   return (
     <div className="rounded-16 border-primary/40 bg-primary/10 tablet:flex-row tablet:items-center tablet:gap-5 tablet:p-6 flex flex-col gap-4 border p-5">
@@ -32,25 +47,24 @@ export const PlanStatusCard = ({ subscription }: PlanStatusCardProps) => {
         <p className="type-overline text-primary tracking-[2px]">
           {t("plan_status__eyebrow")}
         </p>
-        <p className="type-h3 mt-1 font-semibold">
-          {subscription.planName}
-        </p>
+        <p className="type-h3 mt-1 font-semibold">{planName}</p>
         <div className="type-body-small text-muted-foreground mt-2 flex flex-wrap gap-x-4 gap-y-1">
           {credit && (
-            <span>
-              {t("plan_status__credit", { amount: credit })}
-            </span>
+            <span>{t("plan_status__credit", { amount: credit })}</span>
           )}
           {daysLeft !== null && (
-            <span>
-              {t("plan_status__days_left", { days: daysLeft })}
-            </span>
+            <span>{t("plan_status__days_left", { days: daysLeft })}</span>
           )}
-          {subscription.expiresAt === null && (
-            <span>{t("plan_status__lifetime")}</span>
-          )}
+          {lifetime && <span>{t("plan_status__lifetime")}</span>}
+          {isFree && <span>{t("plan_status__free_description")}</span>}
         </div>
       </div>
+      {isFree && (
+        <PlansButton
+          variant="outline"
+          className="tablet:w-auto w-full bg-transparent"
+        />
+      )}
     </div>
   );
 };
