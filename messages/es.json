@@ -34,5 +34,10 @@
   "settings__billing__dre_resume_btn": "Resume DRE",
   "plans__dre__description": "Keep your event data live past its base-plan expiry. Billed monthly.",
   "plans__dre__per_month": "/month",
-  "plans__dre__activate_btn": "Activate DRE"
+  "plans__dre__activate_btn": "Activate DRE",
+  "dashboard__nudge__free_title": "Free plan",
+  "dashboard__nudge__free_description": "Your link is live. Upgrade any time for longer storage and more guests.",
+  "dashboard__nudge__paid_title": "Storage",
+  "dashboard__nudge__days_remaining": "{days} days of storage remaining.",
+  "dashboard__nudge__lifetime_description": "Lifetime storage."
 }
