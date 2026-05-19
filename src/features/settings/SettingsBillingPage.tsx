@@ -6,19 +6,18 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { ApiError } from "@/lib/api/client";
 import { appRoutes } from "@/lib/routes";
-import { CurrentSubscriptionCard } from "./components/CurrentSubscriptionCard";
+import { BasePlanCard } from "./components/BasePlanCard";
+import { DreSection } from "./components/DreSection";
 import { SubscriptionHistoryTable } from "./components/SubscriptionHistoryTable";
 
-const safeGetMine = () =>
+const safeOverview = () =>
   subscriptionsApi.getMine().catch((error) => {
     if (ApiError.isApiError(error) && error.status === 404) return null;
     return null;
   });
 
-const safeGetHistory = () =>
-  subscriptionsApi
-    .getMyHistory()
-    .catch(() => ({ items: [] }));
+const safeHistory = () =>
+  subscriptionsApi.getMyHistory().catch(() => ({ items: [] }));
 
 export const SettingsBillingPage = async () => {
   const t = await getTranslations();
@@ -26,22 +25,23 @@ export const SettingsBillingPage = async () => {
   const user = await getCurrentUser();
   if (!user) redirect(appRoutes.auth.signIn);
 
-  const [mineResult, historyResult] = await Promise.all([
-    safeGetMine(),
-    safeGetHistory(),
+  const [overview, history] = await Promise.all([
+    safeOverview(),
+    safeHistory(),
   ]);
 
-  const subscription = mineResult?.subscription ?? null;
-  const items = historyResult.items;
+  const basePlan = overview?.basePlan ?? null;
+  const dre = overview?.dre ?? null;
+  const items = history.items;
 
-  if (!subscription && items.length === 0) {
+  if (!basePlan && items.length === 0) {
     return (
       <div className="flex flex-col items-start gap-4">
         <p className="type-body text-muted-foreground">
           {t("settings__billing__no_sub")}
         </p>
         <Button asChild variant="default" size="sm" className="rounded-full">
-          <Link href={`${appRoutes.app.plans}?upgrade=1`}>
+          <Link href={`${appRoutes.app.plans}`}>
             {t("settings__billing__upgrade_btn")}
           </Link>
         </Button>
@@ -51,8 +51,13 @@ export const SettingsBillingPage = async () => {
 
   return (
     <div className="flex flex-col gap-8">
-      {subscription && (
-        <CurrentSubscriptionCard subscription={subscription} locale={locale} />
+      {basePlan && <BasePlanCard plan={basePlan} locale={locale} />}
+      {basePlan && (
+        <DreSection
+          dre={dre}
+          basePlanExpiresAt={basePlan.expiresAt}
+          locale={locale}
+        />
       )}
       <SubscriptionHistoryTable items={items} locale={locale} />
     </div>

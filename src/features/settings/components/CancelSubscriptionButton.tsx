@@ -37,9 +37,9 @@ export const CancelSubscriptionButton = ({
     startTransition(async () => {
       try {
         if (cancelAtPeriodEnd) {
-          await subscriptionsClient.resume();
+          await subscriptionsClient.dreResume();
         } else {
-          await subscriptionsClient.cancel();
+          await subscriptionsClient.dreCancel();
         }
         setOpen(false);
         router.refresh();
