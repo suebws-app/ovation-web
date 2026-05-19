@@ -7,6 +7,7 @@ import { ApiError } from "@/lib/api/client";
 import { getCurrentUser } from "@/lib/auth/session";
 import { appRoutes } from "@/lib/routes";
 import { PlansPicker } from "./components/PlansPicker";
+import { DreUpgradeCard } from "./components/DreUpgradeCard";
 
 type PlansPageProps = {
   searchParams?: Promise<{ upgrade?: string }>;
@@ -22,8 +23,18 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
 
   const { plans } = await plansApi.list();
 
+  if (isUpgrade) {
+    const drePlan = plans.find((p) => p.code === "storage_extension");
+    if (!drePlan) redirect(appRoutes.app.root);
+    return (
+      <div className="max-w-md">
+        <DreUpgradeCard plan={drePlan} />
+      </div>
+    );
+  }
+
   if (user.accountType === "pro") {
-    if (user.planTier && !isUpgrade) redirect(appRoutes.app.root);
+    if (user.planTier) redirect(appRoutes.app.root);
     const proPlans = plans.filter((plan) => plan.code.startsWith("pro_"));
     return <PlansPicker mode="pro" plans={proPlans} />;
   }
@@ -36,8 +47,11 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
     if (ApiError.isApiError(error) && error.status === 404) return null;
     throw error;
   });
-  if (subResult?.subscription && !isUpgrade) redirect(appRoutes.app.root);
+  if (subResult?.subscription) redirect(appRoutes.app.root);
 
-  const couplePlans = plans.filter((plan) => !plan.code.startsWith("pro_"));
+  const couplePlans = plans.filter(
+    (plan) =>
+      !plan.code.startsWith("pro_") && plan.code !== "storage_extension",
+  );
   return <PlansPicker mode="couple" plans={couplePlans} eventId={event.id} />;
 };

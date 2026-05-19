@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import type { MySubscriptionHistoryItem } from "@/lib/api/types";
+import type { MeBillingHistoryItem } from "@/lib/api/types";
 
 const formatDate = (iso: string | null, locale: string) => {
   if (!iso) return "—";
@@ -17,12 +17,12 @@ const formatAmount = (cents: number, currency: string, locale: string) =>
   }).format(cents / 100);
 
 type SubscriptionHistoryTableProps = {
-  items: MySubscriptionHistoryItem[];
+  items: MeBillingHistoryItem[];
   locale: string;
 };
 
 type HistoryRowProps = {
-  item: MySubscriptionHistoryItem;
+  item: MeBillingHistoryItem;
   locale: string;
   refundedLabel: string;
 };
