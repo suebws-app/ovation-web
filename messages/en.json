@@ -2088,5 +2088,6 @@
   "marketing__dpa__section6_heading": "Security measures",
   "marketing__dpa__section6_body": "The Processor implements encryption of personal data in transit (TLS 1.2 or higher) and at rest (AES-256); access controls limiting data access to authorised personnel; regular security assessments; and a documented incident response procedure. The Processor will notify the Controller of any personal data breach within 48 hours of becoming aware of it.",
   "marketing__dpa__section7_heading": "Term and termination",
-  "marketing__dpa__section7_body": "This DPA is effective from the date the Controller accepts the Planner Partner Terms and remains in force as long as the Processor processes personal data on behalf of the Controller. Upon termination, the Processor shall delete or return all personal data within 30 days. For questions, contact <link>privacy@ovation.wedding</link>."
+  "marketing__dpa__section7_body": "This DPA is effective from the date the Controller accepts the Planner Partner Terms and remains in force as long as the Processor processes personal data on behalf of the Controller. Upon termination, the Processor shall delete or return all personal data within 30 days. For questions, contact <link>privacy@ovation.wedding</link>.",
+  "settings__billing__upgrade_btn": "Upgrade plan"
 }

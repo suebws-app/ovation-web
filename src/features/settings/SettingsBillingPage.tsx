@@ -1,5 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
+import { Button } from "@ovation/ui/components/Button";
+import { Link } from "@/i18n/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { ApiError } from "@/lib/api/client";
@@ -34,8 +36,15 @@ export const SettingsBillingPage = async () => {
 
   if (!subscription && items.length === 0) {
     return (
-      <div className="type-body text-muted-foreground">
-        {t("settings__billing__no_sub")}
+      <div className="flex flex-col items-start gap-4">
+        <p className="type-body text-muted-foreground">
+          {t("settings__billing__no_sub")}
+        </p>
+        <Button asChild variant="default" size="sm" className="rounded-full">
+          <Link href={appRoutes.app.plans}>
+            {t("settings__billing__upgrade_btn")}
+          </Link>
+        </Button>
       </div>
     );
   }

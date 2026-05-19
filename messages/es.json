@@ -21,5 +21,6 @@
   "settings__billing__resume_confirm_title": "Resume subscription?",
   "settings__billing__resume_confirm_body": "Your subscription will renew at the end of the current period.",
   "settings__billing__resume_confirm_action": "Resume",
-  "settings__sidebar__subscription": "Subscription"
+  "settings__sidebar__subscription": "Subscription",
+  "settings__billing__upgrade_btn": "Upgrade plan"
 }

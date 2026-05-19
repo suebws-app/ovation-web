@@ -1,4 +1,7 @@
 import { getTranslations } from "next-intl/server";
+import { Button } from "@ovation/ui/components/Button";
+import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import type { MySubscription } from "@/lib/api/types";
 import { CancelSubscriptionButton } from "./CancelSubscriptionButton";
 
@@ -58,6 +61,11 @@ export const CurrentSubscriptionCard = async ({
       </div>
 
       <div className="flex flex-wrap gap-3">
+        <Button asChild variant="default" size="sm" className="rounded-full">
+          <Link href={appRoutes.app.plans}>
+            {t("settings__billing__upgrade_btn")}
+          </Link>
+        </Button>
         <CancelSubscriptionButton
           cancelAtPeriodEnd={subscription.cancelAtPeriodEnd}
           periodEnd={subscription.currentPeriodEnd}
