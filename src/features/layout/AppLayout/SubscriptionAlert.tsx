@@ -1,4 +1,7 @@
+"use client";
+
 import { useTranslations } from "next-intl";
+import { usePathname } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
@@ -14,9 +17,11 @@ export const SubscriptionAlert = ({
   planTier,
 }: SubscriptionAlertProps) => {
   const t = useTranslations();
+  const pathname = usePathname();
 
   if (planTier) return null;
   if (subscription && subscription.status === "active") return null;
+  if (pathname.startsWith(appRoutes.app.plans)) return null;
 
   return (
     <div className="max-w-container mx-auto w-full px-6 pt-2">
