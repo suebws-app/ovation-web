@@ -11,7 +11,7 @@ export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
-export type PlanTier = "essentials" | "premium" | "bundle" | "pro_starter" | "pro_studio";
+export type PlanTier = "premium" | "bundle" | "pro_starter" | "pro_studio";
 
 export type AccountType = "couple" | "pro";
 
@@ -452,7 +452,7 @@ export type QrCodeResult = {
 
 export type CheckoutOrderType = "plan" | "keepsake";
 
-export type CheckoutPlanTier = "essentials" | "premium" | "bundle";
+export type CheckoutPlanTier = "premium" | "bundle";
 
 export type CheckoutItem = {
   productSku: string;

@@ -25,7 +25,6 @@ type CreationState =
   | { kind: "error"; message: string };
 
 const PLAN_TIER_BY_ID: Record<string, CheckoutPlanTier> = {
-  essential: "essentials",
   keepsake: "premium",
   gold: "bundle",
 };
@@ -177,7 +176,8 @@ export const CompletionStep = () => {
 
           const planTier = PLAN_TIER_BY_ID[formData.selectedPlan ?? ""];
           if (!planTier) {
-            window.location.assign(appRoutes.auth.signUpPlan);
+            safeSetState({ kind: "redirecting" });
+            window.location.assign(appRoutes.app.root);
             return { kind: "redirecting" };
           }
 
