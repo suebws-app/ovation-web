@@ -1,8 +1,8 @@
 {
   "sidebar__admin__title": "Admin",
   "sidebar__admin__orders": "Orders",
-  "app__no_subscription__title": "Kein aktives Abonnement",
-  "app__no_subscription__description": "Abonniere, um Nachrichten, Fotos und gedruckte Erinnerungsstücke für dein Event freizuschalten.",
+  "app__no_subscription__title": "Free Plan",
+  "app__no_subscription__description": "Upgrade for bigger storage, longer retention, and unlimited messages.",
   "app__no_subscription__cta": "Abonnieren",
   "settings__billing__history_title": "Billing history",
   "settings__billing__history_col_date": "Date",
