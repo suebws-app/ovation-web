@@ -44,7 +44,7 @@ export const ChoosePlanStep = ({ initialAccountType }: ChoosePlanStepProps = {})
     window.history.pushState(null, "", window.location.href);
     const handlePopState = () => {
       updateFormData({ selectedPlan: "skipped" });
-      router.replace(appRoutes.auth.signUpDone);
+      router.replace(appRoutes.app.root);
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
