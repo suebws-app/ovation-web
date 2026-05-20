@@ -66,7 +66,10 @@ export const SubscriptionAlert = ({
           ✦
         </div>
         <div className="flex-1">
-          <p className="type-body-large font-serif font-semibold">{title}</p>
+          <p className="type-overline text-primary tracking-[2px]">
+            {t("plan_status__current_plan_eyebrow")}
+          </p>
+          <p className="type-body-large font-serif font-semibold mt-1">{title}</p>
           <p className="type-body-small text-muted-foreground">{description}</p>
           <div className="type-body-small text-muted-foreground mt-1 flex flex-wrap gap-x-4 gap-y-1">
             {daysLeft !== null && (
