@@ -38,5 +38,8 @@
   "plan_status__free_plan": "Free plan",
   "plan_status__active_plan": "Active plan",
   "plan_status__free_description": "Your link is live. Upgrade for longer storage and more guests.",
-  "activate_link__cta": "Upgrade"
+  "activate_link__cta": "Upgrade",
+  "app__plan__active_title": "Your Plan",
+  "app__plan__dre_upsell_description": "Add Data Retention Extension to keep your event data after your storage expires.",
+  "app__plan__dre_upsell_cta": "Activate DRE"
 }

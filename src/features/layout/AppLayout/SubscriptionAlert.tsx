@@ -6,16 +6,54 @@ import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
+const FREE_STORAGE_DAYS = 180;
+
 type SubscriptionAlertProps = {
   planTier: string | null;
+  storageExpiresAt: string | null;
+  userCreatedAt: string | null;
 };
 
-export const SubscriptionAlert = ({ planTier }: SubscriptionAlertProps) => {
+const daysBetween = (ms: number) =>
+  Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24)));
+
+export const SubscriptionAlert = ({
+  planTier,
+  storageExpiresAt,
+  userCreatedAt,
+}: SubscriptionAlertProps) => {
   const t = useTranslations();
   const pathname = usePathname();
 
-  if (planTier !== "free") return null;
   if (pathname.startsWith(appRoutes.app.plans)) return null;
+  if (planTier === "storage_extension") return null;
+
+  const isFree = !planTier || planTier === "free";
+  const isLifetime = !isFree && storageExpiresAt === null;
+
+  let daysLeft: number | null = null;
+  if (storageExpiresAt) {
+    daysLeft = daysBetween(new Date(storageExpiresAt).getTime() - Date.now());
+  } else if (isFree && userCreatedAt) {
+    const elapsedDays = Math.floor(
+      (Date.now() - new Date(userCreatedAt).getTime()) /
+        (1000 * 60 * 60 * 24),
+    );
+    daysLeft = Math.max(0, FREE_STORAGE_DAYS - elapsedDays);
+  }
+
+  const title = isFree
+    ? t("app__no_subscription__title")
+    : t("app__plan__active_title");
+  const description = isFree
+    ? t("app__no_subscription__description")
+    : t("app__plan__dre_upsell_description");
+  const ctaLabel = isFree
+    ? t("app__no_subscription__cta")
+    : t("app__plan__dre_upsell_cta");
+  const ctaHref = isFree
+    ? appRoutes.app.plans
+    : `${appRoutes.app.plans}?upgrade=1`;
 
   return (
     <div className="max-w-container mx-auto w-full px-6 pt-2">
@@ -24,21 +62,21 @@ export const SubscriptionAlert = ({ planTier }: SubscriptionAlertProps) => {
           ✦
         </div>
         <div className="flex-1">
-          <p className="type-body-large font-serif font-semibold">
-            {t("app__no_subscription__title")}
-          </p>
-          <p className="type-body-small text-muted-foreground">
-            {t("app__no_subscription__description")}
-          </p>
+          <p className="type-body-large font-serif font-semibold">{title}</p>
+          <p className="type-body-small text-muted-foreground">{description}</p>
+          <div className="type-body-small text-muted-foreground mt-1 flex flex-wrap gap-x-4 gap-y-1">
+            {daysLeft !== null && (
+              <span>{t("plan_status__days_left", { days: daysLeft })}</span>
+            )}
+            {isLifetime && <span>{t("plan_status__lifetime")}</span>}
+          </div>
         </div>
         <Button
           asChild
           variant="outline"
           className="tablet:w-auto w-full rounded-full bg-transparent"
         >
-          <Link href={appRoutes.app.plans}>
-            {t("app__no_subscription__cta")}
-          </Link>
+          <Link href={ctaHref}>{ctaLabel}</Link>
         </Button>
       </div>
     </div>

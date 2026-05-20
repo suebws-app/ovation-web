@@ -11,7 +11,6 @@ import { DashboardGreeting } from "./components/DashboardGreeting";
 import { ResumeCard } from "./components/ResumeCard";
 import { StatLine } from "./components/StatLine";
 import { MessageList } from "./components/MessageList";
-import { PlanStatusCard } from "./components/PlanStatusCard";
 import { DashboardEmpty } from "./components/DashboardEmpty";
 
 const formatWeddingDate = (raw: string | null): string => {
@@ -88,11 +87,6 @@ export const DashboardPage = async () => {
         eventId={event.id}
         messages={messageViews}
         totalCount={stats?.totalMessages ?? messageViews.length}
-      />
-      <PlanStatusCard
-        planTier={user.planTier}
-        storageExpiresAt={user.storageExpiresAt}
-        userCreatedAt={user.createdAt}
       />
     </div>
   );

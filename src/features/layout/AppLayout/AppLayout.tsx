@@ -18,7 +18,11 @@ export const AppLayout = ({ user, events, children }: AppLayoutProps) => {
       <div className="flex w-full flex-1 flex-col overflow-hidden pb-6">
         <AppHeaderDesktop planTier={user.planTier} />
         <AppHeaderMobile />
-        <SubscriptionAlert planTier={user.planTier} />
+        <SubscriptionAlert
+          planTier={user.planTier}
+          storageExpiresAt={user.storageExpiresAt}
+          userCreatedAt={user.createdAt}
+        />
         <SidebarInset className="min-h-0 flex-1 overflow-hidden">
           {children}
         </SidebarInset>
