@@ -12,16 +12,15 @@ import {
 } from "@ovation/ui/components/Breadcrumb";
 import { isLocale } from "@/lib/utils/isLocale";
 import { useCurrentEventStore } from "@/features/events/useCurrentEventStore";
-import type { Subscription } from "@/lib/api/types";
 import { KeepsakesActions } from "./KeepsakesActions";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 type AppHeaderDesktopProps = {
-  subscription: Subscription | null;
+  planTier: string | null;
 };
 
-export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
+export const AppHeaderDesktop = ({ planTier }: AppHeaderDesktopProps) => {
   const pathname = usePathname();
   const eventLabel = useCurrentEventStore((s) => s.label);
   const segments = pathname
@@ -62,7 +61,7 @@ export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      {isKeepsakes && <KeepsakesActions subscription={subscription} />}
+      {isKeepsakes && <KeepsakesActions planTier={planTier} />}
     </header>
   );
 };

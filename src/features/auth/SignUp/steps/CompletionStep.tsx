@@ -18,18 +18,13 @@ import { useSignUpStore } from "../useSignUpStore";
 import { CompletionCreatingState } from "../components/CompletionCreatingState";
 import { CompletionRedirectingState } from "../components/CompletionRedirectingState";
 import { CompletionErrorState } from "../components/CompletionErrorState";
-import { CompletionCheckoutState } from "../components/CompletionCheckoutState";
-import { CompletionSuccessView } from "../components/CompletionSuccessView";
 
 type CreationState =
   | { kind: "creating" }
   | { kind: "redirecting" }
-  | { kind: "checkout"; transactionId: string; orderId: string; successUrl: string; email: string; isPro: boolean }
-  | { kind: "ready"; slug: string }
   | { kind: "error"; message: string };
 
-const PLAN_TIER_BY_ID: Record<string, CheckoutPlanTier | null> = {
-  essential: null,
+const PLAN_TIER_BY_ID: Record<string, CheckoutPlanTier> = {
   keepsake: "premium",
   gold: "bundle",
 };
@@ -45,14 +40,6 @@ const toIsoDate = (date: Date | null): string | undefined => {
   if (!date) return undefined;
   if (Number.isNaN(date.getTime())) return undefined;
   return date.toISOString().slice(0, 10);
-};
-
-const extractTransactionId = (checkoutUrl: string): string | null => {
-  try {
-    return new URL(checkoutUrl).searchParams.get("_ptxn");
-  } catch {
-    return null;
-  }
 };
 
 const uploadCoverPhoto = async (eventId: string, file: File): Promise<string | null> => {
@@ -99,16 +86,6 @@ export const CompletionStep = () => {
     t,
   ]);
 
-  const handleCheckoutCompleted = useCallback(
-    (orderId: string) => {
-      if (formData.accountType === "pro") {
-        stashPendingEventData();
-      }
-      window.location.assign(appRoutes.checkout.success(orderId));
-    },
-    [formData.accountType, stashPendingEventData],
-  );
-
   useEffect(() => {
     const token = retryToken;
     let mounted = true;
@@ -127,11 +104,10 @@ export const CompletionStep = () => {
 
       const work = (async (): Promise<CreationState> => {
         invalidateCsrfToken();
-        const { email } = useSignUpStore.getState().formData;
         const partnerATrim = formData.partner1Name?.trim() ?? "";
         const partnerBTrim = formData.partner2Name?.trim() ?? "";
-        const successUrl = `${getOrigin()}${appRoutes.auth.signUpDone}`;
-        const cancelUrl = `${getOrigin()}${appRoutes.auth.signUpPlan}`;
+        const successUrl = `${getOrigin()}/checkout/{CHECKOUT_SESSION_ID}/success`;
+        const cancelUrl = `${getOrigin()}/checkout/{CHECKOUT_SESSION_ID}/cancel`;
         const isPro = formData.accountType === "pro";
 
         if (isPro) {
@@ -141,15 +117,12 @@ export const CompletionStep = () => {
           }
           safeSetState({ kind: "redirecting" });
           try {
+            stashPendingEventData();
             const checkout = await paymentsClient.createProCheckoutSession({
               planCode: formData.selectedPlan as ProCheckoutSessionInput["planCode"],
               successUrl,
               cancelUrl,
             });
-            const txnId = extractTransactionId(checkout.checkoutUrl);
-            if (txnId) {
-              return { kind: "checkout", transactionId: txnId, orderId: checkout.orderId, successUrl, email, isPro: true };
-            }
             window.location.assign(checkout.checkoutUrl);
             return { kind: "redirecting" };
           } catch (error) {
@@ -171,12 +144,36 @@ export const CompletionStep = () => {
         const { bookUrl } = useSignUpStore.getState().formData;
 
         try {
-          const { event } = await eventsClient.create({
-            partnerAName: partnerA,
-            partnerBName: partnerB,
-            weddingDate: toIsoDate(formData.weddingDate),
-            venueName: formData.venue?.trim() || undefined,
-          });
+          const existingEventId =
+            typeof window !== "undefined"
+              ? window.sessionStorage?.getItem("ovation_signup_event_id") ?? null
+              : null;
+          const event = existingEventId
+            ? await eventsClient
+                .update(existingEventId, {
+                  partnerAName: partnerA,
+                  partnerBName: partnerB,
+                  weddingDate: toIsoDate(formData.weddingDate),
+                  venueName: formData.venue?.trim() || undefined,
+                })
+                .then((r) => r.event)
+                .catch(async () => {
+                  const created = await eventsClient.create({
+                    partnerAName: partnerA,
+                    partnerBName: partnerB,
+                    weddingDate: toIsoDate(formData.weddingDate),
+                    venueName: formData.venue?.trim() || undefined,
+                  });
+                  return created.event;
+                })
+            : await eventsClient
+                .create({
+                  partnerAName: partnerA,
+                  partnerBName: partnerB,
+                  weddingDate: toIsoDate(formData.weddingDate),
+                  venueName: formData.venue?.trim() || undefined,
+                })
+                .then((r) => r.event);
 
           let finalSlug = event.slug;
           const desiredSlug = bookUrl.trim();
@@ -201,33 +198,31 @@ export const CompletionStep = () => {
             }
           }
 
-          const planTier = PLAN_TIER_BY_ID[formData.selectedPlan ?? ""] ?? null;
-          if (planTier) {
+          const planTier = PLAN_TIER_BY_ID[formData.selectedPlan ?? ""];
+          if (!planTier) {
             safeSetState({ kind: "redirecting" });
-            try {
-              const checkout = await paymentsClient.createCheckoutSession({
-                eventId: event.id,
-                orderType: "plan",
-                planTier,
-                successUrl,
-                cancelUrl,
-              });
-              const txnId = extractTransactionId(checkout.checkoutUrl);
-              if (txnId) {
-                return { kind: "checkout", transactionId: txnId, orderId: checkout.orderId, successUrl, email, isPro: false };
-              }
-              window.location.assign(checkout.checkoutUrl);
-              return { kind: "redirecting" };
-            } catch (error) {
-              console.error("[signup] couple checkout failed", error);
-              return {
-                kind: "error",
-                message: ApiError.isApiError(error) ? error.message : t("signup__completion__error_checkout_default"),
-              };
-            }
+            window.location.assign(appRoutes.app.root);
+            return { kind: "redirecting" };
           }
 
-          return { kind: "ready", slug: finalSlug };
+          safeSetState({ kind: "redirecting" });
+          try {
+            const checkout = await paymentsClient.createCheckoutSession({
+              eventId: event.id,
+              orderType: "plan",
+              planTier,
+              successUrl,
+              cancelUrl,
+            });
+            window.location.assign(checkout.checkoutUrl);
+            return { kind: "redirecting" };
+          } catch (error) {
+            console.error("[signup] couple checkout failed", error);
+            return {
+              kind: "error",
+              message: ApiError.isApiError(error) ? error.message : t("signup__completion__error_checkout_default"),
+            };
+          }
         } catch (error) {
           console.error("[signup] event creation failed", error);
           return {
@@ -255,34 +250,20 @@ export const CompletionStep = () => {
     formData.selectedPlan,
     formData.coverFile,
     formData.accountType,
+    stashPendingEventData,
     updateFormData,
     t,
   ]);
 
   if (state.kind === "creating") return <CompletionCreatingState />;
   if (state.kind === "redirecting") return <CompletionRedirectingState />;
-  if (state.kind === "checkout") {
-    return (
-      <CompletionCheckoutState
-        transactionId={state.transactionId}
-        orderId={state.orderId}
-        successUrl={state.successUrl}
-        email={state.email}
-        onCompleted={handleCheckoutCompleted}
-      />
-    );
-  }
-  if (state.kind === "error") {
-    return (
-      <CompletionErrorState
-        message={state.message}
-        onRetry={() => {
-          setState({ kind: "creating" });
-          setRetryToken((n) => n + 1);
-        }}
-      />
-    );
-  }
-
-  return <CompletionSuccessView slug={state.slug} />;
+  return (
+    <CompletionErrorState
+      message={state.message}
+      onRetry={() => {
+        setState({ kind: "creating" });
+        setRetryToken((n) => n + 1);
+      }}
+    />
+  );
 };

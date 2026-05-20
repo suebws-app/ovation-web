@@ -11,7 +11,7 @@ export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
-export type PlanTier = "essentials" | "premium" | "bundle" | "pro_starter" | "pro_studio";
+export type PlanTier = "premium" | "bundle" | "pro_starter" | "pro_studio";
 
 export type AccountType = "couple" | "pro";
 
@@ -51,6 +51,7 @@ export type User = {
   planPurchasedAt: string | null;
   messageLimit: number | null;
   storageExpiresAt: string | null;
+  keepsakeCreditCents: number;
   stripeCustomerId: string | null;
   emailPreferences: EmailPreferences | null;
   createdAt: string;
@@ -217,7 +218,8 @@ export type PublicKioskSettings = {
   captureAudio: boolean;
   capturePhoto: boolean;
   captureVideo: boolean;
-  maxDurationSeconds: number;
+  maxVideoDurationSeconds: number;
+  maxAudioDurationSeconds: number;
   returnAfterSeconds: number;
   welcomeShowPhoto: boolean;
   welcomeShowLanguagePicker: boolean;
@@ -451,7 +453,7 @@ export type QrCodeResult = {
 
 export type CheckoutOrderType = "plan" | "keepsake";
 
-export type CheckoutPlanTier = "essentials" | "premium" | "bundle";
+export type CheckoutPlanTier = "premium" | "bundle";
 
 export type CheckoutItem = {
   productSku: string;
@@ -524,29 +526,55 @@ export type Plan = {
   sortOrder: number;
 };
 
-export type Subscription = {
-  id: string;
-  eventId: string;
-  planId: string;
+
+export type BasePlanInfo = {
   planCode: string;
   planName: string;
-  status: string;
-  creditCentsRemaining: number;
   activatedAt: string;
   expiresAt: string | null;
 };
 
-export type ProSubscription = {
-  id: string;
-  planId: string;
-  planCode: string;
-  planName: string;
-  status: string;
-  currentPeriodStart: string | null;
+export type DreState =
+  | "none"
+  | "pending"
+  | "active"
+  | "cancellation_scheduled"
+  | "expired";
+
+export type DreInfo = {
+  state: DreState;
+  intentCreatedAt: string | null;
   currentPeriodEnd: string | null;
   cancelAtPeriodEnd: boolean;
-  activatedAt: string;
-  expiresAt: string | null;
+  paddleSubscriptionId: string | null;
+};
+
+export type MeBillingOverview = {
+  basePlan: BasePlanInfo | null;
+  dre: DreInfo | null;
+};
+
+export type MeBillingHistoryItem = {
+  id: string;
+  planCode: string;
+  planName: string | null;
+  totalCents: number;
+  currency: string;
+  status: string;
+  paymentCompletedAt: string | null;
+  refundedAt: string | null;
+  refundAmountCents: number | null;
+  createdAt: string;
+};
+
+export type DreCheckoutSessionInput = {
+  successUrl: string;
+  cancelUrl: string;
+};
+
+export type DreCheckoutSessionResult = {
+  checkoutUrl: string;
+  providerSessionId: string;
 };
 
 export type ProCheckoutSessionInput = {
@@ -583,7 +611,7 @@ export type CoverUploadResult = {
   maxSizeBytes: number;
 };
 
-export const LINK_MAX_DURATION_OPTIONS = [15, 30, 60, 90, 120, 180] as const;
+export const LINK_MAX_DURATION_OPTIONS = [15, 30, 45, 60] as const;
 export type LinkMaxDurationSeconds =
   (typeof LINK_MAX_DURATION_OPTIONS)[number];
 
@@ -599,7 +627,8 @@ export type LinkSettings = {
   captureAudio: boolean;
   capturePhoto: boolean;
   captureVideo: boolean;
-  maxDurationSeconds: number;
+  maxVideoDurationSeconds: number;
+  maxAudioDurationSeconds: number;
   createdAt: string;
   updatedAt: string;
 };

@@ -6,23 +6,20 @@ import { CartIcon } from "@ovation/icons/CartIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useCartStore } from "@/features/cart/store/useCartStore";
-import type { Subscription } from "@/lib/api/types";
 
 type KeepsakesActionsProps = {
-  subscription: Subscription | null;
+  planTier: string | null;
 };
 
 const formatCredit = (cents: number) =>
   cents > 0 ? `€${(cents / 100).toFixed(0)}` : null;
 
-export const KeepsakesActions = ({ subscription }: KeepsakesActionsProps) => {
+export const KeepsakesActions = ({ planTier: _planTier }: KeepsakesActionsProps) => {
   const t = useTranslations();
   const cartCount = useCartStore((s) => s.itemCount());
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => setHydrated(true), []);
-  const credit = subscription
-    ? formatCredit(subscription.creditCentsRemaining)
-    : null;
+  const credit: string | null = formatCredit(0);
 
   return (
     <div className="flex items-center gap-3">

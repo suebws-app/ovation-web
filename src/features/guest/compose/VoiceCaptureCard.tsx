@@ -39,7 +39,7 @@ export const VoiceCaptureCard = ({ maxDurationSec }: VoiceCaptureCardProps = {})
                 duration: formatTime(audio.durationSec),
               })
             : t("guest__compose__voice_subtitle", {
-                seconds: maxDurationSec ?? 180,
+                seconds: maxDurationSec ?? 60,
               })
         }
         filled={Boolean(audio)}

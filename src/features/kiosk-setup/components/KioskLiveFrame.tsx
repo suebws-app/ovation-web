@@ -226,7 +226,10 @@ export const KioskLiveFrame = ({
         </button>
         <div className="type-body-small text-muted-foreground mt-10">
           {t("kiosk__live__caption", {
-            seconds: event.kiosk.maxDurationSeconds,
+            seconds: Math.max(
+              event.kiosk.maxVideoDurationSeconds,
+              event.kiosk.maxAudioDurationSeconds,
+            ),
           })}
         </div>
       </div>

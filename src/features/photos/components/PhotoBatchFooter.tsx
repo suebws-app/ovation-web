@@ -32,7 +32,7 @@ export const PhotoBatchFooter = ({
   return (
     <div
       className={cn(
-        "border-border bg-card shadow-top tablet:flex-row tablet:items-center tablet:gap-3 sticky bottom-0 z-50 mt-auto flex w-full flex-col gap-2 border-t px-4 py-3",
+        "border-border bg-card shadow-top tablet:flex-row tablet:items-center tablet:gap-3 flex w-full shrink-0 flex-col gap-2 border-t px-4 py-3",
       )}
     >
       <span className="type-body-small font-semibold">

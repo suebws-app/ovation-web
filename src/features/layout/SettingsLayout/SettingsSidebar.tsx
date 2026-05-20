@@ -5,6 +5,7 @@ import { Logo } from "@ovation/ui/components/Logo";
 import { UserIcon } from "@ovation/icons/UserIcon";
 import { LockIcon } from "@ovation/icons/LockIcon";
 import { BellIcon } from "@ovation/icons/BellIcon";
+import { CreditCardIcon } from "@ovation/icons/CreditCardIcon";
 import { BoxIcon } from "@ovation/icons/BoxIcon";
 import { WarningIcon } from "@ovation/icons/WarningIcon";
 import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
@@ -45,6 +46,12 @@ const buildGroups = (t: Translator): SidebarNavGroup[] => [
         label: t("settings__sidebar__notifications"),
         href: appRoutes.settings.notifications,
         icon: BellIcon,
+      },
+      {
+        key: "subscription",
+        label: t("settings__sidebar__subscription"),
+        href: appRoutes.settings.billing,
+        icon: CreditCardIcon,
       },
       {
         key: "data",

@@ -13,35 +13,46 @@ import { appRoutes } from "@/lib/routes";
 import { PRO_TIERS } from "@/features/marketing/PricingSection/constants";
 import { useRedirectOnBackNavigation } from "@/lib/hooks/useRedirectOnBackNavigation";
 
-export const ChoosePlanStep = () => {
+type ChoosePlanStepProps = {
+  initialAccountType?: "couple" | "pro" | null;
+};
+
+export const ChoosePlanStep = ({ initialAccountType }: ChoosePlanStepProps = {}) => {
   const t = useTranslations();
   const { formData, updateFormData } = useSignUpStore();
   const router = useRouter();
   const searchParams = useSearchParams();
   useRedirectOnBackNavigation(appRoutes.home);
 
-  useEffect(() => {
-    const as = searchParams.get("as");
-    if (as === "pro") updateFormData({ accountType: "pro" });
-    else if (as === "couple") updateFormData({ accountType: "couple" });
-  }, [searchParams, updateFormData]);
+  const asParam = searchParams.get("as");
 
-  const isPro = formData.accountType === "pro";
+  useEffect(() => {
+    if (asParam === "pro") updateFormData({ accountType: "pro" });
+    else if (asParam === "couple") updateFormData({ accountType: "couple" });
+    else if (initialAccountType && !formData.accountType) {
+      updateFormData({ accountType: initialAccountType });
+    }
+  }, [asParam, initialAccountType, formData.accountType, updateFormData]);
+
+  const resolvedAccountType =
+    asParam === "pro" || asParam === "couple"
+      ? asParam
+      : formData.accountType || initialAccountType || "";
+  const isPro = resolvedAccountType === "pro";
   const [showPlanError, setShowPlanError] = useState(false);
 
+  useEffect(() => {
+    if (resolvedAccountType !== "couple") return;
+    window.history.pushState(null, "", window.location.href);
+    const handlePopState = () => {
+      updateFormData({ selectedPlan: "skipped" });
+      router.replace(appRoutes.app.root);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [resolvedAccountType, router, updateFormData]);
+
   const PLANS = [
-    {
-      id: "essential",
-      name: t("signup__plan__essential__name"),
-      price: t("signup__plan__essential__price"),
-      per: t("signup__plan__essential__per"),
-      description: t("signup__plan__essential__description"),
-      features: [
-        t("signup__plan__essential__feature_1"),
-        t("signup__plan__essential__feature_2"),
-        t("signup__plan__essential__feature_3"),
-      ],
-    },
     {
       id: "keepsake",
       name: t("signup__plan__keepsake__name"),
@@ -167,7 +178,7 @@ export const ChoosePlanStep = () => {
           </p>
         </div>
 
-        <div className="tablet:grid-cols-3 grid gap-4.5">
+        <div className="tablet:grid-cols-2 grid gap-4.5">
           {PLANS.map((plan) => (
             <PlanCard
               key={plan.id}
@@ -186,7 +197,7 @@ export const ChoosePlanStep = () => {
           <button
             type="button"
             onClick={() => {
-              updateFormData({ selectedPlan: "essential" });
+              updateFormData({ selectedPlan: "skipped" });
               router.push(appRoutes.auth.signUpDone);
             }}
             className="text-primary cursor-pointer font-semibold"

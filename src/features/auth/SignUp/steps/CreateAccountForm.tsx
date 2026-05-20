@@ -18,6 +18,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
+import { eventsClient } from "@/lib/api/events-client";
 import {
   getCreateAccountSchema,
   type CreateAccountFields,
@@ -85,6 +86,31 @@ export const CreateAccountForm = () => {
     }
     invalidateCsrfToken();
     updateFormData({ email: values.email, agreedToTerms: true });
+
+    if (accountType !== "pro") {
+      try {
+        const storeData = useSignUpStore.getState().formData;
+        const partnerA = storeData.partner1Name?.trim() || t("signup__partner_a_default");
+        const partnerB = storeData.partner2Name?.trim() || t("signup__partner_b_default");
+        const weddingDateIso =
+          storeData.weddingDate && !Number.isNaN(storeData.weddingDate.getTime())
+            ? storeData.weddingDate.toISOString().slice(0, 10)
+            : undefined;
+        const { event } = await eventsClient.create({
+          partnerAName: partnerA,
+          partnerBName: partnerB,
+          weddingDate: weddingDateIso,
+          venueName: storeData.venue?.trim() || undefined,
+        });
+        if (typeof window !== "undefined") {
+          window.sessionStorage?.setItem("ovation_signup_event_id", event.id);
+          window.sessionStorage?.setItem("ovation_signup_event_created", "1");
+        }
+      } catch (err) {
+        console.error("[signup] event auto-create failed", err);
+      }
+    }
+
     router.push(appRoutes.auth.signUpPlan);
   };
 

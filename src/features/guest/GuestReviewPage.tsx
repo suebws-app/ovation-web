@@ -35,7 +35,6 @@ export const GuestReviewPage = async ({
         slug={slug}
         exitPin={event.kiosk.exitPin}
         fullscreenLock={event.kiosk.fullscreenLock}
-        capturePhoto={event.kiosk.capturePhoto}
         sourceParam={sourceParam}
       />
     </GuestWizardShell>

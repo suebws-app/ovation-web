@@ -39,11 +39,13 @@ export const MessagesPageClient = ({
       <MessagesStoreReset />
       <MessagesActiveSync />
       <DurationSync player={player} />
-      <div className="flex h-full w-full flex-1 overflow-auto">
-        <div className="bg-card relative flex h-full min-h-0 w-full flex-1 flex-col overflow-y-auto">
-          <MessageToolbar stats={stats} />
-          <MessagesFilterRail stats={stats} />
-          <MessagesListBody player={player} />
+      <div className="flex h-full w-full flex-1 overflow-hidden">
+        <div className="bg-card relative flex h-full min-h-0 w-full flex-1 flex-col">
+          <div className="flex min-h-0 w-full flex-1 flex-col overflow-y-auto">
+            <MessageToolbar stats={stats} />
+            <MessagesFilterRail stats={stats} />
+            <MessagesListBody player={player} />
+          </div>
           <ConnectedBatchFooter />
         </div>
         <ConnectedMessageDetailPane player={player} />

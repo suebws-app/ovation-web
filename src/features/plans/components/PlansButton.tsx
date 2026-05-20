@@ -6,15 +6,15 @@ import { cn } from "@ovation/ui/utils/cn";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
-type ActivateLinkButtonProps = {
+type PlansButtonProps = {
   className?: string;
   variant?: "default" | "outline";
 };
 
-export const ActivateLinkButton = ({
+export const PlansButton = ({
   className,
   variant = "default",
-}: ActivateLinkButtonProps) => {
+}: PlansButtonProps) => {
   const t = useTranslations();
   return (
     <Button
@@ -22,7 +22,7 @@ export const ActivateLinkButton = ({
       variant={variant}
       className={cn("rounded-full", className)}
     >
-      <Link href={appRoutes.app.activate}>{t("activate_link__cta")}</Link>
+      <Link href={appRoutes.app.plans}>{t("activate_link__cta")}</Link>
     </Button>
   );
 };
