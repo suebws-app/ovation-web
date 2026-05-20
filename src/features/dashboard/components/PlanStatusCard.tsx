@@ -11,19 +11,35 @@ const formatDaysLeft = (expiresAt: string | null) => {
   return days;
 };
 
+const FREE_STORAGE_DAYS = 180;
+
 type PlanStatusCardProps = {
   planTier: string | null;
   storageExpiresAt: string | null;
+  userCreatedAt?: string | null;
 };
 
 export const PlanStatusCard = ({
   planTier,
   storageExpiresAt,
+  userCreatedAt,
 }: PlanStatusCardProps) => {
   const t = useTranslations();
 
   const isFree = !planTier || planTier === "free";
-  const daysLeft = formatDaysLeft(storageExpiresAt);
+  const explicitDays = formatDaysLeft(storageExpiresAt);
+  const fallbackFreeDays =
+    isFree && explicitDays === null && userCreatedAt
+      ? Math.max(
+          0,
+          FREE_STORAGE_DAYS -
+            Math.floor(
+              (Date.now() - new Date(userCreatedAt).getTime()) /
+                (1000 * 60 * 60 * 24),
+            ),
+        )
+      : null;
+  const daysLeft = explicitDays ?? fallbackFreeDays;
   const lifetime = !isFree && storageExpiresAt === null;
   const planName = isFree
     ? t("plan_status__free_plan")

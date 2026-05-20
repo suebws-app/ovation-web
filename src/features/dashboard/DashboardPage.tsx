@@ -89,12 +89,11 @@ export const DashboardPage = async () => {
         messages={messageViews}
         totalCount={stats?.totalMessages ?? messageViews.length}
       />
-      {user.planTier && user.planTier !== "free" && (
-        <PlanStatusCard
-          planTier={user.planTier}
-          storageExpiresAt={user.storageExpiresAt}
-        />
-      )}
+      <PlanStatusCard
+        planTier={user.planTier}
+        storageExpiresAt={user.storageExpiresAt}
+        userCreatedAt={user.createdAt}
+      />
     </div>
   );
 };
