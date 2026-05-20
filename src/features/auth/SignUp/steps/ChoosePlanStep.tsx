@@ -39,6 +39,17 @@ export const ChoosePlanStep = ({ initialAccountType }: ChoosePlanStepProps = {})
   const isPro = resolvedAccountType === "pro";
   const [showPlanError, setShowPlanError] = useState(false);
 
+  useEffect(() => {
+    if (resolvedAccountType !== "couple") return;
+    window.history.pushState(null, "", window.location.href);
+    const handlePopState = () => {
+      updateFormData({ selectedPlan: "skipped" });
+      router.replace(appRoutes.auth.signUpDone);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [resolvedAccountType, router, updateFormData]);
+
   const PLANS = [
     {
       id: "keepsake",
