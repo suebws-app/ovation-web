@@ -98,37 +98,39 @@ export const PhotosPageClient = ({
   const totalCount = photos.length;
 
   return (
-    <div className="flex h-full w-full flex-1 overflow-auto">
-      <div
-        ref={scrollRef}
-        className="bg-card relative flex h-full min-h-0 w-full flex-1 flex-col overflow-y-auto"
-      >
-        <PhotoToolbar eventId={eventId} totalCount={totalCount} />
-        <PhotosFilterRail photos={photos} stats={stats} />
-        {isPending ? (
-          <p className="type-body-small text-muted-foreground p-8 text-center">
-            {t("photos__loading")}
-          </p>
-        ) : isError ? (
-          <p className="type-body-small text-destructive p-8 text-center">
-            {t("photos__error")}
-          </p>
-        ) : (
-          <>
-            <PhotoGallery
-              photos={photos}
-              selectedIds={selectedIds}
-              onTileClick={handleTileClick}
-              onToggleSelect={toggleSelected}
-            />
-            <div ref={sentinelRef} aria-hidden className="h-px" />
-            {isFetchingNextPage && (
-              <p className="type-caption text-muted-foreground p-4 text-center">
-                {t("photos__lightbox__loading_more")}
-              </p>
-            )}
-          </>
-        )}
+    <div className="flex h-full w-full flex-1 overflow-hidden">
+      <div className="bg-card relative flex h-full min-h-0 w-full flex-1 flex-col">
+        <div
+          ref={scrollRef}
+          className="flex min-h-0 w-full flex-1 flex-col overflow-y-auto"
+        >
+          <PhotoToolbar eventId={eventId} totalCount={totalCount} />
+          <PhotosFilterRail photos={photos} stats={stats} />
+          {isPending ? (
+            <p className="type-body-small text-muted-foreground p-8 text-center">
+              {t("photos__loading")}
+            </p>
+          ) : isError ? (
+            <p className="type-body-small text-destructive p-8 text-center">
+              {t("photos__error")}
+            </p>
+          ) : (
+            <>
+              <PhotoGallery
+                photos={photos}
+                selectedIds={selectedIds}
+                onTileClick={handleTileClick}
+                onToggleSelect={toggleSelected}
+              />
+              <div ref={sentinelRef} aria-hidden className="h-px" />
+              {isFetchingNextPage && (
+                <p className="type-caption text-muted-foreground p-4 text-center">
+                  {t("photos__lightbox__loading_more")}
+                </p>
+              )}
+            </>
+          )}
+        </div>
 
         <PhotoBatchFooter
           count={bulk.selectedCount}

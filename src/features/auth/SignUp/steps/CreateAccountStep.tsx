@@ -13,6 +13,7 @@ const CreateAccountPanel = async () => {
     t("auth__signup__brand_step__cover_link"),
     t("auth__signup__brand_step__choose_plan"),
   ];
+
   return (
     <>
       <Kicker className="relative tracking-[2.5px] opacity-80">
@@ -23,7 +24,12 @@ const CreateAccountPanel = async () => {
       </p>
       <div className="relative flex flex-col gap-3.5">
         {setupSteps.map((label, i) => (
-          <ChecklistItem key={label} index={i + 1} label={label} active={i === 0} />
+          <ChecklistItem
+            key={label}
+            index={i + 1}
+            label={label}
+            active={i === 0}
+          />
         ))}
       </div>
     </>

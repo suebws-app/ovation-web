@@ -25,6 +25,7 @@ type ThankYouCardsCustomizerProps = {
   variants: KeepsakeProductVariant[];
   eventId: string | null;
   event?: Event | null;
+  isPro?: boolean;
 };
 
 export const ThankYouCardsCustomizer = ({
@@ -32,6 +33,7 @@ export const ThankYouCardsCustomizer = ({
   variants,
   eventId,
   event,
+  isPro = false,
 }: ThankYouCardsCustomizerProps) => {
   const [design, setDesign] = useState<Design>("minimal");
   const [variantId, setVariantId] = useState<string | null>(
@@ -117,6 +119,7 @@ export const ThankYouCardsCustomizer = ({
         selectedVariant={selectedVariant}
         isReady={isReady}
         notReadyMessage="Pick a quantity to continue."
+        showEventBadge={isPro}
       />
     </div>
   );

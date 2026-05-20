@@ -36,7 +36,7 @@ export const DownloadCard = ({
   light,
 }: DownloadCardProps) => {
   const t = useTranslations();
-  const [pending, setPending] = useState<"png" | "svg" | null>(null);
+  const [pending, setPending] = useState<"png" | "svg" | "pdf" | null>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const svgContainerRef = useRef<HTMLDivElement>(null);
 
@@ -74,6 +74,33 @@ export const DownloadCard = ({
     }
   };
 
+  const handlePdf = async () => {
+    setPending("pdf");
+    try {
+      const canvas =
+        canvasContainerRef.current?.querySelector("canvas") ?? null;
+      if (!canvas) return;
+      const dataUrl = canvas.toDataURL("image/png");
+      const { jsPDF } = await import("jspdf");
+      const pdf = new jsPDF({
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait",
+      });
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const qrSize = 140;
+      const x = (pageWidth - qrSize) / 2;
+      const y = (pageHeight - qrSize) / 2 - 15;
+      pdf.addImage(dataUrl, "PNG", x, y, qrSize, qrSize);
+      pdf.setFontSize(13);
+      pdf.text(shortUrl, pageWidth / 2, y + qrSize + 14, { align: "center" });
+      pdf.save(`${slug}-qr.pdf`);
+    } finally {
+      setPending(null);
+    }
+  };
+
   const formats = [
     {
       ext: "PNG" as const,
@@ -92,14 +119,9 @@ export const DownloadCard = ({
     {
       ext: "PDF" as const,
       desc: t("qr_code__download__pdf_desc"),
-      size: "38 KB",
-      enabled: false,
-    },
-    {
-      ext: "EPS" as const,
-      desc: t("qr_code__download__eps_desc"),
-      size: "14 KB",
-      enabled: false,
+      size: "A4",
+      onClick: handlePdf,
+      enabled: true,
     },
   ];
 

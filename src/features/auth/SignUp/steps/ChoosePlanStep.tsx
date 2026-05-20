@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { PlanCard } from "../components/PlanCard";
@@ -9,26 +11,48 @@ import { useSignUpStore } from "../useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { PRO_TIERS } from "@/features/marketing/PricingSection/constants";
+import { useRedirectOnBackNavigation } from "@/lib/hooks/useRedirectOnBackNavigation";
 
-export const ChoosePlanStep = () => {
+type ChoosePlanStepProps = {
+  initialAccountType?: "couple" | "pro" | null;
+};
+
+export const ChoosePlanStep = ({ initialAccountType }: ChoosePlanStepProps = {}) => {
   const t = useTranslations();
   const { formData, updateFormData } = useSignUpStore();
   const router = useRouter();
-  const isPro = formData.accountType === "pro";
+  const searchParams = useSearchParams();
+  useRedirectOnBackNavigation(appRoutes.home);
+
+  const asParam = searchParams.get("as");
+
+  useEffect(() => {
+    if (asParam === "pro") updateFormData({ accountType: "pro" });
+    else if (asParam === "couple") updateFormData({ accountType: "couple" });
+    else if (initialAccountType && !formData.accountType) {
+      updateFormData({ accountType: initialAccountType });
+    }
+  }, [asParam, initialAccountType, formData.accountType, updateFormData]);
+
+  const resolvedAccountType =
+    asParam === "pro" || asParam === "couple"
+      ? asParam
+      : formData.accountType || initialAccountType || "";
+  const isPro = resolvedAccountType === "pro";
+  const [showPlanError, setShowPlanError] = useState(false);
+
+  useEffect(() => {
+    if (resolvedAccountType !== "couple") return;
+    window.history.pushState(null, "", window.location.href);
+    const handlePopState = () => {
+      updateFormData({ selectedPlan: "skipped" });
+      router.replace(appRoutes.app.root);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [resolvedAccountType, router, updateFormData]);
 
   const PLANS = [
-    {
-      id: "essential",
-      name: t("signup__plan__essential__name"),
-      price: t("signup__plan__essential__price"),
-      per: t("signup__plan__essential__per"),
-      description: t("signup__plan__essential__description"),
-      features: [
-        t("signup__plan__essential__feature_1"),
-        t("signup__plan__essential__feature_2"),
-        t("signup__plan__essential__feature_3"),
-      ],
-    },
     {
       id: "keepsake",
       name: t("signup__plan__keepsake__name"),
@@ -65,10 +89,14 @@ export const ChoosePlanStep = () => {
 
   const handleSelectProPlan = (planKey: string) => {
     updateFormData({ selectedPlan: planKey });
+    setShowPlanError(false);
   };
 
   const handleProContinue = () => {
-    if (!formData.selectedPlan) updateFormData({ selectedPlan: "pro_starter" });
+    if (!formData.selectedPlan) {
+      setShowPlanError(true);
+      return;
+    }
     router.push(appRoutes.auth.signUpDone);
   };
 
@@ -90,12 +118,10 @@ export const ChoosePlanStep = () => {
             {t("signup__pro_plan__subtitle")}
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-5 tablet:grid-cols-2">
+          <div className="tablet:grid-cols-2 mt-10 grid grid-cols-1 gap-5">
             {PRO_TIERS.map(
-              ({ key, highlighted, tagKey, nameKey, price, perKey, descKey, featKeys }) => {
-                const isSelected =
-                  formData.selectedPlan === key ||
-                  (!formData.selectedPlan && highlighted);
+              ({ key, tagKey, nameKey, price, perKey, descKey, featKeys }) => {
+                const isSelected = formData.selectedPlan === key;
                 return (
                   <PlanOptionCard
                     key={key}
@@ -114,9 +140,16 @@ export const ChoosePlanStep = () => {
             )}
           </div>
 
+          {showPlanError && !formData.selectedPlan && (
+            <p className="text-destructive type-body-small mt-6 text-center">
+              {t("signup__pro_plan__select_required")}
+            </p>
+          )}
+
           <Button
             type="button"
             onClick={handleProContinue}
+            disabled={!formData.selectedPlan}
             size="lg"
             className="shadow-primary/40 mt-8 w-full rounded-full shadow-md"
           >
@@ -145,7 +178,7 @@ export const ChoosePlanStep = () => {
           </p>
         </div>
 
-        <div className="tablet:grid-cols-3 grid gap-4.5">
+        <div className="tablet:grid-cols-2 grid gap-4.5">
           {PLANS.map((plan) => (
             <PlanCard
               key={plan.id}
@@ -164,7 +197,7 @@ export const ChoosePlanStep = () => {
           <button
             type="button"
             onClick={() => {
-              updateFormData({ selectedPlan: "essential" });
+              updateFormData({ selectedPlan: "skipped" });
               router.push(appRoutes.auth.signUpDone);
             }}
             className="text-primary cursor-pointer font-semibold"

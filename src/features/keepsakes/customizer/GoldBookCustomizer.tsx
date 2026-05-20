@@ -36,6 +36,7 @@ type GoldBookCustomizerProps = {
   variants: KeepsakeProductVariant[];
   eventId: string | null;
   event?: Event | null;
+  isPro?: boolean;
 };
 
 export const GoldBookCustomizer = ({
@@ -43,6 +44,7 @@ export const GoldBookCustomizer = ({
   variants,
   eventId,
   event,
+  isPro = false,
 }: GoldBookCustomizerProps) => {
   const [variantId, setVariantId] = useState<string | null>(
     variants[0]?.id ?? null,
@@ -189,6 +191,7 @@ export const GoldBookCustomizer = ({
         selectedVariant={selectedVariant}
         isReady={isReady}
         notReadyMessage="Pick at least one photo to continue."
+        showEventBadge={isPro}
       />
     </div>
   );

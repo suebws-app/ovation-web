@@ -58,20 +58,11 @@ export const KioskConfigLeft = ({
         <KioskConfigRow
           title={t("kiosk__config__lockdown__pin__title")}
           description={t("kiosk__config__lockdown__pin__desc")}
+          last
         >
           <KioskPinInput
             value={settings.exitPin}
             onChange={(exitPin) => onPatch({ exitPin })}
-          />
-        </KioskConfigRow>
-        <KioskConfigRow
-          title={t("kiosk__config__lockdown__airplane__title")}
-          description={t("kiosk__config__lockdown__airplane__desc")}
-          last
-        >
-          <KioskToggle
-            on={settings.airplaneMode}
-            onChange={(airplaneMode) => onPatch({ airplaneMode })}
           />
         </KioskConfigRow>
       </KioskConfigCard>

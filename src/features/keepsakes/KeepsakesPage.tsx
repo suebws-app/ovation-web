@@ -13,13 +13,8 @@ import { TestimonialStrip } from "./components/TestimonialStrip";
 export const KeepsakesPage = async () => {
   const cookieStore = await cookies();
   const lastEventId = cookieStore.get("ovation_last_event_id")?.value ?? null;
-  const [catalog, ordersResult, eventsResult] = await Promise.all([
+  const [catalog, eventsResult] = await Promise.all([
     keepsakesApi.catalog(),
-    ordersApi.list({ limit: 5, orderType: "keepsake" }).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404)
-        return { items: [], nextCursor: null };
-      throw error;
-    }),
     eventsApi.list({ limit: 100 }),
   ]);
 
@@ -28,6 +23,16 @@ export const KeepsakesPage = async () => {
       eventsResult.items.find((e) => e.id === lastEventId)?.id) ||
     eventsResult.items[0]?.id ||
     null;
+
+  const ordersResult = eventId
+    ? await ordersApi
+        .list({ eventId, limit: 5, orderType: "keepsake" })
+        .catch((error) => {
+          if (ApiError.isApiError(error) && error.status === 404)
+            return { items: [], nextCursor: null };
+          throw error;
+        })
+    : { items: [], nextCursor: null };
   const featured =
     catalog.products.find((p) => p.sku === "gold_book") ?? catalog.products[0];
 

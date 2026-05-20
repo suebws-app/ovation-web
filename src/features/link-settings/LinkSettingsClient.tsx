@@ -5,7 +5,8 @@ import { useLinkSettings } from "./useLinkSettings";
 import { LinkHeader } from "./components/LinkHeader";
 import { LinkActiveCard } from "./components/LinkActiveCard";
 import { LinkSubmissionTypesCard } from "./components/LinkSubmissionTypesCard";
-import { LinkMaxDurationCard } from "./components/LinkMaxDurationCard";
+import { LinkVideoDurationCard } from "./components/LinkVideoDurationCard";
+import { LinkAudioDurationCard } from "./components/LinkAudioDurationCard";
 
 type LinkSettingsClientProps = {
   eventId: string;
@@ -27,7 +28,12 @@ export const LinkSettingsClient = ({
       <LinkHeader slug={slug} />
       <LinkActiveCard eventId={eventId} enabled={submissionsEnabled} />
       <LinkSubmissionTypesCard settings={settings} onPatch={patch} />
-      <LinkMaxDurationCard settings={settings} onPatch={patch} />
+      {settings.captureVideo && (
+        <LinkVideoDurationCard settings={settings} onPatch={patch} />
+      )}
+      {settings.captureAudio && (
+        <LinkAudioDurationCard settings={settings} onPatch={patch} />
+      )}
     </div>
   );
 };

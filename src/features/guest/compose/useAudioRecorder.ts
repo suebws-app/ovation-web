@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { getBlobDuration } from "@/lib/media/getBlobDuration";
 
-const DEFAULT_MAX_DURATION_SEC = 180;
+const DEFAULT_MAX_DURATION_SEC = 60;
 
 export type AudioRecording = {
   blob: Blob;

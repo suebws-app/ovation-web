@@ -48,7 +48,7 @@ export const KioskExitDialog = ({
 
   return (
     <div
-      className="bg-foreground/85 fixed inset-0 z-40 flex items-center justify-center backdrop-blur-sm"
+      className="bg-foreground/85 fixed inset-0 z-[70] flex items-center justify-center backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       onClick={onCancel}

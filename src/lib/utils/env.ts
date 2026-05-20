@@ -4,7 +4,6 @@ export const env = {
   API_URL: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001",
 
   // Server-only
-  API_URL_INTERNAL: process.env.API_URL ?? "",
   SENTRY_DSN: process.env.SENTRY_DSN ?? "",
 
   // Database (server-only)

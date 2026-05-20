@@ -5,15 +5,12 @@ import { ApiError } from "@/lib/api/client";
 import { appRoutes } from "@/lib/routes";
 import { eventsApi } from "@/lib/api/events";
 import { messagesApi } from "@/lib/api/messages";
-import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { getCurrentUser } from "@/lib/auth/session";
 import { toMessageRowView } from "@/features/messages/adapters";
 import { DashboardGreeting } from "./components/DashboardGreeting";
 import { ResumeCard } from "./components/ResumeCard";
 import { StatLine } from "./components/StatLine";
 import { MessageList } from "./components/MessageList";
-import { NudgeCard } from "./components/NudgeCard";
-import { PlanStatusCard } from "./components/PlanStatusCard";
 import { DashboardEmpty } from "./components/DashboardEmpty";
 
 const formatWeddingDate = (raw: string | null): string => {
@@ -60,7 +57,7 @@ export const DashboardPage = async () => {
     );
   }
 
-  const [stats, recentMessages, subResult] = await Promise.all([
+  const [stats, recentMessages] = await Promise.all([
     eventsApi.stats(event.id).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
@@ -69,12 +66,7 @@ export const DashboardPage = async () => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
     }),
-    subscriptionsApi.get(event.id).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404) return null;
-      throw error;
-    }),
   ]);
-  const subscription = subResult?.subscription ?? null;
 
   const messageViews = (recentMessages?.items ?? []).map((m) =>
     toMessageRowView(m, anonymous),
@@ -96,11 +88,6 @@ export const DashboardPage = async () => {
         messages={messageViews}
         totalCount={stats?.totalMessages ?? messageViews.length}
       />
-      {subscription ? (
-        <PlanStatusCard subscription={subscription} />
-      ) : (
-        <NudgeCard />
-      )}
     </div>
   );
 };

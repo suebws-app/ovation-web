@@ -11,12 +11,14 @@ type DigitalAlbumCustomizerProps = {
   product: KeepsakeProductDetail;
   eventId: string | null;
   event?: Event | null;
+  isPro?: boolean;
 };
 
 export const DigitalAlbumCustomizer = ({
   product,
   eventId,
   event,
+  isPro = false,
 }: DigitalAlbumCustomizerProps) => {
   const [includeAudio, setIncludeAudio] = useState(true);
   const [includeTranscripts, setIncludeTranscripts] = useState(true);
@@ -81,6 +83,7 @@ export const DigitalAlbumCustomizer = ({
         photoIds={photoIds}
         isReady={true}
         requiresShipping={false}
+        showEventBadge={isPro}
       />
     </div>
   );

@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { LockIcon } from "@ovation/icons/LockIcon";
-import { FingerIcon } from "@ovation/icons/FingerIcon";
 import { LogOutIcon } from "@ovation/icons/LogOutIcon";
 import type { PublicEvent } from "@/lib/api/types";
 import { useFullscreen } from "@/lib/hooks/useFullscreen";
@@ -13,6 +12,7 @@ import { useWakeLock } from "@/lib/hooks/useWakeLock";
 import { KioskLiveLanguagePill } from "./KioskLiveLanguagePill";
 import { KioskFullscreenGuard } from "./KioskFullscreenGuard";
 import { KioskExitDialog } from "./KioskExitDialog";
+import { KioskOfflineOverlay } from "@/features/kiosk/components/KioskOfflineOverlay";
 
 type KioskLiveFrameProps = {
   slug: string;
@@ -118,6 +118,7 @@ export const KioskLiveFrame = ({
         }}
       />
 
+      <KioskOfflineOverlay />
       <KioskFullscreenGuard
         active={fullscreenLockActive}
         exitPin={event.kiosk.exitPin}
@@ -139,7 +140,7 @@ export const KioskLiveFrame = ({
         </div>
       )}
 
-      <div className="type-caption text-muted-foreground relative z-10 flex items-center justify-between px-7 py-5">
+      <div className="type-caption text-muted-foreground relative z-10 flex items-center px-7 py-5">
         <div className="flex items-center gap-2.5">
           <div className="rounded-6 bg-primary type-caption text-primary-foreground flex size-5.5 items-center justify-center font-serif font-bold">
             O
@@ -152,25 +153,27 @@ export const KioskLiveFrame = ({
             <LockIcon width={11} height={11} /> {t("kiosk__live__locked")}
           </span>
         </div>
-        <div className="flex items-center gap-2">
-          {enableWakeLock && fullscreenSupported && !isFullscreen && (
-            <button
-              type="button"
-              onClick={enterFullscreen}
-              className="border-border bg-card/70 type-caption hover:bg-card cursor-pointer rounded-full border px-3 py-1.5 font-semibold transition-colors"
-            >
-              {t("kiosk__live__go_fullscreen")}
-            </button>
-          )}
+      </div>
+
+      <div className="type-caption fixed top-5 right-7 z-[60] flex items-center gap-2">
+        {enableWakeLock && fullscreenSupported && !isFullscreen && (
           <button
             type="button"
-            onClick={handleExitClick}
-            className="border-border bg-card/70 type-caption hover:bg-card inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold transition-colors"
+            onClick={enterFullscreen}
+            className="border-border bg-card/70 type-caption hover:bg-card cursor-pointer rounded-full border px-3 py-1.5 font-semibold shadow-sm transition-colors"
           >
-            <LogOutIcon width={12} height={12} />
-            {t("kiosk__exit__button")}
+            {t("kiosk__live__go_fullscreen")}
           </button>
-        </div>
+        )}
+        <button
+          type="button"
+          onClick={handleExitClick}
+          aria-label={t("kiosk__exit__button")}
+          className="border-border bg-card/90 type-caption hover:bg-card inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold shadow-sm transition-colors"
+        >
+          <LogOutIcon width={12} height={12} />
+          {t("kiosk__exit__button")}
+        </button>
       </div>
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-20 text-center">
@@ -223,7 +226,10 @@ export const KioskLiveFrame = ({
         </button>
         <div className="type-body-small text-muted-foreground mt-10">
           {t("kiosk__live__caption", {
-            seconds: event.kiosk.maxDurationSeconds,
+            seconds: Math.max(
+              event.kiosk.maxVideoDurationSeconds,
+              event.kiosk.maxAudioDurationSeconds,
+            ),
           })}
         </div>
       </div>
@@ -249,10 +255,6 @@ export const KioskLiveFrame = ({
               />
             );
           })}
-        </div>
-        <div className="type-caption text-muted-foreground flex items-center gap-2">
-          <FingerIcon width={13} height={13} />
-          {t("kiosk__live__exit_hint")}
         </div>
       </div>
     </div>

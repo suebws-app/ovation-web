@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { EyeIcon } from "@ovation/icons/EyeIcon";
@@ -14,14 +14,45 @@ type KioskPreviewProps = {
   event: PublicEvent | null;
 };
 
+type DeviceKey = "tablet" | "phone";
+
+const DEVICES: Record<DeviceKey, { width: number; height: number; maxScale: number }> = {
+  tablet: { width: 1280, height: 800, maxScale: 0.58 },
+  phone: { width: 390, height: 844, maxScale: 0.55 },
+};
+
+const BEZEL_PX = 28;
+
 export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
   const t = useTranslations();
-  const [activeTab, setActiveTab] = useState("tablet");
-  const TABS = [
+  const [activeTab, setActiveTab] = useState<DeviceKey>("tablet");
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [stageWidth, setStageWidth] = useState(0);
+
+  useEffect(() => {
+    const node = stageRef.current;
+    if (!node) return;
+    const ro = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry) setStageWidth(entry.contentRect.width);
+    });
+    ro.observe(node);
+    return () => ro.disconnect();
+  }, []);
+
+  const TABS: Array<{ label: string; value: DeviceKey }> = [
     { label: t("kiosk__preview__tablet"), value: "tablet" },
     { label: t("kiosk__preview__phone"), value: "phone" },
-    { label: t("kiosk__preview__locked"), value: "locked" },
   ];
+
+  const device = DEVICES[activeTab];
+  const availableWidth = Math.max(stageWidth - BEZEL_PX, 0);
+  const fitScale =
+    stageWidth > 0
+      ? Math.min(device.maxScale, availableWidth / device.width)
+      : device.maxScale;
+  const outerWidth = device.width * fitScale + BEZEL_PX;
+  const outerHeight = device.height * fitScale + BEZEL_PX;
 
   if (!slug || !event) {
     return (
@@ -62,17 +93,20 @@ export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
             />
           ))}
         </div>
-        <div className="rounded-16 bg-background flex justify-center p-6">
+        <div
+          ref={stageRef}
+          className="rounded-16 bg-background flex justify-center p-6"
+        >
           <div
             className="rounded-24 border-foreground/90 relative overflow-hidden border-[14px] shadow-lg"
-            style={{ width: 1280 * 0.58, height: 800 * 0.58 + 28 }}
+            style={{ width: outerWidth, height: outerHeight }}
           >
             <div
               className="pointer-events-none absolute inset-0 origin-top-left"
               style={{
-                transform: "scale(0.58)",
-                width: 1280,
-                height: 800,
+                transform: `scale(${fitScale})`,
+                width: device.width,
+                height: device.height,
               }}
             >
               <KioskLiveFrame slug={slug} event={event} />

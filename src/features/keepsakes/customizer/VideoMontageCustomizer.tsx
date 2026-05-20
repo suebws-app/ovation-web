@@ -22,12 +22,14 @@ type VideoMontageCustomizerProps = {
   product: KeepsakeProductDetail;
   eventId: string | null;
   event?: Event | null;
+  isPro?: boolean;
 };
 
 export const VideoMontageCustomizer = ({
   product,
   eventId,
   event,
+  isPro = false,
 }: VideoMontageCustomizerProps) => {
   const [style, setStyle] = useState<Style>("cinematic");
   const [durationSec, setDurationSec] = useState(120);
@@ -154,6 +156,7 @@ export const VideoMontageCustomizer = ({
         isReady={isReady}
         notReadyMessage="Pick at least one audio message or media item."
         requiresShipping={false}
+        showEventBadge={isPro}
       />
     </div>
   );

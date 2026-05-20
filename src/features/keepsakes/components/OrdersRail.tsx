@@ -28,8 +28,12 @@ export const OrdersRail = ({ orders }: OrdersRailProps) => {
     currency: string;
   } | null>(null);
 
-  const productNameOf = (order: Order): string =>
-    order.productName || t("keepsakes__product__order");
+  const productNameOf = (order: Order): string => {
+    const base = order.productName
+      ? t(order.productName)
+      : t("keepsakes__product__order");
+    return order.variantName ? `${base} — ${order.variantName}` : base;
+  };
 
   return (
     <>

@@ -37,7 +37,7 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
       </span>
       <div>
         <Kicker className="tracking-[2px] text-black/55">
-          {name} &middot; {formatPrice(priceCents, currency)}
+          {name ? t(name) : ""} &middot; {formatPrice(priceCents, currency)}
         </Kicker>
         <h2 className="tablet:type-h1 type-h1 mt-2 leading-none font-semibold">
           {t("keepsakes__featured__title_a")}
@@ -45,7 +45,7 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
           {t("keepsakes__featured__title_b")}
         </h2>
         <p className="type-body-small mt-3 max-w-105 leading-relaxed text-black/75">
-          {t(design.taglineKey) || description}
+          {t(design.taglineKey) || (description ? t(description) : "")}
         </p>
         <div className="mt-4 flex flex-wrap gap-1.5">
           {features.map((b) => (

@@ -1,7 +1,5 @@
 import { eventsApi } from "@/lib/api/events";
-import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { ApiError } from "@/lib/api/client";
-import { ActivateLinkBanner } from "@/features/activate-link";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -36,36 +34,25 @@ export const EventQRCodePage = async ({
     );
   }
 
-  const [qr, subResult, stats] = await Promise.all([
+  const [qr, stats] = await Promise.all([
     eventsApi
       .qrCode(event.id, { format: "svg", size: 512 })
       .catch((error) => {
         if (ApiError.isApiError(error) && error.status === 404) return null;
         throw error;
       }),
-    subscriptionsApi.get(event.id).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404) return null;
-      throw error;
-    }),
     eventsApi.stats(event.id).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
     }),
   ]);
 
-  const subscription = subResult?.subscription ?? null;
   const isPro = user?.accountType === "pro";
-  const showActivation = !subscription && !isPro;
 
   return (
-    <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6">
+    <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6 pb-28 tablet:pb-6">
       <QRCodeHeader guestSlug={event.slug} />
-      {showActivation && (
-        <div className="mt-6">
-          <ActivateLinkBanner />
-        </div>
-      )}
-      {subscription && (
+      {!isPro && (
         <div className="rounded-16 border-border bg-card mt-6 flex flex-col gap-1 border p-5">
           <p className="type-body-small font-semibold">
             {t("qr_code__link_settings_card__title")}
