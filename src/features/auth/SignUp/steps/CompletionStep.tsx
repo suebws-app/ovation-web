@@ -144,12 +144,36 @@ export const CompletionStep = () => {
         const { bookUrl } = useSignUpStore.getState().formData;
 
         try {
-          const { event } = await eventsClient.create({
-            partnerAName: partnerA,
-            partnerBName: partnerB,
-            weddingDate: toIsoDate(formData.weddingDate),
-            venueName: formData.venue?.trim() || undefined,
-          });
+          const existingEventId =
+            typeof window !== "undefined"
+              ? window.sessionStorage?.getItem("ovation_signup_event_id") ?? null
+              : null;
+          const event = existingEventId
+            ? await eventsClient
+                .update(existingEventId, {
+                  partnerAName: partnerA,
+                  partnerBName: partnerB,
+                  weddingDate: toIsoDate(formData.weddingDate),
+                  venueName: formData.venue?.trim() || undefined,
+                })
+                .then((r) => r.event)
+                .catch(async () => {
+                  const created = await eventsClient.create({
+                    partnerAName: partnerA,
+                    partnerBName: partnerB,
+                    weddingDate: toIsoDate(formData.weddingDate),
+                    venueName: formData.venue?.trim() || undefined,
+                  });
+                  return created.event;
+                })
+            : await eventsClient
+                .create({
+                  partnerAName: partnerA,
+                  partnerBName: partnerB,
+                  weddingDate: toIsoDate(formData.weddingDate),
+                  venueName: formData.venue?.trim() || undefined,
+                })
+                .then((r) => r.event);
 
           let finalSlug = event.slug;
           const desiredSlug = bookUrl.trim();
