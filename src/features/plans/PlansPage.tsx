@@ -50,7 +50,8 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
     (plan) =>
       !plan.code.startsWith("pro_") &&
       plan.code !== "storage_extension" &&
-      plan.code !== "essentials",
+      plan.code !== "essentials" &&
+      plan.code !== "free",
   );
   return <PlansPicker mode="couple" plans={couplePlans} eventId={event.id} />;
 };
