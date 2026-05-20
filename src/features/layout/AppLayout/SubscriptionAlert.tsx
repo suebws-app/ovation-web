@@ -5,22 +5,16 @@ import { usePathname } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
-import type { Subscription } from "@/lib/api/types";
 
 type SubscriptionAlertProps = {
-  subscription: Subscription | null;
   planTier: string | null;
 };
 
-export const SubscriptionAlert = ({
-  subscription,
-  planTier,
-}: SubscriptionAlertProps) => {
+export const SubscriptionAlert = ({ planTier }: SubscriptionAlertProps) => {
   const t = useTranslations();
   const pathname = usePathname();
 
-  if (planTier && planTier !== "free") return null;
-  if (subscription && subscription.status === "active") return null;
+  if (planTier !== "free") return null;
   if (pathname.startsWith(appRoutes.app.plans)) return null;
 
   return (

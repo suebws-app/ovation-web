@@ -24,7 +24,7 @@ export const AppLayout = ({
       <div className="flex w-full flex-1 flex-col overflow-hidden pb-6">
         <AppHeaderDesktop subscription={subscription} />
         <AppHeaderMobile />
-        <SubscriptionAlert subscription={subscription} planTier={user.planTier} />
+        <SubscriptionAlert planTier={user.planTier} />
         <SidebarInset className="min-h-0 flex-1 overflow-hidden">
           {children}
         </SidebarInset>
