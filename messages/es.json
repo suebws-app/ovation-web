@@ -41,5 +41,7 @@
   "activate_link__cta": "Upgrade",
   "app__plan__active_title": "Your Plan",
   "app__plan__dre_upsell_description": "Add Data Retention Extension to keep your event data after your storage expires.",
-  "app__plan__dre_upsell_cta": "Activate DRE"
+  "app__plan__dre_upsell_cta": "Activate DRE",
+  "plan_name__premium": "Keepsake",
+  "plan_name__bundle": "Gold Book"
 }

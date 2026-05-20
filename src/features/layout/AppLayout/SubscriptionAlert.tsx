@@ -42,9 +42,13 @@ export const SubscriptionAlert = ({
     daysLeft = Math.max(0, FREE_STORAGE_DAYS - elapsedDays);
   }
 
+  const planNameMap: Record<string, string> = {
+    premium: t("plan_name__premium"),
+    bundle: t("plan_name__bundle"),
+  };
   const title = isFree
     ? t("app__no_subscription__title")
-    : t("app__plan__active_title");
+    : planNameMap[planTier ?? ""] ?? t("app__plan__active_title");
   const description = isFree
     ? t("app__no_subscription__description")
     : t("app__plan__dre_upsell_description");
