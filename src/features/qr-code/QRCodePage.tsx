@@ -1,5 +1,4 @@
 import { eventsApi } from "@/lib/api/events";
-import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { ApiError } from "@/lib/api/client";
 import { PlansBanner } from "@/features/plans";
 import { Link } from "@/i18n/navigation";
@@ -29,12 +28,8 @@ export const QRCodePage = async () => {
       </div>
     );
 
-  const [qr, subResult, stats] = await Promise.all([
+  const [qr, stats] = await Promise.all([
     eventsApi.qrCode(event.id, { format: "svg", size: 512 }).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404) return null;
-      throw error;
-    }),
-    subscriptionsApi.get(event.id).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
     }),
@@ -44,9 +39,9 @@ export const QRCodePage = async () => {
     }),
   ]);
 
-  const subscription = subResult?.subscription ?? null;
   const isPro = user?.accountType === "pro";
-  const showActivation = !subscription && !isPro;
+  const hasPaidPlan = !!user?.planTier && user.planTier !== "free";
+  const showActivation = !hasPaidPlan && !isPro;
 
   return (
     <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6 pb-28 tablet:pb-6">
@@ -56,7 +51,7 @@ export const QRCodePage = async () => {
           <PlansBanner />
         </div>
       )}
-      {subscription && (
+      {hasPaidPlan && (
         <div className="rounded-16 border-border bg-card mt-6 flex flex-col gap-1 border p-5">
           <p className="type-body-small font-semibold">
             {t("qr_code__link_settings_card__title")}

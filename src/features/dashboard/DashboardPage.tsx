@@ -5,7 +5,6 @@ import { ApiError } from "@/lib/api/client";
 import { appRoutes } from "@/lib/routes";
 import { eventsApi } from "@/lib/api/events";
 import { messagesApi } from "@/lib/api/messages";
-import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { getCurrentUser } from "@/lib/auth/session";
 import { toMessageRowView } from "@/features/messages/adapters";
 import { DashboardGreeting } from "./components/DashboardGreeting";
@@ -59,7 +58,7 @@ export const DashboardPage = async () => {
     );
   }
 
-  const [stats, recentMessages, subResult] = await Promise.all([
+  const [stats, recentMessages] = await Promise.all([
     eventsApi.stats(event.id).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
@@ -68,12 +67,7 @@ export const DashboardPage = async () => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
     }),
-    subscriptionsApi.get(event.id).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404) return null;
-      throw error;
-    }),
   ]);
-  const subscription = subResult?.subscription ?? null;
 
   const messageViews = (recentMessages?.items ?? []).map((m) =>
     toMessageRowView(m, anonymous),
@@ -95,9 +89,8 @@ export const DashboardPage = async () => {
         messages={messageViews}
         totalCount={stats?.totalMessages ?? messageViews.length}
       />
-      {(subscription || (user.planTier && user.planTier !== "free")) && (
+      {user.planTier && user.planTier !== "free" && (
         <PlanStatusCard
-          subscription={subscription}
           planTier={user.planTier}
           storageExpiresAt={user.storageExpiresAt}
         />

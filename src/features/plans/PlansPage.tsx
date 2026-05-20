@@ -42,7 +42,9 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
 
   const events = await eventsApi.list({ limit: 1 });
   const event = events.items[0];
-  if (!event) redirect(appRoutes.app.eventsNew);
+  if (!event) redirect(appRoutes.app.root);
+
+  if (user.planTier !== "free") redirect(appRoutes.app.root);
 
   const couplePlans = plans.filter(
     (plan) =>

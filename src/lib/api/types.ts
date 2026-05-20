@@ -51,6 +51,7 @@ export type User = {
   planPurchasedAt: string | null;
   messageLimit: number | null;
   storageExpiresAt: string | null;
+  keepsakeCreditCents: number;
   stripeCustomerId: string | null;
   emailPreferences: EmailPreferences | null;
   createdAt: string;
@@ -525,17 +526,6 @@ export type Plan = {
   sortOrder: number;
 };
 
-export type Subscription = {
-  id: string;
-  eventId: string;
-  planId: string;
-  planCode: string;
-  planName: string;
-  status: string;
-  creditCentsRemaining: number;
-  activatedAt: string;
-  expiresAt: string | null;
-};
 
 export type BasePlanInfo = {
   planCode: string;

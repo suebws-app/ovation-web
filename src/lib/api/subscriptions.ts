@@ -1,16 +1,7 @@
 import { apiFetch } from "./server";
-import type {
-  MeBillingOverview,
-  MeBillingHistoryItem,
-  Subscription,
-} from "./types";
+import type { MeBillingOverview, MeBillingHistoryItem } from "./types";
 
 export const subscriptionsApi = {
-  get: (eventId: string) =>
-    apiFetch<{ subscription: Subscription | null }>(
-      `/events/${eventId}/subscription`,
-    ),
-
   getMine: () => apiFetch<MeBillingOverview>(`/subscriptions/me`),
 
   getMyHistory: () =>
