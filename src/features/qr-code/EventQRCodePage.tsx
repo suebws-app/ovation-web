@@ -1,6 +1,5 @@
 import { eventsApi } from "@/lib/api/events";
 import { ApiError } from "@/lib/api/client";
-import { PlansBanner } from "@/features/plans";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -49,18 +48,11 @@ export const EventQRCodePage = async ({
   ]);
 
   const isPro = user?.accountType === "pro";
-  const hasPaidPlan = !!user?.planTier && user.planTier !== "free";
-  const showActivation = !hasPaidPlan && !isPro;
 
   return (
     <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6 pb-28 tablet:pb-6">
       <QRCodeHeader guestSlug={event.slug} />
-      {showActivation && (
-        <div className="mt-6">
-          <PlansBanner />
-        </div>
-      )}
-      {hasPaidPlan && (
+      {!isPro && (
         <div className="rounded-16 border-border bg-card mt-6 flex flex-col gap-1 border p-5">
           <p className="type-body-small font-semibold">
             {t("qr_code__link_settings_card__title")}
