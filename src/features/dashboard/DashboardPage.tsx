@@ -95,7 +95,7 @@ export const DashboardPage = async () => {
         messages={messageViews}
         totalCount={stats?.totalMessages ?? messageViews.length}
       />
-      {(subscription || user.planTier) && (
+      {(subscription || (user.planTier && user.planTier !== "free")) && (
         <PlanStatusCard
           subscription={subscription}
           planTier={user.planTier}

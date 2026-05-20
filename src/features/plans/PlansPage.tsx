@@ -24,6 +24,9 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
   const { plans } = await plansApi.list();
 
   if (isUpgrade) {
+    const eligible =
+      user.planTier === "premium" || user.planTier === "bundle";
+    if (!eligible) redirect(appRoutes.app.root);
     const drePlan = plans.find((p) => p.code === "storage_extension");
     if (!drePlan) redirect(appRoutes.app.root);
     return (
@@ -34,7 +37,7 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
   }
 
   if (user.accountType === "pro") {
-    if (user.planTier) redirect(appRoutes.app.root);
+    if (user.planTier && user.planTier !== "free") redirect(appRoutes.app.root);
     const proPlans = plans.filter((plan) => plan.code.startsWith("pro_"));
     return <PlansPicker mode="pro" plans={proPlans} />;
   }

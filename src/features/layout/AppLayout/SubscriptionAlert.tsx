@@ -19,7 +19,7 @@ export const SubscriptionAlert = ({
   const t = useTranslations();
   const pathname = usePathname();
 
-  if (planTier) return null;
+  if (planTier && planTier !== "free") return null;
   if (subscription && subscription.status === "active") return null;
   if (pathname.startsWith(appRoutes.app.plans)) return null;
 

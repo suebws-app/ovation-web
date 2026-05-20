@@ -34,7 +34,10 @@ export const SettingsBillingPage = async () => {
   const dre = overview?.dre ?? null;
   const items = history.items;
 
-  if (!basePlan && items.length === 0) {
+  const dreActiveOrScheduled =
+    dre?.state === "active" || dre?.state === "cancellation_scheduled";
+
+  if (!basePlan && !dreActiveOrScheduled && items.length === 0) {
     return (
       <div className="flex flex-col items-start gap-4">
         <p className="type-body text-muted-foreground">
@@ -52,10 +55,10 @@ export const SettingsBillingPage = async () => {
   return (
     <div className="flex flex-col gap-8">
       {basePlan && <BasePlanCard plan={basePlan} locale={locale} />}
-      {basePlan && (
+      {(basePlan || dreActiveOrScheduled) && (
         <DreSection
           dre={dre}
-          basePlanExpiresAt={basePlan.expiresAt}
+          basePlanExpiresAt={basePlan?.expiresAt ?? dre?.currentPeriodEnd ?? null}
           locale={locale}
         />
       )}
