@@ -31,6 +31,7 @@ export type CreateMessageInput = {
   clientCreatedAt?: string | null;
   _honeypot?: string;
   _t?: number;
+  _turnstile?: string;
 };
 
 export type GalleryQuery = {

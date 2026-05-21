@@ -3,21 +3,75 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 
+const mediaDomain = process.env.NEXT_PUBLIC_MEDIA_DOMAIN ?? "";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const isDev = process.env.NODE_ENV === "development";
+
+const scriptSrc = ["'self'", "'unsafe-inline'", isDev && "'unsafe-eval'"];
+
+type RemotePattern = NonNullable<
+  NonNullable<NextConfig["images"]>["remotePatterns"]
+>[number];
+
+const remotePatterns: RemotePattern[] = [
+  { protocol: "https", hostname: "lh3.googleusercontent.com" },
+];
+
+if (mediaDomain) {
+  try {
+    const { hostname, protocol, port } = new URL(
+      mediaDomain.startsWith("http") ? mediaDomain : `https://${mediaDomain}`,
+    );
+    remotePatterns.push({
+      protocol: protocol.replace(":", "") as "https" | "http",
+      hostname,
+      port: port || "",
+      pathname: "**",
+    });
+  } catch {
+    // invalid NEXT_PUBLIC_MEDIA_DOMAIN — no remote pattern added for media
+  }
+}
+
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+  },
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      `script-src ${scriptSrc}`,
+      "style-src 'self' 'unsafe-inline'",
+      `img-src 'self' data: blob: ${mediaDomain} https://lh3.googleusercontent.com`,
+      `connect-src 'self' ${apiUrl} ${appUrl}`,
+      "font-src 'self'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "frame-ancestors 'none'",
+      "form-action 'self'",
+      "upgrade-insecure-requests",
+    ].join("; "),
+  },
+];
+
 const nextConfig: NextConfig = {
   transpilePackages: ["@ovation/ui", "@ovation/icons"],
   images: {
-    remotePatterns: [
+    remotePatterns,
+  },
+  async headers() {
+    return [
       {
-        protocol: "https",
-        hostname: "**",
-        port: "",
-        pathname: "**",
+        source: "/(.*)",
+        headers: securityHeaders,
       },
-      {
-        protocol: "http",
-        hostname: "**",
-      },
-    ],
+    ];
   },
 };
 

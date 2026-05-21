@@ -18,12 +18,14 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import { getSignInSchema, type SignInFields } from "../signInSchema";
+import { UnverifiedEmailBanner } from "../components/UnverifiedEmailBanner";
 
 export const SignInForm = () => {
   const t = useTranslations();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [unverifiedEmail, setUnverifiedEmail] = useState<string | null>(null);
   const schema = useMemo(() => getSignInSchema(t), [t]);
 
   const {
@@ -40,15 +42,29 @@ export const SignInForm = () => {
 
   const onSubmit = async (values: SignInFields) => {
     setSubmitError(null);
+    setUnverifiedEmail(null);
     const { error } = await authClient.signIn.email({
       email: values.email,
       password: values.password,
     });
     if (error) {
+      const errorCode =
+        ((error as Record<string, unknown>)?.code as string | undefined) ?? "";
+      const isUnverified =
+        errorCode.toUpperCase().includes("EMAIL") &&
+        errorCode.toUpperCase().includes("VERIF");
+      if (isUnverified) {
+        setUnverifiedEmail(values.email);
+        return;
+      }
       setSubmitError(error.message ?? t("auth__signin__error_generic"));
       return;
     }
-    const redirectTo = searchParams.get("redirect") ?? appRoutes.app.root;
+    const raw = searchParams.get("redirect") ?? "";
+    const redirectTo =
+      raw.startsWith("/") && !raw.startsWith("//")
+        ? raw
+        : appRoutes.app.root;
     router.replace(redirectTo);
     router.refresh();
   };
@@ -144,6 +160,13 @@ export const SignInForm = () => {
           <p className="type-body-small text-destructive mt-4" role="alert">
             {submitError}
           </p>
+        )}
+
+        {unverifiedEmail && (
+          <UnverifiedEmailBanner
+            email={unverifiedEmail}
+            onSent={() => setUnverifiedEmail(null)}
+          />
         )}
 
         <Button
