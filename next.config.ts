@@ -8,7 +8,9 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
 const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 const isDev = process.env.NODE_ENV === "development";
 
-const scriptSrc = ["'self'", "'unsafe-inline'", isDev && "'unsafe-eval'"];
+const scriptSrc = ["'self'", "'unsafe-inline'", isDev && "'unsafe-eval'"]
+  .filter(Boolean)
+  .join(" ");
 
 type RemotePattern = NonNullable<
   NonNullable<NextConfig["images"]>["remotePatterns"]

@@ -1,13 +1,23 @@
+"use client";
+
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
+import { env } from "@/lib/utils/env";
 
+const waitlistSchema = z.object({
+  email: z
+    .string()
+    .min(1, "Please enter your email address.")
+    .email("Please enter a valid email address."),
+});
+
+type WaitlistFields = z.infer<typeof waitlistSchema>;
 type WaitlistState = "idle" | "loading" | "success" | "error";
-
-type WaitlistSectionProps = {
-  state: WaitlistState;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-};
 
 const WaitlistSuccess = () => (
   <div className="flex flex-col items-center gap-3 py-2 text-center">
@@ -25,22 +35,53 @@ const WaitlistSuccess = () => (
   </div>
 );
 
-export const WaitlistSection = ({ state, onSubmit }: WaitlistSectionProps) => {
+export const WaitlistSection = () => {
+  const [state, setState] = useState<WaitlistState>("idle");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<WaitlistFields>({
+    resolver: zodResolver(waitlistSchema),
+    mode: "onTouched",
+    reValidateMode: "onChange",
+  });
+
+  const onSubmit = async ({ email }: WaitlistFields) => {
+    setState("loading");
+    try {
+      const res = await fetch(`${env.API_URL}/api/v1/waitlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setState(res.ok ? "success" : "error");
+    } catch {
+      setState("error");
+    }
+  };
+
   if (state === "success") {
     return <WaitlistSuccess />;
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-3">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-3"
+    >
       <Input
         type="email"
-        name="email"
         placeholder="your@email.com"
         autoComplete="email"
-        required
         disabled={state === "loading"}
+        {...register("email")}
       />
-      {state === "error" && (
+      {errors.email && (
+        <p className="type-caption text-danger px-1">{errors.email.message}</p>
+      )}
+      {state === "error" && !errors.email && (
         <p className="type-caption text-danger px-1">
           Something went wrong — please try again.
         </p>
