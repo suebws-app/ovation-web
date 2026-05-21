@@ -14,7 +14,7 @@ const UnlockSuccess = () => (
       <CheckIcon width={20} height={20} className="text-primary-foreground" />
     </div>
     <div>
-      <p className="type-body font-semibold text-foreground">Access granted!</p>
+      <p className="type-body text-foreground font-semibold">Access granted!</p>
       <p className="type-body-small text-muted-foreground mt-1">
         Redirecting you now…
       </p>

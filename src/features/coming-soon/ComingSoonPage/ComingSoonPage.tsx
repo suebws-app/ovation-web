@@ -34,9 +34,9 @@ export const ComingSoonPage = () => (
       </h1>
 
       <p className="type-body text-muted-foreground mb-8 text-center leading-relaxed">
-        Ovation is a keepsake app for the people you love most. Guests scan a
-        QR code and leave a voice message and photo. You open one every
-        morning — for as long as you&rsquo;d like.
+        Ovation is a keepsake app for the people you love most. Guests scan a QR
+        code and leave a voice message and photo. You open one every morning —
+        for as long as you&rsquo;d like.
       </p>
 
       <div className="mb-10 flex flex-col gap-2.5">

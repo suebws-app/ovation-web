@@ -25,7 +25,7 @@ const WaitlistSuccess = () => (
       <CheckIcon width={20} height={20} className="text-primary-foreground" />
     </div>
     <div>
-      <p className="type-body font-semibold text-foreground">
+      <p className="type-body text-foreground font-semibold">
         You&rsquo;re on the list!
       </p>
       <p className="type-body-small text-muted-foreground mt-1">
@@ -67,10 +67,7 @@ export const WaitlistSection = () => {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-3"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
       <Input
         type="email"
         placeholder="your@email.com"
