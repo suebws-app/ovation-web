@@ -6,6 +6,9 @@ const withNextIntl = createNextIntlPlugin();
 const mediaDomain = process.env.NEXT_PUBLIC_MEDIA_DOMAIN ?? "";
 const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
 const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const isDev = process.env.NODE_ENV === "development";
+
+const scriptSrc = ["'self'", "'unsafe-inline'", isDev && "'unsafe-eval'"];
 
 type RemotePattern = NonNullable<
   NonNullable<NextConfig["images"]>["remotePatterns"]
@@ -43,7 +46,7 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      `script-src ${scriptSrc}`,
       "style-src 'self' 'unsafe-inline'",
       `img-src 'self' data: blob: ${mediaDomain} https://lh3.googleusercontent.com`,
       `connect-src 'self' ${apiUrl} ${appUrl}`,

@@ -1,3 +1,4 @@
+import { NextRequest, NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { getSessionCookie } from "better-auth/cookies";
 import { routing } from "./i18n/routing";
@@ -5,6 +6,8 @@ import { locales } from "./i18n/config";
 import { env } from "./lib/utils/env";
 
 const intlMiddleware = createMiddleware(routing);
+
+const PREVIEW_COOKIE = "preview_access";
 
 const PROTECTED_PREFIXES = ["/app", "/settings"];
 const AUTH_PREFIXES = [
@@ -38,7 +41,58 @@ const matchesPrefix = (pathname: string, prefixes: string[]): boolean =>
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
   );
 
-export const proxy = (request: Request) => {
+const hmacHex = async (value: string, secret: string): Promise<string> => {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    enc.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  const sig = await crypto.subtle.sign("HMAC", key, enc.encode(value));
+  return Array.from(new Uint8Array(sig))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+};
+
+const timingSafeEqual = (a: string, b: string): boolean => {
+  if (a.length !== b.length) return false;
+  const aBytes = new TextEncoder().encode(a);
+  const bBytes = new TextEncoder().encode(b);
+  let diff = 0;
+  for (let i = 0; i < aBytes.length; i++) diff |= aBytes[i] ^ bBytes[i];
+  return diff === 0;
+};
+
+export const proxy = async (request: NextRequest) => {
+  const { pathname } = request.nextUrl;
+
+  const isComingSoonPage = pathname === "/coming-soon";
+  const isComingSoonApi = pathname.startsWith("/api/coming-soon");
+
+  if (
+    process.env.COMING_SOON_ENABLED === "true" &&
+    !isComingSoonPage &&
+    !isComingSoonApi
+  ) {
+    const password = process.env.COMING_SOON_PASSWORD;
+    const secret = process.env.AUTH_COOKIE_SECRET;
+    if (password && secret) {
+      const token = request.cookies.get(PREVIEW_COOKIE)?.value ?? "";
+      const expected = await hmacHex(password, secret);
+      if (!timingSafeEqual(token, expected)) {
+        const url = request.nextUrl.clone();
+        url.pathname = "/coming-soon";
+        return NextResponse.redirect(url);
+      }
+    }
+  }
+
+  if (isComingSoonPage || isComingSoonApi || pathname.startsWith("/api/")) {
+    return NextResponse.next();
+  }
+
   if (
     env.IS_PRODUCTION &&
     env.CF_ORIGIN_TOKEN &&
@@ -47,8 +101,6 @@ export const proxy = (request: Request) => {
     return new Response("Forbidden", { status: 403 });
   }
 
-  const url = new URL(request.url);
-  const pathname = url.pathname;
   const pathnameWithoutLocale = stripLocalePrefix(pathname);
 
   const isAuthenticated = Boolean(
@@ -72,7 +124,11 @@ export const proxy = (request: Request) => {
     return Response.redirect(target);
   }
 
-  const POST_AUTH_SIGNUP_STEPS = ["/sign-up/verify", "/sign-up/plan", "/sign-up/done"];
+  const POST_AUTH_SIGNUP_STEPS = [
+    "/sign-up/verify",
+    "/sign-up/plan",
+    "/sign-up/done",
+  ];
   const isPostAuthSignUpStep = POST_AUTH_SIGNUP_STEPS.some(
     (p) =>
       pathnameWithoutLocale === p || pathnameWithoutLocale.startsWith(`${p}/`),
@@ -91,5 +147,5 @@ export const proxy = (request: Request) => {
 };
 
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  matcher: ["/((?!_next/static|_next/image|.*\\..*).*)"],
 };

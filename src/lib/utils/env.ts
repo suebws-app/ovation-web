@@ -46,6 +46,11 @@ export const env = {
   // When blank, Turnstile widgets are not rendered.
   TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "",
 
+  // Coming soon mode — gates all routes behind a password-protected page.
+  // Set COMING_SOON_ENABLED=true and COMING_SOON_PASSWORD=<secret> to enable.
+  COMING_SOON_ENABLED: process.env.COMING_SOON_ENABLED ?? "false",
+  COMING_SOON_PASSWORD: process.env.COMING_SOON_PASSWORD ?? "",
+
   // Derived
   IS_PRODUCTION: process.env.NODE_ENV === "production",
 } as const;
