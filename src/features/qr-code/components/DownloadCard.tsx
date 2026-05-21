@@ -94,7 +94,8 @@ export const DownloadCard = ({
       const y = (pageHeight - qrSize) / 2 - 15;
       pdf.addImage(dataUrl, "PNG", x, y, qrSize, qrSize);
       pdf.setFontSize(13);
-      pdf.text(shortUrl, pageWidth / 2, y + qrSize + 14, { align: "center" });
+      const safeUrl = shortUrl.replace(/[^\x20-\x7E]/g, "");
+      pdf.text(safeUrl, pageWidth / 2, y + qrSize + 14, { align: "center" });
       pdf.save(`${slug}-qr.pdf`);
     } finally {
       setPending(null);

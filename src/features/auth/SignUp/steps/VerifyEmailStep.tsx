@@ -3,8 +3,11 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { Button } from "@ovation/ui/components/Button";
 import { useSignUpStore } from "../useSignUpStore";
 import { authClient } from "@/lib/auth/client";
+import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { MailIcon } from "../components/MailIcon";
 
 type ResendState =
@@ -84,6 +87,12 @@ export const VerifyEmailStep = () => {
         <p className="type-caption text-muted-foreground mt-11 font-serif italic">
           {t("auth__verify__tip")}
         </p>
+
+        <Button asChild variant="ghost" size="sm" className="mt-6">
+          <Link href={appRoutes.auth.signUpPlan}>
+            {t("auth__verify__continue_anyway")}
+          </Link>
+        </Button>
       </div>
     </div>
   );

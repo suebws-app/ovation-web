@@ -12,6 +12,8 @@ import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
+import { env } from "@/lib/utils/env";
 import {
   getForgotPasswordSchema,
   type ForgotPasswordFields,
@@ -25,6 +27,7 @@ type Status =
 export const ForgotPasswordForm = () => {
   const t = useTranslations();
   const [status, setStatus] = useState<Status>({ kind: "idle" });
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const schema = useMemo(() => getForgotPasswordSchema(t), [t]);
 
   const {
@@ -40,6 +43,10 @@ export const ForgotPasswordForm = () => {
 
   const onSubmit = async (values: ForgotPasswordFields) => {
     setStatus({ kind: "idle" });
+    if (env.TURNSTILE_SITE_KEY && !turnstileToken) {
+      setStatus({ kind: "error", message: t("auth__forgot__error_turnstile") });
+      return;
+    }
     const { error } = await authClient.requestPasswordReset({
       email: values.email,
       redirectTo: appRoutes.auth.resetPassword,
@@ -100,6 +107,13 @@ export const ForgotPasswordForm = () => {
               {status.message}
             </p>
           )}
+
+          <div className="mt-6">
+            <TurnstileWidget
+              onSuccess={setTurnstileToken}
+              onExpire={() => setTurnstileToken(null)}
+            />
+          </div>
 
           <Button
             type="submit"

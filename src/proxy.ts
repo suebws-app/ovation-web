@@ -2,6 +2,7 @@ import createMiddleware from "next-intl/middleware";
 import { getSessionCookie } from "better-auth/cookies";
 import { routing } from "./i18n/routing";
 import { locales } from "./i18n/config";
+import { env } from "./lib/utils/env";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -38,6 +39,14 @@ const matchesPrefix = (pathname: string, prefixes: string[]): boolean =>
   );
 
 export const proxy = (request: Request) => {
+  if (
+    env.IS_PRODUCTION &&
+    env.CF_ORIGIN_TOKEN &&
+    request.headers.get("x-cf-origin-token") !== env.CF_ORIGIN_TOKEN
+  ) {
+    return new Response("Forbidden", { status: 403 });
+  }
+
   const url = new URL(request.url);
   const pathname = url.pathname;
   const pathnameWithoutLocale = stripLocalePrefix(pathname);
@@ -63,7 +72,7 @@ export const proxy = (request: Request) => {
     return Response.redirect(target);
   }
 
-  const POST_AUTH_SIGNUP_STEPS = ["/sign-up/plan", "/sign-up/done"];
+  const POST_AUTH_SIGNUP_STEPS = ["/sign-up/verify", "/sign-up/plan", "/sign-up/done"];
   const isPostAuthSignUpStep = POST_AUTH_SIGNUP_STEPS.some(
     (p) =>
       pathnameWithoutLocale === p || pathnameWithoutLocale.startsWith(`${p}/`),

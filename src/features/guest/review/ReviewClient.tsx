@@ -17,6 +17,8 @@ import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 import { KioskFullscreenGuard } from "@/features/kiosk-setup/components/KioskFullscreenGuard";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
+import { env } from "@/lib/utils/env";
 import { ReviewItem } from "./ReviewItem";
 import { ReviewPhotoTile } from "./ReviewPhotoTile";
 
@@ -73,6 +75,7 @@ export const ReviewClient = ({
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [idempotencyKey] = useState(newIdempotencyKey);
   const [submitted, setSubmitted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const hasNote = note.trim().length > 0;
   const hasPhotos = photos.length > 0;
@@ -86,6 +89,10 @@ export const ReviewClient = ({
     }
     if (!hasAnyContent) {
       setSubmitError(t("guest__review__error_missing_content"));
+      return;
+    }
+    if (env.TURNSTILE_SITE_KEY && !turnstileToken) {
+      setSubmitError(t("guest__review__error_turnstile"));
       return;
     }
     setSubmitting(true);
@@ -154,6 +161,7 @@ export const ReviewClient = ({
         clientCreatedAt: new Date().toISOString(),
         _honeypot: "",
         _t: sessionStartAt ?? Date.now() - 5000,
+        _turnstile: turnstileToken ?? undefined,
       });
 
       setSubmitted(true);
@@ -278,6 +286,11 @@ export const ReviewClient = ({
             {submitError}
           </p>
         )}
+
+        <TurnstileWidget
+          onSuccess={setTurnstileToken}
+          onExpire={() => setTurnstileToken(null)}
+        />
       </div>
       <StickyCTA caption={t("guest__record__caption")}>
         <Button

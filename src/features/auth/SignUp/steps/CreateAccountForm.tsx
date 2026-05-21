@@ -19,6 +19,8 @@ import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { eventsClient } from "@/lib/api/events-client";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
+import { env } from "@/lib/utils/env";
 import {
   getCreateAccountSchema,
   type CreateAccountFields,
@@ -32,6 +34,7 @@ export const CreateAccountForm = () => {
   const storedEmail = useSignUpStore((s) => s.formData.email);
   const storedAgreed = useSignUpStore((s) => s.formData.agreedToTerms);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const schema = useMemo(() => getCreateAccountSchema(t), [t]);
 
   useEffect(() => {
@@ -60,6 +63,10 @@ export const CreateAccountForm = () => {
 
   const onSubmit = async (values: CreateAccountFields) => {
     setSubmitError(null);
+    if (env.TURNSTILE_SITE_KEY && !turnstileToken) {
+      setSubmitError(t("auth__signup__error_turnstile"));
+      return;
+    }
     const accountType = useSignUpStore.getState().formData.accountType || "couple";
     const signUpEmail = authClient.signUp.email as (opts: {
       email: string;
@@ -73,12 +80,21 @@ export const CreateAccountForm = () => {
       name: values.email.split("@")[0] ?? values.email,
       accountType,
     });
-    if (error) {
+
+    const errorCode =
+      ((error as Record<string, unknown>)?.code as string | undefined) ?? "";
+    const isVerificationPending =
+      !error ||
+      (errorCode.toUpperCase().includes("EMAIL") &&
+        errorCode.toUpperCase().includes("VERIF"));
+
+    if (!isVerificationPending) {
       setSubmitError(
-        error.message ?? t("auth__signup__create_account__error_generic"),
+        error!.message ?? t("auth__signup__create_account__error_generic"),
       );
       return;
     }
+
     if (typeof window !== "undefined") {
       window.sessionStorage?.removeItem("ovation_signup_event_created");
       window.sessionStorage?.removeItem("ovation_signup_event_id");
@@ -87,7 +103,7 @@ export const CreateAccountForm = () => {
     invalidateCsrfToken();
     updateFormData({ email: values.email, agreedToTerms: true });
 
-    if (accountType !== "pro") {
+    if (!error && accountType !== "pro") {
       try {
         const storeData = useSignUpStore.getState().formData;
         const partnerA = storeData.partner1Name?.trim() || t("signup__partner_a_default");
@@ -111,7 +127,7 @@ export const CreateAccountForm = () => {
       }
     }
 
-    router.push(appRoutes.auth.signUpPlan);
+    router.push(appRoutes.auth.signUpVerify);
   };
 
   return (
@@ -227,6 +243,13 @@ export const CreateAccountForm = () => {
             </div>
           )}
         />
+
+        <div className="mt-6">
+          <TurnstileWidget
+            onSuccess={setTurnstileToken}
+            onExpire={() => setTurnstileToken(null)}
+          />
+        </div>
 
         {submitError && (
           <p className="type-body-small text-destructive mt-4" role="alert">

@@ -2,6 +2,7 @@ export const env = {
   // Public (available in browser)
   APP_URL: process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
   API_URL: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001",
+  MEDIA_DOMAIN: process.env.NEXT_PUBLIC_MEDIA_DOMAIN ?? "",
 
   // Server-only
   SENTRY_DSN: process.env.SENTRY_DSN ?? "",
@@ -16,7 +17,7 @@ export const env = {
   // 2. Hash pepper: HMAC key for IP/UA hashing.
   AUTH_HASH_PEPPER: process.env.AUTH_HASH_PEPPER ?? "",
 
-  COOKIE_DOMAIN: process.env.COOKIE_DOMAIN, // e.g. ".ovation.app" — undefined in dev
+  COOKIE_DOMAIN: process.env.COOKIE_DOMAIN,
   TRUSTED_ORIGINS: (process.env.TRUSTED_ORIGINS ?? "http://localhost:3000")
     .split(",")
     .map((s) => s.trim())
@@ -35,6 +36,15 @@ export const env = {
   PADDLE_ENV: (process.env.NEXT_PUBLIC_PADDLE_ENV ?? "sandbox") as
     | "sandbox"
     | "production",
+
+  // Cloudflare origin-pull secret — required by proxy.ts and auth route to
+  // reject requests that did not pass through Cloudflare. Enforcement is
+  // skipped when unset, making it safe to deploy before the CF rule is live.
+  CF_ORIGIN_TOKEN: process.env.CF_ORIGIN_TOKEN ?? "",
+
+  // Cloudflare Turnstile — public site key for the widget.
+  // When blank, Turnstile widgets are not rendered.
+  TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "",
 
   // Derived
   IS_PRODUCTION: process.env.NODE_ENV === "production",
