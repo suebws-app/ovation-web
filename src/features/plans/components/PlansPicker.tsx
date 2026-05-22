@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Kicker } from "@ovation/ui/components/Kicker";
@@ -55,8 +55,10 @@ export const PlansPicker = (props: PlansPickerProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setRedirecting(false);
-    setError(null);
+    startTransition(() => {
+      setRedirecting(false);
+      setError(null);
+    });
     const handlePageShow = (event: PageTransitionEvent) => {
       setRedirecting(false);
       setError(null);

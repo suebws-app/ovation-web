@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { ApiError } from "@/lib/api/client";
 import { paymentsClient } from "@/lib/api/payments-client";
@@ -35,7 +35,9 @@ export const CartView = () => {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => setHydrated(true), []);
+  useEffect(() => {
+    startTransition(() => setHydrated(true));
+  }, []);
 
   const fetchTotals = useCallback(async () => {
     if (items.length === 0) {
@@ -61,11 +63,11 @@ export const CartView = () => {
           : t("cart__error__totals_failed"),
       );
     }
-  }, [items, shipping?.country, promoCode, t]);
+  }, [items, shipping, promoCode, t]);
 
   useEffect(() => {
     if (!hydrated) return;
-    fetchTotals();
+    startTransition(() => { void fetchTotals(); });
   }, [hydrated, fetchTotals]);
 
   const currency = totals?.currency ?? items[0]?.currency ?? CURRENCY_FALLBACK;
@@ -98,7 +100,7 @@ export const CartView = () => {
             }
           : undefined,
         promoCode: promoCode ?? undefined,
-        successUrl: `${origin}${appRoutes.checkout.success("{CHECKOUT_SESSION_ID}")}`,
+        successUrl: `${origin}${appRoutes.checkout.orderSuccess("{CHECKOUT_SESSION_ID}")}`,
         cancelUrl: `${origin}${appRoutes.checkout.cancel("{CHECKOUT_SESSION_ID}")}`,
       });
       clear();

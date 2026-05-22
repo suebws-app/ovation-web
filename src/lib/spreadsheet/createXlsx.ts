@@ -53,7 +53,7 @@ const sheetXml = (rows: XlsxCell[][]): string => {
 };
 
 const sanitizeSheetName = (name: string, taken: Set<string>): string => {
-  let base = name.replace(/[\\/?*\[\]:]/g, " ").trim().slice(0, 31) || "Sheet";
+  const base = name.replace(/[\\/?*\[\]:]/g, " ").trim().slice(0, 31) || "Sheet";
   let candidate = base;
   let counter = 2;
   while (taken.has(candidate.toLowerCase())) {

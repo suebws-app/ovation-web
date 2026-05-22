@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
@@ -69,7 +69,7 @@ export const ComposeClient = ({
   };
 
   useEffect(() => {
-    if (hasAnyContent) setStepError(null);
+    if (hasAnyContent) startTransition(() => setStepError(null));
   }, [hasAnyContent]);
 
   return (

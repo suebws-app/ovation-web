@@ -31,7 +31,9 @@ type DoneState = { kind: "creating" } | { kind: "error"; message: string };
 export const CreateEventDonePage = () => {
   const t = useTranslations();
   const tRef = useRef(t);
-  tRef.current = t;
+  useEffect(() => {
+    tRef.current = t;
+  });
   const [state, setState] = useState<DoneState>({ kind: "creating" });
   const [retryToken, setRetryToken] = useState(0);
   const startedForTokenRef = useRef<number | null>(null);

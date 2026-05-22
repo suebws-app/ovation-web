@@ -10,6 +10,7 @@ import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import { env } from "@/lib/utils/env";
 import { appRoutes } from "@/lib/routes";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
+import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import type {
   CheckoutPlanTier,
   CoverPhotoContentType,
@@ -62,8 +63,9 @@ type UseCheckoutFlowReturn = {
 
 export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
   const t = useTranslations();
-  const formData = useSignUpStore((s) => s.formData);
-  const updateFormData = useSignUpStore((s) => s.updateFormData);
+  const signUpFormData = useSignUpStore((s) => s.formData);
+  const eventFormData = useCreateEventStore((s) => s.formData);
+  const updateEventData = useCreateEventStore((s) => s.updateFormData);
   const [state, setState] = useState<CheckoutState>({ kind: "creating" });
   const [retryToken, setRetryToken] = useState(0);
 
@@ -71,18 +73,19 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
   const stashPendingEventData = useCallback(() => {
     if (typeof window === "undefined") return;
-    const { bookUrl } = useSignUpStore.getState().formData;
-    const storeData = useSignUpStore.getState().formData;
-    const partnerA = storeData.partner1Name?.trim() || t("signup__partner_a_default");
-    const partnerB = storeData.partner2Name?.trim() || t("signup__partner_b_default");
+    const eventData = useCreateEventStore.getState().formData;
+    const partnerA =
+      eventData.partner1Name?.trim() || t("signup__partner_a_default");
+    const partnerB =
+      eventData.partner2Name?.trim() || t("signup__partner_b_default");
     window.sessionStorage?.setItem(
       "ovation_pending_event_data",
       JSON.stringify({
         partnerAName: partnerA,
         partnerBName: partnerB,
-        weddingDate: toIsoDate(storeData.weddingDate) ?? null,
-        venueName: storeData.venue?.trim() || null,
-        desiredSlug: bookUrl.trim() || null,
+        weddingDate: toIsoDate(eventData.weddingDate) ?? null,
+        venueName: eventData.venue?.trim() || null,
+        desiredSlug: eventData.bookUrl.trim() || null,
       }),
     );
   }, [t]);
@@ -107,10 +110,10 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
         invalidateCsrfToken();
         const successUrl = `${getOrigin()}${appRoutes.checkout.success}`;
         const cancelUrl = `${getOrigin()}${appRoutes.auth.plans}`;
-        const isPro = formData.accountType === "pro";
+        const isPro = signUpFormData.accountType === "pro";
 
         if (isPro) {
-          if (!formData.selectedPlan) {
+          if (!signUpFormData.selectedPlan) {
             window.location.assign(appRoutes.auth.plans);
             return { kind: "redirecting" };
           }
@@ -118,7 +121,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           try {
             stashPendingEventData();
             const checkout = await paymentsClient.createProCheckoutSession({
-              planCode: formData.selectedPlan as ProCheckoutSessionInput["planCode"],
+              planCode:
+                signUpFormData.selectedPlan as ProCheckoutSessionInput["planCode"],
               successUrl,
               cancelUrl,
             });
@@ -134,8 +138,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           }
         }
 
-        const partnerATrim = formData.partner1Name?.trim() ?? "";
-        const partnerBTrim = formData.partner2Name?.trim() ?? "";
+        const partnerATrim = eventFormData.partner1Name?.trim() ?? "";
+        const partnerBTrim = eventFormData.partner2Name?.trim() ?? "";
 
         if (!partnerATrim && !partnerBTrim) {
           window.location.assign(appRoutes.app.root);
@@ -144,12 +148,13 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
         const partnerA = partnerATrim || t("signup__partner_a_default");
         const partnerB = partnerBTrim || t("signup__partner_b_default");
-        const { bookUrl } = useSignUpStore.getState().formData;
+        const bookUrl = useCreateEventStore.getState().formData.bookUrl;
 
         try {
           const existingEventId =
             typeof window !== "undefined"
-              ? (window.sessionStorage?.getItem("ovation_signup_event_id") ?? null)
+              ? (window.sessionStorage?.getItem("ovation_signup_event_id") ??
+                null)
               : null;
 
           const event = existingEventId
@@ -157,16 +162,16 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                 .update(existingEventId, {
                   partnerAName: partnerA,
                   partnerBName: partnerB,
-                  weddingDate: toIsoDate(formData.weddingDate),
-                  venueName: formData.venue?.trim() || undefined,
+                  weddingDate: toIsoDate(eventFormData.weddingDate),
+                  venueName: eventFormData.venue?.trim() || undefined,
                 })
                 .then((r) => r.event)
                 .catch(async () => {
                   const created = await eventsClient.create({
                     partnerAName: partnerA,
                     partnerBName: partnerB,
-                    weddingDate: toIsoDate(formData.weddingDate),
-                    venueName: formData.venue?.trim() || undefined,
+                    weddingDate: toIsoDate(eventFormData.weddingDate),
+                    venueName: eventFormData.venue?.trim() || undefined,
                   });
                   return created.event;
                 })
@@ -174,8 +179,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                 .create({
                   partnerAName: partnerA,
                   partnerBName: partnerB,
-                  weddingDate: toIsoDate(formData.weddingDate),
-                  venueName: formData.venue?.trim() || undefined,
+                  weddingDate: toIsoDate(eventFormData.weddingDate),
+                  venueName: eventFormData.venue?.trim() || undefined,
                 })
                 .then((r) => r.event);
 
@@ -195,11 +200,14 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
               finalSlug = event.slug;
             }
           }
-          updateFormData({ bookUrl: finalSlug });
+          updateEventData({ bookUrl: finalSlug });
 
-          if (formData.coverFile) {
+          if (eventFormData.coverFile) {
             try {
-              const publicUrl = await uploadCoverPhoto(event.id, formData.coverFile);
+              const publicUrl = await uploadCoverPhoto(
+                event.id,
+                eventFormData.coverFile,
+              );
               if (publicUrl) {
                 await eventsClient
                   .update(event.id, { couplePhotoUrl: publicUrl })
@@ -210,7 +218,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
             }
           }
 
-          const planTier = PLAN_TIER_BY_ID[formData.selectedPlan ?? ""];
+          const planTier =
+            PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
           if (!planTier) {
             safeSet({ kind: "redirecting" });
             window.location.assign(appRoutes.app.root);
@@ -256,15 +265,15 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     };
   }, [
     retryToken,
-    formData.partner1Name,
-    formData.partner2Name,
-    formData.weddingDate,
-    formData.venue,
-    formData.selectedPlan,
-    formData.coverFile,
-    formData.accountType,
+    eventFormData.partner1Name,
+    eventFormData.partner2Name,
+    eventFormData.weddingDate,
+    eventFormData.venue,
+    eventFormData.coverFile,
+    signUpFormData.selectedPlan,
+    signUpFormData.accountType,
     stashPendingEventData,
-    updateFormData,
+    updateEventData,
     t,
   ]);
 

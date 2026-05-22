@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { CartIcon } from "@ovation/icons/CartIcon";
 import { Link } from "@/i18n/navigation";
@@ -18,7 +18,9 @@ export const KeepsakesActions = ({ planTier: _planTier }: KeepsakesActionsProps)
   const t = useTranslations();
   const cartCount = useCartStore((s) => s.itemCount());
   const [hydrated, setHydrated] = useState(false);
-  useEffect(() => setHydrated(true), []);
+  useEffect(() => {
+    startTransition(() => setHydrated(true));
+  }, []);
   const credit: string | null = formatCredit(0);
 
   return (

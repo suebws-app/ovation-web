@@ -16,7 +16,6 @@ import { Input } from "@ovation/ui/components/Input";
 import { ChevronsUpDownIcon } from "@ovation/icons/ChevronsUpDownIcon";
 import { SearchIcon } from "@ovation/icons/SearchIcon";
 import { PlusIcon } from "@ovation/icons/PlusIcon";
-import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { SettingsIcon } from "@ovation/icons/SettingsIcon";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";

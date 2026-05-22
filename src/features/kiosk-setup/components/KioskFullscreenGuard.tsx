@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, startTransition } from "react";
 import { useFullscreen } from "@/lib/hooks/useFullscreen";
 import { useRouter } from "@/i18n/navigation";
 import { KioskExitDialog } from "./KioskExitDialog";
@@ -36,7 +36,7 @@ export const KioskFullscreenGuard = ({
     wasFullscreenRef.current = isFullscreen;
     if (!justExited) return;
     if (exitConfirmedRef.current) return;
-    if (exitPin) setOpen(true);
+    if (exitPin) startTransition(() => setOpen(true));
   }, [active, isSupported, isFullscreen, exitPin]);
 
   const handleConfirm = async () => {

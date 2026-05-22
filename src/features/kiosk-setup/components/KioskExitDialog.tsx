@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 
 type KioskExitDialogProps = {
@@ -23,8 +23,10 @@ export const KioskExitDialog = ({
 
   useEffect(() => {
     if (!open) {
-      setDraft("");
-      setError(false);
+      startTransition(() => {
+        setDraft("");
+        setError(false);
+      });
       return;
     }
     if (!expectedPin) {

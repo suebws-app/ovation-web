@@ -9,7 +9,8 @@
     "lint": "eslint",
     "format": "prettier --write \"{src,packages}/**/*.{ts,tsx,js,jsx,css,md,json}\"",
     "format:check": "prettier --check \"{src,packages}/**/*.{ts,tsx,js,jsx,css,md,json}\"",
-    "ts-check": "tsc --noEmit"
+    "ts-check": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -47,6 +48,7 @@
     "@netlify/plugin-nextjs": "^5.15.10",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "husky": "^9.1.7",
     "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-detect-offline": "^2.4.6",

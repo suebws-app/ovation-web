@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { eventsClient } from "@/lib/api/events-client";
 
 export type SlugStatus = "idle" | "invalid" | "checking" | "available" | "taken";
@@ -12,14 +12,14 @@ export const useSlugChecker = (slug: string): SlugStatus => {
 
   useEffect(() => {
     if (slug.length === 0) {
-      setStatus("idle");
+      startTransition(() => setStatus("idle"));
       return;
     }
     if (!SLUG_PATTERN.test(slug)) {
-      setStatus("invalid");
+      startTransition(() => setStatus("invalid"));
       return;
     }
-    setStatus("checking");
+    startTransition(() => setStatus("checking"));
     const controller = new AbortController();
     const timer = setTimeout(() => {
       eventsClient

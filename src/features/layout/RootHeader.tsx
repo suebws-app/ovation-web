@@ -3,7 +3,6 @@ import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import { RootMobileNav } from "./RootMobileNav";
 import { LanguageSelect } from "@/components/LanguageSelect";
