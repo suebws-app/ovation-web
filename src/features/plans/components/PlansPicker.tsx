@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { PlanCard } from "@/features/auth/SignUp/components/PlanCard";
-import { CompletionRedirectingState } from "@/features/auth/SignUp/components/CompletionRedirectingState";
+import { PlanCard } from "@/features/plans/components/PlanCard";
+import { CheckoutRedirecting as CompletionRedirectingState } from "@/features/checkout/components/CheckoutRedirecting";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { ApiError } from "@/lib/api/client";
 import type {

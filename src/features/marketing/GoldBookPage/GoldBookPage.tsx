@@ -40,7 +40,7 @@ export const GoldBookPage = () => {
       <section>
         <div className="section-container">
           <Button size="lg" asChild>
-            <Link href={appRoutes.auth.signUp}>{t("marketing__gold_book__cta")}</Link>
+            <Link href={appRoutes.auth.role}>{t("marketing__gold_book__cta")}</Link>
           </Button>
           <p className="text-muted-foreground type-body-small mt-4">{t("marketing__gold_book__ships")}</p>
         </div>
