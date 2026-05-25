@@ -111,7 +111,7 @@ export const proxy = async (request: NextRequest) => {
   if (
     env.IS_PRODUCTION &&
     env.CF_ORIGIN_TOKEN &&
-    request.headers.get("x-cf-origin-token") !== env.CF_ORIGIN_TOKEN
+    request.headers.get("x-origin-token") !== env.CF_ORIGIN_TOKEN
   ) {
     return new Response("Forbidden", { status: 403 });
   }
