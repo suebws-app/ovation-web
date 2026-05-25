@@ -24,6 +24,9 @@ const withSessionHeaders = async (init: RequestInit): Promise<RequestInit> => {
   if (!headers.has("accept-language")) {
     headers.set("accept-language", await getLocale());
   }
+  if (env.CF_ORIGIN_TOKEN) {
+    headers.set("x-origin-token", env.CF_ORIGIN_TOKEN);
+  }
   return { ...init, headers };
 };
 
