@@ -82,6 +82,7 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
             partnerBName: data.partnerBName,
             weddingDate: data.weddingDate ?? undefined,
             venueName: data.venueName ?? undefined,
+            kind: "filled",
           });
 
           if (

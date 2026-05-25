@@ -1,15 +1,14 @@
 import { ApiError } from "@/lib/api/client";
-import { eventsApi } from "@/lib/api/events";
 import { publicApi } from "@/lib/api/public";
 import { kioskSettingsApi } from "@/lib/api/kiosk-settings";
+import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { KioskHero } from "./components/KioskHero";
 import { KioskChecklist } from "./components/KioskChecklist";
 import { KioskFooter } from "./components/KioskFooter";
 import { KioskSetupClient } from "./KioskSetupClient";
 
 export const KioskSetupPage = async () => {
-  const events = await eventsApi.list({ limit: 1 });
-  const event = events.items[0] ?? null;
+  const event = await requireFilledCoupleEvent();
 
   if (!event) {
     return (

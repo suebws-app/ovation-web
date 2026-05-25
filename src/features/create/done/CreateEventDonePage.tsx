@@ -42,16 +42,17 @@ export const CreateEventDonePage = () => {
     if (startedForTokenRef.current === retryToken) return;
     startedForTokenRef.current = retryToken;
 
-    const { formData, reset } = useCreateEventStore.getState();
+    const { formData, mode, eventId, reset } = useCreateEventStore.getState();
 
-    if (
+    const isEmpty =
       !formData.partner1Name.trim() &&
       !formData.partner2Name.trim() &&
       !formData.weddingDate &&
       !formData.venue?.trim() &&
       !formData.bookUrl?.trim() &&
-      !formData.coverFile
-    ) {
+      !formData.coverFile;
+
+    if (isEmpty && mode === "create") {
       reset();
       window.location.assign(appRoutes.app.root);
       return;
@@ -60,25 +61,40 @@ export const CreateEventDonePage = () => {
     (async () => {
       try {
         const tr = tRef.current;
-        const created = await eventsClient.create({
-          partnerAName:
-            formData.partner1Name.trim() || tr("signup__partner_a_default"),
-          partnerBName:
-            formData.partner2Name.trim() || tr("signup__partner_b_default"),
-          weddingDate: toIsoDate(formData.weddingDate),
-          venueName: formData.venue?.trim() || undefined,
-        });
+        const partnerAName =
+          formData.partner1Name.trim() || tr("signup__partner_a_default");
+        const partnerBName =
+          formData.partner2Name.trim() || tr("signup__partner_b_default");
+        const weddingDate = toIsoDate(formData.weddingDate);
+        const venueName = formData.venue?.trim() || undefined;
+
+        let targetEventId: string;
+        if (mode === "edit" && eventId) {
+          const { event } = await eventsClient.update(eventId, {
+            partnerAName,
+            partnerBName,
+            weddingDate,
+            venueName,
+            kind: "filled",
+          });
+          targetEventId = event.id;
+        } else {
+          const created = await eventsClient.create({
+            partnerAName,
+            partnerBName,
+            weddingDate,
+            venueName,
+            kind: "filled",
+          });
+          targetEventId = created.event.id;
+        }
 
         const desiredSlug = formData.bookUrl?.trim();
-        if (
-          desiredSlug &&
-          desiredSlug !== created.event.slug &&
-          /^[a-z0-9-]{4,20}$/.test(desiredSlug)
-        ) {
+        if (desiredSlug && /^[a-z0-9-]{4,20}$/.test(desiredSlug)) {
           try {
-            await eventsClient.update(created.event.id, { slug: desiredSlug });
+            await eventsClient.update(targetEventId, { slug: desiredSlug });
           } catch {
-            // Slug clash — keep auto-generated
+            // Slug clash — keep existing
           }
         }
 
@@ -87,7 +103,7 @@ export const CreateEventDonePage = () => {
             const contentType = ALLOWED_COVER_MIMES[formData.coverFile.type];
             if (contentType) {
               const result = await eventsClient.coverUploadUrl(
-                created.event.id,
+                targetEventId,
                 contentType,
               );
               await uploadToTarget(
@@ -95,7 +111,7 @@ export const CreateEventDonePage = () => {
                 formData.coverFile,
               );
               await eventsClient
-                .update(created.event.id, { couplePhotoUrl: result.publicUrl })
+                .update(targetEventId, { couplePhotoUrl: result.publicUrl })
                 .catch(() => undefined);
             }
           } catch {
@@ -103,9 +119,9 @@ export const CreateEventDonePage = () => {
           }
         }
 
-        document.cookie = `${LAST_EVENT_COOKIE}=${created.event.id}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
+        document.cookie = `${LAST_EVENT_COOKIE}=${targetEventId}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
         reset();
-        window.location.assign(appRoutes.app.eventMessages(created.event.id));
+        window.location.assign(appRoutes.app.eventMessages(targetEventId));
       } catch (error) {
         startedForTokenRef.current = null;
         setState({

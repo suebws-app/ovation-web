@@ -42,6 +42,7 @@ export const appRoutes = {
     root: "/create",
     cover: "/create/cover",
     done: "/create/done",
+    edit: (eventId: string) => `/create?edit=${eventId}`,
   },
 
   app: {

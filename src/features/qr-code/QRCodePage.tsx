@@ -3,6 +3,7 @@ import { ApiError } from "@/lib/api/client";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { getCurrentUser } from "@/lib/auth/session";
+import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { getTranslations } from "next-intl/server";
 import { OrderCtaStrip } from "./components/OrderCtaStrip";
 import { QRCodeDesktopFooter } from "./components/QRCodeDesktopFooter";
@@ -18,8 +19,7 @@ const coupleNameOf = (partnerA: string, partnerB: string) =>
 export const QRCodePage = async () => {
   const t = await getTranslations();
   const user = await getCurrentUser();
-  const events = await eventsApi.list({ limit: 1 });
-  const event = events.items[0];
+  const event = await requireFilledCoupleEvent();
   if (!event)
     return (
       <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">

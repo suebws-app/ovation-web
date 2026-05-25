@@ -18,8 +18,8 @@ export default async function CreateLayout({
   if (user?.accountType === "couple") {
     const existing = await eventsApi.list({ limit: 1 }).catch(() => null);
     const event = existing?.items[0];
-    if (event) {
-      redirect(appRoutes.app.event(event.id));
+    if (event && event.kind !== "empty") {
+      redirect(appRoutes.app.root);
     }
   }
 

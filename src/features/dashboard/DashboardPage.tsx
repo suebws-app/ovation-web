@@ -12,6 +12,7 @@ import { ResumeCard } from "./components/ResumeCard";
 import { StatLine } from "./components/StatLine";
 import { MessageList } from "./components/MessageList";
 import { DashboardEmpty } from "./components/DashboardEmpty";
+import { DashboardPlaceholderCTA } from "./components/DashboardPlaceholderCTA";
 
 const formatWeddingDate = (raw: string | null): string => {
   if (!raw) return "";
@@ -53,6 +54,17 @@ export const DashboardPage = async () => {
     return (
       <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
         <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
+      </div>
+    );
+  }
+
+  if (event.kind === "empty") {
+    return (
+      <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+        <DashboardPlaceholderCTA
+          userName={greetingName(user.fullName, user.email)}
+          eventId={event.id}
+        />
       </div>
     );
   }
