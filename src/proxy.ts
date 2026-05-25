@@ -9,7 +9,22 @@ const intlMiddleware = createMiddleware(routing);
 
 const PREVIEW_COOKIE = "preview_access";
 
-const PROTECTED_PREFIXES = ["/app", "/settings"];
+const PROTECTED_PREFIXES = [
+  "/home",
+  "/messages",
+  "/events",
+  "/guests",
+  "/photos",
+  "/keepsakes",
+  "/orders",
+  "/cart",
+  "/kiosk",
+  "/link",
+  "/help",
+  "/account",
+  "/qr-code",
+  "/settings",
+];
 const AUTH_PREFIXES = [
   "/sign-in",
   "/sign-up",
@@ -96,7 +111,7 @@ export const proxy = async (request: NextRequest) => {
   if (
     env.IS_PRODUCTION &&
     env.CF_ORIGIN_TOKEN &&
-    request.headers.get("x-cf-origin-token") !== env.CF_ORIGIN_TOKEN
+    request.headers.get("x-origin-token") !== env.CF_ORIGIN_TOKEN
   ) {
     return new Response("Forbidden", { status: 403 });
   }
@@ -124,11 +139,7 @@ export const proxy = async (request: NextRequest) => {
     return Response.redirect(target);
   }
 
-  const POST_AUTH_SIGNUP_STEPS = [
-    "/sign-up/verify",
-    "/sign-up/plan",
-    "/sign-up/done",
-  ];
+  const POST_AUTH_SIGNUP_STEPS = ["/verify", "/plans", "/checkout"];
   const isPostAuthSignUpStep = POST_AUTH_SIGNUP_STEPS.some(
     (p) =>
       pathnameWithoutLocale === p || pathnameWithoutLocale.startsWith(`${p}/`),
@@ -140,7 +151,7 @@ export const proxy = async (request: NextRequest) => {
     !isPostAuthSignUpStep;
 
   if (isAuthenticated && (isHomepage || isMarketing || isAuthPage)) {
-    return Response.redirect(new URL("/app", request.url));
+    return Response.redirect(new URL("/home", request.url));
   }
 
   return intlMiddleware(request as never);

@@ -14,7 +14,7 @@ export const useResponsiveRowOpen = (player: TAudioPlayer) => {
 
   const openRow = (id: string) => {
     if (isBelowSmallDesktop()) {
-      router.push(`/app/messages/${id}`);
+      router.push(`/messages/${id}`);
       return;
     }
     setActiveMessageId(id);

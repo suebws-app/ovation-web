@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
@@ -69,7 +69,7 @@ export const ComposeClient = ({
   };
 
   useEffect(() => {
-    if (hasAnyContent) setStepError(null);
+    if (hasAnyContent) startTransition(() => setStepError(null));
   }, [hasAnyContent]);
 
   return (
@@ -77,7 +77,7 @@ export const ComposeClient = ({
       <KioskFullscreenGuard
         active={isKioskSession && fullscreenLock}
         exitPin={exitPin}
-        exitHref="/app/kiosk"
+        exitHref="/kiosk"
       />
       <div className="flex flex-1 flex-col gap-6 px-5 pt-5 pb-9 tablet:px-8 small-desktop:px-10 small-desktop:py-9">
         <WizardHeader

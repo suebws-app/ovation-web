@@ -36,7 +36,9 @@ export const VideoRecorderModal = ({
   const setVideo = useGuestSubmissionStore((s) => s.setVideo);
   const previewRef = useRef<HTMLVideoElement | null>(null);
   const recorderRef = useRef(recorder);
-  recorderRef.current = recorder;
+  useEffect(() => {
+    recorderRef.current = recorder;
+  });
 
   useEffect(() => {
     if (!open) return;

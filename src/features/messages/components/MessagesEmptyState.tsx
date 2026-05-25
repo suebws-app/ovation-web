@@ -18,7 +18,7 @@ export const MessagesEmptyState = () => {
         {t("messages__empty__body")}
       </p>
       <Button asChild className="rounded-full">
-        <Link href={appRoutes.auth.signUpBook}>
+        <Link href={appRoutes.create.root}>
           {t("messages__empty__cta")}
         </Link>
       </Button>

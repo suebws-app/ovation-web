@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, startTransition } from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
@@ -34,15 +34,19 @@ export const CameraCaptureModal = ({
   }, []);
 
   const tRef = useRef(t);
-  tRef.current = t;
   const stopStreamRef = useRef(stopStream);
-  stopStreamRef.current = stopStream;
+  useEffect(() => {
+    tRef.current = t;
+    stopStreamRef.current = stopStream;
+  });
 
   useEffect(() => {
     if (!open) return;
     let cancelled = false;
-    setState("requesting");
-    setError(null);
+    startTransition(() => {
+      setState("requesting");
+      setError(null);
+    });
 
     const start = async () => {
       const tr = tRef.current;

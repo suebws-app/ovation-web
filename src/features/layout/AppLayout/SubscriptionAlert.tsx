@@ -33,9 +33,11 @@ export const SubscriptionAlert = ({
 
   let daysLeft: number | null = null;
   if (storageExpiresAt) {
+    // eslint-disable-next-line react-hooks/purity
     daysLeft = daysBetween(new Date(storageExpiresAt).getTime() - Date.now());
   } else if (isFree && userCreatedAt) {
     const elapsedDays = Math.floor(
+      // eslint-disable-next-line react-hooks/purity
       (Date.now() - new Date(userCreatedAt).getTime()) /
         (1000 * 60 * 60 * 24),
     );

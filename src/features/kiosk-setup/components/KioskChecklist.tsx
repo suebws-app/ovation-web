@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { KioskChecklistItem } from "./KioskChecklistItem";
 
@@ -75,13 +75,15 @@ export const KioskChecklist = ({
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(storageKey(eventId));
-      if (raw) setDone((prev) => ({ ...prev, ...JSON.parse(raw) }));
-    } catch {
-      // ignore
-    }
-    setHydrated(true);
+    startTransition(() => {
+      try {
+        const raw = window.localStorage.getItem(storageKey(eventId));
+        if (raw) setDone((prev) => ({ ...prev, ...JSON.parse(raw) }));
+      } catch {
+        // ignore
+      }
+      setHydrated(true);
+    });
   }, [eventId]);
 
   useEffect(() => {

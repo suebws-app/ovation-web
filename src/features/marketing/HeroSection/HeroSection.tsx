@@ -55,7 +55,7 @@ export const HeroSection = () => {
 
           <div className="flex flex-wrap items-center gap-3">
             <Button size="lg" asChild>
-              <Link href={appRoutes.auth.signUp}>
+              <Link href={appRoutes.auth.role}>
                 {t("marketing__hero__cta_primary")}
                 <ArrowRightIcon width={18} height={18} />
               </Link>

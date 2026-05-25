@@ -26,10 +26,9 @@ export const AppHeaderDesktop = ({ planTier }: AppHeaderDesktopProps) => {
   const segments = pathname
     .split("/")
     .filter(Boolean)
-    .filter((seg) => !isLocale(seg))
-    .filter((seg) => seg !== "app");
+    .filter((seg) => !isLocale(seg));
 
-  const crumbs = ["dashboard", ...segments];
+  const crumbs = ["home", ...segments];
 
   const lastCrumb = crumbs[crumbs.length - 1];
   const parentCrumbs = crumbs.slice(0, -1);
@@ -41,7 +40,7 @@ export const AppHeaderDesktop = ({ planTier }: AppHeaderDesktopProps) => {
         <BreadcrumbList className="type-caption">
           {parentCrumbs.map((crumb, i) => {
             const href =
-              i === 0 ? "/app" : `/app/${segments.slice(0, i).join("/")}`;
+              i === 0 ? "/home" : `/${segments.slice(0, i).join("/")}`;
             const label = UUID_RE.test(crumb) && eventLabel ? eventLabel : crumb;
             return (
               <React.Fragment key={crumb}>

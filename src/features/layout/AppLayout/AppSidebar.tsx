@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { EventSwitcher } from "./EventSwitcher";
@@ -58,17 +58,19 @@ const useProEventId = (events: Event[]): string | null => {
   useEffect(() => {
     if (fromPath) {
       document.cookie = `${LAST_EVENT_COOKIE}=${fromPath}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
-      setFallback(fromPath);
+      startTransition(() => setFallback(fromPath));
       return;
     }
     const stored = readLastEventCookie();
-    if (stored && events.some((e) => e.id === stored)) {
-      setFallback(stored);
-    } else if (events[0]) {
-      setFallback(events[0].id);
-    } else {
-      setFallback(null);
-    }
+    startTransition(() => {
+      if (stored && events.some((e) => e.id === stored)) {
+        setFallback(stored);
+      } else if (events[0]) {
+        setFallback(events[0].id);
+      } else {
+        setFallback(null);
+      }
+    });
   }, [fromPath, events]);
 
   return fromPath ?? fallback;
@@ -94,7 +96,7 @@ const useSidebarCounts = (eventId: string | null): SidebarCounts => {
 
   useEffect(() => {
     if (!eventId) {
-      setCounts({ messages: 0, guests: 0 });
+      startTransition(() => setCounts({ messages: 0, guests: 0 }));
       return;
     }
     clearedDuringFetchRef.current = { messages: false, guests: false };

@@ -80,7 +80,7 @@ export const KioskLiveFrame = ({
     } catch {
       // ignore
     }
-    router.push("/app/kiosk");
+    router.push("/kiosk");
   };
 
   const handleManualExitConfirm = async () => {
@@ -90,7 +90,7 @@ export const KioskLiveFrame = ({
     } catch {
       // ignore
     }
-    router.push("/app/kiosk");
+    router.push("/kiosk");
   };
 
   useWakeLock(enableWakeLock);
@@ -122,7 +122,7 @@ export const KioskLiveFrame = ({
       <KioskFullscreenGuard
         active={fullscreenLockActive}
         exitPin={event.kiosk.exitPin}
-        exitHref="/app/kiosk"
+        exitHref="/kiosk"
       />
       <KioskExitDialog
         open={exitOpen}

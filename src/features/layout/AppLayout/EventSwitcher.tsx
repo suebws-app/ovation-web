@@ -16,7 +16,6 @@ import { Input } from "@ovation/ui/components/Input";
 import { ChevronsUpDownIcon } from "@ovation/icons/ChevronsUpDownIcon";
 import { SearchIcon } from "@ovation/icons/SearchIcon";
 import { PlusIcon } from "@ovation/icons/PlusIcon";
-import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { SettingsIcon } from "@ovation/icons/SettingsIcon";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
@@ -49,14 +48,13 @@ const buildEventTarget = (currentPath: string, newEventId: string): string => {
   const stripped = stripLocale(currentPath);
   const segments = stripped.split("/").filter(Boolean);
   if (
-    segments[0] === "app" &&
-    segments[1] === "events" &&
-    segments[2] &&
-    segments[2] !== "new"
+    segments[0] === "events" &&
+    segments[1] &&
+    segments[1] !== "new"
   ) {
-    const subPath = segments.slice(3).join("/");
+    const subPath = segments.slice(2).join("/");
     return subPath
-      ? `/app/events/${newEventId}/${subPath}`
+      ? `/events/${newEventId}/${subPath}`
       : appRoutes.app.event(newEventId);
   }
   return appRoutes.app.event(newEventId);
@@ -183,7 +181,7 @@ export const EventSwitcher = ({
             </div>
             <div className="border-border border-t" />
             <Link
-              href={appRoutes.app.eventsNewBook}
+              href={appRoutes.create.root}
               onClick={() => setOpen(false)}
               className="hover:bg-sidebar-accent type-body-small flex items-center gap-2 px-3 py-3 font-semibold"
             >

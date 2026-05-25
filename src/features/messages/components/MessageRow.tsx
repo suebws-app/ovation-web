@@ -41,7 +41,7 @@ export const MessageRow = ({
   isCurrent,
   progress = 0,
   currentTime = 0,
-  durationOverride,
+  durationOverride: _durationOverride,
   index,
   onClick,
   onPlay,

@@ -6,5 +6,5 @@
     if (v === "dark") {
       d.classList.add("dark");
     }
-  } catch (e) {}
+  } catch {}
 })();

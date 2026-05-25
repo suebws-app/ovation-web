@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { PlanCard } from "@/features/auth/SignUp/components/PlanCard";
-import { CompletionRedirectingState } from "@/features/auth/SignUp/components/CompletionRedirectingState";
+import { PlanCard } from "@/features/plans/components/PlanCard";
+import { CheckoutRedirecting as CompletionRedirectingState } from "@/features/checkout/components/CheckoutRedirecting";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { ApiError } from "@/lib/api/client";
 import type {
@@ -13,6 +13,7 @@ import type {
   CheckoutPlanTier,
   ProCheckoutSessionInput,
 } from "@/lib/api/types";
+import { cn } from "@ovation/ui/utils/cn";
 
 const formatPrice = (cents: number, currency: string) => {
   if (cents === 0) return "Free";
@@ -55,8 +56,10 @@ export const PlansPicker = (props: PlansPickerProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setRedirecting(false);
-    setError(null);
+    startTransition(() => {
+      setRedirecting(false);
+      setError(null);
+    });
     const handlePageShow = (event: PageTransitionEvent) => {
       setRedirecting(false);
       setError(null);
@@ -121,7 +124,12 @@ export const PlansPicker = (props: PlansPickerProps) => {
           </p>
         </div>
 
-        <div className="tablet:grid-cols-3 grid gap-4.5">
+        <div
+          className={cn(
+            "grid items-center gap-4.5",
+            `tablet:grid-cols-${Math.min(sorted.length, 3)}`,
+          )}
+        >
           {sorted.map((plan) => (
             <PlanCard
               key={plan.id}

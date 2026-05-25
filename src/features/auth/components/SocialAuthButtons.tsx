@@ -32,7 +32,7 @@ export const SocialAuthButtons = ({
     setError(null);
     const { error: providerError } = await authClient.signIn.social({
       provider,
-      callbackURL: "/app",
+      callbackURL: "/home",
     });
     if (providerError) {
       setPending(null);

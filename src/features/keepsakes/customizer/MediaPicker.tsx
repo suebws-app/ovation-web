@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, startTransition } from "react";
 import { mediaClient } from "@/lib/api/media-client";
 import { ApiError } from "@/lib/api/client";
 import { Button } from "@ovation/ui/components/Button";
@@ -66,7 +66,7 @@ export const MediaPicker = ({
   }, [eventId, type, source]);
 
   useEffect(() => {
-    fetchGallery();
+    startTransition(() => fetchGallery());
   }, [fetchGallery]);
 
   const handleFiles = async (files: FileList | null) => {

@@ -194,7 +194,7 @@ export const ReviewClient = ({
       <KioskFullscreenGuard
         active={isKioskSession && fullscreenLock}
         exitPin={exitPin}
-        exitHref="/app/kiosk"
+        exitHref="/kiosk"
       />
       <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-5 pb-9">
         <WizardHeader

@@ -35,7 +35,7 @@ export const PaddlePayClient = ({ userEmail }: PaddlePayClientProps) => {
             | undefined;
           const orderId = customData?.orderId;
           window.location.assign(
-            orderId ? appRoutes.checkout.success(orderId) : appRoutes.home,
+            orderId ? appRoutes.checkout.orderSuccess(orderId) : appRoutes.home,
           );
         }
         if (event.name === "checkout.closed") {

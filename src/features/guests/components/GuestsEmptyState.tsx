@@ -16,7 +16,7 @@ export const GuestsEmptyState = () => {
         {t("guests__empty__body")}
       </p>
       <Button asChild className="rounded-full">
-        <Link href={appRoutes.auth.signUpBook}>
+        <Link href={appRoutes.create.root}>
           {t("guests__empty__cta")}
         </Link>
       </Button>

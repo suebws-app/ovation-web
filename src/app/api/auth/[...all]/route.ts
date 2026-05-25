@@ -9,8 +9,9 @@ const originGuard = (req: NextRequest): Response | null => {
   if (
     env.IS_PRODUCTION &&
     env.CF_ORIGIN_TOKEN &&
-    req.headers.get("x-cf-origin-token") !== env.CF_ORIGIN_TOKEN
+    req.headers.get("x-origin-token") !== env.CF_ORIGIN_TOKEN
   ) {
+    console.log({ ss: req.headers.get("x-origin-token") });
     return new Response("Forbidden", { status: 403 });
   }
   return null;

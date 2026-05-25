@@ -7,6 +7,7 @@ export const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
     viewBox="0 0 0.96 0.96"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...props}
   >
     <path
       d="M.9.489A.4.4 0 0 0 .891.403H.489v.156h.236a.2.2 0 0 1-.088.136L.636.7l.127.097.009.001A.4.4 0 0 0 .9.489"

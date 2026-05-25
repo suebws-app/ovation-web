@@ -108,7 +108,7 @@ export const CustomizerCheckoutForm = ({
               photoIds && photoIds.length > 0 ? photoIds : undefined,
           },
         ],
-        successUrl: `${origin}${appRoutes.checkout.success("{CHECKOUT_SESSION_ID}")}`,
+        successUrl: `${origin}${appRoutes.checkout.orderSuccess("{CHECKOUT_SESSION_ID}")}`,
         cancelUrl: `${origin}${appRoutes.checkout.cancel("{CHECKOUT_SESSION_ID}")}`,
       });
       window.location.assign(result.checkoutUrl);

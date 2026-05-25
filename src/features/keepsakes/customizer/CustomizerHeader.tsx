@@ -23,7 +23,7 @@ export const CustomizerHeader = ({
   return (
     <div className="flex flex-col gap-4">
       <Link
-        href={`/app/events/${eventId}/keepsakes`}
+        href={`/events/${eventId}/keepsakes`}
         className="text-muted-foreground hover:text-foreground type-caption inline-flex items-center gap-1 self-start tracking-wider"
       >
         <ArrowRightIcon className="rotate-180" width={12} height={12} />
