@@ -98,7 +98,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
       }
     }
 
-    router.push(appRoutes.auth.verify);
+    router.push(appRoutes.auth.plans);
   };
 
   return { onSubmit, submitError, turnstileToken, setTurnstileToken };

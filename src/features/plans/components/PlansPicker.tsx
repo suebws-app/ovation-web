@@ -13,6 +13,7 @@ import type {
   CheckoutPlanTier,
   ProCheckoutSessionInput,
 } from "@/lib/api/types";
+import { cn } from "@ovation/ui/utils/cn";
 
 const formatPrice = (cents: number, currency: string) => {
   if (cents === 0) return "Free";
@@ -123,7 +124,12 @@ export const PlansPicker = (props: PlansPickerProps) => {
           </p>
         </div>
 
-        <div className="tablet:grid-cols-3 grid gap-4.5">
+        <div
+          className={cn(
+            "grid items-center gap-4.5",
+            `tablet:grid-cols-${Math.min(sorted.length, 3)}`,
+          )}
+        >
           {sorted.map((plan) => (
             <PlanCard
               key={plan.id}
