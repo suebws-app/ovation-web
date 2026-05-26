@@ -368,6 +368,7 @@
   "auth__signin__submit": "Sign in",
   "auth__signin__submit_pending": "Signing in…",
   "auth__signin__error_generic": "Sign in failed. Please try again.",
+  "auth__signin__error_turnstile": "Please complete the verification challenge before continuing.",
   "auth__signin__unverified_title": "Please verify your email first",
   "auth__signin__unverified_hint": "We sent a verification link when you signed up. Check your inbox (and spam).",
   "auth__signin__unverified_resend": "Resend verification email",

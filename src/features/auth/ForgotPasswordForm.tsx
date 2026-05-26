@@ -47,10 +47,19 @@ export const ForgotPasswordForm = () => {
       setStatus({ kind: "error", message: t("auth__forgot__error_turnstile") });
       return;
     }
-    const { error } = await authClient.requestPasswordReset({
-      email: values.email,
-      redirectTo: appRoutes.auth.resetPassword,
-    });
+    const requestPasswordReset = authClient.requestPasswordReset as (
+      opts: { email: string; redirectTo: string },
+      fetchOptions?: { headers?: Record<string, string> },
+    ) => Promise<{ error?: { message?: string; code?: string } | null }>;
+    const { error } = await requestPasswordReset(
+      {
+        email: values.email,
+        redirectTo: appRoutes.auth.resetPassword,
+      },
+      turnstileToken
+        ? { headers: { "x-turnstile-token": turnstileToken } }
+        : undefined,
+    );
     if (error) {
       setStatus({ kind: "sent", email: values.email });
       return;

@@ -126,7 +126,7 @@ export const PlansPicker = (props: PlansPickerProps) => {
 
         <div
           className={cn(
-            "grid items-center gap-4.5",
+            "grid items-stretch gap-4.5",
             `tablet:grid-cols-${Math.min(sorted.length, 3)}`,
           )}
         >

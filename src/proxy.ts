@@ -154,7 +154,21 @@ export const proxy = async (request: NextRequest) => {
     return Response.redirect(new URL("/home", request.url));
   }
 
-  return intlMiddleware(request as never);
+  const response = intlMiddleware(request as never) as NextResponse;
+
+  if (
+    matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) ||
+    matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES)
+  ) {
+    response.headers.set(
+      "Cache-Control",
+      "no-store, no-cache, must-revalidate, max-age=0",
+    );
+    response.headers.set("Pragma", "no-cache");
+    response.headers.set("Expires", "0");
+  }
+
+  return response;
 };
 
 export const config = {

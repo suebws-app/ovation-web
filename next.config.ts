@@ -8,9 +8,17 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
 const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 const isDev = process.env.NODE_ENV === "development";
 
-const scriptSrc = ["'self'", "'unsafe-inline'", isDev && "'unsafe-eval'"]
+const scriptSrc = [
+  "'self'",
+  "'unsafe-inline'",
+  "https://static.cloudflareinsights.com",
+  "https://challenges.cloudflare.com",
+  isDev && "'unsafe-eval'",
+]
   .filter(Boolean)
   .join(" ");
+
+const frameSrc = ["'self'", "https://challenges.cloudflare.com"].join(" ");
 
 type RemotePattern = NonNullable<
   NonNullable<NextConfig["images"]>["remotePatterns"]
@@ -51,7 +59,8 @@ const securityHeaders = [
       `script-src ${scriptSrc}`,
       "style-src 'self' 'unsafe-inline'",
       `img-src 'self' data: blob: ${mediaDomain} https://lh3.googleusercontent.com`,
-      `connect-src 'self' ${apiUrl} ${appUrl}`,
+      `connect-src 'self' ${apiUrl} ${appUrl} https://challenges.cloudflare.com`,
+      `frame-src ${frameSrc}`,
       "font-src 'self'",
       "object-src 'none'",
       "base-uri 'self'",

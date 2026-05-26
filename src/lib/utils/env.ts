@@ -45,6 +45,10 @@ export const env = {
   // Cloudflare Turnstile — public site key for the widget.
   // When blank, Turnstile widgets are not rendered.
   TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "",
+  // Cloudflare Turnstile — server-side secret used to verify tokens against
+  // siteverify. When set, the Better Auth route enforces token validation
+  // on sign-up, password-reset and sign-in (after repeated failures).
+  TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY ?? "",
 
   // Coming soon mode — gates all routes behind a password-protected page.
   // Set COMING_SOON_ENABLED=true and COMING_SOON_PASSWORD=<secret> to enable.

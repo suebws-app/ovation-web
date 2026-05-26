@@ -29,7 +29,8 @@ export const SignUpForm = () => {
   const storedAgreed = useSignUpStore((s) => s.formData.agreedToTerms);
   const schema = useMemo(() => getSignUpSchema(t), [t]);
 
-  const { onSubmit, submitError, setTurnstileToken } = useCreateAccount();
+  const { onSubmit, submitError, setTurnstileToken, turnstileResetKey } =
+    useCreateAccount();
 
   useEffect(() => {
     const as = searchParams.get("as");
@@ -166,6 +167,7 @@ export const SignUpForm = () => {
 
       <div className="mt-6">
         <TurnstileWidget
+          resetKey={turnstileResetKey}
           onSuccess={setTurnstileToken}
           onExpire={() => setTurnstileToken(null)}
         />

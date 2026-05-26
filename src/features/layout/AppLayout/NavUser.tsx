@@ -22,7 +22,7 @@ import {
 } from "@ovation/ui/components/DropdownMenu";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { useTranslations } from "next-intl";
-import { useRouter, Link } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { signOut } from "@/lib/auth/client";
 import type { User } from "@/lib/api/types";
@@ -45,7 +45,6 @@ type NavUserProps = {
 export const NavUser = ({ user }: NavUserProps) => {
   const t = useTranslations();
   const { isMobile } = useSidebar();
-  const router = useRouter();
   const [signingOut, setSigningOut] = useState(false);
 
   const handleSignOut = async () => {
@@ -54,8 +53,7 @@ export const NavUser = ({ user }: NavUserProps) => {
     try {
       await signOut();
     } finally {
-      router.replace(appRoutes.auth.signIn);
-      router.refresh();
+      window.location.assign(appRoutes.auth.signIn);
     }
   };
 
