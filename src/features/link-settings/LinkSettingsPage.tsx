@@ -1,11 +1,10 @@
-import { eventsApi } from "@/lib/api/events";
 import { linkSettingsApi } from "@/lib/api/link-settings";
+import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { LinkSettingsClient } from "./LinkSettingsClient";
 import { LinkEmpty } from "./components/LinkEmpty";
 
 export const LinkSettingsPage = async () => {
-  const events = await eventsApi.list({ limit: 1 });
-  const event = events.items[0] ?? null;
+  const event = await requireFilledCoupleEvent();
 
   if (!event) {
     return (

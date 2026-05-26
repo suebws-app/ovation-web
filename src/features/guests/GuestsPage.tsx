@@ -2,6 +2,7 @@ import { ApiError } from "@/lib/api/client";
 import { eventsApi } from "@/lib/api/events";
 import { invitationsApi } from "@/lib/api/invitations";
 import { env } from "@/lib/utils/env";
+import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { GuestsEmptyState } from "./components/GuestsEmptyState";
 import { GuestsPageClient } from "./GuestsPageClient";
 
@@ -11,8 +12,7 @@ const ignoreNotFound = <T,>(error: unknown, fallback: T): T => {
 };
 
 export const GuestsPage = async () => {
-  const eventsPage = await eventsApi.list({ limit: 1 });
-  const event = eventsPage.items[0];
+  const event = await requireFilledCoupleEvent();
   if (!event) return <GuestsEmptyState />;
 
   const [stats, invitations] = await Promise.all([

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@ovation/ui/components/Button";
@@ -13,6 +13,7 @@ import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { eventsClient } from "@/lib/api/events-client";
 
 export const CreatePage = () => {
   const t = useTranslations();
@@ -21,6 +22,7 @@ export const CreatePage = () => {
   const setAccountType = useSignUpStore((s) => s.updateFormData);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const hydratedRef = useRef(false);
 
   useEffect(() => {
     const as = searchParams.get("as");

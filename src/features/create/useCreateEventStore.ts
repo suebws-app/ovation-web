@@ -13,9 +13,14 @@ export type CreateEventFormData = {
   bookUrl: string;
 };
 
+export type CreateEventMode = "create" | "edit";
+
 type CreateEventStore = {
   formData: CreateEventFormData;
+  mode: CreateEventMode;
+  eventId: string | null;
   updateFormData: (data: Partial<CreateEventFormData>) => void;
+  setEditTarget: (eventId: string) => void;
   reset: () => void;
 };
 
@@ -32,7 +37,11 @@ const initialFormData: CreateEventFormData = {
 
 export const useCreateEventStore = create<CreateEventStore>((set) => ({
   formData: initialFormData,
+  mode: "create",
+  eventId: null,
   updateFormData: (data) =>
     set((state) => ({ formData: { ...state.formData, ...data } })),
-  reset: () => set({ formData: initialFormData }),
+  setEditTarget: (eventId) => set({ mode: "edit", eventId }),
+  reset: () =>
+    set({ formData: initialFormData, mode: "create", eventId: null }),
 }));

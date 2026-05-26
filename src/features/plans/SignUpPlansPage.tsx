@@ -12,7 +12,9 @@ type SignUpPlansPageProps = {
   initialAccountType?: "couple" | "pro" | null;
 };
 
-export const SignUpPlansPage = ({ initialAccountType }: SignUpPlansPageProps = {}) => {
+export const SignUpPlansPage = ({
+  initialAccountType,
+}: SignUpPlansPageProps = {}) => {
   const { formData, updateFormData } = useSignUpStore();
   const searchParams = useSearchParams();
   const asParam = searchParams.get("as");

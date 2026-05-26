@@ -7,12 +7,12 @@ import { ApiError } from "@/lib/api/client";
 import { eventsApi } from "@/lib/api/events";
 import { messagesApi } from "@/lib/api/messages";
 import { queryKeys } from "@/lib/query/keys";
+import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { MessagesEmptyState } from "./components/MessagesEmptyState";
 import { MessagesPageClient } from "./MessagesPageClient";
 
 export const MessagesPage = async () => {
-  const events = await eventsApi.list({ limit: 1 });
-  const event = events.items[0];
+  const event = await requireFilledCoupleEvent();
   if (!event) {
     return <MessagesEmptyState />;
   }

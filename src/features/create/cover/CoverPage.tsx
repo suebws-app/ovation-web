@@ -28,7 +28,8 @@ export const CoverPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const { partner1Name, partner2Name } = useCreateEventStore.getState().formData;
+    const { partner1Name, partner2Name } =
+      useCreateEventStore.getState().formData;
     if (!partner1Name.trim() && !partner2Name.trim()) {
       router.replace(appRoutes.create.root);
     }
@@ -52,14 +53,20 @@ export const CoverPage = () => {
   const canContinue = slug.length === 0 || status === "available";
 
   const handleSelectPreset = (id: string) => {
-    if (formData.coverFilePreview) URL.revokeObjectURL(formData.coverFilePreview);
+    if (formData.coverFilePreview)
+      URL.revokeObjectURL(formData.coverFilePreview);
     updateFormData({ coverType: id, coverFile: null, coverFilePreview: null });
   };
 
   const handleSelectFile = (file: File) => {
-    if (formData.coverFilePreview) URL.revokeObjectURL(formData.coverFilePreview);
+    if (formData.coverFilePreview)
+      URL.revokeObjectURL(formData.coverFilePreview);
     const preview = URL.createObjectURL(file);
-    updateFormData({ coverType: "upload", coverFile: file, coverFilePreview: preview });
+    updateFormData({
+      coverType: "upload",
+      coverFile: file,
+      coverFilePreview: preview,
+    });
   };
 
   const handleContinue = () => {

@@ -18,7 +18,10 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
-import { getSignUpSchema, type SignUpFields } from "@/features/sign-up/signUpSchema";
+import {
+  getSignUpSchema,
+  type SignUpFields,
+} from "@/features/sign-up/signUpSchema";
 import { useCreateAccount } from "@/features/sign-up/hooks/useCreateAccount";
 
 export const SignUpForm = () => {
@@ -109,7 +112,9 @@ export const SignUpForm = () => {
             id="signup-password"
             type="password"
             autoComplete="new-password"
-            placeholder={t("auth__signup__create_account__password_placeholder")}
+            placeholder={t(
+              "auth__signup__create_account__password_placeholder",
+            )}
             aria-invalid={Boolean(errors.password)}
             {...register("password")}
           />
@@ -193,7 +198,10 @@ export const SignUpForm = () => {
 
       <p className="type-body-small text-muted-foreground mt-4.5 text-center">
         {t("auth__signup__create_account__has_account")}{" "}
-        <Link href={appRoutes.auth.signIn} className="text-foreground font-semibold">
+        <Link
+          href={appRoutes.auth.signIn}
+          className="text-foreground font-semibold"
+        >
           {t("auth__signup__create_account__signin_cta")}
         </Link>
       </p>
