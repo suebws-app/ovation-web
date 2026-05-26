@@ -8,6 +8,8 @@ import { PlanCard } from "@/features/plans/components/PlanCard";
 import { CheckoutRedirecting as CompletionRedirectingState } from "@/features/checkout/components/CheckoutRedirecting";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { ApiError } from "@/lib/api/client";
+import { useRedirectOnBackNavigation } from "@/lib/hooks/useRedirectOnBackNavigation";
+import { appRoutes } from "@/lib/routes";
 import type {
   Plan,
   CheckoutPlanTier,
@@ -70,6 +72,8 @@ export const PlansPicker = (props: PlansPickerProps) => {
     return () => window.removeEventListener("pageshow", handlePageShow);
   }, [router]);
 
+  useRedirectOnBackNavigation(appRoutes.app.root);
+
   const handleSelectPlan = async (planCode: string) => {
     setRedirecting(true);
     setError(null);
@@ -126,7 +130,7 @@ export const PlansPicker = (props: PlansPickerProps) => {
 
         <div
           className={cn(
-            "grid items-center gap-4.5",
+            "grid items-stretch gap-4.5",
             `tablet:grid-cols-${Math.min(sorted.length, 3)}`,
           )}
         >

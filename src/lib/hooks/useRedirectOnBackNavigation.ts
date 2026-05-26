@@ -1,18 +1,31 @@
-import { useRouter } from "@/i18n/navigation";
 import { useEffect } from "react";
 
-export const useRedirectOnBackNavigation = (redirectUrl: string) => {
-  const router = useRouter();
+const stripLocale = (path: string) => path.replace(/^\/[a-z]{2}(?=\/|$)/, "");
 
+export const useRedirectOnBackNavigation = (redirectUrl: string) => {
   useEffect(() => {
+    const trapHref = window.location.href;
+    const trapPath = stripLocale(window.location.pathname);
+    const targetPath = stripLocale(
+      new URL(redirectUrl, trapHref).pathname,
+    );
+    const sameRoute = trapPath === targetPath;
+
+    window.history.pushState(null, "", trapHref);
+
     const onPopState = () => {
-      router.replace(redirectUrl);
+      if (stripLocale(window.location.pathname) === trapPath) {
+        window.history.pushState(null, "", trapHref);
+        return;
+      }
+      if (sameRoute) {
+        window.history.pushState(null, "", trapHref);
+        return;
+      }
+      window.location.replace(redirectUrl);
     };
 
     window.addEventListener("popstate", onPopState);
-
-    return () => {
-      setTimeout(() => window.removeEventListener("popstate", onPopState), 0);
-    };
-  }, [redirectUrl, router]);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [redirectUrl]);
 };

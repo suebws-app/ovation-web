@@ -30,9 +30,7 @@ export const DashboardPlaceholderCTA = ({
         size="lg"
         className="shadow-primary/40 rounded-full shadow-md"
       >
-        <Link href={appRoutes.create.edit(eventId)}>
-          {t("dashboard__placeholder__cta")}
-        </Link>
+        REMOVE
       </Button>
     </div>
   );

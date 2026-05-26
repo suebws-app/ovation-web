@@ -27,9 +27,17 @@ export const CoverPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
+  useEffect(() => {
+    const { partner1Name, partner2Name } =
+      useCreateEventStore.getState().formData;
+    if (!partner1Name.trim() && !partner2Name.trim()) {
+      router.replace(appRoutes.create.root);
+    }
+  }, [router]);
+
   const slug = formData.bookUrl || "";
   const status = useSlugChecker(slug);
-  const suggestions = useSlugSuggestions(
+  const { suggestions, isLoading: suggestionsLoading } = useSlugSuggestions(
     formData.partner1Name,
     formData.partner2Name,
   );
@@ -45,14 +53,20 @@ export const CoverPage = () => {
   const canContinue = slug.length === 0 || status === "available";
 
   const handleSelectPreset = (id: string) => {
-    if (formData.coverFilePreview) URL.revokeObjectURL(formData.coverFilePreview);
+    if (formData.coverFilePreview)
+      URL.revokeObjectURL(formData.coverFilePreview);
     updateFormData({ coverType: id, coverFile: null, coverFilePreview: null });
   };
 
   const handleSelectFile = (file: File) => {
-    if (formData.coverFilePreview) URL.revokeObjectURL(formData.coverFilePreview);
+    if (formData.coverFilePreview)
+      URL.revokeObjectURL(formData.coverFilePreview);
     const preview = URL.createObjectURL(file);
-    updateFormData({ coverType: "upload", coverFile: file, coverFilePreview: preview });
+    updateFormData({
+      coverType: "upload",
+      coverFile: file,
+      coverFilePreview: preview,
+    });
   };
 
   const handleContinue = () => {
@@ -141,6 +155,7 @@ export const CoverPage = () => {
             value={slug}
             status={status}
             suggestions={suggestions}
+            suggestionsLoading={suggestionsLoading}
             placeholder={placeholder}
             onChange={(v) => updateFormData({ bookUrl: v })}
             onSuggestionClick={(v) => updateFormData({ bookUrl: v })}

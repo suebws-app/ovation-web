@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@ovation/ui/components/Button";
@@ -13,50 +13,20 @@ import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
-import { eventsClient } from "@/lib/api/events-client";
-
-const parseWeddingDate = (raw: string | null): Date | null => {
-  if (!raw) return null;
-  const d = new Date(raw);
-  return Number.isNaN(d.getTime()) ? null : d;
-};
 
 export const CreatePage = () => {
   const t = useTranslations();
   const { formData, updateFormData } = useCreateEventStore();
-  const { partner1Name, partner2Name, displayOrder, weddingDate, venue } =
-    formData;
+  const { partner1Name, partner2Name, weddingDate, venue } = formData;
   const setAccountType = useSignUpStore((s) => s.updateFormData);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const hydratedRef = useRef(false);
 
   useEffect(() => {
     const as = searchParams.get("as");
     if (as === "pro") setAccountType({ accountType: "pro" });
     else if (as === "couple") setAccountType({ accountType: "couple" });
   }, [searchParams, setAccountType]);
-
-  useEffect(() => {
-    if (hydratedRef.current) return;
-    const editId = searchParams.get("edit");
-    if (!editId) return;
-    hydratedRef.current = true;
-    (async () => {
-      try {
-        const { event } = await eventsClient.update(editId, {});
-        useCreateEventStore.getState().setEditTarget(editId);
-        updateFormData({
-          partner1Name: event.partnerAName,
-          partner2Name: event.partnerBName,
-          weddingDate: parseWeddingDate(event.weddingDate),
-          venue: event.venueName ?? "",
-        });
-      } catch {
-        useCreateEventStore.getState().setEditTarget(editId);
-      }
-    })();
-  }, [searchParams, updateFormData]);
 
   const handleContinue = () => router.push(appRoutes.create.cover);
 
@@ -65,14 +35,11 @@ export const CreatePage = () => {
       partnerAName={partner1Name}
       partnerBName={partner2Name}
       weddingDate={weddingDate}
-      displayOrder={displayOrder}
       venuePreview={venue}
       onPartnerAChange={(v) => updateFormData({ partner1Name: v })}
       onPartnerBChange={(v) => updateFormData({ partner2Name: v })}
       onWeddingDateChange={(d) => updateFormData({ weddingDate: d })}
-      onDisplayOrderChange={(v) => updateFormData({ displayOrder: v })}
       subtitle={t("signup__book_details__subtitle")}
-      customOrderOption={t("signup__book_details__display_custom")}
       headerSlot={
         <Kicker className="text-primary mb-3">
           {t("auth__signup__eyebrow_step", {

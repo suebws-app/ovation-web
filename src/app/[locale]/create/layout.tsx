@@ -2,6 +2,8 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { appRoutes } from "@/lib/routes";
 import { CreateHeader } from "@/features/layout/CreateHeader/CreateHeader";
+import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
+import { eventsApi } from "@/lib/api/events";
 
 export default async function CreateLayout({
   children,
@@ -14,8 +16,27 @@ export default async function CreateLayout({
     redirect(`${appRoutes.auth.plans}?as=pro`);
   }
 
-  if (user?.accountType === "couple" && user.primaryEventId && user.onboardingComplete) {
+  if (
+    user?.accountType === "couple" &&
+    user.primaryEventId &&
+    user.onboardingComplete
+  ) {
     redirect(appRoutes.app.root);
+  }
+
+  if (user) {
+    const events = await eventsApi.list({ limit: 10 }).catch(() => {
+      return { items: [], nextCursor: null };
+    });
+    return (
+      <AppLayout
+        user={user}
+        events={events.items}
+        showSubscriptionAlert={false}
+      >
+        {children}
+      </AppLayout>
+    );
   }
 
   return (
