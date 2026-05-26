@@ -235,7 +235,7 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
         <p className="type-body-small text-muted-foreground mt-4.5 text-center">
           {t("auth__signin__no_account")}{" "}
           <Link
-            href={appRoutes.auth.signUp}
+            href={appRoutes.auth.role}
             className="text-foreground font-semibold"
           >
             {t("auth__signin__signup_cta")}

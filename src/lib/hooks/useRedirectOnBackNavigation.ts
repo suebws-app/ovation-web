@@ -1,23 +1,25 @@
 import { useEffect } from "react";
 
-const SENTINEL_COUNT = 50;
+const stripLocale = (path: string) => path.replace(/^\/[a-z]{2}(?=\/|$)/, "");
 
 export const useRedirectOnBackNavigation = (redirectUrl: string) => {
   useEffect(() => {
     const trapHref = window.location.href;
-    const sameRoute =
-      new URL(redirectUrl, trapHref).pathname.replace(/^\/[a-z]{2}(?=\/|$)/, "") ===
-      window.location.pathname.replace(/^\/[a-z]{2}(?=\/|$)/, "");
+    const trapPath = stripLocale(window.location.pathname);
+    const targetPath = stripLocale(
+      new URL(redirectUrl, trapHref).pathname,
+    );
+    const sameRoute = trapPath === targetPath;
 
-    for (let i = 0; i < SENTINEL_COUNT; i++) {
-      window.history.pushState(null, "", trapHref);
-    }
+    window.history.pushState(null, "", trapHref);
 
     const onPopState = () => {
+      if (stripLocale(window.location.pathname) === trapPath) {
+        window.history.pushState(null, "", trapHref);
+        return;
+      }
       if (sameRoute) {
-        for (let i = 0; i < SENTINEL_COUNT; i++) {
-          window.history.pushState(null, "", trapHref);
-        }
+        window.history.pushState(null, "", trapHref);
         return;
       }
       window.location.replace(redirectUrl);
