@@ -54,6 +54,8 @@ export type User = {
   keepsakeCreditCents: number;
   stripeCustomerId: string | null;
   emailPreferences: EmailPreferences | null;
+  primaryEventId: string | null;
+  onboardingComplete: boolean;
   createdAt: string;
   updatedAt: string;
 };
@@ -64,8 +66,6 @@ export type AuthResult = {
   refreshToken: string;
   expiresIn: number;
 };
-
-export type EventKind = "empty" | "filled";
 
 export type Event = {
   id: string;
@@ -82,7 +82,6 @@ export type Event = {
   couplePhotoUrl: string | null;
   status: EventStatus | string;
   defaultLanguage: SupportedLanguage | string;
-  kind: EventKind | string;
   createdAt: string;
   updatedAt: string;
 };
@@ -142,7 +141,6 @@ export type CreateEventInput = {
   venueName?: string;
   venueCity?: string;
   expectedGuests?: number;
-  kind?: EventKind;
 };
 
 export type UpdateEventInput = Partial<CreateEventInput> & {
@@ -153,7 +151,6 @@ export type UpdateEventInput = Partial<CreateEventInput> & {
   slug?: string;
   kioskPin?: string;
   submissionsEnabled?: boolean;
-  kind?: EventKind;
 };
 
 export type ListEventsQuery = {
@@ -478,7 +475,7 @@ export type CheckoutShippingAddress = {
 };
 
 export type CheckoutSessionInput = {
-  eventId: string;
+  eventId?: string;
   orderType: CheckoutOrderType;
   planTier?: CheckoutPlanTier;
   items?: CheckoutItem[] | null;

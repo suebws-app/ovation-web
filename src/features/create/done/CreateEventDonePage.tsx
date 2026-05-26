@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { eventsClient } from "@/lib/api/events-client";
+import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import type { CoverPhotoContentType } from "@/lib/api/types";
@@ -75,7 +76,6 @@ export const CreateEventDonePage = () => {
             partnerBName,
             weddingDate,
             venueName,
-            kind: "filled",
           });
           targetEventId = event.id;
         } else {
@@ -84,10 +84,11 @@ export const CreateEventDonePage = () => {
             partnerBName,
             weddingDate,
             venueName,
-            kind: "filled",
           });
           targetEventId = created.event.id;
         }
+
+        await profileClient.markOnboardingComplete().catch(() => undefined);
 
         const desiredSlug = formData.bookUrl?.trim();
         if (desiredSlug && /^[a-z0-9-]{4,20}$/.test(desiredSlug)) {

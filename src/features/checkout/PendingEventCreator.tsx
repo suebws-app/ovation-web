@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { eventsClient } from "@/lib/api/events-client";
 import { planPurchasesClient } from "@/lib/api/plan-purchases-client";
+import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 
 const STORAGE_KEY = "ovation_pending_event_data";
@@ -82,7 +83,6 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
             partnerBName: data.partnerBName,
             weddingDate: data.weddingDate ?? undefined,
             venueName: data.venueName ?? undefined,
-            kind: "filled",
           });
 
           if (
@@ -97,6 +97,7 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
             }
           }
 
+          await profileClient.markOnboardingComplete().catch(() => undefined);
           window.sessionStorage?.removeItem(STORAGE_KEY);
           return;
         } catch (error) {
