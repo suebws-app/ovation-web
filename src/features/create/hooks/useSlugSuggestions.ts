@@ -17,8 +17,8 @@ export const useSlugSuggestions = (
 
   useEffect(() => {
     const controller = new AbortController();
-    setIsLoading(true);
     const timer = setTimeout(() => {
+      setIsLoading(true);
       eventsClient
         .slugSuggestions(
           {
