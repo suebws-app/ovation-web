@@ -17,8 +17,7 @@ import { appRoutes } from "@/lib/routes";
 export const CreatePage = () => {
   const t = useTranslations();
   const { formData, updateFormData } = useCreateEventStore();
-  const { partner1Name, partner2Name, displayOrder, weddingDate, venue } =
-    formData;
+  const { partner1Name, partner2Name, weddingDate, venue } = formData;
   const setAccountType = useSignUpStore((s) => s.updateFormData);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -36,14 +35,11 @@ export const CreatePage = () => {
       partnerAName={partner1Name}
       partnerBName={partner2Name}
       weddingDate={weddingDate}
-      displayOrder={displayOrder}
       venuePreview={venue}
       onPartnerAChange={(v) => updateFormData({ partner1Name: v })}
       onPartnerBChange={(v) => updateFormData({ partner2Name: v })}
       onWeddingDateChange={(d) => updateFormData({ weddingDate: d })}
-      onDisplayOrderChange={(v) => updateFormData({ displayOrder: v })}
       subtitle={t("signup__book_details__subtitle")}
-      customOrderOption={t("signup__book_details__display_custom")}
       headerSlot={
         <Kicker className="text-primary mb-3">
           {t("auth__signup__eyebrow_step", {

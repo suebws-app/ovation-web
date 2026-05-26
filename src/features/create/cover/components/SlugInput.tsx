@@ -10,15 +10,19 @@ type SlugInputProps = {
   value: string;
   status: SlugStatus;
   suggestions: string[];
+  suggestionsLoading: boolean;
   placeholder: string;
   onChange: (value: string) => void;
   onSuggestionClick: (slug: string) => void;
 };
 
+const SKELETON_WIDTHS = ["w-28", "w-36", "w-24", "w-32"];
+
 export const SlugInput = ({
   value,
   status,
   suggestions,
+  suggestionsLoading,
   placeholder,
   onChange,
   onSuggestionClick,
@@ -60,13 +64,22 @@ export const SlugInput = ({
         )}
       </div>
 
-      {suggestions.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-2">
-          {suggestions.map((s) => (
-            <UrlSuggestionChip key={s} slug={s} onClick={() => onSuggestionClick(s)} />
-          ))}
-        </div>
-      )}
+      <div className="mt-3 flex min-h-20 flex-wrap content-start gap-2">
+        {suggestionsLoading
+          ? SKELETON_WIDTHS.map((w, i) => (
+              <div
+                key={i}
+                className={`border-border bg-muted-foreground/15 h-9 ${w} animate-pulse rounded-full border`}
+              />
+            ))
+          : suggestions.map((s) => (
+              <UrlSuggestionChip
+                key={s}
+                slug={s}
+                onClick={() => onSuggestionClick(s)}
+              />
+            ))}
+      </div>
     </div>
   );
 };

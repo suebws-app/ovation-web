@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { CouplePlan } from "@/features/plans/CouplePlan";
 import { ProPlan } from "@/features/plans/ProPlan";
+import { useRedirectOnBackNavigation } from "@/lib/hooks/useRedirectOnBackNavigation";
+import { appRoutes } from "@/lib/routes";
 
 type SignUpPlansPageProps = {
   initialAccountType?: "couple" | "pro" | null;
@@ -22,6 +24,8 @@ export const SignUpPlansPage = ({ initialAccountType }: SignUpPlansPageProps = {
       updateFormData({ accountType: initialAccountType });
     }
   }, [asParam, initialAccountType, formData.accountType, updateFormData]);
+
+  useRedirectOnBackNavigation(appRoutes.app.root);
 
   const accountType =
     asParam === "pro" || asParam === "couple"

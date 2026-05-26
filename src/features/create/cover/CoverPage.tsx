@@ -27,9 +27,16 @@ export const CoverPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
+  useEffect(() => {
+    const { partner1Name, partner2Name } = useCreateEventStore.getState().formData;
+    if (!partner1Name.trim() && !partner2Name.trim()) {
+      router.replace(appRoutes.create.root);
+    }
+  }, [router]);
+
   const slug = formData.bookUrl || "";
   const status = useSlugChecker(slug);
-  const suggestions = useSlugSuggestions(
+  const { suggestions, isLoading: suggestionsLoading } = useSlugSuggestions(
     formData.partner1Name,
     formData.partner2Name,
   );
@@ -141,6 +148,7 @@ export const CoverPage = () => {
             value={slug}
             status={status}
             suggestions={suggestions}
+            suggestionsLoading={suggestionsLoading}
             placeholder={placeholder}
             onChange={(v) => updateFormData({ bookUrl: v })}
             onSuggestionClick={(v) => updateFormData({ bookUrl: v })}

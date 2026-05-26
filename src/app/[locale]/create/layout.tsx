@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { eventsApi } from "@/lib/api/events";
 import { appRoutes } from "@/lib/routes";
 import { CreateHeader } from "@/features/layout/CreateHeader/CreateHeader";
+import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 
 export default async function CreateLayout({
   children,
@@ -21,6 +22,21 @@ export default async function CreateLayout({
     if (event) {
       redirect(appRoutes.app.event(event.id));
     }
+  }
+
+  if (user) {
+    const events = await eventsApi.list({ limit: 10 }).catch(() => {
+      return { items: [], nextCursor: null };
+    });
+    return (
+      <AppLayout
+        user={user}
+        events={events.items}
+        showSubscriptionAlert={false}
+      >
+        {children}
+      </AppLayout>
+    );
   }
 
   return (

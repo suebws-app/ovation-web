@@ -9,7 +9,6 @@ import { Calendar } from "@ovation/ui/components/DatePicker";
 import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import { BookPreview } from "@/features/create/cover/components/BookPreview";
-import { NameOrderOption } from "@/features/events/components/NameOrderOption";
 import { CountdownCard } from "@/features/events/components/CountdownCard";
 
 const BLOB_DESTRUCTIVE =
@@ -23,17 +22,14 @@ type EventBookFormProps = {
   partnerAName: string;
   partnerBName: string;
   weddingDate: Date | null;
-  displayOrder: string;
   venuePreview: string;
   onPartnerAChange: (v: string) => void;
   onPartnerBChange: (v: string) => void;
   onWeddingDateChange: (d: Date | null) => void;
-  onDisplayOrderChange: (v: string) => void;
   subtitle: string;
   headerSlot?: React.ReactNode;
   venueSlot: React.ReactNode;
   actionSlot: React.ReactNode;
-  customOrderOption?: string;
   className?: string;
 };
 
@@ -41,27 +37,18 @@ export const EventBookForm = ({
   partnerAName,
   partnerBName,
   weddingDate,
-  displayOrder,
   venuePreview,
   onPartnerAChange,
   onPartnerBChange,
   onWeddingDateChange,
-  onDisplayOrderChange,
   subtitle,
   headerSlot,
   venueSlot,
   actionSlot,
-  customOrderOption,
   className,
 }: EventBookFormProps) => {
   const t = useTranslations();
   const [showCalendar, setShowCalendar] = useState(false);
-
-  const orderOptions = [
-    `${partnerAName || t("signup__book_details__partner1")} & ${partnerBName || t("signup__book_details__partner2")}`,
-    `${partnerBName || t("signup__book_details__partner2")} & ${partnerAName || t("signup__book_details__partner1")}`,
-    ...(customOrderOption ? [customOrderOption] : []),
-  ];
 
   const daysUntil = weddingDate
     ? Math.max(
@@ -151,22 +138,6 @@ export const EventBookForm = ({
                 onChange={(e) => onPartnerBChange(e.target.value)}
                 placeholder={t("signup__book_details__name_placeholder")}
               />
-            </div>
-          </div>
-
-          <div className="mt-5">
-            <Label className="mb-2">
-              {t("signup__book_details__display_label")}
-            </Label>
-            <div className="flex flex-wrap gap-2">
-              {orderOptions.map((option, index) => (
-                <NameOrderOption
-                  key={`${option}-${index}`}
-                  label={option}
-                  active={displayOrder === option}
-                  onClick={() => onDisplayOrderChange(option)}
-                />
-              ))}
             </div>
           </div>
 

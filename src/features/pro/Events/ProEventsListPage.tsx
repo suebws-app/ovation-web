@@ -3,6 +3,7 @@ import { eventsApi } from "@/lib/api/events";
 import { appRoutes } from "@/lib/routes";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
+import { BackNavigationGuard } from "@/components/BackNavigationGuard";
 import { ProEventRow } from "./ProEventRow";
 
 export const ProEventsListPage = async () => {
@@ -12,8 +13,11 @@ export const ProEventsListPage = async () => {
 
   return (
     <div className="flex h-full w-full flex-1 flex-col gap-6 overflow-y-auto p-6">
+      <BackNavigationGuard redirectTo={appRoutes.app.events} />
       <div className="flex items-center justify-between">
-        <h1 className="type-h2 font-semibold">{t("app__pro__events__title")}</h1>
+        <h1 className="type-h2 font-semibold">
+          {t("app__pro__events__title")}
+        </h1>
         <Button asChild size="sm">
           <Link href={appRoutes.create.root}>
             {t("app__pro__events__new_event")}

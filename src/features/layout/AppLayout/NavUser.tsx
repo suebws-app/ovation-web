@@ -53,7 +53,7 @@ export const NavUser = ({ user }: NavUserProps) => {
     try {
       await signOut();
     } finally {
-      window.location.assign(appRoutes.auth.signIn);
+      window.location.replace(appRoutes.auth.signIn);
     }
   };
 

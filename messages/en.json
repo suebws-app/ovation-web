@@ -558,8 +558,6 @@
   "signup__book_details__partner1": "Partner 1",
   "signup__book_details__partner2": "Partner 2",
   "signup__book_details__name_placeholder": "First name",
-  "signup__book_details__display_label": "How should the book read?",
-  "signup__book_details__display_custom": "Custom…",
   "signup__book_details__date_label": "Wedding date",
   "signup__book_details__date_placeholder": "Pick a date",
   "signup__book_details__date_optional": "Optional",
