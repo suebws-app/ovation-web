@@ -2,7 +2,7 @@ import "server-only";
 import { cache } from "react";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
-import { eventsApi } from "@/lib/api/events";
+import { getCurrentEvent } from "@/lib/auth/current-event";
 import { appRoutes } from "@/lib/routes";
 import type { Event } from "@/lib/api/types";
 
@@ -11,15 +11,12 @@ export const requireFilledCoupleEvent = cache(
     const user = await getCurrentUser();
     if (!user) return null;
     if (user.accountType !== "couple") {
-      const events = await eventsApi.list({ limit: 1 }).catch(() => null);
-      return events?.items[0] ?? null;
+      return getCurrentEvent();
     }
-    const events = await eventsApi.list({ limit: 1 }).catch(() => null);
-    const event = events?.items[0];
-    if (!event) return null;
-    if (event.kind === "empty") {
+    if (!user.onboardingComplete) {
       redirect(appRoutes.app.root);
     }
+    const event = await getCurrentEvent();
     return event;
   },
 );

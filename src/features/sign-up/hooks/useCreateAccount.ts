@@ -81,7 +81,6 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
         const eventData = useCreateEventStore.getState().formData;
         const trimmedA = eventData.partner1Name?.trim() ?? "";
         const trimmedB = eventData.partner2Name?.trim() ?? "";
-        const userFilledNames = Boolean(trimmedA && trimmedB);
         const partnerA = trimmedA || t("signup__partner_a_default");
         const partnerB = trimmedB || t("signup__partner_b_default");
         const { event } = await eventsClient.create({
@@ -89,7 +88,6 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
           partnerBName: partnerB,
           weddingDate: toIsoDate(eventData.weddingDate),
           venueName: eventData.venue?.trim() || undefined,
-          kind: userFilledNames ? "filled" : "empty",
         });
         if (typeof window !== "undefined") {
           window.sessionStorage?.setItem("ovation_signup_event_id", event.id);

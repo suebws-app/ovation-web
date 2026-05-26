@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import { unstable_noStore as noStore } from "next/cache";
-import { eventsApi } from "@/lib/api/events";
 import { plansApi } from "@/lib/api/plans";
 import { getCurrentUser } from "@/lib/auth/session";
 import { appRoutes } from "@/lib/routes";
@@ -10,6 +9,8 @@ import { DreUpgradeCard } from "./components/DreUpgradeCard";
 type PlansPageProps = {
   searchParams?: Promise<{ upgrade?: string }>;
 };
+
+const PREMIUM_PLANS = ["premium", "bundle"];
 
 export const PlansPage = async ({ searchParams }: PlansPageProps) => {
   noStore();
@@ -22,10 +23,9 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
   const { plans } = await plansApi.list();
 
   if (isUpgrade) {
-    const eligible =
-      user.planTier === "premium" || user.planTier === "bundle";
+    const eligible = PREMIUM_PLANS.includes(user?.planTier || "");
     if (!eligible) redirect(appRoutes.app.root);
-    const drePlan = plans.find((p) => p.code === "storage_extension");
+    const drePlan = plans.find((p) => p.code === "storsage_extension");
     if (!drePlan) redirect(appRoutes.app.root);
     return (
       <div className="max-w-md">
@@ -40,10 +40,6 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
     return <PlansPicker mode="pro" plans={proPlans} />;
   }
 
-  const events = await eventsApi.list({ limit: 1 });
-  const event = events.items[0];
-  if (!event) redirect(appRoutes.app.root);
-
   if (user.planTier !== "free") redirect(appRoutes.app.root);
 
   const couplePlans = plans.filter(
@@ -53,5 +49,5 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
       plan.code !== "essentials" &&
       plan.code !== "free",
   );
-  return <PlansPicker mode="couple" plans={couplePlans} eventId={event.id} />;
+  return <PlansPicker mode="couple" plans={couplePlans} />;
 };

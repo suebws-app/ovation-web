@@ -45,9 +45,10 @@ const buildFeatures = (plan: Plan): string[] => {
 const getOrigin = () =>
   typeof window !== "undefined" ? window.location.origin : "";
 
-type PlansPickerProps =
-  | { mode: "couple"; eventId: string; plans: Plan[] }
-  | { mode: "pro"; plans: Plan[] };
+type PlansPickerProps = {
+  mode: "couple" | "pro";
+  plans: Plan[];
+};
 
 export const PlansPicker = (props: PlansPickerProps) => {
   const t = useTranslations();
@@ -83,7 +84,6 @@ export const PlansPicker = (props: PlansPickerProps) => {
               cancelUrl,
             })
           : await paymentsClient.createCheckoutSession({
-              eventId: props.eventId,
               orderType: "plan",
               planTier: planCode as CheckoutPlanTier,
               successUrl,

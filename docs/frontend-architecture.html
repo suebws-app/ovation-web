@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ovation Web — Frontend Architecture & Flow</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3350;
+      --accent: #6c63ff;
+      --accent2: #00d4aa;
+      --accent3: #ff6b6b;
+      --accent4: #ffd93d;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --code-bg: #12151f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.7; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,17,23,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem; display: flex; align-items: center; gap: 2rem; height: 56px;
+    }
+    nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+    nav a { color: var(--muted); text-decoration: none; font-size: .875rem; transition: color .2s; }
+    nav a:hover { color: var(--text); }
+
+    .page { display: flex; }
+
+    aside {
+      width: 240px; min-width: 240px; position: sticky; top: 56px;
+      height: calc(100vh - 56px); overflow-y: auto;
+      padding: 1.5rem 1rem; border-right: 1px solid var(--border);
+    }
+    aside h4 { font-size: .7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: .75rem; margin-top: 1.25rem; }
+    aside h4:first-child { margin-top: 0; }
+    aside a { display: block; color: var(--muted); text-decoration: none; font-size: .83rem; padding: .3rem .5rem; border-radius: 4px; transition: all .15s; }
+    aside a:hover { color: var(--text); background: var(--surface); }
+
+    main { flex: 1; min-width: 0; padding: 2.5rem 3rem; max-width: 1000px; }
+
+    h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: .5rem; }
+    h1 span { color: var(--accent); }
+    .subtitle { color: var(--muted); margin-bottom: 3rem; font-size: 1rem; }
+    h2 { font-size: 1.45rem; font-weight: 700; margin: 3rem 0 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 72px; }
+    h3 { font-size: 1.05rem; font-weight: 600; margin: 1.75rem 0 .6rem; color: var(--accent2); scroll-margin-top: 72px; }
+    p { margin-bottom: .85rem; }
+    ul, ol { padding-left: 1.4rem; margin-bottom: .85rem; }
+    li { margin-bottom: .3rem; }
+    strong { color: #fff; }
+
+    code {
+      font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: .82em;
+      background: var(--code-bg); border: 1px solid var(--border);
+      padding: .15em .45em; border-radius: 4px; color: var(--accent2);
+    }
+    pre {
+      background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 1.25rem; overflow-x: auto; margin: 1rem 0 1.5rem;
+      font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: .82rem; line-height: 1.6;
+    }
+    pre code { background: none; border: none; padding: 0; color: var(--text); }
+    .kw { color: #c792ea; } .str { color: #c3e88d; } .cm { color: #546e7a; font-style: italic; }
+    .fn { color: #82aaff; } .cls { color: #ffcb6b; } .num { color: #f78c6c; }
+    .tag { color: #ff6b6b; } .attr { color: #ffd93d; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; }
+    .card h4 { font-size: .9rem; font-weight: 700; margin-bottom: .4rem; }
+    .card p { font-size: .82rem; color: var(--muted); margin: 0; }
+    .card.accent { border-color: var(--accent); }
+    .card.green { border-color: var(--accent2); }
+    .card.red { border-color: var(--accent3); }
+    .card.yellow { border-color: var(--accent4); }
+
+    .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 1rem 0 1.5rem; }
+    .flow-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: .6rem 1rem; font-size: .83rem; font-weight: 600; white-space: nowrap; }
+    .flow-box.blue { border-color: var(--accent); color: var(--accent); }
+    .flow-box.green { border-color: var(--accent2); color: var(--accent2); }
+    .flow-box.red { border-color: var(--accent3); color: var(--accent3); }
+    .flow-box.yellow { border-color: var(--accent4); color: var(--accent4); }
+    .flow-arrow { color: var(--muted); font-size: 1.1rem; padding: 0 .4rem; }
+
+    .badge { display: inline-block; font-size: .72rem; font-weight: 700; padding: .15em .6em; border-radius: 999px; margin-right: .3rem; vertical-align: middle; }
+    .badge.blue { background: rgba(108,99,255,.18); color: var(--accent); }
+    .badge.green { background: rgba(0,212,170,.15); color: var(--accent2); }
+    .badge.red { background: rgba(255,107,107,.15); color: var(--accent3); }
+    .badge.yellow { background: rgba(255,217,61,.15); color: var(--accent4); }
+
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .85rem; }
+    th { text-align: left; padding: .6rem .9rem; background: var(--surface2); color: var(--muted); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid var(--border); }
+    td { padding: .6rem .9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--surface); }
+
+    .callout { border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0; padding: .9rem 1.2rem; margin: 1rem 0 1.5rem; font-size: .88rem; }
+    .callout.warn { border-color: var(--accent4); }
+    .callout.success { border-color: var(--accent2); }
+
+    .layer-stack { display: flex; flex-direction: column; gap: .5rem; margin: 1rem 0 1.5rem; }
+    .layer { display: flex; align-items: flex-start; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .75rem 1.25rem; position: relative; }
+    .layer::before { content: ''; position: absolute; left: 50%; bottom: -8px; width: 1px; height: 8px; background: var(--border); }
+    .layer:last-child::before { display: none; }
+    .layer-icon { font-size: 1.3rem; width: 2rem; text-align: center; flex-shrink: 0; padding-top: .1rem; }
+    .layer-title { font-weight: 700; font-size: .9rem; min-width: 130px; }
+    .layer-desc { font-size: .82rem; color: var(--muted); }
+
+    .route-tree { font-family: 'Fira Code', monospace; font-size: .82rem; background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1rem 0 1.5rem; line-height: 1.9; }
+    .rt-dir { color: var(--accent4); }
+    .rt-file { color: var(--text); }
+    .rt-group { color: var(--muted); }
+    .rt-dynamic { color: var(--accent2); }
+    .rt-api { color: var(--accent3); }
+    .rt-comment { color: #546e7a; font-style: italic; }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">Ovation Web</span>
+  <a href="#overview">Overview</a>
+  <a href="#routing">Routing</a>
+  <a href="#render">Rendering</a>
+  <a href="#auth">Auth</a>
+  <a href="#api">API Layer</a>
+  <a href="#state">State</a>
+  <a href="#forms">Forms</a>
+  <a href="#flows">Key Flows</a>
+  <a href="#media">Media</a>
+  <a href="#i18n">i18n</a>
+</nav>
+
+<div class="page">
+  <aside>
+    <h4>Foundations</h4>
+    <a href="#overview">Overview</a>
+    <a href="#tech-stack">Tech Stack</a>
+    <a href="#folder-structure">Folder Structure</a>
+
+    <h4>Routing & Rendering</h4>
+    <a href="#routing">Route Map</a>
+    <a href="#layouts">Layout Hierarchy</a>
+    <a href="#render">Server vs Client</a>
+    <a href="#middleware">Middleware</a>
+
+    <h4>Data & State</h4>
+    <a href="#auth">Auth & Sessions</a>
+    <a href="#api">API Layer</a>
+    <a href="#react-query">React Query</a>
+    <a href="#state">Zustand Stores</a>
+
+    <h4>UI & Forms</h4>
+    <a href="#ui-library">UI Library</a>
+    <a href="#forms">Form Handling</a>
+    <a href="#i18n">i18n</a>
+
+    <h4>Key Flows</h4>
+    <a href="#flows">Flow Overview</a>
+    <a href="#flow-signup">Sign-Up</a>
+    <a href="#flow-create">Create Event</a>
+    <a href="#flow-guest">Guest Submission</a>
+    <a href="#flow-checkout">Checkout</a>
+    <a href="#media">Media Uploads</a>
+  </aside>
+
+  <main>
+    <h1>Ovation Web <span>Frontend Architecture</span></h1>
+    <p class="subtitle">Next.js 16 App Router · React 19 · React Query · Zustand · better-auth · Tailwind 4</p>
+
+    <!-- ══════════════════════ OVERVIEW ══════════════════════ -->
+    <h2 id="overview">Overview</h2>
+    <p>
+      Ovation Web is a <strong>Next.js 16 App Router</strong> application in a pnpm monorepo alongside <code>ovation-api</code>. It serves three distinct audiences: <strong>couples</strong> managing their wedding event dashboard, <strong>guests</strong> submitting messages and media via a public link, and <strong>pro users</strong> (planners) managing multiple events.
+    </p>
+
+    <div class="card-grid">
+      <div class="card accent">
+        <h4>Next.js App Router</h4>
+        <p>Nested layouts, server components, locale-segmented routing via next-intl</p>
+      </div>
+      <div class="card green">
+        <h4>Feature-Based Structure</h4>
+        <p>Self-contained feature folders under <code>src/features/</code> with pages, hooks, and components co-located</p>
+      </div>
+      <div class="card yellow">
+        <h4>Dual State Strategy</h4>
+        <p>React Query for server state · Zustand for multi-step form flows</p>
+      </div>
+      <div class="card red">
+        <h4>Workspace UI Packages</h4>
+        <p><code>@ovation/ui</code>, <code>@ovation/icons</code>, <code>@ovation/illustrations</code> shared across apps</p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════ TECH STACK ══════════════════════ -->
+    <h2 id="tech-stack">Tech Stack</h2>
+    <table>
+      <thead><tr><th>Concern</th><th>Library</th><th>Version</th></tr></thead>
+      <tbody>
+        <tr><td>Framework</td><td>Next.js</td><td>16.2.6</td></tr>
+        <tr><td>UI</td><td>React</td><td>19.2.4</td></tr>
+        <tr><td>Language</td><td>TypeScript</td><td>5 (strict)</td></tr>
+        <tr><td>Styling</td><td>Tailwind CSS</td><td>4 (PostCSS)</td></tr>
+        <tr><td>Server state</td><td>React Query (@tanstack/react-query)</td><td>v5</td></tr>
+        <tr><td>Client state</td><td>Zustand</td><td>v5</td></tr>
+        <tr><td>Auth</td><td>better-auth</td><td>PostgreSQL adapter</td></tr>
+        <tr><td>Forms</td><td>react-hook-form + Zod</td><td>RHF v7</td></tr>
+        <tr><td>i18n</td><td>next-intl</td><td>dynamic locale routing</td></tr>
+        <tr><td>Payments</td><td>Paddle, Stripe</td><td>client SDKs</td></tr>
+        <tr><td>Analytics</td><td>Vercel Analytics + Speed Insights</td><td>–</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ══════════════════════ FOLDER STRUCTURE ══════════════════════ -->
+    <h2 id="folder-structure">Folder Structure</h2>
+    <div class="route-tree">
+<span class="rt-dir">src/</span>
+├── <span class="rt-dir">app/</span>                       <span class="rt-comment"># Next.js App Router</span>
+│   ├── <span class="rt-dynamic">[locale]/</span>                  <span class="rt-comment"># i18n segment (en, fr, nl, de, es, it)</span>
+│   │   ├── <span class="rt-group">(public)/</span>               <span class="rt-comment"># Unauthenticated pages</span>
+│   │   │   └── <span class="rt-group">(auth)/</span>             <span class="rt-comment"># sign-in, sign-up</span>
+│   │   ├── <span class="rt-group">(private)/</span>              <span class="rt-comment"># Auth-guarded pages</span>
+│   │   │   └── <span class="rt-group">(main)/</span>             <span class="rt-comment"># Dashboard with AppLayout sidebar</span>
+│   │   │       ├── home, events, messages, photos
+│   │   │       ├── guests, kiosk, qr-code
+│   │   │       ├── cart, orders, keepsakes
+│   │   │       └── account, help, link
+│   │   ├── <span class="rt-group">(app)/</span>                  <span class="rt-comment"># Guest-facing public pages</span>
+│   │   │   └── <span class="rt-dynamic">keepsakes/[slug]/</span>   <span class="rt-comment"># Keepsake customizer</span>
+│   │   ├── create/                 <span class="rt-comment"># Event creation wizard</span>
+│   │   ├── checkout/               <span class="rt-comment"># Paddle checkout</span>
+│   │   └── plans/                  <span class="rt-comment"># Plan selection</span>
+│   ├── <span class="rt-api">api/</span>
+│   │   ├── <span class="rt-api">auth/[...all]/</span>          <span class="rt-comment"># better-auth catch-all handler</span>
+│   │   └── <span class="rt-api">coming-soon/unlock/</span>     <span class="rt-comment"># Waitlist unlock endpoint</span>
+│   └── coming-soon/
+│
+├── <span class="rt-dir">features/</span>                 <span class="rt-comment"># Feature modules (self-contained)</span>
+│   ├── auth/                       <span class="rt-comment"># Sign-in UI, social buttons</span>
+│   ├── sign-up/                    <span class="rt-comment"># Multi-step sign-up (form, store, hooks)</span>
+│   ├── create/                     <span class="rt-comment"># Event creation wizard (form, store)</span>
+│   ├── guest/                      <span class="rt-comment"># Guest compose, review, recording</span>
+│   ├── layout/                     <span class="rt-comment"># AppLayout, sidebar, providers</span>
+│   ├── dashboard/                  <span class="rt-comment"># Home dashboard</span>
+│   ├── messages/                   <span class="rt-comment"># Message list, player, bulk actions</span>
+│   ├── photos/                     <span class="rt-comment"># Photo gallery, uploads</span>
+│   ├── events/                     <span class="rt-comment"># Event cards, countdown</span>
+│   ├── guests/                     <span class="rt-comment"># Guest list, CSV export</span>
+│   ├── checkout/                   <span class="rt-comment"># Payment flow, Paddle client</span>
+│   ├── keepsakes/                  <span class="rt-comment"># Customizer UI, media picker</span>
+│   ├── plans/                      <span class="rt-comment"># Plan cards, feature lists</span>
+│   ├── kiosk-setup/                <span class="rt-comment"># Kiosk fullscreen config</span>
+│   ├── qr-code/                    <span class="rt-comment"># QR generation, download</span>
+│   ├── cart/, role/, verify/
+│   └── marketing/, coming-soon/
+│
+├── <span class="rt-dir">lib/</span>                      <span class="rt-comment"># Cross-cutting utilities</span>
+│   ├── api/                        <span class="rt-comment"># Typed API clients + fetch wrapper</span>
+│   ├── auth/                       <span class="rt-comment"># better-auth server + client instances</span>
+│   ├── query/                      <span class="rt-comment"># React Query hooks, keys, provider</span>
+│   ├── hooks/                      <span class="rt-comment"># Generic reusable hooks</span>
+│   ├── utils/                      <span class="rt-comment"># env, formatters, helpers</span>
+│   └── routes.ts                   <span class="rt-comment"># Typed route definitions</span>
+│
+├── <span class="rt-dir">components/</span>               <span class="rt-comment"># Global shared UI (TurnstileWidget, etc.)</span>
+└── <span class="rt-dir">i18n/</span>                     <span class="rt-comment"># next-intl routing + navigation</span>
+    </div>
+
+    <!-- ══════════════════════ ROUTING ══════════════════════ -->
+    <h2 id="routing">Route Map</h2>
+    <p>All routes are nested under a <code>[locale]</code> dynamic segment. Route groups (parentheses) apply shared layouts without affecting the URL.</p>
+
+    <table>
+      <thead><tr><th>URL Pattern</th><th>Route Group</th><th>Auth Required</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>/[locale]/sign-in</code></td><td><code>(public)/(auth)</code></td><td>No</td><td>Email/password + OAuth sign-in</td></tr>
+        <tr><td><code>/[locale]/sign-up</code></td><td><code>(public)/(auth)</code></td><td>No</td><td>Account creation (step 1)</td></tr>
+        <tr><td><code>/[locale]/verify</code></td><td><code>(signup)</code></td><td>No</td><td>Email verification OTP</td></tr>
+        <tr><td><code>/[locale]/role</code></td><td><code>(signup)</code></td><td>No</td><td>Couple vs Pro role selection</td></tr>
+        <tr><td><code>/[locale]/plans</code></td><td>–</td><td>No</td><td>Plan selection at sign-up</td></tr>
+        <tr><td><code>/[locale]/home</code></td><td><code>(private)/(main)</code></td><td>Yes</td><td>Dashboard with recent messages</td></tr>
+        <tr><td><code>/[locale]/events</code></td><td><code>(private)/(main)</code></td><td>Yes</td><td>Event list or event detail</td></tr>
+        <tr><td><code>/[locale]/messages</code></td><td><code>(private)/(main)</code></td><td>Yes</td><td>Message management table</td></tr>
+        <tr><td><code>/[locale]/photos</code></td><td><code>(private)/(main)</code></td><td>Yes</td><td>Photo gallery</td></tr>
+        <tr><td><code>/[locale]/guests</code></td><td><code>(private)/(main)</code></td><td>Yes</td><td>Guest list</td></tr>
+        <tr><td><code>/[locale]/keepsakes</code></td><td><code>(private)/(main)</code></td><td>Yes</td><td>Keepsake product catalog</td></tr>
+        <tr><td><code>/[locale]/orders</code></td><td><code>(private)/(main)</code></td><td>Yes</td><td>Order history</td></tr>
+        <tr><td><code>/[locale]/account</code></td><td><code>(private)/(main)</code></td><td>Yes</td><td>Profile & billing settings</td></tr>
+        <tr><td><code>/[locale]/create</code></td><td>–</td><td>Yes</td><td>Event creation wizard</td></tr>
+        <tr><td><code>/[locale]/checkout</code></td><td>–</td><td>Yes</td><td>Paddle payment checkout</td></tr>
+        <tr><td><code>/[locale]/keepsakes/[slug]</code></td><td><code>(app)</code></td><td>No</td><td>Guest-facing keepsake customizer</td></tr>
+        <tr><td><code>/api/auth/[...all]</code></td><td>–</td><td>–</td><td>better-auth API handler</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ══════════════════════ LAYOUTS ══════════════════════ -->
+    <h2 id="layouts">Layout Hierarchy</h2>
+
+    <div class="layer-stack">
+      <div class="layer">
+        <span class="layer-icon">🌍</span>
+        <div>
+          <div class="layer-title">Root Layout <code>app/layout.tsx</code></div>
+          <div class="layer-desc">Vercel Analytics, Speed Insights, root metadata. Minimal — no providers here.</div>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-icon">🌐</span>
+        <div>
+          <div class="layer-title">Locale Layout <code>app/[locale]/layout.tsx</code></div>
+          <div class="layer-desc">Loads NextIntlClientProvider with messages for the locale. Mounts AppProviders (React Query). Applies Google Fonts (Rubik, Noto Sans) as CSS variables.</div>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-icon">🔒</span>
+        <div>
+          <div class="layer-title">Private Layout <code>(private)/(main)/layout.tsx</code></div>
+          <div class="layer-desc">Server component. Calls <code>getCurrentUser()</code> — redirects to sign-in if no session. Fetches the user's events. Passes user + events to AppLayout.</div>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-icon">🖥️</span>
+        <div>
+          <div class="layer-title">AppLayout <code>features/layout/AppLayout/AppLayout.tsx</code></div>
+          <div class="layer-desc">Client component. Renders AppSidebar + AppHeaderDesktop. Provides EventSwitcher for multi-event users. Shows SubscriptionAlert if plan is expiring.</div>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-icon">📄</span>
+        <div>
+          <div class="layer-title">Page</div>
+          <div class="layer-desc">Each route segment renders its own page component. Pages are async server components by default; interactive regions are split into client components with <code>"use client"</code>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════ RENDERING ══════════════════════ -->
+    <h2 id="render">Server vs Client Rendering</h2>
+    <p>The app follows Next.js App Router conventions: <strong>server by default, client by exception</strong>.</p>
+    <table>
+      <thead><tr><th>Pattern</th><th>Where</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Async Server Component</strong></td><td>Layout files, page shells</td><td>Auth checks, initial data fetch, no JS bundle cost</td></tr>
+        <tr><td><strong>"use client" component</strong></td><td>Interactive regions, forms, hooks</td><td>Event handlers, React state, browser APIs (MediaRecorder)</td></tr>
+        <tr><td><strong>React Query prefetch</strong></td><td>Server components passing dehydrated state</td><td>Avoid waterfall — data arrives with the HTML</td></tr>
+        <tr><td><strong>Streaming / Suspense</strong></td><td>Heavy list sections</td><td>Page shell renders immediately, data streams in</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      The split is intentional: layouts fetch auth + event data on the server (zero client JS, fast first paint), while interactive features like message playback or media recording are client components that hydrate after.
+    </div>
+
+    <!-- ══════════════════════ MIDDLEWARE ══════════════════════ -->
+    <h2 id="middleware">Middleware</h2>
+    <p><code>src/middleware.ts</code> runs on every request before routing. It handles locale detection and negotiation via next-intl, and injects the <code>[locale]</code> segment into all matched routes. Unauthenticated redirects are handled inside layout server components, not middleware.</p>
+
+    <!-- ══════════════════════ AUTH ══════════════════════ -->
+    <h2 id="auth">Auth & Sessions</h2>
+    <p>Authentication is powered by <strong>better-auth</strong> with a PostgreSQL backend. There are two separate instances: a server instance (Node.js only) and a browser client.</p>
+
+    <h3>Server Instance <code>src/lib/auth/better-auth.ts</code></h3>
+    <ul>
+      <li>PostgreSQL connection pooling via <code>DATABASE_URL</code></li>
+      <li>Email/password auth with email verification (links via Resend)</li>
+      <li>OAuth: Google, Apple with account linking</li>
+      <li>Max 5 concurrent sessions per user</li>
+      <li>Session lifecycle hooks → auth event logging to DB</li>
+      <li>CSRF token generated per session, rotated on sign-in</li>
+      <li>Custom Zod validators: password 8–128 chars</li>
+      <li>Risk scoring via HMAC-SHA256 of IP + User-Agent (Pepper from env)</li>
+    </ul>
+
+    <h3>Browser Client <code>src/lib/auth/client.ts</code></h3>
+    <pre><code><span class="kw">import</span> { createAuthClient } <span class="kw">from</span> <span class="str">'better-auth/react'</span>;
+
+<span class="kw">export const</span> authClient = <span class="fn">createAuthClient</span>({ baseURL: process.env.NEXT_PUBLIC_API_URL });
+<span class="cm">// Exports: signIn, signUp, signOut, useSession, getSession</span></code></pre>
+
+    <h3>Protected Route Pattern</h3>
+    <div class="flow">
+      <div class="flow-box blue">Request to /home</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box yellow">Locale layout</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Private layout calls getCurrentUser()</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box red">No session → redirect /sign-in</div>
+    </div>
+    <div class="flow" style="margin-top:-.5rem;">
+      <div class="flow-box blue">Request to /home</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box yellow">Locale layout</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Private layout calls getCurrentUser()</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box green">Session valid → render AppLayout + page</div>
+    </div>
+
+    <h3>User Object Shape</h3>
+    <p>The user injected by <code>getCurrentUser()</code> into server components contains:</p>
+    <pre><code>{
+  id, email, name, avatar,
+  preferredLanguage,
+  accountType,          <span class="cm">// 'couple' | 'pro'</span>
+  planTier,             <span class="cm">// free | starter | pro</span>
+  planPurchasedAt,
+  messageLimit,
+  storageExpiresAt,
+  keepsakeCreditCents
+}</code></pre>
+
+    <!-- ══════════════════════ API LAYER ══════════════════════ -->
+    <h2 id="api">API Layer</h2>
+    <p>All communication with <code>ovation-api</code> goes through typed client modules in <code>src/lib/api/</code>. There is no direct <code>fetch()</code> in components or hooks.</p>
+
+    <h3>Base Fetch Wrapper <code>src/lib/api/client.ts</code></h3>
+    <ul>
+      <li><code>clientFetch&lt;T&gt;(path, init)</code> — browser-side fetch with credentials + CSRF injection</li>
+      <li><code>clientFetchPaginated&lt;T&gt;(path)</code> — returns <code>{ items: T[], nextCursor }</code></li>
+      <li>Auto-prefixes path with <code>/api/v1</code></li>
+      <li>On 403 with CSRF error code → fetches fresh CSRF token and retries once automatically</li>
+      <li>Throws typed <code>ApiError</code> (status, code, message, details) on non-2xx</li>
+    </ul>
+
+    <h3>Server Fetch <code>src/lib/api/server.ts</code></h3>
+    <ul>
+      <li><code>apiFetch&lt;T&gt;(path, init)</code> — Node.js fetch for server components</li>
+      <li>Copies the incoming request's session cookies forward</li>
+      <li>Sets <code>Accept-Language</code> header from <code>getLocale()</code></li>
+    </ul>
+
+    <h3>Public Client <code>src/lib/api/public-client.ts</code></h3>
+    <p>Used by the guest submission pages. No auth, no CSRF — just a plain fetch to the public API endpoints: <code>getEvent()</code>, <code>uploadUrls()</code>, <code>createMessage()</code>, <code>getGallery()</code>, <code>recordInvitationOpen()</code>.</p>
+
+    <h3>Feature Clients</h3>
+    <table>
+      <thead><tr><th>File</th><th>Methods</th></tr></thead>
+      <tbody>
+        <tr><td><code>events-client.ts</code></td><td>createEvent, getEvent, updateEvent, deleteEvent, getEventSettings</td></tr>
+        <tr><td><code>messages-client.ts</code></td><td>listMessages, getMessage, updateMessage, deleteMessage, bulkDelete, exportAll</td></tr>
+        <tr><td><code>payments-client.ts</code></td><td>createCheckoutSession, getBillingPortalUrl</td></tr>
+        <tr><td><code>subscriptions-client.ts</code></td><td>getSubscription, cancelSubscription</td></tr>
+        <tr><td><code>orders.ts</code> (server)</td><td>listOrders, getOrder</td></tr>
+        <tr><td><code>plan-purchases-client.ts</code></td><td>getPlanPurchase, listPlans</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ══════════════════════ REACT QUERY ══════════════════════ -->
+    <h2 id="react-query">React Query</h2>
+    <p>React Query is the primary source of truth for all backend data in client components. The query client is configured in <code>src/lib/query/QueryProvider.tsx</code> and mounted in the locale layout via <code>AppProviders</code>.</p>
+
+    <h3>Client Config</h3>
+    <ul>
+      <li>Stale time: <strong>30 seconds</strong></li>
+      <li>Refetch on window focus: <strong>disabled</strong></li>
+      <li>Retry: <strong>2 retries for 5xx only</strong> (4xx errors are not retried)</li>
+    </ul>
+
+    <h3>Query Key Factory <code>src/lib/query/keys.ts</code></h3>
+    <pre><code><span class="kw">export const</span> queryKeys = {
+  messages: (eventId: <span class="cls">string</span>) =&gt; [<span class="str">'messages'</span>, eventId],
+  message:  (id: <span class="cls">string</span>)      =&gt; [<span class="str">'messages'</span>, id],
+  gallery:  (eventId: <span class="cls">string</span>) =&gt; [<span class="str">'gallery'</span>, eventId],
+  orders:   ()                  =&gt; [<span class="str">'orders'</span>],
+  jobs:     (jobId: <span class="cls">string</span>)    =&gt; [<span class="str">'jobs'</span>, jobId],
+};</code></pre>
+
+    <h3>Patterns Used</h3>
+    <table>
+      <thead><tr><th>Pattern</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>Infinite query (<code>useInfiniteQuery</code>)</td><td>Message list, photo gallery — cursor-based pagination</td></tr>
+        <tr><td>Optimistic update with rollback</td><td>Message favorite, delete, bulk actions</td></tr>
+        <tr><td>Mutation + cache invalidation</td><td>Create message, update event settings</td></tr>
+        <tr><td>Polling (<code>refetchInterval</code>)</td><td><code>MessagesActiveSync</code> — live message count on dashboard</td></tr>
+        <tr><td>Prefetch in server component</td><td>Dehydrated state passed to QueryProvider for initial data</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ══════════════════════ STATE ══════════════════════ -->
+    <h2 id="state">State Management</h2>
+    <p>Client state is split by purpose:</p>
+
+    <table>
+      <thead><tr><th>Layer</th><th>Tool</th><th>What it holds</th></tr></thead>
+      <tbody>
+        <tr><td>Server state</td><td>React Query</td><td>Messages, events, orders, gallery, jobs — anything fetched from the API</td></tr>
+        <tr><td>Multi-step flow state</td><td>Zustand</td><td>Sign-up form data, event creation form data — persists across route navigation within a wizard</td></tr>
+        <tr><td>Component-local state</td><td>useState / useReducer</td><td>Modal open/close, local UI toggles</td></tr>
+        <tr><td>Server (layout)</td><td>Props from Server Components</td><td>User object, events list — passed down from private layout</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Zustand Stores</h3>
+    <pre><code><span class="cm">// features/sign-up/useSignUpStore.ts</span>
+<span class="kw">interface</span> <span class="cls">SignUpStore</span> {
+  email: <span class="cls">string</span>; password: <span class="cls">string</span>;
+  accountType: <span class="str">'couple'</span> | <span class="str">'pro'</span>;
+  selectedPlan: <span class="cls">string</span>;
+  <span class="fn">setEmail</span>: (v: <span class="cls">string</span>) =&gt; <span class="cls">void</span>;
+  <span class="fn">reset</span>: () =&gt; <span class="cls">void</span>;
+}
+
+<span class="cm">// features/create/useCreateEventStore.ts</span>
+<span class="kw">interface</span> <span class="cls">CreateEventStore</span> {
+  partnerNames: <span class="cls">string</span>[];
+  weddingDate: <span class="cls">Date</span>;
+  venue: <span class="cls">string</span>;
+  slug: <span class="cls">string</span>;
+  coverType: <span class="cls">string</span>;
+  coverPhotoKey: <span class="cls">string</span>;
+}</code></pre>
+
+    <!-- ══════════════════════ UI ══════════════════════ -->
+    <h2 id="ui-library">UI Library</h2>
+    <p>Three workspace packages provide shared UI primitives — no third-party component library dependency like shadcn/radix is used directly; these are purpose-built wrappers.</p>
+
+    <table>
+      <thead><tr><th>Package</th><th>Contents</th></tr></thead>
+      <tbody>
+        <tr><td><code>@ovation/ui</code></td><td>Button, Input, Label, Card, Checkbox, DropdownMenu, Popover, Sidebar, Breadcrumb, Separator, Chip, DatePicker, OtpInput, Kicker. Uses <code>cn()</code> + CVA for variant composition.</td></tr>
+        <tr><td><code>@ovation/icons</code></td><td>SVG icon components: ArrowRight, Heart, Book, Image, Camera, etc.</td></tr>
+        <tr><td><code>@ovation/illustrations</code></td><td>Large decorative SVGs: Sparkline, ContributionRing, QRBlock.</td></tr>
+      </tbody>
+    </table>
+
+    <p>Styling is Tailwind CSS 4 with CSS variables for the design tokens (colors, radii, spacing). Dark mode is supported via <code>class</code> strategy. Typography scale uses custom utility classes: <code>type-h1</code>, <code>type-body</code>, <code>type-caption</code>.</p>
+
+    <!-- ══════════════════════ FORMS ══════════════════════ -->
+    <h2 id="forms">Form Handling</h2>
+    <p>All forms use <strong>react-hook-form</strong> with <strong>Zod schemas</strong> via <code>@hookform/resolvers/zod</code> (<code>standardSchemaResolver</code>). No class-validator or class-transformer.</p>
+
+    <div class="layer-stack">
+      <div class="layer">
+        <span class="layer-icon">1️⃣</span>
+        <div>
+          <div class="layer-title">Define Zod schema</div>
+          <div class="layer-desc"><code>*.schema.ts</code> in the feature folder. Schemas accept a <code>t</code> translation function for i18n error messages: <code>getSignUpSchema(t)</code>.</div>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-icon">2️⃣</span>
+        <div>
+          <div class="layer-title">useForm hook</div>
+          <div class="layer-desc"><code>useForm({ resolver: standardSchemaResolver(schema), mode: 'onTouched', reValidateMode: 'onChange' })</code>. Validation on blur, re-validate on change after first touch.</div>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-icon">3️⃣</span>
+        <div>
+          <div class="layer-title">Register inputs</div>
+          <div class="layer-desc">Simple inputs: <code>&lt;Input {...register('field')} /&gt;</code>. Complex fields (Checkbox, Select): <code>&lt;Controller&gt;</code> wrapping the UI component.</div>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-icon">4️⃣</span>
+        <div>
+          <div class="layer-title">Submit handler</div>
+          <div class="layer-desc">Calls API client method. On success: update Zustand store if cross-step data, then navigate. On API error: map <code>ApiError.code</code> to i18n string and call <code>setError()</code>.</div>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-icon">5️⃣</span>
+        <div>
+          <div class="layer-title">Display errors</div>
+          <div class="layer-desc"><code>errors.field?.message</code> rendered inline below each field. Server-side errors mapped to field errors or a root-level form error.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════ KEY FLOWS ══════════════════════ -->
+    <h2 id="flows">Key User Flows</h2>
+
+    <h3 id="flow-signup">Sign-Up Flow</h3>
+    <div class="flow" style="flex-direction:column; align-items:flex-start; gap:.75rem;">
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box blue">1</div>
+        <span style="font-size:.85rem"><strong>/sign-up</strong> — Email + password form. On submit: <code>authClient.signUp.email()</code>. Email stored in <code>useSignUpStore</code>.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box blue">2</div>
+        <span style="font-size:.85rem"><strong>/verify</strong> — OTP input. better-auth sends verification email via Resend. On success: auto sign-in + navigate.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box blue">3</div>
+        <span style="font-size:.85rem"><strong>/role</strong> — Select Couple or Pro. Sets <code>accountType</code> in store + calls user update API.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box blue">4</div>
+        <span style="font-size:.85rem"><strong>/plans</strong> — Select subscription tier. On select: store <code>selectedPlan</code>, navigate to checkout or directly to create.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box green">5</div>
+        <span style="font-size:.85rem"><strong>/create</strong> — Event creation wizard. Store reset on complete. Navigate to <strong>/home</strong>.</span>
+      </div>
+    </div>
+
+    <h3 id="flow-create">Create Event Flow</h3>
+    <div class="flow">
+      <div class="flow-box blue">Partner names + date + venue</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Cover photo selection + slug</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box yellow">POST /events API</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box green">Done page → /home</div>
+    </div>
+    <p>All wizard steps share data via <code>useCreateEventStore</code>. The <code>useSlugChecker</code> hook debounces a uniqueness check against the API as the user types.</p>
+
+    <h3 id="flow-guest">Guest Submission Flow</h3>
+    <p>The guest flow lives under <code>/g/[slug]</code> (a public route — no auth). It uses the <code>public-client.ts</code> fetch wrapper, no CSRF. The Turnstile CAPTCHA widget is mounted to satisfy the <code>PublicSubmissionGuard</code> on the API side.</p>
+    <div class="flow" style="flex-direction:column; align-items:flex-start; gap:.75rem;">
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box blue">1</div>
+        <span style="font-size:.85rem"><strong>Landing</strong> — Load event by slug (server). Render GuestHero + PolaroidPair branding. Record invitation open.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box blue">2</div>
+        <span style="font-size:.85rem"><strong>Compose</strong> — Guest types name + message. Optionally records audio/video via <code>useAudioRecorder</code> / <code>useVideoRecorder</code> (MediaRecorder API). Optionally attaches photos.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box blue">3</div>
+        <span style="font-size:.85rem"><strong>Media upload</strong> — For each file: call <code>uploadUrls()</code> to get pre-signed S3 URL. PUT file directly to S3. Collect returned media IDs.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box blue">4</div>
+        <span style="font-size:.85rem"><strong>Review</strong> — Preview name, message, and media. Turnstile CAPTCHA solved in background.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <div class="flow-box green">5</div>
+        <span style="font-size:.85rem"><strong>Submit</strong> — POST /public/messages with Turnstile token + dwell-time header + media IDs. On success: confirmation screen.</span>
+      </div>
+    </div>
+
+    <h3 id="flow-checkout">Checkout Flow</h3>
+    <div class="flow">
+      <div class="flow-box blue">User selects plan</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box yellow">useCheckoutFlow calls POST /payments/session</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">API returns Paddle checkout URL</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">PaddlePayClient opens overlay</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box green">Paddle webhook → API updates subscription</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box green">Redirect to /checkout/success</div>
+    </div>
+
+    <!-- ══════════════════════ MEDIA ══════════════════════ -->
+    <h2 id="media">Media Uploads</h2>
+    <p>The frontend never sends binary files to the API server. It uses a <strong>pre-signed URL pattern</strong>:</p>
+    <ol>
+      <li>Request a pre-signed S3 <code>PUT</code> URL from the API (<code>POST /storage/upload-url</code>).</li>
+      <li>PUT the file bytes directly to S3 from the browser — API server is not in the data path.</li>
+      <li>Call the API confirm endpoint with the returned S3 key.</li>
+      <li>API enqueues thumbnail generation and HEIC conversion jobs in BullMQ.</li>
+    </ol>
+    <p>The <code>usePhotoUpload</code> hook handles progress tracking, retry on network failure, and cancellation. <code>useVideoRecorder</code> and <code>useAudioRecorder</code> wrap the browser <code>MediaRecorder</code> API with chunked recording and local preview.</p>
+
+    <!-- ══════════════════════ I18N ══════════════════════ -->
+    <h2 id="i18n">Internationalisation</h2>
+    <p>Locale routing is handled by <strong>next-intl</strong>. Supported locales: <strong>en, fr, nl, de, es, it</strong>. The locale is the first segment in every URL: <code>/en/home</code>, <code>/fr/home</code>.</p>
+
+    <table>
+      <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>src/i18n/routing.ts</code></td><td>Locale list + default locale config for next-intl</td></tr>
+        <tr><td><code>src/i18n/navigation.ts</code></td><td>Exports locale-aware <code>Link</code>, <code>useRouter</code>, <code>redirect</code>, <code>usePathname</code></td></tr>
+        <tr><td><code>src/lib/routes.ts</code></td><td>Typed route helper — always call via i18n navigation exports, never raw <code>next/navigation</code></td></tr>
+        <tr><td><code>[locale]/layout.tsx</code></td><td>Loads translation JSON for the locale, mounts NextIntlClientProvider</td></tr>
+      </tbody>
+    </table>
+
+    <p>Zod schemas accept a <code>t</code> function so validation error messages are localised. API error codes are mapped to translation keys client-side before display.</p>
+
+  </main>
+</div>
+
+</body>
+</html>

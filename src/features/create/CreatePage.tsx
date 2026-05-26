@@ -46,10 +46,9 @@ export const CreatePage = () => {
       try {
         const { event } = await eventsClient.update(editId, {});
         useCreateEventStore.getState().setEditTarget(editId);
-        const isFilled = event.kind === "filled";
         updateFormData({
-          partner1Name: isFilled ? event.partnerAName : "",
-          partner2Name: isFilled ? event.partnerBName : "",
+          partner1Name: event.partnerAName,
+          partner2Name: event.partnerBName,
           weddingDate: parseWeddingDate(event.weddingDate),
           venue: event.venueName ?? "",
         });

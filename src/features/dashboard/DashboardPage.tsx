@@ -6,6 +6,7 @@ import { appRoutes } from "@/lib/routes";
 import { eventsApi } from "@/lib/api/events";
 import { messagesApi } from "@/lib/api/messages";
 import { getCurrentUser } from "@/lib/auth/session";
+import { getCurrentEvent } from "@/lib/auth/current-event";
 import { toMessageRowView } from "@/features/messages/adapters";
 import { DashboardGreeting } from "./components/DashboardGreeting";
 import { ResumeCard } from "./components/ResumeCard";
@@ -47,8 +48,7 @@ export const DashboardPage = async () => {
     if (fallback) redirect(appRoutes.app.event(fallback.id));
     redirect(appRoutes.app.events);
   }
-  const eventsPage = await eventsApi.list({ limit: 1 });
-  const event = eventsPage.items[0];
+  const event = await getCurrentEvent();
 
   if (!event) {
     return (
@@ -58,7 +58,7 @@ export const DashboardPage = async () => {
     );
   }
 
-  if (event.kind === "empty") {
+  if (!user.onboardingComplete) {
     return (
       <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
         <DashboardPlaceholderCTA
