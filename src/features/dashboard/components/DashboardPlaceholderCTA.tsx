@@ -1,17 +1,16 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
 type DashboardPlaceholderCTAProps = {
   userName: string;
-  eventId: string;
 };
 
 export const DashboardPlaceholderCTA = ({
   userName,
-  eventId,
 }: DashboardPlaceholderCTAProps) => {
   const t = useTranslations();
   return (
@@ -30,7 +29,10 @@ export const DashboardPlaceholderCTA = ({
         size="lg"
         className="shadow-primary/40 rounded-full shadow-md"
       >
-        REMOVE
+        <Link href={appRoutes.create.root}>
+          {t("dashboard__empty__cta")}
+          <ArrowRightIcon width={16} height={16} />
+        </Link>
       </Button>
     </div>
   );

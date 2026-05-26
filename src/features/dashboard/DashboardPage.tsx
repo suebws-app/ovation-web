@@ -63,7 +63,6 @@ export const DashboardPage = async () => {
       <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
         <DashboardPlaceholderCTA
           userName={greetingName(user.fullName, user.email)}
-          eventId={event.id}
         />
       </div>
     );

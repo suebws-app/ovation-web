@@ -6,6 +6,7 @@ import { useRouter } from "@/i18n/navigation";
 import { authClient } from "@/lib/auth/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { eventsClient } from "@/lib/api/events-client";
+import { profileClient } from "@/lib/api/profile-client";
 import { appRoutes } from "@/lib/routes";
 import { env } from "@/lib/utils/env";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
@@ -110,6 +111,9 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
         if (typeof window !== "undefined") {
           window.sessionStorage?.setItem("ovation_signup_event_id", event.id);
           window.sessionStorage?.setItem("ovation_signup_event_created", "1");
+        }
+        if (trimmedA || trimmedB) {
+          await profileClient.markOnboardingComplete().catch(() => undefined);
         }
       } catch {
         // non-fatal: event will be created at checkout
