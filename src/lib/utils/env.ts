@@ -2,13 +2,6 @@ export const env = {
   // Public (available in browser)
   APP_URL: process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
   API_URL: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001",
-  // Server-side API URL — used by RSC/route handlers to bypass Cloudflare
-  // (browser challenge would block server-to-server fetches). Falls back to
-  // public API_URL when unset (e.g. local dev).
-  INTERNAL_API_URL:
-    process.env.INTERNAL_API_URL ??
-    process.env.NEXT_PUBLIC_API_URL ??
-    "http://localhost:3001",
   MEDIA_DOMAIN: process.env.NEXT_PUBLIC_MEDIA_DOMAIN ?? "",
 
   // Server-only
