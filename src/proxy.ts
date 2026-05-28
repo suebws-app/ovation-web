@@ -126,6 +126,12 @@ export const proxy = async (request: NextRequest) => {
     matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) &&
     !isAuthenticated
   ) {
+    console.warn("[auth-debug] proxy redirect protected->sign-in", {
+      pathname,
+      pathnameWithoutLocale,
+      isAuthenticated,
+      cookieKeys: request.headers.get("cookie")?.split(";").map((c) => c.split("=")[0].trim()),
+    });
     const loginUrl = new URL("/sign-in", request.url);
     loginUrl.searchParams.set("redirect", pathname);
     return Response.redirect(loginUrl);
@@ -151,6 +157,13 @@ export const proxy = async (request: NextRequest) => {
     !isPostAuthSignUpStep;
 
   if (isAuthenticated && (isHomepage || isMarketing || isAuthPage)) {
+    console.warn("[auth-debug] proxy redirect authed->home", {
+      pathname,
+      pathnameWithoutLocale,
+      isHomepage,
+      isMarketing,
+      isAuthPage,
+    });
     return Response.redirect(new URL("/home", request.url));
   }
 

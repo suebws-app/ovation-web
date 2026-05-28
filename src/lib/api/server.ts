@@ -27,11 +27,7 @@ const withSessionHeaders = async (init: RequestInit): Promise<RequestInit> => {
   if (env.CF_ORIGIN_TOKEN) {
     headers.set("x-origin-token", env.CF_ORIGIN_TOKEN);
   }
-  console.log("[SSR-fetch]", {
-    hasToken: Boolean(env.CF_ORIGIN_TOKEN),
-    tokenLen: env.CF_ORIGIN_TOKEN.length,
-    apiUrl: env.API_URL,
-  });
+
   return { ...init, headers };
 };
 

@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { appRoutes } from "@/lib/routes";
 import { PlansPicker } from "./components/PlansPicker";
 import { DreUpgradeCard } from "./components/DreUpgradeCard";
+import { PlansBackGuard } from "./PlansBackGuard";
 
 type PlansPageProps = {
   searchParams?: Promise<{ upgrade?: string }>;
@@ -28,16 +29,22 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
     const drePlan = plans.find((p) => p.code === "storsage_extension");
     if (!drePlan) redirect(appRoutes.app.root);
     return (
-      <div className="max-w-md">
-        <DreUpgradeCard plan={drePlan} />
-      </div>
+      <PlansBackGuard>
+        <div className="max-w-md">
+          <DreUpgradeCard plan={drePlan} />
+        </div>
+      </PlansBackGuard>
     );
   }
 
   if (user.accountType === "pro") {
     if (user.planTier && user.planTier !== "free") redirect(appRoutes.app.root);
     const proPlans = plans.filter((plan) => plan.code.startsWith("pro_"));
-    return <PlansPicker mode="pro" plans={proPlans} />;
+    return (
+      <PlansBackGuard>
+        <PlansPicker mode="pro" plans={proPlans} />
+      </PlansBackGuard>
+    );
   }
 
   if (user.planTier !== "free") redirect(appRoutes.app.root);
@@ -49,5 +56,9 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
       plan.code !== "essentials" &&
       plan.code !== "free",
   );
-  return <PlansPicker mode="couple" plans={couplePlans} />;
+  return (
+    <PlansBackGuard>
+      <PlansPicker mode="couple" plans={couplePlans} />
+    </PlansBackGuard>
+  );
 };
