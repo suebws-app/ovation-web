@@ -2,6 +2,12 @@ export const env = {
   // Public (available in browser)
   APP_URL: process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
   API_URL: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001",
+  // Server-only direct origin URL for server-to-server fetches (bypasses CF).
+  // Falls back to public API_URL when unset (dev / when CF is not in front).
+  INTERNAL_API_URL:
+    process.env.INTERNAL_API_URL ??
+    process.env.NEXT_PUBLIC_API_URL ??
+    "http://localhost:3001",
   MEDIA_DOMAIN: process.env.NEXT_PUBLIC_MEDIA_DOMAIN ?? "",
 
   // Server-only
