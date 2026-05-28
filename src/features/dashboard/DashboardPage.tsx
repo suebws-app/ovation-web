@@ -14,6 +14,7 @@ import { StatLine } from "./components/StatLine";
 import { MessageList } from "./components/MessageList";
 import { DashboardEmpty } from "./components/DashboardEmpty";
 import { DashboardPlaceholderCTA } from "./components/DashboardPlaceholderCTA";
+import { DashboardBackGuard } from "./components/DashboardBackGuard";
 
 const formatWeddingDate = (raw: string | null): string => {
   if (!raw) return "";
@@ -52,19 +53,23 @@ export const DashboardPage = async () => {
 
   if (!event) {
     return (
-      <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
-        <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
-      </div>
+      <DashboardBackGuard>
+        <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+          <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
+        </div>
+      </DashboardBackGuard>
     );
   }
 
   if (!user.onboardingComplete) {
     return (
-      <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
-        <DashboardPlaceholderCTA
-          userName={greetingName(user.fullName, user.email)}
-        />
-      </div>
+      <DashboardBackGuard>
+        <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+          <DashboardPlaceholderCTA
+            userName={greetingName(user.fullName, user.email)}
+          />
+        </div>
+      </DashboardBackGuard>
     );
   }
 
@@ -85,20 +90,22 @@ export const DashboardPage = async () => {
   const newMessages = stats?.totalMessages ?? messageViews.length;
 
   return (
-    <div className="flex h-full w-full flex-1 flex-col gap-6 overflow-y-auto p-6">
-      <DashboardGreeting
-        name={greetingName(user.fullName, user.email)}
-        date={formatWeddingDate(event.weddingDate)}
-        venue={event.venueName ?? ""}
-        newMessages={newMessages}
-      />
-      <ResumeCard message={messageViews.find((m) => m.hasAudio) ?? null} />
-      {stats && <StatLine stats={stats} />}
-      <MessageList
-        eventId={event.id}
-        messages={messageViews}
-        totalCount={stats?.totalMessages ?? messageViews.length}
-      />
-    </div>
+    <DashboardBackGuard>
+      <div className="flex h-full w-full flex-1 flex-col gap-6 overflow-y-auto p-6">
+        <DashboardGreeting
+          name={greetingName(user.fullName, user.email)}
+          date={formatWeddingDate(event.weddingDate)}
+          venue={event.venueName ?? ""}
+          newMessages={newMessages}
+        />
+        <ResumeCard message={messageViews.find((m) => m.hasAudio) ?? null} />
+        {stats && <StatLine stats={stats} />}
+        <MessageList
+          eventId={event.id}
+          messages={messageViews}
+          totalCount={stats?.totalMessages ?? messageViews.length}
+        />
+      </div>
+    </DashboardBackGuard>
   );
 };

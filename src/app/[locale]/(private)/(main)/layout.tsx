@@ -12,8 +12,10 @@ export default async function AppRootLayout({
 }) {
   const user = await getCurrentUser();
   if (!user) {
+    console.warn("[auth-debug] (private)/(main)/layout redirecting to sign-in: user is null");
     redirect(appRoutes.auth.signIn);
   }
+  console.warn("[auth-debug] (private)/(main)/layout user loaded", { userId: user.id, accountType: user.accountType });
 
   let eventsList: Event[] = [];
 
