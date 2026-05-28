@@ -29,7 +29,7 @@ export const PlanCard = ({
   return (
     <div
       className={cn(
-        "rounded-20 relative p-7",
+        "rounded-20 relative flex h-full flex-col p-7",
         highlighted
           ? "border-primary bg-card shadow-primary/20 scale-[1.02] border-2 shadow-lg"
           : "border-border bg-background border",
@@ -45,7 +45,7 @@ export const PlanCard = ({
         {description}
       </p>
       <div className="bg-border my-4.5 h-px" />
-      <div className="flex flex-col gap-2.5">
+      <div className="flex flex-1 flex-col gap-2.5">
         {features.map((feature) => (
           <PlanFeature key={feature} label={feature} />
         ))}

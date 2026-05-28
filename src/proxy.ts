@@ -156,7 +156,10 @@ export const proxy = async (request: NextRequest) => {
 
   const response = intlMiddleware(request as never) as NextResponse;
 
-  if (matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES)) {
+  if (
+    matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) ||
+    matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES)
+  ) {
     response.headers.set(
       "Cache-Control",
       "no-store, no-cache, must-revalidate, max-age=0",

@@ -9,20 +9,28 @@ type AppLayoutProps = {
   user: User;
   events: Event[];
   children: React.ReactNode;
+  showSubscriptionAlert?: boolean;
 };
 
-export const AppLayout = ({ user, events, children }: AppLayoutProps) => {
+export const AppLayout = ({
+  user,
+  events,
+  children,
+  showSubscriptionAlert = true,
+}: AppLayoutProps) => {
   return (
     <SidebarProvider>
       <AppSideBar user={user} events={events} />
       <div className="flex w-full flex-1 flex-col overflow-hidden pb-6">
         <AppHeaderDesktop planTier={user.planTier} />
         <AppHeaderMobile />
-        <SubscriptionAlert
-          planTier={user.planTier}
-          storageExpiresAt={user.storageExpiresAt}
-          userCreatedAt={user.createdAt}
-        />
+        {showSubscriptionAlert && (
+          <SubscriptionAlert
+            planTier={user.planTier}
+            storageExpiresAt={user.storageExpiresAt}
+            userCreatedAt={user.createdAt}
+          />
+        )}
         <SidebarInset className="min-h-0 flex-1 overflow-hidden">
           {children}
         </SidebarInset>

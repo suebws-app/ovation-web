@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { eventsClient } from "@/lib/api/events-client";
 import { paymentsClient } from "@/lib/api/payments-client";
+import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
@@ -217,6 +218,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
               // non-fatal
             }
           }
+
+          await profileClient.markOnboardingComplete().catch(() => undefined);
 
           const planTier =
             PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];

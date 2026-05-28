@@ -12,10 +12,20 @@ const scriptSrc = [
   "'self'",
   "'unsafe-inline'",
   "https://static.cloudflareinsights.com",
+  "https://challenges.cloudflare.com",
+  "https://*.paddle.com",
+  "https://*.paddle.dev",
   isDev && "'unsafe-eval'",
 ]
   .filter(Boolean)
   .join(" ");
+
+const frameSrc = [
+  "'self'",
+  "https://challenges.cloudflare.com",
+  "https://*.paddle.com",
+  "https://*.paddle.dev",
+].join(" ");
 
 type RemotePattern = NonNullable<
   NonNullable<NextConfig["images"]>["remotePatterns"]
@@ -55,8 +65,9 @@ const securityHeaders = [
       "default-src 'self'",
       `script-src ${scriptSrc}`,
       "style-src 'self' 'unsafe-inline'",
-      `img-src 'self' data: blob: ${mediaDomain} https://lh3.googleusercontent.com`,
-      `connect-src 'self' ${apiUrl} ${appUrl}`,
+      `img-src 'self' data: blob: ${mediaDomain} https://lh3.googleusercontent.com https://*.paddle.com`,
+      `connect-src 'self' ${apiUrl} ${appUrl} https://challenges.cloudflare.com https://*.paddle.com https://*.paddle.dev`,
+      `frame-src ${frameSrc}`,
       "font-src 'self'",
       "object-src 'none'",
       "base-uri 'self'",

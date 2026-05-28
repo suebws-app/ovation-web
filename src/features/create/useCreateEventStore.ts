@@ -5,7 +5,6 @@ import { create } from "zustand";
 export type CreateEventFormData = {
   partner1Name: string;
   partner2Name: string;
-  displayOrder: string;
   weddingDate: Date | null;
   venue: string;
   coverType: string;
@@ -28,7 +27,6 @@ type CreateEventStore = {
 const initialFormData: CreateEventFormData = {
   partner1Name: "",
   partner2Name: "",
-  displayOrder: "",
   weddingDate: null,
   venue: "",
   coverType: "",

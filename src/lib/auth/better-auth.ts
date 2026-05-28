@@ -233,7 +233,7 @@ export const auth = betterAuth({
   },
 
   rateLimit: {
-    enabled: true,
+    enabled: env.IS_PRODUCTION,
     storage: "database",
     modelName: "rate_limit",
     window: 60,

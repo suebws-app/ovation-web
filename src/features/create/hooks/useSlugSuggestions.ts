@@ -3,15 +3,22 @@
 import { useEffect, useState } from "react";
 import { eventsClient } from "@/lib/api/events-client";
 
+type SlugSuggestionsResult = {
+  suggestions: string[];
+  isLoading: boolean;
+};
+
 export const useSlugSuggestions = (
   partnerAName: string,
   partnerBName: string,
-): string[] => {
+): SlugSuggestionsResult => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
     const timer = setTimeout(() => {
+      setIsLoading(true);
       eventsClient
         .slugSuggestions(
           {
@@ -21,10 +28,14 @@ export const useSlugSuggestions = (
           controller.signal,
         )
         .then((res) => {
-          if (!controller.signal.aborted) setSuggestions(res.suggestions);
+          if (controller.signal.aborted) return;
+          setSuggestions(res.suggestions);
+          setIsLoading(false);
         })
         .catch(() => {
-          if (!controller.signal.aborted) setSuggestions([]);
+          if (controller.signal.aborted) return;
+          setSuggestions([]);
+          setIsLoading(false);
         });
     }, 300);
     return () => {
@@ -33,5 +44,5 @@ export const useSlugSuggestions = (
     };
   }, [partnerAName, partnerBName]);
 
-  return suggestions;
+  return { suggestions, isLoading };
 };
