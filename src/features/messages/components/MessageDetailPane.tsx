@@ -236,6 +236,7 @@ export const MessageDetailPane = ({
                     src={photo.url}
                     fill
                     unoptimized
+                    priority
                     className="object-cover"
                     alt={message.name}
                   />
