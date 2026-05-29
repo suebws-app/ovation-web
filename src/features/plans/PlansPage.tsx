@@ -26,7 +26,7 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
   if (isUpgrade) {
     const eligible = PREMIUM_PLANS.includes(user?.planTier || "");
     if (!eligible) redirect(appRoutes.app.root);
-    const drePlan = plans.find((p) => p.code === "storsage_extension");
+    const drePlan = plans.find((p) => p.code === "storage_extension");
     if (!drePlan) redirect(appRoutes.app.root);
     return (
       <PlansBackGuard>
