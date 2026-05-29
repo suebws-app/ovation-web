@@ -33,7 +33,7 @@ export const QRStatsCard = ({
       <Kicker className="text-muted-foreground">
         {t("qr_code__stats__eyebrow")}
       </Kicker>
-      <div className="mt-3.5 grid grid-cols-4 gap-4">
+      <div className="mt-3.5 grid grid-cols-2 tablet:grid-cols-4 gap-4">
         {stats.map((s) => (
           <QRStat key={s.label} {...s} />
         ))}

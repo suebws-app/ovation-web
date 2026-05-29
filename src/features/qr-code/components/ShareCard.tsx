@@ -73,7 +73,7 @@ export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
       <Kicker className="text-muted-foreground mb-3">
         {t("qr_code__share__eyebrow")}
       </Kicker>
-      <div className="grid grid-cols-4 gap-2.5">
+      <div className="grid grid-cols-2 tablet:grid-cols-4 gap-2.5">
         {channels.map((c) => (
           <ShareChannel
             key={c.id}

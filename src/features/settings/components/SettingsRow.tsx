@@ -17,7 +17,7 @@ export const SettingsRow = ({
 }: SettingsRowProps) => (
   <div
     className={cn(
-      "grid grid-cols-[1fr_auto] items-start gap-10 py-5.5",
+      "grid grid-cols-[1fr_auto] items-start gap-4 tablet:gap-10 py-5.5",
       !last && "border-border border-b",
     )}
   >

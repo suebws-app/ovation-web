@@ -66,8 +66,8 @@ export const SubscriptionHistoryTable = async ({
       <h2 className="type-heading-small">
         {t("settings__billing__history_title")}
       </h2>
-      <div className="rounded-16 border-border bg-card overflow-hidden border">
-        <table className="w-full">
+      <div className="rounded-16 border-border bg-card overflow-x-auto border">
+        <table className="w-full min-w-[640px]">
           <thead className="bg-muted/40">
             <tr className="text-muted-foreground type-body-small">
               <th className="px-6 py-3 text-left">

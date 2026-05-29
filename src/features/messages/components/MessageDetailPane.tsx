@@ -244,7 +244,7 @@ export const MessageDetailPane = ({
               ) : null,
             )}
             {videoUrl && (
-              <div className="rounded-12 bg-muted block aspect-square size-full h-40 w-40 overflow-hidden">
+              <div className="rounded-12 bg-muted block aspect-square w-full overflow-hidden">
                 <MediaPlayer
                   src={[
                     {

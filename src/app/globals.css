@@ -333,6 +333,11 @@
   html {
     box-sizing: border-box;
     overflow-y: scroll;
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
   }
 
   *,

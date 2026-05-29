@@ -55,7 +55,7 @@ export const CustomizerShippingFields = ({
         )}
       </div>
 
-      <div className="grid grid-cols-[1fr_140px] gap-4">
+      <div className="grid grid-cols-1 tablet:grid-cols-[1fr_140px] gap-4">
         <div>
           <Label htmlFor="ship-city" className="mb-2">
             {t("keepsakes__order__shipping_city")}

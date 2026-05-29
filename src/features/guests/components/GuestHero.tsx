@@ -35,7 +35,7 @@ export const GuestHero = ({
   return (
     <div className="rounded-20 bg-card tablet:p-10 desktop:p-12 relative overflow-hidden p-8">
       <div className="bg-primary/10 absolute -top-15 -right-15 size-80 rounded-full" />
-      <div className="desktop:grid-cols-[1fr_auto] relative grid items-end gap-10">
+      <div className="desktop:grid-cols-[1fr_auto] relative grid items-end gap-6 desktop:gap-10">
         <div>
           <span className="type-overline text-primary">
             {t("guests__hero__eyebrow")}
