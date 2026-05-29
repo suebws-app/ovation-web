@@ -38,8 +38,8 @@ export const AuthSplitLayout = ({
         {panel}
       </div>
     </div>
-    <div className="tablet:px-18 flex items-center px-6 py-16">
-      <div className="w-full max-w-130">{children}</div>
+    <div className="tablet:px-18 flex min-w-0 items-center px-6 py-16">
+      <div className="w-full min-w-0 max-w-130">{children}</div>
     </div>
   </div>
 );

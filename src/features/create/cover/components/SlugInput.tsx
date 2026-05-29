@@ -30,9 +30,9 @@ export const SlugInput = ({
   const t = useTranslations();
 
   return (
-    <div className="mt-6">
-      <div className="rounded-16 border-primary bg-card shadow-input flex items-center gap-2 border-2 px-4 py-3">
-        <span className="type-body-small text-muted-foreground font-mono">
+    <div className="mt-6 min-w-0">
+      <div className="rounded-16 border-primary bg-card shadow-input flex min-w-0 items-center gap-2 border-2 px-4 py-3">
+        <span className="type-body-small text-muted-foreground font-mono truncate shrink min-w-0">
           {env.APP_URL} /
         </span>
         <input
@@ -42,7 +42,7 @@ export const SlugInput = ({
             onChange(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))
           }
           placeholder={placeholder}
-          className="type-body-small text-foreground placeholder:text-muted-foreground flex-1 bg-transparent font-medium outline-none"
+          className="type-body-small text-foreground placeholder:text-muted-foreground min-w-0 flex-1 bg-transparent font-medium outline-none"
         />
         {status === "available" && (
           <AvailableBadge label={t("signup__claim__available")} />

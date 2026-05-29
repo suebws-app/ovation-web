@@ -61,7 +61,7 @@ export const ProfileNameForm = ({ user }: ProfileNameFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
         <SettingsField
           label={t("settings__profile__name")}
           hint={t("settings__profile__name_hint")}

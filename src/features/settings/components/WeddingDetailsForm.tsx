@@ -108,7 +108,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
         <SettingsField label={t("settings__wedding__partnerA")}>
           <Input
             type="text"
@@ -137,7 +137,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         </SettingsField>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-6">
+      <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
         <SettingsField
           label={t("settings__wedding__date")}
           adornmentRight={
@@ -164,7 +164,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         </SettingsField>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-6">
+      <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
         <SettingsField label={t("settings__wedding__venue_name")}>
           <Input
             type="text"
@@ -175,7 +175,11 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         <SettingsField
           label={t("settings__wedding__venue_city")}
           adornmentRight={
-            <MapPinIcon width={16} height={16} className="text-muted-foreground" />
+            <MapPinIcon
+              width={16}
+              height={16}
+              className="text-muted-foreground"
+            />
           }
         >
           <Input
@@ -207,7 +211,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         </SettingsField>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-6">
+      <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
         <SettingsField
           label={t("settings__wedding__public_link")}
           hint={t("settings__wedding__public_link_hint")}
@@ -218,7 +222,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
             </span>
             <input
               type="text"
-              className="type-body-small text-foreground flex-1 bg-transparent py-3 outline-none"
+              className="type-body-small text-foreground min-w-0 flex-1 truncate bg-transparent py-3 outline-none"
               {...register("slug")}
             />
           </div>
