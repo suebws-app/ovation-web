@@ -15,6 +15,8 @@ import { PhotoThumb } from "./PhotoThumb";
 import { CameraCaptureModal } from "./CameraCaptureModal";
 
 const MAX_BYTES = 25 * 1024 * 1024;
+const MAX_DIM = 2048;
+const JPEG_QUALITY = 0.85;
 
 const makePhotoId = (): string => {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
@@ -23,14 +25,50 @@ const makePhotoId = (): string => {
   return `p-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 };
 
-const readPhoto = (file: File): Promise<PhotoCapture | null> =>
+const loadImage = (url: string): Promise<HTMLImageElement | null> =>
   new Promise((resolve) => {
-    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = url;
+  });
+
+const compressImage = async (file: File): Promise<File> => {
+  const sourceUrl = URL.createObjectURL(file);
+  try {
+    const img = await loadImage(sourceUrl);
+    if (!img) return file;
+    const { naturalWidth: w, naturalHeight: h } = img;
+    const scale = Math.min(1, MAX_DIM / Math.max(w, h));
+    if (scale === 1 && file.type === "image/jpeg") return file;
+    const targetW = Math.round(w * scale);
+    const targetH = Math.round(h * scale);
+    const canvas = document.createElement("canvas");
+    canvas.width = targetW;
+    canvas.height = targetH;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return file;
+    ctx.drawImage(img, 0, 0, targetW, targetH);
+    const blob: Blob | null = await new Promise((resolve) =>
+      canvas.toBlob((b) => resolve(b), "image/jpeg", JPEG_QUALITY),
+    );
+    if (!blob || blob.size >= file.size) return file;
+    const baseName = file.name.replace(/\.[^.]+$/, "");
+    return new File([blob], `${baseName}.jpg`, { type: "image/jpeg" });
+  } finally {
+    URL.revokeObjectURL(sourceUrl);
+  }
+};
+
+const readPhoto = async (file: File): Promise<PhotoCapture | null> => {
+  const compressed = await compressImage(file);
+  return new Promise((resolve) => {
+    const url = URL.createObjectURL(compressed);
     const img = new Image();
     img.onload = () => {
       resolve({
         id: makePhotoId(),
-        file,
+        file: compressed,
         url,
         width: img.naturalWidth,
         height: img.naturalHeight,
@@ -42,6 +80,7 @@ const readPhoto = (file: File): Promise<PhotoCapture | null> =>
     };
     img.src = url;
   });
+};
 
 export const PhotoCaptureCard = () => {
   const t = useTranslations();
