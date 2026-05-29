@@ -15,6 +15,8 @@ export type UploadUrlRequest = {
   audioContentType?: string | null;
   media?: UploadMediaItem[];
   source?: SubmissionSource;
+  _honeypot?: string;
+  _t?: number;
 };
 
 export type SubmissionSource = "kiosk" | "qr_scan" | "direct_link";

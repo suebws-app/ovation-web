@@ -107,6 +107,8 @@ export const ReviewClient = ({
           audioContentType: audio?.mimeType ?? null,
           media: mediaRequest.length > 0 ? mediaRequest : undefined,
           source: submissionSource,
+          _honeypot: "",
+          _t: sessionStartAt ?? Date.now() - 5000,
         });
 
         if (audio) {
