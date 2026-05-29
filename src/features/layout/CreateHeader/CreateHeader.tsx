@@ -16,9 +16,9 @@ export const CreateHeader = () => {
   const step = useCreateStep();
 
   return (
-    <header className="border-border tablet:px-14 relative flex items-center border-b px-6 py-7">
+    <header className="border-border tablet:px-14 tablet:py-7 relative flex items-center justify-between gap-3 border-b px-3 py-4">
       <Logo />
-      <div className="pointer-events-none absolute inset-x-0 flex justify-center">
+      <div className="tablet:pointer-events-none tablet:absolute tablet:inset-x-0 tablet:flex tablet:justify-center">
         <Stepper currentStep={step} totalSteps={TOTAL_STEPS} />
       </div>
     </header>
