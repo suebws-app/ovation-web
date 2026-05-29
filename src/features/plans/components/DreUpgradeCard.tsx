@@ -2,10 +2,8 @@
 
 import { useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
-import { subscriptionsClient } from "@/lib/api/subscriptions-client";
-import { ApiError } from "@/lib/api/client";
+import { paymentsClient } from "@/lib/api/payments-client";
 import { appRoutes } from "@/lib/routes";
 import type { Plan } from "@/lib/api/types";
 
@@ -13,9 +11,11 @@ type DreUpgradeCardProps = {
   plan: Plan;
 };
 
+const getOrigin = () =>
+  typeof window !== "undefined" ? window.location.origin : "";
+
 export const DreUpgradeCard = ({ plan }: DreUpgradeCardProps) => {
   const t = useTranslations();
-  const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
 
@@ -23,13 +23,13 @@ export const DreUpgradeCard = ({ plan }: DreUpgradeCardProps) => {
     setError(null);
     startTransition(async () => {
       try {
-        await subscriptionsClient.dreIntent();
-        router.push(appRoutes.settings.billing);
+        const origin = getOrigin();
+        const checkout = await paymentsClient.createDreCheckoutSession({
+          successUrl: `${origin}${appRoutes.app.root}`,
+          cancelUrl: `${origin}${appRoutes.app.root}`,
+        });
+        window.location.assign(checkout.checkoutUrl);
       } catch (err) {
-        if (ApiError.isApiError(err) && err.status === 409) {
-          router.push(appRoutes.settings.billing);
-          return;
-        }
         setError(err instanceof Error ? err.message : "error");
       }
     });
