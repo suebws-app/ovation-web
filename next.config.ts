@@ -66,7 +66,7 @@ const securityHeaders = [
       `script-src ${scriptSrc}`,
       "style-src 'self' 'unsafe-inline'",
       `img-src 'self' data: blob: ${mediaDomain} https://lh3.googleusercontent.com https://*.paddle.com`,
-      `connect-src 'self' ${apiUrl} ${appUrl} https://challenges.cloudflare.com https://*.paddle.com https://*.paddle.dev`,
+      `connect-src 'self' ${apiUrl} ${appUrl} ${mediaDomain} https://*.r2.cloudflarestorage.com https://challenges.cloudflare.com https://*.paddle.com https://*.paddle.dev`,
       `frame-src ${frameSrc}`,
       "font-src 'self'",
       "object-src 'none'",
