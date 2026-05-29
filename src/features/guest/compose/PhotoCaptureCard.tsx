@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { CameraIcon } from "@ovation/icons/CameraIcon";
@@ -51,12 +51,6 @@ export const PhotoCaptureCard = () => {
   const galleryInputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [cameraOpen, setCameraOpen] = useState(false);
-
-  useEffect(() => {
-    return () => {
-      photos.forEach((p) => URL.revokeObjectURL(p.url));
-    };
-  }, [photos]);
 
   const handleFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
