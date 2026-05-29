@@ -14,7 +14,7 @@ import {
 } from "./client";
 
 const buildBackendUrl = (path: string, query?: ApiFetchOptions["query"]) =>
-  `${env.API_URL}${API_BASE_PATH}${ensureLeadingSlash(path)}${buildSearch(query)}`;
+  `${env.INTERNAL_API_URL}${API_BASE_PATH}${ensureLeadingSlash(path)}${buildSearch(query)}`;
 
 const withSessionHeaders = async (init: RequestInit): Promise<RequestInit> => {
   const headers = new Headers(init.headers);
