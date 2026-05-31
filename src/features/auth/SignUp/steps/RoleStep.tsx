@@ -23,8 +23,11 @@ export const RoleStep = () => {
           {t("signup__role__title")}
         </h1>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 tablet:grid-cols-2">
-          <Link href={`${appRoutes.auth.signUpBook}?as=couple`} className="group block">
+        <div className="tablet:grid-cols-2 mt-10 grid grid-cols-1 gap-5">
+          <Link
+            href={`${appRoutes.auth.signUpBook}?as=couple`}
+            className="group block"
+          >
             <Card className="flex h-full cursor-pointer flex-col gap-4 rounded-3xl p-8 transition-shadow group-hover:shadow-lg">
               <span className="text-4xl">💍</span>
               <p className="type-h3 font-semibold">
@@ -36,12 +39,15 @@ export const RoleStep = () => {
               <ArrowRightIcon
                 width={20}
                 height={20}
-                className="text-primary mt-auto"
+                className="text-primary mt-auto self-end transition-transform group-hover:translate-x-1"
               />
             </Card>
           </Link>
 
-          <Link href={`${appRoutes.auth.signUpBook}?as=pro`} className="group block">
+          <Link
+            href={`${appRoutes.auth.signUpBook}?as=pro`}
+            className="group block"
+          >
             <Card className="border-primary flex h-full cursor-pointer flex-col gap-4 rounded-3xl border-2 p-8 transition-shadow group-hover:shadow-lg">
               <span className="text-4xl">📸</span>
               <p className="type-h3 font-semibold">
@@ -53,7 +59,7 @@ export const RoleStep = () => {
               <ArrowRightIcon
                 width={20}
                 height={20}
-                className="text-primary mt-auto"
+                className="text-primary mt-auto self-end transition-transform group-hover:translate-x-1"
               />
             </Card>
           </Link>
