@@ -4,44 +4,49 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { PlayIcon } from "@ovation/icons/PlayIcon";
+import { useRouter } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
+import type { MessageRowView } from "@/features/messages/adapters";
 
-export const ResumeCard = () => {
+type ResumeCardProps = {
+  message: MessageRowView | null;
+};
+
+export const ResumeCard = ({ message }: ResumeCardProps) => {
   const t = useTranslations();
-  const name = t("dashboard__resume__name");
-  const role = t("dashboard__resume__role");
-  const pausedAt = "1:14";
-  const duration = "2:22";
-  const initials = "M";
-  const tint = "#EFC9A8";
+  const router = useRouter();
 
-  const onResume = () => {};
+  if (!message || !message.hasAudio) return null;
+
+  const handleResume = () => {
+    router.push(`${appRoutes.app.messages}?active=${message.id}`);
+  };
 
   return (
     <div className="rounded-20 border-border bg-card tablet:flex-row tablet:items-center tablet:gap-6 tablet:p-7 flex flex-col gap-4 border p-5 shadow-sm">
       <Avatar size="lg" className="-rotate-3">
         <AvatarFallback
           className="type-body-small text-primary-foreground font-semibold"
-          style={{ background: tint }}
+          style={{ background: message.tint }}
         >
-          {initials}
+          {message.initials}
         </AvatarFallback>
       </Avatar>
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <p className="type-body-small text-muted-foreground">
           {t("dashboard__resume__pick_up")}
         </p>
-        <p className="type-h3 mt-1 leading-snug font-semibold">
-          {name} &middot; {role}
+        <p className="type-h3 mt-1 leading-snug font-semibold truncate">
+          {message.name}
         </p>
-        <p className="type-body-small text-muted-foreground mt-1 italic">
-          {t("dashboard__resume__paused_at", {
-            paused: pausedAt,
-            total: duration,
-          })}
-        </p>
+        {message.duration && (
+          <p className="type-body-small text-muted-foreground mt-1 italic">
+            {message.duration}
+          </p>
+        )}
       </div>
       <Button
-        onClick={onResume}
+        onClick={handleResume}
         size="lg"
         className="shadow-primary/40 tablet:w-auto w-full gap-2.5 rounded-full shadow-md"
       >

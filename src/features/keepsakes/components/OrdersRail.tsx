@@ -29,8 +29,10 @@ export const OrdersRail = ({ orders }: OrdersRailProps) => {
   } | null>(null);
 
   const productNameOf = (order: Order): string => {
-    if (order.orderType === "plan") return t("keepsakes__product__order");
-    return t("keepsakes__product__order");
+    const base = order.productName
+      ? t(order.productName)
+      : t("keepsakes__product__order");
+    return order.variantName ? `${base} — ${order.variantName}` : base;
   };
 
   return (

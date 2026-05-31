@@ -6,12 +6,27 @@ import { Pool } from "pg";
 import { env } from "@/lib/utils/env";
 import { sendResetPasswordEmail, sendVerificationEmail } from "./email-sender";
 
-if (env.IS_PRODUCTION) {
+const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build";
+
+if (env.IS_PRODUCTION && !isBuildPhase) {
   if (!env.AUTH_COOKIE_SECRET) {
     throw new Error("AUTH_COOKIE_SECRET must be set in production");
   }
   if (!env.AUTH_HASH_PEPPER) {
     throw new Error("AUTH_HASH_PEPPER must be set in production");
+  }
+  if (
+    !env.TRUSTED_ORIGINS.length ||
+    env.TRUSTED_ORIGINS.includes("http://localhost:3000")
+  ) {
+    throw new Error(
+      "TRUSTED_ORIGINS must be set to the production origin in production",
+    );
+  }
+  if (!env.COOKIE_DOMAIN) {
+    throw new Error(
+      "COOKIE_DOMAIN must be set (e.g. .ovationday.com) in production",
+    );
   }
 }
 
@@ -90,7 +105,7 @@ export const auth = betterAuth({
   },
 
   emailVerification: {
-    sendOnSignUp: false,
+    sendOnSignUp: true,
     autoSignInAfterVerification: true,
     expiresIn: 60 * 60 * 24,
     sendVerificationEmail: async ({ user, url }) => {
@@ -161,6 +176,26 @@ export const auth = betterAuth({
         required: false,
         fieldName: "account_type",
       },
+      planTier: {
+        type: "string",
+        required: false,
+        fieldName: "plan_tier",
+      },
+      planPurchasedAt: {
+        type: "date",
+        required: false,
+        fieldName: "plan_purchased_at",
+      },
+      messageLimit: {
+        type: "number",
+        required: false,
+        fieldName: "message_limit",
+      },
+      storageExpiresAt: {
+        type: "date",
+        required: false,
+        fieldName: "storage_expires_at",
+      },
     },
   },
 
@@ -198,7 +233,7 @@ export const auth = betterAuth({
   },
 
   rateLimit: {
-    enabled: false,
+    enabled: env.IS_PRODUCTION,
     storage: "database",
     modelName: "rate_limit",
     window: 60,

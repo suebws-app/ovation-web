@@ -3,23 +3,20 @@
 import { useCallback } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
+import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import { messagesClient } from "@/lib/api/messages-client";
 import { queryKeys } from "@/lib/query/keys";
-import type { MessageDetail } from "@/lib/api/types";
 
-export const useMessageAudioPlayer = (eventId: string) => {
+export const useMessageAudioPlayer = (eventId: string): TAudioPlayer => {
   const qc = useQueryClient();
 
   const resolveSrc = useCallback(
-    async (id: string): Promise<string | null> => {
-      const key = queryKeys.messages.detail(eventId, id);
-      const cached = qc.getQueryData<{ message: MessageDetail }>(key);
-      if (cached?.message.audioUrl) return cached.message.audioUrl;
-      const fetched = await qc.fetchQuery<{ message: MessageDetail }>({
-        queryKey: key,
-        queryFn: () => messagesClient.get(eventId, id),
+    async (messageId: string): Promise<string | null> => {
+      const result = await qc.fetchQuery({
+        queryKey: queryKeys.messages.detail(eventId, messageId),
+        queryFn: () => messagesClient.get(eventId, messageId),
       });
-      return fetched.message.audioUrl;
+      return result?.message.audioUrl ?? null;
     },
     [eventId, qc],
   );

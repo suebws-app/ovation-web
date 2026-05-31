@@ -39,7 +39,7 @@ export const UrlCard = ({ slug, shortUrl }: UrlCardProps) => {
       <Kicker className="text-muted-foreground mb-2.5">
         {t("qr__url__eyebrow")}
       </Kicker>
-      <div className="flex items-center gap-2.5">
+      <div className="flex flex-wrap items-center gap-2.5">
         <LinkIcon width={16} height={16} className="text-muted-foreground" />
         <span className="type-body-small text-foreground flex-1 truncate font-mono">
           {displayUrl(shortUrl)}

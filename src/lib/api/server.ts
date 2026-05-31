@@ -14,7 +14,7 @@ import {
 } from "./client";
 
 const buildBackendUrl = (path: string, query?: ApiFetchOptions["query"]) =>
-  `${env.API_URL_INTERNAL || env.API_URL}${API_BASE_PATH}${ensureLeadingSlash(path)}${buildSearch(query)}`;
+  `${env.INTERNAL_API_URL}${API_BASE_PATH}${ensureLeadingSlash(path)}${buildSearch(query)}`;
 
 const withSessionHeaders = async (init: RequestInit): Promise<RequestInit> => {
   const headers = new Headers(init.headers);
@@ -24,6 +24,10 @@ const withSessionHeaders = async (init: RequestInit): Promise<RequestInit> => {
   if (!headers.has("accept-language")) {
     headers.set("accept-language", await getLocale());
   }
+  if (env.CF_ORIGIN_TOKEN) {
+    headers.set("x-origin-token", env.CF_ORIGIN_TOKEN);
+  }
+
   return { ...init, headers };
 };
 

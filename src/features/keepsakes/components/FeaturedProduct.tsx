@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+import { appRoutes } from "@/lib/routes";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { FeaturePill } from "./FeaturePill";
 import { BookMock } from "./BookMock";
@@ -36,7 +37,7 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
       </span>
       <div>
         <Kicker className="tracking-[2px] text-black/55">
-          {name} &middot; {formatPrice(priceCents, currency)}
+          {name ? t(name) : ""} &middot; {formatPrice(priceCents, currency)}
         </Kicker>
         <h2 className="tablet:type-h1 type-h1 mt-2 leading-none font-semibold">
           {t("keepsakes__featured__title_a")}
@@ -44,7 +45,7 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
           {t("keepsakes__featured__title_b")}
         </h2>
         <p className="type-body-small mt-3 max-w-105 leading-relaxed text-black/75">
-          {t(design.taglineKey) || description}
+          {t(design.taglineKey) || (description ? t(description) : "")}
         </p>
         <div className="mt-4 flex flex-wrap gap-1.5">
           {features.map((b) => (
@@ -52,13 +53,13 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
           ))}
         </div>
         <div className="mt-5 flex flex-wrap items-center gap-2.5">
-          {canOrder ? (
+          {canOrder && eventId ? (
             <Button
               asChild
               size="lg"
               className="bg-foreground text-background hover:bg-foreground/90 rounded-full"
             >
-              <Link href={`/app/keepsakes/${slug}`}>
+              <Link href={appRoutes.app.eventKeepsakeCustomizer(eventId, slug)}>
                 {t("keepsakes__featured__order_now")}{" "}
                 <ArrowRightIcon width={13} height={13} />
               </Link>

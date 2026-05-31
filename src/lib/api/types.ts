@@ -11,7 +11,7 @@ export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
-export type PlanTier = "essentials" | "premium" | "bundle" | "pro_starter" | "pro_studio";
+export type PlanTier = "premium" | "bundle" | "pro_starter" | "pro_studio";
 
 export type AccountType = "couple" | "pro";
 
@@ -47,8 +47,15 @@ export type User = {
   preferredLanguage: SupportedLanguage | string;
   role: string;
   accountType: AccountType;
+  planTier: PlanTier | string | null;
+  planPurchasedAt: string | null;
+  messageLimit: number | null;
+  storageExpiresAt: string | null;
+  keepsakeCreditCents: number;
   stripeCustomerId: string | null;
   emailPreferences: EmailPreferences | null;
+  primaryEventId: string | null;
+  onboardingComplete: boolean;
   createdAt: string;
   updatedAt: string;
 };
@@ -73,10 +80,7 @@ export type Event = {
   welcomeMessage: string | null;
   themeColor: string;
   couplePhotoUrl: string | null;
-  planTier: PlanTier | string | null;
-  messageLimit: number | null;
   status: EventStatus | string;
-  submissionsEnabled: boolean;
   defaultLanguage: SupportedLanguage | string;
   createdAt: string;
   updatedAt: string;
@@ -89,6 +93,7 @@ export type EventStats = {
   photoCount: number;
   writtenMessages: number;
   favorites: number;
+  unreadMessages: number;
 };
 
 export type MessageSummary = {
@@ -215,7 +220,8 @@ export type PublicKioskSettings = {
   captureAudio: boolean;
   capturePhoto: boolean;
   captureVideo: boolean;
-  maxDurationSeconds: number;
+  maxVideoDurationSeconds: number;
+  maxAudioDurationSeconds: number;
   returnAfterSeconds: number;
   welcomeShowPhoto: boolean;
   welcomeShowLanguagePicker: boolean;
@@ -304,6 +310,7 @@ export type KeepsakeProduct = {
   sku: KeepsakeSku;
   name: string;
   description: string;
+  subtitle: string | null;
   priceCents: number;
   currency: string;
   imageUrl?: string | null;
@@ -321,6 +328,7 @@ export type KeepsakeProductDetail = {
   productType: string;
   name: string;
   description: string | null;
+  subtitle: string | null;
   basePriceCents: number;
   currency: string;
   category: string;
@@ -391,16 +399,21 @@ export type Order = {
   currency: string;
   subtotalCents: number;
   totalCents: number;
+  productSku: string;
+  productName: string;
+  variantSku: string | null;
+  variantName: string | null;
+  quantity: number;
+  unitPriceCents: number;
+  customization: Record<string, unknown>;
+  fulfillmentStatus: string;
   paymentProvider: string | null;
   createdAt: string;
 };
 
 export type OrderItem = {
   id: string;
-  productSku: string;
-  productName: string;
-  quantity: number;
-  unitPriceCents: number;
+  mediaId: string;
 };
 
 export type OrderTracking = {
@@ -414,9 +427,22 @@ export type OrderDetail = {
   orderType: string;
   status: OrderStatus;
   totalCents: number;
-  items: OrderItem[];
+  productSku: string;
+  productName: string;
+  variantSku: string | null;
+  variantName: string | null;
+  quantity: number;
+  unitPriceCents: number;
+  customization: Record<string, unknown>;
+  fulfillmentStatus: string;
+  mediaIds: string[];
   tracking: OrderTracking | null;
   createdAt: string;
+};
+
+export type OrderSession = {
+  orders: OrderDetail[];
+  totalCents: number;
 };
 
 export type QrCodeFormat = "png" | "svg";
@@ -429,31 +455,58 @@ export type QrCodeResult = {
 
 export type CheckoutOrderType = "plan" | "keepsake";
 
-export type CheckoutPlanTier = "essentials" | "premium" | "bundle";
+export type CheckoutPlanTier = "premium" | "bundle";
 
 export type CheckoutItem = {
   productSku: string;
   productVariantId?: string;
   quantity: number;
   customization?: Record<string, unknown>;
+  photoIds?: string[];
 };
 
 export type CheckoutShippingAddress = {
   name: string;
   line1: string;
+  line2?: string;
   city: string;
   country: string;
   postalCode: string;
 };
 
 export type CheckoutSessionInput = {
-  eventId: string;
+  eventId?: string;
   orderType: CheckoutOrderType;
   planTier?: CheckoutPlanTier;
   items?: CheckoutItem[] | null;
   shippingAddress?: CheckoutShippingAddress;
+  promoCode?: string;
   successUrl: string;
   cancelUrl: string;
+};
+
+export type CartTotalsItem = {
+  productSku: string;
+  productVariantId?: string;
+  quantity: number;
+};
+
+export type CartTotalsInput = {
+  eventId: string;
+  items: CartTotalsItem[];
+  shippingCountry?: string;
+  promoCode?: string;
+};
+
+export type CartTotalsResult = {
+  currency: string;
+  subtotalCents: number;
+  promoDiscountCents?: number;
+  shippingCents: number;
+  taxCents: number;
+  totalCents: number;
+  vatRate: number;
+  freeShipping: boolean;
 };
 
 export type CheckoutSessionResult = {
@@ -475,40 +528,68 @@ export type Plan = {
   sortOrder: number;
 };
 
-export type Subscription = {
-  id: string;
-  eventId: string;
-  planId: string;
+
+export type BasePlanInfo = {
   planCode: string;
   planName: string;
-  status: string;
-  creditCentsRemaining: number;
   activatedAt: string;
   expiresAt: string | null;
 };
 
-export type ProSubscription = {
-  id: string;
-  planId: string;
-  planCode: string;
-  planName: string;
-  status: string;
-  currentPeriodStart: string | null;
+export type DreState =
+  | "none"
+  | "pending"
+  | "active"
+  | "cancellation_scheduled"
+  | "expired";
+
+export type DreInfo = {
+  state: DreState;
+  intentCreatedAt: string | null;
   currentPeriodEnd: string | null;
   cancelAtPeriodEnd: boolean;
-  activatedAt: string;
-  expiresAt: string | null;
+  paddleSubscriptionId: string | null;
+};
+
+export type MeBillingOverview = {
+  basePlan: BasePlanInfo | null;
+  dre: DreInfo | null;
+};
+
+export type MeBillingHistoryItem = {
+  id: string;
+  planCode: string;
+  planName: string | null;
+  totalCents: number;
+  currency: string;
+  status: string;
+  paymentCompletedAt: string | null;
+  refundedAt: string | null;
+  refundAmountCents: number | null;
+  createdAt: string;
+};
+
+export type DreCheckoutSessionInput = {
+  successUrl: string;
+  cancelUrl: string;
+};
+
+export type DreCheckoutSessionResult = {
+  checkoutUrl: string;
+  providerSessionId: string;
 };
 
 export type ProCheckoutSessionInput = {
   planCode: "pro_starter" | "pro_studio";
+  eventId?: string;
   successUrl: string;
   cancelUrl: string;
 };
 
 export type ProCheckoutSessionResult = {
+  orderId: string;
   checkoutUrl: string;
-  sessionId: string;
+  providerSessionId: string;
 };
 
 export type BillingPortalSessionInput = {
@@ -532,29 +613,35 @@ export type CoverUploadResult = {
   maxSizeBytes: number;
 };
 
-export const KIOSK_MAX_DURATION_OPTIONS = [15, 30, 60, 90, 120, 180] as const;
-export type KioskMaxDurationSeconds =
-  (typeof KIOSK_MAX_DURATION_OPTIONS)[number];
+export const LINK_MAX_DURATION_OPTIONS = [15, 30, 45, 60] as const;
+export type LinkMaxDurationSeconds =
+  (typeof LINK_MAX_DURATION_OPTIONS)[number];
 
 export const KIOSK_RETURN_AFTER_OPTIONS = [10, 20, 30, 60, 120] as const;
 export type KioskReturnAfterSeconds =
   (typeof KIOSK_RETURN_AFTER_OPTIONS)[number];
 
-export const KIOSK_OFFLINE_STORAGE_OPTIONS = [
-  100, 250, 500, 1000, 2000, 5000,
-] as const;
-export type KioskOfflineStorageMb =
-  (typeof KIOSK_OFFLINE_STORAGE_OPTIONS)[number];
-
 export const KIOSK_WELCOME_NOTE_MAX = 180;
 
-export type KioskSettings = {
+export type LinkSettings = {
   id: string;
   eventId: string;
   captureAudio: boolean;
   capturePhoto: boolean;
   captureVideo: boolean;
-  maxDurationSeconds: number;
+  maxVideoDurationSeconds: number;
+  maxAudioDurationSeconds: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateLinkSettingsInput = Partial<
+  Omit<LinkSettings, "id" | "eventId" | "createdAt" | "updatedAt">
+>;
+
+export type KioskSettings = {
+  id: string;
+  eventId: string;
   returnAfterSeconds: number;
   fullscreenLock: boolean;
   guidedMode: boolean;
@@ -564,9 +651,6 @@ export type KioskSettings = {
   welcomeShowPhoto: boolean;
   welcomeShowLanguagePicker: boolean;
   welcomeChime: boolean;
-  offlineStore: boolean;
-  offlineStorageMb: number;
-  offlineNotify: boolean;
   defaultLanguage: SupportedLanguage | string;
   supportedLanguages: (SupportedLanguage | string)[];
   createdAt: string;

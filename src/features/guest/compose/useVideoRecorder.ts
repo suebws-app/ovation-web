@@ -13,7 +13,12 @@ export type VideoRecording = {
   mimeType: string;
 };
 
-type RecorderState = "idle" | "requesting" | "recording" | "denied";
+type RecorderState =
+  | "idle"
+  | "requesting"
+  | "preview"
+  | "recording"
+  | "denied";
 
 const pickMimeType = (): string => {
   if (typeof MediaRecorder === "undefined") return "video/webm";
@@ -44,7 +49,9 @@ export const useVideoRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
   const startedAtRef = useRef<number>(0);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const maxDurationRef = useRef(maxDurationSec);
-  maxDurationRef.current = maxDurationSec;
+  useEffect(() => {
+    maxDurationRef.current = maxDurationSec;
+  });
 
   const stopTracks = useCallback(() => {
     streamRef.current?.getTracks().forEach((track) => track.stop());
@@ -71,27 +78,28 @@ export const useVideoRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
     }
   }, []);
 
-  const start = useCallback(async () => {
+  const prepare = useCallback(async () => {
+    if (streamRef.current) return true;
     setError(null);
     if (typeof window !== "undefined" && window.isSecureContext === false) {
       setError(t("guest__record__video__error_insecure"));
       setState("denied");
-      return;
+      return false;
     }
     if (
       typeof navigator === "undefined" ||
       !navigator.mediaDevices?.getUserMedia
     ) {
       setError(t("guest__record__video__error_no_support"));
-      return;
+      return false;
     }
     setState("requesting");
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: "user",
-          width: { ideal: 1280 },
-          height: { ideal: 720 },
+          width: { ideal: 1920, max: 1920 },
+          height: { ideal: 1080, max: 1080 },
         },
         audio: true,
       });
@@ -101,41 +109,8 @@ export const useVideoRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
         previewRef.current.muted = true;
         previewRef.current.play().catch(() => undefined);
       }
-
-      const mimeType = pickMimeType();
-      const recorder = new MediaRecorder(stream, { mimeType });
-      mediaRecorderRef.current = recorder;
-      chunksRef.current = [];
-
-      recorder.ondataavailable = (e) => {
-        if (e.data.size > 0) chunksRef.current.push(e.data);
-      };
-      recorder.onstop = async () => {
-        const blob = new Blob(chunksRef.current, { type: mimeType });
-        const url = URL.createObjectURL(blob);
-        const wallClock = Math.round(
-          (Date.now() - startedAtRef.current) / 1000,
-        );
-        const measured = await getBlobDuration(blob);
-        const durationSec = Math.min(
-          Math.round(measured > 0 ? measured : wallClock),
-          maxDurationRef.current,
-        );
-        setRecording({ blob, url, durationSec, mimeType });
-        setState("idle");
-        stopTracks();
-      };
-
-      recorder.start(250);
-      startedAtRef.current = Date.now();
-      setElapsed(0);
-      setState("recording");
-
-      tickRef.current = setInterval(() => {
-        const seconds = Math.floor((Date.now() - startedAtRef.current) / 1000);
-        setElapsed(seconds);
-        if (seconds >= maxDurationRef.current) recorder.stop();
-      }, 200);
+      setState("preview");
+      return true;
     } catch (e) {
       console.error("[useVideoRecorder] getUserMedia failed", e);
       setState("denied");
@@ -149,14 +124,74 @@ export const useVideoRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
               ? "guest__record__video__error_in_use"
               : "guest__record__video__error_other";
       setError(t(key));
+      return false;
     }
-  }, [stopTracks, t]);
+  }, [t]);
+
+  const start = useCallback(async () => {
+    const ready = await prepare();
+    if (!ready) return;
+    const stream = streamRef.current;
+    if (!stream) return;
+
+    const mimeType = pickMimeType();
+    const recorder = new MediaRecorder(stream, {
+      mimeType,
+      videoBitsPerSecond: 5_000_000,
+      audioBitsPerSecond: 128_000,
+    });
+    mediaRecorderRef.current = recorder;
+    chunksRef.current = [];
+
+    recorder.ondataavailable = (e) => {
+      if (e.data.size > 0) chunksRef.current.push(e.data);
+    };
+    recorder.onstop = async () => {
+      const blob = new Blob(chunksRef.current, { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const wallClock = Math.round(
+        (Date.now() - startedAtRef.current) / 1000,
+      );
+      const measured = await getBlobDuration(blob);
+      const durationSec = Math.min(
+        Math.round(measured > 0 ? measured : wallClock),
+        maxDurationRef.current,
+      );
+      setRecording({ blob, url, durationSec, mimeType });
+      setState("idle");
+      stopTracks();
+    };
+
+    recorder.start(250);
+    startedAtRef.current = Date.now();
+    setElapsed(0);
+    setState("recording");
+
+    tickRef.current = setInterval(() => {
+      const seconds = Math.floor((Date.now() - startedAtRef.current) / 1000);
+      setElapsed(seconds);
+      if (seconds >= maxDurationRef.current) recorder.stop();
+    }, 200);
+  }, [prepare, stopTracks]);
 
   const stop = useCallback(() => {
     if (mediaRecorderRef.current?.state === "recording") {
       mediaRecorderRef.current.stop();
     }
   }, []);
+
+  const cancel = useCallback(() => {
+    if (mediaRecorderRef.current?.state === "recording") {
+      try {
+        mediaRecorderRef.current.stop();
+      } catch {
+        // ignore
+      }
+    }
+    stopTracks();
+    setState("idle");
+    setElapsed(0);
+  }, [stopTracks]);
 
   const reset = useCallback(() => {
     if (recording?.url) URL.revokeObjectURL(recording.url);
@@ -170,9 +205,11 @@ export const useVideoRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
     recording,
     elapsed,
     error,
-    maxDurationSec: maxDurationRef.current,
+    maxDurationSec,
+    prepare,
     start,
     stop,
+    cancel,
     reset,
     attachPreview,
   };

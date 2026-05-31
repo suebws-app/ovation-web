@@ -50,11 +50,13 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased`} suppressHydrationWarning>
-      <body className="font-sans flex max-h-dvh flex-1 flex-col">
+      <head>
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{ __html: themeScript }}
         />
+      </head>
+      <body className="font-sans flex max-h-dvh flex-1 flex-col">
         <NextIntlClientProvider messages={messages}>
           <AppProviders>{children}</AppProviders>
         </NextIntlClientProvider>

@@ -18,6 +18,7 @@ import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 import { KioskFullscreenGuard } from "@/features/kiosk-setup/components/KioskFullscreenGuard";
 import { ReviewItem } from "./ReviewItem";
+import { ReviewPhotoTile } from "./ReviewPhotoTile";
 
 const formatTime = (sec: number): string => {
   const m = Math.floor(sec / 60);
@@ -44,7 +45,6 @@ type ReviewClientProps = {
   slug: string;
   exitPin: string | null;
   fullscreenLock: boolean;
-  capturePhoto: boolean;
   sourceParam: string | null;
 };
 
@@ -52,7 +52,6 @@ export const ReviewClient = ({
   slug,
   exitPin,
   fullscreenLock,
-  capturePhoto,
   sourceParam,
 }: ReviewClientProps) => {
   const t = useTranslations();
@@ -65,7 +64,7 @@ export const ReviewClient = ({
   const audio = useGuestSubmissionStore((s) => s.audio);
   const video = useGuestSubmissionStore((s) => s.video);
   const note = useGuestSubmissionStore((s) => s.note);
-  const photo = useGuestSubmissionStore((s) => s.photo);
+  const photos = useGuestSubmissionStore((s) => s.photos);
   const reset = useGuestSubmissionStore((s) => s.reset);
 
   const sessionStartAt = useGuestSubmissionStore((s) => s.sessionStartAt);
@@ -76,27 +75,40 @@ export const ReviewClient = ({
   const [submitted, setSubmitted] = useState(false);
 
   const hasNote = note.trim().length > 0;
-  const hasAnyContent = Boolean(audio || video || photo) || hasNote;
-  const canSubmit = guestName.trim().length > 0 && hasAnyContent && !submitting;
+  const hasPhotos = photos.length > 0;
+  const hasAnyContent = Boolean(audio || video) || hasPhotos || hasNote;
 
   const handleSubmit = async () => {
     setSubmitError(null);
+    if (guestName.trim().length === 0) {
+      setSubmitError(t("guest__review__error_missing_name"));
+      return;
+    }
+    if (!hasAnyContent) {
+      setSubmitError(t("guest__review__error_missing_content"));
+      return;
+    }
     setSubmitting(true);
     try {
       let audioKey: string | null = null;
       const mediaIds: string[] = [];
 
-      const needUpload = audio || video || photo;
+      const needUpload = audio || video || hasPhotos;
       if (needUpload) {
         setProgressLabel(t("guest__record__progress_preparing"));
         const mediaRequest: UploadMediaItem[] = [];
-        if (video) mediaRequest.push({ type: "video", contentType: video.mimeType });
-        if (photo) mediaRequest.push({ type: "photo", contentType: photo.file.type });
+        if (video)
+          mediaRequest.push({ type: "video", contentType: video.mimeType });
+        photos.forEach((p) =>
+          mediaRequest.push({ type: "photo", contentType: p.file.type }),
+        );
 
         const uploadResult = await publicClient.uploadUrls(slug, {
           audioContentType: audio?.mimeType ?? null,
           media: mediaRequest.length > 0 ? mediaRequest : undefined,
           source: submissionSource,
+          _honeypot: "",
+          _t: sessionStartAt ?? Date.now() - 5000,
         });
 
         if (audio) {
@@ -108,20 +120,26 @@ export const ReviewClient = ({
           audioKey = target.key;
         }
         if (video) {
-          const target = uploadResult.mediaTargets.find((m) => m.type === "video");
+          const target = uploadResult.mediaTargets.find(
+            (m) => m.type === "video",
+          );
           if (!target)
             throw new Error(t("guest__record__error_no_video_target"));
           setProgressLabel(t("guest__record__progress_video"));
           await uploadToTarget(target, video.blob);
           mediaIds.push(target.mediaId);
         }
-        if (photo) {
-          const target = uploadResult.mediaTargets.find((m) => m.type === "photo");
-          if (!target)
+        if (hasPhotos) {
+          const photoTargets = uploadResult.mediaTargets.filter(
+            (m) => m.type === "photo",
+          );
+          if (photoTargets.length < photos.length)
             throw new Error(t("guest__record__error_no_photo_target"));
-          setProgressLabel(t("guest__record__progress_photo"));
-          await uploadToTarget(target, photo.file);
-          mediaIds.push(target.mediaId);
+          for (let i = 0; i < photos.length; i++) {
+            setProgressLabel(t("guest__record__progress_photo"));
+            await uploadToTarget(photoTargets[i], photos[i].file);
+            mediaIds.push(photoTargets[i].mediaId);
+          }
         }
       }
 
@@ -163,22 +181,20 @@ export const ReviewClient = ({
 
   const isKioskSession = submissionSource === "kiosk";
   const sourceQuery = isKioskSession ? "?source=kiosk" : "";
-  const backHref = capturePhoto
-    ? `/g/${slug}/photo${sourceQuery}`
-    : `/g/${slug}/compose${sourceQuery}`;
+  const backHref = `/g/${slug}/compose${sourceQuery}`;
 
   return (
     <div className="flex flex-1 flex-col">
       <KioskFullscreenGuard
         active={isKioskSession && fullscreenLock}
         exitPin={exitPin}
-        exitHref="/app/kiosk"
+        exitHref="/kiosk"
       />
       <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-5 pb-9">
         <WizardHeader
           backHref={backHref}
-          step={capturePhoto ? 3 : 2}
-          totalSteps={capturePhoto ? 3 : 2}
+          step={2}
+          totalSteps={2}
           title={t("guest__review__title")}
           subtitle={t("guest__review__subtitle")}
         />
@@ -239,17 +255,21 @@ export const ReviewClient = ({
               }
             />
           )}
-          {photo && (
+          {hasPhotos && (
             <ReviewItem
               icon={<CameraIcon width={18} height={18} />}
               iconClassName="bg-accent"
-              title={t("guest__photo__title")}
+              title={t("guest__compose__photo_title")}
+              meta={t("guest__compose__photo_count", {
+                count: photos.length,
+                max: 5,
+              })}
               preview={
-                <img
-                  src={photo.url}
-                  alt=""
-                  className="rounded-12 max-h-100 w-full object-contain"
-                />
+                <div className="grid grid-cols-3 gap-2 tablet:grid-cols-4">
+                  {photos.map((p) => (
+                    <ReviewPhotoTile key={p.id} url={p.url} />
+                  ))}
+                </div>
               }
             />
           )}
@@ -266,7 +286,7 @@ export const ReviewClient = ({
           type="button"
           size="lg"
           className="w-full rounded-full shadow-lg"
-          disabled={!canSubmit}
+          disabled={submitting}
           onClick={handleSubmit}
         >
           {submitting

@@ -11,6 +11,7 @@ import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { MapPinIcon } from "@ovation/icons/MapPinIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
+import { env } from "@/lib/utils/env";
 import type { Event, SupportedLanguage } from "@/lib/api/types";
 import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
 import { SettingsField } from "./SettingsField";
@@ -107,7 +108,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
         <SettingsField label={t("settings__wedding__partnerA")}>
           <Input
             type="text"
@@ -136,7 +137,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         </SettingsField>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-6">
+      <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
         <SettingsField
           label={t("settings__wedding__date")}
           adornmentRight={
@@ -163,7 +164,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         </SettingsField>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-6">
+      <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
         <SettingsField label={t("settings__wedding__venue_name")}>
           <Input
             type="text"
@@ -174,7 +175,11 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         <SettingsField
           label={t("settings__wedding__venue_city")}
           adornmentRight={
-            <MapPinIcon width={16} height={16} className="text-muted-foreground" />
+            <MapPinIcon
+              width={16}
+              height={16}
+              className="text-muted-foreground"
+            />
           }
         >
           <Input
@@ -206,18 +211,18 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         </SettingsField>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-6">
+      <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
         <SettingsField
           label={t("settings__wedding__public_link")}
           hint={t("settings__wedding__public_link_hint")}
         >
           <div className="rounded-12 border-border bg-card flex items-center gap-2 border px-3.5">
             <span className="type-body-small text-muted-foreground">
-              ovation.love/
+              {env.APP_URL}/
             </span>
             <input
               type="text"
-              className="type-body-small text-foreground flex-1 bg-transparent py-3 outline-none"
+              className="type-body-small text-foreground min-w-0 flex-1 truncate bg-transparent py-3 outline-none"
               {...register("slug")}
             />
           </div>

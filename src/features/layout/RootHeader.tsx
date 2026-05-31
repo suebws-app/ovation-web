@@ -3,8 +3,6 @@ import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
-import { ThemeToggle } from "@ovation/ui/components/ThemeToggle";
 import { cn } from "@ovation/ui/utils/cn";
 import { RootMobileNav } from "./RootMobileNav";
 import { LanguageSelect } from "@/components/LanguageSelect";
@@ -30,9 +28,8 @@ export const RootHeader = ({ className }: { className?: string }) => {
           </span>
 
           <Button size="sm" asChild className="tablet:flex hidden gap-1.5">
-            <Link href={appRoutes.auth.signUp}>
-              {t("marketing__nav__cta")}
-              <ArrowRightIcon className="size-3.5" />
+            <Link href={appRoutes.auth.signIn}>
+              {t("marketing__nav__sign_in")}
             </Link>
           </Button>
           <RootMobileNav languageSelect={<LanguageSelect />} />

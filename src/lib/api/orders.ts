@@ -1,5 +1,5 @@
 import { apiFetch, apiFetchPaginated } from "./server";
-import type { Order, OrderDetail } from "./types";
+import type { Order, OrderDetail, OrderSession } from "./types";
 
 export const ordersApi = {
   list: (
@@ -12,5 +12,14 @@ export const ordersApi = {
   ) => apiFetchPaginated<Order>("/payments/orders", { query }),
 
   get: (orderId: string) =>
-    apiFetch<{ order: OrderDetail }>(`/payments/orders/${orderId}`),
+    apiFetch<{ order: OrderDetail; session: OrderSession }>(
+      `/payments/orders/${orderId}`,
+    ),
+};
+
+export const planPurchasesApi = {
+  get: (id: string) =>
+    apiFetch<{ purchase: { id: string; status: string; planCode: string } }>(
+      `/payments/plan-purchases/${id}`,
+    ),
 };

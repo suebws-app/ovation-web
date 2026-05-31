@@ -1,9 +1,13 @@
 import { SignInForm } from "./SignInForm";
 import { SignInBrandPanel } from "../components/SignInBrandPanel";
 
-export const SignInFormStep = () => (
+type SignInFormStepProps = {
+  initialFailCount: number;
+};
+
+export const SignInFormStep = ({ initialFailCount }: SignInFormStepProps) => (
   <div className="desktop:grid-cols-2 grid min-h-screen">
-    <SignInForm />
+    <SignInForm initialFailCount={initialFailCount} />
     <SignInBrandPanel />
   </div>
 );

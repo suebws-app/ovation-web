@@ -12,29 +12,27 @@ import {
 } from "@ovation/ui/components/Breadcrumb";
 import { isLocale } from "@/lib/utils/isLocale";
 import { useCurrentEventStore } from "@/features/events/useCurrentEventStore";
-import type { Subscription } from "@/lib/api/types";
 import { KeepsakesActions } from "./KeepsakesActions";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 type AppHeaderDesktopProps = {
-  subscription: Subscription | null;
+  planTier: string | null;
 };
 
-export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
+export const AppHeaderDesktop = ({ planTier }: AppHeaderDesktopProps) => {
   const pathname = usePathname();
   const eventLabel = useCurrentEventStore((s) => s.label);
   const segments = pathname
     .split("/")
     .filter(Boolean)
-    .filter((seg) => !isLocale(seg))
-    .filter((seg) => seg !== "app");
+    .filter((seg) => !isLocale(seg));
 
-  const crumbs = ["dashboard", ...segments];
+  const crumbs = ["home", ...segments];
 
   const lastCrumb = crumbs[crumbs.length - 1];
   const parentCrumbs = crumbs.slice(0, -1);
-  const isKeepsakes = segments.includes("keepsakes");
+  const isKeepsakes = segments.includes("keepsakes") || segments.includes("cart");
 
   return (
     <header className="max-w-container desktop:flex mx-auto hidden h-16 w-full items-center justify-between px-6 py-3">
@@ -42,7 +40,7 @@ export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
         <BreadcrumbList className="type-caption">
           {parentCrumbs.map((crumb, i) => {
             const href =
-              i === 0 ? "/app" : `/app/${segments.slice(0, i).join("/")}`;
+              i === 0 ? "/home" : `/${segments.slice(0, i).join("/")}`;
             const label = UUID_RE.test(crumb) && eventLabel ? eventLabel : crumb;
             return (
               <React.Fragment key={crumb}>
@@ -62,7 +60,7 @@ export const AppHeaderDesktop = ({ subscription }: AppHeaderDesktopProps) => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      {isKeepsakes && <KeepsakesActions subscription={subscription} />}
+      {isKeepsakes && <KeepsakesActions planTier={planTier} />}
     </header>
   );
 };

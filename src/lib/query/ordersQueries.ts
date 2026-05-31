@@ -1,6 +1,11 @@
 "use client";
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { ordersClient } from "@/lib/api/orders-client";
 import { queryKeys } from "./keys";
 
@@ -9,6 +14,19 @@ export const useOrderDetail = (orderId: string | null) =>
     queryKey: queryKeys.orders.detail(orderId ?? ""),
     queryFn: () => ordersClient.get(orderId!),
     enabled: Boolean(orderId),
+  });
+
+export const useOrdersList = (filters: { eventId?: string } = {}) =>
+  useInfiniteQuery({
+    queryKey: queryKeys.orders.list(filters),
+    queryFn: ({ pageParam }) =>
+      ordersClient.list({
+        eventId: filters.eventId,
+        cursor: pageParam ?? undefined,
+        limit: 20,
+      }),
+    initialPageParam: null as string | null,
+    getNextPageParam: (last) => last.nextCursor ?? null,
   });
 
 export const useRefundOrder = (orderId: string) => {

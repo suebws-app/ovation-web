@@ -17,16 +17,17 @@ export const EventKeepsakesPage = async ({
 
   const [catalog, ordersResult] = await Promise.all([
     keepsakesApi.catalog(),
-    ordersApi.list({ limit: 5, orderType: "keepsake" }).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404)
-        return { items: [], nextCursor: null };
-      throw error;
-    }),
+    ordersApi
+      .list({ eventId: id, limit: 5, orderType: "keepsake" })
+      .catch((error) => {
+        if (ApiError.isApiError(error) && error.status === 404)
+          return { items: [], nextCursor: null };
+        throw error;
+      }),
   ]);
 
   const featured =
     catalog.products.find((p) => p.sku === "gold_book") ?? catalog.products[0];
-  const others = catalog.products.filter((p) => p.sku !== featured?.sku);
 
   return (
     <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
@@ -39,7 +40,7 @@ export const EventKeepsakesPage = async ({
         />
       )}
       <BundleBanner />
-      <KeepsakesCollection products={others} eventId={id} />
+      <KeepsakesCollection products={catalog.products} eventId={id} />
 
       <KeepsakesFooter />
     </div>

@@ -26,7 +26,7 @@ export const DashboardEmpty = ({ userName }: DashboardEmptyProps) => {
         size="lg"
         className="shadow-primary/40 rounded-full shadow-md"
       >
-        <Link href={appRoutes.auth.signUpBook}>
+        <Link href={appRoutes.create.root}>
           {t("dashboard__empty__cta")}
         </Link>
       </Button>

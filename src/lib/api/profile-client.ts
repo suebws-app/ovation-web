@@ -10,4 +10,7 @@ export const profileClient = {
 
   deleteAccount: () =>
     clientFetch<{ message: string }>("/auth/me", { method: "DELETE" }),
+
+  markOnboardingComplete: () =>
+    clientFetch<void>("/auth/me/onboarding-complete", { method: "POST" }),
 };

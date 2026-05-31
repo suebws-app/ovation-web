@@ -115,10 +115,9 @@ export const MessageDetailPane = ({
   const audioUrl = detail?.message.audioUrl ?? null;
   const mediaItems = detail?.message.media ?? [];
   const firstVideo = mediaItems.find((m) => m.type === "video");
-  const firstPhoto = mediaItems.find((m) => m.type === "photo");
+  const photoItems = mediaItems.filter((m) => m.type === "photo");
   const videoUrl = firstVideo?.url ?? null;
   const videoMimeType = "video/mp4";
-  const photoUrl = firstPhoto?.url ?? null;
   const writtenNote = detail?.message.writtenNote ?? null;
   const hasAudio = Boolean(audioUrl);
   const hasNote = Boolean(writtenNote && writtenNote.trim());
@@ -224,24 +223,28 @@ export const MessageDetailPane = ({
             {t("messages__detail__media_eyebrow")}
           </Kicker>
           <div className="grid grid-cols-2 gap-2">
-            {photoUrl && (
-              <a
-                href={photoUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-12 bg-muted relative block aspect-square overflow-hidden"
-              >
-                <Image
-                  src={photoUrl}
-                  fill
-                  unoptimized
-                  className="object-cover"
-                  alt={message.name}
-                />
-              </a>
+            {photoItems.map((photo) =>
+              photo.url ? (
+                <a
+                  key={photo.id}
+                  href={photo.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-12 bg-muted relative block aspect-square overflow-hidden"
+                >
+                  <Image
+                    src={photo.url}
+                    fill
+                    unoptimized
+                    priority
+                    className="object-cover"
+                    alt={message.name}
+                  />
+                </a>
+              ) : null,
             )}
             {videoUrl && (
-              <div className="rounded-12 bg-muted block aspect-square size-full h-40 w-40 overflow-hidden">
+              <div className="rounded-12 bg-muted block aspect-square w-full overflow-hidden">
                 <MediaPlayer
                   src={[
                     {

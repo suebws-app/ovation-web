@@ -8,8 +8,10 @@ import { CustomizerSection } from "./CustomizerSection";
 import { OptionGroup } from "./OptionGroup";
 import { VariantSelector } from "./VariantSelector";
 import { AudioMessagePicker } from "./AudioMessagePicker";
+import { MediaPicker } from "./MediaPicker";
 import { CustomizerCheckoutForm } from "./CustomizerCheckoutForm";
 import type {
+  Event,
   KeepsakeProductDetail,
   KeepsakeProductVariant,
 } from "@/lib/api/types";
@@ -33,12 +35,16 @@ type GoldBookCustomizerProps = {
   product: KeepsakeProductDetail;
   variants: KeepsakeProductVariant[];
   eventId: string | null;
+  event?: Event | null;
+  isPro?: boolean;
 };
 
 export const GoldBookCustomizer = ({
   product,
   variants,
   eventId,
+  event,
+  isPro = false,
 }: GoldBookCustomizerProps) => {
   const [variantId, setVariantId] = useState<string | null>(
     variants[0]?.id ?? null,
@@ -49,6 +55,7 @@ export const GoldBookCustomizer = ({
   const [includePhotos, setIncludePhotos] = useState(true);
   const [includeTranscripts, setIncludeTranscripts] = useState(true);
   const [messageIds, setMessageIds] = useState<string[]>([]);
+  const [photoIds, setPhotoIds] = useState<string[]>([]);
 
   const selectedVariant = variants.find((v) => v.id === variantId) ?? null;
   const formatAttr =
@@ -56,6 +63,10 @@ export const GoldBookCustomizer = ({
 
   const toggleMessage = (id: string) =>
     setMessageIds((prev) =>
+      prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id],
+    );
+  const togglePhoto = (id: string) =>
+    setPhotoIds((prev) =>
       prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id],
     );
 
@@ -69,7 +80,7 @@ export const GoldBookCustomizer = ({
     messageIds,
   };
 
-  const isReady = messageIds.length > 0;
+  const isReady = photoIds.length > 0;
 
   return (
     <div className="desktop:grid-cols-[1fr_400px] grid grid-cols-1 gap-6">
@@ -143,8 +154,22 @@ export const GoldBookCustomizer = ({
         </CustomizerSection>
 
         <CustomizerSection
-          title="Messages"
-          description="Pick the audio messages to include in the book."
+          title="Photos"
+          description="Pick the photos to feature in the book."
+          badge={`${photoIds.length} selected`}
+        >
+          <MediaPicker
+            eventId={eventId}
+            type="photo"
+            selectedIds={photoIds}
+            onToggle={togglePhoto}
+            emptyHint="No photos yet. Invite guests to upload."
+          />
+        </CustomizerSection>
+
+        <CustomizerSection
+          title="Messages (optional)"
+          description="Optionally include audio messages in the book."
           badge={`${messageIds.length} selected`}
         >
           <AudioMessagePicker
@@ -160,10 +185,13 @@ export const GoldBookCustomizer = ({
       <CustomizerCheckoutForm
         product={product}
         eventId={eventId}
+        event={event}
         customization={customization}
+        photoIds={photoIds}
         selectedVariant={selectedVariant}
         isReady={isReady}
-        notReadyMessage="Pick at least one message to continue."
+        notReadyMessage="Pick at least one photo to continue."
+        showEventBadge={isPro}
       />
     </div>
   );

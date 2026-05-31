@@ -78,7 +78,7 @@ export const MessageList = ({
           {t("dashboard__messages__title")}
         </h2>
         <Link
-          href={`/app/messages`}
+          href={`/messages`}
           className="type-body-small text-primary font-semibold"
         >
           {t("dashboard__messages__see_all", { count: totalCount })}
@@ -106,7 +106,7 @@ export const MessageList = ({
               onPlay={() => {
                 if (m.hasAudio) void player.toggle(m.id);
               }}
-              onSelect={() => router.push(`/app/messages?active=${m.id}`)}
+              onSelect={() => router.push(`/messages?active=${m.id}`)}
             />
           );
         })}

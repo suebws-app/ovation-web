@@ -18,18 +18,21 @@ const buildSrc = (src: string | null): MediaPlayerProps["src"] =>
 export const AudioPlayer = ({ player, className }: AudioPlayerProps) => {
   if (!player) return null;
 
+  const { playerRef, src, onTimeUpdate, onDurationChange, onPlay, onPause } =
+    player;
+
   return (
     <MediaPlayer
-      ref={player.playerRef}
-      src={buildSrc(player.src)}
+      ref={playerRef}
+      src={buildSrc(src)}
       viewType="audio"
       streamType="on-demand"
       load="eager"
       preload="auto"
-      onTimeUpdate={player.onTimeUpdate}
-      onDurationChange={player.onDurationChange}
-      onPlay={player.onPlay}
-      onPause={player.onPause}
+      onTimeUpdate={onTimeUpdate}
+      onDurationChange={onDurationChange}
+      onPlay={onPlay}
+      onPause={onPause}
       onError={(detail) => {
         console.error("[audio] vidstack error", detail);
       }}

@@ -17,14 +17,39 @@ import { SocialAuthButtons } from "../../components/SocialAuthButtons";
 import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
+import { env } from "@/lib/utils/env";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
 import { getSignInSchema, type SignInFields } from "../signInSchema";
+import { UnverifiedEmailBanner } from "../components/UnverifiedEmailBanner";
 
-export const SignInForm = () => {
+const SIGNIN_FAIL_COOKIE = "ovation_signin_fails";
+const SIGNIN_FAIL_THRESHOLD = 3;
+
+const readFailCount = (): number => {
+  if (typeof document === "undefined") return 0;
+  const match = document.cookie.match(
+    new RegExp(`(?:^|;\\s*)${SIGNIN_FAIL_COOKIE}=(\\d+)`),
+  );
+  return match ? Number(match[1]) : 0;
+};
+
+type SignInFormProps = {
+  initialFailCount: number;
+};
+
+export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
   const t = useTranslations();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [unverifiedEmail, setUnverifiedEmail] = useState<string | null>(null);
+  const [failCount, setFailCount] = useState(initialFailCount);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const schema = useMemo(() => getSignInSchema(t), [t]);
+
+  const turnstileRequired =
+    Boolean(env.TURNSTILE_SITE_KEY) && failCount >= SIGNIN_FAIL_THRESHOLD;
 
   const {
     register,
@@ -40,15 +65,47 @@ export const SignInForm = () => {
 
   const onSubmit = async (values: SignInFields) => {
     setSubmitError(null);
-    const { error } = await authClient.signIn.email({
-      email: values.email,
-      password: values.password,
-    });
+    setUnverifiedEmail(null);
+
+    if (turnstileRequired && !turnstileToken) {
+      setSubmitError(t("auth__signin__error_turnstile"));
+      return;
+    }
+
+    const signInEmail = authClient.signIn.email as (
+      opts: { email: string; password: string },
+      fetchOptions?: { headers?: Record<string, string> },
+    ) => Promise<{
+      error?: { message?: string; code?: string } | null;
+    }>;
+
+    const { error } = await signInEmail(
+      { email: values.email, password: values.password },
+      turnstileToken
+        ? { headers: { "x-turnstile-token": turnstileToken } }
+        : undefined,
+    );
     if (error) {
+      setFailCount(readFailCount());
+      setTurnstileToken(null);
+      setTurnstileResetKey((k) => k + 1);
+      const errorCode =
+        ((error as Record<string, unknown>)?.code as string | undefined) ?? "";
+      const isUnverified =
+        errorCode.toUpperCase().includes("EMAIL") &&
+        errorCode.toUpperCase().includes("VERIF");
+      if (isUnverified) {
+        setUnverifiedEmail(values.email);
+        return;
+      }
       setSubmitError(error.message ?? t("auth__signin__error_generic"));
       return;
     }
-    const redirectTo = searchParams.get("redirect") ?? appRoutes.app.root;
+    const raw = searchParams.get("redirect") ?? "";
+    const redirectTo =
+      raw.startsWith("/") && !raw.startsWith("//")
+        ? raw
+        : appRoutes.app.root;
     router.replace(redirectTo);
     router.refresh();
   };
@@ -146,6 +203,23 @@ export const SignInForm = () => {
           </p>
         )}
 
+        {unverifiedEmail && (
+          <UnverifiedEmailBanner
+            email={unverifiedEmail}
+            onSent={() => setUnverifiedEmail(null)}
+          />
+        )}
+
+        {turnstileRequired && (
+          <div className="mt-6">
+            <TurnstileWidget
+              resetKey={turnstileResetKey}
+              onSuccess={setTurnstileToken}
+              onExpire={() => setTurnstileToken(null)}
+            />
+          </div>
+        )}
+
         <Button
           type="submit"
           disabled={isSubmitting}
@@ -161,7 +235,7 @@ export const SignInForm = () => {
         <p className="type-body-small text-muted-foreground mt-4.5 text-center">
           {t("auth__signin__no_account")}{" "}
           <Link
-            href={appRoutes.auth.signUp}
+            href={appRoutes.auth.role}
             className="text-foreground font-semibold"
           >
             {t("auth__signin__signup_cta")}

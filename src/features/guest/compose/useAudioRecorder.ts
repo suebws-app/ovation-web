@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { getBlobDuration } from "@/lib/media/getBlobDuration";
 
-const DEFAULT_MAX_DURATION_SEC = 180;
+const DEFAULT_MAX_DURATION_SEC = 60;
 
 export type AudioRecording = {
   blob: Blob;
@@ -42,7 +42,9 @@ export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
   const startedAtRef = useRef<number>(0);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const maxDurationRef = useRef(maxDurationSec);
-  maxDurationRef.current = maxDurationSec;
+  useEffect(() => {
+    maxDurationRef.current = maxDurationSec;
+  });
 
   const stopTracks = useCallback(() => {
     streamRef.current?.getTracks().forEach((track) => track.stop());
@@ -147,7 +149,7 @@ export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
     recording,
     elapsed,
     error,
-    maxDurationSec: maxDurationRef.current,
+    maxDurationSec,
     start,
     stop,
     reset,

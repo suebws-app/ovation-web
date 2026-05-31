@@ -14,7 +14,7 @@ export const MessagesActiveSync = () => {
     const active = searchParams.get("active");
     if (!active) return;
     setActiveMessageId(active);
-    router.replace("/app/messages");
+    router.replace("/messages");
   }, [searchParams, router, setActiveMessageId]);
 
   return null;

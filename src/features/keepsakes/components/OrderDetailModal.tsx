@@ -71,25 +71,26 @@ export const OrderDetailModal = ({
               label={t("orders__detail__placed")}
               value={new Date(order.createdAt).toLocaleDateString()}
             />
-            {order.items.length > 0 && (
-              <div>
-                <p className="type-caption text-muted-foreground mb-1.5">
-                  {t("orders__detail__items")}
-                </p>
-                <div className="flex flex-col gap-1.5">
-                  {order.items.map((item) => (
-                    <OrderItemLine
-                      key={item.id}
-                      label={`${item.productName} × ${item.quantity}`}
-                      value={formatPrice(
-                        item.unitPriceCents * item.quantity,
-                        currency,
-                      )}
-                    />
-                  ))}
-                </div>
+            <div>
+              <p className="type-caption text-muted-foreground mb-1.5">
+                {t("orders__detail__items")}
+              </p>
+              <div className="flex flex-col gap-1.5">
+                <OrderItemLine
+                  label={`${order.productName ? t(order.productName) : ""}${order.variantName ? ` — ${order.variantName}` : ""} × ${order.quantity}`}
+                  value={formatPrice(
+                    order.unitPriceCents * order.quantity,
+                    currency,
+                  )}
+                />
+                {order.mediaIds.length > 0 && (
+                  <p className="type-caption text-muted-foreground">
+                    {order.mediaIds.length} photo
+                    {order.mediaIds.length === 1 ? "" : "s"} selected
+                  </p>
+                )}
               </div>
-            )}
+            </div>
             {order.tracking?.number && (
               <OrderDetailRow
                 label={t("orders__detail__tracking")}

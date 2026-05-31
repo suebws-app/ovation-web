@@ -1,5 +1,6 @@
+import { SignInBackGuard } from "./SignInBackGuard";
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return <>{children}</>;
+  return <SignInBackGuard>{children}</SignInBackGuard>;
 };
 
 export default Layout;

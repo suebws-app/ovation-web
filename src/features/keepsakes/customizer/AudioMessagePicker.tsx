@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, startTransition } from "react";
 import { messagesClient } from "@/lib/api/messages-client";
 import { ApiError } from "@/lib/api/client";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
@@ -34,8 +34,10 @@ export const AudioMessagePicker = ({
   useEffect(() => {
     if (!eventId) return;
     const reqId = ++requestIdRef.current;
-    setRefreshing(true);
-    setError(null);
+    startTransition(() => {
+      setRefreshing(true);
+      setError(null);
+    });
     const query: ListMessagesQuery = {
       limit: 100,
       sort: "newest",

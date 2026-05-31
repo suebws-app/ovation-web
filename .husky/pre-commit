@@ -1,0 +1,17 @@
+#!/bin/sh
+
+FAILED=0
+
+echo "▶ type check..."
+pnpm ts-check || FAILED=1
+
+if [ $FAILED -eq 0 ]; then
+  echo "▶ lint check..."
+  pnpm lint || FAILED=1
+fi
+
+if [ $FAILED -ne 0 ]; then
+  echo ""
+  echo "✗ Commit blocked: fix type errors or lint errors above."
+  exit 1
+fi

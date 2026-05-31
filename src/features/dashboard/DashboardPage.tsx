@@ -1,19 +1,20 @@
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import { ApiError } from "@/lib/api/client";
 import { appRoutes } from "@/lib/routes";
 import { eventsApi } from "@/lib/api/events";
 import { messagesApi } from "@/lib/api/messages";
-import { subscriptionsApi } from "@/lib/api/subscriptions";
 import { getCurrentUser } from "@/lib/auth/session";
+import { getCurrentEvent } from "@/lib/auth/current-event";
 import { toMessageRowView } from "@/features/messages/adapters";
 import { DashboardGreeting } from "./components/DashboardGreeting";
 import { ResumeCard } from "./components/ResumeCard";
 import { StatLine } from "./components/StatLine";
 import { MessageList } from "./components/MessageList";
-import { NudgeCard } from "./components/NudgeCard";
-import { PlanStatusCard } from "./components/PlanStatusCard";
 import { DashboardEmpty } from "./components/DashboardEmpty";
+import { DashboardPlaceholderCTA } from "./components/DashboardPlaceholderCTA";
+import { DashboardBackGuard } from "./components/DashboardBackGuard";
 
 const formatWeddingDate = (raw: string | null): string => {
   if (!raw) return "";
@@ -34,23 +35,45 @@ const greetingName = (fullName: string | null, email: string): string => {
 export const DashboardPage = async () => {
   const t = await getTranslations();
   const anonymous = t("common__anonymous");
-  const [user, eventsPage] = await Promise.all([
-    getCurrentUser(),
-    eventsApi.list({ limit: 1 }),
-  ]);
+  const user = await getCurrentUser();
   if (!user) redirect(appRoutes.auth.signIn);
-  if (user.accountType === "pro") redirect(appRoutes.app.events);
-  const event = eventsPage.items[0];
+  if (user.accountType === "pro") {
+    const proEventsPage = await eventsApi.list({ limit: 100 });
+    const cookieStore = await cookies();
+    const lastEventId = cookieStore.get("ovation_last_event_id")?.value;
+    const target = lastEventId
+      ? proEventsPage.items.find((e) => e.id === lastEventId)
+      : null;
+    const fallback = proEventsPage.items[0];
+    if (target) redirect(appRoutes.app.event(target.id));
+    if (fallback) redirect(appRoutes.app.event(fallback.id));
+    redirect(appRoutes.app.events);
+  }
+  const event = await getCurrentEvent();
 
   if (!event) {
     return (
-      <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
-        <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
-      </div>
+      <DashboardBackGuard>
+        <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+          <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
+        </div>
+      </DashboardBackGuard>
     );
   }
 
-  const [stats, recentMessages, subResult] = await Promise.all([
+  if (!user.onboardingComplete) {
+    return (
+      <DashboardBackGuard>
+        <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+          <DashboardPlaceholderCTA
+            userName={greetingName(user.fullName, user.email)}
+          />
+        </div>
+      </DashboardBackGuard>
+    );
+  }
+
+  const [stats, recentMessages] = await Promise.all([
     eventsApi.stats(event.id).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
@@ -59,12 +82,7 @@ export const DashboardPage = async () => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
     }),
-    subscriptionsApi.get(event.id).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404) return null;
-      throw error;
-    }),
   ]);
-  const subscription = subResult?.subscription ?? null;
 
   const messageViews = (recentMessages?.items ?? []).map((m) =>
     toMessageRowView(m, anonymous),
@@ -72,25 +90,22 @@ export const DashboardPage = async () => {
   const newMessages = stats?.totalMessages ?? messageViews.length;
 
   return (
-    <div className="flex h-full w-full flex-1 flex-col gap-6 overflow-y-auto p-6">
-      <DashboardGreeting
-        name={greetingName(user.fullName, user.email)}
-        date={formatWeddingDate(event.weddingDate)}
-        venue={event.venueName ?? ""}
-        newMessages={newMessages}
-      />
-      <ResumeCard />
-      {stats && <StatLine stats={stats} />}
-      <MessageList
-        eventId={event.id}
-        messages={messageViews}
-        totalCount={stats?.totalMessages ?? messageViews.length}
-      />
-      {subscription ? (
-        <PlanStatusCard subscription={subscription} />
-      ) : (
-        <NudgeCard />
-      )}
-    </div>
+    <DashboardBackGuard>
+      <div className="flex h-full w-full flex-1 flex-col gap-6 overflow-y-auto p-6">
+        <DashboardGreeting
+          name={greetingName(user.fullName, user.email)}
+          date={formatWeddingDate(event.weddingDate)}
+          venue={event.venueName ?? ""}
+          newMessages={newMessages}
+        />
+        <ResumeCard message={messageViews.find((m) => m.hasAudio) ?? null} />
+        {stats && <StatLine stats={stats} />}
+        <MessageList
+          eventId={event.id}
+          messages={messageViews}
+          totalCount={stats?.totalMessages ?? messageViews.length}
+        />
+      </div>
+    </DashboardBackGuard>
   );
 };

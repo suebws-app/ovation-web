@@ -17,11 +17,14 @@ export type VideoCapture = {
 };
 
 export type PhotoCapture = {
+  id: string;
   file: File;
   url: string;
   width: number;
   height: number;
 };
+
+export const MAX_PHOTOS = 5;
 
 type GuestSubmissionState = {
   slug: string | null;
@@ -30,13 +33,15 @@ type GuestSubmissionState = {
   audio: AudioCapture | null;
   video: VideoCapture | null;
   note: string;
-  photo: PhotoCapture | null;
+  photos: PhotoCapture[];
   setSlug: (slug: string) => void;
   setGuestName: (name: string) => void;
   setAudio: (audio: AudioCapture | null) => void;
   setVideo: (video: VideoCapture | null) => void;
   setNote: (note: string) => void;
-  setPhoto: (photo: PhotoCapture | null) => void;
+  addPhotos: (photos: PhotoCapture[]) => void;
+  removePhoto: (id: string) => void;
+  clearPhotos: () => void;
   hasAnyContent: () => boolean;
   reset: () => void;
 };
@@ -48,7 +53,7 @@ const initial = {
   audio: null,
   video: null,
   note: "",
-  photo: null,
+  photos: [] as PhotoCapture[],
 } as const;
 
 const revoke = (url: string | undefined) => {
@@ -69,7 +74,7 @@ export const useGuestSubmissionStore = create<GuestSubmissionState>(
       if (current && current !== slug) {
         revoke(get().audio?.url);
         revoke(get().video?.url);
-        revoke(get().photo?.url);
+        get().photos.forEach((p) => revoke(p.url));
         set({ ...initial, slug, sessionStartAt: Date.now() });
       } else {
         set({
@@ -88,18 +93,37 @@ export const useGuestSubmissionStore = create<GuestSubmissionState>(
       set({ video });
     },
     setNote: (note) => set({ note }),
-    setPhoto: (photo) => {
-      revoke(get().photo?.url);
-      set({ photo });
+    addPhotos: (incoming) => {
+      const current = get().photos;
+      const available = MAX_PHOTOS - current.length;
+      if (available <= 0) {
+        incoming.forEach((p) => revoke(p.url));
+        return;
+      }
+      set({ photos: [...current, ...incoming.slice(0, available)] });
+    },
+    removePhoto: (id) => {
+      const current = get().photos;
+      const target = current.find((p) => p.id === id);
+      if (target) revoke(target.url);
+      set({ photos: current.filter((p) => p.id !== id) });
+    },
+    clearPhotos: () => {
+      get().photos.forEach((p) => revoke(p.url));
+      set({ photos: [] });
     },
     hasAnyContent: () => {
-      const { audio, video, note, photo } = get();
-      return Boolean(audio || video || photo) || note.trim().length > 0;
+      const { audio, video, note, photos } = get();
+      return (
+        Boolean(audio || video) ||
+        photos.length > 0 ||
+        note.trim().length > 0
+      );
     },
     reset: () => {
       revoke(get().audio?.url);
       revoke(get().video?.url);
-      revoke(get().photo?.url);
+      get().photos.forEach((p) => revoke(p.url));
       set({ ...initial });
     },
   }),

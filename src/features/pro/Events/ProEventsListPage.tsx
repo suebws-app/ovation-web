@@ -13,9 +13,11 @@ export const ProEventsListPage = async () => {
   return (
     <div className="flex h-full w-full flex-1 flex-col gap-6 overflow-y-auto p-6">
       <div className="flex items-center justify-between">
-        <h1 className="type-h2 font-semibold">{t("app__pro__events__title")}</h1>
+        <h1 className="type-h2 font-semibold">
+          {t("app__pro__events__title")}
+        </h1>
         <Button asChild size="sm">
-          <Link href={appRoutes.app.eventsNewBook}>
+          <Link href={appRoutes.create.root}>
             {t("app__pro__events__new_event")}
           </Link>
         </Button>
@@ -27,7 +29,7 @@ export const ProEventsListPage = async () => {
             {t("app__pro__events__empty")}
           </p>
           <Button asChild size="sm">
-            <Link href={appRoutes.app.eventsNewBook}>
+            <Link href={appRoutes.create.root}>
               {t("app__pro__events__new_event")}
             </Link>
           </Button>

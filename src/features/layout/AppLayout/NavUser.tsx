@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LogOutIcon } from "@ovation/icons/LogOutIcon";
 import { ChevronsUpDownIcon } from "@ovation/icons/ChevronsUpDownIcon";
 import { SettingsIcon as SettingsIcon } from "@ovation/icons/SettingsIcon";
+import { StarIcon } from "@ovation/icons/StarIcon";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -21,7 +22,8 @@ import {
 } from "@ovation/ui/components/DropdownMenu";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { useTranslations } from "next-intl";
-import { useRouter, Link } from "@/i18n/navigation";
+import { usePathname } from "next/navigation";
+import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { signOut } from "@/lib/auth/client";
 import type { User } from "@/lib/api/types";
@@ -44,7 +46,7 @@ type NavUserProps = {
 export const NavUser = ({ user }: NavUserProps) => {
   const t = useTranslations();
   const { isMobile } = useSidebar();
-  const router = useRouter();
+  const pathname = usePathname();
   const [signingOut, setSigningOut] = useState(false);
 
   const handleSignOut = async () => {
@@ -53,15 +55,14 @@ export const NavUser = ({ user }: NavUserProps) => {
     try {
       await signOut();
     } finally {
-      router.replace(appRoutes.auth.signIn);
-      router.refresh();
+      window.location.replace(appRoutes.auth.signIn);
     }
   };
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
+        <DropdownMenu key={pathname} modal={false}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
@@ -112,6 +113,12 @@ export const NavUser = ({ user }: NavUserProps) => {
                 <Link href={appRoutes.app.settings}>
                   <SettingsIcon />
                   {t("nav_user__settings")}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href={appRoutes.settings.billing}>
+                  <StarIcon />
+                  {t("nav_user__subscription")}
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
