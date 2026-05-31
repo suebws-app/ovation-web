@@ -146,8 +146,11 @@ export const EventBookForm = ({
           </div>
 
           <div className="mt-6">
-            <Label className="mb-2">
-              {t("signup__book_details__date_label")}
+            <Label className="mb-2 flex items-center gap-1.5">
+              <span>{t("signup__book_details__date_label")}</span>
+              <span className="text-muted-foreground font-normal">
+                ({t("signup__book_details__date_optional")})
+              </span>
             </Label>
             <Popover open={datePickerOpen} onOpenChange={setDatePickerOpen}>
               <PopoverTrigger asChild>
