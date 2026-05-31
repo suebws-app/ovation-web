@@ -110,12 +110,11 @@ export const EventBookFormPage = ({
         </div>
       </div>
 
-      <div className="tablet:px-18 flex items-center overflow-y-auto px-6 py-16">
+      <div className="tablet:px-18 flex items-center overflow-y-auto px-6 pt-10 pb-12">
         <div className="w-full max-w-130">
           {headerSlot}
           <h1 className="type-h1 leading-tight font-semibold tracking-tight">
-            {t("signup__book_details__title_a")}
-            <br />
+            {t("signup__book_details__title_a")}{" "}
             <span className="text-primary italic">
               {t("signup__book_details__title_b")}
             </span>
