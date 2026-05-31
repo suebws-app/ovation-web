@@ -35,6 +35,7 @@ type EventBookFormProps = {
   headerSlot?: React.ReactNode;
   venueSlot: React.ReactNode;
   actionSlot: React.ReactNode;
+  onContinue?: () => void;
   className?: string;
 };
 
@@ -50,6 +51,7 @@ export const EventBookForm = ({
   headerSlot,
   venueSlot,
   actionSlot,
+  onContinue,
   className,
 }: EventBookFormProps) => {
   const t = useTranslations();
@@ -102,7 +104,14 @@ export const EventBookForm = ({
         </div>
       </div>
 
-      <div className="tablet:px-18 flex items-center overflow-y-auto px-6 pt-10 pb-12">
+      <form
+        className="tablet:px-18 flex items-center overflow-y-auto px-6 pt-10 pb-12"
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!partnerAName || !partnerBName) return;
+          onContinue?.();
+        }}
+      >
         <div className="w-full max-w-130">
           {headerSlot}
           <h1 className="type-h1 leading-tight font-semibold tracking-tight">
@@ -201,7 +210,7 @@ export const EventBookForm = ({
           {venueSlot}
           {actionSlot}
         </div>
-      </div>
+      </form>
     </div>
   );
 };
