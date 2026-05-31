@@ -48,7 +48,7 @@ export const RoleStep = () => {
             href={`${appRoutes.auth.signUpBook}?as=pro`}
             className="group block"
           >
-            <Card className="border-primary flex h-full cursor-pointer flex-col gap-4 rounded-3xl border-2 p-8 transition-shadow group-hover:shadow-lg">
+            <Card className="flex h-full cursor-pointer flex-col gap-4 rounded-3xl p-8 transition-shadow group-hover:shadow-lg">
               <span className="text-4xl">📸</span>
               <p className="type-h3 font-semibold">
                 {t("signup__role__pro_card__title")}
