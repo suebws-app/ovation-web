@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
@@ -50,7 +50,7 @@ export const CoverPage = () => {
     };
   }, [formData.coverFilePreview]);
 
-  const canContinue = slug.length === 0 || status === "available";
+  const canContinue = status !== "invalid" && status !== "taken";
 
   const handleSelectPreset = (id: string) => {
     if (formData.coverFilePreview)
@@ -79,7 +79,40 @@ export const CoverPage = () => {
   };
 
   const initials = `${formData.partner1Name?.[0] ?? "L"}&${formData.partner2Name?.[0] ?? "T"}`;
-  const placeholder = `${formData.partner1Name?.toLowerCase() || "partner1"}-and-${formData.partner2Name?.toLowerCase() || "partner2"}`;
+  const generatedSlug = useMemo(
+    () =>
+      `${formData.partner1Name?.toLowerCase() || "partner1"}-and-${formData.partner2Name?.toLowerCase() || "partner2"}`
+        .replace(/[^a-z0-9-]/g, "")
+        .slice(0, 20),
+    [formData.partner1Name, formData.partner2Name],
+  );
+  const [userEditedSlug, setUserEditedSlug] = useState(false);
+  const lastAutoSlugRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    const currentSlug = formData.bookUrl.trim();
+    const shouldSyncGeneratedSlug =
+      !userEditedSlug &&
+      (currentSlug.length === 0 ||
+        currentSlug === lastAutoSlugRef.current ||
+        currentSlug === "partner1-and-partner");
+    if (!shouldSyncGeneratedSlug || currentSlug === generatedSlug) return;
+    lastAutoSlugRef.current = generatedSlug;
+    updateFormData({ bookUrl: generatedSlug });
+  }, [formData.bookUrl, generatedSlug, updateFormData, userEditedSlug]);
+
+  const handleSlugChange = (value: string) => {
+    setUserEditedSlug(true);
+    updateFormData({ bookUrl: value });
+  };
+
+  const handleSuggestionClick = (value: string) => {
+    setUserEditedSlug(true);
+    updateFormData({ bookUrl: value });
+  };
+
+  const isInitialSuggestedSlug =
+    !userEditedSlug && slug.trim() === generatedSlug;
 
   return (
     <AuthSplitLayout
@@ -147,18 +180,19 @@ export const CoverPage = () => {
           onSelectFile={handleSelectFile}
         />
 
-        <div className="mt-2">
+        <div className="mt-6">
           <Kicker className="text-muted-foreground mb-2">
             {t("signup__claim__your_link")}
           </Kicker>
           <SlugInput
             value={slug}
             status={status}
+            badgeKind={isInitialSuggestedSlug ? "suggested" : "available"}
             suggestions={suggestions}
             suggestionsLoading={suggestionsLoading}
-            placeholder={placeholder}
-            onChange={(v) => updateFormData({ bookUrl: v })}
-            onSuggestionClick={(v) => updateFormData({ bookUrl: v })}
+            placeholder={t("signup__claim__placeholder")}
+            onChange={handleSlugChange}
+            onSuggestionClick={handleSuggestionClick}
           />
         </div>
 
