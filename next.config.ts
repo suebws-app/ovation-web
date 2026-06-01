@@ -12,7 +12,6 @@ const isDev = process.env.NODE_ENV === "development";
 const scriptSrc = [
   "'self'",
   "'unsafe-inline'",
-
   "https://static.cloudflareinsights.com",
   "https://challenges.cloudflare.com",
   "https://*.paddle.com",
