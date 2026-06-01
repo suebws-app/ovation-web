@@ -17,7 +17,9 @@ import { appRoutes } from "@/lib/routes";
 export const CreatePage = () => {
   const t = useTranslations();
   const { formData, updateFormData } = useCreateEventStore();
-  const { partner1Name, partner2Name, weddingDate, venue } = formData;
+  const { partner1Name, partner2Name, weddingDate, venueName, venueCity } =
+    formData;
+  const venuePreview = [venueName, venueCity].filter(Boolean).join(", ");
   const setAccountType = useSignUpStore((s) => s.updateFormData);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -35,7 +37,7 @@ export const CreatePage = () => {
       partnerAName={partner1Name}
       partnerBName={partner2Name}
       weddingDate={weddingDate}
-      venuePreview={venue}
+      venuePreview={venuePreview}
       onPartnerAChange={(v) => updateFormData({ partner1Name: v })}
       onPartnerBChange={(v) => updateFormData({ partner2Name: v })}
       onWeddingDateChange={(d) => updateFormData({ weddingDate: d })}
@@ -50,17 +52,30 @@ export const CreatePage = () => {
         </Kicker>
       }
       venueSlot={
-        <div className="mt-4">
-          <Label htmlFor="venue" className="mb-2">
-            {t("signup__book_details__venue_label")}
-          </Label>
-          <Input
-            id="venue"
-            value={venue}
-            onChange={(e) => updateFormData({ venue: e.target.value })}
-            placeholder={t("signup__book_details__venue_placeholder")}
-          />
-          <p className="type-caption text-muted-foreground mt-2">
+        <div className="mt-4 grid grid-cols-2 gap-3.5">
+          <div>
+            <Label htmlFor="venue-name" className="mb-2">
+              {t("signup__book_details__venue_name_label")}
+            </Label>
+            <Input
+              id="venue-name"
+              value={venueName}
+              onChange={(e) => updateFormData({ venueName: e.target.value })}
+              placeholder={t("signup__book_details__venue_name_placeholder")}
+            />
+          </div>
+          <div>
+            <Label htmlFor="venue-city" className="mb-2">
+              {t("signup__book_details__venue_city_label")}
+            </Label>
+            <Input
+              id="venue-city"
+              value={venueCity}
+              onChange={(e) => updateFormData({ venueCity: e.target.value })}
+              placeholder={t("signup__book_details__venue_city_placeholder")}
+            />
+          </div>
+          <p className="type-caption text-muted-foreground col-span-2 mt-2">
             {t("signup__book_details__venue_hint")}
           </p>
         </div>
@@ -76,7 +91,7 @@ export const CreatePage = () => {
           <ArrowRightIcon width={16} height={16} />
         </Button>
       }
-      className="min-h-[calc(100vh-89px)]"
+      className="desktop:min-h-[calc(100vh-89px)] desktop:h-auto desktop:overflow-visible h-[calc(100svh-89px)] overflow-hidden"
     />
   );
 };

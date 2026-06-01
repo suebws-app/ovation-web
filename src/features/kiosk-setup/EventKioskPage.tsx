@@ -18,7 +18,7 @@ export const EventKioskPage = async ({
 
   if (!event) {
     return (
-      <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
+      <div className="flex w-full min-w-0 flex-col gap-6 p-6">
         <KioskHero slug={null} />
         <KioskChecklist />
         <KioskFooter slug={null} />
@@ -35,7 +35,7 @@ export const EventKioskPage = async ({
   ]);
 
   return (
-    <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
+    <div className="flex w-full min-w-0 flex-col gap-6 p-6">
       <KioskSetupClient
         eventId={event.id}
         slug={event.slug}

@@ -51,7 +51,8 @@ export const CreateEventDonePage = () => {
       !formData.partner1Name.trim() &&
       !formData.partner2Name.trim() &&
       !formData.weddingDate &&
-      !formData.venue?.trim() &&
+      !formData.venueName?.trim() &&
+      !formData.venueCity?.trim() &&
       !formData.bookUrl?.trim() &&
       !formData.coverFile;
 
@@ -69,7 +70,8 @@ export const CreateEventDonePage = () => {
         const partnerBName =
           formData.partner2Name.trim() || tr("signup__partner_b_default");
         const weddingDate = toIsoDate(formData.weddingDate);
-        const venueName = formData.venue?.trim() || undefined;
+        const venueName = formData.venueName?.trim() || undefined;
+        const venueCity = formData.venueCity?.trim() || undefined;
 
         let targetEventId: string;
         if (mode === "edit" && eventId) {
@@ -78,6 +80,7 @@ export const CreateEventDonePage = () => {
             partnerBName,
             weddingDate,
             venueName,
+            venueCity,
           });
           targetEventId = event.id;
         } else {
@@ -86,6 +89,7 @@ export const CreateEventDonePage = () => {
             partnerBName,
             weddingDate,
             venueName,
+            venueCity,
           });
           targetEventId = created.event.id;
         }

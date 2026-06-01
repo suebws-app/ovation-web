@@ -37,7 +37,7 @@ export const CoverPhotoSelector = ({
 
   return (
     <>
-      <div className="mt-4 grid grid-cols-3 tablet:grid-cols-6 gap-2">
+      <div className="tablet:mt-4 tablet:grid-cols-6 tablet:gap-2 mt-3 grid grid-cols-4 gap-2">
         {COVER_OPTIONS.map((option) => (
           <CoverOption
             key={option.id}

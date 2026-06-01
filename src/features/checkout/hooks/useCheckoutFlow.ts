@@ -87,7 +87,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
         partnerAName: partnerA,
         partnerBName: partnerB,
         weddingDate: toIsoDate(eventData.weddingDate) ?? null,
-        venueName: eventData.venue?.trim() || null,
+        venueName: eventData.venueName?.trim() || null,
+        venueCity: eventData.venueCity?.trim() || null,
         desiredSlug: eventData.bookUrl.trim() || null,
       }),
     );
@@ -166,7 +167,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                   partnerAName: partnerA,
                   partnerBName: partnerB,
                   weddingDate: toIsoDate(eventFormData.weddingDate),
-                  venueName: eventFormData.venue?.trim() || undefined,
+                  venueName: eventFormData.venueName?.trim() || undefined,
+                  venueCity: eventFormData.venueCity?.trim() || undefined,
                 })
                 .then((r) => r.event)
                 .catch(async () => {
@@ -174,7 +176,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                     partnerAName: partnerA,
                     partnerBName: partnerB,
                     weddingDate: toIsoDate(eventFormData.weddingDate),
-                    venueName: eventFormData.venue?.trim() || undefined,
+                    venueName: eventFormData.venueName?.trim() || undefined,
+                    venueCity: eventFormData.venueCity?.trim() || undefined,
                   });
                   return created.event;
                 })
@@ -183,7 +186,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                   partnerAName: partnerA,
                   partnerBName: partnerB,
                   weddingDate: toIsoDate(eventFormData.weddingDate),
-                  venueName: eventFormData.venue?.trim() || undefined,
+                  venueName: eventFormData.venueName?.trim() || undefined,
+                  venueCity: eventFormData.venueCity?.trim() || undefined,
                 })
                 .then((r) => r.event);
 
@@ -273,7 +277,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     eventFormData.partner1Name,
     eventFormData.partner2Name,
     eventFormData.weddingDate,
-    eventFormData.venue,
+    eventFormData.venueName,
+    eventFormData.venueCity,
     eventFormData.coverFile,
     signUpFormData.selectedPlan,
     signUpFormData.accountType,

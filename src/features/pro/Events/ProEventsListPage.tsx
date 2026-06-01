@@ -11,7 +11,7 @@ export const ProEventsListPage = async () => {
   const events = eventsPage?.items ?? [];
 
   return (
-    <div className="flex h-full w-full flex-1 flex-col gap-6 overflow-y-auto p-6">
+    <div className="flex w-full flex-col gap-6 p-6">
       <div className="flex items-center justify-between">
         <h1 className="type-h2 font-semibold">
           {t("app__pro__events__title")}

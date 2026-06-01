@@ -116,7 +116,6 @@ export const CoverPage = () => {
 
   return (
     <AuthSplitLayout
-      className="min-h-[calc(100vh-89px)]"
       panel={
         <>
           <Kicker className="relative tracking-[2.5px] opacity-80">
@@ -130,7 +129,9 @@ export const CoverPage = () => {
               month: "short",
               year: "numeric",
             })}
-            venue={formData.venue}
+            venue={[formData.venueName, formData.venueCity]
+              .filter(Boolean)
+              .join(", ")}
             coverImage={
               formData.coverFilePreview ? (
                 <img
@@ -155,19 +156,19 @@ export const CoverPage = () => {
       }
     >
       <>
-        <Kicker className="text-primary mb-3">
+        <Kicker className="text-primary tablet:mb-3 mb-2">
           {t("auth__signup__eyebrow_step", {
             step: 2,
             label: t("signup__cover__step_label"),
           })}
         </Kicker>
-        <h1 className="type-h1 leading-tight font-semibold tracking-tight">
+        <h1 className="type-h2 tablet:type-h1 leading-tight font-semibold tracking-tight">
           {t("signup__cover__title_a")}{" "}
           <span className="text-primary italic">
             {t("signup__cover__title_b")}
           </span>
         </h1>
-        <p className="type-body-small text-muted-foreground mt-2 leading-relaxed">
+        <p className="type-body-small text-muted-foreground tablet:mt-2 mt-1.5 leading-relaxed">
           {t("signup__cover__subtitle")}
         </p>
 
@@ -180,7 +181,7 @@ export const CoverPage = () => {
           onSelectFile={handleSelectFile}
         />
 
-        <div className="mt-6">
+        <div className="tablet:mt-6 mt-4">
           <Kicker className="text-muted-foreground mb-2">
             {t("signup__claim__your_link")}
           </Kicker>
@@ -196,14 +197,14 @@ export const CoverPage = () => {
           />
         </div>
 
-        <div className="rounded-12 bg-primary/10 mt-5 flex items-start gap-2.5 p-3">
+        <div className="rounded-12 bg-primary/10 tablet:mt-5 tablet:p-3 tablet:gap-2.5 mt-2 flex items-start gap-2 p-2.5">
           <InfoIcon
-            width={16}
-            height={16}
+            width={14}
+            height={14}
             className="text-primary mt-0.5 shrink-0"
             strokeWidth={1.8}
           />
-          <p className="type-caption text-muted-foreground leading-relaxed">
+          <p className="type-caption text-muted-foreground leading-snug">
             {t.rich("signup__claim__notice", {
               strong: (chunks) => (
                 <strong className="text-foreground">{chunks}</strong>
@@ -217,7 +218,7 @@ export const CoverPage = () => {
           onClick={handleContinue}
           disabled={!canContinue}
           size="lg"
-          className="shadow-primary/40 mt-5 w-full rounded-full shadow-md"
+          className="shadow-primary/40 tablet:mt-5 mt-3 w-full rounded-full shadow-md"
         >
           {t("signup__claim__continue")}
           <ArrowRightIcon width={16} height={16} />

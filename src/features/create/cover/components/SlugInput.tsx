@@ -41,7 +41,7 @@ export const SlugInput = ({
 
   return (
     <div className="min-w-0">
-      <div className="rounded-16 border-border bg-background focus-within:ring-ring flex min-w-0 items-center gap-2 border px-4 py-3 transition-colors focus-within:ring-2">
+      <div className="rounded-16 border-border bg-background focus-within:ring-ring tablet:px-4 tablet:py-3 flex min-w-0 items-center gap-2 border px-3 py-2.5 transition-colors focus-within:ring-2">
         <span className="type-body-small text-muted-foreground min-w-0 shrink truncate font-mono">
           {env.APP_URL} /
         </span>
@@ -93,7 +93,7 @@ export const SlugInput = ({
         )}
       </div>
 
-      <div className="mt-3 min-h-20">
+      <div className="tablet:mt-3 tablet:min-h-20 mt-2 min-h-0">
         {!suggestionsLoading && suggestions.length > 0 && (
           <p className="type-caption text-muted-foreground mb-2 font-normal italic">
             {t("signup__claim__select_option")}

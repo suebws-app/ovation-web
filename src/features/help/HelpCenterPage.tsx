@@ -49,7 +49,7 @@ export const HelpCenterPage = () => {
   ];
 
   return (
-    <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
+    <div className="flex w-full min-w-0 flex-col gap-6 p-6">
       <div className="rounded-20 bg-card tablet:p-12 desktop:p-14 desktop:py-16 relative mb-20 p-8 py-10">
         <div className="bg-primary/10 pointer-events-none absolute -top-20 -right-20 size-80 rounded-full" />
         <div className="bg-secondary/10 pointer-events-none absolute -bottom-24 -left-16 size-60 rounded-full" />

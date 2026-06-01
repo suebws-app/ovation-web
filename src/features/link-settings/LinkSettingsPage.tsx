@@ -8,7 +8,7 @@ export const LinkSettingsPage = async () => {
 
   if (!event) {
     return (
-      <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+      <div className="flex w-full flex-col p-6">
         <LinkEmpty />
       </div>
     );
@@ -17,7 +17,7 @@ export const LinkSettingsPage = async () => {
   const settingsRes = await linkSettingsApi.get(event.id);
 
   return (
-    <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6">
+    <div className="mx-auto w-full min-w-0 p-6">
       <LinkSettingsClient
         eventId={event.id}
         slug={event.slug}

@@ -1,8 +1,10 @@
 "use client";
 
 import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
+import { useRouter } from "@/i18n/navigation";
 import { useEventId } from "../context/MessagesEventContext";
 import { useMessageActions } from "../hooks/useMessageActions";
+import { useMessagesStore } from "../store/useMessagesStore";
 import { MessageDetailPane } from "./MessageDetailPane";
 
 type Props = {
@@ -12,8 +14,15 @@ type Props = {
 
 export const ConnectedMessageDetailPane = ({ player, fullScreen }: Props) => {
   const eventId = useEventId();
+  const router = useRouter();
+  const setActiveMessageId = useMessagesStore((s) => s.setActiveMessageId);
   const { activeMessage, toggleFavorite, toggleGoldBook, isPending } =
     useMessageActions();
+
+  const handleClose = () => {
+    if (fullScreen) router.back();
+    else setActiveMessageId(null);
+  };
 
   const isCurrentTrack =
     activeMessage !== null && player.playingId === activeMessage.id;
@@ -37,6 +46,7 @@ export const ConnectedMessageDetailPane = ({ player, fullScreen }: Props) => {
         if (isCurrentTrack) player.seekRatio(ratio);
       }}
       fullScreen={fullScreen}
+      onClose={activeMessage ? handleClose : undefined}
     />
   );
 };

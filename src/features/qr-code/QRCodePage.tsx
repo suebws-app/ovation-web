@@ -22,7 +22,7 @@ export const QRCodePage = async () => {
   const event = await requireFilledCoupleEvent();
   if (!event)
     return (
-      <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+      <div className="flex w-full flex-col p-6">
         <QRCodeEmpty />
       </div>
     );
@@ -41,7 +41,7 @@ export const QRCodePage = async () => {
   const isPro = user?.accountType === "pro";
 
   return (
-    <div className="mx-auto h-full w-full min-w-0 flex-1 overflow-y-auto p-6 pb-28 tablet:pb-6">
+    <div className="mx-auto w-full min-w-0 p-6 pb-28 tablet:pb-6">
       <QRCodeHeader guestSlug={event.slug} />
       {!isPro && (
         <div className="rounded-16 border-border bg-card mt-6 flex flex-col gap-1 border p-5">

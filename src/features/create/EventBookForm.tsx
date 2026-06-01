@@ -105,7 +105,7 @@ export const EventBookForm = ({
       </div>
 
       <form
-        className="tablet:px-18 flex items-center overflow-y-auto px-6 pt-10 pb-12"
+        className="tablet:px-18 tablet:pt-10 tablet:pb-12 flex h-full items-start overflow-y-auto px-5 pt-5 pb-5"
         onSubmit={(e) => {
           e.preventDefault();
           if (!partnerAName || !partnerBName) return;
@@ -114,17 +114,17 @@ export const EventBookForm = ({
       >
         <div className="w-full max-w-130">
           {headerSlot}
-          <h1 className="type-h1 leading-tight font-semibold tracking-tight">
+          <h1 className="type-h2 tablet:type-h1 leading-tight font-semibold tracking-tight">
             {t("signup__book_details__title_a")}{" "}
             <span className="text-primary italic">
               {t("signup__book_details__title_b")}
             </span>
           </h1>
-          <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
+          <p className="type-body-small text-muted-foreground tablet:mt-3 mt-1.5 leading-relaxed">
             {subtitle}
           </p>
 
-          <div className="mt-7 grid grid-cols-[1fr_auto_1fr] items-end gap-3.5">
+          <div className="tablet:mt-7 mt-4 grid grid-cols-[1fr_auto_1fr] items-end gap-3.5">
             <div>
               <Label htmlFor="partner-a" className="mb-2">
                 {t("signup__book_details__partner1")}
@@ -154,7 +154,7 @@ export const EventBookForm = ({
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="tablet:mt-6 mt-3">
             <Label className="mb-2 flex items-center gap-1.5">
               <span>{t("signup__book_details__date_label")}</span>
               <span className="text-muted-foreground font-normal">

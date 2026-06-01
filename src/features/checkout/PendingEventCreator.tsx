@@ -13,6 +13,7 @@ type PendingEventData = {
   partnerBName: string;
   weddingDate: string | null;
   venueName: string | null;
+  venueCity: string | null;
   desiredSlug: string | null;
 };
 
@@ -83,6 +84,7 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
             partnerBName: data.partnerBName,
             weddingDate: data.weddingDate ?? undefined,
             venueName: data.venueName ?? undefined,
+            venueCity: data.venueCity ?? undefined,
           });
 
           if (

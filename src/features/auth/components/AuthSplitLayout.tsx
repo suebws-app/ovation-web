@@ -20,7 +20,7 @@ export const AuthSplitLayout = ({
 }: AuthSplitLayoutProps) => (
   <div
     className={cn(
-      "desktop:grid-cols-[40%_1fr] grid min-h-[calc(100vh-89px)]",
+      "desktop:grid-cols-[40%_1fr] desktop:min-h-[calc(100vh-89px)] desktop:h-auto desktop:overflow-visible grid h-[calc(100svh-89px)] overflow-hidden",
       className,
     )}
   >
@@ -38,7 +38,7 @@ export const AuthSplitLayout = ({
         {panel}
       </div>
     </div>
-    <div className="tablet:px-18 flex min-w-0 items-center px-6 py-16">
+    <div className="tablet:px-18 desktop:py-16 desktop:overflow-visible flex h-full min-w-0 items-start overflow-y-auto px-5 py-3">
       <div className="w-full min-w-0 max-w-130">{children}</div>
     </div>
   </div>

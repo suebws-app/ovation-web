@@ -106,7 +106,8 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
           partnerAName: partnerA,
           partnerBName: partnerB,
           weddingDate: toIsoDate(eventData.weddingDate),
-          venueName: eventData.venue?.trim() || undefined,
+          venueName: eventData.venueName?.trim() || undefined,
+          venueCity: eventData.venueCity?.trim() || undefined,
         });
         if (typeof window !== "undefined") {
           window.sessionStorage?.setItem("ovation_signup_event_id", event.id);

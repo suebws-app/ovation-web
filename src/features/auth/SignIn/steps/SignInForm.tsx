@@ -103,15 +103,13 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
     }
     const raw = searchParams.get("redirect") ?? "";
     const redirectTo =
-      raw.startsWith("/") && !raw.startsWith("//")
-        ? raw
-        : appRoutes.app.root;
+      raw.startsWith("/") && !raw.startsWith("//") ? raw : appRoutes.app.root;
     router.replace(redirectTo);
     router.refresh();
   };
 
   return (
-    <div className="tablet:px-20 flex flex-col items-center gap-4 px-6 py-12">
+    <div className="tablet:px-20 tablet:py-12 tablet:gap-4 tablet:h-auto tablet:overflow-visible flex h-full flex-col items-center gap-2 overflow-y-auto px-5 py-4">
       <Logo className="self-start" />
 
       <form
@@ -120,25 +118,25 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
         className="flex w-full flex-1 flex-col justify-center"
         style={{ maxWidth: 440 }}
       >
-        <Kicker className="text-primary mb-2.5">
+        <Kicker className="text-primary tablet:mb-2.5 mb-1.5">
           {t("auth__signin__eyebrow")}
         </Kicker>
-        <h1 className="type-display leading-[1.05] font-semibold tracking-tight">
+        <h1 className="type-h1 tablet:type-display leading-[1.05] font-semibold tracking-tight">
           {t("auth__signin__title")}
           <br />
           <span className="text-primary italic">
             {t("auth__signin__title_emphasis")}
           </span>
         </h1>
-        <p className="type-body-small text-muted-foreground mt-3.5 leading-relaxed">
+        <p className="type-body-small text-muted-foreground tablet:mt-3.5 mt-2 leading-relaxed">
           {t("auth__signin__subtitle")}
         </p>
 
-        <SocialAuthButtons action="sign-in" className="mt-9" />
+        <SocialAuthButtons action="sign-in" className="tablet:mt-9 mt-4" />
 
-        <Separator label={t("auth__signin__separator")} className="my-6" />
+        <Separator label={t("auth__signin__separator")} className="tablet:my-6 my-3" />
 
-        <div className="space-y-4.5">
+        <div className="tablet:space-y-4.5 space-y-3">
           <div>
             <Label htmlFor="signin-email" className="mb-2">
               {t("auth__email")}
@@ -224,7 +222,7 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
           type="submit"
           disabled={isSubmitting}
           size="lg"
-          className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
+          className="shadow-primary/40 tablet:mt-6 mt-4 w-full rounded-full shadow-md"
         >
           {isSubmitting
             ? t("auth__signin__submit_pending")
@@ -232,13 +230,13 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
           <ArrowRightIcon width={16} height={16} />
         </Button>
 
-        <p className="type-body-small text-muted-foreground mt-4.5 text-center">
+        <p className="type-body-small text-muted-foreground tablet:mt-4.5 mt-3 text-center">
           {t("auth__signin__no_account")}{" "}
           <Link
             href={appRoutes.auth.role}
             className="text-foreground font-semibold"
           >
-            {t("auth__signin__signup_cta")}
+            {t("auth__signin__signup_short")}
           </Link>
         </p>
       </form>

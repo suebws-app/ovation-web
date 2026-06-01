@@ -6,7 +6,8 @@ export type CreateEventFormData = {
   partner1Name: string;
   partner2Name: string;
   weddingDate: Date | null;
-  venue: string;
+  venueName: string;
+  venueCity: string;
   coverType: string;
   coverFile: File | null;
   coverFilePreview: string | null;
@@ -28,7 +29,8 @@ const initialFormData: CreateEventFormData = {
   partner1Name: "",
   partner2Name: "",
   weddingDate: null,
-  venue: "",
+  venueName: "",
+  venueCity: "",
   coverType: "",
   coverFile: null,
   coverFilePreview: null,

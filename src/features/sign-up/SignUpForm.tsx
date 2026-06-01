@@ -61,33 +61,33 @@ export const SignUpForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <Kicker className="text-primary mb-3">
+      <Kicker className="text-primary tablet:mb-3 mb-1.5">
         {t("auth__signup__eyebrow_step", {
           step: 3,
           label: t("auth__signup__create_account__label"),
         })}
       </Kicker>
-      <h1 className="type-h1 leading-tight font-semibold tracking-tight">
+      <h1 className="type-h3 tablet:type-h1 leading-tight font-semibold tracking-tight">
         {t("auth__signup__create_account__title")}
         <br />
         <span className="text-primary italic">
           {t("auth__signup__create_account__title_emphasis")}
         </span>
       </h1>
-      <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
+      <p className="type-caption tablet:type-body-small text-muted-foreground tablet:mt-3 mt-1.5 leading-snug">
         {t("auth__signup__create_account__subtitle")}
       </p>
 
-      <SocialAuthButtons action="sign-up" className="mt-8" />
+      <SocialAuthButtons action="sign-up" className="tablet:mt-8 mt-3" />
 
       <Separator
         label={t("auth__signup__create_account__separator")}
-        className="my-6"
+        className="tablet:my-6 my-2.5"
       />
 
-      <div className="space-y-5">
+      <div className="tablet:space-y-5 space-y-2.5">
         <div>
-          <Label htmlFor="signup-email" className="mb-2">
+          <Label htmlFor="signup-email" className="tablet:mb-2 mb-1">
             {t("auth__signup__create_account__email_label")}
           </Label>
           <Input
@@ -123,7 +123,7 @@ export const SignUpForm = () => {
               {errors.password.message}
             </p>
           ) : (
-            <p className="type-caption text-muted-foreground mt-2">
+            <p className="type-caption text-muted-foreground tablet:mt-2 mt-1">
               {t("auth__signup__create_account__password_hint")}
             </p>
           )}
@@ -134,7 +134,7 @@ export const SignUpForm = () => {
         control={control}
         name="agreedToTerms"
         render={({ field, fieldState }) => (
-          <div className="mt-6">
+          <div className="tablet:mt-6 mt-3">
             <Checkbox
               checked={field.value}
               onChange={field.onChange}
@@ -170,7 +170,7 @@ export const SignUpForm = () => {
         )}
       />
 
-      <div className="mt-6">
+      <div className="tablet:mt-6 mt-3">
         <TurnstileWidget
           resetKey={turnstileResetKey}
           onSuccess={setTurnstileToken}
@@ -188,7 +188,7 @@ export const SignUpForm = () => {
         type="submit"
         disabled={isSubmitting}
         size="lg"
-        className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
+        className="shadow-primary/40 tablet:mt-6 mt-3 w-full rounded-full shadow-md"
       >
         {isSubmitting
           ? t("auth__signup__create_account__submit_pending")
@@ -196,7 +196,7 @@ export const SignUpForm = () => {
         <ArrowRightIcon width={16} height={16} />
       </Button>
 
-      <p className="type-body-small text-muted-foreground mt-4.5 text-center">
+      <p className="type-caption tablet:type-body-small text-muted-foreground tablet:mt-4.5 mt-2 text-center">
         {t("auth__signup__create_account__has_account")}{" "}
         <Link
           href={appRoutes.auth.signIn}
