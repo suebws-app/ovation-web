@@ -7,6 +7,9 @@ export const useRedirectOnBackNavigation = (redirectUrl: string) => {
       window.location.replace(redirectUrl);
     };
     window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
+
+    return () => {
+      setTimeout(() => window.removeEventListener("popstate", onPopState), 0);
+    };
   }, [redirectUrl]);
 };

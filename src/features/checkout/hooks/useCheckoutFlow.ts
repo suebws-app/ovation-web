@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import { eventsClient } from "@/lib/api/events-client";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { profileClient } from "@/lib/api/profile-client";
@@ -64,6 +65,7 @@ type UseCheckoutFlowReturn = {
 
 export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
   const t = useTranslations();
+  const router = useRouter();
   const signUpFormData = useSignUpStore((s) => s.formData);
   const eventFormData = useCreateEventStore((s) => s.formData);
   const updateEventData = useCreateEventStore((s) => s.updateFormData);
@@ -115,7 +117,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
         if (isPro) {
           if (!signUpFormData.selectedPlan) {
-            window.location.assign(appRoutes.auth.plans);
+            router.push(appRoutes.auth.plans);
             return { kind: "redirecting" };
           }
           safeSet({ kind: "redirecting" });
@@ -143,7 +145,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
         const partnerBTrim = eventFormData.partner2Name?.trim() ?? "";
 
         if (!partnerATrim && !partnerBTrim) {
-          window.location.assign(appRoutes.app.root);
+          router.push(appRoutes.app.root);
           return { kind: "redirecting" };
         }
 
@@ -225,7 +227,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
             PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
           if (!planTier) {
             safeSet({ kind: "redirecting" });
-            window.location.assign(appRoutes.app.root);
+            router.push(appRoutes.app.root);
             return { kind: "redirecting" };
           }
 
@@ -277,6 +279,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     signUpFormData.accountType,
     stashPendingEventData,
     updateEventData,
+    router,
     t,
   ]);
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
@@ -31,6 +32,7 @@ type DoneState = { kind: "creating" } | { kind: "error"; message: string };
 
 export const CreateEventDonePage = () => {
   const t = useTranslations();
+  const router = useRouter();
   const tRef = useRef(t);
   useEffect(() => {
     tRef.current = t;
@@ -55,7 +57,7 @@ export const CreateEventDonePage = () => {
 
     if (isEmpty && mode === "create") {
       reset();
-      window.location.assign(appRoutes.app.root);
+      router.push(appRoutes.app.root);
       return;
     }
 
@@ -122,7 +124,7 @@ export const CreateEventDonePage = () => {
 
         document.cookie = `${LAST_EVENT_COOKIE}=${targetEventId}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
         reset();
-        window.location.assign(appRoutes.app.eventMessages(targetEventId));
+        router.push(appRoutes.app.eventMessages(targetEventId));
       } catch (error) {
         startedForTokenRef.current = null;
         setState({
