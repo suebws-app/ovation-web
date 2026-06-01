@@ -39,6 +39,7 @@ export const CreatePage = () => {
       onPartnerAChange={(v) => updateFormData({ partner1Name: v })}
       onPartnerBChange={(v) => updateFormData({ partner2Name: v })}
       onWeddingDateChange={(d) => updateFormData({ weddingDate: d })}
+      onContinue={handleContinue}
       subtitle={t("signup__book_details__subtitle")}
       headerSlot={
         <Kicker className="text-primary mb-3">
@@ -66,7 +67,7 @@ export const CreatePage = () => {
       }
       actionSlot={
         <Button
-          onClick={handleContinue}
+          type="submit"
           disabled={!partner1Name || !partner2Name}
           size="lg"
           className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"

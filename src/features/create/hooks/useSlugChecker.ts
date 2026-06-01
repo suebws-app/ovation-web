@@ -3,7 +3,12 @@
 import { useEffect, useState, startTransition } from "react";
 import { eventsClient } from "@/lib/api/events-client";
 
-export type SlugStatus = "idle" | "invalid" | "checking" | "available" | "taken";
+export type SlugStatus =
+  | "idle"
+  | "invalid"
+  | "checking"
+  | "available"
+  | "taken";
 
 const SLUG_PATTERN = /^[a-z0-9-]{4,20}$/;
 
@@ -30,7 +35,11 @@ export const useSlugChecker = (slug: string): SlugStatus => {
           }
         })
         .catch(() => {
-          if (!controller.signal.aborted) setStatus("idle");
+          if (!controller.signal.aborted) {
+            setStatus(
+              process.env.NODE_ENV === "development" ? "available" : "idle",
+            );
+          }
         });
     }, 400);
     return () => {

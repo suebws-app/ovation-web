@@ -6,6 +6,11 @@ import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Calendar } from "@ovation/ui/components/DatePicker";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@ovation/ui/components/Popover";
 import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import { BookPreview } from "@/features/create/cover/components/BookPreview";
@@ -30,6 +35,7 @@ type EventBookFormProps = {
   headerSlot?: React.ReactNode;
   venueSlot: React.ReactNode;
   actionSlot: React.ReactNode;
+  onContinue?: () => void;
   className?: string;
 };
 
@@ -45,10 +51,11 @@ export const EventBookForm = ({
   headerSlot,
   venueSlot,
   actionSlot,
+  onContinue,
   className,
 }: EventBookFormProps) => {
   const t = useTranslations();
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [datePickerOpen, setDatePickerOpen] = useState(false);
 
   const daysUntil = weddingDate
     ? Math.max(
@@ -97,12 +104,18 @@ export const EventBookForm = ({
         </div>
       </div>
 
-      <div className="tablet:px-18 flex items-center overflow-y-auto px-6 py-16">
+      <form
+        className="tablet:px-18 flex items-center overflow-y-auto px-6 pt-10 pb-12"
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!partnerAName || !partnerBName) return;
+          onContinue?.();
+        }}
+      >
         <div className="w-full max-w-130">
           {headerSlot}
           <h1 className="type-h1 leading-tight font-semibold tracking-tight">
-            {t("signup__book_details__title_a")}
-            <br />
+            {t("signup__book_details__title_a")}{" "}
             <span className="text-primary italic">
               {t("signup__book_details__title_b")}
             </span>
@@ -142,70 +155,62 @@ export const EventBookForm = ({
           </div>
 
           <div className="mt-6">
-            <Label className="mb-2">
-              {t("signup__book_details__date_label")}
-            </Label>
-            <button
-              type="button"
-              onClick={() => setShowCalendar(!showCalendar)}
-              className="group rounded-12 border-border bg-card hover:border-primary/40 hover:shadow-input flex w-full cursor-pointer items-center justify-between border px-4 py-3 shadow-sm transition-all"
-            >
-              <div className="flex items-center gap-3">
-                <span className="rounded-8 bg-primary/10 text-primary group-hover:bg-primary/15 flex size-9 items-center justify-center transition-colors">
-                  <CalendarIcon width={16} height={16} />
-                </span>
-                <span
-                  className={
-                    weddingDate
-                      ? "type-body-small text-foreground font-medium"
-                      : "type-body-small text-muted-foreground"
-                  }
-                >
-                  {weddingDate
-                    ? weddingDate.toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })
-                    : t("signup__book_details__date_placeholder")}
-                </span>
-              </div>
-              <span className="bg-muted type-caption text-muted-foreground rounded-full px-2.5 py-1 font-medium">
-                {weddingDate
-                  ? weddingDate.toLocaleDateString("en-US", {
-                      weekday: "long",
-                    })
-                  : t("signup__book_details__date_optional")}
+            <Label className="mb-2 flex items-center gap-1.5">
+              <span>{t("signup__book_details__date_label")}</span>
+              <span className="text-muted-foreground font-normal">
+                ({t("signup__book_details__date_optional")})
               </span>
-            </button>
-            <div
-              className="grid transition-all duration-300 ease-out"
-              style={{
-                gridTemplateRows: showCalendar ? "1fr" : "0fr",
-                opacity: showCalendar ? 1 : 0,
-              }}
-            >
-              <div className="overflow-hidden">
-                <div className="rounded-16 border-border bg-card mt-3 border p-4 shadow-sm">
-                  <Calendar
-                    mode="single"
-                    selected={weddingDate ?? undefined}
-                    onSelect={(date) => {
-                      onWeddingDateChange(date ?? null);
-                      setShowCalendar(false);
-                    }}
-                    disabled={{ before: new Date() }}
-                    className="mx-auto"
+            </Label>
+            <Popover open={datePickerOpen} onOpenChange={setDatePickerOpen}>
+              <PopoverTrigger asChild>
+                <button
+                  type="button"
+                  className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring hover:border-primary/40 flex h-10 w-full cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-left text-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
+                >
+                  <CalendarIcon
+                    width={16}
+                    height={16}
+                    className="text-primary shrink-0"
                   />
-                </div>
-              </div>
-            </div>
+                  <span
+                    className={cn(
+                      "min-w-0 flex-1 truncate",
+                      weddingDate ? "font-medium" : "text-muted-foreground",
+                    )}
+                  >
+                    {weddingDate
+                      ? weddingDate.toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })
+                      : t("signup__book_details__date_placeholder")}
+                  </span>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent
+                align="start"
+                sideOffset={8}
+                className="rounded-16 w-auto p-3"
+              >
+                <Calendar
+                  mode="single"
+                  selected={weddingDate ?? undefined}
+                  onSelect={(date) => {
+                    onWeddingDateChange(date ?? null);
+                    setDatePickerOpen(false);
+                  }}
+                  disabled={{ before: new Date() }}
+                  className="mx-auto"
+                />
+              </PopoverContent>
+            </Popover>
           </div>
 
           {venueSlot}
           {actionSlot}
         </div>
-      </div>
+      </form>
     </div>
   );
 };
