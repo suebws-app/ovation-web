@@ -58,16 +58,18 @@ export const MessageToolbar = ({ stats }: MessageToolbarProps) => {
             {buildSubtitle()}
           </p>
         </div>
-        <div className="flex gap-2">
-          <Button
-            disabled={total === 0 || isExporting}
-            onClick={exportAll}
-            className="rounded-10 bg-foreground text-background hover:bg-foreground/90"
-          >
-            <DownloadIcon width={13} height={13} />{" "}
-            {t("messages__toolbar__export_all")}
-          </Button>
-        </div>
+        {total > 0 && (
+          <div className="flex gap-2">
+            <Button
+              disabled={isExporting}
+              onClick={exportAll}
+              className="rounded-10 bg-foreground text-background hover:bg-foreground/90"
+            >
+              <DownloadIcon width={13} height={13} />{" "}
+              {t("messages__toolbar__export_all")}
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

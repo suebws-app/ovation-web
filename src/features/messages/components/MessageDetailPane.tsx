@@ -11,6 +11,7 @@ import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { PauseIcon } from "@ovation/icons/PauseIcon";
 import { PlayIcon } from "@ovation/icons/PlayIcon";
 import { StarIcon } from "@ovation/icons/StarIcon";
+import { XIcon } from "@ovation/icons/XIcon";
 import { Waveform } from "@/features/dashboard/components/Waveform";
 import {
   useMessageDetail,
@@ -46,6 +47,7 @@ type MessageDetailPaneProps = {
   onTogglePlay?: () => void;
   onSeek?: (ratio: number) => void;
   fullScreen?: boolean;
+  onClose?: () => void;
 };
 
 const formatSec = (sec: number): string => {
@@ -67,6 +69,7 @@ export const MessageDetailPane = ({
   onTogglePlay,
   onSeek,
   fullScreen = false,
+  onClose,
 }: MessageDetailPaneProps) => {
   const t = useTranslations();
   const { data: detail } = useMessageDetail(eventId, message?.id ?? null);
@@ -133,7 +136,17 @@ export const MessageDetailPane = ({
     <div
       className={`bg-background ${containerVisibility} flex-col gap-4 overflow-auto p-5`}
     >
-      <div className="rounded-16 border-border bg-card flex gap-3.5 border p-5">
+      <div className="rounded-16 border-border bg-card relative flex gap-3.5 border p-5">
+        {onClose && (
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label={t("common__close")}
+            className="text-muted-foreground hover:text-foreground hover:bg-muted absolute top-3 right-3 flex size-7 items-center justify-center rounded-full transition-colors"
+          >
+            <XIcon width={14} height={14} />
+          </button>
+        )}
         <div
           className="flex size-18 shrink-0 -rotate-3 items-center justify-center rounded-full font-serif text-3xl font-bold"
           style={{
@@ -143,7 +156,7 @@ export const MessageDetailPane = ({
         >
           {message.initials}
         </div>
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 pr-7">
           {message.relation && (
             <Kicker className="text-primary">{message.relation}</Kicker>
           )}

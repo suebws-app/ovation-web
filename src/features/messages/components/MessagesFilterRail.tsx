@@ -79,6 +79,8 @@ export const MessagesFilterRail = ({ stats }: MessagesFilterRailProps) => {
     else selectAll(messageViews.map((m) => m.id));
   };
 
+  if (!stats || stats.totalMessages === 0) return null;
+
   return (
     <FilterChipRail
       chips={chipItems}

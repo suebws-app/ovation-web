@@ -46,14 +46,14 @@ export const SocialAuthButtons = ({
         <SocialAuthButton
           provider="Apple"
           label={label}
-          icon={<AppleIcon />}
+          icon={<AppleIcon className="tablet:size-5 size-4" />}
           disabled={true}
           onClick={() => handleProvider("apple")}
         />
         <SocialAuthButton
           provider="Google"
           label={label}
-          icon={<GoogleIcon />}
+          icon={<GoogleIcon className="tablet:size-5 size-4" />}
           disabled={pending !== null}
           onClick={() => handleProvider("google")}
         />

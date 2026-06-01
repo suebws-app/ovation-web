@@ -54,7 +54,7 @@ export const DashboardPage = async () => {
   if (!event) {
     return (
       <DashboardBackGuard>
-        <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+        <div className="flex w-full flex-col p-6">
           <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
         </div>
       </DashboardBackGuard>
@@ -64,7 +64,7 @@ export const DashboardPage = async () => {
   if (!user.onboardingComplete) {
     return (
       <DashboardBackGuard>
-        <div className="flex h-full w-full flex-1 flex-col overflow-y-auto p-6">
+        <div className="flex w-full flex-col p-6">
           <DashboardPlaceholderCTA
             userName={greetingName(user.fullName, user.email)}
           />
@@ -91,7 +91,7 @@ export const DashboardPage = async () => {
 
   return (
     <DashboardBackGuard>
-      <div className="flex h-full w-full flex-1 flex-col gap-6 overflow-y-auto p-6">
+      <div className="flex w-full flex-col gap-6 p-6">
         <DashboardGreeting
           name={greetingName(user.fullName, user.email)}
           date={formatWeddingDate(event.weddingDate)}

@@ -9,6 +9,8 @@ import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { MapPinIcon } from "@ovation/icons/MapPinIcon";
+import { CopyIcon } from "@ovation/icons/CopyIcon";
+import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
 import { env } from "@/lib/utils/env";
@@ -70,6 +72,19 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
   });
 
   const welcomeMessage = useWatch({ control, name: "welcomeMessage" }) ?? "";
+  const slugValue = useWatch({ control, name: "slug" }) ?? "";
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyPublicLink = async () => {
+    const url = `${env.APP_URL}/${slugValue}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // clipboard unavailable
+    }
+  };
 
   const onSubmit = async (values: WeddingFields) => {
     setStatus({ kind: "idle" });
@@ -216,7 +231,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
           label={t("settings__wedding__public_link")}
           hint={t("settings__wedding__public_link_hint")}
         >
-          <div className="rounded-12 border-border bg-card flex items-center gap-2 border px-3.5">
+          <div className="rounded-12 border-border bg-card flex items-center gap-2 border pr-1.5 pl-3.5">
             <span className="type-body-small text-muted-foreground">
               {env.APP_URL}/
             </span>
@@ -225,6 +240,19 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
               className="type-body-small text-foreground min-w-0 flex-1 truncate bg-transparent py-3 outline-none"
               {...register("slug")}
             />
+            <button
+              type="button"
+              onClick={handleCopyPublicLink}
+              disabled={!slugValue}
+              aria-label={t("settings__wedding__public_link_copy")}
+              className="text-muted-foreground hover:text-foreground disabled:opacity-40 hover:bg-muted rounded-8 flex size-8 shrink-0 items-center justify-center transition-colors disabled:cursor-not-allowed"
+            >
+              {copied ? (
+                <CheckIcon width={16} height={16} className="text-secondary" />
+              ) : (
+                <CopyIcon width={16} height={16} />
+              )}
+            </button>
           </div>
           {errors.slug && (
             <span className="type-caption text-destructive mt-1.5 block">

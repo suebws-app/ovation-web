@@ -44,7 +44,7 @@ export const MessagesPageClient = ({
           <div className="flex min-h-0 w-full flex-1 flex-col overflow-y-auto">
             <MessageToolbar stats={stats} />
             <MessagesFilterRail stats={stats} />
-            <MessagesListBody player={player} />
+            <MessagesListBody player={player} stats={stats} />
           </div>
           <ConnectedBatchFooter />
         </div>

@@ -34,7 +34,7 @@ export const PaddlePayClient = ({ userEmail }: PaddlePayClientProps) => {
             | { orderId?: string }
             | undefined;
           const orderId = customData?.orderId;
-          window.location.assign(
+          router.push(
             orderId ? appRoutes.checkout.orderSuccess(orderId) : appRoutes.home,
           );
         }
@@ -43,7 +43,7 @@ export const PaddlePayClient = ({ userEmail }: PaddlePayClientProps) => {
             | { orderId?: string }
             | undefined;
           const orderId = customData?.orderId;
-          window.location.assign(
+          router.push(
             orderId ? appRoutes.checkout.cancel(orderId) : appRoutes.home,
           );
         }

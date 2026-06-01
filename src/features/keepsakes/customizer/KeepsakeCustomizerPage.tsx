@@ -45,7 +45,7 @@ export const KeepsakeCustomizerPage = async ({
   const isPro = user?.accountType === "pro";
 
   return (
-    <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
+    <div className="flex w-full min-w-0 flex-col gap-6 p-6">
       <CustomizerHeader product={detail.product} design={design} eventId={event.id} />
       <KeepsakeCustomizerSwitch
         productType={detail.product.productType}

@@ -61,6 +61,8 @@ export const PhotosFilterRail = ({ photos, stats }: PhotosFilterRailProps) => {
     else selectAll(photos.map((p) => p.id));
   };
 
+  if (photos.length === 0) return null;
+
   return (
     <FilterChipRail
       chips={chipItems}

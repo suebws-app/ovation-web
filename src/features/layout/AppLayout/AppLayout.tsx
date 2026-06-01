@@ -21,19 +21,19 @@ export const AppLayout = ({
   return (
     <SidebarProvider>
       <AppSideBar user={user} events={events} />
-      <div className="flex w-full flex-1 flex-col overflow-hidden pb-6">
+      <div className="flex w-full flex-1 flex-col overflow-hidden">
         <AppHeaderDesktop planTier={user.planTier} />
         <AppHeaderMobile />
-        {showSubscriptionAlert && (
-          <SubscriptionAlert
-            planTier={user.planTier}
-            storageExpiresAt={user.storageExpiresAt}
-            userCreatedAt={user.createdAt}
-          />
-        )}
-        <SidebarInset className="min-h-0 flex-1 overflow-hidden">
-          {children}
-        </SidebarInset>
+        <div className="min-h-0 flex-1 overflow-y-auto pb-6">
+          {showSubscriptionAlert && (
+            <SubscriptionAlert
+              planTier={user.planTier}
+              storageExpiresAt={user.storageExpiresAt}
+              userCreatedAt={user.createdAt}
+            />
+          )}
+          <SidebarInset className="min-h-0 flex-1">{children}</SidebarInset>
+        </div>
       </div>
     </SidebarProvider>
   );

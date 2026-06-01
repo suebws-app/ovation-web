@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import { eventsClient } from "@/lib/api/events-client";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { profileClient } from "@/lib/api/profile-client";
@@ -64,6 +65,7 @@ type UseCheckoutFlowReturn = {
 
 export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
   const t = useTranslations();
+  const router = useRouter();
   const signUpFormData = useSignUpStore((s) => s.formData);
   const eventFormData = useCreateEventStore((s) => s.formData);
   const updateEventData = useCreateEventStore((s) => s.updateFormData);
@@ -85,7 +87,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
         partnerAName: partnerA,
         partnerBName: partnerB,
         weddingDate: toIsoDate(eventData.weddingDate) ?? null,
-        venueName: eventData.venue?.trim() || null,
+        venueName: eventData.venueName?.trim() || null,
+        venueCity: eventData.venueCity?.trim() || null,
         desiredSlug: eventData.bookUrl.trim() || null,
       }),
     );
@@ -115,7 +118,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
         if (isPro) {
           if (!signUpFormData.selectedPlan) {
-            window.location.assign(appRoutes.auth.plans);
+            router.push(appRoutes.auth.plans);
             return { kind: "redirecting" };
           }
           safeSet({ kind: "redirecting" });
@@ -143,7 +146,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
         const partnerBTrim = eventFormData.partner2Name?.trim() ?? "";
 
         if (!partnerATrim && !partnerBTrim) {
-          window.location.assign(appRoutes.app.root);
+          router.push(appRoutes.app.root);
           return { kind: "redirecting" };
         }
 
@@ -164,7 +167,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                   partnerAName: partnerA,
                   partnerBName: partnerB,
                   weddingDate: toIsoDate(eventFormData.weddingDate),
-                  venueName: eventFormData.venue?.trim() || undefined,
+                  venueName: eventFormData.venueName?.trim() || undefined,
+                  venueCity: eventFormData.venueCity?.trim() || undefined,
                 })
                 .then((r) => r.event)
                 .catch(async () => {
@@ -172,7 +176,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                     partnerAName: partnerA,
                     partnerBName: partnerB,
                     weddingDate: toIsoDate(eventFormData.weddingDate),
-                    venueName: eventFormData.venue?.trim() || undefined,
+                    venueName: eventFormData.venueName?.trim() || undefined,
+                    venueCity: eventFormData.venueCity?.trim() || undefined,
                   });
                   return created.event;
                 })
@@ -181,7 +186,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                   partnerAName: partnerA,
                   partnerBName: partnerB,
                   weddingDate: toIsoDate(eventFormData.weddingDate),
-                  venueName: eventFormData.venue?.trim() || undefined,
+                  venueName: eventFormData.venueName?.trim() || undefined,
+                  venueCity: eventFormData.venueCity?.trim() || undefined,
                 })
                 .then((r) => r.event);
 
@@ -225,7 +231,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
             PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
           if (!planTier) {
             safeSet({ kind: "redirecting" });
-            window.location.assign(appRoutes.app.root);
+            router.push(appRoutes.app.root);
             return { kind: "redirecting" };
           }
 
@@ -271,12 +277,14 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     eventFormData.partner1Name,
     eventFormData.partner2Name,
     eventFormData.weddingDate,
-    eventFormData.venue,
+    eventFormData.venueName,
+    eventFormData.venueCity,
     eventFormData.coverFile,
     signUpFormData.selectedPlan,
     signUpFormData.accountType,
     stashPendingEventData,
     updateEventData,
+    router,
     t,
   ]);
 
