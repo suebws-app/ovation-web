@@ -12,11 +12,12 @@ const isDev = process.env.NODE_ENV === "development";
 const scriptSrc = [
   "'self'",
   "'unsafe-inline'",
-  "'unsafe-eval'",
+
   "https://static.cloudflareinsights.com",
   "https://challenges.cloudflare.com",
   "https://*.paddle.com",
   "https://*.paddle.dev",
+  isDev ? "'unsafe-eval'" : "",
 ]
   .filter(Boolean)
   .join(" ");
