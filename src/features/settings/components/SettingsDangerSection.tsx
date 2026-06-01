@@ -14,6 +14,7 @@ import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsCard } from "./SettingsCard";
 import { SettingsRow } from "./SettingsRow";
 import { DeleteBookModal } from "./DeleteBookModal";
+import { CloseAccountModal } from "./CloseAccountModal";
 
 type SettingsDangerSectionProps = {
   user: User;
@@ -30,6 +31,7 @@ export const SettingsDangerSection = ({
   const t = useTranslations();
   const router = useRouter();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showCloseAccountModal, setShowCloseAccountModal] = useState(false);
   const [pending, setPending] = useState<
     null | "archive" | "deleteBook" | "deleteAccount"
   >(null);
@@ -81,14 +83,12 @@ export const SettingsDangerSection = ({
   };
 
   const handleDeleteAccount = async () => {
-    if (!window.confirm(t("settings__danger__close_account_confirm"))) {
-      return;
-    }
     setPending("deleteAccount");
     setError(null);
     try {
       await profileClient.deleteAccount();
       await fetch("/api/auth/signout", { method: "POST" });
+      setShowCloseAccountModal(false);
       router.replace(appRoutes.auth.signIn);
       router.refresh();
     } catch (e) {
@@ -150,7 +150,7 @@ export const SettingsDangerSection = ({
                   disabled={
                     pending === "archive" || event.status === "archived"
                   }
-                  className="border-destructive/40 text-destructive rounded-full"
+                  className="ring-destructive text-destructive hover:bg-destructive rounded-full transition-colors hover:text-white"
                 >
                   {event.status === "archived"
                     ? t("settings__danger__archive_already")
@@ -201,9 +201,9 @@ export const SettingsDangerSection = ({
             <Button
               variant="outline"
               size="sm"
-              onClick={handleDeleteAccount}
+              onClick={() => setShowCloseAccountModal(true)}
               disabled={pending === "deleteAccount"}
-              className="border-destructive/40 text-destructive rounded-full"
+              className="ring-destructive text-destructive hover:bg-destructive rounded-full hover:text-white"
             >
               {pending === "deleteAccount"
                 ? t("settings__danger__close_account_pending")
@@ -220,6 +220,15 @@ export const SettingsDangerSection = ({
           pending={pending === "deleteBook"}
           onConfirm={handleDeleteBook}
           onClose={() => setShowDeleteModal(false)}
+        />
+      )}
+
+      {showCloseAccountModal && (
+        <CloseAccountModal
+          email={user.email}
+          pending={pending === "deleteAccount"}
+          onConfirm={handleDeleteAccount}
+          onClose={() => setShowCloseAccountModal(false)}
         />
       )}
     </>
