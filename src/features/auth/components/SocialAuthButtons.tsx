@@ -36,6 +36,14 @@ export const SocialAuthButtons = ({
     });
     if (providerError) {
       setPending(null);
+      const errorCode =
+        ((providerError as Record<string, unknown>)?.code as
+          | string
+          | undefined) ?? "";
+      if (errorCode === "ACCOUNT_DELETED") {
+        setError(t("auth__signin__error_account_deleted"));
+        return;
+      }
       setError(providerError.message ?? t("auth__social__error_default"));
     }
   };

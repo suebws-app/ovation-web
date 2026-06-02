@@ -28,7 +28,7 @@ const fetchCheckout = async (
   id: string,
 ): Promise<
   | { kind: "order"; result: Awaited<ReturnType<typeof ordersApi.get>> }
-  | { kind: "plan" }
+  | { kind: "plan"; planCode: string }
   | null
 > => {
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -39,8 +39,8 @@ const fetchCheckout = async (
       if (!isMissing(error)) throw error;
     }
     try {
-      await planPurchasesApi.get(id);
-      return { kind: "plan" };
+      const plan = await planPurchasesApi.get(id);
+      return { kind: "plan", planCode: plan.purchase.planCode };
     } catch (error) {
       if (!isMissing(error)) throw error;
     }
@@ -57,7 +57,13 @@ export const CheckoutSuccessPage = async ({
   const fetched = await fetchCheckout(orderId);
 
   if (!fetched) return <PendingOrderSuccess orderId={orderId} />;
-  if (fetched.kind === "plan") return <PlanActivatedSuccess orderId={orderId} />;
+  if (fetched.kind === "plan")
+    return (
+      <PlanActivatedSuccess
+        orderId={orderId}
+        planCode={fetched.planCode}
+      />
+    );
   const { order, session } = fetched.result;
   const sessionOrders = session?.orders ?? [order];
   const sessionTotalCents =

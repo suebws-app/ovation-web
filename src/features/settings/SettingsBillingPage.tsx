@@ -55,7 +55,7 @@ export const SettingsBillingPage = async () => {
   return (
     <div className="flex flex-col gap-8">
       {basePlan && <BasePlanCard plan={basePlan} locale={locale} />}
-      {(basePlan || dreActiveOrScheduled) && (
+      {user.accountType !== "pro" && (basePlan || dreActiveOrScheduled) && (
         <DreSection
           dre={dre}
           basePlanExpiresAt={basePlan?.expiresAt ?? dre?.currentPeriodEnd ?? null}

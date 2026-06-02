@@ -1,5 +1,6 @@
 import { SidebarInset, SidebarProvider } from "@ovation/ui/components/Sidebar";
 import type { Event, User } from "@/lib/api/types";
+import { UpgradeLimitModal } from "@/features/upgrade/UpgradeLimitModal";
 import { AppSideBar } from "./AppSidebar";
 import { AppHeaderDesktop } from "./AppHeaderDesktop";
 import { AppHeaderMobile } from "./AppHeaderMobile";
@@ -25,7 +26,7 @@ export const AppLayout = ({
         <AppHeaderDesktop planTier={user.planTier} />
         <AppHeaderMobile />
         <div className="min-h-0 flex-1 overflow-y-auto pb-6">
-          {showSubscriptionAlert && (
+          {showSubscriptionAlert && user.accountType !== "pro" && (
             <SubscriptionAlert
               planTier={user.planTier}
               storageExpiresAt={user.storageExpiresAt}
@@ -35,6 +36,7 @@ export const AppLayout = ({
           <SidebarInset className="min-h-0 flex-1">{children}</SidebarInset>
         </div>
       </div>
+      <UpgradeLimitModal />
     </SidebarProvider>
   );
 };

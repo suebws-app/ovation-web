@@ -4,7 +4,6 @@ import { useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { paymentsClient } from "@/lib/api/payments-client";
-import { appRoutes } from "@/lib/routes";
 import type { Plan } from "@/lib/api/types";
 
 type DreUpgradeCardProps = {
@@ -25,8 +24,8 @@ export const DreUpgradeCard = ({ plan }: DreUpgradeCardProps) => {
       try {
         const origin = getOrigin();
         const checkout = await paymentsClient.createDreCheckoutSession({
-          successUrl: `${origin}${appRoutes.app.root}`,
-          cancelUrl: `${origin}${appRoutes.app.root}`,
+          successUrl: `${origin}/checkout/{CHECKOUT_SESSION_ID}/success`,
+          cancelUrl: `${origin}/checkout/{CHECKOUT_SESSION_ID}/cancel`,
         });
         window.location.assign(checkout.checkoutUrl);
       } catch (err) {
