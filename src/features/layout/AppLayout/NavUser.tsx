@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LogOutIcon } from "@ovation/icons/LogOutIcon";
 import { ChevronsUpDownIcon } from "@ovation/icons/ChevronsUpDownIcon";
 import { SettingsIcon as SettingsIcon } from "@ovation/icons/SettingsIcon";
@@ -48,6 +48,11 @@ export const NavUser = ({ user }: NavUserProps) => {
   const { isMobile } = useSidebar();
   const pathname = usePathname();
   const [signingOut, setSigningOut] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   const handleSignOut = async () => {
     if (signingOut) return;
@@ -62,7 +67,7 @@ export const NavUser = ({ user }: NavUserProps) => {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu key={pathname} modal={false}>
+        <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"

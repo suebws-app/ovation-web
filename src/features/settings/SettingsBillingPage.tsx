@@ -58,7 +58,9 @@ export const SettingsBillingPage = async () => {
       {user.accountType !== "pro" && (basePlan || dreActiveOrScheduled) && (
         <DreSection
           dre={dre}
-          basePlanExpiresAt={basePlan?.expiresAt ?? dre?.currentPeriodEnd ?? null}
+          basePlanExpiresAt={
+            basePlan?.expiresAt ?? dre?.currentPeriodEnd ?? null
+          }
           locale={locale}
         />
       )}

@@ -7,6 +7,8 @@ import { useRouter } from "@/i18n/navigation";
 import { env } from "@/lib/utils/env";
 import { appRoutes } from "@/lib/routes";
 
+import { CheckoutLoading } from "./CheckoutLoading";
+
 type PaddlePayClientProps = {
   userEmail: string | null;
 };
@@ -68,11 +70,5 @@ export const PaddlePayClient = ({ userEmail }: PaddlePayClientProps) => {
     };
   }, [transactionId, router, userEmail]);
 
-  return (
-    <div className="bg-background flex min-h-screen items-center justify-center">
-      <p className="type-body text-muted-foreground animate-pulse">
-        Loading checkout…
-      </p>
-    </div>
-  );
+  return <CheckoutLoading />;
 };

@@ -31,6 +31,7 @@ export const AppLayout = ({
               planTier={user.planTier}
               storageExpiresAt={user.storageExpiresAt}
               userCreatedAt={user.createdAt}
+              storageDays={user.storageDays}
             />
           )}
           <SidebarInset className="min-h-0 flex-1">{children}</SidebarInset>

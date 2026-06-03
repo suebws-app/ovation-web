@@ -90,18 +90,21 @@ export const CancelSubscriptionButton = ({
             <div className="mt-6.5 flex justify-end gap-2.5">
               <Button
                 variant="outline"
-                className="rounded-full"
+                className="rounded-full min-w-56"
                 onClick={() => setOpen(false)}
                 disabled={pending}
               >
-                {t("settings__billing__cancel_keep_action")}
+                {t("settings__billing__dismiss")}
               </Button>
               <Button
                 variant={cancelAtPeriodEnd ? "default" : "destructive"}
-                className="rounded-full"
+                className="rounded-full min-w-56"
                 onClick={handleConfirm}
                 disabled={pending}
               >
+                {pending && (
+                  <span className="size-3.5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                )}
                 {action}
               </Button>
             </div>

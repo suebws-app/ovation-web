@@ -51,6 +51,8 @@ export type User = {
   planPurchasedAt: string | null;
   messageLimit: number | null;
   storageExpiresAt: string | null;
+  storageDays: number | null;
+  storageGb: number | null;
   keepsakeCreditCents: number;
   stripeCustomerId: string | null;
   emailPreferences: EmailPreferences | null;

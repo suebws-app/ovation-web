@@ -1,1 +1,1 @@
-export { PaddlePayPage as default } from "@/features/checkout/PaddlePayPage";
+export { PaddlePayPage as default } from "@/features/checkout/paddle/PaddlePayPage";

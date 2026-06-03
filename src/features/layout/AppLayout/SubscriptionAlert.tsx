@@ -6,12 +6,11 @@ import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
-const FREE_STORAGE_DAYS = 180;
-
 type SubscriptionAlertProps = {
   planTier: string | null;
   storageExpiresAt: string | null;
   userCreatedAt: string | null;
+  storageDays: number | null;
 };
 
 const daysBetween = (ms: number) =>
@@ -21,6 +20,7 @@ export const SubscriptionAlert = ({
   planTier,
   storageExpiresAt,
   userCreatedAt,
+  storageDays,
 }: SubscriptionAlertProps) => {
   const t = useTranslations();
   const pathname = usePathname();
@@ -35,13 +35,13 @@ export const SubscriptionAlert = ({
   if (storageExpiresAt) {
     // eslint-disable-next-line react-hooks/purity
     daysLeft = daysBetween(new Date(storageExpiresAt).getTime() - Date.now());
-  } else if (isFree && userCreatedAt) {
+  } else if (isFree && userCreatedAt && storageDays != null) {
     const elapsedDays = Math.floor(
       // eslint-disable-next-line react-hooks/purity
       (Date.now() - new Date(userCreatedAt).getTime()) /
         (1000 * 60 * 60 * 24),
     );
-    daysLeft = Math.max(0, FREE_STORAGE_DAYS - elapsedDays);
+    daysLeft = Math.max(0, storageDays - elapsedDays);
   }
 
   const planNameMap: Record<string, string> = {
