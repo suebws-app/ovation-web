@@ -7,7 +7,7 @@ import {
   SidebarMenuBadge,
   useSidebar,
 } from "@ovation/ui/components/Sidebar";
-import { Link } from "@/i18n/navigation";
+import { PrefetchLink } from "@/components/PrefetchLink";
 import type { SidebarNavItem } from "./types";
 
 type SidebarItemProps = {
@@ -35,10 +35,10 @@ export const SidebarItem = ({ item, active }: SidebarItemProps) => {
             "text-destructive hover:bg-destructive/10 hover:text-destructive data-[active=true]:bg-destructive/10 data-[active=true]:text-destructive",
         )}
       >
-        <Link href={href} onClick={handleClick}>
+        <PrefetchLink href={href} onClick={handleClick}>
           {Icon ? <Icon width={20} height={20} /> : null}
           <span>{label}</span>
-        </Link>
+        </PrefetchLink>
       </SidebarMenuButton>
     </SidebarMenuItem>
   );

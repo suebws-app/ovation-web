@@ -1,7 +1,5 @@
 "use client";
 
-import "@vidstack/react/player/styles/default/theme.css";
-import "@vidstack/react/player/styles/default/layouts/video.css";
 import { useCallback, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
@@ -11,16 +9,7 @@ import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 import { BookIcon } from "@ovation/icons/BookIcon";
 import { cn } from "@ovation/ui/utils/cn";
-import {
-  MediaPlayer,
-  MediaProvider,
-  isHTMLVideoElement,
-  type MediaLoadedMetadataEvent,
-} from "@vidstack/react";
-import {
-  defaultLayoutIcons,
-  DefaultVideoLayout,
-} from "@vidstack/react/player/layouts/default";
+import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
 import { useUpdateMedia } from "@/lib/query/galleryQueries";
 import type { PhotoView } from "../adapters";
 
@@ -273,45 +262,14 @@ export const PhotoLightbox = ({
       >
         {fullUrl && photo.type === "video" ? (
           <div className="flex h-full max-h-full w-full max-w-full items-center justify-center">
-            <MediaPlayer
+            <LazyVideoPlayer
               key={fullUrl}
-              src={[
-                {
-                  src: fullUrl,
-                  type: mimeFromUrl(fullUrl),
-                },
-              ]}
-              viewType="video"
-              streamType="on-demand"
+              src={fullUrl}
+              type={mimeFromUrl(fullUrl)}
               load="eager"
               preload="metadata"
-              onLoadedMetadata={(nativeEvent: MediaLoadedMetadataEvent) => {
-                const el = nativeEvent.trigger?.target;
-                if (!isHTMLVideoElement(el)) return;
-                if (Number.isFinite(el.duration) && el.duration > 0) return;
-                const onSeeked = () => {
-                  el.removeEventListener("seeked", onSeeked);
-                  try {
-                    el.currentTime = 0;
-                  } catch {
-                    /* noop */
-                  }
-                };
-                el.addEventListener("seeked", onSeeked);
-                try {
-                  el.currentTime = Number.MAX_SAFE_INTEGER;
-                } catch {
-                  el.removeEventListener("seeked", onSeeked);
-                }
-              }}
-              onError={(detail) => {
-                console.error("[video] vidstack error", detail);
-              }}
               className="max-h-full max-w-full"
-            >
-              <MediaProvider />
-              <DefaultVideoLayout icons={defaultLayoutIcons} />
-            </MediaPlayer>
+            />
           </div>
         ) : fullUrl ? (
           <img

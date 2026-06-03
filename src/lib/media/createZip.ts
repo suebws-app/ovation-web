@@ -1,8 +1,7 @@
-import { zipSync } from "fflate";
-
 export const createZipBlob = async (
   files: { name: string; blob: Blob }[],
 ): Promise<Blob> => {
+  const { zipSync } = await import("fflate");
   const entries: Record<string, Uint8Array> = {};
   for (const f of files) {
     entries[f.name] = new Uint8Array(await f.blob.arrayBuffer());

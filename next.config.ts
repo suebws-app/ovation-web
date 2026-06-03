@@ -87,6 +87,9 @@ const nextConfig: NextConfig = {
     "asked-league-griffin-delivering.trycloudflare.com",
     "abstracts-launches-gear-serve.trycloudflare.com",
   ],
+  experimental: {
+    viewTransition: true,
+  },
   images: {
     remotePatterns,
   },

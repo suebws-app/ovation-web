@@ -1,5 +1,3 @@
-"use client";
-
 import { create } from "zustand";
 
 export type UpgradeReason = "messages" | "storage";

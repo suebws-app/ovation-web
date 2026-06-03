@@ -1,5 +1,3 @@
-"use client";
-
 import type { ReactNode } from "react";
 import { Chip } from "@ovation/ui/components/Chip";
 import { cn } from "@ovation/ui/utils/cn";

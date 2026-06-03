@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { createZipBlob } from "@/lib/media/createZip";
@@ -286,7 +284,7 @@ export const useEventDataExport = (
           const guests = aggregateGuests(summaries, anonymous);
           sheets.push(buildGuestSheet(ev, guests));
         }
-        const blob = createXlsxBlob(sheets);
+        const blob = await createXlsxBlob(sheets);
         triggerDownload(blob, `events ${formatDate(new Date())}.xlsx`);
       } finally {
         setPending(null);

@@ -4,6 +4,7 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 import { AuthSplitLayout } from "@/features/auth/components/AuthSplitLayout";
 import { ChecklistItem } from "@/features/sign-up/components/ChecklistItem";
 import { SignUpForm } from "@/features/sign-up/SignUpForm";
+import { SignUpFormSkeleton } from "@/features/sign-up/skeletons/SignUpFormSkeleton";
 
 const SignUpPanel = async () => {
   const t = await getTranslations();
@@ -33,7 +34,7 @@ const SignUpPanel = async () => {
 
 export const SignUpPage = () => (
   <AuthSplitLayout panel={<SignUpPanel />}>
-    <Suspense>
+    <Suspense fallback={<SignUpFormSkeleton />}>
       <SignUpForm />
     </Suspense>
   </AuthSplitLayout>
