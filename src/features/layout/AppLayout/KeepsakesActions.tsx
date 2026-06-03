@@ -7,14 +7,10 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useCartStore } from "@/features/cart/store/useCartStore";
 
-type KeepsakesActionsProps = {
-  planTier: string | null;
-};
-
 const formatCredit = (cents: number) =>
   cents > 0 ? `€${(cents / 100).toFixed(0)}` : null;
 
-export const KeepsakesActions = ({ planTier: _planTier }: KeepsakesActionsProps) => {
+export const KeepsakesActions = () => {
   const t = useTranslations();
   const cartCount = useCartStore((s) => s.itemCount());
   const [hydrated, setHydrated] = useState(false);

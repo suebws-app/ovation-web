@@ -1,6 +1,5 @@
 import { ApiError } from "@/lib/api/client";
 import { eventsApi } from "@/lib/api/events";
-import { invitationsApi } from "@/lib/api/invitations";
 import { env } from "@/lib/utils/env";
 import { GuestsEmptyState } from "./components/GuestsEmptyState";
 import { GuestsPageClient } from "./GuestsPageClient";
@@ -21,10 +20,9 @@ export const EventGuestsPage = async ({
 
   if (!event) return <GuestsEmptyState />;
 
-  const [stats, invitations] = await Promise.all([
-    eventsApi.stats(event.id).catch((e) => ignoreNotFound(e, null)),
-    invitationsApi.stats(event.id).catch((e) => ignoreNotFound(e, null)),
-  ]);
+  const stats = await eventsApi
+    .stats(event.id)
+    .catch((e) => ignoreNotFound(e, null));
 
   const inviteUrl = `${env.APP_URL}/g/${event.slug}`;
 
@@ -32,7 +30,6 @@ export const EventGuestsPage = async ({
     <GuestsPageClient
       eventId={event.id}
       stats={stats}
-      invitations={invitations}
       inviteUrl={inviteUrl}
     />
   );

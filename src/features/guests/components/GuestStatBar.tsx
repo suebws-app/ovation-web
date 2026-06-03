@@ -2,16 +2,14 @@ import { useTranslations } from "next-intl";
 import { MicIcon } from "@ovation/icons/MicIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
 import { HeartIcon } from "@ovation/icons/HeartIcon";
-import { MailIcon } from "@ovation/icons/MailIcon";
-import type { EventStats, InvitationStats } from "@/lib/api/types";
+import type { EventStats } from "@/lib/api/types";
 import { GuestStatCard } from "./GuestStatCard";
 
 type GuestStatBarProps = {
   stats: EventStats;
-  invitations: InvitationStats | null;
 };
 
-export const GuestStatBar = ({ stats, invitations }: GuestStatBarProps) => {
+export const GuestStatBar = ({ stats }: GuestStatBarProps) => {
   const t = useTranslations();
   const items = [
     {

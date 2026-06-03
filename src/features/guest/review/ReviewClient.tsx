@@ -72,7 +72,6 @@ export const ReviewClient = ({
   const [progressLabel, setProgressLabel] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [idempotencyKey] = useState(newIdempotencyKey);
-  const [submitted, setSubmitted] = useState(false);
 
   const hasNote = note.trim().length > 0;
   const hasPhotos = photos.length > 0;
@@ -158,7 +157,6 @@ export const ReviewClient = ({
         _t: sessionStartAt ?? Date.now() - 5000,
       });
 
-      setSubmitted(true);
       reset();
       const successHref =
         submissionSource === "kiosk"

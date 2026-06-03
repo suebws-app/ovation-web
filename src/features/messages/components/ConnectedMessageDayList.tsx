@@ -29,7 +29,6 @@ export const ConnectedMessageDayList = ({ player }: Props) => {
       playingId={player.playingId}
       isPlaying={player.isPlaying}
       playingProgress={player.progress}
-      playingDuration={player.duration}
       playingCurrentTime={player.currentTime}
       onRowClick={openRow}
       onRowPlay={playRow}

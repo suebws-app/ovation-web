@@ -27,18 +27,19 @@ export const MessageList = ({
   const qc = useQueryClient();
   const player = useMessageAudioPlayer(eventId);
 
-  const audioIds = messages
+  const audioIdsKey = messages
     .slice(0, 5)
     .filter((m) => m.hasAudio)
-    .map((m) => m.id);
-  const audioIdsKey = audioIds.join(",");
+    .map((m) => m.id)
+    .join(",");
   const [warmUrls, setWarmUrls] = useState<string[]>([]);
 
   useEffect(() => {
-    if (!audioIds.length) return;
+    if (!audioIdsKey) return;
+    const ids = audioIdsKey.split(",");
     let cancelled = false;
     Promise.all(
-      audioIds.map((id) =>
+      ids.map((id) =>
         qc.fetchQuery({
           queryKey: queryKeys.messages.detail(eventId, id),
           queryFn: () => messagesClient.get(eventId, id),

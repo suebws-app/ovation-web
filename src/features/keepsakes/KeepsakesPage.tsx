@@ -8,7 +8,6 @@ import { KeepsakesCollection } from "./components/KeepsakesCollection";
 import { KeepsakesFeaturedRow } from "./components/KeepsakesFeaturedRow";
 import { KeepsakesFooter } from "./components/KeepsakesFooter";
 import { KeepsakesHero } from "./components/KeepsakesHero";
-import { TestimonialStrip } from "./components/TestimonialStrip";
 
 export const KeepsakesPage = async () => {
   const cookieStore = await cookies();

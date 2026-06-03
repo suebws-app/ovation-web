@@ -23,7 +23,7 @@ export const AppLayout = ({
     <SidebarProvider>
       <AppSideBar user={user} events={events} />
       <div className="flex w-full flex-1 flex-col overflow-hidden">
-        <AppHeaderDesktop planTier={user.planTier} />
+        <AppHeaderDesktop />
         <AppHeaderMobile />
         <div className="min-h-0 flex-1 overflow-y-auto pb-6">
           {showSubscriptionAlert && user.accountType !== "pro" && (

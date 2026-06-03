@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LogOutIcon } from "@ovation/icons/LogOutIcon";
 import { ChevronsUpDownIcon } from "@ovation/icons/ChevronsUpDownIcon";
 import { SettingsIcon as SettingsIcon } from "@ovation/icons/SettingsIcon";
@@ -22,7 +22,6 @@ import {
 } from "@ovation/ui/components/DropdownMenu";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { signOut } from "@/lib/auth/client";
@@ -46,13 +45,8 @@ type NavUserProps = {
 export const NavUser = ({ user }: NavUserProps) => {
   const t = useTranslations();
   const { isMobile } = useSidebar();
-  const pathname = usePathname();
   const [signingOut, setSigningOut] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   const handleSignOut = async () => {
     if (signingOut) return;
