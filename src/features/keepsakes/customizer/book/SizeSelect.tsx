@@ -22,11 +22,12 @@ import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 type SizeSelectProps = {
   variants: KeepsakeProductVariant[];
+  onOpenChange?: (open: boolean) => void;
 };
 
 const SIZE_SELECT_ID = "book-size-select";
 
-export const SizeSelect = ({ variants }: SizeSelectProps) => {
+export const SizeSelect = ({ variants, onOpenChange }: SizeSelectProps) => {
   const t = useTranslations();
   const { control } = useBookForm();
   const paperType = useWatch<BookFormValues, "paperType">({ name: "paperType" });
@@ -75,6 +76,7 @@ export const SizeSelect = ({ variants }: SizeSelectProps) => {
             <Select
               value={field.value || undefined}
               onValueChange={field.onChange}
+              onOpenChange={onOpenChange}
               disabled={isDisabled || !hasOptions}
             >
               <SelectTrigger id={SIZE_SELECT_ID} className="w-full">

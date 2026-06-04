@@ -23,11 +23,12 @@ import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 type PaperSelectProps = {
   variants: KeepsakeProductVariant[];
+  onOpenChange?: (open: boolean) => void;
 };
 
 const PAPER_SELECT_ID = "book-paper-select";
 
-export const PaperSelect = ({ variants }: PaperSelectProps) => {
+export const PaperSelect = ({ variants, onOpenChange }: PaperSelectProps) => {
   const t = useTranslations();
   const { control, getValues, setValue } = useBookForm();
 
@@ -80,6 +81,7 @@ export const PaperSelect = ({ variants }: PaperSelectProps) => {
                   });
                 }
               }}
+              onOpenChange={onOpenChange}
               disabled={isDisabled}
             >
               <SelectTrigger id={PAPER_SELECT_ID} className="w-full">
