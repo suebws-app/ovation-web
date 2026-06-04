@@ -16,6 +16,14 @@ import type {
   KeepsakeProductVariant,
 } from "@/lib/api/types";
 
+type PriceBreakdown = {
+  baseCents: number;
+  pageCount: number;
+  pricePerPageCents: number;
+  pagesSurchargeCents: number;
+  totalCents: number;
+};
+
 type CustomizerCheckoutFormProps = {
   product: KeepsakeProductDetail;
   eventId: string | null;
@@ -28,6 +36,19 @@ type CustomizerCheckoutFormProps = {
   children?: ReactNode;
   requiresShipping?: boolean;
   showEventBadge?: boolean;
+  unitPriceCents?: number;
+  priceBreakdown?: PriceBreakdown;
+};
+
+const formatPricePrecise = (priceCents: number, currency: string): string => {
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+    }).format(priceCents / 100);
+  } catch {
+    return `${(priceCents / 100).toFixed(2)} ${currency}`;
+  }
 };
 
 const eventDisplayName = (event: Event, fallback: string): string => {
@@ -49,6 +70,8 @@ export const CustomizerCheckoutForm = ({
   children,
   requiresShipping = true,
   showEventBadge = true,
+  unitPriceCents,
+  priceBreakdown,
 }: CustomizerCheckoutFormProps) => {
   const t = useTranslations();
   const add = useCartStore((s) => s.add);
@@ -63,8 +86,13 @@ export const CustomizerCheckoutForm = ({
   }, [addedToCart]);
 
   const effectivePriceCents =
-    selectedVariant?.priceCents ?? product.basePriceCents;
+    unitPriceCents ?? selectedVariant?.priceCents ?? product.basePriceCents;
   const buttonDisabled = !eventId || !isReady || isCheckingOut;
+  const showBreakdown = Boolean(
+    priceBreakdown &&
+      priceBreakdown.pricePerPageCents > 0 &&
+      priceBreakdown.pageCount > 0,
+  );
 
   const handleAddToCart = () => {
     if (!eventId) return;
@@ -172,6 +200,42 @@ export const CustomizerCheckoutForm = ({
           >
             {t("keepsakes__order__view_cart")}
           </Link>
+        </div>
+      )}
+      {showBreakdown && priceBreakdown && (
+        <div className="rounded-12 border-border bg-muted/30 flex flex-col gap-1.5 border px-3 py-2.5">
+          <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
+            <span>{t("keepsakes__book_customizer__price_base")}</span>
+            <span>
+              {formatPricePrecise(priceBreakdown.baseCents, product.currency)}
+            </span>
+          </div>
+          <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
+            <span>
+              {t("keepsakes__book_customizer__price_pages_line", {
+                count: priceBreakdown.pageCount,
+                perPage: formatPricePrecise(
+                  priceBreakdown.pricePerPageCents,
+                  product.currency,
+                ),
+              })}
+            </span>
+            <span>
+              {formatPricePrecise(
+                priceBreakdown.pagesSurchargeCents,
+                product.currency,
+              )}
+            </span>
+          </div>
+          <div className="border-border mt-1 border-t pt-1.5 type-body-small font-semibold flex items-center justify-between gap-2">
+            <span>{t("keepsakes__book_customizer__price_total")}</span>
+            <span>
+              {formatPricePrecise(
+                priceBreakdown.totalCents,
+                product.currency,
+              )}
+            </span>
+          </div>
         </div>
       )}
       <div className="flex flex-col gap-2.5">

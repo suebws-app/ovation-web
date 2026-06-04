@@ -91,6 +91,8 @@ export const BookCustomizer = ({
   const pageWidthMm = readNumberAttr(variantAttributes, "pageWidthMm");
   const pageHeightMm = readNumberAttr(variantAttributes, "pageHeightMm");
   const paperStock = readStringAttr(variantAttributes, "paperStock");
+  const pricePerPageCents =
+    readNumberAttr(variantAttributes, "pricePerPageCents") ?? 0;
   const supportsCoverText =
     readBoolAttr(variantAttributes, "supportsCoverText") ?? true;
   const supportsDedication =
@@ -100,6 +102,10 @@ export const BookCustomizer = ({
   const pagesWithinRange =
     (minPages === null || pageCount >= minPages) &&
     (maxPages === null || pageCount <= maxPages);
+
+  const basePriceCents = selectedVariant?.priceCents ?? product.basePriceCents;
+  const pagesSurchargeCents = pageCount * pricePerPageCents;
+  const totalPriceCents = basePriceCents + pagesSurchargeCents;
 
   const togglePhoto = (id: string) =>
     setPhotoIds((prev) =>
@@ -294,6 +300,14 @@ export const BookCustomizer = ({
         isReady={isReady}
         notReadyMessage={notReadyMessage}
         showEventBadge={isPro}
+        unitPriceCents={totalPriceCents}
+        priceBreakdown={{
+          baseCents: basePriceCents,
+          pageCount,
+          pricePerPageCents,
+          pagesSurchargeCents,
+          totalCents: totalPriceCents,
+        }}
       />
     </div>
   );
