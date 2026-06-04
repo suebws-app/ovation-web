@@ -9,6 +9,8 @@ import { ApiError } from "@/lib/api/client";
 import { formatPrice } from "../designTokens";
 import { OrderDetailRow } from "./OrderDetailRow";
 import { OrderItemLine } from "./OrderItemLine";
+import { PrintApprovalBadge } from "./PrintApprovalBadge";
+import { FulfillmentStatusLabel } from "./FulfillmentStatusLabel";
 
 type OrderDetailModalProps = {
   orderId: string;
@@ -30,6 +32,8 @@ export const OrderDetailModal = ({
 
   const order = data?.order;
   const canRefund = order?.status === "paid" || order?.status === "delivered";
+  const showPrintApproval =
+    order?.printApprovalStatus && order.printApprovalStatus !== "not_required";
 
   const handleRefund = async () => {
     setSubmitError(null);
@@ -67,6 +71,18 @@ export const OrderDetailModal = ({
               label={t("orders__detail__status")}
               value={t(`order__status__${order.status}`)}
             />
+            {showPrintApproval && order.printApprovalStatus && (
+              <OrderDetailRow
+                label={t("orders__detail__print_approval")}
+                value={<PrintApprovalBadge status={order.printApprovalStatus} />}
+              />
+            )}
+            {order.fulfillmentStatus && (
+              <OrderDetailRow
+                label={t("orders__detail__fulfillment")}
+                value={<FulfillmentStatusLabel status={order.fulfillmentStatus} />}
+              />
+            )}
             <OrderDetailRow
               label={t("orders__detail__placed")}
               value={new Date(order.createdAt).toLocaleDateString()}
@@ -100,15 +116,34 @@ export const OrderDetailModal = ({
                       href={order.tracking.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-primary font-semibold"
+                      className="text-primary font-semibold hover:underline"
                     >
-                      {order.tracking.carrier ?? ""} {order.tracking.number}
+                      {[order.tracking.carrier, order.tracking.number]
+                        .filter(Boolean)
+                        .join(" ")}
                     </a>
                   ) : (
-                    `${order.tracking.carrier ?? ""} ${order.tracking.number}`
+                    [order.tracking.carrier, order.tracking.number]
+                      .filter(Boolean)
+                      .join(" ")
                   )
                 }
               />
+            )}
+            {order.tracking?.url && (
+              <Button
+                asChild
+                variant="outline"
+                className="rounded-full self-start"
+              >
+                <a
+                  href={order.tracking.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t("orders__detail__track_shipment")}
+                </a>
+              </Button>
             )}
           </div>
         )}

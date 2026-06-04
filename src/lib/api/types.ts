@@ -300,12 +300,9 @@ export type CreateMessageResult = {
 };
 
 export type KeepsakeSku =
-  | "gold_book"
-  | "video_montage"
-  | "digital_album"
-  | "audio_vinyl"
-  | "thank_you_cards"
-  | "canvas_print"
+  | "hardcover_book"
+  | "softcover_book"
+  | "layflat_book"
   | string;
 
 export type KeepsakeProduct = {
@@ -392,6 +389,13 @@ export type OrderStatus =
   | "delivered"
   | string;
 
+export type PrintApprovalStatus =
+  | "not_required"
+  | "pending"
+  | "approved"
+  | "rejected"
+  | string;
+
 export type Order = {
   id: string;
   eventId: string;
@@ -409,6 +413,7 @@ export type Order = {
   unitPriceCents: number;
   customization: Record<string, unknown>;
   fulfillmentStatus: string;
+  printApprovalStatus?: PrintApprovalStatus;
   paymentProvider: string | null;
   createdAt: string;
 };
@@ -437,6 +442,7 @@ export type OrderDetail = {
   unitPriceCents: number;
   customization: Record<string, unknown>;
   fulfillmentStatus: string;
+  printApprovalStatus?: PrintApprovalStatus;
   mediaIds: string[];
   tracking: OrderTracking | null;
   createdAt: string;
