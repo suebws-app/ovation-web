@@ -17,43 +17,24 @@ const FALLBACK: KeepsakeDesign = {
 };
 
 const DESIGN_BY_SKU: Record<string, KeepsakeDesign> = {
-  gold_book: {
+  hardcover_book: {
     subtitleKey: "keepsakes__design__gold_book__subtitle",
     headlineKey: "keepsakes__design__gold_book__headline",
     taglineKey: "keepsakes__design__gold_book__tagline",
     gradient: "linear-gradient(135deg, #F2D7B3, #C99A66)",
     featured: true,
   },
-  video_montage: {
-    subtitleKey: "keepsakes__design__video_montage__subtitle",
-    headlineKey: "keepsakes__design__video_montage__headline",
-    taglineKey: "keepsakes__design__video_montage__tagline",
-    gradient: "linear-gradient(135deg, #9CB8EE, #5E86DC)",
+  softcover_book: {
+    subtitleKey: "keepsakes__design__fallback__subtitle",
+    headlineKey: "keepsakes__design__fallback__headline",
+    taglineKey: "keepsakes__design__fallback__tagline",
+    gradient: "linear-gradient(135deg, #EFE4D2, #C9B58C)",
   },
-  audio_vinyl: {
-    subtitleKey: "keepsakes__design__audio_vinyl__subtitle",
-    headlineKey: "keepsakes__design__audio_vinyl__headline",
-    taglineKey: "keepsakes__design__audio_vinyl__tagline",
-    gradient: "linear-gradient(135deg, #4a4a4a, #1a1a1a)",
-    dark: true,
-  },
-  digital_album: {
-    subtitleKey: "keepsakes__design__digital_album__subtitle",
-    headlineKey: "keepsakes__design__digital_album__headline",
-    taglineKey: "keepsakes__design__digital_album__tagline",
-    gradient: "linear-gradient(135deg, #BCEEC9, #5EC678)",
-  },
-  thank_you_cards: {
-    subtitleKey: "keepsakes__design__thank_you_cards__subtitle",
-    headlineKey: "keepsakes__design__thank_you_cards__headline",
-    taglineKey: "keepsakes__design__thank_you_cards__tagline",
-    gradient: "linear-gradient(135deg, #F4B59C, #E27A58)",
-  },
-  canvas_print: {
-    subtitleKey: "keepsakes__design__canvas_print__subtitle",
-    headlineKey: "keepsakes__design__canvas_print__headline",
-    taglineKey: "keepsakes__design__canvas_print__tagline",
-    gradient: "linear-gradient(135deg, #F1D3D7, #D39BA3)",
+  layflat_book: {
+    subtitleKey: "keepsakes__design__fallback__subtitle",
+    headlineKey: "keepsakes__design__fallback__headline",
+    taglineKey: "keepsakes__design__fallback__tagline",
+    gradient: "linear-gradient(135deg, #DDE5F0, #93A8CE)",
   },
 };
 
