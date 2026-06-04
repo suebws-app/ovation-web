@@ -51,6 +51,14 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
   const turnstileRequired =
     Boolean(env.TURNSTILE_SITE_KEY) && failCount >= SIGNIN_FAIL_THRESHOLD;
 
+  const urlErrorParam = searchParams.get("error") ?? "";
+  const urlAccountDeletedError =
+    urlErrorParam === "ACCOUNT_DELETED" ||
+    urlErrorParam.includes("ACCOUNT_DELETED")
+      ? t("auth__signin__error_account_deleted")
+      : null;
+  const displayError = submitError ?? urlAccountDeletedError;
+
   const {
     register,
     handleSubmit,
@@ -91,6 +99,10 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
       setTurnstileResetKey((k) => k + 1);
       const errorCode =
         ((error as Record<string, unknown>)?.code as string | undefined) ?? "";
+      if (errorCode === "ACCOUNT_DELETED") {
+        setSubmitError(t("auth__signin__error_account_deleted"));
+        return;
+      }
       const isUnverified =
         errorCode.toUpperCase().includes("EMAIL") &&
         errorCode.toUpperCase().includes("VERIF");
@@ -195,9 +207,9 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
           </Link>
         </div>
 
-        {submitError && (
+        {displayError && (
           <p className="type-body-small text-destructive mt-4" role="alert">
-            {submitError}
+            {displayError}
           </p>
         )}
 

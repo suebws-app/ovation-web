@@ -1,11 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { QRStage } from "./QRStage";
 import { StylePicker } from "./StylePicker";
 import { UrlCard } from "./UrlCard";
-import { DownloadCard } from "./DownloadCard";
 import { ShareCard } from "./ShareCard";
+
+const DownloadCardSkeleton = () => (
+  <div className="rounded-16 border-border bg-card animate-pulse border p-4.5 h-64" />
+);
+
+const DownloadCard = dynamic(
+  () => import("./DownloadCard").then((m) => ({ default: m.DownloadCard })),
+  { ssr: false, loading: DownloadCardSkeleton },
+);
 
 export type QRStyle = {
   id: string;

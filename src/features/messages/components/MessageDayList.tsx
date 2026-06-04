@@ -12,7 +12,6 @@ type MessageDayListProps = {
   playingId: string | null;
   isPlaying?: boolean;
   playingProgress?: number;
-  playingDuration?: number;
   playingCurrentTime?: number;
   onRowClick: (id: string) => void;
   onRowPlay?: (id: string) => void;
@@ -48,7 +47,6 @@ export const MessageDayList = ({
   playingId,
   isPlaying = false,
   playingProgress = 0,
-  playingDuration = 0,
   playingCurrentTime = 0,
   onRowClick,
   onRowPlay,
@@ -80,11 +78,6 @@ export const MessageDayList = ({
               playing={message.id === playingId && isPlaying}
               progress={message.id === playingId ? playingProgress : 0}
               currentTime={message.id === playingId ? playingCurrentTime : 0}
-              durationOverride={
-                message.id === playingId && playingDuration > 0
-                  ? playingDuration
-                  : undefined
-              }
               index={groupOffsets[groupIdx] + itemIdx}
               onClick={() => onRowClick(message.id)}
               onPlay={onRowPlay ? () => onRowPlay(message.id) : undefined}

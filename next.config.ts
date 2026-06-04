@@ -83,6 +83,13 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@ovation/ui", "@ovation/icons"],
+  allowedDevOrigins: [
+    "asked-league-griffin-delivering.trycloudflare.com",
+    "abstracts-launches-gear-serve.trycloudflare.com",
+  ],
+  experimental: {
+    viewTransition: true,
+  },
   images: {
     remotePatterns,
   },

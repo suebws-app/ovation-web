@@ -139,7 +139,7 @@ export const CreateEventDonePage = () => {
         });
       }
     })();
-  }, [retryToken]);
+  }, [retryToken, router]);
 
   if (state.kind === "error") {
     return (

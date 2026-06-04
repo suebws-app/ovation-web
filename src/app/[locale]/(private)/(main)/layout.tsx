@@ -1,9 +1,16 @@
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 import { eventsApi } from "@/lib/api/events";
 import { appRoutes } from "@/lib/routes";
 import type { Event } from "@/lib/api/types";
+
+const AUTH_COOKIE_NAMES = [
+  "ovation.session_token",
+  "ovation.session_data",
+  "ovation.csrf_token",
+];
 
 export default async function AppRootLayout({
   children,
@@ -13,6 +20,12 @@ export default async function AppRootLayout({
   const user = await getCurrentUser();
   if (!user) {
     console.warn("[auth-debug] (private)/(main)/layout redirecting to sign-in: user is null");
+    const cookieStore = await cookies();
+    for (const name of AUTH_COOKIE_NAMES) {
+      if (cookieStore.get(name)) {
+        cookieStore.delete(name);
+      }
+    }
     redirect(appRoutes.auth.signIn);
   }
   console.warn("[auth-debug] (private)/(main)/layout user loaded", { userId: user.id, accountType: user.accountType });

@@ -1,7 +1,5 @@
 "use client";
 
-import "@vidstack/react/player/styles/default/theme.css";
-import "@vidstack/react/player/styles/default/layouts/video.css";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
@@ -18,18 +16,9 @@ import {
   useRetranscribeMessage,
 } from "@/lib/query/messagesQueries";
 import { downloadMessageAssets } from "@/lib/media/downloadMessageAssets";
+import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
 import { formatTimeShort } from "../adapters";
 
-import {
-  MediaPlayer,
-  MediaProvider,
-  isHTMLVideoElement,
-  type MediaLoadedMetadataEvent,
-} from "@vidstack/react";
-import {
-  defaultLayoutIcons,
-  DefaultVideoLayout,
-} from "@vidstack/react/player/layouts/default";
 import Image from "next/image";
 import type { MessageRowView } from "../adapters";
 
@@ -258,44 +247,13 @@ export const MessageDetailPane = ({
             )}
             {videoUrl && (
               <div className="rounded-12 bg-muted block aspect-square w-full overflow-hidden">
-                <MediaPlayer
-                  src={[
-                    {
-                      src: videoUrl,
-                      type: videoMimeType as "video/mp4" | "video/webm",
-                    },
-                  ]}
-                  viewType="video"
-                  streamType="on-demand"
+                <LazyVideoPlayer
+                  src={videoUrl}
+                  type={videoMimeType as "video/mp4" | "video/webm"}
                   load="visible"
                   preload="none"
-                  onLoadedMetadata={(nativeEvent: MediaLoadedMetadataEvent) => {
-                    const el = nativeEvent.trigger?.target;
-                    if (!isHTMLVideoElement(el)) return;
-                    if (Number.isFinite(el.duration) && el.duration > 0) return;
-                    const onSeeked = () => {
-                      el.removeEventListener("seeked", onSeeked);
-                      try {
-                        el.currentTime = 0;
-                      } catch {
-                        /* noop */
-                      }
-                    };
-                    el.addEventListener("seeked", onSeeked);
-                    try {
-                      el.currentTime = Number.MAX_SAFE_INTEGER;
-                    } catch {
-                      el.removeEventListener("seeked", onSeeked);
-                    }
-                  }}
-                  onError={(detail) => {
-                    console.error("[video] vidstack error", detail);
-                  }}
                   className="size-full"
-                >
-                  <MediaProvider />
-                  <DefaultVideoLayout icons={defaultLayoutIcons} />
-                </MediaPlayer>
+                />
               </div>
             )}
           </div>

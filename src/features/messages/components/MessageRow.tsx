@@ -19,7 +19,6 @@ type MessageRowProps = {
   isCurrent?: boolean;
   progress?: number;
   currentTime?: number;
-  durationOverride?: number;
   index: number;
   onClick?: () => void;
   onPlay?: () => void;
@@ -41,7 +40,6 @@ export const MessageRow = ({
   isCurrent,
   progress = 0,
   currentTime = 0,
-  durationOverride: _durationOverride,
   index,
   onClick,
   onPlay,

@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useEffect, useRef, useState } from "react";
 import { kioskSettingsClient } from "@/lib/api/kiosk-settings-client";
 import type {

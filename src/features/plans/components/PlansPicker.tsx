@@ -93,7 +93,7 @@ export const PlansPicker = (props: PlansPickerProps) => {
               successUrl,
               cancelUrl,
             });
-      window.location.assign(checkout.checkoutUrl);
+      router.push(checkout.checkoutUrl);
     } catch (err) {
       setRedirecting(false);
       setError(

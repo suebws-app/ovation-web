@@ -1,10 +1,15 @@
 import "server-only";
 import { createHmac, randomBytes } from "node:crypto";
 import { betterAuth } from "better-auth";
+import { APIError } from "better-auth/api";
 import { nextCookies } from "better-auth/next-js";
 import { Pool } from "pg";
 import { env } from "@/lib/utils/env";
 import { sendResetPasswordEmail, sendVerificationEmail } from "./email-sender";
+
+export const ACCOUNT_DELETED_ERROR_CODE = "ACCOUNT_DELETED";
+const ACCOUNT_DELETED_MESSAGE =
+  "This account has been deleted. Please contact support.";
 
 const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build";
 
@@ -255,8 +260,18 @@ export const auth = betterAuth({
     session: {
       create: {
         before: async (sessionRecord) => {
+          const { rows: userRows } = await pool.query<{
+            deleted_at: Date | null;
+          }>(`SELECT deleted_at FROM users WHERE id = $1`, [
+            sessionRecord.userId,
+          ]);
+          if (userRows[0]?.deleted_at) {
+            throw new APIError("FORBIDDEN", {
+              message: ACCOUNT_DELETED_MESSAGE,
+              code: ACCOUNT_DELETED_ERROR_CODE,
+            });
+          }
           await enforceSessionCap(sessionRecord.userId);
-          // Generate per-session CSRF token + initial fingerprints.
           const csrfToken = randomBytes(32).toString("hex");
           const ipHash = peppered(sessionRecord.ipAddress);
           const uaHash = peppered(sessionRecord.userAgent);

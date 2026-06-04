@@ -1,6 +1,5 @@
 import { keepsakesApi } from "@/lib/api/keepsakes";
 import { ordersApi } from "@/lib/api/orders";
-import { eventsApi } from "@/lib/api/events";
 import { ApiError } from "@/lib/api/client";
 import { BundleBanner } from "./components/BundleBanner";
 import { KeepsakesCollection } from "./components/KeepsakesCollection";

@@ -16,11 +16,7 @@ import { KeepsakesActions } from "./KeepsakesActions";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-type AppHeaderDesktopProps = {
-  planTier: string | null;
-};
-
-export const AppHeaderDesktop = ({ planTier }: AppHeaderDesktopProps) => {
+export const AppHeaderDesktop = () => {
   const pathname = usePathname();
   const eventLabel = useCurrentEventStore((s) => s.label);
   const segments = pathname
@@ -60,7 +56,7 @@ export const AppHeaderDesktop = ({ planTier }: AppHeaderDesktopProps) => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      {isKeepsakes && <KeepsakesActions planTier={planTier} />}
+      {isKeepsakes && <KeepsakesActions />}
     </header>
   );
 };

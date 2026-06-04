@@ -15,6 +15,8 @@ import { MessageList } from "./components/MessageList";
 import { DashboardEmpty } from "./components/DashboardEmpty";
 import { DashboardPlaceholderCTA } from "./components/DashboardPlaceholderCTA";
 import { DashboardBackGuard } from "./components/DashboardBackGuard";
+import { StorageExpiredModal } from "./components/StorageExpiredModal";
+import { DreReturnHandler } from "./components/DreReturnHandler";
 
 const formatWeddingDate = (raw: string | null): string => {
   if (!raw) return "";
@@ -51,9 +53,19 @@ export const DashboardPage = async () => {
   }
   const event = await getCurrentEvent();
 
+  const expiredModal = (
+    <StorageExpiredModal
+      storageExpiresAt={user.storageExpiresAt}
+      planTier={user.planTier ?? null}
+    />
+  );
+  const dreReturnHandler = <DreReturnHandler />;
+
   if (!event) {
     return (
       <DashboardBackGuard>
+        {expiredModal}
+        {dreReturnHandler}
         <div className="flex w-full flex-col p-6">
           <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
         </div>
@@ -64,6 +76,8 @@ export const DashboardPage = async () => {
   if (!user.onboardingComplete) {
     return (
       <DashboardBackGuard>
+        {expiredModal}
+        {dreReturnHandler}
         <div className="flex w-full flex-col p-6">
           <DashboardPlaceholderCTA
             userName={greetingName(user.fullName, user.email)}
@@ -91,6 +105,7 @@ export const DashboardPage = async () => {
 
   return (
     <DashboardBackGuard>
+      {expiredModal}
       <div className="flex w-full flex-col gap-6 p-6">
         <DashboardGreeting
           name={greetingName(user.fullName, user.email)}

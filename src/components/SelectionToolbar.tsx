@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@ovation/ui/components/Button";
 
 type SelectionToolbarProps = {

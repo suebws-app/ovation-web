@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";

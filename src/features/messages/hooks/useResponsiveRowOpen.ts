@@ -1,5 +1,3 @@
-"use client";
-
 import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import { useRouter } from "@/i18n/navigation";
 import { useMessagesStore } from "../store/useMessagesStore";

@@ -7,17 +7,10 @@ import { LinkIcon } from "@ovation/icons/LinkIcon";
 
 type GuestHeroProps = {
   totalMessages: number;
-  totalGuests: number;
-  totalInvited: number;
   inviteUrl: string;
 };
 
-export const GuestHero = ({
-  totalMessages,
-  totalGuests,
-  totalInvited,
-  inviteUrl,
-}: GuestHeroProps) => {
+export const GuestHero = ({ totalMessages, inviteUrl }: GuestHeroProps) => {
   const t = useTranslations();
   const [copied, setCopied] = useState(false);
 

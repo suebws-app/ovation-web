@@ -22,7 +22,6 @@ import {
 } from "@ovation/ui/components/DropdownMenu";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { signOut } from "@/lib/auth/client";
@@ -46,8 +45,8 @@ type NavUserProps = {
 export const NavUser = ({ user }: NavUserProps) => {
   const t = useTranslations();
   const { isMobile } = useSidebar();
-  const pathname = usePathname();
   const [signingOut, setSigningOut] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleSignOut = async () => {
     if (signingOut) return;
@@ -62,7 +61,7 @@ export const NavUser = ({ user }: NavUserProps) => {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu key={pathname} modal={false}>
+        <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"

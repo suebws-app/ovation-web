@@ -1,5 +1,3 @@
-import { zipSync, strToU8 } from "fflate";
-
 export type XlsxCell = string | number | boolean | null | undefined;
 
 export type XlsxSheet = {
@@ -65,7 +63,8 @@ const sanitizeSheetName = (name: string, taken: Set<string>): string => {
   return candidate;
 };
 
-export const createXlsxBlob = (sheets: XlsxSheet[]): Blob => {
+export const createXlsxBlob = async (sheets: XlsxSheet[]): Promise<Blob> => {
+  const { zipSync, strToU8 } = await import("fflate");
   const taken = new Set<string>();
   const named = sheets.map((s) => ({
     name: sanitizeSheetName(s.name, taken),

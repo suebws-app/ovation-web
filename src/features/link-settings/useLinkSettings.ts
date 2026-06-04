@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useEffect, useRef, useState } from "react";
 import { linkSettingsClient } from "@/lib/api/link-settings-client";
 import type { LinkSettings, UpdateLinkSettingsInput } from "@/lib/api/types";

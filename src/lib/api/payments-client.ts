@@ -42,4 +42,14 @@ export const paymentsClient = {
       method: "POST",
       body: input,
     }),
+
+  syncDreTransaction: (transactionId: string) =>
+    clientFetch<{
+      applied: boolean;
+      status: string;
+      currentPeriodEnd?: string;
+    }>("/payments/dre/sync", {
+      method: "POST",
+      body: { transactionId },
+    }),
 };

@@ -8,8 +8,10 @@ import {
   type MediaFinalizeItem,
   type MediaUploadItem,
 } from "@/lib/api/media-client";
+import { ApiError } from "@/lib/api/client";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import { queryKeys } from "@/lib/query/keys";
+import { useUpgradeModalStore } from "@/features/upgrade/useUpgradeModalStore";
 
 const readImageDimensions = (file: File) =>
   new Promise<{ width: number; height: number } | null>((resolve) => {
@@ -55,6 +57,7 @@ const fileToItem = (file: File): MediaUploadItem | null => {
 export const usePhotoUpload = (eventId: string) => {
   const qc = useQueryClient();
   const t = useTranslations();
+  const showUpgradeModal = useUpgradeModalStore((s) => s.show);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -108,6 +111,16 @@ export const usePhotoUpload = (eventId: string) => {
       qc.invalidateQueries({ queryKey: queryKeys.events.stats(eventId) });
     } catch (err) {
       console.error("[photos:upload] failed", err);
+      if (ApiError.isApiError(err)) {
+        if (err.code === "STORAGE_LIMIT_REACHED") {
+          showUpgradeModal("storage");
+          return;
+        }
+        if (err.code === "MESSAGE_LIMIT_REACHED") {
+          showUpgradeModal("messages");
+          return;
+        }
+      }
       const message =
         err instanceof Error ? err.message : t("photos__upload__error_generic");
       setError(message);
