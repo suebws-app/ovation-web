@@ -7,8 +7,8 @@ type PrintApprovalBadgeProps = {
 };
 
 const TONE_CLASSES: Record<string, string> = {
-  pending: "bg-amber-500/15 text-amber-700 dark:text-amber-300",
-  approved: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300",
+  pending: "bg-accent/20 text-accent-foreground",
+  approved: "bg-secondary/20 text-secondary-foreground",
   rejected: "bg-destructive/15 text-destructive",
 };
 

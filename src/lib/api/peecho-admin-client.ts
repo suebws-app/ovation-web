@@ -58,31 +58,30 @@ export type PrintApprovalActionResult = {
   fulfillmentStatus: string;
 };
 
-export const syncPeechoCatalog = () =>
-  clientFetch<SyncCatalogResult>("/peecho/sync", { method: "POST" });
+export const peechoAdminClient = {
+  syncCatalog: () =>
+    clientFetch<SyncCatalogResult>("/peecho/sync", { method: "POST" }),
 
-export const listPeechoOfferings = (activeOnly?: boolean) =>
-  clientFetch<ListOfferingsResult>("/peecho/offerings", {
-    query: activeOnly !== undefined ? { active: activeOnly } : undefined,
-  });
+  listOfferings: (activeOnly?: boolean) =>
+    clientFetch<ListOfferingsResult>("/peecho/offerings", {
+      query: activeOnly !== undefined ? { active: activeOnly } : undefined,
+    }),
 
-export const linkPeechoOfferingToProduct = (
-  offeringId: string,
-  body: LinkProductBody,
-) =>
-  clientFetch<LinkOfferingResult>(
-    `/peecho/offerings/${offeringId}/link-product`,
-    { method: "POST", body },
-  );
+  linkOfferingToProduct: (offeringId: string, body: LinkProductBody) =>
+    clientFetch<LinkOfferingResult>(
+      `/peecho/offerings/${offeringId}/link-product`,
+      { method: "POST", body },
+    ),
 
-export const approvePrintOrder = (orderId: string) =>
-  clientFetch<PrintApprovalActionResult>(
-    `/peecho/orders/${orderId}/approve`,
-    { method: "POST" },
-  );
+  approveOrder: (orderId: string) =>
+    clientFetch<PrintApprovalActionResult>(
+      `/peecho/orders/${orderId}/approve`,
+      { method: "POST" },
+    ),
 
-export const rejectPrintOrder = (orderId: string, reason?: string) =>
-  clientFetch<PrintApprovalActionResult>(
-    `/peecho/orders/${orderId}/reject`,
-    { method: "POST", body: reason ? { reason } : {} },
-  );
+  rejectOrder: (orderId: string, reason?: string) =>
+    clientFetch<PrintApprovalActionResult>(
+      `/peecho/orders/${orderId}/reject`,
+      { method: "POST", body: reason ? { reason } : {} },
+    ),
+};
