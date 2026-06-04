@@ -14,9 +14,9 @@ import type {
 } from "@/lib/api/types";
 
 const BOOK_PRODUCT_TYPES = new Set([
-  "hardcover_book",
-  "softcover_book",
-  "layflat_book",
+  "hardcover",
+  "softcover",
+  "layflat",
 ]);
 
 type KeepsakeCustomizerPageProps = {

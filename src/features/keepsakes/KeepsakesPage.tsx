@@ -33,7 +33,7 @@ export const KeepsakesPage = async () => {
         })
     : { items: [], nextCursor: null };
   const featured =
-    catalog.products.find((p) => p.sku === "hardcover_book") ??
+    catalog.products.find((p) => p.sku === "hardcover") ??
     catalog.products[0];
 
   return (

@@ -55,11 +55,11 @@ export const useBookForm = () => useFormContext<BookFormValues>();
 
 export const bindingFromProductType = (productType: string): BookBinding => {
   switch (productType) {
-    case "hardcover_book":
+    case "hardcover":
       return "hardcover";
-    case "softcover_book":
+    case "softcover":
       return "softcover";
-    case "layflat_book":
+    case "layflat":
       return "layflat";
     default:
       return "hardcover";

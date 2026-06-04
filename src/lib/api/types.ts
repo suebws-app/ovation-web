@@ -300,9 +300,9 @@ export type CreateMessageResult = {
 };
 
 export type KeepsakeSku =
-  | "hardcover_book"
-  | "softcover_book"
-  | "layflat_book"
+  | "hardcover"
+  | "softcover"
+  | "layflat"
   | string;
 
 export type KeepsakeProduct = {

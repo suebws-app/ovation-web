@@ -1,9 +1,9 @@
 import type { KeepsakeFilter } from "./components/FilterTabs";
 
 const FILTER_BY_SKU: Record<string, Exclude<KeepsakeFilter, "all">[]> = {
-  hardcover_book: ["printed", "physical"],
-  softcover_book: ["printed", "physical"],
-  layflat_book: ["printed", "physical"],
+  hardcover: ["printed", "physical"],
+  softcover: ["printed", "physical"],
+  layflat: ["printed", "physical"],
 };
 
 export const matchesFilter = (sku: string, filter: KeepsakeFilter): boolean => {

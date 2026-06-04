@@ -28,7 +28,7 @@ export type LinkVariantMapping = {
 export type LinkProductBody = {
   name: string;
   slug: string;
-  productType: "hardcover_book" | "softcover_book" | "layflat_book" | string;
+  productType: "hardcover" | "softcover" | "layflat" | string;
   category: string;
   basePriceCents: number;
   heroImageUrl?: string;

@@ -17,20 +17,20 @@ const FALLBACK: KeepsakeDesign = {
 };
 
 const DESIGN_BY_SKU: Record<string, KeepsakeDesign> = {
-  hardcover_book: {
+  hardcover: {
     subtitleKey: "keepsakes__design__gold_book__subtitle",
     headlineKey: "keepsakes__design__gold_book__headline",
     taglineKey: "keepsakes__design__gold_book__tagline",
     gradient: "linear-gradient(135deg, #F2D7B3, #C99A66)",
     featured: true,
   },
-  softcover_book: {
+  softcover: {
     subtitleKey: "keepsakes__design__fallback__subtitle",
     headlineKey: "keepsakes__design__fallback__headline",
     taglineKey: "keepsakes__design__fallback__tagline",
     gradient: "linear-gradient(135deg, #EFE4D2, #C9B58C)",
   },
-  layflat_book: {
+  layflat: {
     subtitleKey: "keepsakes__design__fallback__subtitle",
     headlineKey: "keepsakes__design__fallback__headline",
     taglineKey: "keepsakes__design__fallback__tagline",
