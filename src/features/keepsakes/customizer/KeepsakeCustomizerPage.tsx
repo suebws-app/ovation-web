@@ -5,7 +5,7 @@ import { ApiError } from "@/lib/api/client";
 import { getCurrentUser } from "@/lib/auth/session";
 import { designFor } from "../designTokens";
 import { CustomizerHeader } from "./CustomizerHeader";
-import { BookCustomizer } from "./BookCustomizer";
+import { BookCustomizer } from "./book/BookCustomizer";
 import { UnsupportedProductCard } from "./UnsupportedProductCard";
 import type {
   Event,
@@ -48,7 +48,11 @@ export const KeepsakeCustomizerPage = async ({
 
   return (
     <div className="flex w-full min-w-0 flex-col gap-6 p-6">
-      <CustomizerHeader product={detail.product} design={design} eventId={event.id} />
+      <CustomizerHeader
+        product={detail.product}
+        design={design}
+        eventId={event.id}
+      />
       <KeepsakeCustomizerSwitch
         product={detail.product}
         variants={detail.variants}
