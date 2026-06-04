@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
@@ -66,6 +66,39 @@ export const BookCustomizer = ({
   const t = useTranslations();
   const binding = bindingFromProductType(product.productType);
   const isHardcover = binding === "hardcover";
+
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const scrollSnapshotRef = useRef<{ el: HTMLElement; top: number } | null>(
+    null,
+  );
+
+  const findScrollContainer = (): HTMLElement | null => {
+    let node: HTMLElement | null = rootRef.current;
+    while (node) {
+      const style = getComputedStyle(node);
+      if (/(auto|scroll)/.test(style.overflowY) && node.scrollHeight > node.clientHeight) {
+        return node;
+      }
+      node = node.parentElement;
+    }
+    return null;
+  };
+
+  const handleSelectOpenChange = useCallback((open: boolean) => {
+    if (open) {
+      const el = findScrollContainer();
+      if (el) scrollSnapshotRef.current = { el, top: el.scrollTop };
+      return;
+    }
+    const snap = scrollSnapshotRef.current;
+    if (!snap) return;
+    const restore = () => {
+      snap.el.scrollTop = snap.top;
+    };
+    requestAnimationFrame(restore);
+    requestAnimationFrame(() => requestAnimationFrame(restore));
+    scrollSnapshotRef.current = null;
+  }, []);
 
   const paperFacets = useMemo(() => buildPaperFacets(variants), [variants]);
 
@@ -284,7 +317,10 @@ export const BookCustomizer = ({
   const sizeSelectId = "book-size-select";
 
   return (
-    <div className="desktop:grid-cols-[1fr_400px] grid grid-cols-1 gap-6">
+    <div
+      ref={rootRef}
+      className="desktop:grid-cols-[1fr_400px] grid grid-cols-1 gap-6"
+    >
       <div className="flex flex-col gap-6">
         <BookBindingBadge
           binding={binding}
@@ -307,6 +343,7 @@ export const BookCustomizer = ({
               <Select
                 value={selectedPaperType ?? undefined}
                 onValueChange={handlePaperChange}
+                onOpenChange={handleSelectOpenChange}
                 disabled={isPaperDisabled}
               >
                 <SelectTrigger id={paperSelectId} className="w-full">
@@ -345,6 +382,7 @@ export const BookCustomizer = ({
               <Select
                 value={effectiveSizeKey ?? undefined}
                 onValueChange={(value) => setSelectedSizeKey(value)}
+                onOpenChange={handleSelectOpenChange}
                 disabled={isSizeDisabled || !sizeHasOptions}
               >
                 <SelectTrigger id={sizeSelectId} className="w-full">
