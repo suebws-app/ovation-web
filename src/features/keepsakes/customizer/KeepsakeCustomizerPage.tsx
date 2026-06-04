@@ -5,17 +5,19 @@ import { ApiError } from "@/lib/api/client";
 import { getCurrentUser } from "@/lib/auth/session";
 import { designFor } from "../designTokens";
 import { CustomizerHeader } from "./CustomizerHeader";
-import { GoldBookCustomizer } from "./GoldBookCustomizer";
-import { VideoMontageCustomizer } from "./VideoMontageCustomizer";
-import { AudioVinylCustomizer } from "./AudioVinylCustomizer";
-import { DigitalAlbumCustomizer } from "./DigitalAlbumCustomizer";
-import { ThankYouCardsCustomizer } from "./ThankYouCardsCustomizer";
-import { CanvasPrintCustomizer } from "./CanvasPrintCustomizer";
+import { BookCustomizer } from "./BookCustomizer";
+import { UnsupportedProductCard } from "./UnsupportedProductCard";
 import type {
   Event,
   KeepsakeProductDetail,
   KeepsakeProductVariant,
 } from "@/lib/api/types";
+
+const BOOK_PRODUCT_TYPES = new Set([
+  "hardcover_book",
+  "softcover_book",
+  "layflat_book",
+]);
 
 type KeepsakeCustomizerPageProps = {
   params: Promise<{ id: string; slug: string }>;
@@ -48,7 +50,6 @@ export const KeepsakeCustomizerPage = async ({
     <div className="flex w-full min-w-0 flex-col gap-6 p-6">
       <CustomizerHeader product={detail.product} design={design} eventId={event.id} />
       <KeepsakeCustomizerSwitch
-        productType={detail.product.productType}
         product={detail.product}
         variants={detail.variants}
         event={event}
@@ -59,7 +60,6 @@ export const KeepsakeCustomizerPage = async ({
 };
 
 type SwitchProps = {
-  productType: string;
   product: KeepsakeProductDetail;
   variants: KeepsakeProductVariant[];
   event: Event;
@@ -67,80 +67,21 @@ type SwitchProps = {
 };
 
 const KeepsakeCustomizerSwitch = ({
-  productType,
   product,
   variants,
   event,
   isPro,
 }: SwitchProps) => {
-  const eventId = event.id;
-  switch (productType) {
-    case "gold_book":
-      return (
-        <GoldBookCustomizer
-          product={product}
-          variants={variants}
-          eventId={eventId}
-          event={event}
-          isPro={isPro}
-        />
-      );
-    case "video_montage":
-      return (
-        <VideoMontageCustomizer
-          product={product}
-          eventId={eventId}
-          event={event}
-          isPro={isPro}
-        />
-      );
-    case "audio_vinyl":
-      return (
-        <AudioVinylCustomizer
-          product={product}
-          variants={variants}
-          eventId={eventId}
-          event={event}
-          isPro={isPro}
-        />
-      );
-    case "digital_album":
-      return (
-        <DigitalAlbumCustomizer
-          product={product}
-          eventId={eventId}
-          event={event}
-          isPro={isPro}
-        />
-      );
-    case "thank_you_cards":
-      return (
-        <ThankYouCardsCustomizer
-          product={product}
-          variants={variants}
-          eventId={eventId}
-          event={event}
-          isPro={isPro}
-        />
-      );
-    case "canvas_print":
-      return (
-        <CanvasPrintCustomizer
-          product={product}
-          variants={variants}
-          eventId={eventId}
-          event={event}
-          isPro={isPro}
-        />
-      );
-    default:
-      return (
-        <DigitalAlbumCustomizer
-          product={product}
-          eventId={eventId}
-          event={event}
-          isPro={isPro}
-        />
-      );
+  if (BOOK_PRODUCT_TYPES.has(product.productType)) {
+    return (
+      <BookCustomizer
+        product={product}
+        variants={variants}
+        eventId={event.id}
+        event={event}
+        isPro={isPro}
+      />
+    );
   }
+  return <UnsupportedProductCard />;
 };
