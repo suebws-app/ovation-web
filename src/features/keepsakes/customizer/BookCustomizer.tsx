@@ -316,7 +316,10 @@ export const BookCustomizer = ({
                     )}
                   />
                 </SelectTrigger>
-                <SelectContent position="popper">
+                <SelectContent
+                  position="popper"
+                  onCloseAutoFocus={(e) => e.preventDefault()}
+                >
                   {paperOptions.map((option) => (
                     <SelectItem key={option.value} value={option.value}>
                       {option.label}
@@ -351,7 +354,10 @@ export const BookCustomizer = ({
                     )}
                   />
                 </SelectTrigger>
-                <SelectContent position="popper">
+                <SelectContent
+                  position="popper"
+                  onCloseAutoFocus={(e) => e.preventDefault()}
+                >
                   {sizeHasOptions ? (
                     sizeOptions.map((option) => (
                       <SelectItem key={option.value} value={option.value}>
