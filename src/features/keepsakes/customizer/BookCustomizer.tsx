@@ -6,9 +6,21 @@ import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { BookBindingBadge } from "./BookBindingBadge";
 import { CustomizerSection } from "./CustomizerSection";
-import { VariantSelector } from "./VariantSelector";
+import { OptionGroup } from "./OptionGroup";
+import { BookSizeFacetGroup } from "./BookSizeFacetGroup";
 import { MediaPicker } from "./MediaPicker";
 import { CustomizerCheckoutForm } from "./CustomizerCheckoutForm";
+import {
+  buildPaperFacets,
+  buildSizeFacets,
+  paperTypeLabelKeyFor,
+  paperTypeOf,
+  pickVariantForFacets,
+  readBoolAttr,
+  readNumberAttr,
+  readStringAttr,
+  sizeKeyOf,
+} from "./bookFacets";
 import type {
   Event,
   KeepsakeProductDetail,
@@ -30,30 +42,6 @@ const bindingFromProductType = (productType: string): Binding => {
   }
 };
 
-const readNumberAttr = (
-  attributes: Record<string, unknown> | undefined,
-  key: string,
-): number | null => {
-  const value = attributes?.[key];
-  return typeof value === "number" && Number.isFinite(value) ? value : null;
-};
-
-const readStringAttr = (
-  attributes: Record<string, unknown> | undefined,
-  key: string,
-): string | null => {
-  const value = attributes?.[key];
-  return typeof value === "string" && value.length > 0 ? value : null;
-};
-
-const readBoolAttr = (
-  attributes: Record<string, unknown> | undefined,
-  key: string,
-): boolean | null => {
-  const value = attributes?.[key];
-  return typeof value === "boolean" ? value : null;
-};
-
 type BookCustomizerProps = {
   product: KeepsakeProductDetail;
   variants: KeepsakeProductVariant[];
@@ -73,24 +61,45 @@ export const BookCustomizer = ({
   const binding = bindingFromProductType(product.productType);
   const isHardcover = binding === "hardcover";
 
-  const [variantId, setVariantId] = useState<string | null>(
-    variants[0]?.id ?? null,
+  const paperFacets = useMemo(() => buildPaperFacets(variants), [variants]);
+  const sizeFacets = useMemo(() => buildSizeFacets(variants), [variants]);
+
+  const firstVariant = variants[0] ?? null;
+  const initialPaperType = firstVariant ? paperTypeOf(firstVariant) : null;
+  const initialSizeKey = firstVariant ? sizeKeyOf(firstVariant) : null;
+
+  const [selectedPaperType, setSelectedPaperType] = useState<string | null>(
+    initialPaperType,
+  );
+  const [selectedSizeKey, setSelectedSizeKey] = useState<string | null>(
+    initialSizeKey,
   );
   const [photoIds, setPhotoIds] = useState<string[]>([]);
   const [coverText, setCoverText] = useState("");
   const [dedication, setDedication] = useState("");
 
-  const selectedVariant = useMemo(
-    () => variants.find((v) => v.id === variantId) ?? null,
-    [variants, variantId],
+  const pageCount = photoIds.length;
+
+  const { matchingVariants, chosenVariant } = useMemo(
+    () =>
+      pickVariantForFacets(
+        variants,
+        selectedPaperType,
+        selectedSizeKey,
+        pageCount,
+      ),
+    [variants, selectedPaperType, selectedSizeKey, pageCount],
   );
 
+  const selectedVariant = chosenVariant;
   const variantAttributes = selectedVariant?.attributes;
   const minPages = readNumberAttr(variantAttributes, "minPages");
   const maxPages = readNumberAttr(variantAttributes, "maxPages");
   const pageWidthMm = readNumberAttr(variantAttributes, "pageWidthMm");
   const pageHeightMm = readNumberAttr(variantAttributes, "pageHeightMm");
-  const paperStock = readStringAttr(variantAttributes, "paperStock");
+  const paperStock =
+    readStringAttr(variantAttributes, "paperStock") ??
+    readStringAttr(variantAttributes, "paperType");
   const pricePerPageCents =
     readNumberAttr(variantAttributes, "pricePerPageCents") ?? 0;
   const supportsCoverText =
@@ -98,8 +107,9 @@ export const BookCustomizer = ({
   const supportsDedication =
     readBoolAttr(variantAttributes, "supportsDedication") ?? true;
 
-  const pageCount = photoIds.length;
+  const noVariantMatch = matchingVariants.length === 0;
   const pagesWithinRange =
+    !noVariantMatch &&
     (minPages === null || pageCount >= minPages) &&
     (maxPages === null || pageCount <= maxPages);
 
@@ -138,38 +148,56 @@ export const BookCustomizer = ({
     ],
   );
 
-  const isReady = Boolean(selectedVariant) && pagesWithinRange && pageCount > 0;
+  const isReady =
+    Boolean(selectedVariant) &&
+    !noVariantMatch &&
+    pagesWithinRange &&
+    pageCount > 0;
 
-  const pageRangeDescription = (() => {
-    if (minPages !== null && maxPages !== null) {
-      return t("keepsakes__book_customizer__page_range_min_max", {
-        min: minPages,
-        max: maxPages,
-      });
+  const pageCountStatus = (() => {
+    if (noVariantMatch) {
+      return {
+        tone: "error" as const,
+        message: t("keepsakes__book_customizer__no_variant_label"),
+      };
     }
-    if (minPages !== null)
-      return t("keepsakes__book_customizer__page_range_min", { min: minPages });
-    if (maxPages !== null)
-      return t("keepsakes__book_customizer__page_range_max", { max: maxPages });
+    if (minPages !== null && pageCount < minPages) {
+      return {
+        tone: "warn" as const,
+        message: t("keepsakes__book_customizer__below_min_label", {
+          needed: minPages - pageCount,
+          min: minPages,
+        }),
+      };
+    }
+    if (maxPages !== null && pageCount > maxPages) {
+      return {
+        tone: "warn" as const,
+        message: t("keepsakes__book_customizer__above_max_label", {
+          extra: pageCount - maxPages,
+          max: maxPages,
+        }),
+      };
+    }
     return null;
   })();
 
   const notReadyMessage = (() => {
+    if (noVariantMatch)
+      return t("keepsakes__book_customizer__no_variant_label");
     if (!selectedVariant)
       return t("keepsakes__book_customizer__not_ready_pick_size");
     if (pageCount === 0)
       return t("keepsakes__book_customizer__not_ready_no_photos");
     if (minPages !== null && pageCount < minPages) {
-      const remaining = minPages - pageCount;
-      return t("keepsakes__book_customizer__not_ready_add_more", {
-        count: remaining,
+      return t("keepsakes__book_customizer__below_min_label", {
+        needed: minPages - pageCount,
         min: minPages,
       });
     }
     if (maxPages !== null && pageCount > maxPages) {
-      const over = pageCount - maxPages;
-      return t("keepsakes__book_customizer__not_ready_remove_some", {
-        count: over,
+      return t("keepsakes__book_customizer__above_max_label", {
+        extra: pageCount - maxPages,
         max: maxPages,
       });
     }
@@ -187,6 +215,17 @@ export const BookCustomizer = ({
           count: pageCount,
         });
 
+  const paperOptions = paperFacets.map((paperType) => {
+    const labelKey = paperTypeLabelKeyFor(paperType);
+    return {
+      value: paperType,
+      label: labelKey ? t(labelKey) : paperType,
+    };
+  });
+
+  const showPaperSection = paperFacets.length > 0;
+  const showSizeSection = sizeFacets.length > 0;
+
   return (
     <div className="desktop:grid-cols-[1fr_400px] grid grid-cols-1 gap-6">
       <div className="flex flex-col gap-6">
@@ -197,39 +236,78 @@ export const BookCustomizer = ({
           pageHeightMm={pageHeightMm}
         />
 
-        {variants.length > 0 && (
+        {showPaperSection && (
           <CustomizerSection
-            title={t("keepsakes__book_customizer__size_title")}
-            description={t("keepsakes__book_customizer__size_description")}
-          >
-            <VariantSelector
-              label={t("keepsakes__book_customizer__size_format_label")}
-              variants={variants}
-              basePriceCents={product.basePriceCents}
-              selectedId={variantId}
-              onChange={setVariantId}
-            />
-            {pageRangeDescription && (
-              <p className="type-caption text-muted-foreground mt-2 tracking-wider">
-                {pageRangeDescription}
-                {paperStock ? ` · ${paperStock}` : ""}
-              </p>
+            title={t("keepsakes__book_customizer__paper_section_title")}
+            description={t(
+              "keepsakes__book_customizer__paper_section_description",
             )}
+          >
+            <OptionGroup
+              label={t("keepsakes__book_customizer__paper_section_title")}
+              value={selectedPaperType}
+              options={paperOptions}
+              onChange={setSelectedPaperType}
+            />
+          </CustomizerSection>
+        )}
+
+        {showSizeSection && (
+          <CustomizerSection
+            title={t("keepsakes__book_customizer__size_section_title")}
+            description={t(
+              "keepsakes__book_customizer__size_section_description",
+            )}
+          >
+            <BookSizeFacetGroup
+              facets={sizeFacets}
+              selectedSizeKey={selectedSizeKey}
+              onSelect={setSelectedSizeKey}
+            />
           </CustomizerSection>
         )}
 
         <CustomizerSection
-          title={t("keepsakes__book_customizer__photos_title")}
+          title={t("keepsakes__book_customizer__page_count_section_title")}
           description={t("keepsakes__book_customizer__photos_description")}
           badge={photosBadge}
         >
-          <MediaPicker
-            eventId={eventId}
-            type="photo"
-            selectedIds={photoIds}
-            onToggle={togglePhoto}
-            emptyHint={t("keepsakes__book_customizer__photos_empty_hint")}
-          />
+          <div className="flex flex-col gap-3">
+            {!noVariantMatch && minPages !== null && maxPages !== null && (
+              <p className="type-body-small text-muted-foreground">
+                {t("keepsakes__book_customizer__page_range_label", {
+                  min: minPages,
+                  max: maxPages,
+                })}
+              </p>
+            )}
+            <p className="type-body-small text-muted-foreground">
+              {t("keepsakes__book_customizer__current_count_label", {
+                count: pageCount,
+              })}
+            </p>
+            {pageCountStatus && (
+              <p
+                role={pageCountStatus.tone === "error" ? "alert" : "status"}
+                className={
+                  pageCountStatus.tone === "error"
+                    ? "type-body-small text-destructive"
+                    : "type-body-small text-foreground"
+                }
+              >
+                {pageCountStatus.message}
+              </p>
+            )}
+            {!noVariantMatch && (
+              <MediaPicker
+                eventId={eventId}
+                type="photo"
+                selectedIds={photoIds}
+                onToggle={togglePhoto}
+                emptyHint={t("keepsakes__book_customizer__photos_empty_hint")}
+              />
+            )}
+          </div>
         </CustomizerSection>
 
         {isHardcover && (
