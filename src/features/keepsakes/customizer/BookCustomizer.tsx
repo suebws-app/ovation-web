@@ -4,15 +4,21 @@ import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@ovation/ui/components/Select";
 import { BookBindingBadge } from "./BookBindingBadge";
 import { CustomizerSection } from "./CustomizerSection";
-import { OptionGroup } from "./OptionGroup";
-import { BookSizeFacetGroup } from "./BookSizeFacetGroup";
 import { MediaPicker } from "./MediaPicker";
 import { CustomizerCheckoutForm } from "./CustomizerCheckoutForm";
 import {
   buildPaperFacets,
   buildSizeFacets,
+  ORIENTATION_LABEL_KEY,
   paperTypeLabelKeyFor,
   paperTypeOf,
   pickVariantForFacets,
@@ -62,18 +68,48 @@ export const BookCustomizer = ({
   const isHardcover = binding === "hardcover";
 
   const paperFacets = useMemo(() => buildPaperFacets(variants), [variants]);
-  const sizeFacets = useMemo(() => buildSizeFacets(variants), [variants]);
 
   const firstVariant = variants[0] ?? null;
   const initialPaperType = firstVariant ? paperTypeOf(firstVariant) : null;
-  const initialSizeKey = firstVariant ? sizeKeyOf(firstVariant) : null;
 
   const [selectedPaperType, setSelectedPaperType] = useState<string | null>(
     initialPaperType,
   );
+
+  const sizeFacets = useMemo(() => {
+    if (selectedPaperType === null) return [];
+    return buildSizeFacets(
+      variants.filter((v) => paperTypeOf(v) === selectedPaperType),
+    );
+  }, [variants, selectedPaperType]);
+
+  const initialSizeKey = firstVariant ? sizeKeyOf(firstVariant) : null;
+
   const [selectedSizeKey, setSelectedSizeKey] = useState<string | null>(
     initialSizeKey,
   );
+
+  const effectiveSizeKey = useMemo(() => {
+    if (sizeFacets.length === 0) return null;
+    const stillValid = sizeFacets.some(
+      (facet) => facet.sizeKey === selectedSizeKey,
+    );
+    return stillValid ? selectedSizeKey : (sizeFacets[0]?.sizeKey ?? null);
+  }, [sizeFacets, selectedSizeKey]);
+
+  const handlePaperChange = (value: string) => {
+    setSelectedPaperType(value);
+    const availableSizes = buildSizeFacets(
+      variants.filter((v) => paperTypeOf(v) === value),
+    );
+    const stillValid = availableSizes.some(
+      (facet) => facet.sizeKey === selectedSizeKey,
+    );
+    if (!stillValid) {
+      setSelectedSizeKey(availableSizes[0]?.sizeKey ?? null);
+    }
+  };
+
   const [photoIds, setPhotoIds] = useState<string[]>([]);
   const [coverText, setCoverText] = useState("");
   const [dedication, setDedication] = useState("");
@@ -85,10 +121,10 @@ export const BookCustomizer = ({
       pickVariantForFacets(
         variants,
         selectedPaperType,
-        selectedSizeKey,
+        effectiveSizeKey,
         pageCount,
       ),
-    [variants, selectedPaperType, selectedSizeKey, pageCount],
+    [variants, selectedPaperType, effectiveSizeKey, pageCount],
   );
 
   const selectedVariant = chosenVariant;
@@ -223,8 +259,29 @@ export const BookCustomizer = ({
     };
   });
 
+  const sizeOptions = sizeFacets.map((facet) => {
+    const sizeLabel = facet.labelKey
+      ? t(facet.labelKey)
+      : t("keepsakes__book_customizer__size_custom", {
+          width: facet.widthMm,
+          height: facet.heightMm,
+        });
+    const orientationLabel = t(ORIENTATION_LABEL_KEY[facet.orientation]);
+    return {
+      value: facet.sizeKey,
+      label: `${sizeLabel} · ${orientationLabel} (${facet.widthMm}×${facet.heightMm} mm)`,
+    };
+  });
+
   const showPaperSection = paperFacets.length > 0;
-  const showSizeSection = sizeFacets.length > 0;
+  const showSizeSection = paperFacets.length > 0;
+  const isPaperDisabled = paperOptions.length <= 1;
+  const isSizeDisabled =
+    selectedPaperType === null || sizeOptions.length <= 1;
+  const sizeHasOptions = sizeOptions.length > 0;
+
+  const paperSelectId = "book-paper-select";
+  const sizeSelectId = "book-size-select";
 
   return (
     <div className="desktop:grid-cols-[1fr_400px] grid grid-cols-1 gap-6">
@@ -243,12 +300,31 @@ export const BookCustomizer = ({
               "keepsakes__book_customizer__paper_section_description",
             )}
           >
-            <OptionGroup
-              label={t("keepsakes__book_customizer__paper_section_title")}
-              value={selectedPaperType}
-              options={paperOptions}
-              onChange={setSelectedPaperType}
-            />
+            <div className="flex flex-col gap-2">
+              <Label htmlFor={paperSelectId}>
+                {t("keepsakes__book_customizer__paper_section_title")}
+              </Label>
+              <Select
+                value={selectedPaperType ?? undefined}
+                onValueChange={handlePaperChange}
+                disabled={isPaperDisabled}
+              >
+                <SelectTrigger id={paperSelectId} className="w-full">
+                  <SelectValue
+                    placeholder={t(
+                      "keepsakes__book_customizer__paper_placeholder",
+                    )}
+                  />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  {paperOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </CustomizerSection>
         )}
 
@@ -259,11 +335,37 @@ export const BookCustomizer = ({
               "keepsakes__book_customizer__size_section_description",
             )}
           >
-            <BookSizeFacetGroup
-              facets={sizeFacets}
-              selectedSizeKey={selectedSizeKey}
-              onSelect={setSelectedSizeKey}
-            />
+            <div className="flex flex-col gap-2">
+              <Label htmlFor={sizeSelectId}>
+                {t("keepsakes__book_customizer__size_section_title")}
+              </Label>
+              <Select
+                value={effectiveSizeKey ?? undefined}
+                onValueChange={(value) => setSelectedSizeKey(value)}
+                disabled={isSizeDisabled || !sizeHasOptions}
+              >
+                <SelectTrigger id={sizeSelectId} className="w-full">
+                  <SelectValue
+                    placeholder={t(
+                      "keepsakes__book_customizer__size_placeholder",
+                    )}
+                  />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  {sizeHasOptions ? (
+                    sizeOptions.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))
+                  ) : (
+                    <SelectItem value="__none" disabled>
+                      {t("keepsakes__book_customizer__size_no_options")}
+                    </SelectItem>
+                  )}
+                </SelectContent>
+              </Select>
+            </div>
           </CustomizerSection>
         )}
 
