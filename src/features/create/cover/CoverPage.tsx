@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
@@ -12,6 +13,7 @@ import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useSession } from "@/lib/auth/client";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { useHydrateStore } from "@/lib/storage/useHydrateStore";
 import { useSlugChecker } from "@/features/create/hooks/useSlugChecker";
 import { useSlugSuggestions } from "@/features/create/hooks/useSlugSuggestions";
 import { COVER_OPTIONS } from "@/features/create/constants";
@@ -22,18 +24,26 @@ import { SlugInput } from "./components/SlugInput";
 
 export const CoverPage = () => {
   const t = useTranslations();
+  const hydrated = useHydrateStore(useCreateEventStore);
   const { formData, updateFormData } = useCreateEventStore();
   const accountType = useSignUpStore((s) => s.formData.accountType);
   const { data: session } = useSession();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
+    if (!hydrated) return;
     const { partner1Name, partner2Name } =
       useCreateEventStore.getState().formData;
     if (!partner1Name.trim() && !partner2Name.trim()) {
-      router.replace(appRoutes.create.root);
+      const as = searchParams.get("as");
+      const target =
+        as === "couple" || as === "pro"
+          ? `${appRoutes.create.root}?as=${as}`
+          : appRoutes.create.root;
+      router.replace(target);
     }
-  }, [router]);
+  }, [router, hydrated, searchParams]);
 
   const slug = formData.bookUrl || "";
   const status = useSlugChecker(slug);
@@ -73,7 +83,11 @@ export const CoverPage = () => {
     if (session?.user) {
       router.push(appRoutes.create.done);
     } else {
-      const type = accountType || "couple";
+      const asFromUrl = searchParams.get("as");
+      const type =
+        asFromUrl === "pro" || asFromUrl === "couple"
+          ? asFromUrl
+          : accountType || "couple";
       router.push(`${appRoutes.auth.signUp}?as=${type}`);
     }
   };
@@ -113,6 +127,8 @@ export const CoverPage = () => {
 
   const isInitialSuggestedSlug =
     !userEditedSlug && slug.trim() === generatedSlug;
+
+  if (!hydrated) return null;
 
   return (
     <AuthSplitLayout

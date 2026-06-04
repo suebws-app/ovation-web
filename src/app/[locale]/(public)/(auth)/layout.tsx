@@ -1,7 +1,3 @@
-import { DashboardBackGuard } from "@/features/dashboard/components/DashboardBackGuard";
-
-const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-  return <DashboardBackGuard>{children}</DashboardBackGuard>;
-};
+const AuthLayout = ({ children }: { children: React.ReactNode }) => children;
 
 export default AuthLayout;
