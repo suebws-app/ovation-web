@@ -5,29 +5,22 @@ import { Controller, useWatch } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Label } from "@ovation/ui/components/Label";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@ovation/ui/components/Select";
-import {
   buildSizeFacets,
   ORIENTATION_LABEL_KEY,
   paperTypeOf,
 } from "../bookFacets";
 import { CustomizerSection } from "../CustomizerSection";
 import { useBookForm, type BookFormValues } from "./BookFormContext";
+import { BookOptionSelect } from "./BookOptionSelect";
 import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 type SizeSelectProps = {
   variants: KeepsakeProductVariant[];
-  onOpenChange?: (open: boolean) => void;
 };
 
 const SIZE_SELECT_ID = "book-size-select";
 
-export const SizeSelect = ({ variants, onOpenChange }: SizeSelectProps) => {
+export const SizeSelect = ({ variants }: SizeSelectProps) => {
   const t = useTranslations();
   const { control } = useBookForm();
   const paperType = useWatch<BookFormValues, "paperType">({ name: "paperType" });
@@ -73,36 +66,15 @@ export const SizeSelect = ({ variants, onOpenChange }: SizeSelectProps) => {
           control={control}
           name="sizeKey"
           render={({ field }) => (
-            <Select
+            <BookOptionSelect
+              id={SIZE_SELECT_ID}
               value={field.value || undefined}
               onValueChange={field.onChange}
-              onOpenChange={onOpenChange}
+              options={sizeOptions}
+              placeholder={t("keepsakes__book_customizer__size_placeholder")}
               disabled={isDisabled || !hasOptions}
-            >
-              <SelectTrigger id={SIZE_SELECT_ID} className="w-full">
-                <SelectValue
-                  placeholder={t(
-                    "keepsakes__book_customizer__size_placeholder",
-                  )}
-                />
-              </SelectTrigger>
-              <SelectContent
-                position="popper"
-                onCloseAutoFocus={(e) => e.preventDefault()}
-              >
-                {hasOptions ? (
-                  sizeOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))
-                ) : (
-                  <SelectItem value="__none" disabled>
-                    {t("keepsakes__book_customizer__size_no_options")}
-                  </SelectItem>
-                )}
-              </SelectContent>
-            </Select>
+              emptyLabel={t("keepsakes__book_customizer__size_no_options")}
+            />
           )}
         />
       </div>

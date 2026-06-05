@@ -5,13 +5,6 @@ import { Controller } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Label } from "@ovation/ui/components/Label";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@ovation/ui/components/Select";
-import {
   buildPaperFacets,
   buildSizeFacets,
   paperTypeLabelKeyFor,
@@ -19,16 +12,16 @@ import {
 } from "../bookFacets";
 import { CustomizerSection } from "../CustomizerSection";
 import { useBookForm } from "./BookFormContext";
+import { BookOptionSelect } from "./BookOptionSelect";
 import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 type PaperSelectProps = {
   variants: KeepsakeProductVariant[];
-  onOpenChange?: (open: boolean) => void;
 };
 
 const PAPER_SELECT_ID = "book-paper-select";
 
-export const PaperSelect = ({ variants, onOpenChange }: PaperSelectProps) => {
+export const PaperSelect = ({ variants }: PaperSelectProps) => {
   const t = useTranslations();
   const { control, getValues, setValue } = useBookForm();
 
@@ -63,7 +56,8 @@ export const PaperSelect = ({ variants, onOpenChange }: PaperSelectProps) => {
           control={control}
           name="paperType"
           render={({ field }) => (
-            <Select
+            <BookOptionSelect
+              id={PAPER_SELECT_ID}
               value={field.value || undefined}
               onValueChange={(next) => {
                 field.onChange(next);
@@ -81,27 +75,10 @@ export const PaperSelect = ({ variants, onOpenChange }: PaperSelectProps) => {
                   });
                 }
               }}
-              onOpenChange={onOpenChange}
+              options={paperOptions}
+              placeholder={t("keepsakes__book_customizer__paper_placeholder")}
               disabled={isDisabled}
-            >
-              <SelectTrigger id={PAPER_SELECT_ID} className="w-full">
-                <SelectValue
-                  placeholder={t(
-                    "keepsakes__book_customizer__paper_placeholder",
-                  )}
-                />
-              </SelectTrigger>
-              <SelectContent
-                position="popper"
-                onCloseAutoFocus={(e) => e.preventDefault()}
-              >
-                {paperOptions.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            />
           )}
         />
       </div>

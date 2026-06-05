@@ -83,6 +83,7 @@ export const CustomizerCheckoutForm = ({
   const [addedToCart, setAddedToCart] = useState(false);
   const [previewRenderId, setPreviewRenderId] = useState<string | null>(null);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewError, setPreviewError] = useState<string | null>(null);
   const previewMutation = useCreateKeepsakePreview();
 
   useEffect(() => {
@@ -123,7 +124,7 @@ export const CustomizerCheckoutForm = ({
 
   const handlePreview = async () => {
     if (!eventId) return;
-    setSubmitError(null);
+    setPreviewError(null);
     try {
       const bookCustomization = customization as {
         coverText?: string;
@@ -144,10 +145,10 @@ export const CustomizerCheckoutForm = ({
       setPreviewRenderId(renderId);
       setPreviewOpen(true);
     } catch (err) {
-      setSubmitError(
+      setPreviewError(
         ApiError.isApiError(err)
           ? err.message
-          : t("keepsakes__order__error_default"),
+          : t("keepsakes__preview_pdf__error"),
       );
     }
   };
@@ -306,6 +307,9 @@ export const CustomizerCheckoutForm = ({
           {t("keepsakes__preview_pdf__button")}
         </Button>
       </div>
+      {previewError && (
+        <p className="type-caption text-destructive">{previewError}</p>
+      )}
       <PreviewPdfModal
         renderId={previewRenderId}
         open={previewOpen}

@@ -16,7 +16,6 @@ import { SizeSelect } from "./SizeSelect";
 import { PageCountSection } from "./PageCountSection";
 import { PersonalizeSection } from "./PersonalizeSection";
 import { SpineNote } from "./SpineNote";
-import { useSelectScrollSnapshot } from "./useSelectScrollSnapshot";
 import type {
   Event,
   KeepsakeProductDetail,
@@ -57,21 +56,13 @@ export const BookCustomizer = ({
     mode: "onChange",
   });
 
-  const { rootRef, onSelectOpenChange } = useSelectScrollSnapshot();
-
   return (
     <FormProvider {...form}>
-      <div
-        ref={rootRef}
-        className="desktop:grid-cols-[1fr_400px] grid grid-cols-1 gap-6"
-      >
+      <div className="desktop:grid-cols-[1fr_400px] grid grid-cols-1 gap-6">
         <div className="flex flex-col gap-6">
           <BookHeaderBadge binding={binding} variants={variants} />
-          <PaperSelect
-            variants={variants}
-            onOpenChange={onSelectOpenChange}
-          />
-          <SizeSelect variants={variants} onOpenChange={onSelectOpenChange} />
+          <PaperSelect variants={variants} />
+          <SizeSelect variants={variants} />
           <PageCountSection
             variants={variants}
             eventId={eventId}

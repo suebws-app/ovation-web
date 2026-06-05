@@ -999,6 +999,7 @@
   "keepsakes__preview_pdf__title": "Preview your book",
   "keepsakes__preview_pdf__rendering": "Rendering your preview…",
   "keepsakes__preview_pdf__failed": "Preview failed. Try again.",
+  "keepsakes__preview_pdf__error": "Preview failed. Please try again.",
   "keepsakes__preview_pdf__open_new_tab": "Open in new tab",
   "keepsakes__book_customizer__pages_label": "{count, plural, one {# page} other {# pages}}",
   "keepsakes__book_customizer__page_range_min_max": "{min}–{max} pages",
