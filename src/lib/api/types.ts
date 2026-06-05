@@ -299,14 +299,14 @@ export type CreateMessageResult = {
   };
 };
 
-export type KeepsakeSku =
+export type KeepsakeProductType =
   | "hardcover"
   | "softcover"
   | "layflat"
   | string;
 
 export type KeepsakeProduct = {
-  sku: KeepsakeSku;
+  productType: KeepsakeProductType;
   name: string;
   description: string;
   subtitle: string | null;
@@ -322,14 +322,10 @@ export type KeepsakeCatalog = {
 
 export type KeepsakeProductDetail = {
   id: string;
-  sku: string;
-  slug: string;
   productType: string;
   name: string;
   description: string | null;
   subtitle: string | null;
-  basePriceCents: number;
-  currency: string;
   category: string;
   heroImageUrl: string | null;
   isActive: boolean;
@@ -405,7 +401,7 @@ export type Order = {
   currency: string;
   subtotalCents: number;
   totalCents: number;
-  productSku: string;
+  productType: string;
   productName: string;
   variantSku: string | null;
   variantName: string | null;
@@ -434,7 +430,7 @@ export type OrderDetail = {
   orderType: string;
   status: OrderStatus;
   totalCents: number;
-  productSku: string;
+  productType: string;
   productName: string;
   variantSku: string | null;
   variantName: string | null;
@@ -466,7 +462,7 @@ export type CheckoutOrderType = "plan" | "keepsake";
 export type CheckoutPlanTier = "premium" | "bundle";
 
 export type CheckoutItem = {
-  productSku: string;
+  productType: string;
   productVariantId?: string;
   quantity: number;
   customization?: Record<string, unknown>;
@@ -494,7 +490,7 @@ export type CheckoutSessionInput = {
 };
 
 export type CartTotalsItem = {
-  productSku: string;
+  productType: string;
   productVariantId?: string;
   quantity: number;
 };

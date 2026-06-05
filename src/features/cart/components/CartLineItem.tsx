@@ -32,7 +32,7 @@ export const CartLineItem = ({ item, isLast }: CartLineItemProps) => {
         !isLast && "border-border border-b",
       )}
     >
-      <CartLineItemArt kind={item.productKind} />
+      <CartLineItemArt kind={item.productType} />
       <div className="min-w-0">
         <div className="font-serif type-h5 font-semibold tracking-tight">
           {productName}

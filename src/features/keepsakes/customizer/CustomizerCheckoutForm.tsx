@@ -92,7 +92,8 @@ export const CustomizerCheckoutForm = ({
   }, [addedToCart]);
 
   const effectivePriceCents =
-    unitPriceCents ?? selectedVariant?.priceCents ?? product.basePriceCents;
+    unitPriceCents ?? selectedVariant?.priceCents ?? 0;
+  const productCurrency = selectedVariant?.currency ?? "EUR";
   const buttonDisabled = !eventId || !isReady || isCheckingOut;
   const showBreakdown = Boolean(
     priceBreakdown &&
@@ -104,15 +105,13 @@ export const CustomizerCheckoutForm = ({
     if (!eventId) return;
     add({
       eventId,
-      productSku: product.sku,
+      productType: product.productType,
       productNameKey: product.name,
       productSubtitleKey: product.subtitle,
-      productKind: product.sku,
-      productSlug: product.slug,
       productVariantId: selectedVariant?.id ?? null,
       variantName: selectedVariant?.name ?? null,
       unitPriceCents: effectivePriceCents,
-      currency: product.currency,
+      currency: productCurrency,
       quantity: 1,
       customization,
       photoIds: photoIds ?? [],
@@ -165,7 +164,7 @@ export const CustomizerCheckoutForm = ({
         orderType: "keepsake",
         items: [
           {
-            productSku: product.sku,
+            productType: product.productType,
             productVariantId: selectedVariant?.id ?? undefined,
             quantity: 1,
             customization,
@@ -244,7 +243,7 @@ export const CustomizerCheckoutForm = ({
           <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
             <span>{t("keepsakes__book_customizer__price_base")}</span>
             <span>
-              {formatPricePrecise(priceBreakdown.baseCents, product.currency)}
+              {formatPricePrecise(priceBreakdown.baseCents, productCurrency)}
             </span>
           </div>
           <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
@@ -253,14 +252,14 @@ export const CustomizerCheckoutForm = ({
                 count: priceBreakdown.pageCount,
                 perPage: formatPricePrecise(
                   priceBreakdown.pricePerPageCents,
-                  product.currency,
+                  productCurrency,
                 ),
               })}
             </span>
             <span>
               {formatPricePrecise(
                 priceBreakdown.pagesSurchargeCents,
-                product.currency,
+                productCurrency,
               )}
             </span>
           </div>
@@ -269,7 +268,7 @@ export const CustomizerCheckoutForm = ({
             <span>
               {formatPricePrecise(
                 priceBreakdown.totalCents,
-                product.currency,
+                productCurrency,
               )}
             </span>
           </div>
@@ -285,7 +284,7 @@ export const CustomizerCheckoutForm = ({
           {isCheckingOut
             ? t("keepsakes__order__starting")
             : t("keepsakes__order__buy_now", {
-                amount: formatPrice(effectivePriceCents, product.currency),
+                amount: formatPrice(effectivePriceCents, productCurrency),
               })}
         </Button>
         <Button

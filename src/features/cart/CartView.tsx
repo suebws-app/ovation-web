@@ -48,7 +48,7 @@ export const CartView = () => {
       const result = await paymentsClient.computeCartTotals({
         eventId: items[0].eventId,
         items: items.map((i) => ({
-          productSku: i.productSku,
+          productType: i.productType,
           productVariantId: i.productVariantId ?? undefined,
           quantity: i.quantity,
         })),
@@ -83,7 +83,7 @@ export const CartView = () => {
         eventId: items[0].eventId,
         orderType: "keepsake",
         items: items.map((item) => ({
-          productSku: item.productSku,
+          productType: item.productType,
           productVariantId: item.productVariantId ?? undefined,
           quantity: item.quantity,
           customization: item.customization,

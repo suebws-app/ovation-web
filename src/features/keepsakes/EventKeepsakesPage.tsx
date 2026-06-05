@@ -26,7 +26,7 @@ export const EventKeepsakesPage = async ({
   ]);
 
   const featured =
-    catalog.products.find((p) => p.sku === "hardcover") ??
+    catalog.products.find((p) => p.productType === "hardcover") ??
     catalog.products[0];
 
   return (

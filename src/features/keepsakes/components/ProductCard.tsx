@@ -5,7 +5,6 @@ import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { appRoutes } from "@/lib/routes";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { ProductTag } from "./ProductTag";
-import { slugForSku } from "../slug";
 
 type ProductCardProps = {
   product: DesignedProduct;
@@ -19,7 +18,6 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
     product;
   const dark = Boolean(design.dark);
   const canOrder = Boolean(eventId);
-  const slug = slugForSku(product.sku);
 
   return (
     <div className="rounded-20 border-border bg-card flex flex-col overflow-hidden border">
@@ -61,7 +59,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
               size="sm"
               className="bg-foreground text-background hover:bg-foreground/90 flex-1 rounded-full"
             >
-              <Link href={appRoutes.app.eventKeepsakeCustomizer(eventId, slug)}>
+              <Link href={appRoutes.app.eventKeepsakeCustomizer(eventId, product.productType)}>
                 {t("keepsakes__product__order")}{" "}
                 <ArrowRightIcon width={12} height={12} />
               </Link>

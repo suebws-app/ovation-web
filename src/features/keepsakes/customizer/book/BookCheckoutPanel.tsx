@@ -54,7 +54,7 @@ export const BookCheckoutPanel = ({
     name: ["paperType", "sizeKey", "photoIds", "coverText", "dedication"],
   });
 
-  const basePriceCents = chosenVariant?.priceCents ?? product.basePriceCents;
+  const basePriceCents = chosenVariant?.priceCents ?? 0;
   const totalPriceCents = basePriceCents + pagesSurchargeCents;
   const safePhotoIds = useMemo(() => photoIds ?? [], [photoIds]);
 

@@ -29,7 +29,7 @@ export const KeepsakeCustomizerPage = async ({
   const { id, slug } = await params;
 
   const [detail, eventResult, user] = await Promise.all([
-    keepsakesApi.productBySlug(slug).catch((error) => {
+    keepsakesApi.productByType(slug).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
     }),
@@ -43,7 +43,7 @@ export const KeepsakeCustomizerPage = async ({
   if (!detail || !eventResult) notFound();
 
   const event = eventResult.event;
-  const design = designFor(detail.product.sku);
+  const design = designFor(detail.product.productType);
   const isPro = user?.accountType === "pro";
 
   return (

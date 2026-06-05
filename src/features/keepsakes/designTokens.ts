@@ -16,7 +16,7 @@ const FALLBACK: KeepsakeDesign = {
   gradient: "linear-gradient(135deg, #EFC9A8, #D8B997)",
 };
 
-const DESIGN_BY_SKU: Record<string, KeepsakeDesign> = {
+const DESIGN_BY_PRODUCT_TYPE: Record<string, KeepsakeDesign> = {
   hardcover: {
     subtitleKey: "keepsakes__design__gold_book__subtitle",
     headlineKey: "keepsakes__design__gold_book__headline",
@@ -38,8 +38,8 @@ const DESIGN_BY_SKU: Record<string, KeepsakeDesign> = {
   },
 };
 
-export const designFor = (sku: string): KeepsakeDesign =>
-  DESIGN_BY_SKU[sku] ?? FALLBACK;
+export const designFor = (productType: string): KeepsakeDesign =>
+  DESIGN_BY_PRODUCT_TYPE[productType] ?? FALLBACK;
 
 export type DesignedProduct = KeepsakeProduct & {
   design: KeepsakeDesign;
@@ -47,7 +47,7 @@ export type DesignedProduct = KeepsakeProduct & {
 
 export const decorate = (product: KeepsakeProduct): DesignedProduct => ({
   ...product,
-  design: designFor(product.sku),
+  design: designFor(product.productType),
 });
 
 export const formatPrice = (priceCents: number, currency: string): string => {

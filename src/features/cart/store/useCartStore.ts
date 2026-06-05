@@ -5,11 +5,9 @@ import { persist } from "zustand/middleware";
 
 export type CartItem = {
   id: string;
-  productSku: string;
+  productType: string;
   productNameKey: string;
   productSubtitleKey: string | null;
-  productKind: string;
-  productSlug: string;
   productVariantId: string | null;
   variantName: string | null;
   unitPriceCents: number;

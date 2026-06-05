@@ -7,7 +7,6 @@ import { appRoutes } from "@/lib/routes";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { FeaturePill } from "./FeaturePill";
 import { BookMock } from "./BookMock";
-import { slugForSku } from "../slug";
 
 type FeaturedProductProps = {
   product: DesignedProduct;
@@ -19,7 +18,6 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
   const { name, description, priceCents, currency, timelineDays, design } =
     product;
   const canOrder = Boolean(eventId);
-  const slug = slugForSku(product.sku);
 
   const features = [
     t("keepsakes__featured__feature_pages"),
@@ -59,7 +57,7 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
               size="lg"
               className="bg-foreground text-background hover:bg-foreground/90 rounded-full"
             >
-              <Link href={appRoutes.app.eventKeepsakeCustomizer(eventId, slug)}>
+              <Link href={appRoutes.app.eventKeepsakeCustomizer(eventId, product.productType)}>
                 {t("keepsakes__featured__order_now")}{" "}
                 <ArrowRightIcon width={13} height={13} />
               </Link>
