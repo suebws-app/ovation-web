@@ -42,4 +42,8 @@ export const queryKeys = {
       ["orders", "list", filters] as const,
     detail: (orderId: string) => ["orders", "detail", orderId] as const,
   },
+  pdf: {
+    all: () => ["pdf"] as const,
+    render: (renderId: string) => ["pdf", "render", renderId] as const,
+  },
 } as const;

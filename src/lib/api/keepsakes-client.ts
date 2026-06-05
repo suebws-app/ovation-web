@@ -14,6 +14,34 @@ export type VideoMontagePreviewInput = {
   musicTrackId?: string;
 };
 
+export type BindType = "hardcover" | "softcover" | "layflat";
+
+export type KeepsakePreviewInput = {
+  eventId: string;
+  productType: BindType;
+  productVariantId?: string;
+  photoIds: string[];
+  messageIds?: string[];
+  customization?: {
+    coverTitle?: string;
+    coverSubtitle?: string;
+    coverImageMediaId?: string;
+    showMessages?: boolean;
+  };
+};
+
+export type RenderStatus = {
+  id: string;
+  orderId: string | null;
+  renderType: "preview" | "final";
+  status: "queued" | "rendering" | "completed" | "failed";
+  bindType?: string | null;
+  publicUrl?: string;
+  errorMessage?: string | null;
+  pageCount?: number | null;
+  createdAt: string;
+};
+
 export const keepsakesClient = {
   catalog: () => clientFetch<KeepsakeCatalog>("/keepsakes/catalog"),
 
@@ -28,4 +56,13 @@ export const keepsakesClient = {
       `/events/${eventId}/keepsakes/video-montage/preview`,
       { method: "POST", body: input },
     ),
+
+  createKeepsakePreview: (input: KeepsakePreviewInput) =>
+    clientFetch<{ renderId: string }>("/pdf/keepsakes/preview", {
+      method: "POST",
+      body: input,
+    }),
+
+  getRender: (renderId: string) =>
+    clientFetch<RenderStatus>(`/pdf/renders/${renderId}`),
 };

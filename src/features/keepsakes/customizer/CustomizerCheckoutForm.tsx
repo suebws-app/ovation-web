@@ -10,6 +10,9 @@ import { paymentsClient } from "@/lib/api/payments-client";
 import { ApiError } from "@/lib/api/client";
 import { env } from "@/lib/utils/env";
 import { formatPrice } from "../designTokens";
+import { useCreateKeepsakePreview } from "@/lib/query/pdfQueries";
+import { PreviewPdfModal } from "./PreviewPdfModal";
+import type { BindType } from "@/lib/api/keepsakes-client";
 import type {
   Event,
   KeepsakeProductDetail,
@@ -78,6 +81,9 @@ export const CustomizerCheckoutForm = ({
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [previewRenderId, setPreviewRenderId] = useState<string | null>(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const previewMutation = useCreateKeepsakePreview();
 
   useEffect(() => {
     if (!addedToCart) return;
@@ -114,6 +120,37 @@ export const CustomizerCheckoutForm = ({
       requiresShipping,
     });
     setAddedToCart(true);
+  };
+
+  const handlePreview = async () => {
+    if (!eventId) return;
+    setSubmitError(null);
+    try {
+      const bookCustomization = customization as {
+        coverText?: string;
+        dedication?: string;
+        binding?: string;
+        variantId?: string | null;
+        pages?: Array<{ mediaId: string; order: number }>;
+      };
+      const { renderId } = await previewMutation.mutateAsync({
+        eventId,
+        productType: product.productType as BindType,
+        productVariantId: selectedVariant?.id,
+        photoIds: photoIds ?? [],
+        customization: {
+          coverTitle: bookCustomization.coverText,
+        },
+      });
+      setPreviewRenderId(renderId);
+      setPreviewOpen(true);
+    } catch (err) {
+      setSubmitError(
+        ApiError.isApiError(err)
+          ? err.message
+          : t("keepsakes__order__error_default"),
+      );
+    }
   };
 
   const handleBuyNow = async () => {
@@ -260,7 +297,21 @@ export const CustomizerCheckoutForm = ({
         >
           {t("keepsakes__order__add_to_cart_short")}
         </Button>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={handlePreview}
+          disabled={!eventId || !photoIds || photoIds.length === 0 || previewMutation.isPending}
+          className="rounded-full"
+        >
+          {t("keepsakes__preview_pdf__button")}
+        </Button>
       </div>
+      <PreviewPdfModal
+        renderId={previewRenderId}
+        open={previewOpen}
+        onClose={() => setPreviewOpen(false)}
+      />
     </div>
   );
 };
