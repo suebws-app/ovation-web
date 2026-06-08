@@ -16,6 +16,7 @@ const scriptSrc = [
   "https://challenges.cloudflare.com",
   "https://*.paddle.com",
   "https://*.paddle.dev",
+  "https://cdn-cookieyes.com",
   isDev ? "'unsafe-eval'" : "",
 ]
   .filter(Boolean)
