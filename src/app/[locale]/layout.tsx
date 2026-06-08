@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { Rubik, Noto_Sans } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -49,14 +50,25 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased`} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{ __html: themeScript }}
         />
       </head>
-      <body className="font-sans flex max-h-dvh flex-1 flex-col">
+      {process.env.NEXT_PUBLIC_COOKIE_YES_SITE_ID && (
+        <Script
+          id="cookieyes"
+          src={`https://cdn-cookieyes.com/client_data/${process.env.NEXT_PUBLIC_COOKIE_YES_SITE_ID}/script.js`}
+          strategy="beforeInteractive"
+        />
+      )}
+      <body className="flex max-h-dvh flex-1 flex-col font-sans">
         <NextIntlClientProvider messages={messages}>
           <AppProviders>{children}</AppProviders>
         </NextIntlClientProvider>

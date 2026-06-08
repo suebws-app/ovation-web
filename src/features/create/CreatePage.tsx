@@ -10,12 +10,15 @@ import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { EventBookForm } from "@/features/create/EventBookForm";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
+import { CreatePageSkeleton } from "@/features/create/skeletons/CreatePageSkeleton";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { useHydrateStore } from "@/lib/storage/useHydrateStore";
 
 export const CreatePage = () => {
   const t = useTranslations();
+  const hydrated = useHydrateStore(useCreateEventStore);
   const { formData, updateFormData } = useCreateEventStore();
   const { partner1Name, partner2Name, weddingDate, venueName, venueCity } =
     formData;
@@ -30,7 +33,16 @@ export const CreatePage = () => {
     else if (as === "couple") setAccountType({ accountType: "couple" });
   }, [searchParams, setAccountType]);
 
-  const handleContinue = () => router.push(appRoutes.create.cover);
+  const handleContinue = () => {
+    const as = searchParams.get("as");
+    const target =
+      as === "couple" || as === "pro"
+        ? `${appRoutes.create.cover}?as=${as}`
+        : appRoutes.create.cover;
+    router.push(target);
+  };
+
+  if (!hydrated) return <CreatePageSkeleton />;
 
   return (
     <EventBookForm
