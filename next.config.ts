@@ -70,7 +70,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline'",
       `img-src 'self' data: blob: ${mediaDomain} ${objectStorageDomain} https://*.r2.cloudflarestorage.com https://lh3.googleusercontent.com https://*.paddle.com`,
       `media-src 'self' blob: data: ${mediaDomain} ${objectStorageDomain} https://*.r2.cloudflarestorage.com`,
-      `connect-src 'self' ${apiUrl} ${appUrl} ${mediaDomain} ${objectStorageDomain} https://*.r2.cloudflarestorage.com https://challenges.cloudflare.com https://*.paddle.com https://*.paddle.dev`,
+      `connect-src 'self' ${apiUrl} ${appUrl} ${mediaDomain} ${objectStorageDomain} https://*.r2.cloudflarestorage.com https://challenges.cloudflare.com https://*.paddle.com https://*.paddle.dev https://cdn-cookieyes.com https://log.cookieyes.com`,
       `frame-src ${frameSrc}`,
       "font-src 'self'",
       "object-src 'none'",
