@@ -23,7 +23,9 @@ const SIZE_SELECT_ID = "book-size-select";
 export const SizeSelect = ({ variants }: SizeSelectProps) => {
   const t = useTranslations();
   const { control } = useBookForm();
-  const paperType = useWatch<BookFormValues, "paperType">({ name: "paperType" });
+  const paperType = useWatch<BookFormValues, "paperType">({
+    name: "paperType",
+  });
 
   const sizeFacets = useMemo(() => {
     if (!paperType) return [];

@@ -98,8 +98,8 @@ export const CustomizerCheckoutForm = ({
   const buttonDisabled = !eventId || !isReady || isCheckingOut;
   const showBreakdown = Boolean(
     priceBreakdown &&
-      priceBreakdown.pricePerPageCents > 0 &&
-      priceBreakdown.pageCount > 0,
+    priceBreakdown.pricePerPageCents > 0 &&
+    priceBreakdown.pageCount > 0,
   );
 
   const handleAddToCart = () => {
@@ -169,8 +169,7 @@ export const CustomizerCheckoutForm = ({
             productVariantId: selectedVariant?.id ?? undefined,
             quantity: 1,
             customization,
-            photoIds:
-              photoIds && photoIds.length > 0 ? photoIds : undefined,
+            photoIds: photoIds && photoIds.length > 0 ? photoIds : undefined,
           },
         ],
         successUrl: `${origin}${appRoutes.checkout.orderSuccess("{CHECKOUT_SESSION_ID}")}`,
@@ -188,20 +187,20 @@ export const CustomizerCheckoutForm = ({
   };
 
   return (
-    <div className="rounded-20 border-border bg-card desktop:sticky desktop:top-6 flex flex-col gap-5 border p-6 self-start">
+    <div className="rounded-20 border-border bg-card desktop:sticky desktop:top-6 flex flex-col gap-5 self-start border p-6">
       {event && showEventBadge && (
         <div className="rounded-12 border-border bg-muted/30 flex items-center justify-between gap-3 border px-3 py-2.5">
-          <div className="flex flex-col gap-0.5 min-w-0">
+          <div className="flex min-w-0 flex-col gap-0.5">
             <span className="type-caption text-muted-foreground">
               {t("keepsakes__order__for_event")}
             </span>
-            <span className="type-body-small font-semibold truncate">
+            <span className="type-body-small truncate font-semibold">
               {eventDisplayName(event, t("event_switcher__untitled"))}
             </span>
           </div>
           <Link
             href={appRoutes.app.event(event.id)}
-            className="type-caption text-primary font-semibold hover:underline shrink-0"
+            className="type-caption text-primary shrink-0 font-semibold hover:underline"
           >
             {t("keepsakes__order__change_event")}
           </Link>
@@ -233,7 +232,7 @@ export const CustomizerCheckoutForm = ({
           </span>
           <Link
             href={appRoutes.app.cart}
-            className="type-caption text-primary font-semibold hover:underline shrink-0"
+            className="type-caption text-primary shrink-0 font-semibold hover:underline"
           >
             {t("keepsakes__order__view_cart")}
           </Link>
@@ -264,13 +263,10 @@ export const CustomizerCheckoutForm = ({
               )}
             </span>
           </div>
-          <div className="border-border mt-1 border-t pt-1.5 type-body-small font-semibold flex items-center justify-between gap-2">
+          <div className="border-border type-body-small mt-1 flex items-center justify-between gap-2 border-t pt-1.5 font-semibold">
             <span>{t("keepsakes__book_customizer__price_total")}</span>
             <span>
-              {formatPricePrecise(
-                priceBreakdown.totalCents,
-                productCurrency,
-              )}
+              {formatPricePrecise(priceBreakdown.totalCents, productCurrency)}
             </span>
           </div>
         </div>
@@ -301,7 +297,12 @@ export const CustomizerCheckoutForm = ({
           type="button"
           variant="outline"
           onClick={handlePreview}
-          disabled={!eventId || !photoIds || photoIds.length === 0 || previewMutation.isPending}
+          disabled={
+            !eventId ||
+            !photoIds ||
+            photoIds.length === 0 ||
+            previewMutation.isPending
+          }
           className="rounded-full"
         >
           {t("keepsakes__preview_pdf__button")}

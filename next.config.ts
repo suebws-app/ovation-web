@@ -26,7 +26,12 @@ const frameSrc = [
   "https://challenges.cloudflare.com",
   "https://*.paddle.com",
   "https://*.paddle.dev",
-].join(" ");
+  objectStorageDomain,
+  "https://*.r2.cloudflarestorage.com",
+  isDev ? "http://localhost:9000" : "",
+]
+  .filter(Boolean)
+  .join(" ");
 
 type RemotePattern = NonNullable<
   NonNullable<NextConfig["images"]>["remotePatterns"]

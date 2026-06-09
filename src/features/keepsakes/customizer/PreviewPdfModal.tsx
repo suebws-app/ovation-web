@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { useRenderStatus } from "@/lib/query/pdfQueries";
 import type { RenderStatus } from "@/lib/api/keepsakes-client";
+import { XIcon } from "@ovation/icons/XIcon";
 
 type PreviewPdfModalProps = {
   renderId: string | null;
@@ -22,7 +23,9 @@ const PreviewBody = ({ status, isLoading, error }: PreviewBodyProps) => {
 
   if (error) {
     return (
-      <p className="type-body text-destructive">{error.message}</p>
+      <div className="flex flex-1 items-center justify-center">
+        <p className="type-body text-destructive">{error.message}</p>
+      </div>
     );
   }
 
@@ -33,7 +36,7 @@ const PreviewBody = ({ status, isLoading, error }: PreviewBodyProps) => {
     status.status === "rendering"
   ) {
     return (
-      <div className="flex flex-col items-center gap-3 py-12">
+      <div className="flex flex-1 flex-col items-center justify-center gap-3">
         <div className="border-primary h-8 w-8 animate-spin rounded-full border-2 border-t-transparent" />
         <p className="type-body text-muted-foreground">
           {t("keepsakes__preview_pdf__rendering")}
@@ -44,30 +47,22 @@ const PreviewBody = ({ status, isLoading, error }: PreviewBodyProps) => {
 
   if (status.status === "failed") {
     return (
-      <p className="type-body text-destructive">
-        {status.errorMessage ?? t("keepsakes__preview_pdf__failed")}
-      </p>
+      <div className="flex flex-1 items-center justify-center">
+        <p className="type-body text-destructive">
+          {status.errorMessage ?? t("keepsakes__preview_pdf__failed")}
+        </p>
+      </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <>
       <iframe
-        src={status.publicUrl}
+        src={status.publicUrl ? `${status.publicUrl}#toolbar=0` : undefined}
         title="preview"
-        className="border-border rounded-12 h-[70vh] w-full border"
+        className="border-border w-full flex-1 border"
       />
-      <a
-        href={status.publicUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="self-end"
-      >
-        <Button variant="outline">
-          {t("keepsakes__preview_pdf__open_new_tab")}
-        </Button>
-      </a>
-    </div>
+    </>
   );
 };
 
@@ -83,19 +78,19 @@ export const PreviewPdfModal = ({
 
   return (
     <div
-      className="bg-foreground/45 fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+      className="bg-foreground/45 desktop:left-(--sidebar-width) fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="rounded-20 bg-card flex w-full max-w-4xl flex-col gap-5 p-6 shadow-lg"
+        className="rounded-20 bg-card flex h-full w-full max-w-5xl flex-col gap-4 p-6 shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex shrink-0 items-center justify-between gap-4">
           <h2 className="type-h3 leading-snug tracking-tight">
             {t("keepsakes__preview_pdf__title")}
           </h2>
-          <Button variant="outline" onClick={onClose}>
-            ✕
+          <Button variant="ghost" size="icon" onClick={onClose}>
+            <XIcon width={20} height={20} />
           </Button>
         </div>
         <PreviewBody
