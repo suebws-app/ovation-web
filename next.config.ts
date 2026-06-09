@@ -34,7 +34,15 @@ type RemotePattern = NonNullable<
 
 const remotePatterns: RemotePattern[] = [
   { protocol: "https", hostname: "lh3.googleusercontent.com" },
+  { protocol: "https", hostname: "**.r2.cloudflarestorage.com" },
 ];
+
+if (isDev) {
+  remotePatterns.push(
+    { protocol: "http", hostname: "localhost", pathname: "/**" },
+    { protocol: "http", hostname: "127.0.0.1", pathname: "/**" },
+  );
+}
 
 if (mediaDomain) {
   try {

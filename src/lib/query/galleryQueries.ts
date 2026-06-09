@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  keepPreviousData,
   useInfiniteQuery,
   useMutation,
   useQueryClient,
@@ -34,6 +35,8 @@ export const useInfiniteGallery = (eventId: string, input: GalleryFilter = {}) =
     initialPageParam: null as string | null,
     getNextPageParam: (last) => last.nextCursor ?? null,
     enabled: Boolean(eventId),
+    staleTime: 30_000,
+    placeholderData: keepPreviousData,
   });
 
 export const useDeleteMedia = (eventId: string) => {
