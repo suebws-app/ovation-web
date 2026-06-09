@@ -1,33 +1,27 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
-import { ApiError } from "@/lib/api/client";
+
 import { appRoutes } from "@/lib/routes";
+import { ApiError } from "@/lib/api/client";
 import { eventsApi } from "@/lib/api/events";
 import { messagesApi } from "@/lib/api/messages";
+import { ordersApi } from "@/lib/api/orders";
+import { mediaApi } from "@/lib/api/media";
+
 import { getCurrentUser } from "@/lib/auth/session";
 import { getCurrentEvent } from "@/lib/auth/current-event";
 import { toMessageRowView } from "@/features/messages/adapters";
-import { DashboardGreeting } from "./components/DashboardGreeting";
-import { ResumeCard } from "./components/ResumeCard";
-import { StatLine } from "./components/StatLine";
-import { MessageList } from "./components/MessageList";
+
 import { DashboardEmpty } from "./components/DashboardEmpty";
 import { DashboardPlaceholderCTA } from "./components/DashboardPlaceholderCTA";
 import { DashboardBackGuard } from "./components/DashboardBackGuard";
 import { StorageExpiredModal } from "./components/StorageExpiredModal";
 import { DreReturnHandler } from "./components/DreReturnHandler";
-
-const formatWeddingDate = (raw: string | null): string => {
-  if (!raw) return "";
-  const d = new Date(raw);
-  if (Number.isNaN(d.getTime())) return raw;
-  return d.toLocaleDateString(undefined, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-};
+import { QRcodeWidget } from "./components/widgets/QRcodeWidget";
+import { Messages } from "./components/widgets/Messages";
+import { Photos } from "./components/widgets/Photos";
+import { Orders } from "./components/widgets/Orders";
 
 const greetingName = (fullName: string | null, email: string): string => {
   if (fullName?.trim()) return fullName.trim().split(/\s+/)[0]!;
@@ -67,7 +61,7 @@ export const DashboardPage = async () => {
         {expiredModal}
         {dreReturnHandler}
         <div className="flex w-full flex-col p-6">
-          <DashboardEmpty userName={greetingName(user.fullName, user.email)} />
+          <DashboardEmpty />
         </div>
       </DashboardBackGuard>
     );
@@ -79,47 +73,75 @@ export const DashboardPage = async () => {
         {expiredModal}
         {dreReturnHandler}
         <div className="flex w-full flex-col p-6">
-          <DashboardPlaceholderCTA
-            userName={greetingName(user.fullName, user.email)}
-          />
+          <DashboardPlaceholderCTA />
         </div>
       </DashboardBackGuard>
     );
   }
 
-  const [stats, recentMessages] = await Promise.all([
-    eventsApi.stats(event.id).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404) return null;
-      throw error;
-    }),
-    messagesApi.list(event.id, { limit: 5, sort: "newest" }).catch((error) => {
-      if (ApiError.isApiError(error) && error.status === 404) return null;
-      throw error;
-    }),
-  ]);
+  const [stats, recentMessages, qr, ordersPage, galleryPage] =
+    await Promise.all([
+      eventsApi.stats(event.id).catch((error) => {
+        if (ApiError.isApiError(error) && error.status === 404) return null;
+        throw error;
+      }),
+      messagesApi
+        .list(event.id, { limit: 5, sort: "newest" })
+        .catch((error) => {
+          if (ApiError.isApiError(error) && error.status === 404) return null;
+          throw error;
+        }),
+      eventsApi
+        .qrCode(event.id, { format: "svg", size: 512 })
+        .catch((error) => {
+          if (ApiError.isApiError(error) && error.status === 404) return null;
+          throw error;
+        }),
+      ordersApi.list({ eventId: event.id, limit: 3 }).catch((error) => {
+        if (ApiError.isApiError(error) && error.status === 404) return null;
+        throw error;
+      }),
+      mediaApi
+        .gallery(event.id, { type: "photo", sort: "newest", limit: 6 })
+        .catch((error) => {
+          if (ApiError.isApiError(error) && error.status === 404) return null;
+          throw error;
+        }),
+    ]);
 
   const messageViews = (recentMessages?.items ?? []).map((m) =>
     toMessageRowView(m, anonymous),
   );
-  const newMessages = stats?.totalMessages ?? messageViews.length;
+  const totalMessages = stats?.totalMessages ?? messageViews.length;
+  const galleryItems = galleryPage?.items ?? [];
+  const totalPhotos = stats?.photoCount ?? galleryItems.length;
+  const hasMorePhotos = Boolean(galleryPage?.nextCursor);
 
   return (
     <DashboardBackGuard>
       {expiredModal}
       <div className="flex w-full flex-col gap-6 p-6">
-        <DashboardGreeting
-          name={greetingName(user.fullName, user.email)}
-          date={formatWeddingDate(event.weddingDate)}
-          venue={event.venueName ?? ""}
-          newMessages={newMessages}
-        />
-        <ResumeCard message={messageViews.find((m) => m.hasAudio) ?? null} />
-        {stats && <StatLine stats={stats} />}
-        <MessageList
-          eventId={event.id}
-          messages={messageViews}
-          totalCount={stats?.totalMessages ?? messageViews.length}
-        />
+        <div className="tablet:flex-row tablet:items-start flex flex-col gap-6">
+          <div className="flex min-w-0 flex-1 flex-col gap-6">
+            <Messages
+              messages={messageViews}
+              totalCount={totalMessages}
+              newCount={totalMessages}
+            />
+            <div className="tablet:flex-row tablet:items-start flex flex-col gap-6">
+              <Photos
+                photos={galleryItems}
+                totalCount={totalPhotos}
+                newCount={totalPhotos}
+                hasMore={hasMorePhotos}
+              />
+              <div className="min-w-0 flex-1">
+                <Orders orders={ordersPage?.items ?? []} />
+              </div>
+            </div>
+          </div>
+          <QRcodeWidget shortUrl={qr?.shortUrl ?? `/g/${event.slug}`} />
+        </div>
       </div>
     </DashboardBackGuard>
   );
