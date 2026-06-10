@@ -1,20 +1,17 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import type { KeepsakeProductDetail } from "@/lib/api/types";
 import type { KeepsakeDesign } from "../designTokens";
 
 type CustomizerHeaderProps = {
   product: KeepsakeProductDetail;
   design: KeepsakeDesign;
-  eventId: string;
 };
 
 export const CustomizerHeader = ({
   product,
   design,
-  eventId,
 }: CustomizerHeaderProps) => {
   const t = useTranslations();
   const dark = Boolean(design.dark);
@@ -22,13 +19,6 @@ export const CustomizerHeader = ({
   const displayDescription = product.description ? t(product.description) : "";
   return (
     <div className="flex flex-col gap-4">
-      <Link
-        href={`/events/${eventId}/keepsakes`}
-        className="text-muted-foreground hover:text-foreground type-caption inline-flex items-center gap-1 self-start tracking-wider"
-      >
-        <ArrowRightIcon className="rotate-180" width={12} height={12} />
-        Keepsakes
-      </Link>
       <div
         className="rounded-20 relative flex h-40 items-center justify-center px-6"
         style={{ background: design.gradient }}

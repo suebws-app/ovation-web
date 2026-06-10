@@ -81,7 +81,7 @@ export const DashboardPage = async () => {
 
   const [stats, recentMessages, qr, ordersPage, galleryPage] =
     await Promise.all([
-      eventsApi.stats(event.id).catch((error) => {
+      eventsApi.stats(event.id, { includeOwnerUploads: true }).catch((error) => {
         if (ApiError.isApiError(error) && error.status === 404) return null;
         throw error;
       }),
@@ -102,7 +102,7 @@ export const DashboardPage = async () => {
         throw error;
       }),
       mediaApi
-        .gallery(event.id, { type: "photo", sort: "newest", limit: 6 })
+        .gallery(event.id, { type: "photo", sort: "newest", limit: 100 })
         .catch((error) => {
           if (ApiError.isApiError(error) && error.status === 404) return null;
           throw error;
@@ -114,7 +114,7 @@ export const DashboardPage = async () => {
   );
   const totalMessages = stats?.totalMessages ?? messageViews.length;
   const galleryItems = galleryPage?.items ?? [];
-  const totalPhotos = stats?.photoCount ?? galleryItems.length;
+  const totalPhotos = Math.max(stats?.photoCount ?? 0, galleryItems.length);
   const hasMorePhotos = Boolean(galleryPage?.nextCursor);
 
   return (
@@ -122,25 +122,31 @@ export const DashboardPage = async () => {
       {expiredModal}
       <div className="flex w-full flex-col gap-6 p-6">
         <div className="tablet:flex-row tablet:items-start flex flex-col gap-6">
-          <div className="flex min-w-0 flex-1 flex-col gap-6">
+          <div className="tablet:order-2 tablet:w-80 tablet:shrink-0 order-1 flex w-full flex-col gap-6">
+            <QRcodeWidget shortUrl={qr?.shortUrl ?? `/g/${event.slug}`} />
+            <div className="min-[1300px]:hidden">
+              <Orders orders={ordersPage?.items ?? []} />
+            </div>
+          </div>
+          <div className="tablet:order-1 order-2 flex min-w-0 flex-1 flex-col gap-6">
             <Messages
+              eventId={event.id}
               messages={messageViews}
               totalCount={totalMessages}
               newCount={totalMessages}
             />
-            <div className="tablet:flex-row tablet:items-start flex flex-col gap-6">
+            <div className="min-[1300px]:flex-row min-[1300px]:items-start flex flex-col gap-6">
               <Photos
                 photos={galleryItems}
                 totalCount={totalPhotos}
                 newCount={totalPhotos}
                 hasMore={hasMorePhotos}
               />
-              <div className="min-w-0 flex-1">
+              <div className="min-[1300px]:block hidden min-w-0 flex-1">
                 <Orders orders={ordersPage?.items ?? []} />
               </div>
             </div>
           </div>
-          <QRcodeWidget shortUrl={qr?.shortUrl ?? `/g/${event.slug}`} />
         </div>
       </div>
     </DashboardBackGuard>

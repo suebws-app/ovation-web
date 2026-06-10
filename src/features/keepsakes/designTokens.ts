@@ -50,15 +50,42 @@ export const decorate = (product: KeepsakeProduct): DesignedProduct => ({
   design: designFor(product.productType),
 });
 
+export const computeStartingPriceCents = (
+  variants: Array<{
+    priceCents: number | null;
+    attributes: Record<string, unknown>;
+  }>,
+  fallbackCents: number,
+): number => {
+  const readNumber = (
+    attrs: Record<string, unknown>,
+    key: string,
+  ): number | null => {
+    const value = attrs[key];
+    return typeof value === "number" && Number.isFinite(value) ? value : null;
+  };
+  let cheapest: number | null = null;
+  for (const variant of variants) {
+    if (variant.priceCents === null) continue;
+    const minPages = readNumber(variant.attributes, "minPages") ?? 0;
+    const pricePerPageCents =
+      readNumber(variant.attributes, "pricePerPageCents") ?? 0;
+    const start = variant.priceCents + minPages * pricePerPageCents;
+    if (cheapest === null || start < cheapest) cheapest = start;
+  }
+  return cheapest ?? fallbackCents;
+};
+
 export const formatPrice = (priceCents: number, currency: string): string => {
   try {
     return new Intl.NumberFormat(undefined, {
       style: "currency",
       currency,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     }).format(priceCents / 100);
   } catch {
-    return `${(priceCents / 100).toFixed(0)} ${currency}`;
+    return `${(priceCents / 100).toFixed(2)} ${currency}`;
   }
 };
 

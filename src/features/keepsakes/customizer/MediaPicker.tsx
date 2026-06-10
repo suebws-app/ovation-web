@@ -3,12 +3,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ApiError } from "@/lib/api/client";
 import { useInfiniteGallery } from "@/lib/query/galleryQueries";
-import { Button } from "@ovation/ui/components/Button";
 import { MediaPickerTile } from "./MediaPickerTile";
 import { MediaPreviewDialog } from "./MediaPreviewDialog";
 import { PickerSkeleton } from "./PickerSkeleton";
 import { SourceFilterTabs, type SourceFilter } from "./SourceFilterTabs";
-import { usePhotoUpload } from "@/features/photos/hooks/usePhotoUpload";
 import type { GalleryItem } from "@/lib/api/types";
 
 type MediaPickerProps = {
@@ -19,7 +17,7 @@ type MediaPickerProps = {
   emptyHint: string;
 };
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 20;
 const NEXT_PAGE_SKELETON_COUNT = 6;
 
 export const MediaPicker = ({
@@ -31,14 +29,10 @@ export const MediaPicker = ({
 }: MediaPickerProps) => {
   const [source, setSource] = useState<SourceFilter>("all");
   const [previewItem, setPreviewItem] = useState<GalleryItem | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
-
-  const {
-    upload,
-    isUploading,
-    error: uploadError,
-  } = usePhotoUpload(eventId ?? "");
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const [maxHeightPx, setMaxHeightPx] = useState<number>(320);
 
   const {
     data,
@@ -70,26 +64,35 @@ export const MediaPicker = ({
           void fetchNextPage();
         }
       },
-      { rootMargin: "200px" },
+      { root: scrollRef.current, rootMargin: "200px" },
     );
     observer.observe(node);
     return () => observer.disconnect();
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const compute = () => {
+      const cols = window
+        .getComputedStyle(grid)
+        .gridTemplateColumns.split(" ")
+        .filter(Boolean).length;
+      if (cols === 0) return;
+      const gapPx = parseFloat(window.getComputedStyle(grid).rowGap) || 0;
+      const gridWidth = grid.clientWidth;
+      const tileWidth = (gridWidth - (cols - 1) * gapPx) / cols;
+      const rows = 4;
+      const height = Math.round(tileWidth * rows + (rows - 1) * gapPx);
+      setMaxHeightPx(height);
+    };
+    compute();
+    const observer = new ResizeObserver(compute);
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, [items.length]);
+
   if (!eventId) return null;
-
-  const handleFiles = async (files: FileList | null) => {
-    if (!files || files.length === 0) return;
-    await upload(Array.from(files));
-    if (fileInputRef.current) fileInputRef.current.value = "";
-  };
-
-  const acceptTypes =
-    type === "video"
-      ? "video/*"
-      : type === "photo"
-        ? "image/*"
-        : "image/*,video/*";
 
   const errorMessage = queryError
     ? ApiError.isApiError(queryError)
@@ -106,71 +109,75 @@ export const MediaPicker = ({
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <SourceFilterTabs value={source} onChange={setSource} />
-        <div className="flex items-center gap-2">
-          {showRefreshing && !isUploading && (
-            <span
-              className="type-caption text-muted-foreground tracking-wider"
-              role="status"
-            >
-              Updating…
-            </span>
-          )}
-          <input
-            ref={fileInputRef}
-            type="file"
-            multiple
-            accept={acceptTypes}
-            className="hidden"
-            onChange={(e) => handleFiles(e.target.files)}
-          />
-          <Button
-            type="button"
-            size="sm"
-            variant="outline"
-            disabled={isUploading}
-            onClick={() => fileInputRef.current?.click()}
-            className="rounded-full"
+        {showRefreshing && (
+          <span
+            className="type-caption text-muted-foreground tracking-wider"
+            role="status"
           >
-            {isUploading ? "Uploading…" : "Upload"}
-          </Button>
-        </div>
+            Updating…
+          </span>
+        )}
       </div>
-      {(errorMessage || uploadError) && (
+      {errorMessage && (
         <p className="type-body-small text-destructive" role="alert">
-          {errorMessage ?? uploadError}
+          {errorMessage}
         </p>
       )}
-      {showInitialSkeleton && <PickerSkeleton variant="tiles" count={12} />}
-      {showEmpty && (
-        <p className="type-body-small text-muted-foreground">{emptyHint}</p>
-      )}
-      {items.length > 0 && (
-        <div
-          className={`mobile:grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-5 grid grid-cols-2 gap-2 transition-opacity ${
-            showRefreshing ? "opacity-60" : "opacity-100"
-          }`}
-        >
-          {items.map((item) => (
-            <MediaPickerTile
-              key={item.id}
-              item={item}
-              selected={selectedIds.includes(item.id)}
-              onToggle={onToggle}
-              onPreview={setPreviewItem}
-            />
-          ))}
-          {isFetchingNextPage &&
-            Array.from({ length: NEXT_PAGE_SKELETON_COUNT }).map((_, i) => (
-              <div
-                key={`skeleton-${i}`}
-                className="rounded-12 bg-muted aspect-square animate-pulse"
+      <div
+        ref={scrollRef}
+        className="overflow-y-auto"
+        style={{ maxHeight: maxHeightPx, minHeight: maxHeightPx }}
+      >
+        {showInitialSkeleton && <PickerSkeleton variant="tiles" count={12} />}
+        {showEmpty && (
+          <div className="flex h-full items-center justify-center p-6">
+            <p className="type-body-small text-muted-foreground text-center">
+              {emptyHint}
+            </p>
+          </div>
+        )}
+        {items.length > 0 && (
+          <>
+          <div
+            ref={gridRef}
+            key={source}
+            className={`mobile:grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-5 grid grid-cols-2 gap-2 transition-opacity ${
+              showRefreshing ? "opacity-60" : "opacity-100"
+            }`}
+          >
+            {items.map((item, i) => (
+              <MediaPickerTile
+                key={item.id}
+                item={item}
+                index={i}
+                selected={selectedIds.includes(item.id)}
+                onToggle={onToggle}
+                onPreview={setPreviewItem}
               />
             ))}
-        </div>
-      )}
-      {hasNextPage && !isLoading && (
-        <div ref={sentinelRef} className="h-1 w-full" aria-hidden="true" />
-      )}
+            {isFetchingNextPage &&
+              Array.from({ length: NEXT_PAGE_SKELETON_COUNT }).map((_, i) => (
+                <div
+                  key={`skeleton-${i}`}
+                  className="rounded-12 bg-muted aspect-square animate-pulse"
+                />
+              ))}
+          </div>
+          {hasNextPage && !isLoading && (
+            <div
+              ref={sentinelRef}
+              className="flex h-10 items-center justify-center"
+              aria-live="polite"
+              aria-busy={isFetchingNextPage}
+            >
+              {isFetchingNextPage && (
+                <span className="border-primary size-5 animate-spin rounded-full border-2 border-t-transparent" />
+              )}
+            </div>
+          )}
+          </>
+        )}
+      </div>
       <MediaPreviewDialog
         item={previewItem}
         onOpenChange={(open) => {

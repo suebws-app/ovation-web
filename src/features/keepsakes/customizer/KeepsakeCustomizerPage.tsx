@@ -44,11 +44,7 @@ export const KeepsakeCustomizerPage = async ({
 
   return (
     <div className="flex w-full min-w-0 flex-col gap-6 p-6">
-      <CustomizerHeader
-        product={detail.product}
-        design={design}
-        eventId={event.id}
-      />
+      <CustomizerHeader product={detail.product} design={design} />
       <KeepsakeCustomizerSwitch
         product={detail.product}
         variants={detail.variants}

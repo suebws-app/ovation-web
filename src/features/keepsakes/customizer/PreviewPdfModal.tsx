@@ -78,11 +78,11 @@ export const PreviewPdfModal = ({
 
   return (
     <div
-      className="bg-foreground/45 desktop:left-(--sidebar-width) fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+      className="bg-foreground/45 desktop:left-(--sidebar-width) animate-fade-in fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="rounded-20 bg-card flex h-full w-full max-w-5xl flex-col gap-4 p-6 shadow-lg"
+        className="rounded-20 bg-card animate-scale-fade-in flex h-full w-full max-w-5xl flex-col gap-4 p-6 shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex shrink-0 items-center justify-between gap-4">

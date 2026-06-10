@@ -92,7 +92,7 @@ export const StorageExpiredModal = ({
         <Dialog.Overlay className="bg-foreground/40 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in fixed inset-0 z-50 backdrop-blur-sm" />
         <Dialog.Content
           aria-describedby={undefined}
-          className="bg-card rounded-16 tablet:p-8 fixed top-1/2 left-1/2 z-50 flex w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-4 p-6 shadow-lg"
+          className="bg-card rounded-16 tablet:p-8 data-[state=closed]:animate-scale-fade-out data-[state=open]:animate-scale-fade-in fixed top-1/2 left-1/2 z-50 flex w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-4 p-6 shadow-lg"
         >
           <Dialog.Title className="type-h3 font-serif">
             {t("storage_expired_modal__title")}

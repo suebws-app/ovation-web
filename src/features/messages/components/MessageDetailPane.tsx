@@ -133,9 +133,9 @@ export const MessageDetailPane = ({
             type="button"
             onClick={onClose}
             aria-label={t("common__close")}
-            className="text-muted-foreground hover:text-foreground hover:bg-muted absolute top-3 right-3 flex size-7 items-center justify-center rounded-full transition-colors"
+            className="text-foreground hover:text-foreground hover:bg-muted bg-muted/60 border-border absolute top-3 right-3 flex size-9 items-center justify-center rounded-full border transition-colors"
           >
-            <XIcon width={14} height={14} />
+            <XIcon width={18} height={18} strokeWidth={2.2} />
           </button>
         )}
         <div

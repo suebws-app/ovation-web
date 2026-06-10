@@ -13,6 +13,7 @@ import {
 import { CaptureCardHeader } from "./CaptureCardHeader";
 import { PhotoThumb } from "./PhotoThumb";
 import { CameraCaptureModal } from "./CameraCaptureModal";
+import { compressImage } from "@/lib/media/compressImage";
 
 const MAX_BYTES = 25 * 1024 * 1024;
 
@@ -23,14 +24,15 @@ const makePhotoId = (): string => {
   return `p-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 };
 
-const readPhoto = (file: File): Promise<PhotoCapture | null> =>
-  new Promise((resolve) => {
-    const url = URL.createObjectURL(file);
+const readPhoto = async (file: File): Promise<PhotoCapture | null> => {
+  const compressed = await compressImage(file);
+  return new Promise((resolve) => {
+    const url = URL.createObjectURL(compressed);
     const img = new Image();
     img.onload = () => {
       resolve({
         id: makePhotoId(),
-        file,
+        file: compressed,
         url,
         width: img.naturalWidth,
         height: img.naturalHeight,
@@ -42,6 +44,7 @@ const readPhoto = (file: File): Promise<PhotoCapture | null> =>
     };
     img.src = url;
   });
+};
 
 export const PhotoCaptureCard = () => {
   const t = useTranslations();

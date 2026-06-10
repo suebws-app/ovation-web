@@ -35,7 +35,9 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
       </span>
       <div>
         <Kicker className="tracking-[2px] text-black/55">
-          {name ? t(name) : ""} &middot; {formatPrice(priceCents, currency)}
+          {name ? t(name) : ""} &middot;{" "}
+          {t("keepsakes__product__starting_from")}{" "}
+          {formatPrice(priceCents, currency)}
         </Kicker>
         <h2 className="tablet:type-h1 type-h1 mt-2 leading-none font-semibold">
           {t("keepsakes__featured__title_a")}

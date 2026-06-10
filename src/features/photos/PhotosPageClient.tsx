@@ -9,7 +9,6 @@ import type { EventStats } from "@/lib/api/types";
 import { PhotoBatchFooter } from "./components/PhotoBatchFooter";
 import { PhotoGallery } from "./components/PhotoGallery";
 import { PhotoLightbox } from "./components/PhotoLightbox";
-import { PhotoToolbar } from "./components/PhotoToolbar";
 import { PhotosFilterRail } from "./components/PhotosFilterRail";
 import { usePhotoBulkActions } from "./hooks/usePhotoBulkActions";
 import { toPhotoViewFromGallery } from "./adapters";
@@ -58,6 +57,14 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
     limit: PAGE_SIZE,
   });
 
+  const allCountQuery = useInfiniteGallery(eventId, {
+    type: "all",
+    filter: "all",
+    sort,
+    search: trimmedSearch || undefined,
+    limit: PAGE_SIZE,
+  });
+
   const anonymous = t("common__anonymous");
   const photos = useMemo(
     () =>
@@ -67,7 +74,15 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
     [data?.pages, anonymous],
   );
 
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const allLoadedCount = useMemo(
+    () =>
+      (allCountQuery.data?.pages ?? []).reduce(
+        (sum, page) => sum + page.items.length,
+        0,
+      ),
+    [allCountQuery.data?.pages],
+  );
+
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const node = sentinelRef.current;
@@ -79,7 +94,7 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
           fetchNextPage();
         }
       },
-      { root: scrollRef.current, rootMargin: "400px 0px" },
+      { rootMargin: "400px 0px" },
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -92,17 +107,16 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
 
   const bulk = usePhotoBulkActions(eventId, photos);
 
-  const totalCount = photos.length;
-
   return (
-    <div className="flex h-full w-full flex-1 overflow-hidden">
-      <div className="bg-card relative flex h-full min-h-0 w-full flex-1 flex-col">
-        <div
-          ref={scrollRef}
-          className="flex min-h-0 w-full flex-1 flex-col overflow-y-auto"
-        >
-          <PhotoToolbar eventId={eventId} totalCount={totalCount} />
-          <PhotosFilterRail photos={photos} stats={stats} />
+    <div className="flex w-full flex-1">
+      <div className="bg-card relative flex w-full flex-1 flex-col">
+        <div className="flex w-full flex-1 flex-col">
+          <PhotosFilterRail
+            eventId={eventId}
+            photos={photos}
+            stats={stats}
+            allCount={allLoadedCount}
+          />
           {isPending ? (
             <p className="type-body-small text-muted-foreground p-8 text-center">
               {t("photos__loading")}

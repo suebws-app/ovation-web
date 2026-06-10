@@ -38,6 +38,7 @@ export const PhotoGallery = ({
             key={tile.id}
             tile={tile}
             height={heightFor(i)}
+            index={i}
             selected={selectedIds.has(tile.id)}
             onClick={() => onTileClick(tile.id)}
             onToggleSelect={() => onToggleSelect(tile.id)}

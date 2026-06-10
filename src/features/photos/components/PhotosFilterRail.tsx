@@ -14,10 +14,14 @@ import {
   type PhotoSubFilter,
 } from "../store/usePhotosStore";
 import type { PhotoView } from "../adapters";
+import { PhotoSortButton } from "./PhotoSortButton";
+import { PhotoUploadButton } from "./PhotoUploadButton";
 
 type PhotosFilterRailProps = {
+  eventId: string;
   photos: PhotoView[];
   stats: EventStats | null;
+  allCount: number;
 };
 
 const FILTER_VALUES: { labelKey: string; value: PhotoSubFilter }[] = [
@@ -26,7 +30,12 @@ const FILTER_VALUES: { labelKey: string; value: PhotoSubFilter }[] = [
   { labelKey: "photos__filter__chip_gold_book", value: "gold_book" },
 ];
 
-export const PhotosFilterRail = ({ photos, stats }: PhotosFilterRailProps) => {
+export const PhotosFilterRail = ({
+  eventId,
+  photos,
+  stats,
+  allCount,
+}: PhotosFilterRailProps) => {
   const t = useTranslations();
   const subFilter = useSubFilter();
   const setSubFilter = usePhotosStore((s) => s.setSubFilter);
@@ -34,10 +43,13 @@ export const PhotosFilterRail = ({ photos, stats }: PhotosFilterRailProps) => {
   const clearSelection = usePhotosStore((s) => s.clearSelection);
   const selectedIds = usePhotoSelectedIds();
 
+  const statsPhotoCount = stats?.photoCount ?? 0;
+  const totalAllCount = Math.max(allCount, statsPhotoCount);
+
   const chips = FILTER_VALUES.map((c) => ({
     label: t(c.labelKey),
     value: c.value,
-    count: c.value === "all" ? stats?.photoCount : undefined,
+    count: c.value === "all" ? totalAllCount : undefined,
   }));
 
   const chipItems: FilterChipItem[] = chips.map((c) => ({
@@ -61,7 +73,7 @@ export const PhotosFilterRail = ({ photos, stats }: PhotosFilterRailProps) => {
     else selectAll(photos.map((p) => p.id));
   };
 
-  if (photos.length === 0) return null;
+  if (totalAllCount === 0) return null;
 
   return (
     <FilterChipRail
@@ -75,6 +87,12 @@ export const PhotosFilterRail = ({ photos, stats }: PhotosFilterRailProps) => {
           aria-label={t("photos__select_all")}
           className="mr-1 ml-2.5"
         />
+      }
+      trailing={
+        <div className="flex gap-2">
+          <PhotoSortButton />
+          <PhotoUploadButton eventId={eventId} />
+        </div>
       }
     />
   );

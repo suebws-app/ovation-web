@@ -7,6 +7,7 @@ import type { GalleryItem } from "@/lib/api/types";
 
 type MediaPickerTileProps = {
   item: GalleryItem;
+  index?: number;
   selected: boolean;
   onToggle: (id: string) => void;
   onPreview: (item: GalleryItem) => void;
@@ -17,6 +18,7 @@ const TILE_SIZES =
 
 export const MediaPickerTile = ({
   item,
+  index = 0,
   selected,
   onToggle,
   onPreview,
@@ -24,8 +26,9 @@ export const MediaPickerTile = ({
   const thumb = item.thumbUrl ?? item.url;
   return (
     <div
-      className={`rounded-12 bg-muted relative aspect-square overflow-hidden border-2 ${
-        selected ? "border-primary" : "border-transparent"
+      style={{ animationDelay: `${Math.min(index, 12) * 25}ms` }}
+      className={`rounded-12 bg-muted animate-slide-up-fade relative aspect-square overflow-hidden border-2 transition-[border-color,transform] duration-200 ${
+        selected ? "border-primary scale-[0.97]" : "border-transparent"
       }`}
     >
       <button

@@ -34,7 +34,7 @@ export const MessageBatchFooter = ({
   return (
     <div
       className={cn(
-        "border-border bg-card shadow-top tablet:flex-row tablet:items-center tablet:gap-3 flex w-full shrink-0 flex-col gap-2 border-t px-4 py-3",
+        "border-border bg-card shadow-top tablet:flex-row tablet:items-center tablet:gap-3 desktop:left-(--sidebar-width) fixed inset-x-0 bottom-0 z-20 flex shrink-0 flex-col gap-2 border-t px-4 py-4",
       )}
     >
       <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5">

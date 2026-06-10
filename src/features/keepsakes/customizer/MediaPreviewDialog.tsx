@@ -18,12 +18,15 @@ export const MediaPreviewDialog = ({
   const src = item?.url ?? item?.thumbUrl ?? null;
 
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+    <Dialog.Root open={open} onOpenChange={onOpenChange} modal={false}>
       <Dialog.Portal>
-        <Dialog.Overlay className="bg-foreground/80 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in fixed inset-0 z-50 backdrop-blur-sm" />
         <Dialog.Content
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 focus:outline-none"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) onOpenChange(false);
+          }}
+          className="data-[state=closed]:animate-scale-fade-out data-[state=open]:animate-scale-fade-in fixed inset-0 z-50 flex items-center justify-center bg-[#1a1a1a] p-6 focus:outline-none"
           onOpenAutoFocus={(event) => event.preventDefault()}
+          onCloseAutoFocus={(event) => event.preventDefault()}
         >
           <VisuallyHidden.Root>
             <Dialog.Title>Media preview</Dialog.Title>

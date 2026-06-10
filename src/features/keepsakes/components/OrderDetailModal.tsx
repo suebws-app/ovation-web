@@ -51,8 +51,8 @@ export const OrderDetailModal = ({
   };
 
   return (
-    <div className="bg-foreground/45 fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-      <div className="rounded-20 bg-card flex w-full max-w-lg flex-col overflow-hidden p-7 shadow-lg">
+    <div className="bg-foreground/45 animate-fade-in fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+      <div className="rounded-20 bg-card animate-scale-fade-in flex w-full max-w-lg flex-col overflow-hidden p-7 shadow-lg">
         <div className="flex items-baseline justify-between">
           <Kicker className="text-muted-foreground">
             {t("orders__detail__title")}

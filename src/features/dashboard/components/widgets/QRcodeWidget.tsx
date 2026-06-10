@@ -38,7 +38,7 @@ export const QRcodeWidget = ({ shortUrl }: QRcodeWidgetProps) => {
   };
 
   return (
-    <div className="rounded-20 from-primary to-primary/80 text-primary-foreground relative flex max-w-80 flex-col overflow-hidden bg-gradient-to-br p-5 shadow-sm">
+    <div className="rounded-20 from-primary to-primary/80 text-primary-foreground relative flex min-h-110 w-full flex-col overflow-hidden bg-linear-to-br p-5 shadow-sm">
       <div
         className="pointer-events-none absolute -top-15 -right-15 size-55 rounded-full"
         style={{

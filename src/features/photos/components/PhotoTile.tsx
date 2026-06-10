@@ -10,6 +10,7 @@ import { PhotoFavouriteIndicator } from "./PhotoFavouriteIndicator";
 type PhotoTileProps = {
   tile: PhotoView;
   height: number;
+  index?: number;
   selected?: boolean;
   onClick?: () => void;
   onToggleSelect?: () => void;
@@ -18,6 +19,7 @@ type PhotoTileProps = {
 export const PhotoTile = ({
   tile,
   height,
+  index = 0,
   selected = false,
   onClick,
   onToggleSelect,
@@ -50,10 +52,13 @@ export const PhotoTile = ({
         }
       }}
       className={cn(
-        "group rounded-12 relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-transform hover:scale-[1.02] hover:shadow-md",
+        "group rounded-12 animate-slide-up-fade relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-transform hover:scale-[1.02] hover:shadow-md",
         selected ? "ring-secondary ring-[3px] ring-offset-1" : "shadow-sm",
       )}
-      style={{ breakInside: "avoid" }}
+      style={{
+        breakInside: "avoid",
+        animationDelay: `${Math.min(index, 12) * 30}ms`,
+      }}
     >
       <div
         className="relative flex w-full items-center justify-center overflow-hidden"
