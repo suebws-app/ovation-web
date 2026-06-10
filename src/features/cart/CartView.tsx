@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { ApiError } from "@/lib/api/client";
 import { paymentsClient } from "@/lib/api/payments-client";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { appRoutes } from "@/lib/routes";
 import type { CartTotalsResult } from "@/lib/api/types";
 import { useCartStore, type CartShipping } from "./store/useCartStore";
@@ -67,7 +67,9 @@ export const CartView = () => {
 
   useEffect(() => {
     if (!hydrated) return;
-    startTransition(() => { void fetchTotals(); });
+    startTransition(() => {
+      void fetchTotals();
+    });
   }, [hydrated, fetchTotals]);
 
   const currency = totals?.currency ?? items[0]?.currency ?? CURRENCY_FALLBACK;

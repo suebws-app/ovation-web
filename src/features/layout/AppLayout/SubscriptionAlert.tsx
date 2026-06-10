@@ -38,8 +38,7 @@ export const SubscriptionAlert = ({
   } else if (isFree && userCreatedAt && storageDays != null) {
     const elapsedDays = Math.floor(
       // eslint-disable-next-line react-hooks/purity
-      (Date.now() - new Date(userCreatedAt).getTime()) /
-        (1000 * 60 * 60 * 24),
+      (Date.now() - new Date(userCreatedAt).getTime()) / (1000 * 60 * 60 * 24),
     );
     daysLeft = Math.max(0, storageDays - elapsedDays);
   }
@@ -50,7 +49,7 @@ export const SubscriptionAlert = ({
   };
   const title = isFree
     ? t("app__no_subscription__title")
-    : planNameMap[planTier ?? ""] ?? t("app__plan__active_title");
+    : (planNameMap[planTier ?? ""] ?? t("app__plan__active_title"));
   const description = isFree
     ? t("app__no_subscription__description")
     : t("app__plan__dre_upsell_description");
@@ -71,7 +70,9 @@ export const SubscriptionAlert = ({
           <p className="type-overline text-primary tracking-[2px]">
             {t("plan_status__current_plan_eyebrow")}
           </p>
-          <p className="type-body-large font-serif font-semibold mt-1">{title}</p>
+          <p className="type-body-large mt-1 font-serif font-semibold">
+            {title}
+          </p>
           <p className="type-body-small text-muted-foreground">{description}</p>
           <div className="type-body-small text-muted-foreground mt-1 flex flex-wrap gap-x-4 gap-y-1">
             {daysLeft !== null && (

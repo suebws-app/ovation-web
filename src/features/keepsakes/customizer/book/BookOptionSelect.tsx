@@ -53,7 +53,7 @@ export const BookOptionSelect = ({
         type="button"
         disabled={disabled}
         className={cn(
-          "border-input focus-visible:border-ring focus-visible:ring-ring/50 hover:bg-muted dark:bg-input/30 type-body-small flex h-9 w-full cursor-pointer items-center justify-between gap-1.5 rounded-8 border bg-transparent py-2 pr-2 pl-2.5 whitespace-nowrap transition-colors outline-none focus-visible:ring-3 disabled:cursor-not-allowed disabled:opacity-50",
+          "border-input focus-visible:border-ring focus-visible:ring-ring/50 hover:bg-muted dark:bg-input/30 type-body-small rounded-8 flex h-9 w-full cursor-pointer items-center justify-between gap-1.5 border bg-transparent py-2 pr-2 pl-2.5 whitespace-nowrap transition-colors outline-none focus-visible:ring-3 disabled:cursor-not-allowed disabled:opacity-50",
           !selected && "text-muted-foreground",
           className,
         )}
@@ -104,12 +104,10 @@ const BookOptionSelectItem = ({
       type="button"
       disabled={option.disabled}
       onClick={() => onSelect(option.value)}
-      className="hover:bg-primary hover:text-primary-foreground focus-visible:bg-primary focus-visible:text-primary-foreground type-body-small relative flex w-full cursor-pointer items-center gap-1.5 rounded-8 py-1.5 pr-8 pl-1.5 text-left outline-none disabled:pointer-events-none disabled:opacity-50"
+      className="hover:bg-primary hover:text-primary-foreground focus-visible:bg-primary focus-visible:text-primary-foreground type-body-small rounded-8 relative flex w-full cursor-pointer items-center gap-1.5 py-1.5 pr-8 pl-1.5 text-left outline-none disabled:pointer-events-none disabled:opacity-50"
     >
       <span className="line-clamp-1 flex-1">{option.label}</span>
-      {isSelected ? (
-        <CheckIcon className="absolute right-2 size-4" />
-      ) : null}
+      {isSelected ? <CheckIcon className="absolute right-2 size-4" /> : null}
     </button>
   );
 };

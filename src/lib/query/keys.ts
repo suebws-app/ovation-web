@@ -38,8 +38,9 @@ export const queryKeys = {
   },
   orders: {
     all: () => ["orders"] as const,
-    list: (filters: { eventId?: string; orderType?: "plan" | "keepsake" } = {}) =>
-      ["orders", "list", filters] as const,
+    list: (
+      filters: { eventId?: string; orderType?: "plan" | "keepsake" } = {},
+    ) => ["orders", "list", filters] as const,
     detail: (orderId: string) => ["orders", "detail", orderId] as const,
   },
   pdf: {

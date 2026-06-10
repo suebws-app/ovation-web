@@ -46,9 +46,7 @@ export const CustomizerHeader = ({
       <div className="flex items-baseline justify-between">
         <div>
           <Kicker className="text-muted-foreground">{product.category}</Kicker>
-          <h1 className="type-h2 mt-1 font-semibold">
-            {displayName}
-          </h1>
+          <h1 className="type-h2 mt-1 font-semibold">{displayName}</h1>
           {displayDescription && (
             <p className="type-body-small text-muted-foreground mt-2 max-w-180 leading-relaxed">
               {displayDescription}

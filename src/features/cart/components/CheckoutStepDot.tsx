@@ -28,7 +28,7 @@ export const CheckoutStepDot = ({
     >
       <span
         className={cn(
-          "type-caption size-4.5 inline-flex items-center justify-center rounded-full font-bold",
+          "type-caption inline-flex size-4.5 items-center justify-center rounded-full font-bold",
           state === "active"
             ? "bg-background text-foreground"
             : "bg-muted text-muted-foreground",

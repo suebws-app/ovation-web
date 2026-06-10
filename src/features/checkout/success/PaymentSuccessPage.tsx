@@ -35,7 +35,11 @@ export const PaymentSuccessPage = async () => {
           {t("checkout__payment_success__body")}
         </p>
 
-        <Button asChild size="lg" className="shadow-primary/40 mt-10 rounded-full shadow-md">
+        <Button
+          asChild
+          size="lg"
+          className="shadow-primary/40 mt-10 rounded-full shadow-md"
+        >
           <Link href={appRoutes.app.root}>
             {t("checkout__payment_success__cta")}
           </Link>

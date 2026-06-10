@@ -13,7 +13,7 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import {
   getForgotPasswordSchema,
   type ForgotPasswordFields,

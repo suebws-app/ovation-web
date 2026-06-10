@@ -8,7 +8,7 @@ import { UrlCard } from "./UrlCard";
 import { ShareCard } from "./ShareCard";
 
 const DownloadCardSkeleton = () => (
-  <div className="rounded-16 border-border bg-card animate-pulse border p-4.5 h-64" />
+  <div className="rounded-16 border-border bg-card h-64 animate-pulse border p-4.5" />
 );
 
 const DownloadCard = dynamic(

@@ -6,7 +6,7 @@ import { XIcon } from "@ovation/icons/XIcon";
 import { AvailableBadge } from "./AvailableBadge";
 import { UrlSuggestionChip } from "./UrlSuggestionChip";
 import type { SlugStatus } from "@/features/create/hooks/useSlugChecker";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 
 type SlugInputProps = {
   value: string;

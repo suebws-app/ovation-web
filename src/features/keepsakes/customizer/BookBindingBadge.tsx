@@ -33,7 +33,7 @@ export const BookBindingBadge = ({
 
   return (
     <div className="rounded-16 border-border bg-card flex flex-wrap items-center gap-3 border px-4 py-3">
-      <span className="rounded-full bg-primary/15 text-primary type-caption px-3 py-1 font-semibold tracking-wider">
+      <span className="bg-primary/15 text-primary type-caption rounded-full px-3 py-1 font-semibold tracking-wider">
         {t(BINDING_LABEL_KEY[binding])}
       </span>
       <span className="type-body-small text-muted-foreground">

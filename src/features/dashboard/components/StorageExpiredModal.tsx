@@ -102,9 +102,7 @@ export const StorageExpiredModal = ({
               {t("storage_expired_modal__body", { days: daysLeft })}
             </p>
           </Dialog.Description>
-          {error && (
-            <p className="type-body-small text-destructive">{error}</p>
-          )}
+          {error && <p className="type-body-small text-destructive">{error}</p>}
           <div className="tablet:flex-row mt-2 flex flex-col-reverse gap-2">
             <Button
               type="button"

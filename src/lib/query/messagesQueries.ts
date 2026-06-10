@@ -115,9 +115,10 @@ const restoreSnapshots = (
 
 type UpdateContext = {
   previous: [readonly unknown[], unknown][];
-  previousDetail:
-    | { key: readonly unknown[]; data: { message: MessageDetail } | undefined }
-    | null;
+  previousDetail: {
+    key: readonly unknown[];
+    data: { message: MessageDetail } | undefined;
+  } | null;
 };
 
 export const useUpdateMessage = (eventId: string) => {

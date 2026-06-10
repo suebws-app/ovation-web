@@ -18,8 +18,7 @@ export const KeepsakesPage = async () => {
   ]);
 
   const eventId =
-    (lastEventId &&
-      eventsResult.items.find((e) => e.id === lastEventId)?.id) ||
+    (lastEventId && eventsResult.items.find((e) => e.id === lastEventId)?.id) ||
     eventsResult.items[0]?.id ||
     null;
 

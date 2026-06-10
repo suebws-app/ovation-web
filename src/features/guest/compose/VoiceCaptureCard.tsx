@@ -19,7 +19,9 @@ type VoiceCaptureCardProps = {
   maxDurationSec?: number;
 };
 
-export const VoiceCaptureCard = ({ maxDurationSec }: VoiceCaptureCardProps = {}) => {
+export const VoiceCaptureCard = ({
+  maxDurationSec,
+}: VoiceCaptureCardProps = {}) => {
   const t = useTranslations();
   const audio = useGuestSubmissionStore((s) => s.audio);
   const setAudio = useGuestSubmissionStore((s) => s.setAudio);

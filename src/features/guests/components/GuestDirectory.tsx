@@ -112,11 +112,7 @@ export const GuestDirectory = ({
 
   return (
     <div className="flex flex-col gap-4">
-      <GuestFilterChips
-        guests={guests}
-        active={filter}
-        onSelect={setFilter}
-      />
+      <GuestFilterChips guests={guests} active={filter} onSelect={setFilter} />
       <div className="rounded-16 border-border bg-card flex flex-col overflow-hidden border">
         <div className="border-border tablet:flex-row tablet:items-center flex flex-col gap-3 border-b px-6 py-4">
           <div className="type-body font-serif font-semibold">

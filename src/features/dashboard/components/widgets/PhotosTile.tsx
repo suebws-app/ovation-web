@@ -37,7 +37,7 @@ export const PhotosTile = ({ item, overlay, onPreview }: PhotosTileProps) => {
     return (
       <Link
         href={appRoutes.app.photos}
-        className="rounded-12 bg-muted group relative aspect-square block overflow-hidden"
+        className="rounded-12 bg-muted group relative block aspect-square overflow-hidden"
       >
         {inner}
       </Link>
@@ -49,7 +49,7 @@ export const PhotosTile = ({ item, overlay, onPreview }: PhotosTileProps) => {
       type="button"
       onClick={() => onPreview(item)}
       aria-label="Preview photo"
-      className="rounded-12 bg-muted group relative aspect-square block cursor-pointer overflow-hidden"
+      className="rounded-12 bg-muted group relative block aspect-square cursor-pointer overflow-hidden"
     >
       {inner}
     </button>

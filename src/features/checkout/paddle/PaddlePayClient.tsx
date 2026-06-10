@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { initializePaddle, type Paddle } from "@paddle/paddle-js";
 import { useRouter } from "@/i18n/navigation";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { appRoutes } from "@/lib/routes";
 
 import { CheckoutLoading } from "./CheckoutLoading";

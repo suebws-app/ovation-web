@@ -4,10 +4,7 @@ import { useTranslations } from "next-intl";
 import { KioskConfigCard } from "@/features/kiosk-setup/components/KioskConfigCard";
 import { KioskConfigRow } from "@/features/kiosk-setup/components/KioskConfigRow";
 import { KioskToggle } from "@/features/kiosk-setup/components/KioskToggle";
-import type {
-  LinkSettings,
-  UpdateLinkSettingsInput,
-} from "@/lib/api/types";
+import type { LinkSettings, UpdateLinkSettingsInput } from "@/lib/api/types";
 
 type LinkSubmissionTypesCardProps = {
   settings: LinkSettings;

@@ -27,12 +27,12 @@ export const CartMobileCheckoutBar = ({
   const t = useTranslations();
   const totalCents = totals?.totalCents ?? 0;
   return (
-    <div className="tablet:hidden bg-card border-border shadow fixed inset-x-0 bottom-0 z-40 border-t p-4">
+    <div className="tablet:hidden bg-card border-border fixed inset-x-0 bottom-0 z-40 border-t p-4 shadow">
       <div className="mb-2 flex items-baseline justify-between">
         <span className="type-caption text-muted-foreground">
           {t("cart__mobile__items", { count: itemCount })}
         </span>
-        <span className="font-serif type-h3 font-semibold tracking-tight">
+        <span className="type-h3 font-serif font-semibold tracking-tight">
           {formatPrice(totalCents, currency)}
         </span>
       </div>

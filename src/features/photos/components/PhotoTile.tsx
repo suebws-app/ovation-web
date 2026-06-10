@@ -90,7 +90,7 @@ export const PhotoTile = ({
         )}
 
         {isVideo && (
-          <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 type-caption font-medium text-white">
+          <span className="type-caption absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 font-medium text-white">
             <VideoIcon width={11} height={11} />
             <span>Video</span>
           </span>

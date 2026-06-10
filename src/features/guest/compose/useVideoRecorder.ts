@@ -13,12 +13,7 @@ export type VideoRecording = {
   mimeType: string;
 };
 
-type RecorderState =
-  | "idle"
-  | "requesting"
-  | "preview"
-  | "recording"
-  | "denied";
+type RecorderState = "idle" | "requesting" | "preview" | "recording" | "denied";
 
 const pickMimeType = (): string => {
   if (typeof MediaRecorder === "undefined") return "video/webm";
@@ -149,9 +144,7 @@ export const useVideoRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
     recorder.onstop = async () => {
       const blob = new Blob(chunksRef.current, { type: mimeType });
       const url = URL.createObjectURL(blob);
-      const wallClock = Math.round(
-        (Date.now() - startedAtRef.current) / 1000,
-      );
+      const wallClock = Math.round((Date.now() - startedAtRef.current) / 1000);
       const measured = await getBlobDuration(blob);
       const durationSec = Math.min(
         Math.round(measured > 0 ? measured : wallClock),

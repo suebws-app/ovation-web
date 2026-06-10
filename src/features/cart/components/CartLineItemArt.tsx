@@ -15,7 +15,7 @@ export const CartLineItemArt = ({ kind }: CartLineItemArtProps) => {
       style={{ background: design.gradient }}
     >
       <div
-        className="absolute inset-0 flex items-center justify-center font-serif italic font-semibold"
+        className="absolute inset-0 flex items-center justify-center font-serif font-semibold italic"
         style={{
           color: dark ? "#fff" : "var(--foreground)",
           textShadow: dark ? "0 2px 6px rgba(0,0,0,0.25)" : "none",

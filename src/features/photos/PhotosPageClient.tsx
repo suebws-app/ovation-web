@@ -29,10 +29,7 @@ type PhotosPageClientProps = {
 
 const PAGE_SIZE = 20;
 
-export const PhotosPageClient = ({
-  eventId,
-  stats,
-}: PhotosPageClientProps) => {
+export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
   const t = useTranslations();
   const subFilter = useSubFilter();
   const sort = usePhotoSort();

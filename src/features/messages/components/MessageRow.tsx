@@ -62,10 +62,7 @@ export const MessageRow = ({
         : "hover:bg-muted/50 border-l-3 border-l-transparent",
     )}
   >
-    <span
-      className="inline-flex"
-      onClick={(e) => e.stopPropagation()}
-    >
+    <span className="inline-flex" onClick={(e) => e.stopPropagation()}>
       <Checkbox
         checked={checked}
         onChange={() => onToggleSelect?.()}
@@ -118,10 +115,7 @@ export const MessageRow = ({
       )}
     </div>
 
-    <div
-      className="tablet:block hidden"
-      onClick={(e) => e.stopPropagation()}
-    >
+    <div className="tablet:block hidden" onClick={(e) => e.stopPropagation()}>
       {message.hasAudio && (
         <Waveform
           bars={message.wave.slice(0, 24)}

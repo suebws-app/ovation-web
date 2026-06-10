@@ -13,10 +13,7 @@ type BulkInput =
   | { kind: "gold_book"; views: PhotoView[]; nextValue: boolean }
   | { kind: "download"; views: PhotoView[] };
 
-export const usePhotoBulkActions = (
-  eventId: string,
-  photos: PhotoView[],
-) => {
+export const usePhotoBulkActions = (eventId: string, photos: PhotoView[]) => {
   const selectedIds = usePhotoSelectedIds();
   const updateMedia = useUpdateMedia(eventId);
   const t = useTranslations();
@@ -71,14 +68,19 @@ export const usePhotoBulkActions = (
 
   return {
     bulkFavorite: () =>
-      mutation.mutate({ kind: "favorite", views: selectedViews, nextValue: !allFavorited }),
+      mutation.mutate({
+        kind: "favorite",
+        views: selectedViews,
+        nextValue: !allFavorited,
+      }),
     bulkGoldBook: () =>
       mutation.mutate({
         kind: "gold_book",
         views: selectedViews,
         nextValue: !allInGoldBook,
       }),
-    bulkDownload: () => mutation.mutate({ kind: "download", views: selectedViews }),
+    bulkDownload: () =>
+      mutation.mutate({ kind: "download", views: selectedViews }),
     isPending: mutation.isPending,
     allFavorited,
     allInGoldBook,

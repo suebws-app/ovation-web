@@ -89,7 +89,9 @@ export const DeleteBookModal = ({
           <span
             className={`rounded-4 mt-0.5 flex size-4.5 shrink-0 items-center justify-center ${acknowledged ? "bg-destructive text-primary-foreground" : "border-border bg-card border"}`}
           >
-            {acknowledged && <CheckIcon width={11} height={11} strokeWidth={3} />}
+            {acknowledged && (
+              <CheckIcon width={11} height={11} strokeWidth={3} />
+            )}
           </span>
           {t("settings__delete_modal__ack")}
         </button>

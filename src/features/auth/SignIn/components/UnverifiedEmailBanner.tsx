@@ -22,7 +22,7 @@ export const UnverifiedEmailBanner = ({ email, onSent }: Props) => {
 
   return (
     <div
-      className="bg-warning/10 border-warning/30 mt-4 rounded-8 border p-3.5"
+      className="bg-warning/10 border-warning/30 rounded-8 mt-4 border p-3.5"
       role="alert"
     >
       <p className="type-body-small text-foreground font-medium">

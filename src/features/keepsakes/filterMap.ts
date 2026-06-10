@@ -1,12 +1,16 @@
 import type { KeepsakeFilter } from "./components/FilterTabs";
 
-const FILTER_BY_PRODUCT_TYPE: Record<string, Exclude<KeepsakeFilter, "all">[]> = {
-  hardcover: ["printed", "physical"],
-  softcover: ["printed", "physical"],
-  layflat: ["printed", "physical"],
-};
+const FILTER_BY_PRODUCT_TYPE: Record<string, Exclude<KeepsakeFilter, "all">[]> =
+  {
+    hardcover: ["printed", "physical"],
+    softcover: ["printed", "physical"],
+    layflat: ["printed", "physical"],
+  };
 
-export const matchesFilter = (productType: string, filter: KeepsakeFilter): boolean => {
+export const matchesFilter = (
+  productType: string,
+  filter: KeepsakeFilter,
+): boolean => {
   if (filter === "all") return true;
   const list = FILTER_BY_PRODUCT_TYPE[productType] ?? [];
   return list.includes(filter);

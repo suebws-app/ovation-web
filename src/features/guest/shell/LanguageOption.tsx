@@ -29,7 +29,7 @@ export const LanguageOption = ({
     >
       <span
         className={cn(
-          "rounded-full inline-flex size-6 shrink-0 items-center justify-center type-caption font-bold",
+          "type-caption inline-flex size-6 shrink-0 items-center justify-center rounded-full font-bold",
           active
             ? "bg-primary text-primary-foreground"
             : "bg-muted text-muted-foreground",

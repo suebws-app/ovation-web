@@ -3,9 +3,7 @@ import type { LinkSettings, UpdateLinkSettingsInput } from "./types";
 
 export const linkSettingsClient = {
   get: (eventId: string) =>
-    clientFetch<{ settings: LinkSettings }>(
-      `/events/${eventId}/link-settings`,
-    ),
+    clientFetch<{ settings: LinkSettings }>(`/events/${eventId}/link-settings`),
 
   update: (eventId: string, input: UpdateLinkSettingsInput) =>
     clientFetch<{ settings: LinkSettings }>(

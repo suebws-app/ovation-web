@@ -34,8 +34,7 @@ export const LegacyKeepsakeCustomizerRedirect = async ({
   ]);
   const lastEventId = cookieStore.get("ovation_last_event_id")?.value ?? null;
   const eventId =
-    (lastEventId &&
-      eventsResult.items.find((e) => e.id === lastEventId)?.id) ||
+    (lastEventId && eventsResult.items.find((e) => e.id === lastEventId)?.id) ||
     eventsResult.items[0]?.id ||
     null;
   if (!eventId) redirect(appRoutes.app.events);

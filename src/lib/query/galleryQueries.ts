@@ -20,7 +20,10 @@ type GalleryFilter = {
   limit?: number;
 };
 
-export const useInfiniteGallery = (eventId: string, input: GalleryFilter = {}) =>
+export const useInfiniteGallery = (
+  eventId: string,
+  input: GalleryFilter = {},
+) =>
   useInfiniteQuery({
     queryKey: queryKeys.gallery.infiniteList(eventId, input),
     queryFn: ({ pageParam }) =>

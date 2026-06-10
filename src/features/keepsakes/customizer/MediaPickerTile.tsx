@@ -52,7 +52,7 @@ export const MediaPickerTile = ({
         </span>
       )}
       {selected && (
-        <span className="bg-primary text-primary-foreground pointer-events-none absolute right-1.5 top-1.5 flex size-6 items-center justify-center rounded-full">
+        <span className="bg-primary text-primary-foreground pointer-events-none absolute top-1.5 right-1.5 flex size-6 items-center justify-center rounded-full">
           <CheckIcon width={14} height={14} />
         </span>
       )}

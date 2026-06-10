@@ -16,9 +16,7 @@ export const MessageDetailPage = async ({ params }: Props) => {
   const event = await requireFilledCoupleEvent();
   if (!event) notFound();
 
-  const detail = await messagesApi
-    .get(event.id, messageId)
-    .catch(() => null);
+  const detail = await messagesApi.get(event.id, messageId).catch(() => null);
   if (!detail) notFound();
 
   const queryClient = new QueryClient();

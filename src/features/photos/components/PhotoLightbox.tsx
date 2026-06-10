@@ -11,6 +11,7 @@ import { BookIcon } from "@ovation/icons/BookIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
 import { useUpdateMedia } from "@/lib/query/galleryQueries";
+import { safeHttpUrl } from "@/lib/utils/safe-url";
 import type { PhotoView } from "../adapters";
 
 type VideoMime = "video/mp4" | "video/webm";
@@ -135,7 +136,7 @@ export const PhotoLightbox = ({
 
   if (!photo) return null;
 
-  const fullUrl = photo.url ?? photo.thumbUrl;
+  const fullUrl = safeHttpUrl(photo.url ?? photo.thumbUrl);
   const favorited = photo.isFavorite;
   const inGoldBook = photo.isGoldBookSelected;
 
@@ -208,7 +209,7 @@ export const PhotoLightbox = ({
                 ? t("photos__detail__favourited")
                 : t("photos__detail__favourite")
             }
-            className="hover:bg-white/10 flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors disabled:opacity-50"
+            className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/10 disabled:opacity-50"
           >
             <HeartIcon
               width={16}
@@ -225,7 +226,7 @@ export const PhotoLightbox = ({
                 ? t("photos__detail__remove_from_gold_book")
                 : t("photos__detail__add_to_gold_book")
             }
-            className="hover:bg-white/10 flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors disabled:opacity-50"
+            className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/10 disabled:opacity-50"
           >
             <BookIcon
               width={16}
@@ -238,7 +239,7 @@ export const PhotoLightbox = ({
               type="button"
               onClick={handleDownload}
               aria-label={t("photos__detail__download")}
-              className="hover:bg-white/10 flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors"
+              className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/10"
             >
               <DownloadIcon width={16} height={16} />
             </button>
@@ -247,7 +248,7 @@ export const PhotoLightbox = ({
             type="button"
             onClick={onClose}
             aria-label={t("photos__lightbox__close")}
-            className="hover:bg-white/10 flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors"
+            className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/10"
           >
             <XIcon width={16} height={16} strokeWidth={2} />
           </button>

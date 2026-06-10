@@ -1,6 +1,6 @@
 import "server-only";
 import { Resend } from "resend";
-import { env } from "@/lib/utils/env";
+import { serverEnv as env } from "@/lib/utils/env.server";
 
 const resend = env.RESEND_API_KEY ? new Resend(env.RESEND_API_KEY) : null;
 

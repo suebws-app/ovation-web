@@ -41,7 +41,7 @@ export const QRCodePage = async () => {
   const isPro = user?.accountType === "pro";
 
   return (
-    <div className="mx-auto w-full min-w-0 p-6 pb-28 tablet:pb-6">
+    <div className="tablet:pb-6 mx-auto w-full min-w-0 p-6 pb-28">
       <QRCodeHeader guestSlug={event.slug} />
       {!isPro && (
         <div className="rounded-16 border-border bg-card mt-6 flex flex-col gap-1 border p-5">

@@ -80,8 +80,8 @@ export const peechoAdminClient = {
     ),
 
   rejectOrder: (orderId: string, reason?: string) =>
-    clientFetch<PrintApprovalActionResult>(
-      `/peecho/orders/${orderId}/reject`,
-      { method: "POST", body: reason ? { reason } : {} },
-    ),
+    clientFetch<PrintApprovalActionResult>(`/peecho/orders/${orderId}/reject`, {
+      method: "POST",
+      body: reason ? { reason } : {},
+    }),
 };

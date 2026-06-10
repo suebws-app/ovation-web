@@ -50,7 +50,10 @@ const statusVisual = (
   if (status === "in_production" || status === "paid")
     return { className: "bg-primary/15 text-primary", withCheck: false };
   if (status === "cancelled" || status === "failed" || status === "refunded")
-    return { className: "bg-destructive/15 text-destructive", withCheck: false };
+    return {
+      className: "bg-destructive/15 text-destructive",
+      withCheck: false,
+    };
   return { className: "bg-muted text-muted-foreground", withCheck: false };
 };
 
@@ -59,7 +62,8 @@ const shortId = (id: string): string =>
 
 export const OrdersRow = ({ order, statusLabel, notFirst }: OrdersRowProps) => {
   const visual = statusVisual(order.status);
-  const productKey = `${order.productType} ${order.variantSku ?? ""}`.toLowerCase();
+  const productKey =
+    `${order.productType} ${order.variantSku ?? ""}`.toLowerCase();
 
   return (
     <div
@@ -94,7 +98,7 @@ export const OrdersRow = ({ order, statusLabel, notFirst }: OrdersRowProps) => {
           {visual.withCheck ? (
             <CheckIcon width={10} height={10} />
           ) : (
-            <span className="bg-current inline-block size-1.5 rounded-full" />
+            <span className="inline-block size-1.5 rounded-full bg-current" />
           )}
           {statusLabel}
         </span>

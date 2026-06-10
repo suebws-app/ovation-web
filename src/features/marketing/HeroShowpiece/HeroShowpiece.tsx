@@ -38,7 +38,7 @@ export const HeroShowpiece = () => {
       <Card className="absolute top-28 left-22 z-3 w-110 rounded-2xl p-5 shadow-2xl">
         <div className="flex items-start gap-3">
           <div className="from-destructive to-destructive/60 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br">
-            <span className="text-primary-foreground font-serif type-body font-semibold">
+            <span className="text-primary-foreground type-body font-serif font-semibold">
               MD
             </span>
           </div>
@@ -52,7 +52,7 @@ export const HeroShowpiece = () => {
           </div>
         </div>
 
-        <blockquote className="text-foreground/80 mt-4 font-serif type-body-small leading-relaxed italic">
+        <blockquote className="text-foreground/80 type-body-small mt-4 font-serif leading-relaxed italic">
           {t("marketing__showpiece__quote")}
         </blockquote>
         <HeroAudioLazy />

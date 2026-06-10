@@ -35,9 +35,7 @@ export const sizeKeyOf = (variant: KeepsakeProductVariant): string => {
   return `${w}x${h}`;
 };
 
-export const orientationOf = (
-  variant: KeepsakeProductVariant,
-): Orientation => {
+export const orientationOf = (variant: KeepsakeProductVariant): Orientation => {
   const w = readNumberAttr(variant.attributes, "pageWidthMm") ?? 0;
   const h = readNumberAttr(variant.attributes, "pageHeightMm") ?? 0;
   if (w === h) return "square";
@@ -79,7 +77,10 @@ const PAPER_TYPE_LABEL_KEYS: Record<string, string> = {
 export const paperTypeLabelKeyFor = (paperType: string): string | null =>
   PAPER_TYPE_LABEL_KEYS[paperType.toLowerCase()] ?? null;
 
-export const distinctValues = <T>(arr: T[], key: (v: T) => string): string[] => {
+export const distinctValues = <T>(
+  arr: T[],
+  key: (v: T) => string,
+): string[] => {
   const seen = new Set<string>();
   const out: string[] = [];
   for (const item of arr) {
@@ -139,8 +140,7 @@ export const pickVariantForFacets = (
   chosenVariant: KeepsakeProductVariant | null;
 } => {
   const matchingVariants = variants.filter((v) => {
-    const paperMatches =
-      paperType === null || paperTypeOf(v) === paperType;
+    const paperMatches = paperType === null || paperTypeOf(v) === paperType;
     const sizeMatches = sizeKey === null || sizeKeyOf(v) === sizeKey;
     return paperMatches && sizeMatches;
   });

@@ -1,7 +1,7 @@
 import "server-only";
 import { headers as nextHeaders } from "next/headers";
 import { getLocale } from "next-intl/server";
-import { env } from "@/lib/utils/env";
+import { serverEnv as env } from "@/lib/utils/env.server";
 import {
   API_BASE_PATH,
   buildRequestInit,

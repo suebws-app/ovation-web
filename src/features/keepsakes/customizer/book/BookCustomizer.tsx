@@ -3,11 +3,7 @@
 import { useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import {
-  buildPaperFacets,
-  buildSizeFacets,
-  paperTypeOf,
-} from "../bookFacets";
+import { buildPaperFacets, buildSizeFacets, paperTypeOf } from "../bookFacets";
 import {
   bindingFromProductType,
   bookFormSchema,

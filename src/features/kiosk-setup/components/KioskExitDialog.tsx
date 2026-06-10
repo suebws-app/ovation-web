@@ -81,7 +81,7 @@ export const KioskExitDialog = ({
             if (e.key === "Enter") submit();
             if (e.key === "Escape") onCancel();
           }}
-          className="border-border focus:border-primary type-h2 w-40 rounded-full border-2 px-4 py-2 text-center font-mono tracking-widest outline-none transition-colors"
+          className="border-border focus:border-primary type-h2 w-40 rounded-full border-2 px-4 py-2 text-center font-mono tracking-widest transition-colors outline-none"
           placeholder="••••"
         />
         {error && (

@@ -41,5 +41,4 @@ export const useGuestFilter = () => useGuestsStore((s) => s.filter);
 export const useGuestSort = () => useGuestsStore((s) => s.sort);
 export const useGuestSearch = () => useGuestsStore((s) => s.search);
 export const useGuestPage = () => useGuestsStore((s) => s.page);
-export const useGuestSelectedIds = () =>
-  useGuestsStore((s) => s.selectedIds);
+export const useGuestSelectedIds = () => useGuestsStore((s) => s.selectedIds);

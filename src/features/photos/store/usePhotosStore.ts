@@ -65,6 +65,5 @@ export const usePhotosStore = create<PhotosState>((set) => ({
 export const useSubFilter = () => usePhotosStore((s) => s.subFilter);
 export const usePhotoSort = () => usePhotosStore((s) => s.sort);
 export const usePhotoSearch = () => usePhotosStore((s) => s.search);
-export const usePhotoSelectedIds = () =>
-  usePhotosStore((s) => s.selectedIds);
+export const usePhotoSelectedIds = () => usePhotosStore((s) => s.selectedIds);
 export const useLightboxIndex = () => usePhotosStore((s) => s.lightboxIndex);

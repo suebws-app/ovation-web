@@ -1,6 +1,6 @@
 import { toNextJsHandler } from "better-auth/next-js";
 import { auth } from "@/lib/auth/better-auth";
-import { env } from "@/lib/utils/env";
+import { serverEnv as env } from "@/lib/utils/env.server";
 import type { NextRequest } from "next/server";
 
 const { GET: authGet, POST: authPost } = toNextJsHandler(auth.handler);

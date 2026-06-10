@@ -67,9 +67,7 @@ export const PhotoBatchFooter = ({
           <BookIcon
             width={13}
             height={13}
-            className={
-              allInGoldBook ? "fill-yellow-400 text-yellow-500" : ""
-            }
+            className={allInGoldBook ? "fill-yellow-400 text-yellow-500" : ""}
           />
           <span className="truncate">
             {allInGoldBook

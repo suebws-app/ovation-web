@@ -7,10 +7,7 @@ import { KioskConfigCard } from "./KioskConfigCard";
 import { KioskConfigRow } from "./KioskConfigRow";
 import { KioskToggle } from "./KioskToggle";
 import { KioskPinInput } from "./KioskPinInput";
-import type {
-  KioskSettings,
-  UpdateKioskSettingsInput,
-} from "@/lib/api/types";
+import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
 
 type KioskConfigLeftProps = {
   settings: KioskSettings;
@@ -24,7 +21,9 @@ export const KioskConfigLeft = ({
   onPatch,
 }: KioskConfigLeftProps) => {
   const t = useTranslations();
-  const linkHref = eventId ? appRoutes.app.eventLink(eventId) : appRoutes.app.link;
+  const linkHref = eventId
+    ? appRoutes.app.eventLink(eventId)
+    : appRoutes.app.link;
   return (
     <div className="flex flex-col gap-5">
       <div className="rounded-16 border-border bg-card flex flex-col gap-2 border px-7 py-5">

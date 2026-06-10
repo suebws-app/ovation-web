@@ -107,9 +107,7 @@ const fetchDetails = async (
   while (i < ids.length) {
     const slice = ids.slice(i, i + concurrency);
     const detailed = await Promise.all(
-      slice.map((id) =>
-        messagesClient.get(eventId, id).then((r) => r.message),
-      ),
+      slice.map((id) => messagesClient.get(eventId, id).then((r) => r.message)),
     );
     results.push(...detailed);
     i += concurrency;

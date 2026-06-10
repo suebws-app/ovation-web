@@ -6,7 +6,7 @@ import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { appRoutes } from "@/lib/routes";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import type { SignUpFields } from "@/features/sign-up/signUpSchema";

@@ -13,11 +13,7 @@ import type {
   KeepsakeProductVariant,
 } from "@/lib/api/types";
 
-const BOOK_PRODUCT_TYPES = new Set([
-  "hardcover",
-  "softcover",
-  "layflat",
-]);
+const BOOK_PRODUCT_TYPES = new Set(["hardcover", "softcover", "layflat"]);
 
 type KeepsakeCustomizerPageProps = {
   params: Promise<{ id: string; slug: string }>;

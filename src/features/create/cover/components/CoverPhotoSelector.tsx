@@ -3,7 +3,11 @@
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { CoverOption } from "./CoverOption";
-import { COVER_OPTIONS, ACCEPT_MIME, MAX_BYTES } from "@/features/create/constants";
+import {
+  COVER_OPTIONS,
+  ACCEPT_MIME,
+  MAX_BYTES,
+} from "@/features/create/constants";
 
 type CoverPhotoSelectorProps = {
   coverType: string;
@@ -58,7 +62,11 @@ export const CoverPhotoSelector = ({
         className="hidden"
         onChange={(e) => {
           const file = e.target.files?.[0];
-          if (file && file.type.startsWith("image/") && file.size <= MAX_BYTES) {
+          if (
+            file &&
+            file.type.startsWith("image/") &&
+            file.size <= MAX_BYTES
+          ) {
             onSelectFile(file);
           }
           e.target.value = "";
@@ -69,7 +77,11 @@ export const CoverPhotoSelector = ({
         <div className="rounded-12 bg-primary/5 mt-3 flex items-center gap-3 p-2.5">
           <div className="size-8 overflow-hidden rounded-md">
             {coverFilePreview && (
-              <img src={coverFilePreview} alt="" className="size-full object-cover" />
+              <img
+                src={coverFilePreview}
+                alt=""
+                className="size-full object-cover"
+              />
             )}
           </div>
           <div className="min-w-0 flex-1">

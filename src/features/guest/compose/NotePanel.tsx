@@ -18,7 +18,7 @@ export const NotePanel = () => {
         placeholder={t("guest__record__note__placeholder")}
         rows={5}
         maxLength={MAX_LENGTH}
-        className="border-border bg-background type-body rounded-12 w-full resize-none border p-4 font-serif leading-relaxed outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+        className="border-border bg-background type-body rounded-12 focus:border-primary focus:ring-primary/20 w-full resize-none border p-4 font-serif leading-relaxed outline-none focus:ring-2"
       />
       <div className="type-caption text-muted-foreground mt-2 flex justify-end">
         {t("guest__record__note__counter", {

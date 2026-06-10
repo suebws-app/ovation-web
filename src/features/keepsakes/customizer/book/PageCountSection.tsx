@@ -25,10 +25,7 @@ export const PageCountSection = ({
   const watchedPhotoIds = useWatch<BookFormValues, "photoIds">({
     name: "photoIds",
   });
-  const photoIds = useMemo(
-    () => watchedPhotoIds ?? [],
-    [watchedPhotoIds],
-  );
+  const photoIds = useMemo(() => watchedPhotoIds ?? [], [watchedPhotoIds]);
 
   const { minPages, maxPages, pageCount, noVariantMatch } =
     usePeechoVariantResolver(variants);

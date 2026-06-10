@@ -26,9 +26,7 @@ export const ShippingMethodOption = ({
     <span
       className={
         "flex size-5 shrink-0 items-center justify-center rounded-full border " +
-        (selected
-          ? "border-primary border-4 bg-card"
-          : "border-border bg-card")
+        (selected ? "border-primary bg-card border-4" : "border-border bg-card")
       }
     />
     <span className="flex-1">

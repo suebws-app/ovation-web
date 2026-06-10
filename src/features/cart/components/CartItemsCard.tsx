@@ -15,7 +15,7 @@ export const CartItemsCard = ({ items }: CartItemsCardProps) => {
   return (
     <div className="rounded-20 border-border bg-card border px-7">
       <div className="flex items-center justify-between py-4.5">
-        <h2 className="font-serif type-h3 font-semibold tracking-tight">
+        <h2 className="type-h3 font-serif font-semibold tracking-tight">
           {t("cart__items__title")}{" "}
           <span className="type-body-small text-muted-foreground font-medium">
             · {t("cart__items__count", { count: items.length })}

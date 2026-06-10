@@ -20,7 +20,7 @@ export const SwatchOption = ({
       className={
         "rounded-12 size-12 border " +
         (selected
-          ? "border-primary border-2 ring-primary/20 ring-2"
+          ? "border-primary ring-primary/20 border-2 ring-2"
           : "border-border")
       }
       style={{ background: color }}
@@ -28,9 +28,7 @@ export const SwatchOption = ({
     <span
       className={
         "type-caption " +
-        (selected
-          ? "text-foreground font-semibold"
-          : "text-muted-foreground")
+        (selected ? "text-foreground font-semibold" : "text-muted-foreground")
       }
     >
       {name}

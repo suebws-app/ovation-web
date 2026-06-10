@@ -9,7 +9,7 @@ import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { appRoutes } from "@/lib/routes";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
@@ -227,8 +227,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
           await profileClient.markOnboardingComplete().catch(() => undefined);
 
-          const planTier =
-            PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
+          const planTier = PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
           if (!planTier) {
             safeSet({ kind: "redirecting" });
             router.push(appRoutes.app.root);

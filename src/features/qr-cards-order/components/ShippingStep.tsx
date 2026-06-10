@@ -3,7 +3,11 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 import { ShippingMethodOption } from "./ShippingMethodOption";
 import { AddressField } from "./AddressField";
 import { formatEuro } from "../pricing";
-import { SHIPPING_PRICE, type OrderState, type ShippingMethodKey } from "../types";
+import {
+  SHIPPING_PRICE,
+  type OrderState,
+  type ShippingMethodKey,
+} from "../types";
 
 type ShippingStepProps = {
   state: OrderState;
@@ -64,7 +68,7 @@ export const ShippingStep = ({
         </span>
       </h1>
 
-      <div className="mt-6 grid gap-3.5 tablet:grid-cols-2">
+      <div className="tablet:grid-cols-2 mt-6 grid gap-3.5">
         <AddressField
           label={t("qr_cards_order__shipping__first_name")}
           value={state.firstName}
@@ -90,7 +94,7 @@ export const ShippingStep = ({
           onChange={(v) => setField("address2", v)}
         />
       </div>
-      <div className="mt-3.5 grid gap-3.5 tablet:grid-cols-3">
+      <div className="tablet:grid-cols-3 mt-3.5 grid gap-3.5">
         <AddressField
           label={t("qr_cards_order__shipping__city")}
           value={state.city}

@@ -9,10 +9,16 @@ export const AboutPage = () => {
     <>
       <section>
         <div className="section-container">
-          <Kicker className="text-primary">{t("marketing__about__eyebrow")}</Kicker>
+          <Kicker className="text-primary">
+            {t("marketing__about__eyebrow")}
+          </Kicker>
           <SectionTitle as="h1" className="mt-4 leading-none tracking-tighter">
-            <span className="text-foreground block">{t("marketing__about__title_line1")}</span>
-            <span className="text-primary block italic">{t("marketing__about__title_line2")}</span>
+            <span className="text-foreground block">
+              {t("marketing__about__title_line1")}
+            </span>
+            <span className="text-primary block italic">
+              {t("marketing__about__title_line2")}
+            </span>
           </SectionTitle>
           <p className="text-muted-foreground type-body-large mt-6 max-w-130 leading-relaxed">
             {t("marketing__about__description")}
@@ -22,11 +28,11 @@ export const AboutPage = () => {
 
       <section>
         <div className="section-container">
-          <div className="border-border bg-card rounded-16 border p-8 tablet:p-12">
-            <p className="text-muted-foreground type-body-small font-semibold uppercase tracking-widest">
+          <div className="border-border bg-card rounded-16 tablet:p-12 border p-8">
+            <p className="text-muted-foreground type-body-small font-semibold tracking-widest uppercase">
               {t("marketing__about__mission_label")}
             </p>
-            <blockquote className="text-foreground type-body-large mt-4 max-w-prose leading-relaxed font-serif italic">
+            <blockquote className="text-foreground type-body-large mt-4 max-w-prose font-serif leading-relaxed italic">
               {t("marketing__about__mission")}
             </blockquote>
           </div>
@@ -35,7 +41,9 @@ export const AboutPage = () => {
 
       <section>
         <div className="section-container">
-          <Kicker className="text-primary">{t("marketing__about__team_eyebrow")}</Kicker>
+          <Kicker className="text-primary">
+            {t("marketing__about__team_eyebrow")}
+          </Kicker>
           <p className="text-muted-foreground type-body-large mt-4 max-w-130 leading-relaxed">
             {t("marketing__about__team_description")}
           </p>

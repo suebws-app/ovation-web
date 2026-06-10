@@ -53,7 +53,7 @@ export const MessageBatchFooter = ({
           size="sm"
           onClick={onBulkFavorite}
           disabled={bulkPending}
-          className="min-w-0 flex-1 shrink whitespace-nowrap rounded-full tablet:flex-none"
+          className="tablet:flex-none min-w-0 flex-1 shrink rounded-full whitespace-nowrap"
         >
           <HeartIcon
             width={13}
@@ -71,7 +71,7 @@ export const MessageBatchFooter = ({
           size="sm"
           onClick={onBulkDownload}
           disabled={bulkPending}
-          className="min-w-0 flex-1 shrink whitespace-nowrap rounded-full tablet:flex-none"
+          className="tablet:flex-none min-w-0 flex-1 shrink rounded-full whitespace-nowrap"
         >
           <DownloadIcon width={13} height={13} />
           <span className="truncate">
@@ -83,7 +83,7 @@ export const MessageBatchFooter = ({
           variant={allInGoldBook ? "secondary" : "default"}
           onClick={onBulkAddToGoldBook}
           disabled={bulkPending}
-          className="min-w-0 flex-1 shrink whitespace-nowrap rounded-full tablet:flex-none"
+          className="tablet:flex-none min-w-0 flex-1 shrink rounded-full whitespace-nowrap"
         >
           <BookIcon width={13} height={13} />
           <span className="truncate">

@@ -35,17 +35,16 @@ export const UpgradeLimitModal = () => {
           {body}
         </p>
         <div className="mt-6.5 flex justify-end gap-2.5">
+          <Button variant="outline" className="rounded-full" onClick={close}>
+            {t("upgrade_modal__dismiss")}
+          </Button>
           <Button
-            variant="outline"
+            asChild
+            variant="default"
             className="rounded-full"
             onClick={close}
           >
-            {t("upgrade_modal__dismiss")}
-          </Button>
-          <Button asChild variant="default" className="rounded-full" onClick={close}>
-            <Link href={appRoutes.app.plans}>
-              {t("upgrade_modal__cta")}
-            </Link>
+            <Link href={appRoutes.app.plans}>{t("upgrade_modal__cta")}</Link>
           </Button>
         </div>
       </div>

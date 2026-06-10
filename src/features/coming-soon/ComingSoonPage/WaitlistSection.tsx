@@ -7,7 +7,7 @@ import { z } from "zod";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 
 const waitlistSchema = z.object({
   email: z

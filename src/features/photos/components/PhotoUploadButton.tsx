@@ -48,9 +48,7 @@ export const PhotoUploadButton = ({ eventId }: PhotoUploadButtonProps) => {
           ? t("photos__toolbar__uploading")
           : t("photos__toolbar__upload")}
       </Button>
-      {error && (
-        <span className="type-caption text-destructive">{error}</span>
-      )}
+      {error && <span className="type-caption text-destructive">{error}</span>}
     </div>
   );
 };

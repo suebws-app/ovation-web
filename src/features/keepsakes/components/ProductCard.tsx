@@ -59,7 +59,12 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
               size="sm"
               className="bg-foreground text-background hover:bg-foreground/90 flex-1 rounded-full"
             >
-              <Link href={appRoutes.app.eventKeepsakeCustomizer(eventId, product.productType)}>
+              <Link
+                href={appRoutes.app.eventKeepsakeCustomizer(
+                  eventId,
+                  product.productType,
+                )}
+              >
                 {t("keepsakes__product__order")}{" "}
                 <ArrowRightIcon width={12} height={12} />
               </Link>

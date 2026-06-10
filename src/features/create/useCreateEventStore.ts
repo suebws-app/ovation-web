@@ -50,7 +50,10 @@ const weddingDateReviver = (key: string, value: unknown) => {
   return value;
 };
 
-type PersistedFormData = Omit<CreateEventFormData, "coverFile" | "coverFilePreview">;
+type PersistedFormData = Omit<
+  CreateEventFormData,
+  "coverFile" | "coverFilePreview"
+>;
 type PersistedState = {
   formData: PersistedFormData;
   mode: CreateEventMode;
@@ -94,11 +97,12 @@ export const useCreateEventStore = create<CreateEventStore>()(
       }),
       merge: (persisted, current) => {
         const persistedState = (persisted ?? {}) as Partial<PersistedState>;
-        const persistedForm = (persistedState.formData ?? {}) as Partial<PersistedFormData>;
+        const persistedForm = (persistedState.formData ??
+          {}) as Partial<PersistedFormData>;
         const coverType =
           persistedForm.coverType === "upload"
             ? ""
-            : persistedForm.coverType ?? initialFormData.coverType;
+            : (persistedForm.coverType ?? initialFormData.coverType);
         const weddingDate =
           persistedForm.weddingDate instanceof Date &&
           !Number.isNaN(persistedForm.weddingDate.getTime())

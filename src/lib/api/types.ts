@@ -532,7 +532,6 @@ export type Plan = {
   sortOrder: number;
 };
 
-
 export type BasePlanInfo = {
   planCode: string;
   planName: string;
@@ -618,8 +617,7 @@ export type CoverUploadResult = {
 };
 
 export const LINK_MAX_DURATION_OPTIONS = [15, 30, 45, 60] as const;
-export type LinkMaxDurationSeconds =
-  (typeof LINK_MAX_DURATION_OPTIONS)[number];
+export type LinkMaxDurationSeconds = (typeof LINK_MAX_DURATION_OPTIONS)[number];
 
 export const KIOSK_RETURN_AFTER_OPTIONS = [10, 20, 30, 60, 120] as const;
 export type KioskReturnAfterSeconds =

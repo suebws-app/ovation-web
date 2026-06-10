@@ -4,8 +4,8 @@ type ContactRowProps = {
 };
 
 export const ContactRow = ({ label, email }: ContactRowProps) => (
-  <div className="border-border flex flex-col items-start justify-between gap-2 border-b py-5 tablet:flex-row tablet:items-center">
-    <span className="text-muted-foreground type-body-small font-semibold uppercase tracking-widest">
+  <div className="border-border tablet:flex-row tablet:items-center flex flex-col items-start justify-between gap-2 border-b py-5">
+    <span className="text-muted-foreground type-body-small font-semibold tracking-widest uppercase">
       {label}
     </span>
     <a

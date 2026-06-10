@@ -14,7 +14,8 @@ import { isLocale } from "@/lib/utils/isLocale";
 import { useCurrentEventStore } from "@/features/events/useCurrentEventStore";
 import { KeepsakesActions } from "./KeepsakesActions";
 
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export const AppHeaderDesktop = () => {
   const pathname = usePathname();
@@ -28,7 +29,8 @@ export const AppHeaderDesktop = () => {
 
   const lastCrumb = crumbs[crumbs.length - 1];
   const parentCrumbs = crumbs.slice(0, -1);
-  const isKeepsakes = segments.includes("keepsakes") || segments.includes("cart");
+  const isKeepsakes =
+    segments.includes("keepsakes") || segments.includes("cart");
 
   return (
     <header className="max-w-container desktop:flex mx-auto hidden h-16 w-full items-center justify-between px-6 py-3">
@@ -37,7 +39,8 @@ export const AppHeaderDesktop = () => {
           {parentCrumbs.map((crumb, i) => {
             const href =
               i === 0 ? "/home" : `/${segments.slice(0, i).join("/")}`;
-            const label = UUID_RE.test(crumb) && eventLabel ? eventLabel : crumb;
+            const label =
+              UUID_RE.test(crumb) && eventLabel ? eventLabel : crumb;
             return (
               <React.Fragment key={crumb}>
                 <BreadcrumbItem>

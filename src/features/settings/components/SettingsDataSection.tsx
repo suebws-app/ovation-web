@@ -149,7 +149,7 @@ export const SettingsDataSection = ({
           title={t("settings__data__per_event__title")}
           description={t("settings__data__per_event__desc")}
         />
-        <div className="rounded-12 border-border bg-card flex flex-col gap-2 border px-4 py-3 tablet:flex-row tablet:items-center tablet:justify-between">
+        <div className="rounded-12 border-border bg-card tablet:flex-row tablet:items-center tablet:justify-between flex flex-col gap-2 border px-4 py-3">
           <div className="min-w-0">
             <div className="type-caption text-muted-foreground">
               {t("settings__data__active_event")}

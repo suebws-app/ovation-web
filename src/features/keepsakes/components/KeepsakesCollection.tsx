@@ -24,7 +24,9 @@ export const KeepsakesCollection = ({
 
   const filtered = useMemo(
     () =>
-      products.filter((product) => matchesFilter(product.productType, filter)).map(decorate),
+      products
+        .filter((product) => matchesFilter(product.productType, filter))
+        .map(decorate),
     [products, filter],
   );
 

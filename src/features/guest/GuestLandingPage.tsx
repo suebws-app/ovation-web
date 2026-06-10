@@ -37,7 +37,7 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
     <GuestWizardShell event={event}>
       <InvitationOpenTracker slug={slug} />
       <div className="flex flex-1 flex-col">
-        <div className="flex flex-1 flex-col gap-6 px-5 pt-6 pb-9 tablet:px-8 small-desktop:px-10 small-desktop:py-9">
+        <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-6 pb-9">
           <LandingSteps
             captureAudio={event.kiosk.captureAudio}
             captureVideo={event.kiosk.captureVideo}
@@ -47,11 +47,7 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
         </div>
         {canSubmit ? (
           <StickyCTA caption={t("guest__landing__cta_caption")}>
-            <Button
-              asChild
-              size="lg"
-              className="w-full rounded-full shadow-lg"
-            >
+            <Button asChild size="lg" className="w-full rounded-full shadow-lg">
               <Link href={`/g/${slug}/compose`}>
                 {t("guest__landing__cta_record")}
                 <ArrowRightIcon width={16} height={16} />
@@ -60,7 +56,7 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
           </StickyCTA>
         ) : (
           <StickyCTA>
-            <div className="rounded-16 bg-warm-cream border-border border p-4_5">
+            <div className="rounded-16 bg-warm-cream border-border p-4_5 border">
               <p className="type-body-small text-foreground/85 text-center">
                 {closedMessage}
               </p>

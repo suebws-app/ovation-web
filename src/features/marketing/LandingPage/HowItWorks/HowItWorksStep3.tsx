@@ -21,7 +21,11 @@ export const HowItWorksStep3 = ({
       </p>
       <div className="flex items-center gap-2">
         <div className="bg-secondary flex size-6 shrink-0 items-center justify-center rounded-full">
-          <PlayIcon className="text-secondary-foreground" width={10} height={10} />
+          <PlayIcon
+            className="text-secondary-foreground"
+            width={10}
+            height={10}
+          />
         </div>
         <div className="flex h-4 items-end gap-0.5">
           {MINI_WAVEFORM_HEIGHTS.map((h, i) => (

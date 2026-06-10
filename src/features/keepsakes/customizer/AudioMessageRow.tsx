@@ -37,10 +37,7 @@ export const AudioMessageRow = ({
       }}
       className="hover:bg-muted/40 flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left"
     >
-      <Checkbox
-        checked={selected}
-        onChange={() => onToggle(message.id)}
-      />
+      <Checkbox checked={selected} onChange={() => onToggle(message.id)} />
       <div className="flex flex-1 flex-col">
         <span className="type-body-small font-medium">
           {message.guestNames || "Guest"}

@@ -57,7 +57,12 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
               size="lg"
               className="bg-foreground text-background hover:bg-foreground/90 rounded-full"
             >
-              <Link href={appRoutes.app.eventKeepsakeCustomizer(eventId, product.productType)}>
+              <Link
+                href={appRoutes.app.eventKeepsakeCustomizer(
+                  eventId,
+                  product.productType,
+                )}
+              >
                 {t("keepsakes__featured__order_now")}{" "}
                 <ArrowRightIcon width={13} height={13} />
               </Link>

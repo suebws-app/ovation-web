@@ -26,7 +26,9 @@ export const ProEventRow = async ({ event }: ProEventRowProps) => {
             b: event.partnerBName,
           })}
         </span>
-        <span className="type-caption text-muted-foreground">{weddingDate}</span>
+        <span className="type-caption text-muted-foreground">
+          {weddingDate}
+        </span>
         {event.venueName && (
           <span className="type-caption text-muted-foreground">
             {event.venueName}

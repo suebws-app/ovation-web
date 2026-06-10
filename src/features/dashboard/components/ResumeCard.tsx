@@ -32,11 +32,11 @@ export const ResumeCard = ({ message }: ResumeCardProps) => {
           {message.initials}
         </AvatarFallback>
       </Avatar>
-      <div className="flex-1 min-w-0">
+      <div className="min-w-0 flex-1">
         <p className="type-body-small text-muted-foreground">
           {t("dashboard__resume__pick_up")}
         </p>
-        <p className="type-h3 mt-1 leading-snug font-semibold truncate">
+        <p className="type-h3 mt-1 truncate leading-snug font-semibold">
           {message.name}
         </p>
         {message.duration && (

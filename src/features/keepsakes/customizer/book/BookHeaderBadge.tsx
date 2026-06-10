@@ -10,7 +10,10 @@ type BookHeaderBadgeProps = {
   variants: KeepsakeProductVariant[];
 };
 
-export const BookHeaderBadge = ({ binding, variants }: BookHeaderBadgeProps) => {
+export const BookHeaderBadge = ({
+  binding,
+  variants,
+}: BookHeaderBadgeProps) => {
   const { paperStock, pageWidthMm, pageHeightMm } =
     usePeechoVariantResolver(variants);
   return (

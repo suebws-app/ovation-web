@@ -8,8 +8,6 @@ export const OrdersPage = async () => {
   const t = await getTranslations();
   const user = await getCurrentUser();
   const isPro = user?.accountType === "pro";
-  const title = isPro
-    ? t("orders__page__title_all")
-    : t("orders__page__title");
+  const title = isPro ? t("orders__page__title_all") : t("orders__page__title");
   return <OrdersListView title={title} />;
 };

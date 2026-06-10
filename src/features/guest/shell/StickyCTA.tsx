@@ -10,7 +10,7 @@ type StickyCTAProps = {
 export const StickyCTA = ({ children, caption, className }: StickyCTAProps) => (
   <div
     className={cn(
-      "from-background small-desktop:sticky small-desktop:bottom-0 z-10 bg-gradient-to-t to-transparent px-5 pt-9 pb-6 tablet:px-8 small-desktop:px-10",
+      "from-background small-desktop:sticky small-desktop:bottom-0 tablet:px-8 small-desktop:px-10 z-10 bg-gradient-to-t to-transparent px-5 pt-9 pb-6",
       className,
     )}
   >

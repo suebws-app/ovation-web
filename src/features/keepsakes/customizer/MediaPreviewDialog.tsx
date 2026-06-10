@@ -36,7 +36,7 @@ export const MediaPreviewDialog = ({
               src={src}
               controls
               autoPlay
-              className="max-h-full max-w-full rounded-12"
+              className="rounded-12 max-h-full max-w-full"
             />
           ) : src ? (
             <div className="relative flex h-full w-full items-center justify-center">
@@ -53,7 +53,7 @@ export const MediaPreviewDialog = ({
           ) : null}
           <Dialog.Close
             aria-label="Close preview"
-            className="bg-background/90 text-foreground hover:bg-background absolute right-6 top-6 flex size-10 items-center justify-center rounded-full transition-colors"
+            className="bg-background/90 text-foreground hover:bg-background absolute top-6 right-6 flex size-10 items-center justify-center rounded-full transition-colors"
           >
             <XIcon width={18} height={18} />
           </Dialog.Close>

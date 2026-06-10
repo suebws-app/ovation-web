@@ -8,7 +8,7 @@ import { appRoutes } from "@/lib/routes";
 import { useCartStore } from "@/features/cart/store/useCartStore";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { ApiError } from "@/lib/api/client";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { formatPrice } from "../designTokens";
 import { useCreateKeepsakePreview } from "@/lib/query/pdfQueries";
 import { PreviewPdfModal } from "./PreviewPdfModal";

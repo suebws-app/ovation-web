@@ -13,9 +13,16 @@ export const VerifyEmailPage = async () => {
     <AuthPageShell centered>
       <VerifyEmailRedirect />
       <div className="rounded-20 bg-primary/10 mb-6 inline-flex size-18 items-center justify-center">
-        <MailIcon width={30} height={30} className="text-primary" strokeWidth={1.75} />
+        <MailIcon
+          width={30}
+          height={30}
+          className="text-primary"
+          strokeWidth={1.75}
+        />
       </div>
-      <Kicker className="text-primary">{t("auth__verify__page_eyebrow")}</Kicker>
+      <Kicker className="text-primary">
+        {t("auth__verify__page_eyebrow")}
+      </Kicker>
       <h1 className="type-h1 mt-3 leading-tight font-semibold tracking-tight">
         {t("auth__verify__page_missing_title")}
       </h1>
@@ -23,7 +30,9 @@ export const VerifyEmailPage = async () => {
         {t("auth__verify__page_missing_body")}
       </p>
       <Button asChild className="mt-9 rounded-full">
-        <Link href={appRoutes.auth.signIn}>{t("auth__verify__back_to_signin")}</Link>
+        <Link href={appRoutes.auth.signIn}>
+          {t("auth__verify__back_to_signin")}
+        </Link>
       </Button>
     </AuthPageShell>
   );

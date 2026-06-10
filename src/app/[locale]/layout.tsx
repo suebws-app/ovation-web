@@ -1,4 +1,5 @@
 import { Rubik, Noto_Sans } from "next/font/google";
+import Script from "next/script";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -22,17 +23,6 @@ export const generateStaticParams = () => {
   return routing.locales.map((locale) => ({ locale }));
 };
 
-const themeScript = `(function(){
-  try {
-    var d = document.documentElement;
-    var t = JSON.parse(localStorage.getItem('theme') || '{}');
-    var v = t && t.state && t.state.theme;
-    if (v === 'dark') {
-      d.classList.add('dark');
-    }
-  } catch(e) {}
-})()`;
-
 export default async function LocaleLayout({
   children,
   params,
@@ -49,14 +39,17 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased`} suppressHydrationWarning>
-      <head>
-        <script
+    <html
+      lang={locale}
+      className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased`}
+      suppressHydrationWarning
+    >
+      <body className="flex max-h-dvh flex-1 flex-col font-sans">
+        <Script
           id="theme-init"
-          dangerouslySetInnerHTML={{ __html: themeScript }}
+          src="/theme-init.js"
+          strategy="beforeInteractive"
         />
-      </head>
-      <body className="font-sans flex max-h-dvh flex-1 flex-col">
         <NextIntlClientProvider messages={messages}>
           <AppProviders>{children}</AppProviders>
         </NextIntlClientProvider>

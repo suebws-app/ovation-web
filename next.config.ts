@@ -11,12 +11,12 @@ const isDev = process.env.NODE_ENV === "development";
 
 const scriptSrc = [
   "'self'",
-  "'unsafe-inline'",
   "https://static.cloudflareinsights.com",
   "https://challenges.cloudflare.com",
   "https://*.paddle.com",
   "https://*.paddle.dev",
   isDev ? "'unsafe-eval'" : "",
+  isDev ? "'unsafe-inline'" : "",
 ]
   .filter(Boolean)
   .join(" ");
@@ -68,6 +68,10 @@ if (mediaDomain) {
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
+  {
+    key: "Strict-Transport-Security",
+    value: "max-age=63072000; includeSubDomains",
+  },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
@@ -94,12 +98,14 @@ const securityHeaders = [
   },
 ];
 
+const allowedDevOrigins = (process.env.ALLOWED_DEV_ORIGINS ?? "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
 const nextConfig: NextConfig = {
   transpilePackages: ["@ovation/ui", "@ovation/icons"],
-  allowedDevOrigins: [
-    "asked-league-griffin-delivering.trycloudflare.com",
-    "abstracts-launches-gear-serve.trycloudflare.com",
-  ],
+  allowedDevOrigins,
   experimental: {
     viewTransition: true,
   },

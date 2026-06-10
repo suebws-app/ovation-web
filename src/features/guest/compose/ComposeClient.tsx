@@ -79,7 +79,7 @@ export const ComposeClient = ({
         exitPin={exitPin}
         exitHref="/kiosk"
       />
-      <div className="flex flex-1 flex-col gap-6 px-5 pt-5 pb-9 tablet:px-8 small-desktop:px-10 small-desktop:py-9">
+      <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-5 pb-9">
         <WizardHeader
           backHref={backHref}
           step={1}

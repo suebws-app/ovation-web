@@ -38,7 +38,9 @@ export const KioskLanguagePicker = ({
 
   const handleAdd = (lang: SupportedLanguage) => {
     setOpen(false);
-    onChange({ supportedLanguages: [...supportedLanguages, lang] as SupportedLanguage[] });
+    onChange({
+      supportedLanguages: [...supportedLanguages, lang] as SupportedLanguage[],
+    });
   };
 
   const handleRemove = (lang: string) => {
