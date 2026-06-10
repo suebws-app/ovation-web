@@ -97,6 +97,7 @@ export const MessagesFilterRail = ({ stats }: MessagesFilterRailProps) => {
 
   return (
     <FilterChipRail
+      className="border-0 bg-transparent px-0 py-0"
       chips={chipItems}
       activeLabel={activeChipLabel}
       onSelect={handleChipSelect}

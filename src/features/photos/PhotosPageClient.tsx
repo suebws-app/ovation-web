@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 
+import { FeaturePageLayout } from "@/components/FeaturePageLayout";
+import { InfiniteScrollSentinel } from "@/components/InfiniteScrollSentinel";
 import { useInfiniteGallery } from "@/lib/query/galleryQueries";
 import type { EventStats } from "@/lib/api/types";
 
@@ -83,23 +85,6 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
     [allCountQuery.data?.pages],
   );
 
-  const sentinelRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const node = sentinelRef.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry?.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          fetchNextPage();
-        }
-      },
-      { rootMargin: "400px 0px" },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
-
   const handleTileClick = (id: string) => {
     const idx = photos.findIndex((p) => p.id === id);
     if (idx >= 0) openLightbox(idx);
@@ -107,42 +92,25 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
 
   const bulk = usePhotoBulkActions(eventId, photos);
 
-  return (
-    <div className="flex w-full flex-1">
-      <div className="bg-card relative flex w-full flex-1 flex-col">
-        <div className="flex w-full flex-1 flex-col">
-          <PhotosFilterRail
-            eventId={eventId}
-            photos={photos}
-            stats={stats}
-            allCount={allLoadedCount}
-          />
-          {isPending ? (
-            <p className="type-body-small text-muted-foreground p-8 text-center">
-              {t("photos__loading")}
-            </p>
-          ) : isError ? (
-            <p className="type-body-small text-destructive p-8 text-center">
-              {t("photos__error")}
-            </p>
-          ) : (
-            <>
-              <PhotoGallery
-                photos={photos}
-                selectedIds={selectedIds}
-                onTileClick={handleTileClick}
-                onToggleSelect={toggleSelected}
-              />
-              <div ref={sentinelRef} aria-hidden className="h-px" />
-              {isFetchingNextPage && (
-                <p className="type-caption text-muted-foreground p-4 text-center">
-                  {t("photos__lightbox__loading_more")}
-                </p>
-              )}
-            </>
-          )}
-        </div>
+  const lightbox =
+    lightboxIndex !== null && photos[lightboxIndex] ? (
+      <PhotoLightbox
+        eventId={eventId}
+        photos={photos}
+        index={lightboxIndex}
+        hasNextPage={Boolean(hasNextPage)}
+        isFetchingNextPage={isFetchingNextPage}
+        onClose={closeLightbox}
+        onIndexChange={setLightboxIndex}
+        onLoadMore={() => {
+          if (!isFetchingNextPage) fetchNextPage();
+        }}
+      />
+    ) : null;
 
+  return (
+    <FeaturePageLayout
+      batchFooter={
         <PhotoBatchFooter
           count={bulk.selectedCount}
           allFavorited={bulk.allFavorited}
@@ -152,22 +120,39 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
           onBulkGoldBook={bulk.bulkGoldBook}
           onBulkDownload={bulk.bulkDownload}
         />
-
-        {lightboxIndex !== null && photos[lightboxIndex] && (
-          <PhotoLightbox
-            eventId={eventId}
+      }
+      overlay={lightbox}
+    >
+      <PhotosFilterRail
+        eventId={eventId}
+        photos={photos}
+        stats={stats}
+        allCount={allLoadedCount}
+      />
+      {isPending ? (
+        <p className="type-body-small text-muted-foreground p-8 text-center">
+          {t("photos__loading")}
+        </p>
+      ) : isError ? (
+        <p className="type-body-small text-destructive p-8 text-center">
+          {t("photos__error")}
+        </p>
+      ) : (
+        <>
+          <PhotoGallery
             photos={photos}
-            index={lightboxIndex}
+            selectedIds={selectedIds}
+            onTileClick={handleTileClick}
+            onToggleSelect={toggleSelected}
+          />
+          <InfiniteScrollSentinel
             hasNextPage={Boolean(hasNextPage)}
             isFetchingNextPage={isFetchingNextPage}
-            onClose={closeLightbox}
-            onIndexChange={setLightboxIndex}
-            onLoadMore={() => {
-              if (!isFetchingNextPage) fetchNextPage();
-            }}
+            onLoadMore={fetchNextPage}
+            loadingLabel={t("photos__lightbox__loading_more")}
           />
-        )}
-      </div>
-    </div>
+        </>
+      )}
+    </FeaturePageLayout>
   );
 };

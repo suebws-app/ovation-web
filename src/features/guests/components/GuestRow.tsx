@@ -12,6 +12,7 @@ import { GuestStatusPill } from "./GuestStatusPill";
 
 type GuestRowProps = {
   guest: GuestRowData;
+  index: number;
   selected: boolean;
   onToggleSelect: () => void;
   isLast: boolean;
@@ -19,6 +20,7 @@ type GuestRowProps = {
 
 export const GuestRow = ({
   guest,
+  index,
   selected,
   onToggleSelect,
   isLast,
@@ -35,7 +37,8 @@ export const GuestRow = ({
 
   return (
     <div
-      className={`tablet:grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] tablet:gap-3.5 tablet:px-6 grid grid-cols-[28px_1fr_36px] items-center gap-3 px-4 py-3.5 ${
+      style={{ animationDelay: `${Math.min(index, 16) * 30}ms` }}
+      className={`animate-slide-up-fade tablet:grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] tablet:gap-3.5 tablet:px-6 grid grid-cols-[28px_1fr_36px] items-center gap-3 px-4 py-3.5 ${
         isLast ? "" : "border-border border-b"
       }`}
     >

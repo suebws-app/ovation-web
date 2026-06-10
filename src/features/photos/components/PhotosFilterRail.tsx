@@ -77,6 +77,7 @@ export const PhotosFilterRail = ({
 
   return (
     <FilterChipRail
+      className="border-0 bg-transparent px-0 py-0"
       chips={chipItems}
       activeLabel={activeLabel}
       onSelect={handleSelect}
