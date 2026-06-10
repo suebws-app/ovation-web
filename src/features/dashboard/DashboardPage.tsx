@@ -23,11 +23,6 @@ import { Messages } from "./components/widgets/Messages";
 import { Photos } from "./components/widgets/Photos";
 import { Orders } from "./components/widgets/Orders";
 
-const greetingName = (fullName: string | null, email: string): string => {
-  if (fullName?.trim()) return fullName.trim().split(/\s+/)[0]!;
-  return email.split("@")[0] ?? "there";
-};
-
 export const DashboardPage = async () => {
   const t = await getTranslations();
   const anonymous = t("common__anonymous");

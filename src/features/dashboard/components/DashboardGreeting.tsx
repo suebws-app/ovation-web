@@ -2,10 +2,9 @@ import { useTranslations } from "next-intl";
 
 type DashboardGreetingProps = {
   name: string;
-  date: string;
 };
 
-export const DashboardGreeting = ({ name, date }: DashboardGreetingProps) => {
+export const DashboardGreeting = ({ name }: DashboardGreetingProps) => {
   const t = useTranslations();
   return (
     <div className="tablet:mb-12 mb-8">
