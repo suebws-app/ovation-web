@@ -15,8 +15,7 @@ export const GuestReviewPage = async ({
 }: GuestReviewPageProps) => {
   const { slug } = await params;
   const search = await searchParams;
-  const sourceParam =
-    typeof search.source === "string" ? search.source : null;
+  const sourceParam = typeof search.source === "string" ? search.source : null;
 
   const event = await publicApi.getEvent(slug).catch((error) => {
     if (ApiError.isApiError(error) && error.status === 404) return null;

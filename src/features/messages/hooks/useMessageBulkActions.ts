@@ -1,26 +1,24 @@
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useUpdateMessage } from "@/lib/query/messagesQueries";
 import { queryKeys } from "@/lib/query/keys";
 import { messagesClient } from "@/lib/api/messages-client";
+import { useMessagesCount } from "@/lib/query/messagesQueries";
+import { saveBlob } from "@/lib/utils/download-blob";
 import { downloadManyMessages } from "@/lib/media/downloadMessageAssets";
 import type { MessageDetail } from "@/lib/api/types";
 import { useEventId } from "../context/MessagesEventContext";
-import { useSelectedIds } from "../store/useMessagesStore";
+import { useMessageSelectAll, useSelectedIds } from "../store/useMessagesStore";
 import { useMessageList } from "./useMessageList";
 
-type BulkInput =
-  | { kind: "favorite"; ids: string[]; nextValue: boolean }
-  | { kind: "goldbook"; ids: string[]; nextValue: boolean }
-  | { kind: "download"; ids: string[] };
+type BulkKind = "favorite" | "goldbook" | "download";
 
 export const useMessageBulkActions = () => {
   const eventId = useEventId();
   const qc = useQueryClient();
   const { messageViews } = useMessageList();
   const selectedIds = useSelectedIds();
-  const updateMessage = useUpdateMessage(eventId);
+  const selectAll = useMessageSelectAll();
   const t = useTranslations();
   const anonymous = t("common__anonymous");
 
@@ -30,40 +28,59 @@ export const useMessageBulkActions = () => {
   );
 
   const allFavorited =
-    selectedViews.length > 0 && selectedViews.every((m) => m.favorited);
+    !selectAll &&
+    selectedViews.length > 0 &&
+    selectedViews.every((m) => m.favorited);
   const allInGoldBook =
-    selectedViews.length > 0 && selectedViews.every((m) => m.inGoldBook);
+    !selectAll &&
+    selectedViews.length > 0 &&
+    selectedViews.every((m) => m.inGoldBook);
   const selectedDurationSec = selectedViews.reduce(
     (acc, m) => acc + m.durationSec,
     0,
   );
 
+  const countQuery = useMessagesCount(eventId, {
+    filter: selectAll?.filter,
+    search: selectAll?.search,
+  });
+  const effectiveCount = selectAll
+    ? Math.max(0, (countQuery.data?.count ?? 0) - selectAll.excludedIds.length)
+    : selectedIds.size;
+
+  const selector = selectAll ? { selectAll } : { ids: Array.from(selectedIds) };
+
+  const invalidate = () => {
+    qc.invalidateQueries({ queryKey: queryKeys.messages.all(eventId) });
+    qc.invalidateQueries({ queryKey: queryKeys.events.stats(eventId) });
+  };
+
   const mutation = useMutation({
-    mutationFn: async (input: BulkInput) => {
-      if (input.kind === "favorite") {
-        await Promise.all(
-          input.ids.map((id) =>
-            updateMessage.mutateAsync({
-              messageId: id,
-              input: { isFavorite: input.nextValue },
-            }),
-          ),
-        );
+    mutationFn: async (kind: BulkKind) => {
+      if (kind === "favorite") {
+        await messagesClient.bulkUpdate(eventId, {
+          ...selector,
+          action: "favorite",
+          value: !allFavorited,
+        });
         return;
       }
-      if (input.kind === "goldbook") {
-        await Promise.all(
-          input.ids.map((id) =>
-            updateMessage.mutateAsync({
-              messageId: id,
-              input: { isGoldBookSelected: input.nextValue },
-            }),
-          ),
-        );
+      if (kind === "goldbook") {
+        await messagesClient.bulkUpdate(eventId, {
+          ...selector,
+          action: "gold_book",
+          value: !allInGoldBook,
+        });
         return;
       }
+      if (selectAll) {
+        const blob = await messagesClient.bulkDownload(eventId, selector);
+        saveBlob(blob, `messages-${eventId}.zip`);
+        return;
+      }
+      const ids = Array.from(selectedIds);
       const inputs = await Promise.all(
-        input.ids.map(async (id) => {
+        ids.map(async (id) => {
           const detailKey = queryKeys.messages.detail(eventId, id);
           const cached =
             qc.getQueryData<{ message: MessageDetail }>(detailKey) ??
@@ -84,20 +101,18 @@ export const useMessageBulkActions = () => {
       );
       await downloadManyMessages(inputs, "messages");
     },
+    onSuccess: invalidate,
   });
 
-  const ids = Array.from(selectedIds);
-
   return {
-    bulkFavorite: () =>
-      mutation.mutate({ kind: "favorite", ids, nextValue: !allFavorited }),
-    bulkAddToGoldBook: () =>
-      mutation.mutate({ kind: "goldbook", ids, nextValue: !allInGoldBook }),
-    bulkDownload: () => mutation.mutate({ kind: "download", ids }),
+    bulkFavorite: () => mutation.mutate("favorite"),
+    bulkAddToGoldBook: () => mutation.mutate("goldbook"),
+    bulkDownload: () => mutation.mutate("download"),
     isPending: mutation.isPending,
     allFavorited,
     allInGoldBook,
-    selectedCount: selectedIds.size,
-    selectedDurationSec,
+    selectedCount: effectiveCount,
+    selectedDurationSec: selectAll ? 0 : selectedDurationSec,
+    isAllMode: Boolean(selectAll),
   };
 };

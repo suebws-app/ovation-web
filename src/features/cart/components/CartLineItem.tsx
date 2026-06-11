@@ -32,9 +32,9 @@ export const CartLineItem = ({ item, isLast }: CartLineItemProps) => {
         !isLast && "border-border border-b",
       )}
     >
-      <CartLineItemArt kind={item.productKind} />
+      <CartLineItemArt kind={item.productType} />
       <div className="min-w-0">
-        <div className="font-serif type-h5 font-semibold tracking-tight">
+        <div className="type-h5 font-serif font-semibold tracking-tight">
           {productName}
         </div>
         {(subtitle || item.variantName) && (
@@ -67,7 +67,7 @@ export const CartLineItem = ({ item, isLast }: CartLineItemProps) => {
         />
       </div>
       <div className="min-w-16 text-right">
-        <div className="font-serif type-h4 font-semibold tracking-tight">
+        <div className="type-h4 font-serif font-semibold tracking-tight">
           {formatPrice(lineTotalCents, item.currency)}
         </div>
         <div className="tablet:hidden mt-2 flex justify-end">
@@ -81,4 +81,3 @@ export const CartLineItem = ({ item, isLast }: CartLineItemProps) => {
     </div>
   );
 };
-

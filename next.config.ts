@@ -11,13 +11,12 @@ const isDev = process.env.NODE_ENV === "development";
 
 const scriptSrc = [
   "'self'",
-  "'unsafe-inline'",
   "https://static.cloudflareinsights.com",
   "https://challenges.cloudflare.com",
   "https://*.paddle.com",
   "https://*.paddle.dev",
-  "https://cdn-cookieyes.com",
   isDev ? "'unsafe-eval'" : "",
+  isDev ? "'unsafe-inline'" : "",
 ]
   .filter(Boolean)
   .join(" ");
@@ -27,7 +26,12 @@ const frameSrc = [
   "https://challenges.cloudflare.com",
   "https://*.paddle.com",
   "https://*.paddle.dev",
-].join(" ");
+  objectStorageDomain,
+  "https://*.r2.cloudflarestorage.com",
+  isDev ? "http://localhost:9000" : "",
+]
+  .filter(Boolean)
+  .join(" ");
 
 type RemotePattern = NonNullable<
   NonNullable<NextConfig["images"]>["remotePatterns"]
@@ -35,7 +39,15 @@ type RemotePattern = NonNullable<
 
 const remotePatterns: RemotePattern[] = [
   { protocol: "https", hostname: "lh3.googleusercontent.com" },
+  { protocol: "https", hostname: "**.r2.cloudflarestorage.com" },
 ];
+
+if (isDev) {
+  remotePatterns.push(
+    { protocol: "http", hostname: "localhost", pathname: "/**" },
+    { protocol: "http", hostname: "127.0.0.1", pathname: "/**" },
+  );
+}
 
 if (mediaDomain) {
   try {
@@ -56,6 +68,10 @@ if (mediaDomain) {
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
+  {
+    key: "Strict-Transport-Security",
+    value: "max-age=63072000; includeSubDomains",
+  },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
@@ -68,9 +84,9 @@ const securityHeaders = [
       "default-src 'self'",
       `script-src ${scriptSrc}`,
       "style-src 'self' 'unsafe-inline'",
-      `img-src 'self' data: blob: ${mediaDomain} ${objectStorageDomain} https://*.r2.cloudflarestorage.com https://lh3.googleusercontent.com https://*.paddle.com https://cdn-cookieyes.com`,
+      `img-src 'self' data: blob: ${mediaDomain} ${objectStorageDomain} https://*.r2.cloudflarestorage.com https://lh3.googleusercontent.com https://*.paddle.com`,
       `media-src 'self' blob: data: ${mediaDomain} ${objectStorageDomain} https://*.r2.cloudflarestorage.com`,
-      `connect-src 'self' ${apiUrl} ${appUrl} ${mediaDomain} ${objectStorageDomain} https://*.r2.cloudflarestorage.com https://challenges.cloudflare.com https://*.paddle.com https://*.paddle.dev https://cdn-cookieyes.com https://log.cookieyes.com`,
+      `connect-src 'self' ${apiUrl} ${appUrl} ${mediaDomain} ${objectStorageDomain} https://*.r2.cloudflarestorage.com https://challenges.cloudflare.com https://*.paddle.com https://*.paddle.dev`,
       `frame-src ${frameSrc}`,
       "font-src 'self'",
       "object-src 'none'",
@@ -82,12 +98,14 @@ const securityHeaders = [
   },
 ];
 
+const allowedDevOrigins = (process.env.ALLOWED_DEV_ORIGINS ?? "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
 const nextConfig: NextConfig = {
   transpilePackages: ["@ovation/ui", "@ovation/icons"],
-  allowedDevOrigins: [
-    "asked-league-griffin-delivering.trycloudflare.com",
-    "abstracts-launches-gear-serve.trycloudflare.com",
-  ],
+  allowedDevOrigins,
   experimental: {
     viewTransition: true,
   },

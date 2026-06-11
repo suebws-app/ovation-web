@@ -1,16 +1,17 @@
 import type { KeepsakeFilter } from "./components/FilterTabs";
 
-const FILTER_BY_SKU: Record<string, Exclude<KeepsakeFilter, "all">[]> = {
-  gold_book: ["printed", "physical"],
-  thank_you_cards: ["printed", "physical", "gifts"],
-  canvas_print: ["printed", "physical"],
-  audio_vinyl: ["physical", "gifts"],
-  digital_album: ["digital"],
-  video_montage: ["digital"],
-};
+const FILTER_BY_PRODUCT_TYPE: Record<string, Exclude<KeepsakeFilter, "all">[]> =
+  {
+    hardcover: ["printed", "physical"],
+    softcover: ["printed", "physical"],
+    layflat: ["printed", "physical"],
+  };
 
-export const matchesFilter = (sku: string, filter: KeepsakeFilter): boolean => {
+export const matchesFilter = (
+  productType: string,
+  filter: KeepsakeFilter,
+): boolean => {
   if (filter === "all") return true;
-  const list = FILTER_BY_SKU[sku] ?? [];
+  const list = FILTER_BY_PRODUCT_TYPE[productType] ?? [];
   return list.includes(filter);
 };

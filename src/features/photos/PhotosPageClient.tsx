@@ -1,21 +1,26 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 
-import { useInfiniteGallery } from "@/lib/query/galleryQueries";
+import { FeaturePageLayout } from "@/components/FeaturePageLayout";
+import { InfiniteScrollSentinel } from "@/components/InfiniteScrollSentinel";
+import {
+  useGalleryCount,
+  useInfiniteGallery,
+} from "@/lib/query/galleryQueries";
 import type { EventStats } from "@/lib/api/types";
 
 import { PhotoBatchFooter } from "./components/PhotoBatchFooter";
 import { PhotoGallery } from "./components/PhotoGallery";
 import { PhotoLightbox } from "./components/PhotoLightbox";
-import { PhotoToolbar } from "./components/PhotoToolbar";
 import { PhotosFilterRail } from "./components/PhotosFilterRail";
 import { usePhotoBulkActions } from "./hooks/usePhotoBulkActions";
 import { toPhotoViewFromGallery } from "./adapters";
 import {
   useLightboxIndex,
   usePhotoSearch,
+  usePhotoSelectAll,
   usePhotoSelectedIds,
   usePhotoSort,
   usePhotosStore,
@@ -29,17 +34,16 @@ type PhotosPageClientProps = {
 
 const PAGE_SIZE = 20;
 
-export const PhotosPageClient = ({
-  eventId,
-  stats,
-}: PhotosPageClientProps) => {
+export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
   const t = useTranslations();
   const subFilter = useSubFilter();
   const sort = usePhotoSort();
   const search = usePhotoSearch();
   const selectedIds = usePhotoSelectedIds();
+  const selectAll = usePhotoSelectAll();
   const lightboxIndex = useLightboxIndex();
   const toggleSelected = usePhotosStore((s) => s.toggleSelected);
+  const setSelectAll = usePhotosStore((s) => s.setSelectAll);
   const openLightbox = usePhotosStore((s) => s.openLightbox);
   const closeLightbox = usePhotosStore((s) => s.closeLightbox);
   const setLightboxIndex = usePhotosStore((s) => s.setLightboxIndex);
@@ -61,6 +65,12 @@ export const PhotosPageClient = ({
     limit: PAGE_SIZE,
   });
 
+  const allCountQuery = useGalleryCount(eventId, {
+    type: "all",
+    filter: "all",
+    search: trimmedSearch || undefined,
+  });
+
   const anonymous = t("common__anonymous");
   const photos = useMemo(
     () =>
@@ -70,68 +80,50 @@ export const PhotosPageClient = ({
     [data?.pages, anonymous],
   );
 
-  const scrollRef = useRef<HTMLDivElement | null>(null);
-  const sentinelRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const node = sentinelRef.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry?.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          fetchNextPage();
-        }
-      },
-      { root: scrollRef.current, rootMargin: "400px 0px" },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+  const allCount = allCountQuery.data?.count ?? 0;
 
   const handleTileClick = (id: string) => {
     const idx = photos.findIndex((p) => p.id === id);
     if (idx >= 0) openLightbox(idx);
   };
 
+  const isSelected = (id: string): boolean => {
+    if (selectAll) return !selectAll.excludedIds.includes(id);
+    return selectedIds.has(id);
+  };
+
+  const handleToggleSelect = (id: string) => {
+    if (!selectAll) {
+      toggleSelected(id);
+      return;
+    }
+    const excluded = new Set(selectAll.excludedIds);
+    if (excluded.has(id)) excluded.delete(id);
+    else excluded.add(id);
+    setSelectAll({ ...selectAll, excludedIds: [...excluded] });
+  };
+
   const bulk = usePhotoBulkActions(eventId, photos);
 
-  const totalCount = photos.length;
+  const lightbox =
+    lightboxIndex !== null && photos[lightboxIndex] ? (
+      <PhotoLightbox
+        eventId={eventId}
+        photos={photos}
+        index={lightboxIndex}
+        hasNextPage={Boolean(hasNextPage)}
+        isFetchingNextPage={isFetchingNextPage}
+        onClose={closeLightbox}
+        onIndexChange={setLightboxIndex}
+        onLoadMore={() => {
+          if (!isFetchingNextPage) fetchNextPage();
+        }}
+      />
+    ) : null;
 
   return (
-    <div className="flex h-full w-full flex-1 overflow-hidden">
-      <div className="bg-card relative flex h-full min-h-0 w-full flex-1 flex-col">
-        <div
-          ref={scrollRef}
-          className="flex min-h-0 w-full flex-1 flex-col overflow-y-auto"
-        >
-          <PhotoToolbar eventId={eventId} totalCount={totalCount} />
-          <PhotosFilterRail photos={photos} stats={stats} />
-          {isPending ? (
-            <p className="type-body-small text-muted-foreground p-8 text-center">
-              {t("photos__loading")}
-            </p>
-          ) : isError ? (
-            <p className="type-body-small text-destructive p-8 text-center">
-              {t("photos__error")}
-            </p>
-          ) : (
-            <>
-              <PhotoGallery
-                photos={photos}
-                selectedIds={selectedIds}
-                onTileClick={handleTileClick}
-                onToggleSelect={toggleSelected}
-              />
-              <div ref={sentinelRef} aria-hidden className="h-px" />
-              {isFetchingNextPage && (
-                <p className="type-caption text-muted-foreground p-4 text-center">
-                  {t("photos__lightbox__loading_more")}
-                </p>
-              )}
-            </>
-          )}
-        </div>
-
+    <FeaturePageLayout
+      batchFooter={
         <PhotoBatchFooter
           count={bulk.selectedCount}
           allFavorited={bulk.allFavorited}
@@ -141,22 +133,34 @@ export const PhotosPageClient = ({
           onBulkGoldBook={bulk.bulkGoldBook}
           onBulkDownload={bulk.bulkDownload}
         />
-
-        {lightboxIndex !== null && photos[lightboxIndex] && (
-          <PhotoLightbox
-            eventId={eventId}
+      }
+      overlay={lightbox}
+    >
+      <PhotosFilterRail eventId={eventId} stats={stats} allCount={allCount} />
+      {isPending ? (
+        <p className="type-body-small text-muted-foreground p-8 text-center">
+          {t("photos__loading")}
+        </p>
+      ) : isError ? (
+        <p className="type-body-small text-destructive p-8 text-center">
+          {t("photos__error")}
+        </p>
+      ) : (
+        <>
+          <PhotoGallery
             photos={photos}
-            index={lightboxIndex}
+            isSelected={isSelected}
+            onTileClick={handleTileClick}
+            onToggleSelect={handleToggleSelect}
+          />
+          <InfiniteScrollSentinel
             hasNextPage={Boolean(hasNextPage)}
             isFetchingNextPage={isFetchingNextPage}
-            onClose={closeLightbox}
-            onIndexChange={setLightboxIndex}
-            onLoadMore={() => {
-              if (!isFetchingNextPage) fetchNextPage();
-            }}
+            onLoadMore={fetchNextPage}
+            loadingLabel={t("photos__lightbox__loading_more")}
           />
-        )}
-      </div>
-    </div>
+        </>
+      )}
+    </FeaturePageLayout>
   );
 };

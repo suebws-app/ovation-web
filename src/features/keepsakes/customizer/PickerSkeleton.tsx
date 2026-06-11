@@ -21,12 +21,12 @@ export const PickerSkeleton = ({ variant, count = 8 }: PickerSkeletonProps) => {
     <div className="rounded-12 border-border bg-card flex flex-col divide-y divide-(--border) overflow-hidden border">
       {items.map((i) => (
         <div key={i} className="flex items-center gap-3 px-4 py-3">
-          <div className="bg-muted size-4.5 rounded animate-pulse" />
+          <div className="bg-muted size-4.5 animate-pulse rounded" />
           <div className="flex flex-1 flex-col gap-1.5">
-            <div className="bg-muted h-3 w-32 rounded animate-pulse" />
-            <div className="bg-muted h-2.5 w-48 rounded animate-pulse" />
+            <div className="bg-muted h-3 w-32 animate-pulse rounded" />
+            <div className="bg-muted h-2.5 w-48 animate-pulse rounded" />
           </div>
-          <div className="bg-muted h-3 w-10 rounded animate-pulse" />
+          <div className="bg-muted h-3 w-10 animate-pulse rounded" />
         </div>
       ))}
     </div>

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import type { Order } from "@/lib/api/types";
+import { translateKey } from "@/lib/utils/translateKey";
 import {
   formatOrderDate,
   formatPrice,
@@ -31,44 +32,46 @@ export const OrderCard = ({
 }: OrderCardProps) => {
   const t = useTranslations();
   return (
-  <button
-    type="button"
-    onClick={onClick}
-    className="rounded-16 border-border bg-card hover:bg-muted/40 flex w-full flex-col gap-3 border p-4 text-left transition-colors"
-  >
-    <div className="flex items-baseline justify-between gap-3">
-      <div className="flex flex-col gap-0.5">
-        <span className="type-body-small font-semibold">
-          {order.productName ? t(order.productName) : ""}
-          {order.variantName ? ` — ${order.variantName}` : ""}
-        </span>
-        <span className="type-caption text-muted-foreground">
-          {formatOrderDate(order.createdAt)} · #{order.id.slice(0, 8)}
+    <button
+      type="button"
+      onClick={onClick}
+      className="rounded-16 border-border bg-card hover:bg-muted/40 flex w-full flex-col gap-3 border p-4 text-left transition-colors"
+    >
+      <div className="flex items-baseline justify-between gap-3">
+        <div className="flex flex-col gap-0.5">
+          <span className="type-body-small font-semibold">
+            {translateKey(t, order.productName)}
+            {order.variantName ? ` — ${order.variantName}` : ""}
+          </span>
+          <span className="type-caption text-muted-foreground">
+            {formatOrderDate(order.createdAt)} · #{order.id.slice(0, 8)}
+          </span>
+        </div>
+        <span className="type-body-small font-mono">
+          {formatPrice(order.totalCents, order.currency)}
         </span>
       </div>
-      <span className="type-body-small font-mono">
-        {formatPrice(order.totalCents, order.currency)}
-      </span>
-    </div>
 
-    <div className="flex items-baseline justify-between gap-3">
-      <span className="type-caption text-muted-foreground">{statusLabel}</span>
-      {photoCountLabel && (
+      <div className="flex items-baseline justify-between gap-3">
         <span className="type-caption text-muted-foreground">
-          {photoCountLabel}
+          {statusLabel}
         </span>
-      )}
-    </div>
+        {photoCountLabel && (
+          <span className="type-caption text-muted-foreground">
+            {photoCountLabel}
+          </span>
+        )}
+      </div>
 
-    <div className="bg-border h-1 overflow-hidden rounded-full">
-      <div
-        className="h-full rounded-full"
-        style={{
-          width: `${progressFor(order.status)}%`,
-          background: colorFor(order.status),
-        }}
-      />
-    </div>
-  </button>
+      <div className="bg-border h-1 overflow-hidden rounded-full">
+        <div
+          className="h-full rounded-full"
+          style={{
+            width: `${progressFor(order.status)}%`,
+            background: colorFor(order.status),
+          }}
+        />
+      </div>
+    </button>
   );
 };

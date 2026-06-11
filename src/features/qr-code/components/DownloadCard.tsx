@@ -144,7 +144,7 @@ export const DownloadCard = ({
           />
         ))}
       </div>
-      <div className="absolute -left-[9999px] top-0" aria-hidden="true">
+      <div className="absolute top-0 -left-[9999px]" aria-hidden="true">
         <div ref={canvasContainerRef}>
           <QRCodeCanvas
             value={shortUrl}

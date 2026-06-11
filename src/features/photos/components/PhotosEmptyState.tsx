@@ -16,9 +16,7 @@ export const PhotosEmptyState = () => {
         {t("photos__empty__body")}
       </p>
       <Button asChild className="rounded-full">
-        <Link href={appRoutes.create.root}>
-          {t("photos__empty__cta")}
-        </Link>
+        <Link href={appRoutes.create.root}>{t("photos__empty__cta")}</Link>
       </Button>
     </div>
   );

@@ -6,10 +6,7 @@ type ShareChannelProps = {
   label: string;
   color: string;
   Icon: IconComponent;
-} & (
-  | { href: string; onClick?: never }
-  | { href?: never; onClick: () => void }
-);
+} & ({ href: string; onClick?: never } | { href?: never; onClick: () => void });
 
 const channelClass =
   "rounded-12 border-border bg-background hover:bg-muted flex cursor-pointer flex-col items-center gap-1.5 border p-3 transition-colors";

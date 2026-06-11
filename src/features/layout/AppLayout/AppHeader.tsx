@@ -10,7 +10,7 @@ import { useCartStore } from "@/features/cart/store/useCartStore";
 const formatCredit = (cents: number) =>
   cents > 0 ? `€${(cents / 100).toFixed(0)}` : null;
 
-export const KeepsakesActions = () => {
+export const AppHeader = () => {
   const t = useTranslations();
   const cartCount = useCartStore((s) => s.itemCount());
   const [hydrated, setHydrated] = useState(false);
@@ -20,7 +20,7 @@ export const KeepsakesActions = () => {
   const credit: string | null = formatCredit(0);
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="max-w-container mx-auto flex w-full items-center justify-end gap-3 px-6 pt-3 pb-1">
       {credit && (
         <span className="type-caption text-accent-foreground font-semibold">
           {t("sidebar__credit_available", { amount: credit })}

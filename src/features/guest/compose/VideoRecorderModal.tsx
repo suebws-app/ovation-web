@@ -99,7 +99,7 @@ export const VideoRecorderModal = ({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[100] flex h-dvh w-dvw flex-col overscroll-contain bg-black"
+      className="animate-fade-in fixed inset-0 z-[100] flex h-dvh w-dvw flex-col overscroll-contain bg-black"
       role="dialog"
       aria-modal="true"
     >

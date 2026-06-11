@@ -1,4 +1,59 @@
-import type { MessageDetail, MessageSummary } from "@/lib/api/types";
+import type {
+  MessageDetail,
+  MessageFilter,
+  MessageSummary,
+} from "@/lib/api/types";
+import type { MessageSortOption } from "./store/useMessagesStore";
+
+export const applyMessageFilter = (
+  msgs: MessageSummary[],
+  filter: MessageFilter,
+): MessageSummary[] => {
+  switch (filter) {
+    case "favorites":
+      return msgs.filter((m) => m.isFavorite);
+    case "with_photo":
+      return msgs.filter((m) => m.hasPhoto);
+    case "with_video":
+      return msgs.filter((m) => m.hasVideo);
+    case "audio_only":
+      return msgs.filter((m) => m.hasAudio && !m.hasPhoto && !m.hasVideo);
+    default:
+      return msgs;
+  }
+};
+
+export const applyMessageSearch = (
+  msgs: MessageSummary[],
+  search: string,
+): MessageSummary[] => {
+  const query = search.trim().toLowerCase();
+  if (!query) return msgs;
+  return msgs.filter((m) => {
+    if (m.guestNames.toLowerCase().includes(query)) return true;
+    if ((m.transcriptSnippet ?? "").toLowerCase().includes(query)) return true;
+    if ((m.writtenNote ?? "").toLowerCase().includes(query)) return true;
+    return false;
+  });
+};
+
+export const applyMessageSort = (
+  msgs: MessageSummary[],
+  sort: MessageSortOption,
+): MessageSummary[] => {
+  const arr = [...msgs];
+  switch (sort) {
+    case "oldest":
+      return arr.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+    case "longest":
+      return arr.sort(
+        (a, b) => (b.audioDurationSec ?? 0) - (a.audioDurationSec ?? 0),
+      );
+    case "newest":
+    default:
+      return arr.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  }
+};
 
 const TINTS = [
   "#EFC9A8",

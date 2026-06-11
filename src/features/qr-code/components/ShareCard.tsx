@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { WhatsAppIcon } from "@ovation/icons/WhatsAppIcon";
 import { MailIcon } from "@ovation/icons/MailIcon";
 import { SmsIcon } from "@ovation/icons/SmsIcon";
@@ -73,7 +73,7 @@ export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
       <Kicker className="text-muted-foreground mb-3">
         {t("qr_code__share__eyebrow")}
       </Kicker>
-      <div className="grid grid-cols-2 tablet:grid-cols-4 gap-2.5">
+      <div className="tablet:grid-cols-4 grid grid-cols-2 gap-2.5">
         {channels.map((c) => (
           <ShareChannel
             key={c.id}
@@ -97,7 +97,9 @@ export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
         </p>
         <p className="type-body-small text-foreground mt-1 font-serif italic">
           {t("qr_code__share__suggested_a")}{" "}
-          <span className="font-mono not-italic">{env.APP_URL}/{url}</span>
+          <span className="font-mono not-italic">
+            {env.APP_URL}/{url}
+          </span>
           {t("qr_code__share__suggested_b")}
         </p>
       </div>

@@ -1,6 +1,9 @@
 import { z } from "zod";
 
-type T = (key: string, params?: Record<string, string | number | Date>) => string;
+type T = (
+  key: string,
+  params?: Record<string, string | number | Date>,
+) => string;
 
 export const getSignUpSchema = (t: T) =>
   z.object({

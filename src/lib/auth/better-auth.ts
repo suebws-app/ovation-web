@@ -4,7 +4,7 @@ import { betterAuth } from "better-auth";
 import { APIError } from "better-auth/api";
 import { nextCookies } from "better-auth/next-js";
 import { Pool } from "pg";
-import { env } from "@/lib/utils/env";
+import { serverEnv as env } from "@/lib/utils/env.server";
 import { sendResetPasswordEmail, sendVerificationEmail } from "./email-sender";
 
 export const ACCOUNT_DELETED_ERROR_CODE = "ACCOUNT_DELETED";
@@ -96,7 +96,8 @@ export const auth = betterAuth({
 
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: false,
+    // TODO: re-enable in dev. Currently bypassed locally; production stays gated.
+    requireEmailVerification: env.IS_PRODUCTION,
     minPasswordLength: 8,
     autoSignIn: true,
     sendResetPassword: async ({ user, url }) => {

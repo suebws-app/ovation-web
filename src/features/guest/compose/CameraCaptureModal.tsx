@@ -1,6 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, startTransition } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  startTransition,
+} from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
@@ -116,7 +122,7 @@ export const CameraCaptureModal = ({
       if (!ctx) return;
       ctx.drawImage(video, 0, 0, width, height);
       const blob: Blob | null = await new Promise((resolve) =>
-        canvas.toBlob((b) => resolve(b), "image/jpeg", 0.9),
+        canvas.toBlob((b) => resolve(b), "image/jpeg", 0.92),
       );
       if (!blob) return;
       const file = new File([blob], `photo-${Date.now()}.jpg`, {
@@ -160,7 +166,7 @@ export const CameraCaptureModal = ({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[100] flex h-dvh w-dvw flex-col overscroll-contain bg-black"
+      className="animate-fade-in fixed inset-0 z-[100] flex h-dvh w-dvw flex-col overscroll-contain bg-black"
       role="dialog"
       aria-modal="true"
     >

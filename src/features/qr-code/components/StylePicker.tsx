@@ -48,7 +48,7 @@ export const StylePicker = ({
       <Kicker className="text-muted-foreground mb-3">
         {t("qr_code__style__eyebrow")}
       </Kicker>
-      <div className="grid grid-cols-2 tablet:grid-cols-4 gap-2.5">
+      <div className="tablet:grid-cols-4 grid grid-cols-2 gap-2.5">
         {styles.map((s) => (
           <StyleOption
             key={s.id}

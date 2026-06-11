@@ -17,6 +17,7 @@ import {
 } from "@/lib/query/messagesQueries";
 import { downloadMessageAssets } from "@/lib/media/downloadMessageAssets";
 import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
+import { safeHttpUrl } from "@/lib/utils/safe-url";
 import { formatTimeShort } from "../adapters";
 
 import Image from "next/image";
@@ -109,6 +110,7 @@ export const MessageDetailPane = ({
   const firstVideo = mediaItems.find((m) => m.type === "video");
   const photoItems = mediaItems.filter((m) => m.type === "photo");
   const videoUrl = firstVideo?.url ?? null;
+  const safeVideoUrl = safeHttpUrl(videoUrl);
   const videoMimeType = "video/mp4";
   const writtenNote = detail?.message.writtenNote ?? null;
   const hasAudio = Boolean(audioUrl);
@@ -131,9 +133,9 @@ export const MessageDetailPane = ({
             type="button"
             onClick={onClose}
             aria-label={t("common__close")}
-            className="text-muted-foreground hover:text-foreground hover:bg-muted absolute top-3 right-3 flex size-7 items-center justify-center rounded-full transition-colors"
+            className="text-foreground hover:text-foreground hover:bg-muted bg-muted/60 border-border absolute top-3 right-3 flex size-9 items-center justify-center rounded-full border transition-colors"
           >
-            <XIcon width={14} height={14} />
+            <XIcon width={18} height={18} strokeWidth={2.2} />
           </button>
         )}
         <div
@@ -225,17 +227,18 @@ export const MessageDetailPane = ({
             {t("messages__detail__media_eyebrow")}
           </Kicker>
           <div className="grid grid-cols-2 gap-2">
-            {photoItems.map((photo) =>
-              photo.url ? (
+            {photoItems.map((photo) => {
+              const safePhotoUrl = safeHttpUrl(photo.url);
+              return safePhotoUrl ? (
                 <a
                   key={photo.id}
-                  href={photo.url}
+                  href={safePhotoUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-12 bg-muted relative block aspect-square overflow-hidden"
                 >
                   <Image
-                    src={photo.url}
+                    src={safePhotoUrl}
                     fill
                     unoptimized
                     priority
@@ -243,12 +246,12 @@ export const MessageDetailPane = ({
                     alt={message.name}
                   />
                 </a>
-              ) : null,
-            )}
-            {videoUrl && (
+              ) : null;
+            })}
+            {safeVideoUrl && (
               <div className="rounded-12 bg-muted block aspect-square w-full overflow-hidden">
                 <LazyVideoPlayer
-                  src={videoUrl}
+                  src={safeVideoUrl}
                   type={videoMimeType as "video/mp4" | "video/webm"}
                   load="visible"
                   preload="none"
@@ -327,7 +330,8 @@ export const MessageDetailPane = ({
           onClick={handleDownload}
           disabled={downloading || !detail?.message}
         >
-          <DownloadIcon width={14} height={14} /> {t("messages__detail__download")}
+          <DownloadIcon width={14} height={14} />{" "}
+          {t("messages__detail__download")}
         </Button>
         <Button
           variant="outline"

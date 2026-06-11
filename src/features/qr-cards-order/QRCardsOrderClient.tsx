@@ -10,11 +10,7 @@ import { PaymentStep } from "./components/PaymentStep";
 import { ConfirmationStep } from "./components/ConfirmationStep";
 import { OrderTotalCard } from "./components/OrderTotalCard";
 import { calcPricing } from "./pricing";
-import type {
-  OrderState,
-  PaperKey,
-  ShippingMethodKey,
-} from "./types";
+import type { OrderState, PaperKey, ShippingMethodKey } from "./types";
 
 const INITIAL_STATE: OrderState = {
   quantity: 100,
@@ -37,8 +33,7 @@ const INITIAL_STATE: OrderState = {
   cardholderName: "",
 };
 
-const generateOrderId = () =>
-  `OV-${Math.floor(10000 + Math.random() * 90000)}`;
+const generateOrderId = () => `OV-${Math.floor(10000 + Math.random() * 90000)}`;
 
 export const QRCardsOrderClient = () => {
   const t = useTranslations();
@@ -56,9 +51,9 @@ export const QRCardsOrderClient = () => {
   return (
     <div className="bg-background min-h-screen">
       <StepIndicator step={step} />
-      <div className="mx-auto max-w-7xl px-5 py-10 tablet:px-10 tablet:py-12">
+      <div className="tablet:px-10 tablet:py-12 mx-auto max-w-7xl px-5 py-10">
         {step === 1 && (
-          <div className="grid gap-10 desktop:grid-cols-[1fr_380px]">
+          <div className="desktop:grid-cols-[1fr_380px] grid gap-10">
             <QuantityStep
               state={state}
               setQuantity={(n) => update("quantity", n)}
@@ -84,7 +79,7 @@ export const QRCardsOrderClient = () => {
               <button
                 type="button"
                 onClick={goBack}
-                className="rounded-full border-border bg-card hover:bg-muted type-body border px-5 py-3 font-semibold"
+                className="border-border bg-card hover:bg-muted type-body rounded-full border px-5 py-3 font-semibold"
               >
                 ← {t("qr_cards_order__back")}
               </button>
@@ -92,7 +87,7 @@ export const QRCardsOrderClient = () => {
                 type="button"
                 onClick={goNext}
                 disabled={!state.proofConfirmed}
-                className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 type-body px-6 py-3 font-semibold"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 type-body rounded-full px-6 py-3 font-semibold disabled:pointer-events-none disabled:opacity-50"
               >
                 {t("qr_cards_order__design__continue")} →
               </button>
@@ -100,7 +95,7 @@ export const QRCardsOrderClient = () => {
           </div>
         )}
         {step === 3 && (
-          <div className="grid gap-10 desktop:grid-cols-[1fr_380px]">
+          <div className="desktop:grid-cols-[1fr_380px] grid gap-10">
             <ShippingStep
               state={state}
               setField={(field, value) => update(field, value)}
@@ -118,7 +113,7 @@ export const QRCardsOrderClient = () => {
           </div>
         )}
         {step === 4 && (
-          <div className="grid gap-10 desktop:grid-cols-[1fr_380px]">
+          <div className="desktop:grid-cols-[1fr_380px] grid gap-10">
             <PaymentStep
               state={state}
               setField={(field, value) => update(field, value)}
@@ -133,11 +128,7 @@ export const QRCardsOrderClient = () => {
           </div>
         )}
         {step === 5 && (
-          <ConfirmationStep
-            state={state}
-            pricing={pricing}
-            orderId={orderId}
-          />
+          <ConfirmationStep state={state} pricing={pricing} orderId={orderId} />
         )}
       </div>
     </div>

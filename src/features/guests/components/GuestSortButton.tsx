@@ -41,10 +41,7 @@ export const GuestSortButton = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-44">
         {OPTIONS.map((opt) => (
-          <DropdownMenuItem
-            key={opt.value}
-            onSelect={() => setSort(opt.value)}
-          >
+          <DropdownMenuItem key={opt.value} onSelect={() => setSort(opt.value)}>
             <span className="flex-1">{t(opt.labelKey)}</span>
             {sort === opt.value && <CheckIcon width={12} height={12} />}
           </DropdownMenuItem>

@@ -37,7 +37,7 @@ export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
   }, [recorder.recording, setAudio, onCaptured]);
 
   return (
-    <div className="bg-card border-border rounded-16 flex flex-col items-center gap-4_5 border p-6_5 text-center">
+    <div className="bg-card border-border rounded-16 gap-4_5 p-6_5 flex flex-col items-center border text-center">
       <p className="type-body-small text-muted-foreground max-w-sm">
         {t("guest__record__audio__hint", {
           seconds: recorder.maxDurationSec,

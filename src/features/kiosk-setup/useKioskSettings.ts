@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { kioskSettingsClient } from "@/lib/api/kiosk-settings-client";
-import type {
-  KioskSettings,
-  UpdateKioskSettingsInput,
-} from "@/lib/api/types";
+import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
 
 const DEBOUNCE_MS = 400;
 

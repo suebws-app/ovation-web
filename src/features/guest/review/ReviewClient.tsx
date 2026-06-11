@@ -263,7 +263,7 @@ export const ReviewClient = ({
                 max: 5,
               })}
               preview={
-                <div className="grid grid-cols-3 gap-2 tablet:grid-cols-4">
+                <div className="tablet:grid-cols-4 grid grid-cols-3 gap-2">
                   {photos.map((p) => (
                     <ReviewPhotoTile key={p.id} url={p.url} />
                   ))}

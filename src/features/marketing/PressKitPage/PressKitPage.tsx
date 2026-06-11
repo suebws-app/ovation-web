@@ -10,7 +10,9 @@ export const PressKitPage = () => {
     <>
       <section>
         <div className="section-container">
-          <Kicker className="text-primary">{t("marketing__press_kit__eyebrow")}</Kicker>
+          <Kicker className="text-primary">
+            {t("marketing__press_kit__eyebrow")}
+          </Kicker>
           <SectionTitle as="h1" className="mt-4">
             {t("marketing__press_kit__title")}
           </SectionTitle>
@@ -22,9 +24,9 @@ export const PressKitPage = () => {
 
       <section>
         <div className="section-container">
-          <div className="grid grid-cols-1 gap-8 tablet:grid-cols-3">
+          <div className="tablet:grid-cols-3 grid grid-cols-1 gap-8">
             <div>
-              <p className="text-muted-foreground type-body-small font-semibold uppercase tracking-widest">
+              <p className="text-muted-foreground type-body-small font-semibold tracking-widest uppercase">
                 {t("marketing__press_kit__boilerplate_label")}
               </p>
               <div className="border-border bg-card rounded-16 mt-4 border p-6">
@@ -35,7 +37,7 @@ export const PressKitPage = () => {
             </div>
 
             <div>
-              <p className="text-muted-foreground type-body-small font-semibold uppercase tracking-widest">
+              <p className="text-muted-foreground type-body-small font-semibold tracking-widest uppercase">
                 {t("marketing__press_kit__contact_label")}
               </p>
               <a
@@ -47,7 +49,7 @@ export const PressKitPage = () => {
             </div>
 
             <div>
-              <p className="text-muted-foreground type-body-small font-semibold uppercase tracking-widest">
+              <p className="text-muted-foreground type-body-small font-semibold tracking-widest uppercase">
                 {t("marketing__press_kit__assets_label")}
               </p>
               <p className="text-muted-foreground type-body mt-4 leading-relaxed">

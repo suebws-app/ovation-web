@@ -1,7 +1,12 @@
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { SectionTitle } from "../../../components/SectionTitle";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@ovation/ui/components/Tabs";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@ovation/ui/components/Tabs";
 import { PricingCard } from "./PricingCard";
 import { COUPLES_TIERS, PRO_TIERS } from "./constants";
 
@@ -32,7 +37,7 @@ export const PricingSection = () => {
           </TabsList>
 
           <TabsContent value="couples">
-            <div className="mx-auto grid max-w-3xl grid-cols-1 gap-5 tablet:grid-cols-2">
+            <div className="tablet:grid-cols-2 mx-auto grid max-w-3xl grid-cols-1 gap-5">
               {COUPLES_TIERS.map(({ key, ...tier }) => (
                 <PricingCard key={key} {...tier} />
               ))}
@@ -40,7 +45,7 @@ export const PricingSection = () => {
           </TabsContent>
 
           <TabsContent value="professionals">
-            <div className="mx-auto grid max-w-3xl grid-cols-1 gap-5 tablet:grid-cols-2">
+            <div className="tablet:grid-cols-2 mx-auto grid max-w-3xl grid-cols-1 gap-5">
               {PRO_TIERS.map(({ key, ...tier }) => (
                 <PricingCard key={key} {...tier} />
               ))}

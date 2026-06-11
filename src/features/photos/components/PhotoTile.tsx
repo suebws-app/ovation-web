@@ -10,6 +10,7 @@ import { PhotoFavouriteIndicator } from "./PhotoFavouriteIndicator";
 type PhotoTileProps = {
   tile: PhotoView;
   height: number;
+  index?: number;
   selected?: boolean;
   onClick?: () => void;
   onToggleSelect?: () => void;
@@ -18,6 +19,7 @@ type PhotoTileProps = {
 export const PhotoTile = ({
   tile,
   height,
+  index = 0,
   selected = false,
   onClick,
   onToggleSelect,
@@ -50,10 +52,12 @@ export const PhotoTile = ({
         }
       }}
       className={cn(
-        "group rounded-12 relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-transform hover:scale-[1.02] hover:shadow-md",
+        "group rounded-12 animate-slide-up-fade relative w-full cursor-pointer overflow-hidden text-left transition-transform hover:scale-[1.02] hover:shadow-md",
         selected ? "ring-secondary ring-[3px] ring-offset-1" : "shadow-sm",
       )}
-      style={{ breakInside: "avoid" }}
+      style={{
+        animationDelay: `${Math.min(index, 12) * 30}ms`,
+      }}
     >
       <div
         className="relative flex w-full items-center justify-center overflow-hidden"
@@ -90,7 +94,7 @@ export const PhotoTile = ({
         )}
 
         {isVideo && (
-          <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 type-caption font-medium text-white">
+          <span className="type-caption absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 font-medium text-white">
             <VideoIcon width={11} height={11} />
             <span>Video</span>
           </span>

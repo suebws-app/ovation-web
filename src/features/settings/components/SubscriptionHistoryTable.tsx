@@ -33,9 +33,7 @@ const HistoryRow = ({ item, locale, refundedLabel }: HistoryRowProps) => {
   return (
     <tr>
       <td className="px-6 py-4">{formatDate(displayDate, locale)}</td>
-      <td className="px-6 py-4 capitalize">
-        {item.planName ?? item.planCode}
-      </td>
+      <td className="px-6 py-4 capitalize">{item.planName ?? item.planCode}</td>
       <td className="px-6 py-4">
         {formatAmount(item.totalCents, item.currency, locale)}
       </td>

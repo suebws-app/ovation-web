@@ -40,9 +40,9 @@ export const LanguagePicker = () => {
       <PopoverTrigger asChild>
         <button
           type="button"
-          className="bg-card/85 border-border rounded-full inline-flex items-center gap-2 border px-3 py-2 backdrop-blur-sm shadow-sm"
+          className="bg-card/85 border-border inline-flex items-center gap-2 rounded-full border px-3 py-2 shadow-sm backdrop-blur-sm"
         >
-          <span className="bg-primary text-primary-foreground rounded-full inline-flex size-5 items-center justify-center type-caption font-bold tracking-wide">
+          <span className="bg-primary text-primary-foreground type-caption inline-flex size-5 items-center justify-center rounded-full font-bold tracking-wide">
             {currentLocale.toUpperCase()}
           </span>
           <span className="type-body-small font-semibold">{currentLabel}</span>

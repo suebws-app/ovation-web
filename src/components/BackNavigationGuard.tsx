@@ -6,7 +6,9 @@ type BackNavigationGuardProps = {
   redirectTo: string;
 };
 
-export const BackNavigationGuard = ({ redirectTo }: BackNavigationGuardProps) => {
+export const BackNavigationGuard = ({
+  redirectTo,
+}: BackNavigationGuardProps) => {
   useRedirectOnBackNavigation(redirectTo);
   return null;
 };

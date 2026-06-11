@@ -7,6 +7,8 @@ import { ApiError } from "@/lib/api/client";
 import { ordersApi, planPurchasesApi } from "@/lib/api/orders";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { safeHttpUrl } from "@/lib/utils/safe-url";
+import { translateKey } from "@/lib/utils/translateKey";
 import { PlanActivatedSuccess } from "./PlanActivatedSuccess";
 import { PendingOrderSuccess } from "./PendingOrderSuccess";
 import {
@@ -21,8 +23,7 @@ type CheckoutSuccessPageProps = {
 };
 
 const isMissing = (error: unknown) =>
-  ApiError.isApiError(error) &&
-  (error.status === 404 || error.status === 403);
+  ApiError.isApiError(error) && (error.status === 404 || error.status === 403);
 
 const fetchCheckout = async (
   id: string,
@@ -59,10 +60,7 @@ export const CheckoutSuccessPage = async ({
   if (!fetched) return <PendingOrderSuccess orderId={orderId} />;
   if (fetched.kind === "plan")
     return (
-      <PlanActivatedSuccess
-        orderId={orderId}
-        planCode={fetched.planCode}
-      />
+      <PlanActivatedSuccess orderId={orderId} planCode={fetched.planCode} />
     );
   const { order, session } = fetched.result;
   const sessionOrders = session?.orders ?? [order];
@@ -129,7 +127,7 @@ export const CheckoutSuccessPage = async ({
               >
                 <div>
                   <p className="type-body-small font-semibold">
-                    {row.productName ? t(row.productName) : ""}
+                    {translateKey(t, row.productName)}
                     {row.variantName ? ` — ${row.variantName}` : ""}
                   </p>
                   <p className="type-caption text-muted-foreground">
@@ -161,22 +159,27 @@ export const CheckoutSuccessPage = async ({
             </span>
           </div>
 
-          {order.tracking?.url && (
-            <div className="rounded-12 bg-muted/40 mt-5 border border-dashed p-4">
-              <Kicker className="text-muted-foreground">
-                {t("checkout__success__tracking")}
-              </Kicker>
-              <a
-                href={order.tracking.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="type-body-small text-primary mt-1.5 block font-semibold break-all"
-              >
-                {order.tracking.carrier ? `${order.tracking.carrier} · ` : ""}
-                {order.tracking.number ?? order.tracking.url}
-              </a>
-            </div>
-          )}
+          {(() => {
+            const safeTrackingUrl = safeHttpUrl(order.tracking?.url);
+            return safeTrackingUrl ? (
+              <div className="rounded-12 bg-muted/40 mt-5 border border-dashed p-4">
+                <Kicker className="text-muted-foreground">
+                  {t("checkout__success__tracking")}
+                </Kicker>
+                <a
+                  href={safeTrackingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="type-body-small text-primary mt-1.5 block font-semibold break-all"
+                >
+                  {order.tracking?.carrier
+                    ? `${order.tracking.carrier} · `
+                    : ""}
+                  {order.tracking?.number ?? safeTrackingUrl}
+                </a>
+              </div>
+            ) : null;
+          })()}
         </div>
 
         <div className="flex justify-center gap-2">

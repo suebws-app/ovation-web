@@ -1,5 +1,3 @@
 import { SampleSpread } from "../SampleSpread";
 
-export const SamplePage = () => (
-  <SampleSpread />
-);
+export const SamplePage = () => <SampleSpread />;

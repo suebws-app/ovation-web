@@ -6,7 +6,11 @@ type ChecklistItemProps = {
   active?: boolean;
 };
 
-export const ChecklistItem = ({ index, label, active = false }: ChecklistItemProps) => (
+export const ChecklistItem = ({
+  index,
+  label,
+  active = false,
+}: ChecklistItemProps) => (
   <div
     className={cn(
       "type-body-small flex items-center gap-3",

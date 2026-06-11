@@ -9,7 +9,8 @@ type PolaroidPairProps = {
 const accentBackground = (themeColor: string) =>
   `linear-gradient(160deg, ${themeColor}, color-mix(in oklch, ${themeColor} 65%, black))`;
 
-const counterBackground = "linear-gradient(160deg, var(--accent), var(--destructive))";
+const counterBackground =
+  "linear-gradient(160deg, var(--accent), var(--destructive))";
 
 export const PolaroidPair = ({
   partnerAName,

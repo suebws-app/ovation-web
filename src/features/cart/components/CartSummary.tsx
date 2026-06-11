@@ -49,7 +49,7 @@ export const CartSummary = ({
 
   return (
     <div className="rounded-20 border-border bg-card desktop:sticky desktop:top-5 flex flex-col gap-4 border p-7">
-      <h2 className="font-serif type-h3 font-semibold tracking-tight">
+      <h2 className="type-h3 font-serif font-semibold tracking-tight">
         {t("cart__summary__title")}
       </h2>
 
@@ -75,7 +75,9 @@ export const CartSummary = ({
               : formatPrice(shippingCents, currency)
           }
           emphasis={freeShipping ? "positive" : "default"}
-          helper={freeShipping ? t("cart__summary__shipping_helper") : undefined}
+          helper={
+            freeShipping ? t("cart__summary__shipping_helper") : undefined
+          }
         />
         <CartSummaryRow
           label={t("cart__summary__vat", {
@@ -91,7 +93,7 @@ export const CartSummary = ({
         <span className="type-body-small font-bold">
           {t("cart__summary__total")}
         </span>
-        <span className="font-serif type-h2 font-semibold tracking-tight">
+        <span className="type-h2 font-serif font-semibold tracking-tight">
           {formatPrice(totalCents, currency)}
         </span>
       </div>

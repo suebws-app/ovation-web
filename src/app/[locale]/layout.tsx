@@ -1,5 +1,5 @@
-import Script from "next/script";
 import { Rubik, Noto_Sans } from "next/font/google";
+import Script from "next/script";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -23,17 +23,6 @@ export const generateStaticParams = () => {
   return routing.locales.map((locale) => ({ locale }));
 };
 
-const themeScript = `(function(){
-  try {
-    var d = document.documentElement;
-    var t = JSON.parse(localStorage.getItem('theme') || '{}');
-    var v = t && t.state && t.state.theme;
-    if (v === 'dark') {
-      d.classList.add('dark');
-    }
-  } catch(e) {}
-})()`;
-
 export default async function LocaleLayout({
   children,
   params,
@@ -55,20 +44,12 @@ export default async function LocaleLayout({
       className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          id="theme-init"
-          dangerouslySetInnerHTML={{ __html: themeScript }}
-        />
-      </head>
-      {process.env.NEXT_PUBLIC_COOKIE_YES_SITE_ID && (
+      <body className="flex max-h-dvh flex-1 flex-col font-sans">
         <Script
-          id="cookieyes"
-          src={`https://cdn-cookieyes.com/client_data/${process.env.NEXT_PUBLIC_COOKIE_YES_SITE_ID}/script.js`}
+          id="theme-init"
+          src="/theme-init.js"
           strategy="beforeInteractive"
         />
-      )}
-      <body className="flex max-h-dvh flex-1 flex-col font-sans">
         <NextIntlClientProvider messages={messages}>
           <AppProviders>{children}</AppProviders>
         </NextIntlClientProvider>

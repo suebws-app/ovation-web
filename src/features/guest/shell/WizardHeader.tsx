@@ -27,7 +27,7 @@ export const WizardHeader = ({
       <div className="flex items-center justify-between">
         <Link
           href={backHref}
-          className="bg-card/85 border-border rounded-full text-foreground inline-flex items-center gap-1.5 border px-3 py-2 backdrop-blur-sm shadow-sm"
+          className="bg-card/85 border-border text-foreground inline-flex items-center gap-1.5 rounded-full border px-3 py-2 shadow-sm backdrop-blur-sm"
         >
           <ChevronLeftIcon width={14} height={14} />
           <span className="type-body-small font-semibold">
@@ -42,9 +42,7 @@ export const WizardHeader = ({
         </span>
       </div>
       <div>
-        <h2 className="type-h2 font-semibold leading-tight">
-          {title}
-        </h2>
+        <h2 className="type-h2 leading-tight font-semibold">{title}</h2>
         {subtitle && (
           <p className="type-body-small text-muted-foreground mt-1.5">
             {subtitle}

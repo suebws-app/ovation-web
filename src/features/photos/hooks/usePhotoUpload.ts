@@ -10,6 +10,7 @@ import {
 } from "@/lib/api/media-client";
 import { ApiError } from "@/lib/api/client";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
+import { compressImage } from "@/lib/media/compressImage";
 import { queryKeys } from "@/lib/query/keys";
 import { useUpgradeModalStore } from "@/features/upgrade/useUpgradeModalStore";
 
@@ -71,8 +72,9 @@ export const usePhotoUpload = (eventId: string) => {
       for (const file of files) {
         const item = fileToItem(file);
         if (!item) continue;
-        acceptedFiles.push(file);
-        items.push(item);
+        const processed = isPhoto(file) ? await compressImage(file) : file;
+        acceptedFiles.push(processed);
+        items.push({ ...item, contentType: processed.type });
       }
       if (items.length === 0) return;
 

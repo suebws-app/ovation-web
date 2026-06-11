@@ -39,9 +39,7 @@ export const PlanActivatedSuccess = async ({
             />
           </div>
           <Kicker className="text-primary mt-2">
-            {isDre
-              ? t("dre_activated__eyebrow")
-              : t("plan_activated__eyebrow")}
+            {isDre ? t("dre_activated__eyebrow") : t("plan_activated__eyebrow")}
           </Kicker>
           <h1 className="type-h1 leading-tight font-semibold tracking-tight">
             {isDre ? t("dre_activated__title") : t("plan_activated__title")}

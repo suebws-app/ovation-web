@@ -1,8 +1,10 @@
 "use client";
 
 import {
+  keepPreviousData,
   useInfiniteQuery,
   useMutation,
+  useQuery,
   useQueryClient,
   type InfiniteData,
 } from "@tanstack/react-query";
@@ -19,7 +21,27 @@ type GalleryFilter = {
   limit?: number;
 };
 
-export const useInfiniteGallery = (eventId: string, input: GalleryFilter = {}) =>
+type GalleryCountInput = {
+  type?: "photo" | "video" | "all";
+  filter?: "all" | "favorites" | "gold_book";
+  search?: string;
+};
+
+export const useGalleryCount = (
+  eventId: string,
+  input: GalleryCountInput = {},
+) =>
+  useQuery({
+    queryKey: queryKeys.gallery.count(eventId, input),
+    queryFn: () => mediaClient.galleryCount(eventId, input),
+    enabled: Boolean(eventId),
+    staleTime: 30_000,
+  });
+
+export const useInfiniteGallery = (
+  eventId: string,
+  input: GalleryFilter = {},
+) =>
   useInfiniteQuery({
     queryKey: queryKeys.gallery.infiniteList(eventId, input),
     queryFn: ({ pageParam }) =>
@@ -34,6 +56,8 @@ export const useInfiniteGallery = (eventId: string, input: GalleryFilter = {}) =
     initialPageParam: null as string | null,
     getNextPageParam: (last) => last.nextCursor ?? null,
     enabled: Boolean(eventId),
+    staleTime: 30_000,
+    placeholderData: keepPreviousData,
   });
 
 export const useDeleteMedia = (eventId: string) => {

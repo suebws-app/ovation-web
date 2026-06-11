@@ -13,7 +13,7 @@ import { CopyIcon } from "@ovation/icons/CopyIcon";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import type { Event, SupportedLanguage } from "@/lib/api/types";
 import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
 import { SettingsField } from "./SettingsField";
@@ -245,7 +245,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
               onClick={handleCopyPublicLink}
               disabled={!slugValue}
               aria-label={t("settings__wedding__public_link_copy")}
-              className="text-muted-foreground hover:text-foreground disabled:opacity-40 hover:bg-muted rounded-8 flex size-8 shrink-0 items-center justify-center transition-colors disabled:cursor-not-allowed"
+              className="text-muted-foreground hover:text-foreground hover:bg-muted rounded-8 flex size-8 shrink-0 items-center justify-center transition-colors disabled:cursor-not-allowed disabled:opacity-40"
             >
               {copied ? (
                 <CheckIcon width={16} height={16} className="text-secondary" />

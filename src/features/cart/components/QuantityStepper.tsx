@@ -16,13 +16,13 @@ export const QuantityStepper = ({
   onDecrement,
   min = 1,
 }: QuantityStepperProps) => (
-  <div className="border-border bg-card rounded-full inline-flex items-center border">
+  <div className="border-border bg-card inline-flex items-center rounded-full border">
     <button
       type="button"
       onClick={onDecrement}
       disabled={value <= min}
       aria-label="Decrease quantity"
-      className="size-7 rounded-full inline-flex items-center justify-center text-muted-foreground disabled:opacity-40 disabled:cursor-not-allowed hover:bg-muted/40 cursor-pointer transition-colors"
+      className="text-muted-foreground hover:bg-muted/40 inline-flex size-7 cursor-pointer items-center justify-center rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-40"
     >
       <MinusIcon width={13} height={13} />
     </button>
@@ -33,7 +33,7 @@ export const QuantityStepper = ({
       type="button"
       onClick={onIncrement}
       aria-label="Increase quantity"
-      className="size-7 rounded-full inline-flex items-center justify-center text-muted-foreground hover:bg-muted/40 cursor-pointer transition-colors"
+      className="text-muted-foreground hover:bg-muted/40 inline-flex size-7 cursor-pointer items-center justify-center rounded-full transition-colors"
     >
       <PlusIcon width={13} height={13} />
     </button>

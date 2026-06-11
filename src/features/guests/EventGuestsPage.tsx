@@ -1,6 +1,6 @@
 import { ApiError } from "@/lib/api/client";
 import { eventsApi } from "@/lib/api/events";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { GuestsEmptyState } from "./components/GuestsEmptyState";
 import { GuestsPageClient } from "./GuestsPageClient";
 
@@ -27,10 +27,6 @@ export const EventGuestsPage = async ({
   const inviteUrl = `${env.APP_URL}/g/${event.slug}`;
 
   return (
-    <GuestsPageClient
-      eventId={event.id}
-      stats={stats}
-      inviteUrl={inviteUrl}
-    />
+    <GuestsPageClient eventId={event.id} stats={stats} inviteUrl={inviteUrl} />
   );
 };

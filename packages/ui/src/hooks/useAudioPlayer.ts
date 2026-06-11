@@ -44,7 +44,9 @@ const waitForCanPlay = (player: MediaPlayerInstance) =>
     });
   });
 
-export const useAudioPlayer = (options: UseAudioPlayerOptions): TAudioPlayer => {
+export const useAudioPlayer = (
+  options: UseAudioPlayerOptions,
+): TAudioPlayer => {
   const { resolveSrc } = options;
   const playerRef = useRef<MediaPlayerInstance | null>(null);
   const [playingId, setPlayingId] = useState<string | null>(null);

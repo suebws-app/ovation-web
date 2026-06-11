@@ -4,12 +4,17 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { SearchIcon } from "@ovation/icons/SearchIcon";
 import { XIcon } from "@ovation/icons/XIcon";
-import { usePhotoSearch, usePhotosStore } from "../store/usePhotosStore";
+import { cn } from "@ovation/ui/utils/cn";
+import { useMessageSearch, useMessagesStore } from "../store/useMessagesStore";
 
-export const PhotoSearchInput = () => {
+type MessageSearchInputProps = {
+  className?: string;
+};
+
+export const MessageSearchInput = ({ className }: MessageSearchInputProps) => {
   const t = useTranslations();
-  const search = usePhotoSearch();
-  const setSearch = usePhotosStore((s) => s.setSearch);
+  const search = useMessageSearch();
+  const setSearch = useMessagesStore((s) => s.setSearch);
   const [draft, setDraft] = useState(search);
 
   useEffect(() => {
@@ -21,32 +26,33 @@ export const PhotoSearchInput = () => {
   }, [draft, search, setSearch]);
 
   return (
-    <div className="rounded-10 border-border bg-background flex flex-1 items-center gap-2.5 border px-3.5 py-2.5">
+    <div
+      className={cn(
+        "rounded-10 border-border bg-background flex w-64 items-center gap-2.5 border px-3.5 py-2",
+        className,
+      )}
+    >
       <SearchIcon
-        width={15}
-        height={15}
+        width={14}
+        height={14}
         className="text-muted-foreground"
         strokeWidth={1.7}
       />
       <input
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
-        placeholder={t("photos__toolbar__search_placeholder")}
-        className="type-body-small text-foreground placeholder:text-muted-foreground flex-1 bg-transparent outline-none"
+        placeholder={t("messages__directory__search_placeholder")}
+        className="type-caption text-foreground placeholder:text-muted-foreground flex-1 bg-transparent outline-none"
       />
-      {draft.length > 0 ? (
+      {draft.length > 0 && (
         <button
           type="button"
           onClick={() => setDraft("")}
-          aria-label={t("photos__toolbar__search_clear")}
+          aria-label={t("messages__directory__search_clear")}
           className="text-muted-foreground hover:text-foreground cursor-pointer"
         >
-          <XIcon width={12} height={12} strokeWidth={1.7} />
+          <XIcon width={11} height={11} strokeWidth={1.7} />
         </button>
-      ) : (
-        <kbd className="rounded-4 border-border bg-card type-caption text-muted-foreground border px-1.5 py-0.5">
-          ⌘K
-        </kbd>
       )}
     </div>
   );

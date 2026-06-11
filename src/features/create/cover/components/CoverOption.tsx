@@ -42,7 +42,12 @@ export const CoverOption = ({
       }
     >
       {isUpload ? (
-        <PlusIcon width={28} height={28} className="text-primary" strokeWidth={1.8} />
+        <PlusIcon
+          width={28}
+          height={28}
+          className="text-primary"
+          strokeWidth={1.8}
+        />
       ) : (
         <span className="type-h3 text-black/40 italic">{initials}</span>
       )}

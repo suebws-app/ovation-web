@@ -13,6 +13,7 @@ type FilterChipRailProps = {
   onSelect: (label: string) => void;
   className?: string;
   leading?: ReactNode;
+  trailing?: ReactNode;
 };
 
 export const FilterChipRail = ({
@@ -21,6 +22,7 @@ export const FilterChipRail = ({
   onSelect,
   className,
   leading,
+  trailing,
 }: FilterChipRailProps) => (
   <div
     className={cn(
@@ -38,5 +40,6 @@ export const FilterChipRail = ({
         onClick={() => onSelect(chip.label)}
       />
     ))}
+    {trailing && <div className="ml-auto shrink-0">{trailing}</div>}
   </div>
 );

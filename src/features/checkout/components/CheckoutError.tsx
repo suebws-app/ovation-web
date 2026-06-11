@@ -21,7 +21,10 @@ export const CheckoutError = ({ message, onRetry }: CheckoutErrorProps) => {
       <h1 className="type-h1 mt-3 leading-tight font-semibold tracking-tight">
         {t("signup__completion__error_title")}
       </h1>
-      <p className="type-body-small text-destructive mt-3 max-w-md" role="alert">
+      <p
+        className="type-body-small text-destructive mt-3 max-w-md"
+        role="alert"
+      >
         {message}
       </p>
       <div className="mt-7 flex flex-wrap justify-center gap-3">

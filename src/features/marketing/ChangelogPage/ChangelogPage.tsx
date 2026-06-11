@@ -7,13 +7,19 @@ import { CHANGELOG_ENTRY_KEYS } from "./constants";
 export const ChangelogPage = () => {
   const t = useTranslations();
 
-  const entries = CHANGELOG_ENTRY_KEYS.map((k) => ({ version: t(k.version), date: t(k.date), description: t(k.description) }));
+  const entries = CHANGELOG_ENTRY_KEYS.map((k) => ({
+    version: t(k.version),
+    date: t(k.date),
+    description: t(k.description),
+  }));
 
   return (
     <>
       <section>
         <div className="section-container">
-          <Kicker className="text-primary">{t("marketing__changelog__eyebrow")}</Kicker>
+          <Kicker className="text-primary">
+            {t("marketing__changelog__eyebrow")}
+          </Kicker>
           <SectionTitle as="h1" className="mt-4">
             {t("marketing__changelog__title")}
           </SectionTitle>

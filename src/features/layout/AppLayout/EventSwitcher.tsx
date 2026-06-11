@@ -47,11 +47,7 @@ const stripLocale = (pathname: string): string => {
 const buildEventTarget = (currentPath: string, newEventId: string): string => {
   const stripped = stripLocale(currentPath);
   const segments = stripped.split("/").filter(Boolean);
-  if (
-    segments[0] === "events" &&
-    segments[1] &&
-    segments[1] !== "new"
-  ) {
+  if (segments[0] === "events" && segments[1] && segments[1] !== "new") {
     const subPath = segments.slice(2).join("/");
     return subPath
       ? `/events/${newEventId}/${subPath}`

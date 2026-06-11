@@ -35,8 +35,8 @@ export const CloseAccountModal = ({
   ];
 
   return (
-    <div className="bg-foreground/45 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
-      <div className="rounded-20 bg-card w-full max-w-lg p-9 shadow-lg">
+    <div className="bg-foreground/45 animate-fade-in fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
+      <div className="rounded-20 bg-card animate-scale-fade-in w-full max-w-lg p-9 shadow-lg">
         <div className="rounded-16 bg-destructive/15 mb-4.5 flex size-14 items-center justify-center">
           <WarningIcon width={26} height={26} className="text-destructive" />
         </div>

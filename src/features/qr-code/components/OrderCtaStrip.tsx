@@ -26,9 +26,7 @@ export const OrderCtaStrip = () => {
         size="lg"
         className="shadow-primary/40 tablet:w-auto w-full rounded-full shadow-md"
       >
-        <Link href={appRoutes.app.qrCodeOrder}>
-          {t("qr_code__order__cta")}
-        </Link>
+        <Link href={appRoutes.app.qrCodeOrder}>{t("qr_code__order__cta")}</Link>
       </Button>
     </div>
   );

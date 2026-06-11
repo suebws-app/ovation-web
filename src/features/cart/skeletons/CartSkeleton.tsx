@@ -6,10 +6,10 @@ export const CartSkeleton = () => (
   <div className="tablet:p-6 flex w-full flex-col gap-6 p-4">
     <div className="bg-card border-border rounded-12 flex items-center justify-between border p-5">
       <div className="flex flex-col gap-2">
-        <div className="bg-muted h-6 w-32 rounded animate-pulse" />
-        <div className="bg-muted h-4 w-48 rounded animate-pulse" />
+        <div className="bg-muted h-6 w-32 animate-pulse rounded" />
+        <div className="bg-muted h-4 w-48 animate-pulse rounded" />
       </div>
-      <div className="bg-muted h-9 w-9 rounded-full animate-pulse" />
+      <div className="bg-muted h-9 w-9 animate-pulse rounded-full" />
     </div>
     <div className="desktop:grid-cols-[1fr_360px] grid grid-cols-1 gap-6">
       <div className="bg-card border-border rounded-12 flex flex-col border">
@@ -18,24 +18,24 @@ export const CartSkeleton = () => (
             key={i}
             className="border-border flex items-center gap-4 border-b p-4 last:border-b-0"
           >
-            <div className="bg-muted size-16 rounded-8 animate-pulse shrink-0" />
-            <div className="flex flex-1 flex-col gap-2 min-w-0">
-              <div className="bg-muted h-4 w-40 rounded animate-pulse" />
-              <div className="bg-muted h-3 w-24 rounded animate-pulse" />
+            <div className="bg-muted rounded-8 size-16 shrink-0 animate-pulse" />
+            <div className="flex min-w-0 flex-1 flex-col gap-2">
+              <div className="bg-muted h-4 w-40 animate-pulse rounded" />
+              <div className="bg-muted h-3 w-24 animate-pulse rounded" />
             </div>
-            <div className="bg-muted h-5 w-16 rounded animate-pulse shrink-0" />
+            <div className="bg-muted h-5 w-16 shrink-0 animate-pulse rounded" />
           </div>
         ))}
       </div>
       <div className="bg-card border-border rounded-12 flex flex-col gap-4 border p-5">
-        <div className="bg-muted h-5 w-28 rounded animate-pulse" />
+        <div className="bg-muted h-5 w-28 animate-pulse rounded" />
         {summaryRows.map((i) => (
           <div key={i} className="flex items-center justify-between">
-            <div className="bg-muted h-3.5 w-20 rounded animate-pulse" />
-            <div className="bg-muted h-3.5 w-16 rounded animate-pulse" />
+            <div className="bg-muted h-3.5 w-20 animate-pulse rounded" />
+            <div className="bg-muted h-3.5 w-16 animate-pulse rounded" />
           </div>
         ))}
-        <div className="bg-muted h-11 w-full rounded-8 animate-pulse mt-2" />
+        <div className="bg-muted rounded-8 mt-2 h-11 w-full animate-pulse" />
       </div>
     </div>
   </div>

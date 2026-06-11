@@ -12,6 +12,7 @@ import { GuestStatusPill } from "./GuestStatusPill";
 
 type GuestRowProps = {
   guest: GuestRowData;
+  index: number;
   selected: boolean;
   onToggleSelect: () => void;
   isLast: boolean;
@@ -19,6 +20,7 @@ type GuestRowProps = {
 
 export const GuestRow = ({
   guest,
+  index,
   selected,
   onToggleSelect,
   isLast,
@@ -35,7 +37,8 @@ export const GuestRow = ({
 
   return (
     <div
-      className={`tablet:grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] tablet:gap-3.5 grid grid-cols-[28px_1fr_36px] items-center gap-3 px-4 py-3.5 tablet:px-6 ${
+      style={{ animationDelay: `${Math.min(index, 16) * 30}ms` }}
+      className={`animate-slide-up-fade tablet:grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] tablet:gap-3.5 tablet:px-6 grid grid-cols-[28px_1fr_36px] items-center gap-3 px-4 py-3.5 ${
         isLast ? "" : "border-border border-b"
       }`}
     >
@@ -79,13 +82,25 @@ export const GuestRow = ({
               {lastLabel}
             </span>
             {guest.audioCount > 0 && (
-              <MicIcon width={12} height={12} className="text-muted-foreground" />
+              <MicIcon
+                width={12}
+                height={12}
+                className="text-muted-foreground"
+              />
             )}
             {guest.photoCount > 0 && (
-              <ImageIcon width={12} height={12} className="text-muted-foreground" />
+              <ImageIcon
+                width={12}
+                height={12}
+                className="text-muted-foreground"
+              />
             )}
             {guest.videoCount > 0 && (
-              <VideoIcon width={12} height={12} className="text-muted-foreground" />
+              <VideoIcon
+                width={12}
+                height={12}
+                className="text-muted-foreground"
+              />
             )}
           </div>
         </div>
@@ -98,21 +113,14 @@ export const GuestRow = ({
           <MicIcon width={12} height={12} className="text-muted-foreground" />
         )}
         {guest.photoCount > 0 && (
-          <ImageIcon
-            width={12}
-            height={12}
-            className="text-muted-foreground"
-          />
+          <ImageIcon width={12} height={12} className="text-muted-foreground" />
         )}
         {guest.videoCount > 0 && (
           <VideoIcon width={12} height={12} className="text-muted-foreground" />
         )}
       </div>
       <div className="tablet:block hidden">
-        <GuestStatusPill
-          contributed={guest.messageCount > 0}
-          thanked={false}
-        />
+        <GuestStatusPill contributed={guest.messageCount > 0} thanked={false} />
       </div>
       <div className="tablet:block type-caption text-muted-foreground hidden">
         {lastLabel}

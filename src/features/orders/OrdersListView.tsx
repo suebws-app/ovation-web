@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { FeaturePageLayout } from "@/components/FeaturePageLayout";
 import { useOrdersList } from "@/lib/query/ordersQueries";
 import { OrderDetailModal } from "@/features/keepsakes/components/OrderDetailModal";
 import type { Order } from "@/lib/api/types";
@@ -33,7 +34,7 @@ export const OrdersListView = ({ title, eventId }: OrdersListViewProps) => {
 
   return (
     <>
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-8">
+      <FeaturePageLayout>
         <div className="flex flex-col gap-1">
           <Kicker className="text-muted-foreground">
             {t("orders__page__eyebrow")}
@@ -86,7 +87,7 @@ export const OrdersListView = ({ title, eventId }: OrdersListViewProps) => {
             </Button>
           </div>
         )}
-      </div>
+      </FeaturePageLayout>
 
       {openOrder && (
         <OrderDetailModal

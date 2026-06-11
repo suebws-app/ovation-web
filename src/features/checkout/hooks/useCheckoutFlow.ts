@@ -9,7 +9,8 @@ import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
+import { compressImage } from "@/lib/media/compressImage";
 import { appRoutes } from "@/lib/routes";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
@@ -48,13 +49,14 @@ const uploadCoverPhoto = async (
   eventId: string,
   file: File,
 ): Promise<string | null> => {
-  const contentType = ALLOWED_COVER_MIMES[file.type];
-  if (!contentType) return null;
+  if (!ALLOWED_COVER_MIMES[file.type]) return null;
+  const compressed = await compressImage(file);
+  const contentType = ALLOWED_COVER_MIMES[compressed.type] ?? "image/jpeg";
   const { uploadUrl, key, publicUrl } = await eventsClient.coverUploadUrl(
     eventId,
     contentType,
   );
-  await uploadToTarget({ url: uploadUrl, key }, file);
+  await uploadToTarget({ url: uploadUrl, key }, compressed);
   return publicUrl;
 };
 
@@ -227,8 +229,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
           await profileClient.markOnboardingComplete().catch(() => undefined);
 
-          const planTier =
-            PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
+          const planTier = PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
           if (!planTier) {
             safeSet({ kind: "redirecting" });
             router.push(appRoutes.app.root);
