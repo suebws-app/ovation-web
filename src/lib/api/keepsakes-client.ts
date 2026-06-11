@@ -29,6 +29,7 @@ export type KeepsakePreviewInput = {
   customization?: {
     coverTitle?: string;
     coverSubtitle?: string;
+    dedication?: string;
     coverImageMediaId?: string;
     showMessages?: boolean;
   };

@@ -1063,6 +1063,7 @@
   "keepsakes__book_customizer__dedication_placeholder": "For everyone who joined us in celebrating…",
   "keepsakes__book_customizer__price_base": "Base",
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# page} other {# pages}} × {perPage}",
+  "keepsakes__book_customizer__price_blank_page_note": "Includes 1 blank page added for printing.",
   "keepsakes__book_customizer__price_total": "Total",
   "keepsakes__book_customizer__paper_section_title": "Paper",
   "keepsakes__book_customizer__paper_section_description": "Choose the paper finish for your book.",

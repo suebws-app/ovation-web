@@ -26,6 +26,7 @@ type PriceBreakdown = {
   pricePerPageCents: number;
   pagesSurchargeCents: number;
   totalCents: number;
+  blankPageAdded?: boolean;
 };
 
 type CustomizerCheckoutFormProps = {
@@ -145,6 +146,7 @@ export const CustomizerCheckoutForm = ({
         photoSelectAll: photoSelectAll ?? undefined,
         customization: {
           coverTitle: bookCustomization.coverText,
+          dedication: bookCustomization.dedication,
         },
       });
       setPreviewRenderId(renderId);
@@ -273,6 +275,11 @@ export const CustomizerCheckoutForm = ({
               )}
             </span>
           </div>
+          {priceBreakdown.blankPageAdded && (
+            <p className="type-caption text-muted-foreground">
+              {t("keepsakes__book_customizer__price_blank_page_note")}
+            </p>
+          )}
           <div className="border-border type-body-small mt-1 flex items-center justify-between gap-2 border-t pt-1.5 font-semibold">
             <span>{t("keepsakes__book_customizer__price_total")}</span>
             <span>

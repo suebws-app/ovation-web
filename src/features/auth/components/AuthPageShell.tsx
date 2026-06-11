@@ -11,7 +11,7 @@ export const AuthPageShell = ({
   centered = false,
 }: AuthPageShellProps) => (
   <div className="tablet:px-20 mx-auto flex min-h-screen w-full max-w-130 flex-col px-6 py-12">
-    <Logo />
+    <Logo size={120} />
     <div
       className={cn(
         "mt-16 flex flex-1 flex-col",

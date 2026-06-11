@@ -10,12 +10,14 @@ import {
 } from "../bookFacets";
 import { useGalleryCount } from "@/lib/query/galleryQueries";
 import type { BookFormValues } from "./BookFormContext";
+import { getBillablePages } from "@/lib/utils/billablePages";
 import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 export type PeechoVariantResolution = {
   chosenVariant: KeepsakeProductVariant | null;
   matchingVariants: KeepsakeProductVariant[];
   pageCount: number;
+  billablePages: number;
   minPages: number | null;
   maxPages: number | null;
   pricePerPageCents: number;
@@ -83,8 +85,9 @@ export const usePeechoVariantResolver = (
       (minPages === null || pageCount >= minPages) &&
       (maxPages === null || pageCount <= maxPages);
 
+    const billablePages = getBillablePages(pageCount);
     const basePriceCents = chosenVariant?.priceCents ?? null;
-    const pagesSurchargeCents = pageCount * pricePerPageCents;
+    const pagesSurchargeCents = billablePages * pricePerPageCents;
     const totalPriceCents =
       basePriceCents === null ? null : basePriceCents + pagesSurchargeCents;
 
@@ -92,6 +95,7 @@ export const usePeechoVariantResolver = (
       chosenVariant,
       matchingVariants,
       pageCount,
+      billablePages,
       minPages,
       maxPages,
       pricePerPageCents,

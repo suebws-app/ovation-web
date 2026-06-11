@@ -1,3 +1,4 @@
+import { getBillablePages } from "@/lib/utils/billablePages";
 import type { KeepsakeProduct } from "@/lib/api/types";
 
 export type KeepsakeDesign = {
@@ -70,7 +71,8 @@ export const computeStartingPriceCents = (
     const minPages = readNumber(variant.attributes, "minPages") ?? 0;
     const pricePerPageCents =
       readNumber(variant.attributes, "pricePerPageCents") ?? 0;
-    const start = variant.priceCents + minPages * pricePerPageCents;
+    const start =
+      variant.priceCents + getBillablePages(minPages) * pricePerPageCents;
     if (cheapest === null || start < cheapest) cheapest = start;
   }
   return cheapest ?? fallbackCents;
