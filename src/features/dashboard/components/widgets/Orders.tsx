@@ -4,6 +4,7 @@ import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { Order, OrderStatus } from "@/lib/api/types";
+import { translateKey } from "@/lib/utils/translateKey";
 import { OrdersRow } from "./OrdersRow";
 
 type OrdersProps = {
@@ -68,6 +69,7 @@ export const Orders = ({ orders }: OrdersProps) => {
             <OrdersRow
               key={order.id}
               order={order}
+              productLabel={translateKey(t, order.productName)}
               statusLabel={statusLabel(order.status, t)}
               notFirst={index > 0}
             />

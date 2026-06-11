@@ -770,7 +770,7 @@
   "messages__filter__favourites": "♥ Favourites",
   "messages__filter__with_photo": "With photo",
   "messages__filter__with_video": "With video",
-  "messages__filter__audio_only": "Audio only",
+  "messages__filter__audio_only": "With audio",
   "messages__loading": "Loading messages…",
   "messages__error": "Couldn't load messages. Please refresh.",
   "messages__no_match": "No messages match this filter yet.",

@@ -2,11 +2,13 @@
 
 import { useTranslations } from "next-intl";
 import { Chip } from "@ovation/ui/components/Chip";
-import type { MessageFilter, MessageSummary } from "@/lib/api/types";
+import { useMessagesCount } from "@/lib/query/messagesQueries";
+import type { EventStats, MessageFilter } from "@/lib/api/types";
 
 type MessageFilterChipsProps = {
-  messages: MessageSummary[];
+  eventId: string;
   active: MessageFilter;
+  stats: EventStats | null;
   onSelect: (filter: MessageFilter) => void;
 };
 
@@ -18,39 +20,76 @@ const FILTERS: { value: MessageFilter; labelKey: string }[] = [
   { value: "audio_only", labelKey: "messages__filter__audio_only" },
 ];
 
-const countFor = (msgs: MessageSummary[], filter: MessageFilter): number => {
+const statsFallback = (
+  stats: EventStats | null,
+  filter: MessageFilter,
+): number | undefined => {
+  if (!stats) return undefined;
   switch (filter) {
+    case "all":
+      return stats.totalMessages;
     case "favorites":
-      return msgs.filter((m) => m.isFavorite).length;
+      return stats.favorites;
     case "with_photo":
-      return msgs.filter((m) => m.hasPhoto).length;
+      return stats.photoCount;
     case "with_video":
-      return msgs.filter((m) => m.hasVideo).length;
+      return stats.videoCount;
     case "audio_only":
-      return msgs.filter((m) => m.hasAudio && !m.hasPhoto && !m.hasVideo)
-        .length;
+      return stats.audioMessages;
     default:
-      return msgs.length;
+      return undefined;
   }
 };
 
-export const MessageFilterChips = ({
-  messages,
+const MessageFilterChip = ({
+  eventId,
+  filter,
+  labelKey,
   active,
+  fallback,
   onSelect,
-}: MessageFilterChipsProps) => {
+}: {
+  eventId: string;
+  filter: MessageFilter;
+  labelKey: string;
+  active: boolean;
+  fallback: number | undefined;
+  onSelect: (filter: MessageFilter) => void;
+}) => {
   const t = useTranslations();
+  const countQuery = useMessagesCount(eventId, {
+    filter: filter === "all" ? undefined : filter,
+  });
+  const count = countQuery.isError
+    ? fallback
+    : (countQuery.data?.count ?? fallback);
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      {FILTERS.map((f) => (
-        <Chip
-          key={f.value}
-          label={t(f.labelKey)}
-          count={countFor(messages, f.value)}
-          active={active === f.value}
-          onClick={() => onSelect(f.value)}
-        />
-      ))}
-    </div>
+    <Chip
+      label={t(labelKey)}
+      count={count}
+      active={active}
+      onClick={() => onSelect(filter)}
+    />
   );
 };
+
+export const MessageFilterChips = ({
+  eventId,
+  active,
+  stats,
+  onSelect,
+}: MessageFilterChipsProps) => (
+  <div className="flex flex-wrap items-center gap-2">
+    {FILTERS.map((f) => (
+      <MessageFilterChip
+        key={f.value}
+        eventId={eventId}
+        filter={f.value}
+        labelKey={f.labelKey}
+        active={active === f.value}
+        fallback={statsFallback(stats, f.value)}
+        onSelect={onSelect}
+      />
+    ))}
+  </div>
+);

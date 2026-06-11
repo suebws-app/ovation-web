@@ -24,6 +24,7 @@ type GalleryFilter = {
 type GalleryCountInput = {
   type?: "photo" | "video" | "all";
   filter?: "all" | "favorites" | "gold_book";
+  search?: string;
 };
 
 export const useGalleryCount = (

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { MessageFilter } from "@/lib/api/types";
+import type { MessageFilter, MessageSelectAll } from "@/lib/api/types";
 
 export type MessageSortOption = "newest" | "oldest" | "longest";
 
@@ -9,13 +9,15 @@ type MessagesState = {
   search: string;
   page: number;
   selectedIds: Set<string>;
+  selectAll: MessageSelectAll | null;
   activeMessageId: string | null;
   setFilter: (filter: MessageFilter) => void;
   setSort: (sort: MessageSortOption) => void;
   setSearch: (search: string) => void;
   setPage: (page: number) => void;
   toggleSelected: (id: string) => void;
-  selectAll: (ids: string[]) => void;
+  selectAllIds: (ids: string[]) => void;
+  setSelectAll: (next: MessageSelectAll | null) => void;
   clearSelection: () => void;
   setActiveMessageId: (id: string | null) => void;
   toggleActiveMessageId: (id: string) => void;
@@ -28,15 +30,26 @@ const initial = {
   search: "",
   page: 1,
   selectedIds: new Set<string>(),
+  selectAll: null as MessageSelectAll | null,
   activeMessageId: null as string | null,
+};
+
+const resetSelection = {
+  selectedIds: new Set<string>(),
+  selectAll: null as MessageSelectAll | null,
 };
 
 export const useMessagesStore = create<MessagesState>((set) => ({
   ...initial,
   setFilter: (filter) =>
-    set({ filter, page: 1, selectedIds: new Set(), activeMessageId: null }),
-  setSort: (sort) => set({ sort, page: 1 }),
-  setSearch: (search) => set({ search, page: 1 }),
+    set({
+      filter,
+      page: 1,
+      ...resetSelection,
+      activeMessageId: null,
+    }),
+  setSort: (sort) => set({ sort, page: 1, ...resetSelection }),
+  setSearch: (search) => set({ search, page: 1, ...resetSelection }),
   setPage: (page) => set({ page }),
   toggleSelected: (id) =>
     set((s) => {
@@ -45,12 +58,13 @@ export const useMessagesStore = create<MessagesState>((set) => ({
       else next.add(id);
       return { selectedIds: next };
     }),
-  selectAll: (ids) => set({ selectedIds: new Set(ids) }),
-  clearSelection: () => set({ selectedIds: new Set() }),
+  selectAllIds: (ids) => set({ selectedIds: new Set(ids) }),
+  setSelectAll: (next) => set({ selectAll: next }),
+  clearSelection: () => set({ selectedIds: new Set(), selectAll: null }),
   setActiveMessageId: (id) => set({ activeMessageId: id }),
   toggleActiveMessageId: (id) =>
     set((s) => ({ activeMessageId: s.activeMessageId === id ? null : id })),
-  reset: () => set({ ...initial, selectedIds: new Set() }),
+  reset: () => set({ ...initial, selectedIds: new Set(), selectAll: null }),
 }));
 
 export const useFilter = () => useMessagesStore((s) => s.filter);
@@ -58,5 +72,6 @@ export const useMessageSort = () => useMessagesStore((s) => s.sort);
 export const useMessageSearch = () => useMessagesStore((s) => s.search);
 export const useMessagePage = () => useMessagesStore((s) => s.page);
 export const useSelectedIds = () => useMessagesStore((s) => s.selectedIds);
+export const useMessageSelectAll = () => useMessagesStore((s) => s.selectAll);
 export const useActiveMessageId = () =>
   useMessagesStore((s) => s.activeMessageId);

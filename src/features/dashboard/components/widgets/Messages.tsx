@@ -34,12 +34,6 @@ export const Messages = ({
           <span className="bg-primary/10 text-primary rounded-12 inline-flex size-10 items-center justify-center">
             <MessageSquareIcon width={18} height={18} />
           </span>
-          {newCount > 0 && (
-            <span className="bg-destructive/10 text-destructive type-caption inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-semibold">
-              <span className="bg-destructive inline-block size-1.5 rounded-full" />
-              {t("dashboard__widget__messages__new_pill", { count: newCount })}
-            </span>
-          )}
         </div>
         <div>
           <p className="type-h1 font-serif font-semibold">

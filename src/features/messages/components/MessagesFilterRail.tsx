@@ -12,10 +12,10 @@ import type { EventStats, MessageFilter } from "@/lib/api/types";
 import { useMessagesList } from "@/lib/query/messagesQueries";
 import {
   useFilter,
+  useMessageSearch,
+  useMessageSelectAll,
   useMessagesStore,
-  useSelectedIds,
 } from "../store/useMessagesStore";
-import { useMessageList } from "../hooks/useMessageList";
 import { useEventId } from "../context/MessagesEventContext";
 import { useExportAllMessages } from "../hooks/useExportAllMessages";
 
@@ -34,11 +34,11 @@ const FILTER_VALUES: { labelKey: string; value: MessageFilter }[] = [
 export const MessagesFilterRail = ({ stats }: MessagesFilterRailProps) => {
   const t = useTranslations();
   const filter = useFilter();
+  const search = useMessageSearch();
   const setFilter = useMessagesStore((s) => s.setFilter);
-  const selectAll = useMessagesStore((s) => s.selectAll);
+  const setSelectAll = useMessagesStore((s) => s.setSelectAll);
+  const selectAll = useMessageSelectAll();
   const clearSelection = useMessagesStore((s) => s.clearSelection);
-  const selectedIds = useSelectedIds();
-  const { messageViews } = useMessageList();
   const eventId = useEventId();
   const { exportAll, isExporting } = useExportAllMessages();
   const allQuery = useMessagesList(eventId, {
@@ -85,12 +85,20 @@ export const MessagesFilterRail = ({ stats }: MessagesFilterRailProps) => {
     if (next) setFilter(next.value);
   };
 
-  const allSelected =
-    messageViews.length > 0 && messageViews.every((m) => selectedIds.has(m.id));
+  const allSelected = selectAll !== null;
 
   const handleToggleAll = () => {
-    if (allSelected) clearSelection();
-    else selectAll(messageViews.map((m) => m.id));
+    if (allSelected) {
+      clearSelection();
+      return;
+    }
+    const trimmed = search.trim();
+    clearSelection();
+    setSelectAll({
+      filter,
+      search: trimmed || undefined,
+      excludedIds: [],
+    });
   };
 
   if (totalAllCount === 0) return null;

@@ -463,10 +463,31 @@ export type CheckoutPlanTier = "premium" | "bundle";
 
 export type PhotoSelectAll = {
   filter: "all" | "favorites" | "gold_book";
+  search?: string;
   excludedIds: string[];
 };
 
+export type MessageSelectAll = {
+  filter: MessageFilter;
+  search?: string;
+  excludedIds: string[];
+};
+
+export type GuestSelectAll = {
+  filter: string;
+  search?: string;
+  excludedGuestNames: string[];
+};
+
 export type GalleryCount = {
+  count: number;
+};
+
+export type MessageCount = {
+  count: number;
+};
+
+export type GuestCount = {
   count: number;
 };
 

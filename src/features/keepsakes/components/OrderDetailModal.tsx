@@ -7,6 +7,7 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 import { useOrderDetail, useRefundOrder } from "@/lib/query/ordersQueries";
 import { ApiError } from "@/lib/api/client";
 import { safeHttpUrl } from "@/lib/utils/safe-url";
+import { translateKey } from "@/lib/utils/translateKey";
 import { formatPrice } from "../designTokens";
 import { OrderDetailRow } from "./OrderDetailRow";
 import { OrderItemLine } from "./OrderItemLine";
@@ -98,7 +99,7 @@ export const OrderDetailModal = ({
               </p>
               <div className="flex flex-col gap-1.5">
                 <OrderItemLine
-                  label={`${order.productName ? t(order.productName) : ""}${order.variantName ? ` — ${order.variantName}` : ""} × ${order.quantity}`}
+                  label={`${translateKey(t, order.productName)}${order.variantName ? ` — ${order.variantName}` : ""} × ${order.quantity}`}
                   value={formatPrice(
                     order.unitPriceCents * order.quantity,
                     currency,

@@ -136,7 +136,6 @@ export const DashboardPage = async () => {
               <Photos
                 photos={galleryItems}
                 totalCount={totalPhotos}
-                newCount={totalPhotos}
                 hasMore={hasMorePhotos}
               />
               <div className="hidden min-w-0 flex-1 min-[1300px]:block">

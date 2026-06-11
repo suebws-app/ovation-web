@@ -5,7 +5,10 @@ import { useTranslations } from "next-intl";
 
 import { FeaturePageLayout } from "@/components/FeaturePageLayout";
 import { InfiniteScrollSentinel } from "@/components/InfiniteScrollSentinel";
-import { useInfiniteGallery } from "@/lib/query/galleryQueries";
+import {
+  useGalleryCount,
+  useInfiniteGallery,
+} from "@/lib/query/galleryQueries";
 import type { EventStats } from "@/lib/api/types";
 
 import { PhotoBatchFooter } from "./components/PhotoBatchFooter";
@@ -17,6 +20,7 @@ import { toPhotoViewFromGallery } from "./adapters";
 import {
   useLightboxIndex,
   usePhotoSearch,
+  usePhotoSelectAll,
   usePhotoSelectedIds,
   usePhotoSort,
   usePhotosStore,
@@ -36,8 +40,10 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
   const sort = usePhotoSort();
   const search = usePhotoSearch();
   const selectedIds = usePhotoSelectedIds();
+  const selectAll = usePhotoSelectAll();
   const lightboxIndex = useLightboxIndex();
   const toggleSelected = usePhotosStore((s) => s.toggleSelected);
+  const setSelectAll = usePhotosStore((s) => s.setSelectAll);
   const openLightbox = usePhotosStore((s) => s.openLightbox);
   const closeLightbox = usePhotosStore((s) => s.closeLightbox);
   const setLightboxIndex = usePhotosStore((s) => s.setLightboxIndex);
@@ -59,12 +65,10 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
     limit: PAGE_SIZE,
   });
 
-  const allCountQuery = useInfiniteGallery(eventId, {
+  const allCountQuery = useGalleryCount(eventId, {
     type: "all",
     filter: "all",
-    sort,
     search: trimmedSearch || undefined,
-    limit: PAGE_SIZE,
   });
 
   const anonymous = t("common__anonymous");
@@ -76,18 +80,27 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
     [data?.pages, anonymous],
   );
 
-  const allLoadedCount = useMemo(
-    () =>
-      (allCountQuery.data?.pages ?? []).reduce(
-        (sum, page) => sum + page.items.length,
-        0,
-      ),
-    [allCountQuery.data?.pages],
-  );
+  const allCount = allCountQuery.data?.count ?? 0;
 
   const handleTileClick = (id: string) => {
     const idx = photos.findIndex((p) => p.id === id);
     if (idx >= 0) openLightbox(idx);
+  };
+
+  const isSelected = (id: string): boolean => {
+    if (selectAll) return !selectAll.excludedIds.includes(id);
+    return selectedIds.has(id);
+  };
+
+  const handleToggleSelect = (id: string) => {
+    if (!selectAll) {
+      toggleSelected(id);
+      return;
+    }
+    const excluded = new Set(selectAll.excludedIds);
+    if (excluded.has(id)) excluded.delete(id);
+    else excluded.add(id);
+    setSelectAll({ ...selectAll, excludedIds: [...excluded] });
   };
 
   const bulk = usePhotoBulkActions(eventId, photos);
@@ -123,12 +136,7 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
       }
       overlay={lightbox}
     >
-      <PhotosFilterRail
-        eventId={eventId}
-        photos={photos}
-        stats={stats}
-        allCount={allLoadedCount}
-      />
+      <PhotosFilterRail eventId={eventId} stats={stats} allCount={allCount} />
       {isPending ? (
         <p className="type-body-small text-muted-foreground p-8 text-center">
           {t("photos__loading")}
@@ -141,9 +149,9 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
         <>
           <PhotoGallery
             photos={photos}
-            selectedIds={selectedIds}
+            isSelected={isSelected}
             onTileClick={handleTileClick}
-            onToggleSelect={toggleSelected}
+            onToggleSelect={handleToggleSelect}
           />
           <InfiniteScrollSentinel
             hasNextPage={Boolean(hasNextPage)}

@@ -153,7 +153,7 @@ export const MessagesTableRow = ({
       {message.hasAudio ? (
         <div
           data-row-no-open
-          className="hidden min-w-0 items-center justify-end gap-3 overflow-hidden @[740px]/table:flex"
+          className="hidden min-w-0 items-center justify-end gap-3 @[740px]/table:flex"
         >
           <div className="hidden min-w-0 items-center overflow-hidden @[1420px]/table:flex">
             <Waveform

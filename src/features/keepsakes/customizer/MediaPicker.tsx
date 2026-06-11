@@ -56,6 +56,13 @@ export const MediaPicker = ({
   const t = useTranslations();
   const [source, setSource] = useState<SourceFilter>("all");
   const [previewItem, setPreviewItem] = useState<GalleryItem | null>(null);
+
+  const handleSourceChange = (next: SourceFilter) => {
+    if (next === source) return;
+    setSource(next);
+    onChange?.([]);
+    onSelectAllChange(null);
+  };
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
@@ -182,7 +189,7 @@ export const MediaPicker = ({
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <SourceFilterTabs value={source} onChange={setSource} />
+        <SourceFilterTabs value={source} onChange={handleSourceChange} />
         <div className="flex flex-wrap items-center gap-2">
           {showRefreshing && (
             <span

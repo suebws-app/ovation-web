@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
+import type { EventStats } from "@/lib/api/types";
 import { DataDirectory } from "@/components/DataDirectory";
 import { InfiniteScrollSentinel } from "@/components/InfiniteScrollSentinel";
 import { useInfiniteMessagesList } from "@/lib/query/messagesQueries";
@@ -27,9 +28,13 @@ const PAGE_SIZE = 20;
 
 type MessagesDirectoryProps = {
   player: TAudioPlayer;
+  stats: EventStats | null;
 };
 
-export const MessagesDirectory = ({ player }: MessagesDirectoryProps) => {
+export const MessagesDirectory = ({
+  player,
+  stats,
+}: MessagesDirectoryProps) => {
   const t = useTranslations();
   const eventId = useEventId();
   const anonymous = t("common__anonymous");
@@ -39,6 +44,7 @@ export const MessagesDirectory = ({ player }: MessagesDirectoryProps) => {
   const selectedIds = useSelectedIds();
   const setFilter = useMessagesStore((s) => s.setFilter);
   const toggleSelected = useMessagesStore((s) => s.toggleSelected);
+  const setSelectAll = useMessagesStore((s) => s.setSelectAll);
   const selectAll = useMessagesStore((s) => s.selectAll);
   const clearSelection = useMessagesStore((s) => s.clearSelection);
   const setActiveMessageId = useMessagesStore((s) => s.setActiveMessageId);
@@ -65,12 +71,36 @@ export const MessagesDirectory = ({ player }: MessagesDirectoryProps) => {
     [data?.pages],
   );
 
-  const allSelected =
-    messages.length > 0 && messages.every((m) => selectedIds.has(m.id));
+  const selectAllActive = selectAll !== null;
+  const allSelected = selectAllActive;
 
   const handleToggleAll = () => {
-    if (allSelected) clearSelection();
-    else selectAll(messages.map((m) => m.id));
+    if (selectAllActive) {
+      clearSelection();
+      return;
+    }
+    clearSelection();
+    setSelectAll({
+      filter,
+      search: trimmedSearch || undefined,
+      excludedIds: [],
+    });
+  };
+
+  const isMessageSelected = (id: string): boolean => {
+    if (selectAll) return !selectAll.excludedIds.includes(id);
+    return selectedIds.has(id);
+  };
+
+  const handleRowToggle = (id: string) => {
+    if (!selectAll) {
+      toggleSelected(id);
+      return;
+    }
+    const excluded = new Set(selectAll.excludedIds);
+    if (excluded.has(id)) excluded.delete(id);
+    else excluded.add(id);
+    setSelectAll({ ...selectAll, excludedIds: [...excluded] });
   };
 
   const renderBody = () => {
@@ -107,11 +137,11 @@ export const MessagesDirectory = ({ player }: MessagesDirectoryProps) => {
           message={message}
           index={i}
           anonymousLabel={anonymous}
-          selected={selectedIds.has(message.id)}
+          selected={isMessageSelected(message.id)}
           isPlaying={isPlaying}
           progress={isCurrentTrack ? player.progress : 0}
           currentTime={isCurrentTrack ? player.currentTime : 0}
-          onToggleSelect={() => toggleSelected(message.id)}
+          onToggleSelect={() => handleRowToggle(message.id)}
           onOpen={() => setActiveMessageId(message.id)}
           onPlay={() => player.toggle(message.id)}
           isLast={i === messages.length - 1}
@@ -124,8 +154,9 @@ export const MessagesDirectory = ({ player }: MessagesDirectoryProps) => {
     <DataDirectory
       chips={
         <MessageFilterChips
-          messages={messages}
+          eventId={eventId}
           active={filter}
+          stats={stats}
           onSelect={setFilter}
         />
       }

@@ -21,7 +21,10 @@ type MessagesPageClientProps = {
   stats: EventStats | null;
 };
 
-export const MessagesPageClient = ({ eventId }: MessagesPageClientProps) => {
+export const MessagesPageClient = ({
+  eventId,
+  stats,
+}: MessagesPageClientProps) => {
   const player = useMessageAudioPlayer(eventId);
   const activeMessageId = useActiveMessageId();
   const paneOpen = Boolean(activeMessageId);
@@ -43,7 +46,7 @@ export const MessagesPageClient = ({ eventId }: MessagesPageClientProps) => {
         detailPane={<ConnectedMessageDetailPane player={player} />}
         detailPaneOpen={paneOpen}
       >
-        <MessagesDirectory player={player} />
+        <MessagesDirectory player={player} stats={stats} />
       </FeaturePageLayout>
       <AudioPlayer player={player} />
     </MessagesEventProvider>

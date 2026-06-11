@@ -52,11 +52,10 @@ export const PhotoTile = ({
         }
       }}
       className={cn(
-        "group rounded-12 animate-slide-up-fade relative mb-3 w-full cursor-pointer overflow-hidden text-left transition-transform hover:scale-[1.02] hover:shadow-md",
+        "group rounded-12 animate-slide-up-fade relative w-full cursor-pointer overflow-hidden text-left transition-transform hover:scale-[1.02] hover:shadow-md",
         selected ? "ring-secondary ring-[3px] ring-offset-1" : "shadow-sm",
       )}
       style={{
-        breakInside: "avoid",
         animationDelay: `${Math.min(index, 12) * 30}ms`,
       }}
     >

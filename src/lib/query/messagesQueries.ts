@@ -27,6 +27,17 @@ export const useMessagesList = (
     enabled: Boolean(eventId),
   });
 
+export const useMessagesCount = (
+  eventId: string,
+  input: { filter?: string; search?: string } = {},
+) =>
+  useQuery({
+    queryKey: queryKeys.messages.count(eventId, input),
+    queryFn: () => messagesClient.count(eventId, input),
+    enabled: Boolean(eventId),
+    staleTime: 30_000,
+  });
+
 export const useInfiniteMessagesList = (
   eventId: string,
   input: Omit<ListMessagesQuery, "cursor"> = {},

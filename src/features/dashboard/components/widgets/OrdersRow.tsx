@@ -6,6 +6,7 @@ import type { Order, OrderStatus } from "@/lib/api/types";
 
 type OrdersRowProps = {
   order: Order;
+  productLabel: string;
   statusLabel: string;
   notFirst: boolean;
 };
@@ -14,7 +15,8 @@ const formatPrice = (cents: number, currency: string): string =>
   new Intl.NumberFormat(undefined, {
     style: "currency",
     currency: currency || "EUR",
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(cents / 100);
 
 const formatDateShort = (iso: string): string => {
@@ -60,7 +62,12 @@ const statusVisual = (
 const shortId = (id: string): string =>
   `#OV-${id.replace(/[^0-9]/g, "").slice(0, 4) || id.slice(0, 4).toUpperCase()}`;
 
-export const OrdersRow = ({ order, statusLabel, notFirst }: OrdersRowProps) => {
+export const OrdersRow = ({
+  order,
+  productLabel,
+  statusLabel,
+  notFirst,
+}: OrdersRowProps) => {
   const visual = statusVisual(order.status);
   const productKey =
     `${order.productType} ${order.variantSku ?? ""}`.toLowerCase();
@@ -77,7 +84,7 @@ export const OrdersRow = ({ order, statusLabel, notFirst }: OrdersRowProps) => {
       </span>
       <div className="min-w-0 flex-1">
         <p className="type-body-small truncate font-serif font-semibold">
-          {order.productName}
+          {productLabel}
           {order.quantity > 1 && (
             <span className="text-muted-foreground ml-1 font-sans">
               ×{order.quantity}

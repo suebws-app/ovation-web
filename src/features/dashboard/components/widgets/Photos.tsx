@@ -13,18 +13,12 @@ import { PhotosTile } from "./PhotosTile";
 type PhotosProps = {
   photos: GalleryItem[];
   totalCount: number;
-  newCount: number;
   hasMore?: boolean;
 };
 
 const TILE_COUNT = 6;
 
-export const Photos = ({
-  photos,
-  totalCount,
-  newCount,
-  hasMore,
-}: PhotosProps) => {
+export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
   const t = useTranslations();
   const [preview, setPreview] = useState<GalleryItem | null>(null);
 
@@ -74,12 +68,6 @@ export const Photos = ({
             </p>
           </div>
         </div>
-        {newCount > 0 && (
-          <span className="bg-chart-2/20 text-chart-2 type-caption inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-semibold">
-            <span className="bg-chart-2 inline-block size-1.5 rounded-full" />
-            {t("dashboard__widget__photos__new_pill", { count: newCount })}
-          </span>
-        )}
       </div>
 
       <div className="bg-border h-px w-full" aria-hidden />

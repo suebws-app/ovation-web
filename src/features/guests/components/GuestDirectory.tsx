@@ -15,11 +15,12 @@ import {
 import {
   useGuestFilter,
   useGuestSearch,
+  useGuestSelectAll,
   useGuestSelectedIds,
   useGuestSort,
   useGuestsStore,
 } from "../store/useGuestsStore";
-import { useGuestCsvExport } from "../hooks/useGuestCsvExport";
+import { useGuestBulkActions } from "../hooks/useGuestBulkActions";
 import { GuestFilterChips } from "./GuestFilterChips";
 import { GuestRow } from "./GuestRow";
 import { GuestSearchInput } from "./GuestSearchInput";
@@ -27,6 +28,7 @@ import { GuestSortButton } from "./GuestSortButton";
 import { GuestTableHead } from "./GuestTableHead";
 
 type GuestDirectoryProps = {
+  eventId: string;
   guests: GuestRowData[];
   isPending: boolean;
   isError: boolean;
@@ -34,6 +36,7 @@ type GuestDirectoryProps = {
 };
 
 export const GuestDirectory = ({
+  eventId,
   guests,
   isPending,
   isError,
@@ -44,9 +47,10 @@ export const GuestDirectory = ({
   const sort = useGuestSort();
   const search = useGuestSearch();
   const selectedIds = useGuestSelectedIds();
+  const selectAll = useGuestSelectAll();
   const setFilter = useGuestsStore((s) => s.setFilter);
   const toggleSelected = useGuestsStore((s) => s.toggleSelected);
-  const selectAll = useGuestsStore((s) => s.selectAll);
+  const setSelectAll = useGuestsStore((s) => s.setSelectAll);
   const clearSelection = useGuestsStore((s) => s.clearSelection);
 
   const filtered = useMemo(() => {
@@ -55,15 +59,40 @@ export const GuestDirectory = ({
     return applyGuestSort(s, sort);
   }, [guests, filter, search, sort]);
 
-  const allSelected =
-    filtered.length > 0 && filtered.every((g) => selectedIds.has(g.id));
+  const selectAllActive = selectAll !== null;
+  const allSelected = selectAllActive;
 
   const handleToggleAll = () => {
-    if (allSelected) clearSelection();
-    else selectAll(filtered.map((g) => g.id));
+    if (selectAllActive) {
+      clearSelection();
+      return;
+    }
+    const trimmed = search.trim();
+    clearSelection();
+    setSelectAll({
+      filter,
+      search: trimmed || undefined,
+      excludedGuestNames: [],
+    });
   };
 
-  const { exportCsv, isExporting } = useGuestCsvExport();
+  const isGuestSelected = (id: string): boolean => {
+    if (selectAll) return !selectAll.excludedGuestNames.includes(id);
+    return selectedIds.has(id);
+  };
+
+  const handleRowToggle = (id: string) => {
+    if (!selectAll) {
+      toggleSelected(id);
+      return;
+    }
+    const excluded = new Set(selectAll.excludedGuestNames);
+    if (excluded.has(id)) excluded.delete(id);
+    else excluded.add(id);
+    setSelectAll({ ...selectAll, excludedGuestNames: [...excluded] });
+  };
+
+  const { exportCsv, isExporting } = useGuestBulkActions(eventId);
 
   const renderBody = () => {
     if (isPending) {
@@ -95,8 +124,8 @@ export const GuestDirectory = ({
         key={guest.id}
         guest={guest}
         index={i}
-        selected={selectedIds.has(guest.id)}
-        onToggleSelect={() => toggleSelected(guest.id)}
+        selected={isGuestSelected(guest.id)}
+        onToggleSelect={() => handleRowToggle(guest.id)}
         isLast={i === filtered.length - 1}
       />
     ));
@@ -127,7 +156,7 @@ export const GuestDirectory = ({
             size="sm"
             className="rounded-full"
             disabled={filtered.length === 0 || isExporting}
-            onClick={() => exportCsv(filtered)}
+            onClick={() => exportCsv()}
           >
             <DownloadIcon width={13} height={13} />
             {t("guests__directory__export")}

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import type { Order } from "@/lib/api/types";
+import { translateKey } from "@/lib/utils/translateKey";
 import {
   formatOrderDate,
   formatPrice,
@@ -39,7 +40,7 @@ export const OrderCard = ({
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex flex-col gap-0.5">
           <span className="type-body-small font-semibold">
-            {order.productName ? t(order.productName) : ""}
+            {translateKey(t, order.productName)}
             {order.variantName ? ` — ${order.variantName}` : ""}
           </span>
           <span className="type-caption text-muted-foreground">

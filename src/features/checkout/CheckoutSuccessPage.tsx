@@ -8,6 +8,7 @@ import { ordersApi, planPurchasesApi } from "@/lib/api/orders";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { safeHttpUrl } from "@/lib/utils/safe-url";
+import { translateKey } from "@/lib/utils/translateKey";
 import { PlanActivatedSuccess } from "./PlanActivatedSuccess";
 import { PendingOrderSuccess } from "./PendingOrderSuccess";
 import {
@@ -126,7 +127,7 @@ export const CheckoutSuccessPage = async ({
               >
                 <div>
                   <p className="type-body-small font-semibold">
-                    {row.productName ? t(row.productName) : ""}
+                    {translateKey(t, row.productName)}
                     {row.variantName ? ` — ${row.variantName}` : ""}
                   </p>
                   <p className="type-caption text-muted-foreground">

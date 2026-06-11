@@ -2,20 +2,24 @@
 
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { useMutation } from "@tanstack/react-query";
-import { useUpdateMedia } from "@/lib/query/galleryQueries";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { mediaClient } from "@/lib/api/media-client";
+import { queryKeys } from "@/lib/query/keys";
+import { useGalleryCount } from "@/lib/query/galleryQueries";
+import { saveBlob } from "@/lib/utils/download-blob";
 import { downloadMediaFlat } from "@/lib/media/downloadMessageAssets";
-import { usePhotoSelectedIds } from "../store/usePhotosStore";
+import {
+  usePhotoSelectAll,
+  usePhotoSelectedIds,
+} from "../store/usePhotosStore";
 import type { PhotoView } from "../adapters";
 
-type BulkInput =
-  | { kind: "favorite"; views: PhotoView[]; nextValue: boolean }
-  | { kind: "gold_book"; views: PhotoView[]; nextValue: boolean }
-  | { kind: "download"; views: PhotoView[] };
+type BulkKind = "favorite" | "gold_book" | "download";
 
 export const usePhotoBulkActions = (eventId: string, photos: PhotoView[]) => {
   const selectedIds = usePhotoSelectedIds();
-  const updateMedia = useUpdateMedia(eventId);
+  const selectAll = usePhotoSelectAll();
+  const qc = useQueryClient();
   const t = useTranslations();
   const anonymous = t("common__anonymous");
 
@@ -25,36 +29,45 @@ export const usePhotoBulkActions = (eventId: string, photos: PhotoView[]) => {
   );
 
   const allFavorited =
-    selectedViews.length > 0 && selectedViews.every((p) => p.isFavorite);
+    !selectAll &&
+    selectedViews.length > 0 &&
+    selectedViews.every((p) => p.isFavorite);
   const allInGoldBook =
+    !selectAll &&
     selectedViews.length > 0 &&
     selectedViews.every((p) => p.isGoldBookSelected);
 
+  const selector = selectAll ? { selectAll } : { ids: Array.from(selectedIds) };
+
+  const invalidate = () => {
+    qc.invalidateQueries({ queryKey: queryKeys.gallery.all(eventId) });
+    qc.invalidateQueries({ queryKey: queryKeys.events.stats(eventId) });
+  };
+
   const mutation = useMutation({
-    mutationFn: async (input: BulkInput) => {
-      if (input.kind === "favorite") {
-        await Promise.all(
-          input.views.map((v) =>
-            updateMedia.mutateAsync({
-              mediaId: v.id,
-              patch: { isFavorite: input.nextValue },
-            }),
-          ),
-        );
+    mutationFn: async (kind: BulkKind) => {
+      if (kind === "favorite") {
+        await mediaClient.bulkUpdate(eventId, {
+          ...selector,
+          action: "favorite",
+          value: !allFavorited,
+        });
         return;
       }
-      if (input.kind === "gold_book") {
-        await Promise.all(
-          input.views.map((v) =>
-            updateMedia.mutateAsync({
-              mediaId: v.id,
-              patch: { isGoldBookSelected: input.nextValue },
-            }),
-          ),
-        );
+      if (kind === "gold_book") {
+        await mediaClient.bulkUpdate(eventId, {
+          ...selector,
+          action: "gold_book",
+          value: !allInGoldBook,
+        });
         return;
       }
-      const mediaInputs = input.views
+      if (selectAll) {
+        const blob = await mediaClient.bulkDownload(eventId, selector);
+        saveBlob(blob, `photos-${eventId}.zip`);
+        return;
+      }
+      const mediaInputs = selectedViews
         .filter((v) => v.url || v.thumbUrl)
         .map((v) => ({
           guestName: v.name || anonymous,
@@ -64,26 +77,26 @@ export const usePhotoBulkActions = (eventId: string, photos: PhotoView[]) => {
         }));
       await downloadMediaFlat(mediaInputs, "media");
     },
+    onSuccess: invalidate,
   });
 
+  const countQuery = useGalleryCount(eventId, {
+    type: "all",
+    filter: selectAll?.filter,
+    search: selectAll?.search,
+  });
+  const effectiveCount = selectAll
+    ? Math.max(0, (countQuery.data?.count ?? 0) - selectAll.excludedIds.length)
+    : selectedIds.size;
+
   return {
-    bulkFavorite: () =>
-      mutation.mutate({
-        kind: "favorite",
-        views: selectedViews,
-        nextValue: !allFavorited,
-      }),
-    bulkGoldBook: () =>
-      mutation.mutate({
-        kind: "gold_book",
-        views: selectedViews,
-        nextValue: !allInGoldBook,
-      }),
-    bulkDownload: () =>
-      mutation.mutate({ kind: "download", views: selectedViews }),
+    bulkFavorite: () => mutation.mutate("favorite"),
+    bulkGoldBook: () => mutation.mutate("gold_book"),
+    bulkDownload: () => mutation.mutate("download"),
     isPending: mutation.isPending,
     allFavorited,
     allInGoldBook,
-    selectedCount: selectedIds.size,
+    selectedCount: effectiveCount,
+    isAllMode: Boolean(selectAll),
   };
 };

@@ -18,6 +18,7 @@ export const GuestsPageClient = ({ eventId }: GuestsPageClientProps) => {
   return (
     <FeaturePageLayout>
       <GuestDirectory
+        eventId={eventId}
         guests={guests}
         isPending={isPending}
         isError={isError}

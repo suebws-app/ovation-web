@@ -7,10 +7,12 @@ import { PhotoTile } from "./PhotoTile";
 
 type PhotoGalleryProps = {
   photos: PhotoView[];
-  selectedIds: Set<string>;
+  isSelected: (id: string) => boolean;
   onTileClick: (id: string) => void;
   onToggleSelect: (id: string) => void;
 };
+
+const TILE_GAP = 12;
 
 const useColumnCount = (): number => {
   const [count, setCount] = useState(3);
@@ -37,7 +39,7 @@ const useColumnCount = (): number => {
 
 export const PhotoGallery = ({
   photos,
-  selectedIds,
+  isSelected,
   onTileClick,
   onToggleSelect,
 }: PhotoGalleryProps) => {
@@ -49,8 +51,14 @@ export const PhotoGallery = ({
       { length: columnCount },
       () => [],
     );
+    const heights = new Array(columnCount).fill(0);
     photos.forEach((tile, index) => {
-      cols[index % columnCount]!.push({ tile, index });
+      let target = 0;
+      for (let i = 1; i < columnCount; i++) {
+        if (heights[i] < heights[target]) target = i;
+      }
+      cols[target]!.push({ tile, index });
+      heights[target] += heightFor(index) + TILE_GAP;
     });
     return cols;
   }, [photos, columnCount]);
@@ -77,7 +85,7 @@ export const PhotoGallery = ({
                 tile={tile}
                 height={heightFor(index)}
                 index={index}
-                selected={selectedIds.has(tile.id)}
+                selected={isSelected(tile.id)}
                 onClick={() => onTileClick(tile.id)}
                 onToggleSelect={() => onToggleSelect(tile.id)}
               />

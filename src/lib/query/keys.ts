@@ -17,6 +17,10 @@ export const queryKeys = {
       eventId: string,
       input: Omit<ListMessagesQuery, "cursor"> = {},
     ) => ["messages", eventId, "list", "infinite", input] as const,
+    count: (
+      eventId: string,
+      input: { filter?: string; search?: string } = {},
+    ) => ["messages", eventId, "count", input] as const,
     detail: (eventId: string, messageId: string) =>
       ["messages", eventId, "detail", messageId] as const,
   },
@@ -37,8 +41,16 @@ export const queryKeys = {
       input: {
         type?: "photo" | "video" | "all";
         filter?: "all" | "favorites" | "gold_book";
+        search?: string;
       } = {},
     ) => ["gallery", eventId, "count", input] as const,
+  },
+  guests: {
+    all: (eventId: string) => ["guests", eventId] as const,
+    count: (
+      eventId: string,
+      input: { filter?: string; search?: string } = {},
+    ) => ["guests", eventId, "count", input] as const,
   },
   user: {
     me: () => ["user", "me"] as const,
