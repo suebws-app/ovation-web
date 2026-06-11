@@ -55,10 +55,7 @@ export const EventKeepsakesPage = async ({
         />
       )}
       <BundleBanner />
-      <KeepsakesCollection
-        products={productsWithStartingPrice}
-        eventId={id}
-      />
+      <KeepsakesCollection products={productsWithStartingPrice} eventId={id} />
 
       <KeepsakesFooter />
     </div>

@@ -107,9 +107,7 @@ export const DrePlanModal = ({ open, onOpenChange }: DrePlanModalProps) => {
             </p>
           )}
 
-          {error && (
-            <p className="type-body-small text-destructive">{error}</p>
-          )}
+          {error && <p className="type-body-small text-destructive">{error}</p>}
 
           <div className="tablet:flex-row mt-2 flex flex-col-reverse gap-2">
             <Button

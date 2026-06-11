@@ -34,7 +34,7 @@ export const Orders = ({ orders }: OrdersProps) => {
   const visible = orders.slice(0, 3);
 
   return (
-    <div className="rounded-20 border-border bg-card min-h-62 flex flex-col flex-wrap border p-5 shadow-sm">
+    <div className="rounded-20 border-border bg-card flex min-h-62 flex-col flex-wrap border p-5 shadow-sm">
       <div className="flex items-center justify-between gap-4 pb-4">
         <div className="flex items-center gap-3">
           <span className="bg-chart-4/20 text-chart-4 rounded-12 inline-flex size-10 items-center justify-center">

@@ -48,33 +48,27 @@ export const BookCheckoutPanel = ({
     supportsDedication,
   } = usePeechoVariantResolver(variants, eventId);
 
-  const [
-    paperType,
-    sizeKey,
-    photoIds,
-    photoSelectAll,
-    coverText,
-    dedication,
-  ] = useWatch<
-    BookFormValues,
-    [
-      "paperType",
-      "sizeKey",
-      "photoIds",
-      "photoSelectAll",
-      "coverText",
-      "dedication",
-    ]
-  >({
-    name: [
-      "paperType",
-      "sizeKey",
-      "photoIds",
-      "photoSelectAll",
-      "coverText",
-      "dedication",
-    ],
-  });
+  const [paperType, sizeKey, photoIds, photoSelectAll, coverText, dedication] =
+    useWatch<
+      BookFormValues,
+      [
+        "paperType",
+        "sizeKey",
+        "photoIds",
+        "photoSelectAll",
+        "coverText",
+        "dedication",
+      ]
+    >({
+      name: [
+        "paperType",
+        "sizeKey",
+        "photoIds",
+        "photoSelectAll",
+        "coverText",
+        "dedication",
+      ],
+    });
 
   const basePriceCents = chosenVariant?.priceCents ?? 0;
   const totalPriceCents = basePriceCents + pagesSurchargeCents;

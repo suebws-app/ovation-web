@@ -28,7 +28,7 @@ export const DataDirectory = ({
     {chips}
     <div className="rounded-16 border-border bg-card flex flex-col overflow-hidden border">
       <div className="border-border tablet:flex-row tablet:items-center tablet:flex-wrap flex flex-col gap-3 border-b px-6 py-4">
-        <div className="type-body font-serif shrink-0 font-semibold">
+        <div className="type-body shrink-0 font-serif font-semibold">
           {title}
         </div>
         <div className="tablet:ml-auto tablet:min-w-0 tablet:flex-1 flex flex-wrap items-center justify-end gap-2">

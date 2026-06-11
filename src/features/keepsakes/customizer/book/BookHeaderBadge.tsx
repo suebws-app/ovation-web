@@ -16,8 +16,10 @@ export const BookHeaderBadge = ({
   variants,
   eventId,
 }: BookHeaderBadgeProps) => {
-  const { paperStock, pageWidthMm, pageHeightMm } =
-    usePeechoVariantResolver(variants, eventId);
+  const { paperStock, pageWidthMm, pageHeightMm } = usePeechoVariantResolver(
+    variants,
+    eventId,
+  );
   return (
     <BookBindingBadge
       binding={binding}

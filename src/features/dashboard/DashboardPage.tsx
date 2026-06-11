@@ -76,10 +76,12 @@ export const DashboardPage = async () => {
 
   const [stats, recentMessages, qr, ordersPage, galleryPage] =
     await Promise.all([
-      eventsApi.stats(event.id, { includeOwnerUploads: true }).catch((error) => {
-        if (ApiError.isApiError(error) && error.status === 404) return null;
-        throw error;
-      }),
+      eventsApi
+        .stats(event.id, { includeOwnerUploads: true })
+        .catch((error) => {
+          if (ApiError.isApiError(error) && error.status === 404) return null;
+          throw error;
+        }),
       messagesApi
         .list(event.id, { limit: 5, sort: "newest" })
         .catch((error) => {
@@ -130,14 +132,14 @@ export const DashboardPage = async () => {
               totalCount={totalMessages}
               newCount={totalMessages}
             />
-            <div className="min-[1300px]:flex-row min-[1300px]:items-start flex flex-col gap-6">
+            <div className="flex flex-col gap-6 min-[1300px]:flex-row min-[1300px]:items-start">
               <Photos
                 photos={galleryItems}
                 totalCount={totalPhotos}
                 newCount={totalPhotos}
                 hasMore={hasMorePhotos}
               />
-              <div className="min-[1300px]:block hidden min-w-0 flex-1">
+              <div className="hidden min-w-0 flex-1 min-[1300px]:block">
                 <Orders orders={ordersPage?.items ?? []} />
               </div>
             </div>

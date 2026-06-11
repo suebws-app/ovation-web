@@ -22,8 +22,10 @@ export const PersonalizeSection = ({
 }: PersonalizeSectionProps) => {
   const t = useTranslations();
   const { register } = useBookForm();
-  const { supportsCoverText, supportsDedication } =
-    usePeechoVariantResolver(variants, eventId);
+  const { supportsCoverText, supportsDedication } = usePeechoVariantResolver(
+    variants,
+    eventId,
+  );
 
   if (!supportsCoverText && !supportsDedication) return null;
 

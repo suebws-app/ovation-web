@@ -87,7 +87,7 @@ export const MessagesTableRow = ({
       }}
       aria-label={t("messages__row__open_aria", { name: displayName })}
       style={{ animationDelay }}
-      className={`animate-slide-up-fade @[740px]/table:grid-cols-[28px_minmax(180px,1.4fr)_80px_110px_120px] @[1420px]/table:grid-cols-[28px_minmax(180px,1.4fr)_80px_110px_280px] @[740px]/table:gap-3.5 @[740px]/table:px-6 hover:bg-muted/40 grid cursor-pointer grid-cols-[28px_1fr_44px] items-center gap-3 px-4 py-3.5 transition-colors ${
+      className={`animate-slide-up-fade hover:bg-muted/40 grid cursor-pointer grid-cols-[28px_1fr_44px] items-center gap-3 px-4 py-3.5 transition-colors @[740px]/table:grid-cols-[28px_minmax(180px,1.4fr)_80px_110px_120px] @[740px]/table:gap-3.5 @[740px]/table:px-6 @[1420px]/table:grid-cols-[28px_minmax(180px,1.4fr)_80px_110px_280px] ${
         isLast ? "" : "border-border border-b"
       }`}
     >
@@ -126,7 +126,7 @@ export const MessagesTableRow = ({
               &ldquo;{noteText}&rdquo;
             </p>
           )}
-          <div className="@[740px]/table:hidden mt-1 flex flex-wrap items-center gap-2">
+          <div className="mt-1 flex flex-wrap items-center gap-2 @[740px]/table:hidden">
             <MediaTypeIcons
               hasAudio={message.hasAudio}
               hasPhoto={message.hasPhoto}
@@ -139,7 +139,7 @@ export const MessagesTableRow = ({
           </div>
         </div>
       </div>
-      <div className="@[740px]/table:flex hidden items-center gap-2">
+      <div className="hidden items-center gap-2 @[740px]/table:flex">
         <MediaTypeIcons
           hasAudio={message.hasAudio}
           hasPhoto={message.hasPhoto}
@@ -147,15 +147,15 @@ export const MessagesTableRow = ({
           hasNote={hasNote}
         />
       </div>
-      <div className="@[740px]/table:block type-caption text-muted-foreground hidden min-w-0 truncate">
+      <div className="type-caption text-muted-foreground hidden min-w-0 truncate @[740px]/table:block">
         {lastLabel}
       </div>
       {message.hasAudio ? (
         <div
           data-row-no-open
-          className="@[740px]/table:flex hidden min-w-0 items-center justify-end gap-3 overflow-hidden"
+          className="hidden min-w-0 items-center justify-end gap-3 overflow-hidden @[740px]/table:flex"
         >
-          <div className="@[1420px]/table:flex hidden min-w-0 items-center overflow-hidden">
+          <div className="hidden min-w-0 items-center overflow-hidden @[1420px]/table:flex">
             <Waveform
               bars={wave.slice(0, 24)}
               height={28}
@@ -182,9 +182,9 @@ export const MessagesTableRow = ({
           </button>
         </div>
       ) : (
-        <span aria-hidden className="@[740px]/table:block hidden" />
+        <span aria-hidden className="hidden @[740px]/table:block" />
       )}
-      <div data-row-no-open className="@[740px]/table:hidden flex justify-end">
+      <div data-row-no-open className="flex justify-end @[740px]/table:hidden">
         {message.hasAudio ? (
           <button
             type="button"

@@ -28,7 +28,7 @@ export const Messages = ({
   const player = useMessageAudioPlayer(eventId);
 
   return (
-    <div className="rounded-20 border-border bg-card desktop:grid-cols-[1fr_1px_1.4fr] min-h-62 grid grid-cols-1 gap-6 border p-6 shadow-sm">
+    <div className="rounded-20 border-border bg-card desktop:grid-cols-[1fr_1px_1.4fr] grid min-h-62 grid-cols-1 gap-6 border p-6 shadow-sm">
       <div className="flex flex-col justify-between gap-5">
         <div className="flex items-start justify-between gap-3">
           <span className="bg-primary/10 text-primary rounded-12 inline-flex size-10 items-center justify-center">

@@ -316,8 +316,7 @@ export const CustomizerCheckoutForm = ({
           onClick={handlePreview}
           disabled={
             !eventId ||
-            (!photoSelectAll &&
-              (!photoIds || photoIds.length === 0)) ||
+            (!photoSelectAll && (!photoIds || photoIds.length === 0)) ||
             previewMutation.isPending
           }
           className="rounded-full"

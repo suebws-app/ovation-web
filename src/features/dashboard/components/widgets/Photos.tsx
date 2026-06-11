@@ -37,7 +37,7 @@ export const Photos = ({
   const overlayCount = remaining > 0 ? remaining : totalCount - tiles.length;
 
   return (
-    <div className="rounded-20 border-border bg-card min-[1300px]:w-80 min-[1300px]:shrink-0 min-h-62 flex w-full flex-col gap-4 border p-5 shadow-sm">
+    <div className="rounded-20 border-border bg-card flex min-h-62 w-full flex-col gap-4 border p-5 shadow-sm min-[1300px]:w-80 min-[1300px]:shrink-0">
       {tiles.length > 0 && (
         <div className="grid grid-cols-3 gap-2">
           {tiles.map((item, index) => (

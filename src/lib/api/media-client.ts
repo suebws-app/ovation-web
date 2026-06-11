@@ -46,7 +46,10 @@ export const mediaClient = {
 
   galleryCount: (
     eventId: string,
-    query: { type?: "photo" | "video" | "all"; filter?: "all" | "favorites" | "gold_book" } = {},
+    query: {
+      type?: "photo" | "video" | "all";
+      filter?: "all" | "favorites" | "gold_book";
+    } = {},
   ): Promise<GalleryCount> => {
     const queryParams: Record<string, string | undefined> = {};
     if (query.type) queryParams.type = query.type;

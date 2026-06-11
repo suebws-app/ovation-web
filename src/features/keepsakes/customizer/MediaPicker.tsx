@@ -177,8 +177,7 @@ export const MediaPicker = ({
     onChange?.([]);
   };
 
-  const showScopeNote =
-    selectAllActive && selectAll.filter !== source;
+  const showScopeNote = selectAllActive && selectAll.filter !== source;
 
   return (
     <div className="flex flex-col gap-3">

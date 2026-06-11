@@ -105,7 +105,11 @@ export const GuestDirectory = ({
   return (
     <DataDirectory
       chips={
-        <GuestFilterChips guests={guests} active={filter} onSelect={setFilter} />
+        <GuestFilterChips
+          guests={guests}
+          active={filter}
+          onSelect={setFilter}
+        />
       }
       title={
         <>
