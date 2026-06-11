@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { TruckIcon } from "@ovation/icons/TruckIcon";
 import type { Order } from "@/lib/api/types";
+import { translateKey } from "@/lib/utils/translateKey";
 import { progressFor } from "@/features/checkout/orderHelpers";
 import { OrderItem } from "./OrderItem";
 import { OrderDetailModal } from "./OrderDetailModal";
@@ -30,7 +31,7 @@ export const OrdersRail = ({ orders }: OrdersRailProps) => {
 
   const productNameOf = (order: Order): string => {
     const base = order.productName
-      ? t(order.productName)
+      ? translateKey(t, order.productName)
       : t("keepsakes__product__order");
     return order.variantName ? `${base} — ${order.variantName}` : base;
   };

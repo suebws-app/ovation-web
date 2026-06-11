@@ -1,4 +1,4 @@
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 
 type QRCardPreviewProps = {
   coupleName?: string;
@@ -46,10 +46,7 @@ export const QRCardPreview = ({
           ];
           const isLit = litCells.includes(i);
           return (
-            <div
-              key={i}
-              style={{ background: isLit ? "#fff" : "#2D2D2D" }}
-            />
+            <div key={i} style={{ background: isLit ? "#fff" : "#2D2D2D" }} />
           );
         })}
       </div>

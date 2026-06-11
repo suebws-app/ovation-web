@@ -51,7 +51,7 @@ export const GuestPagination = ({
           onClick={() => canPrev && onPageChange(current - 1)}
           disabled={!canPrev}
           aria-label={t("guests__pagination__prev")}
-          className="border-border bg-card text-foreground flex size-7.5 items-center justify-center rounded-8 border disabled:opacity-40 not-disabled:cursor-pointer"
+          className="border-border bg-card text-foreground rounded-8 flex size-7.5 items-center justify-center border not-disabled:cursor-pointer disabled:opacity-40"
         >
           <ChevronLeftIcon width={14} height={14} />
         </button>
@@ -71,7 +71,7 @@ export const GuestPagination = ({
           onClick={() => canNext && onPageChange(current + 1)}
           disabled={!canNext}
           aria-label={t("guests__pagination__next")}
-          className="border-border bg-card text-foreground flex size-7.5 items-center justify-center rounded-8 border disabled:opacity-40 not-disabled:cursor-pointer"
+          className="border-border bg-card text-foreground rounded-8 flex size-7.5 items-center justify-center border not-disabled:cursor-pointer disabled:opacity-40"
         >
           <ChevronRightIcon width={14} height={14} />
         </button>

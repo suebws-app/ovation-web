@@ -9,7 +9,9 @@ type PersistedStore = {
   };
 };
 
-export const useHydrateStore = <T extends PersistedStore>(store: T): boolean => {
+export const useHydrateStore = <T extends PersistedStore>(
+  store: T,
+): boolean => {
   const [hydrated, setHydrated] = useState<boolean>(() =>
     store.persist.hasHydrated(),
   );

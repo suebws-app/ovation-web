@@ -11,8 +11,7 @@ export const GuestRecordPage = async ({
 }: GuestRecordPageProps) => {
   const { slug, locale } = await params;
   const search = await searchParams;
-  const sourceParam =
-    typeof search.source === "string" ? search.source : null;
+  const sourceParam = typeof search.source === "string" ? search.source : null;
   const prefix = locale === "en" ? "" : `/${locale}`;
   const query = sourceParam ? `?source=${sourceParam}` : "";
   redirect(`${prefix}/g/${slug}/compose${query}`);

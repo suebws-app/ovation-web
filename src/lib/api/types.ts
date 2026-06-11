@@ -299,17 +299,14 @@ export type CreateMessageResult = {
   };
 };
 
-export type KeepsakeSku =
-  | "gold_book"
-  | "video_montage"
-  | "digital_album"
-  | "audio_vinyl"
-  | "thank_you_cards"
-  | "canvas_print"
+export type KeepsakeProductType =
+  | "hardcover"
+  | "softcover"
+  | "layflat"
   | string;
 
 export type KeepsakeProduct = {
-  sku: KeepsakeSku;
+  productType: KeepsakeProductType;
   name: string;
   description: string;
   subtitle: string | null;
@@ -325,14 +322,10 @@ export type KeepsakeCatalog = {
 
 export type KeepsakeProductDetail = {
   id: string;
-  sku: string;
-  slug: string;
   productType: string;
   name: string;
   description: string | null;
   subtitle: string | null;
-  basePriceCents: number;
-  currency: string;
   category: string;
   heroImageUrl: string | null;
   isActive: boolean;
@@ -392,6 +385,13 @@ export type OrderStatus =
   | "delivered"
   | string;
 
+export type PrintApprovalStatus =
+  | "not_required"
+  | "pending"
+  | "approved"
+  | "rejected"
+  | string;
+
 export type Order = {
   id: string;
   eventId: string;
@@ -401,7 +401,7 @@ export type Order = {
   currency: string;
   subtotalCents: number;
   totalCents: number;
-  productSku: string;
+  productType: string;
   productName: string;
   variantSku: string | null;
   variantName: string | null;
@@ -409,6 +409,7 @@ export type Order = {
   unitPriceCents: number;
   customization: Record<string, unknown>;
   fulfillmentStatus: string;
+  printApprovalStatus?: PrintApprovalStatus;
   paymentProvider: string | null;
   createdAt: string;
 };
@@ -429,7 +430,7 @@ export type OrderDetail = {
   orderType: string;
   status: OrderStatus;
   totalCents: number;
-  productSku: string;
+  productType: string;
   productName: string;
   variantSku: string | null;
   variantName: string | null;
@@ -437,6 +438,7 @@ export type OrderDetail = {
   unitPriceCents: number;
   customization: Record<string, unknown>;
   fulfillmentStatus: string;
+  printApprovalStatus?: PrintApprovalStatus;
   mediaIds: string[];
   tracking: OrderTracking | null;
   createdAt: string;
@@ -459,12 +461,43 @@ export type CheckoutOrderType = "plan" | "keepsake";
 
 export type CheckoutPlanTier = "premium" | "bundle";
 
+export type PhotoSelectAll = {
+  filter: "all" | "favorites" | "gold_book";
+  search?: string;
+  excludedIds: string[];
+};
+
+export type MessageSelectAll = {
+  filter: MessageFilter;
+  search?: string;
+  excludedIds: string[];
+};
+
+export type GuestSelectAll = {
+  filter: string;
+  search?: string;
+  excludedGuestNames: string[];
+};
+
+export type GalleryCount = {
+  count: number;
+};
+
+export type MessageCount = {
+  count: number;
+};
+
+export type GuestCount = {
+  count: number;
+};
+
 export type CheckoutItem = {
-  productSku: string;
+  productType: string;
   productVariantId?: string;
   quantity: number;
   customization?: Record<string, unknown>;
   photoIds?: string[];
+  photoSelectAll?: PhotoSelectAll;
 };
 
 export type CheckoutShippingAddress = {
@@ -488,7 +521,7 @@ export type CheckoutSessionInput = {
 };
 
 export type CartTotalsItem = {
-  productSku: string;
+  productType: string;
   productVariantId?: string;
   quantity: number;
 };
@@ -529,7 +562,6 @@ export type Plan = {
   creditCents: number;
   sortOrder: number;
 };
-
 
 export type BasePlanInfo = {
   planCode: string;
@@ -616,8 +648,7 @@ export type CoverUploadResult = {
 };
 
 export const LINK_MAX_DURATION_OPTIONS = [15, 30, 45, 60] as const;
-export type LinkMaxDurationSeconds =
-  (typeof LINK_MAX_DURATION_OPTIONS)[number];
+export type LinkMaxDurationSeconds = (typeof LINK_MAX_DURATION_OPTIONS)[number];
 
 export const KIOSK_RETURN_AFTER_OPTIONS = [10, 20, 30, 60, 120] as const;
 export type KioskReturnAfterSeconds =

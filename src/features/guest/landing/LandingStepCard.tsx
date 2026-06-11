@@ -21,16 +21,14 @@ export const LandingStepCard = ({
   <div className="bg-card/65 border-border rounded-16 flex items-center gap-3.5 border p-3.5 backdrop-blur-sm">
     <div
       className={cn(
-        "rounded-12 flex size-10 shrink-0 items-center justify-center text-primary-foreground",
+        "rounded-12 text-primary-foreground flex size-10 shrink-0 items-center justify-center",
         iconClassName,
       )}
     >
       {icon}
     </div>
     <div className="min-w-0 flex-1">
-      <h3 className="type-h4 font-semibold leading-tight">
-        {title}
-      </h3>
+      <h3 className="type-h4 leading-tight font-semibold">{title}</h3>
       <p className="type-body-small text-muted-foreground mt-0.5">{subtitle}</p>
     </div>
     <span className="type-h3 text-muted-foreground/40 font-semibold">

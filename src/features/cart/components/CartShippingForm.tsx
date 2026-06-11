@@ -33,8 +33,7 @@ export const CartShippingForm = ({
   const [error, setError] = useState<Record<string, string>>({});
 
   const update =
-    (field: keyof CartShipping) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (field: keyof CartShipping) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
     };
 
@@ -68,7 +67,7 @@ export const CartShippingForm = ({
       onSubmit={handleSubmit}
       className="rounded-20 border-border bg-card flex flex-col gap-5 border p-7"
     >
-      <h2 className="font-serif type-h3 font-semibold tracking-tight">
+      <h2 className="type-h3 font-serif font-semibold tracking-tight">
         {t("cart__shipping__title")}
       </h2>
       <p className="text-muted-foreground type-body-small">
@@ -125,9 +124,7 @@ export const CartShippingForm = ({
               aria-invalid={Boolean(error.city)}
             />
             {error.city && (
-              <p className="type-caption text-destructive mt-1">
-                {error.city}
-              </p>
+              <p className="type-caption text-destructive mt-1">{error.city}</p>
             )}
           </div>
           <div>
@@ -175,11 +172,7 @@ export const CartShippingForm = ({
         >
           {t("cart__shipping__back")}
         </Button>
-        <Button
-          type="submit"
-          className="rounded-full"
-          disabled={isSubmitting}
-        >
+        <Button type="submit" className="rounded-full" disabled={isSubmitting}>
           {isSubmitting
             ? t("cart__summary__checkout_pending")
             : t("cart__shipping__continue")}

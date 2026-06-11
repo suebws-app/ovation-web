@@ -39,5 +39,8 @@ export const eventsApi = {
       query: { format: options.format, size: options.size },
     }),
 
-  stats: (eventId: string) => apiFetch<EventStats>(`/events/${eventId}/stats`),
+  stats: (eventId: string, options: { includeOwnerUploads?: boolean } = {}) =>
+    apiFetch<EventStats>(`/events/${eventId}/stats`, {
+      query: { includeOwnerUploads: options.includeOwnerUploads },
+    }),
 };

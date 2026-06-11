@@ -26,23 +26,22 @@ export const KioskSetupClient = ({
     initialSettings,
   );
 
-  const previewEvent =
-    publicEvent && {
-      ...publicEvent,
-      welcomeMessage: settings.welcomeNote ?? publicEvent.welcomeMessage,
-      defaultLanguage: settings.defaultLanguage,
-      supportedLanguages: settings.supportedLanguages,
-      kiosk: {
-        ...publicEvent.kiosk,
-        returnAfterSeconds: settings.returnAfterSeconds,
-        welcomeShowPhoto: settings.welcomeShowPhoto,
-        welcomeShowLanguagePicker: settings.welcomeShowLanguagePicker,
-        welcomeChime: settings.welcomeChime,
-        fullscreenLock: settings.fullscreenLock,
-        guidedMode: settings.guidedMode,
-        exitPin: settings.exitPin,
-      },
-    };
+  const previewEvent = publicEvent && {
+    ...publicEvent,
+    welcomeMessage: settings.welcomeNote ?? publicEvent.welcomeMessage,
+    defaultLanguage: settings.defaultLanguage,
+    supportedLanguages: settings.supportedLanguages,
+    kiosk: {
+      ...publicEvent.kiosk,
+      returnAfterSeconds: settings.returnAfterSeconds,
+      welcomeShowPhoto: settings.welcomeShowPhoto,
+      welcomeShowLanguagePicker: settings.welcomeShowLanguagePicker,
+      welcomeChime: settings.welcomeChime,
+      fullscreenLock: settings.fullscreenLock,
+      guidedMode: settings.guidedMode,
+      exitPin: settings.exitPin,
+    },
+  };
 
   return (
     <>

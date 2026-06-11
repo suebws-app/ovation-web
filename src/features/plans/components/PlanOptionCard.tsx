@@ -27,7 +27,11 @@ export const PlanOptionCard = ({
   features,
   onSelect,
 }: PlanOptionCardProps) => (
-  <button type="button" onClick={() => onSelect(planKey)} className="w-full text-left">
+  <button
+    type="button"
+    onClick={() => onSelect(planKey)}
+    className="w-full text-left"
+  >
     <Card
       className={cn(
         "relative flex h-full flex-col rounded-3xl p-8 transition-all",
@@ -46,7 +50,9 @@ export const PlanOptionCard = ({
         <span className="type-display leading-none font-semibold tracking-tight">
           {price}
         </span>
-        <span className="text-muted-foreground type-body-small mb-2.5">{per}</span>
+        <span className="text-muted-foreground type-body-small mb-2.5">
+          {per}
+        </span>
       </div>
       <p className="text-muted-foreground type-body-small mt-2">{desc}</p>
       <div className="bg-border my-5 h-px" />

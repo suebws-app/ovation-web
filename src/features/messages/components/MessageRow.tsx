@@ -55,17 +55,15 @@ export const MessageRow = ({
         onClick?.();
       }
     }}
+    style={{ animationDelay: `${Math.min(index, 12) * 40}ms` }}
     className={cn(
-      "border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors",
+      "animate-slide-up-fade border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors",
       selected
         ? "border-l-primary bg-primary/5 border-l-3"
         : "hover:bg-muted/50 border-l-3 border-l-transparent",
     )}
   >
-    <span
-      className="inline-flex"
-      onClick={(e) => e.stopPropagation()}
-    >
+    <span className="inline-flex" onClick={(e) => e.stopPropagation()}>
       <Checkbox
         checked={checked}
         onChange={() => onToggleSelect?.()}
@@ -118,10 +116,7 @@ export const MessageRow = ({
       )}
     </div>
 
-    <div
-      className="tablet:block hidden"
-      onClick={(e) => e.stopPropagation()}
-    >
+    <div className="tablet:block hidden" onClick={(e) => e.stopPropagation()}>
       {message.hasAudio && (
         <Waveform
           bars={message.wave.slice(0, 24)}

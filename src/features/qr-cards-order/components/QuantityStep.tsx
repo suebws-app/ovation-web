@@ -92,7 +92,7 @@ export const QuantityStep = ({
                 type="button"
                 onClick={() => setQuantity(n)}
                 className={
-                  "rounded-full px-3.5 py-1.5 type-caption font-semibold transition " +
+                  "type-caption rounded-full px-3.5 py-1.5 font-semibold transition " +
                   (active
                     ? "bg-primary/15 text-primary"
                     : "border-border bg-card text-foreground hover:bg-muted border")

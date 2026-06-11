@@ -2,10 +2,7 @@
 
 import { KioskConfigLeft } from "./KioskConfigLeft";
 import { KioskConfigRight } from "./KioskConfigRight";
-import type {
-  KioskSettings,
-  UpdateKioskSettingsInput,
-} from "@/lib/api/types";
+import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
 
 type KioskConfigGridProps = {
   settings: KioskSettings;

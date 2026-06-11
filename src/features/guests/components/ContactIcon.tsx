@@ -10,7 +10,9 @@ type ContactIconProps = {
 
 export const ContactIcon = ({ type }: ContactIconProps) => {
   if (type === "phone")
-    return <PhoneIcon width={12} height={12} className="text-muted-foreground" />;
+    return (
+      <PhoneIcon width={12} height={12} className="text-muted-foreground" />
+    );
   if (type === "via")
     return (
       <LinkIcon width={12} height={12} className="text-muted-foreground" />

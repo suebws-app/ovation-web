@@ -41,7 +41,7 @@ export const ConfirmationStep = ({
         </span>
       </p>
 
-      <div className="rounded-16 border-border bg-card mt-10 grid gap-5 border p-6 text-left tablet:grid-cols-2">
+      <div className="rounded-16 border-border bg-card tablet:grid-cols-2 mt-10 grid gap-5 border p-6 text-left">
         <div>
           <p className="type-overline text-muted-foreground font-semibold tracking-wider">
             Shipping to

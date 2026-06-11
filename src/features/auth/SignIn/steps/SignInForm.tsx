@@ -17,13 +17,49 @@ import { SocialAuthButtons } from "../../components/SocialAuthButtons";
 import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
 import { getSignInSchema, type SignInFields } from "../signInSchema";
 import { UnverifiedEmailBanner } from "../components/UnverifiedEmailBanner";
 
 const SIGNIN_FAIL_COOKIE = "ovation_signin_fails";
 const SIGNIN_FAIL_THRESHOLD = 3;
+
+const ALLOWED_REDIRECT_PREFIXES = [
+  "/home",
+  "/messages",
+  "/events",
+  "/guests",
+  "/photos",
+  "/keepsakes",
+  "/orders",
+  "/cart",
+  "/kiosk",
+  "/link",
+  "/help",
+  "/account",
+  "/qr-code",
+  "/settings",
+  "/verify",
+  "/plans",
+  "/checkout",
+];
+
+const isSafeInternalRedirect = (raw: string): boolean => {
+  if (!raw.startsWith("/") || raw.startsWith("//") || raw.includes("\\")) {
+    return false;
+  }
+  let resolved: string;
+  try {
+    resolved = new URL(raw, "https://placeholder.local").pathname;
+  } catch {
+    return false;
+  }
+  if (resolved !== raw.split("?")[0].split("#")[0]) return false;
+  return ALLOWED_REDIRECT_PREFIXES.some(
+    (prefix) => resolved === prefix || resolved.startsWith(`${prefix}/`),
+  );
+};
 
 const readFailCount = (): number => {
   if (typeof document === "undefined") return 0;
@@ -114,8 +150,7 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
       return;
     }
     const raw = searchParams.get("redirect") ?? "";
-    const redirectTo =
-      raw.startsWith("/") && !raw.startsWith("//") ? raw : appRoutes.app.root;
+    const redirectTo = isSafeInternalRedirect(raw) ? raw : appRoutes.app.root;
     router.replace(redirectTo);
     router.refresh();
   };
@@ -146,7 +181,10 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
 
         <SocialAuthButtons action="sign-in" className="tablet:mt-9 mt-4" />
 
-        <Separator label={t("auth__signin__separator")} className="tablet:my-6 my-3" />
+        <Separator
+          label={t("auth__signin__separator")}
+          className="tablet:my-6 my-3"
+        />
 
         <div className="tablet:space-y-4.5 space-y-3">
           <div>

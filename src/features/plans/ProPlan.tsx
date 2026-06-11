@@ -38,27 +38,31 @@ export const ProPlan = () => {
         <h1 className="type-h1 leading-tight font-semibold tracking-tight">
           {t("signup__pro_plan__title")}
           <br />
-          <span className="text-primary italic">{t("signup__pro_plan__title_b")}</span>
+          <span className="text-primary italic">
+            {t("signup__pro_plan__title_b")}
+          </span>
         </h1>
         <p className="text-muted-foreground type-body-small mt-3 leading-relaxed">
           {t("signup__pro_plan__subtitle")}
         </p>
 
         <div className="tablet:grid-cols-2 mt-10 grid grid-cols-1 gap-5">
-          {PRO_TIERS.map(({ key, tagKey, nameKey, price, perKey, descKey, featKeys }) => (
-            <PlanOptionCard
-              key={key}
-              planKey={key}
-              isSelected={formData.selectedPlan === key}
-              tagLabel={t(tagKey)}
-              name={t(nameKey)}
-              price={price}
-              per={t(perKey)}
-              desc={t(descKey)}
-              features={featKeys.map((k) => t(k))}
-              onSelect={handleSelect}
-            />
-          ))}
+          {PRO_TIERS.map(
+            ({ key, tagKey, nameKey, price, perKey, descKey, featKeys }) => (
+              <PlanOptionCard
+                key={key}
+                planKey={key}
+                isSelected={formData.selectedPlan === key}
+                tagLabel={t(tagKey)}
+                name={t(nameKey)}
+                price={price}
+                per={t(perKey)}
+                desc={t(descKey)}
+                features={featKeys.map((k) => t(k))}
+                onSelect={handleSelect}
+              />
+            ),
+          )}
         </div>
 
         {showError && !formData.selectedPlan && (

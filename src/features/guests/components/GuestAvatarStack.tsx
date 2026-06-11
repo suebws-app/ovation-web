@@ -34,9 +34,7 @@ export const GuestAvatarStack = ({
           </AvatarFallback>
         </Avatar>
       ))}
-      {remaining > 0 && (
-        <AvatarGroupCount>+{remaining}</AvatarGroupCount>
-      )}
+      {remaining > 0 && <AvatarGroupCount>+{remaining}</AvatarGroupCount>}
     </AvatarGroup>
   );
 };

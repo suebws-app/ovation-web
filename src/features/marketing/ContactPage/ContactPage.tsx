@@ -7,13 +7,18 @@ import { CONTACT_ROW_KEYS } from "./constants";
 export const ContactPage = () => {
   const t = useTranslations();
 
-  const rows = CONTACT_ROW_KEYS.map((k) => ({ label: t(k.label), email: t(k.email) }));
+  const rows = CONTACT_ROW_KEYS.map((k) => ({
+    label: t(k.label),
+    email: t(k.email),
+  }));
 
   return (
     <>
       <section>
         <div className="section-container">
-          <Kicker className="text-primary">{t("marketing__contact__eyebrow")}</Kicker>
+          <Kicker className="text-primary">
+            {t("marketing__contact__eyebrow")}
+          </Kicker>
           <SectionTitle as="h1" className="mt-4">
             {t("marketing__contact__title")}
           </SectionTitle>

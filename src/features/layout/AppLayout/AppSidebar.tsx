@@ -30,7 +30,9 @@ const LAST_EVENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 const readLastEventCookie = (): string | null => {
   if (typeof document === "undefined") return null;
-  const match = document.cookie.match(/(?:^|;\s*)ovation_last_event_id=([^;]+)/);
+  const match = document.cookie.match(
+    /(?:^|;\s*)ovation_last_event_id=([^;]+)/,
+  );
   return match ? decodeURIComponent(match[1]) : null;
 };
 
@@ -119,8 +121,7 @@ const useSidebarCounts = (eventId: string | null): SidebarCounts => {
 
   useEffect(() => {
     const handler: EventListener = (e) => {
-      const detail = (e as CustomEvent<{ kind: "messages" | "guests" }>)
-        .detail;
+      const detail = (e as CustomEvent<{ kind: "messages" | "guests" }>).detail;
       clearedDuringFetchRef.current[detail.kind] = true;
       setCounts((prev) => ({ ...prev, [detail.kind]: 0 }));
     };
@@ -284,10 +285,7 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   let groups: SidebarNavGroup[];
   if (isPro) {
     groups = eventId
-      ? [
-          ...buildProEventGroups(t, eventId, counts),
-          ...buildProGlobalGroups(t),
-        ]
+      ? [...buildProEventGroups(t, eventId, counts), ...buildProGlobalGroups(t)]
       : buildProGlobalGroups(t);
   } else {
     groups = buildCoupleGroups(t, counts);
@@ -296,7 +294,7 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   const header = isPro ? (
     <div className="flex items-center gap-2">
       <Logo iconOnly />
-      <div className="flex-1 min-w-0">
+      <div className="min-w-0 flex-1">
         <EventSwitcher events={events} activeEventId={eventId} />
       </div>
     </div>
@@ -305,10 +303,6 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   );
 
   return (
-    <Sidebar
-      header={header}
-      groups={groups}
-      footer={<NavUser user={user} />}
-    />
+    <Sidebar header={header} groups={groups} footer={<NavUser user={user} />} />
   );
 };

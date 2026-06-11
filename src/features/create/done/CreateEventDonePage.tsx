@@ -8,6 +8,7 @@ import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
+import { compressImage } from "@/lib/media/compressImage";
 import type { CoverPhotoContentType } from "@/lib/api/types";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import { appRoutes } from "@/lib/routes";
@@ -107,15 +108,17 @@ export const CreateEventDonePage = () => {
 
         if (formData.coverFile) {
           try {
-            const contentType = ALLOWED_COVER_MIMES[formData.coverFile.type];
-            if (contentType) {
+            if (ALLOWED_COVER_MIMES[formData.coverFile.type]) {
+              const compressed = await compressImage(formData.coverFile);
+              const contentType =
+                ALLOWED_COVER_MIMES[compressed.type] ?? "image/jpeg";
               const result = await eventsClient.coverUploadUrl(
                 targetEventId,
                 contentType,
               );
               await uploadToTarget(
                 { url: result.uploadUrl, key: result.key },
-                formData.coverFile,
+                compressed,
               );
               await eventsClient
                 .update(targetEventId, { couplePhotoUrl: result.publicUrl })

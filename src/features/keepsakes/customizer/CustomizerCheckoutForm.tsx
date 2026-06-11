@@ -8,13 +8,26 @@ import { appRoutes } from "@/lib/routes";
 import { useCartStore } from "@/features/cart/store/useCartStore";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { ApiError } from "@/lib/api/client";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { formatPrice } from "../designTokens";
+import { useCreateKeepsakePreview } from "@/lib/query/pdfQueries";
+import { PreviewPdfModal } from "./PreviewPdfModal";
+import type { BindType } from "@/lib/api/keepsakes-client";
 import type {
   Event,
   KeepsakeProductDetail,
   KeepsakeProductVariant,
+  PhotoSelectAll,
 } from "@/lib/api/types";
+
+type PriceBreakdown = {
+  baseCents: number;
+  pageCount: number;
+  pricePerPageCents: number;
+  pagesSurchargeCents: number;
+  totalCents: number;
+  blankPageAdded?: boolean;
+};
 
 type CustomizerCheckoutFormProps = {
   product: KeepsakeProductDetail;
@@ -22,12 +35,26 @@ type CustomizerCheckoutFormProps = {
   event?: Event | null;
   customization: Record<string, unknown>;
   photoIds?: string[];
+  photoSelectAll?: PhotoSelectAll | null;
   selectedVariant?: KeepsakeProductVariant | null;
   isReady: boolean;
   notReadyMessage?: string;
   children?: ReactNode;
   requiresShipping?: boolean;
   showEventBadge?: boolean;
+  unitPriceCents?: number;
+  priceBreakdown?: PriceBreakdown;
+};
+
+const formatPricePrecise = (priceCents: number, currency: string): string => {
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+    }).format(priceCents / 100);
+  } catch {
+    return `${(priceCents / 100).toFixed(2)} ${currency}`;
+  }
 };
 
 const eventDisplayName = (event: Event, fallback: string): string => {
@@ -43,18 +70,25 @@ export const CustomizerCheckoutForm = ({
   event,
   customization,
   photoIds,
+  photoSelectAll,
   selectedVariant,
   isReady,
   notReadyMessage,
   children,
   requiresShipping = true,
   showEventBadge = true,
+  unitPriceCents,
+  priceBreakdown,
 }: CustomizerCheckoutFormProps) => {
   const t = useTranslations();
   const add = useCartStore((s) => s.add);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [previewRenderId, setPreviewRenderId] = useState<string | null>(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewError, setPreviewError] = useState<string | null>(null);
+  const previewMutation = useCreateKeepsakePreview();
 
   useEffect(() => {
     if (!addedToCart) return;
@@ -63,29 +97,67 @@ export const CustomizerCheckoutForm = ({
   }, [addedToCart]);
 
   const effectivePriceCents =
-    selectedVariant?.priceCents ?? product.basePriceCents;
+    unitPriceCents ?? selectedVariant?.priceCents ?? 0;
+  const productCurrency = selectedVariant?.currency ?? "EUR";
   const buttonDisabled = !eventId || !isReady || isCheckingOut;
+  const showBreakdown = Boolean(
+    priceBreakdown &&
+    priceBreakdown.pricePerPageCents > 0 &&
+    priceBreakdown.pageCount > 0,
+  );
 
   const handleAddToCart = () => {
     if (!eventId) return;
     add({
       eventId,
-      productSku: product.sku,
+      productType: product.productType,
       productNameKey: product.name,
       productSubtitleKey: product.subtitle,
-      productKind: product.sku,
-      productSlug: product.slug,
       productVariantId: selectedVariant?.id ?? null,
       variantName: selectedVariant?.name ?? null,
       unitPriceCents: effectivePriceCents,
-      currency: product.currency,
+      currency: productCurrency,
       quantity: 1,
       customization,
-      photoIds: photoIds ?? [],
+      photoIds: photoSelectAll ? [] : (photoIds ?? []),
+      photoSelectAll: photoSelectAll ?? null,
       timelineDays: null,
       requiresShipping,
     });
     setAddedToCart(true);
+  };
+
+  const handlePreview = async () => {
+    if (!eventId) return;
+    setPreviewError(null);
+    try {
+      const bookCustomization = customization as {
+        coverText?: string;
+        dedication?: string;
+        binding?: string;
+        variantId?: string | null;
+        pages?: Array<{ mediaId: string; order: number }>;
+      };
+      const { renderId } = await previewMutation.mutateAsync({
+        eventId,
+        productType: product.productType as BindType,
+        productVariantId: selectedVariant?.id,
+        photoIds: photoSelectAll ? [] : (photoIds ?? []),
+        photoSelectAll: photoSelectAll ?? undefined,
+        customization: {
+          coverTitle: bookCustomization.coverText,
+          dedication: bookCustomization.dedication,
+        },
+      });
+      setPreviewRenderId(renderId);
+      setPreviewOpen(true);
+    } catch (err) {
+      setPreviewError(
+        ApiError.isApiError(err)
+          ? err.message
+          : t("keepsakes__preview_pdf__error"),
+      );
+    }
   };
 
   const handleBuyNow = async () => {
@@ -100,12 +172,16 @@ export const CustomizerCheckoutForm = ({
         orderType: "keepsake",
         items: [
           {
-            productSku: product.sku,
+            productType: product.productType,
             productVariantId: selectedVariant?.id ?? undefined,
             quantity: 1,
             customization,
-            photoIds:
-              photoIds && photoIds.length > 0 ? photoIds : undefined,
+            photoIds: photoSelectAll
+              ? undefined
+              : photoIds && photoIds.length > 0
+                ? photoIds
+                : undefined,
+            photoSelectAll: photoSelectAll ?? undefined,
           },
         ],
         successUrl: `${origin}${appRoutes.checkout.orderSuccess("{CHECKOUT_SESSION_ID}")}`,
@@ -123,20 +199,20 @@ export const CustomizerCheckoutForm = ({
   };
 
   return (
-    <div className="rounded-20 border-border bg-card desktop:sticky desktop:top-6 flex flex-col gap-5 border p-6 self-start">
+    <div className="rounded-20 border-border bg-card desktop:sticky desktop:top-6 flex flex-col gap-5 self-start border p-6">
       {event && showEventBadge && (
         <div className="rounded-12 border-border bg-muted/30 flex items-center justify-between gap-3 border px-3 py-2.5">
-          <div className="flex flex-col gap-0.5 min-w-0">
+          <div className="flex min-w-0 flex-col gap-0.5">
             <span className="type-caption text-muted-foreground">
               {t("keepsakes__order__for_event")}
             </span>
-            <span className="type-body-small font-semibold truncate">
+            <span className="type-body-small truncate font-semibold">
               {eventDisplayName(event, t("event_switcher__untitled"))}
             </span>
           </div>
           <Link
             href={appRoutes.app.event(event.id)}
-            className="type-caption text-primary font-semibold hover:underline shrink-0"
+            className="type-caption text-primary shrink-0 font-semibold hover:underline"
           >
             {t("keepsakes__order__change_event")}
           </Link>
@@ -168,10 +244,48 @@ export const CustomizerCheckoutForm = ({
           </span>
           <Link
             href={appRoutes.app.cart}
-            className="type-caption text-primary font-semibold hover:underline shrink-0"
+            className="type-caption text-primary shrink-0 font-semibold hover:underline"
           >
             {t("keepsakes__order__view_cart")}
           </Link>
+        </div>
+      )}
+      {showBreakdown && priceBreakdown && (
+        <div className="rounded-12 border-border bg-muted/30 flex flex-col gap-1.5 border px-3 py-2.5">
+          <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
+            <span>{t("keepsakes__book_customizer__price_base")}</span>
+            <span>
+              {formatPricePrecise(priceBreakdown.baseCents, productCurrency)}
+            </span>
+          </div>
+          <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
+            <span>
+              {t("keepsakes__book_customizer__price_pages_line", {
+                count: priceBreakdown.pageCount,
+                perPage: formatPricePrecise(
+                  priceBreakdown.pricePerPageCents,
+                  productCurrency,
+                ),
+              })}
+            </span>
+            <span>
+              {formatPricePrecise(
+                priceBreakdown.pagesSurchargeCents,
+                productCurrency,
+              )}
+            </span>
+          </div>
+          {priceBreakdown.blankPageAdded && (
+            <p className="type-caption text-muted-foreground">
+              {t("keepsakes__book_customizer__price_blank_page_note")}
+            </p>
+          )}
+          <div className="border-border type-body-small mt-1 flex items-center justify-between gap-2 border-t pt-1.5 font-semibold">
+            <span>{t("keepsakes__book_customizer__price_total")}</span>
+            <span>
+              {formatPricePrecise(priceBreakdown.totalCents, productCurrency)}
+            </span>
+          </div>
         </div>
       )}
       <div className="flex flex-col gap-2.5">
@@ -184,7 +298,7 @@ export const CustomizerCheckoutForm = ({
           {isCheckingOut
             ? t("keepsakes__order__starting")
             : t("keepsakes__order__buy_now", {
-                amount: formatPrice(effectivePriceCents, product.currency),
+                amount: formatPrice(effectivePriceCents, productCurrency),
               })}
         </Button>
         <Button
@@ -196,7 +310,28 @@ export const CustomizerCheckoutForm = ({
         >
           {t("keepsakes__order__add_to_cart_short")}
         </Button>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={handlePreview}
+          disabled={
+            !eventId ||
+            (!photoSelectAll && (!photoIds || photoIds.length === 0)) ||
+            previewMutation.isPending
+          }
+          className="rounded-full"
+        >
+          {t("keepsakes__preview_pdf__button")}
+        </Button>
       </div>
+      {previewError && (
+        <p className="type-caption text-destructive">{previewError}</p>
+      )}
+      <PreviewPdfModal
+        renderId={previewRenderId}
+        open={previewOpen}
+        onClose={() => setPreviewOpen(false)}
+      />
     </div>
   );
 };

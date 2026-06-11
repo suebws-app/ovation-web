@@ -16,7 +16,10 @@ type KioskPreviewProps = {
 
 type DeviceKey = "tablet" | "phone";
 
-const DEVICES: Record<DeviceKey, { width: number; height: number; maxScale: number }> = {
+const DEVICES: Record<
+  DeviceKey,
+  { width: number; height: number; maxScale: number }
+> = {
   tablet: { width: 1280, height: 800, maxScale: 0.58 },
   phone: { width: 390, height: 844, maxScale: 0.55 },
 };
@@ -57,9 +60,7 @@ export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
   if (!slug || !event) {
     return (
       <div>
-        <h2 className="type-h2 tracking-tight">
-          {t("kiosk__preview__title")}
-        </h2>
+        <h2 className="type-h2 tracking-tight">{t("kiosk__preview__title")}</h2>
         <div className="rounded-20 border-border bg-card mt-3.5 border p-8 text-center">
           <p className="type-body-small text-muted-foreground">
             {t("kiosk__preview__no_event")}
@@ -72,9 +73,7 @@ export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
   return (
     <div>
       <div className="mb-3.5 flex items-baseline justify-between">
-        <h2 className="type-h2 tracking-tight">
-          {t("kiosk__preview__title")}
-        </h2>
+        <h2 className="type-h2 tracking-tight">{t("kiosk__preview__title")}</h2>
         <Button asChild size="sm" className="rounded-full">
           <Link href={`/g/${slug}`}>
             <EyeIcon width={13} height={13} />

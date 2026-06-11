@@ -2,8 +2,16 @@ import { InstagramIcon } from "@ovation/icons/InstagramIcon";
 import { TikTokIcon } from "@ovation/icons/TikTokIcon";
 
 const SOCIAL_CONFIG = {
-  IG: { Icon: InstagramIcon, href: "https://www.instagram.com/ovation", label: "Instagram" },
-  TT: { Icon: TikTokIcon, href: "https://www.tiktok.com/@ovation", label: "TikTok" },
+  IG: {
+    Icon: InstagramIcon,
+    href: "https://www.instagram.com/ovation",
+    label: "Instagram",
+  },
+  TT: {
+    Icon: TikTokIcon,
+    href: "https://www.tiktok.com/@ovation",
+    label: "TikTok",
+  },
 } as const;
 
 type SocialPlatform = keyof typeof SOCIAL_CONFIG;

@@ -20,7 +20,7 @@ export const ExportHeroCard = ({
   return (
     <div className="rounded-20 from-primary to-primary/80 text-primary-foreground relative mt-8 overflow-hidden bg-gradient-to-br p-8">
       <div className="bg-destructive/30 absolute -top-10 -right-10 size-55 rounded-full" />
-      <div className="desktop:grid-cols-[1fr_auto] relative grid items-center gap-6 desktop:gap-10">
+      <div className="desktop:grid-cols-[1fr_auto] desktop:gap-10 relative grid items-center gap-6">
         <div>
           <span className="type-overline text-primary-foreground/85">
             {t("settings__data__hero__eyebrow")}

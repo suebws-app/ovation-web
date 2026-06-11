@@ -13,7 +13,10 @@ type SourceFilterTabsProps = {
   onChange: (value: SourceFilter) => void;
 };
 
-export const SourceFilterTabs = ({ value, onChange }: SourceFilterTabsProps) => {
+export const SourceFilterTabs = ({
+  value,
+  onChange,
+}: SourceFilterTabsProps) => {
   return (
     <div className="rounded-12 border-border bg-muted/40 inline-flex gap-1 self-start border p-1">
       {TABS.map((tab) => (

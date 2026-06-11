@@ -6,7 +6,10 @@ type FooterLinkProps = {
 };
 
 export const FooterLink = ({ label, href }: FooterLinkProps) => (
-  <Link href={href} className="text-foreground hover:text-primary text-sm transition-colors">
+  <Link
+    href={href}
+    className="text-foreground hover:text-primary text-sm transition-colors"
+  >
     {label}
   </Link>
 );

@@ -33,8 +33,8 @@ export const DesignStep = ({
 }: DesignStepProps) => {
   const t = useTranslations();
   return (
-    <div className="grid gap-10 desktop:grid-cols-2">
-      <div className="rounded-16 from-primary to-primary/70 flex aspect-[3/4] items-center justify-center bg-gradient-to-br p-10 desktop:aspect-auto">
+    <div className="desktop:grid-cols-2 grid gap-10">
+      <div className="rounded-16 from-primary to-primary/70 desktop:aspect-auto flex aspect-[3/4] items-center justify-center bg-gradient-to-br p-10">
         <QRCardPreview cardColor={state.cardColor} className="w-3/4 max-w-sm" />
       </div>
       <div>

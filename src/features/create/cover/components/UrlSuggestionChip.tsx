@@ -5,7 +5,10 @@ type UrlSuggestionChipProps = {
   onClick?: () => void;
 };
 
-export const UrlSuggestionChip = ({ slug, onClick }: UrlSuggestionChipProps) => (
+export const UrlSuggestionChip = ({
+  slug,
+  onClick,
+}: UrlSuggestionChipProps) => (
   <button
     type="button"
     onClick={onClick}

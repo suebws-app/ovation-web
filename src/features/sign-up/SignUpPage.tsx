@@ -25,7 +25,12 @@ const SignUpPanel = async () => {
       </p>
       <div className="relative flex flex-col gap-3.5">
         {steps.map((label, i) => (
-          <ChecklistItem key={label} index={i + 1} label={label} active={i === 0} />
+          <ChecklistItem
+            key={label}
+            index={i + 1}
+            label={label}
+            active={i === 0}
+          />
         ))}
       </div>
     </>

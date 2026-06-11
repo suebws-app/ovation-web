@@ -12,7 +12,11 @@ type KioskFooterProps = {
   saveError?: Error | null;
 };
 
-export const KioskFooter = ({ slug, isSaving, saveError }: KioskFooterProps) => {
+export const KioskFooter = ({
+  slug,
+  isSaving,
+  saveError,
+}: KioskFooterProps) => {
   const t = useTranslations();
   const router = useRouter();
   return (

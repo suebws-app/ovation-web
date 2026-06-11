@@ -46,9 +46,7 @@ export const LinkActiveCard = ({ eventId, enabled }: LinkActiveCardProps) => {
         <p className="type-body-small text-muted-foreground mt-1.5">
           {enabled ? t("link_toggle__body_on") : t("link_toggle__body_off")}
         </p>
-        {error && (
-          <p className="type-caption text-destructive mt-2">{error}</p>
-        )}
+        {error && <p className="type-caption text-destructive mt-2">{error}</p>}
       </div>
       <Button
         type="button"

@@ -5,7 +5,5 @@ export const subscriptionsApi = {
   getMine: () => apiFetch<MeBillingOverview>(`/subscriptions/me`),
 
   getMyHistory: () =>
-    apiFetch<{ items: MeBillingHistoryItem[] }>(
-      `/subscriptions/me/history`,
-    ),
+    apiFetch<{ items: MeBillingHistoryItem[] }>(`/subscriptions/me/history`),
 };

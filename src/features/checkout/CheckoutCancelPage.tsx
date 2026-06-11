@@ -24,7 +24,11 @@ export const CheckoutCancelPage = async ({
 
       <main className="mx-auto flex w-full max-w-140 flex-col items-center gap-6 px-6 py-12 text-center">
         <div className="rounded-16 bg-muted inline-flex size-16 items-center justify-center">
-          <WarningIcon width={28} height={28} className="text-muted-foreground" />
+          <WarningIcon
+            width={28}
+            height={28}
+            className="text-muted-foreground"
+          />
         </div>
         <Kicker className="text-muted-foreground">
           {t("checkout__cancel__eyebrow")}

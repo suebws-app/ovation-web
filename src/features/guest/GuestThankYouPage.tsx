@@ -36,8 +36,8 @@ export const GuestThankYouPage = async ({
   return (
     <GuestWizardShell event={event}>
       <div className="flex flex-1 flex-col">
-        <div className="flex flex-1 flex-col gap-6 px-5 pt-6 pb-9 tablet:px-8 small-desktop:px-10 small-desktop:py-9">
-          <div className="bg-card/65 border-border rounded-16 flex flex-col items-center gap-5 border p-6 text-center backdrop-blur-sm tablet:p-8">
+        <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-6 pb-9">
+          <div className="bg-card/65 border-border rounded-16 tablet:p-8 flex flex-col items-center gap-5 border p-6 text-center backdrop-blur-sm">
             <div className="bg-destructive/15 rounded-20 flex size-16 items-center justify-center">
               <HeartIcon
                 width={28}

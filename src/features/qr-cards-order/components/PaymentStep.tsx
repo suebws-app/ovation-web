@@ -29,7 +29,7 @@ export const PaymentStep = ({ state, setField }: PaymentStepProps) => {
         </span>
       </h1>
 
-      <div className="mt-6 grid gap-2.5 tablet:grid-cols-2">
+      <div className="tablet:grid-cols-2 mt-6 grid gap-2.5">
         <button
           type="button"
           className="rounded-12 type-body bg-foreground text-background flex h-12 items-center justify-center font-semibold"
@@ -58,7 +58,7 @@ export const PaymentStep = ({ state, setField }: PaymentStepProps) => {
         onChange={(v) => setField("cardNumber", v)}
         placeholder="4242 4242 4242 4242"
       />
-      <div className="mt-3.5 grid gap-3.5 tablet:grid-cols-3">
+      <div className="tablet:grid-cols-3 mt-3.5 grid gap-3.5">
         <AddressField
           label={t("qr_cards_order__payment__expiry")}
           value={state.cardExpiry}
@@ -86,7 +86,11 @@ export const PaymentStep = ({ state, setField }: PaymentStepProps) => {
       </div>
 
       <div className="rounded-12 bg-secondary/15 border-secondary/40 mt-6 flex items-start gap-2.5 border p-3.5">
-        <LockIcon width={18} height={18} className="text-secondary mt-0.5 shrink-0" />
+        <LockIcon
+          width={18}
+          height={18}
+          className="text-secondary mt-0.5 shrink-0"
+        />
         <p className="type-body-small text-secondary leading-relaxed">
           {t("qr_cards_order__payment__stripe_note")}
         </p>

@@ -8,7 +8,16 @@ export const FAQ_ITEM_KEYS = [
 ] as const;
 
 export const STAT_KEYS = [
-  { value: "marketing__testimonial__stat1_value", label: "marketing__testimonial__stat1_label" },
-  { value: "marketing__testimonial__stat2_value", label: "marketing__testimonial__stat2_label" },
-  { value: "marketing__testimonial__stat3_value", label: "marketing__testimonial__stat3_label" },
+  {
+    value: "marketing__testimonial__stat1_value",
+    label: "marketing__testimonial__stat1_label",
+  },
+  {
+    value: "marketing__testimonial__stat2_value",
+    label: "marketing__testimonial__stat2_label",
+  },
+  {
+    value: "marketing__testimonial__stat3_value",
+    label: "marketing__testimonial__stat3_label",
+  },
 ] as const;

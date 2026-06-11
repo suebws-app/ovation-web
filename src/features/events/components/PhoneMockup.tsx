@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { LockIcon } from "@ovation/icons/LockIcon";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 
 type PhoneMockupProps = {
   url: string;

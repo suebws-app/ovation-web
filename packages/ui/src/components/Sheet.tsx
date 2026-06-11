@@ -39,7 +39,7 @@ const SheetContent = forwardRef<
       className={cn(
         "bg-card fixed z-50 flex flex-col gap-4 shadow-lg",
         side === "left" &&
-          "border-border inset-y-0 left-0 h-full w-3/4 max-w-sm border-r data-[state=open]:animate-sheet-slide-in-left data-[state=closed]:animate-sheet-slide-out-left",
+          "border-border data-[state=open]:animate-sheet-slide-in-left data-[state=closed]:animate-sheet-slide-out-left inset-y-0 left-0 h-full w-3/4 max-w-sm border-r",
         side === "right" &&
           "border-border inset-y-0 right-0 h-full w-3/4 max-w-sm border-l transition-transform duration-300 ease-in-out data-[state=closed]:translate-x-full data-[state=open]:translate-x-0",
         side === "top" &&

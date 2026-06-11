@@ -5,6 +5,7 @@ import { AppSideBar } from "./AppSidebar";
 import { AppHeaderDesktop } from "./AppHeaderDesktop";
 import { AppHeaderMobile } from "./AppHeaderMobile";
 import { SubscriptionAlert } from "./SubscriptionAlert";
+import { AppHeader } from "./AppHeader";
 
 type AppLayoutProps = {
   user: User;
@@ -23,9 +24,10 @@ export const AppLayout = ({
     <SidebarProvider>
       <AppSideBar user={user} events={events} />
       <div className="flex w-full flex-1 flex-col overflow-hidden">
-        <AppHeaderDesktop />
+        <AppHeader />
+        <AppHeaderDesktop isPro={user.accountType === "pro"} />
         <AppHeaderMobile />
-        <div className="min-h-0 flex-1 overflow-y-auto pb-6">
+        <div className="min-h-0 flex-1 overflow-y-auto">
           {showSubscriptionAlert && user.accountType !== "pro" && (
             <SubscriptionAlert
               planTier={user.planTier}

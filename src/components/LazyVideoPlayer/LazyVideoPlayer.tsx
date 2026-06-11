@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 const VideoSkeleton = () => (
-  <div className="bg-muted size-full animate-pulse rounded-12" />
+  <div className="bg-muted rounded-12 size-full animate-pulse" />
 );
 
 export const LazyVideoPlayer = dynamic(() => import("./VideoPlayer"), {

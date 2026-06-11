@@ -9,6 +9,7 @@
 **Tech Stack:** Next.js 16, React 19, Tailwind CSS v4, next-intl v4, `@ovation/ui`, `@ovation/icons`
 
 **Project rules:**
+
 - Arrow functions only (`export const X = () => {}`)
 - No code comments
 - No raw Tailwind colors — theme tokens only
@@ -20,6 +21,7 @@
 ### Task 1: Add theme tokens + icons
 
 **Files:**
+
 - Modify: `src/app/globals.css`
 - Create: `packages/icons/src/ArrowRight.tsx`
 - Create: `packages/icons/src/Play.tsx`
@@ -31,21 +33,24 @@
 - [ ] **Step 1: Add warm-cream and warm-panel tokens to globals.css**
 
 Add these to `@theme inline` block:
+
 ```css
-  --color-warm-cream: var(--warm-cream);
-  --color-warm-panel: var(--warm-panel);
+--color-warm-cream: var(--warm-cream);
+--color-warm-panel: var(--warm-panel);
 ```
 
 Add to `:root`:
+
 ```css
-  --warm-cream: oklch(0.955 0.015 75);
-  --warm-panel: oklch(0.920 0.025 75);
+--warm-cream: oklch(0.955 0.015 75);
+--warm-panel: oklch(0.92 0.025 75);
 ```
 
 Add to `.dark`:
+
 ```css
-  --warm-cream: oklch(0.220 0.010 75);
-  --warm-panel: oklch(0.260 0.015 75);
+--warm-cream: oklch(0.22 0.01 75);
+--warm-panel: oklch(0.26 0.015 75);
 ```
 
 - [ ] **Step 2: Create all 6 icon components**
@@ -53,81 +58,144 @@ Add to `.dark`:
 Each icon follows this pattern (Lucide SVG paths):
 
 `packages/icons/src/ArrowRight.tsx`:
+
 ```tsx
 export const ArrowRight = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24"
-      fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M5 12h14" />
       <path d="m12 5 7 7-7 7" />
     </svg>
-  )
-}
+  );
+};
 ```
 
 `packages/icons/src/Play.tsx`:
+
 ```tsx
 export const Play = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24"
-      fill="currentColor" stroke="none" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="none"
+      {...props}
+    >
       <path d="M8 5v14l11-7z" />
     </svg>
-  )
-}
+  );
+};
 ```
 
 `packages/icons/src/Mic.tsx`:
+
 ```tsx
 export const Mic = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24"
-      fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <rect x="9" y="2" width="6" height="12" rx="3" />
       <path d="M5 10a7 7 0 0 0 14 0" />
       <path d="M12 18v3" />
     </svg>
-  )
-}
+  );
+};
 ```
 
 `packages/icons/src/Lock.tsx`:
+
 ```tsx
 export const Lock = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24"
-      fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <rect width="18" height="11" x="3" y="11" rx="2" />
       <path d="M7 11V7a5 5 0 0 1 10 0v4" />
     </svg>
-  )
-}
+  );
+};
 ```
 
 `packages/icons/src/Plus.tsx`:
+
 ```tsx
 export const Plus = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24"
-      fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M5 12h14" />
       <path d="M12 5v14" />
     </svg>
-  )
-}
+  );
+};
 ```
 
 `packages/icons/src/Mail.tsx`:
+
 ```tsx
 export const Mail = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24"
-      fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <rect width="20" height="16" x="2" y="4" rx="2" />
       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
-  )
-}
+  );
+};
 ```
 
 - [ ] **Step 3: Verify build**
@@ -147,6 +215,7 @@ git commit -m "feat: add warm theme tokens and icon components for marketing pag
 ### Task 2: Add all translations to messages/en.json
 
 **Files:**
+
 - Modify: `messages/en.json`
 
 - [ ] **Step 1: Replace the `marketing` and add `footer` sections in `messages/en.json`**
@@ -303,6 +372,7 @@ Replace the existing `"marketing"` key and add `"footer"` key inside `"common"`.
 ```
 
 And add to `"common"`:
+
 ```json
 "footer": {
   "tagline": "Made in Barcelona and Amsterdam by people who cried at their own weddings.",
@@ -333,31 +403,34 @@ git commit -m "feat: add all marketing landing page translations"
 ### Task 3: Create Logo component
 
 **Files:**
+
 - Create: `packages/ui/src/components/Logo.tsx`
 
 - [ ] **Step 1: Create the component**
 
 ```tsx
 // packages/ui/src/components/Logo.tsx
-import { cn } from '../utils/cn'
+import { cn } from "../utils/cn";
 
 type LogoProps = {
-  iconOnly?: boolean
-  className?: string
-}
+  iconOnly?: boolean;
+  className?: string;
+};
 
 export const Logo = ({ iconOnly, className }: LogoProps) => {
   return (
-    <div className={cn('flex items-center gap-2.5', className)}>
-      <div className="flex size-8 items-center justify-center rounded-lg bg-primary font-serif text-base font-bold text-primary-foreground">
+    <div className={cn("flex items-center gap-2.5", className)}>
+      <div className="bg-primary text-primary-foreground flex size-8 items-center justify-center rounded-lg font-serif text-base font-bold">
         O
       </div>
       {!iconOnly && (
-        <span className="font-serif text-xl font-semibold text-foreground">Ovation</span>
+        <span className="text-foreground font-serif text-xl font-semibold">
+          Ovation
+        </span>
       )}
     </div>
-  )
-}
+  );
+};
 ```
 
 - [ ] **Step 2: Commit**
@@ -372,6 +445,7 @@ git commit -m "feat: add reusable Logo component"
 ### Task 4: Create RootHeader
 
 **Files:**
+
 - Create: `src/features/layout/RootHeader.tsx`
 
 - [ ] **Step 1: Create the component**
@@ -380,51 +454,72 @@ This is a `'use client'` component since it uses `useTranslations()` and `usePat
 
 ```tsx
 // src/features/layout/RootHeader.tsx
-'use client'
+"use client";
 
-import { useTranslations } from 'next-intl'
-import { Logo } from '@ovation/ui/components/Logo'
-import { Button } from '@ovation/ui/components/Button'
-import { Link } from '@/i18n/navigation'
-import { ArrowRight } from '@ovation/icons/ArrowRight'
-import { ThemeToggle } from '@ovation/ui/components/ThemeToggle'
-import { cn } from '@ovation/ui/utils/cn'
+import { useTranslations } from "next-intl";
+import { Logo } from "@ovation/ui/components/Logo";
+import { Button } from "@ovation/ui/components/Button";
+import { Link } from "@/i18n/navigation";
+import { ArrowRight } from "@ovation/icons/ArrowRight";
+import { ThemeToggle } from "@ovation/ui/components/ThemeToggle";
+import { cn } from "@ovation/ui/utils/cn";
 
 export const RootHeader = ({ className }: { className?: string }) => {
-  const t = useTranslations('marketing.nav')
+  const t = useTranslations("marketing.nav");
 
   return (
-    <header className={cn(
-      'sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md',
-      className,
-    )}>
+    <header
+      className={cn(
+        "border-border bg-background/90 sticky top-0 z-50 border-b backdrop-blur-md",
+        className,
+      )}
+    >
       <div className="mx-auto flex h-[76px] max-w-[1240px] items-center justify-between px-6 lg:px-20">
         <Link href="/">
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <Link href="/how-it-works" className="font-medium hover:text-foreground">{t('howItWorks')}</Link>
-          <Link href="/keepsakes" className="font-medium hover:text-foreground">{t('keepsakes')}</Link>
-          <Link href="/pricing" className="font-medium hover:text-foreground">{t('pricing')}</Link>
-          <Link href="/stories" className="font-medium hover:text-foreground">{t('stories')}</Link>
-          <Link href="/for-planners" className="font-medium hover:text-foreground">{t('forPlanners')}</Link>
+        <nav className="text-muted-foreground hidden items-center gap-8 text-sm md:flex">
+          <Link
+            href="/how-it-works"
+            className="hover:text-foreground font-medium"
+          >
+            {t("howItWorks")}
+          </Link>
+          <Link href="/keepsakes" className="hover:text-foreground font-medium">
+            {t("keepsakes")}
+          </Link>
+          <Link href="/pricing" className="hover:text-foreground font-medium">
+            {t("pricing")}
+          </Link>
+          <Link href="/stories" className="hover:text-foreground font-medium">
+            {t("stories")}
+          </Link>
+          <Link
+            href="/for-planners"
+            className="hover:text-foreground font-medium"
+          >
+            {t("forPlanners")}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <Link href="/sign-in" className="hidden text-sm font-medium text-foreground md:block">
-            {t('signIn')}
+          <Link
+            href="/sign-in"
+            className="text-foreground hidden text-sm font-medium md:block"
+          >
+            {t("signIn")}
           </Link>
           <Button size="sm" className="gap-1.5">
-            {t('cta')}
+            {t("cta")}
             <ArrowRight className="size-3.5" />
           </Button>
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 ```
 
 - [ ] **Step 2: Commit**
@@ -439,40 +534,44 @@ git commit -m "feat: add RootHeader with nav links and translations"
 ### Task 5: Create RootFooter
 
 **Files:**
+
 - Create: `src/features/layout/RootFooter.tsx`
 
 - [ ] **Step 1: Create the component**
 
 ```tsx
 // src/features/layout/RootFooter.tsx
-'use client'
+"use client";
 
-import { useTranslations } from 'next-intl'
-import { Logo } from '@ovation/ui/components/Logo'
-import { cn } from '@ovation/ui/utils/cn'
+import { useTranslations } from "next-intl";
+import { Logo } from "@ovation/ui/components/Logo";
+import { cn } from "@ovation/ui/utils/cn";
 
 export const RootFooter = ({ className }: { className?: string }) => {
-  const t = useTranslations('common.footer')
+  const t = useTranslations("common.footer");
 
   const columns = [
-    { title: t('product'), links: t.raw('productLinks') as string[] },
-    { title: t('loveNotes'), links: t.raw('loveNotesLinks') as string[] },
-    { title: t('company'), links: t.raw('companyLinks') as string[] },
-    { title: t('legal'), links: t.raw('legalLinks') as string[] },
-  ]
+    { title: t("product"), links: t.raw("productLinks") as string[] },
+    { title: t("loveNotes"), links: t.raw("loveNotesLinks") as string[] },
+    { title: t("company"), links: t.raw("companyLinks") as string[] },
+    { title: t("legal"), links: t.raw("legalLinks") as string[] },
+  ];
 
   return (
-    <footer className={cn('border-t border-border bg-card', className)}>
-      <div className="mx-auto max-w-[1240px] px-6 pb-10 pt-16 lg:px-20">
+    <footer className={cn("border-border bg-card border-t", className)}>
+      <div className="mx-auto max-w-[1240px] px-6 pt-16 pb-10 lg:px-20">
         <div className="grid grid-cols-2 gap-10 pb-10 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
-            <Logo className="mb-4" />
-            <p className="max-w-[280px] text-sm leading-relaxed text-muted-foreground">
-              {t('tagline')}
+            <Logo />
+            <p className="text-muted-foreground max-w-[280px] text-sm leading-relaxed">
+              {t("tagline")}
             </p>
             <div className="mt-5 flex gap-2.5">
-              {['IG', 'TT', 'YT', 'PN'].map((label) => (
-                <div key={label} className="flex size-9 items-center justify-center rounded-full border border-border text-xs font-bold text-muted-foreground">
+              {["IG", "TT", "YT", "PN"].map((label) => (
+                <div
+                  key={label}
+                  className="border-border text-muted-foreground flex size-9 items-center justify-center rounded-full border text-xs font-bold"
+                >
                   {label}
                 </div>
               ))}
@@ -481,12 +580,15 @@ export const RootFooter = ({ className }: { className?: string }) => {
 
           {columns.map((col) => (
             <div key={col.title}>
-              <div className="mb-3.5 text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
+              <div className="text-muted-foreground mb-3.5 text-[11px] font-bold tracking-widest uppercase">
                 {col.title}
               </div>
               <div className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
-                  <a key={link} className="cursor-pointer text-sm text-foreground hover:text-primary">
+                  <a
+                    key={link}
+                    className="text-foreground hover:text-primary cursor-pointer text-sm"
+                  >
                     {link}
                   </a>
                 ))}
@@ -495,18 +597,18 @@ export const RootFooter = ({ className }: { className?: string }) => {
           ))}
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row">
-          <div>{t('copyright')}</div>
+        <div className="border-border text-muted-foreground flex flex-col items-center justify-between gap-4 border-t pt-6 text-xs md:flex-row">
+          <div>{t("copyright")}</div>
           <div className="flex gap-5">
-            <span>🌐 {t('language')}</span>
-            <span>€ {t('currency')}</span>
-            <span>{t('status')}</span>
+            <span>🌐 {t("language")}</span>
+            <span>€ {t("currency")}</span>
+            <span>{t("status")}</span>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 ```
 
 - [ ] **Step 2: Commit**
@@ -521,6 +623,7 @@ git commit -m "feat: add RootFooter with translated columns"
 ### Task 6: Create HeroSection + HeroShowpiece
 
 **Files:**
+
 - Create: `src/features/marketing/HeroSection.tsx`
 - Create: `src/features/marketing/HeroShowpiece.tsx`
 
@@ -531,6 +634,7 @@ This is the decorative right-side of the hero — polaroids, message card with w
 The implementer should reference the spec's `HeroShowpiece` function for the exact layout: tilted polaroid cards, a floating "Just arrived" stat pill, a main message card with avatar + quote + waveform, and a bottom polaroid. Convert all inline styles to Tailwind classes. Use `bg-primary`, `bg-destructive`, `text-primary-foreground`, `border-border`, etc.
 
 Key visual elements:
+
 - Back polaroid: rotated -9deg, white card, gradient placeholder with serif initial "M"
 - Stat pill: rotated 4deg, "Just arrived · Abuela Carmen · 1:47" with Check icon
 - Main card: avatar circle with initials "MD", italic serif quote, waveform bars (44 spans), play button
@@ -554,6 +658,7 @@ git commit -m "feat: add HeroSection with showpiece and translations"
 ### Task 7: Create LogoBar
 
 **Files:**
+
 - Create: `src/features/marketing/LogoBar.tsx`
 
 - [ ] **Step 1: Create the component**
@@ -572,6 +677,7 @@ git commit -m "feat: add LogoBar section"
 ### Task 8: Create HowItWorks
 
 **Files:**
+
 - Create: `src/features/marketing/HowItWorks.tsx`
 
 - [ ] **Step 1: Create the component**
@@ -581,6 +687,7 @@ git commit -m "feat: add LogoBar section"
 Layout: eyebrow + h2 title + subtitle on left, then 3-column grid of step cards. Each card: step number (italic serif, colored), tag pill, illustration area (160px), title, body text. Card backgrounds: `bg-background`, rounded-3xl, border.
 
 Step illustrations:
+
 - Step 1 (setup): 3 fanned QR card rectangles with fake QR pattern
 - Step 2 (record): pulsing mic circle with waveform bars, tinted with `bg-destructive`
 - Step 3 (open): mini message card showing "Tuesday · 7:12 am" with waveform
@@ -599,13 +706,14 @@ git commit -m "feat: add HowItWorks section with step cards"
 ### Task 9: Create SampleSpread
 
 **Files:**
+
 - Create: `src/features/marketing/SampleSpread.tsx`
 
 - [ ] **Step 1: Create the component**
 
 `'use client'` component using `useTranslations('marketing.sample')`.
 
-2-column grid. Left: eyebrow, h2 ("Not a form. *A voice.*"), description, 3-stat grid (38 languages, ∞ storage, 0 downloads). Right: editorial card with entry label, italic serif quote, dashed divider, avatar + author name/role + play button. "Saved to Gold Book" tag absolutely positioned top-right.
+2-column grid. Left: eyebrow, h2 ("Not a form. _A voice._"), description, 3-stat grid (38 languages, ∞ storage, 0 downloads). Right: editorial card with entry label, italic serif quote, dashed divider, avatar + author name/role + play button. "Saved to Gold Book" tag absolutely positioned top-right.
 
 - [ ] **Step 2: Commit**
 
@@ -619,6 +727,7 @@ git commit -m "feat: add SampleSpread section"
 ### Task 10: Create FeaturesGrid
 
 **Files:**
+
 - Create: `src/features/marketing/FeaturesGrid.tsx`
 
 - [ ] **Step 1: Create the component**
@@ -626,6 +735,7 @@ git commit -m "feat: add SampleSpread section"
 `'use client'` component using `useTranslations('marketing.features')`.
 
 Centered eyebrow + h2, then 4-column bento grid (2 rows of 260px). 6 cards total:
+
 1. **30-day ritual** (spans 2 cols): title, body, 30 small bars visualization
 2. **Languages** (tinted peach/destructive): title, language tag pills
 3. **Gold Book** (tinted accent): title, mini book visual, price + shipping
@@ -645,6 +755,7 @@ git commit -m "feat: add FeaturesGrid bento section"
 ### Task 11: Create TestimonialSection
 
 **Files:**
+
 - Create: `src/features/marketing/TestimonialSection.tsx`
 
 - [ ] **Step 1: Create the component**
@@ -665,6 +776,7 @@ git commit -m "feat: add TestimonialSection"
 ### Task 12: Create PricingSection
 
 **Files:**
+
 - Create: `src/features/marketing/PricingSection.tsx`
 
 - [ ] **Step 1: Create the component**
@@ -691,6 +803,7 @@ git commit -m "feat: add PricingSection with three tiers"
 ### Task 13: Create FAQSection
 
 **Files:**
+
 - Create: `src/features/marketing/FAQSection.tsx`
 
 - [ ] **Step 1: Create the component**
@@ -713,6 +826,7 @@ git commit -m "feat: add FAQSection with accordion"
 ### Task 14: Create FinalCTA
 
 **Files:**
+
 - Create: `src/features/marketing/FinalCTA.tsx`
 
 - [ ] **Step 1: Create the component**
@@ -737,6 +851,7 @@ git commit -m "feat: add FinalCTA section"
 ### Task 15: Wire up marketing layout and page
 
 **Files:**
+
 - Modify: `src/app/[locale]/(marketing)/layout.tsx`
 - Modify: `src/app/[locale]/(marketing)/page.tsx`
 
@@ -744,41 +859,65 @@ git commit -m "feat: add FinalCTA section"
 
 ```tsx
 // src/app/[locale]/(marketing)/layout.tsx
-import { RootHeader } from '@/features/layout/RootHeader'
-import { RootFooter } from '@/features/layout/RootFooter'
+import { RootHeader } from "@/features/layout/RootHeader";
+import { RootFooter } from "@/features/layout/RootFooter";
 
-const MarketingLayout = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
+const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <RootHeader />
       <main className="flex-1">{children}</main>
       <RootFooter />
     </>
-  )
-}
+  );
+};
 
-export default MarketingLayout
+export default MarketingLayout;
 ```
 
 - [ ] **Step 2: Update marketing page with lazy-loaded sections**
 
 ```tsx
 // src/app/[locale]/(marketing)/page.tsx
-import dynamic from 'next/dynamic'
-import { HeroSection } from '@/features/marketing/HeroSection'
-import { LogoBar } from '@/features/marketing/LogoBar'
+import dynamic from "next/dynamic";
+import { HeroSection } from "@/features/marketing/HeroSection";
+import { LogoBar } from "@/features/marketing/LogoBar";
 
-const HowItWorks = dynamic(() => import('@/features/marketing/HowItWorks').then(m => ({ default: m.HowItWorks })))
-const SampleSpread = dynamic(() => import('@/features/marketing/SampleSpread').then(m => ({ default: m.SampleSpread })))
-const FeaturesGrid = dynamic(() => import('@/features/marketing/FeaturesGrid').then(m => ({ default: m.FeaturesGrid })))
-const TestimonialSection = dynamic(() => import('@/features/marketing/TestimonialSection').then(m => ({ default: m.TestimonialSection })))
-const PricingSection = dynamic(() => import('@/features/marketing/PricingSection').then(m => ({ default: m.PricingSection })))
-const FAQSection = dynamic(() => import('@/features/marketing/FAQSection').then(m => ({ default: m.FAQSection })))
-const FinalCTA = dynamic(() => import('@/features/marketing/FinalCTA').then(m => ({ default: m.FinalCTA })))
+const HowItWorks = dynamic(() =>
+  import("@/features/marketing/HowItWorks").then((m) => ({
+    default: m.HowItWorks,
+  })),
+);
+const SampleSpread = dynamic(() =>
+  import("@/features/marketing/SampleSpread").then((m) => ({
+    default: m.SampleSpread,
+  })),
+);
+const FeaturesGrid = dynamic(() =>
+  import("@/features/marketing/FeaturesGrid").then((m) => ({
+    default: m.FeaturesGrid,
+  })),
+);
+const TestimonialSection = dynamic(() =>
+  import("@/features/marketing/TestimonialSection").then((m) => ({
+    default: m.TestimonialSection,
+  })),
+);
+const PricingSection = dynamic(() =>
+  import("@/features/marketing/PricingSection").then((m) => ({
+    default: m.PricingSection,
+  })),
+);
+const FAQSection = dynamic(() =>
+  import("@/features/marketing/FAQSection").then((m) => ({
+    default: m.FAQSection,
+  })),
+);
+const FinalCTA = dynamic(() =>
+  import("@/features/marketing/FinalCTA").then((m) => ({
+    default: m.FinalCTA,
+  })),
+);
 
 const HomePage = () => {
   return (
@@ -793,10 +932,10 @@ const HomePage = () => {
       <FAQSection />
       <FinalCTA />
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
 ```
 
 - [ ] **Step 3: Verify build and dev server**

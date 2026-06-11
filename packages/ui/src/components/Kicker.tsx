@@ -6,12 +6,7 @@ type KickerProps = {
 };
 
 export const Kicker = ({ children, className }: KickerProps) => (
-  <p
-    className={cn(
-      "type-overline font-bold uppercase",
-      className,
-    )}
-  >
+  <p className={cn("type-overline font-bold uppercase", className)}>
     {children}
   </p>
 );

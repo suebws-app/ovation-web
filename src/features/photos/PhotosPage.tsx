@@ -24,7 +24,7 @@ export const PhotosPage = async () => {
 
   const [initialMessages, stats] = await Promise.all([
     messagesApi.list(event.id, initialQuery),
-    eventsApi.stats(event.id).catch((error) => {
+    eventsApi.stats(event.id, { includeOwnerUploads: true }).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
     }),

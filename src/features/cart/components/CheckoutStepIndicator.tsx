@@ -16,11 +16,13 @@ const STEPS: Array<{ key: CheckoutStep; labelKey: string }> = [
   { key: "confirm", labelKey: "cart__step__confirm" },
 ];
 
-export const CheckoutStepIndicator = ({ active }: CheckoutStepIndicatorProps) => {
+export const CheckoutStepIndicator = ({
+  active,
+}: CheckoutStepIndicatorProps) => {
   const t = useTranslations();
   const activeIndex = STEPS.findIndex((s) => s.key === active);
   return (
-    <div className="border-border bg-card rounded-full flex items-center border px-2.5 py-2">
+    <div className="border-border bg-card flex items-center rounded-full border px-2.5 py-2">
       {STEPS.map((step, index) => (
         <CheckoutStepDot
           key={step.key}

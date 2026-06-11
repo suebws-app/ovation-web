@@ -238,23 +238,23 @@ export const KioskLiveFrame = ({
         <div className="flex flex-wrap gap-2">
           {event.kiosk.welcomeShowLanguagePicker &&
             event.supportedLanguages.map((lang) => {
-            const meta = LANGUAGE_LABELS[lang] ?? {
-              flag: "\uD83C\uDF10",
-              label: lang.toUpperCase(),
-            };
-            return (
-              <KioskLiveLanguagePill
-                key={lang}
-                flag={meta.flag}
-                label={meta.label}
-                active={lang === currentLocale}
-                onClick={() => {
-                  if (lang === currentLocale) return;
-                  router.replace(pathname, { locale: lang });
-                }}
-              />
-            );
-          })}
+              const meta = LANGUAGE_LABELS[lang] ?? {
+                flag: "\uD83C\uDF10",
+                label: lang.toUpperCase(),
+              };
+              return (
+                <KioskLiveLanguagePill
+                  key={lang}
+                  flag={meta.flag}
+                  label={meta.label}
+                  active={lang === currentLocale}
+                  onClick={() => {
+                    if (lang === currentLocale) return;
+                    router.replace(pathname, { locale: lang });
+                  }}
+                />
+              );
+            })}
         </div>
       </div>
     </div>

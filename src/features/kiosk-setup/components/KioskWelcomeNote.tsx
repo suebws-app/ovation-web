@@ -8,7 +8,10 @@ type KioskWelcomeNoteProps = {
   onChange: (value: string) => void;
 };
 
-export const KioskWelcomeNote = ({ value, onChange }: KioskWelcomeNoteProps) => {
+export const KioskWelcomeNote = ({
+  value,
+  onChange,
+}: KioskWelcomeNoteProps) => {
   const t = useTranslations();
   return (
     <div className="border-border border-b py-5">
@@ -18,7 +21,9 @@ export const KioskWelcomeNote = ({ value, onChange }: KioskWelcomeNoteProps) => 
       <div className="rounded-12 border-border bg-card focus-within:border-primary relative min-h-24 border p-3.5 transition-colors">
         <textarea
           value={value}
-          onChange={(e) => onChange(e.target.value.slice(0, KIOSK_WELCOME_NOTE_MAX))}
+          onChange={(e) =>
+            onChange(e.target.value.slice(0, KIOSK_WELCOME_NOTE_MAX))
+          }
           maxLength={KIOSK_WELCOME_NOTE_MAX}
           placeholder={t("kiosk__config__welcome__note_placeholder")}
           className="type-body-small min-h-16 w-full resize-none leading-relaxed outline-none"

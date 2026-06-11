@@ -20,7 +20,10 @@ const StatItem = ({ value, label }: Stat) => (
 export const SampleSpread = () => {
   const t = useTranslations();
 
-  const stats: Stat[] = SAMPLE_STAT_KEYS.map((k) => ({ value: t(k.value), label: t(k.label) }));
+  const stats: Stat[] = SAMPLE_STAT_KEYS.map((k) => ({
+    value: t(k.value),
+    label: t(k.label),
+  }));
 
   return (
     <section>

@@ -108,7 +108,7 @@ export const RootFooter = ({ className }: RootFooterProps) => {
         <div className="grid grid-cols-2 gap-10 pb-10 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
             <Link href={appRoutes.home}>
-              <Logo className="mb-4" />
+              <Logo />
             </Link>
             <p className="text-muted-foreground max-w-70 text-sm leading-relaxed">
               {t("common__footer__tagline")}

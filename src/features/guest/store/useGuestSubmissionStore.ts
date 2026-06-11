@@ -113,9 +113,7 @@ export const useGuestSubmissionStore = create<GuestSubmissionState>(
     hasAnyContent: () => {
       const { audio, video, note, photos } = get();
       return (
-        Boolean(audio || video) ||
-        photos.length > 0 ||
-        note.trim().length > 0
+        Boolean(audio || video) || photos.length > 0 || note.trim().length > 0
       );
     },
     reset: () => {

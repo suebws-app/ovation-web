@@ -20,7 +20,7 @@ export const Polaroid = ({
     )}
   >
     <div
-      className="rounded-4 flex h-full w-full items-center justify-center type-display font-semibold tracking-tight text-primary-foreground"
+      className="rounded-4 type-display text-primary-foreground flex h-full w-full items-center justify-center font-semibold tracking-tight"
       style={{ background }}
     >
       {initial}

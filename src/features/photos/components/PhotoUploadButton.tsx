@@ -39,18 +39,17 @@ export const PhotoUploadButton = ({ eventId }: PhotoUploadButtonProps) => {
       />
       <Button
         type="button"
+        size="sm"
         onClick={handleClick}
         disabled={isUploading}
-        className="rounded-10 bg-foreground text-background hover:bg-foreground/90"
+        className="rounded-10 bg-foreground text-background hover:bg-foreground/90 h-9"
       >
         <UploadIcon width={13} height={13} />{" "}
         {isUploading
           ? t("photos__toolbar__uploading")
           : t("photos__toolbar__upload")}
       </Button>
-      {error && (
-        <span className="type-caption text-destructive">{error}</span>
-      )}
+      {error && <span className="type-caption text-destructive">{error}</span>}
     </div>
   );
 };

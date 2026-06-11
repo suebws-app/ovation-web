@@ -28,16 +28,14 @@ export const PaperOption = ({
     <span
       className={
         "flex size-5 shrink-0 items-center justify-center rounded-full border " +
-        (selected
-          ? "border-primary border-4 bg-card"
-          : "border-border bg-card")
+        (selected ? "border-primary bg-card border-4" : "border-border bg-card")
       }
     />
     <span className="flex-1">
       <span className="flex flex-wrap items-center gap-2.5">
         <span className="type-body font-semibold">{title}</span>
         {badge && (
-          <span className="type-overline rounded-full bg-secondary text-secondary-foreground px-2 py-0.5 tracking-wider">
+          <span className="type-overline bg-secondary text-secondary-foreground rounded-full px-2 py-0.5 tracking-wider">
             {badge}
           </span>
         )}

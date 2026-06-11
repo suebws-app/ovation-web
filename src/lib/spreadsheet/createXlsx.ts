@@ -42,7 +42,9 @@ const cellXml = (col: number, row: number, value: XlsxCell): string => {
 const sheetXml = (rows: XlsxCell[][]): string => {
   const rowsXml = rows
     .map((row, rIndex) => {
-      const cells = row.map((cell, cIndex) => cellXml(cIndex, rIndex + 1, cell));
+      const cells = row.map((cell, cIndex) =>
+        cellXml(cIndex, rIndex + 1, cell),
+      );
       return `<row r="${rIndex + 1}">${cells.join("")}</row>`;
     })
     .join("");
@@ -51,7 +53,11 @@ const sheetXml = (rows: XlsxCell[][]): string => {
 };
 
 const sanitizeSheetName = (name: string, taken: Set<string>): string => {
-  const base = name.replace(/[\\/?*\[\]:]/g, " ").trim().slice(0, 31) || "Sheet";
+  const base =
+    name
+      .replace(/[\\/?*\[\]:]/g, " ")
+      .trim()
+      .slice(0, 31) || "Sheet";
   let candidate = base;
   let counter = 2;
   while (taken.has(candidate.toLowerCase())) {

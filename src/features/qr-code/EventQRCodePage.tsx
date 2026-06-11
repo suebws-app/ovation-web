@@ -35,12 +35,10 @@ export const EventQRCodePage = async ({
   }
 
   const [qr, stats] = await Promise.all([
-    eventsApi
-      .qrCode(event.id, { format: "svg", size: 512 })
-      .catch((error) => {
-        if (ApiError.isApiError(error) && error.status === 404) return null;
-        throw error;
-      }),
+    eventsApi.qrCode(event.id, { format: "svg", size: 512 }).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
     eventsApi.stats(event.id).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
@@ -50,7 +48,7 @@ export const EventQRCodePage = async ({
   const isPro = user?.accountType === "pro";
 
   return (
-    <div className="mx-auto w-full min-w-0 p-6 pb-28 tablet:pb-6">
+    <div className="tablet:pb-6 mx-auto w-full min-w-0 p-6 pb-28">
       <QRCodeHeader guestSlug={event.slug} />
       {!isPro && (
         <div className="rounded-16 border-border bg-card mt-6 flex flex-col gap-1 border p-5">

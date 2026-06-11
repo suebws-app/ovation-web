@@ -28,9 +28,8 @@ export const HeroDetails = async ({ event }: HeroDetailsProps) => {
       <p className="type-overline text-primary mb-2.5">
         {t("guest__landing__welcome_overline")}
       </p>
-      <h1 className="type-h1 font-semibold leading-none tracking-tight">
-        {event.partnerAName}{" "}
-        <span className="text-primary italic">&amp;</span>{" "}
+      <h1 className="type-h1 leading-none font-semibold tracking-tight">
+        {event.partnerAName} <span className="text-primary italic">&amp;</span>{" "}
         {event.partnerBName}
       </h1>
       {dateLabel && (

@@ -46,9 +46,7 @@ export const DreUpgradeCard = ({ plan }: DreUpgradeCardProps) => {
           {t("plans__dre__per_month")}
         </span>
       </p>
-      {error && (
-        <p className="type-body-small text-destructive">{error}</p>
-      )}
+      {error && <p className="type-body-small text-destructive">{error}</p>}
       <Button
         type="button"
         variant="default"

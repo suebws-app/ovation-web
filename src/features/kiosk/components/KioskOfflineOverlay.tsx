@@ -2,7 +2,7 @@
 
 import { Offline } from "react-detect-offline";
 import { useTranslations } from "next-intl";
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 
 const POLLING_INTERVAL_MS = 5000;
 const POLLING_TIMEOUT_MS = 4000;

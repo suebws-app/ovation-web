@@ -46,7 +46,7 @@ export const EventOption = ({
       >
         <div
           className={cn(
-            "flex size-7 shrink-0 items-center justify-center rounded-8",
+            "rounded-8 flex size-7 shrink-0 items-center justify-center",
             active
               ? "bg-primary text-primary-foreground"
               : "bg-muted text-muted-foreground",

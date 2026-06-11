@@ -1,4 +1,4 @@
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import type { ApiErrorBody } from "./types";
 import { getCsrfToken, invalidateCsrfToken } from "./csrf-token";
 
@@ -145,4 +145,18 @@ export const clientFetchPaginated = async <T>(
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
   return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };
+};
+
+export const clientFetchBlob = async (
+  path: string,
+  options: ApiFetchOptions = {},
+): Promise<Blob> => {
+  const method = (options.method ?? "GET").toUpperCase();
+  const init = buildRequestInit(options);
+  const url = buildClientUrl(path, options.query);
+  const res = options.skipCsrf
+    ? await fetch(url, init)
+    : await fetchWithCsrfRetry(url, init, method);
+  if (!res.ok) throw await parseError(res);
+  return res.blob();
 };

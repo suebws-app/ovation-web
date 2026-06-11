@@ -85,9 +85,7 @@ export const HelpCenterPage = () => {
       </div>
 
       <div>
-        <h2 className="type-h2 tracking-tight">
-          {t("help__faq__title")}
-        </h2>
+        <h2 className="type-h2 tracking-tight">{t("help__faq__title")}</h2>
         <p className="type-body-small text-muted-foreground mt-1.5">
           {t("help__faq__subtitle")}
         </p>

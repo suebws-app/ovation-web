@@ -1,5 +1,15 @@
-import { clientFetch, clientFetchPaginated, type Paginated } from "./client";
-import type { GalleryItem, MediaUploadTarget } from "./types";
+import {
+  clientFetch,
+  clientFetchBlob,
+  clientFetchPaginated,
+  type Paginated,
+} from "./client";
+import type {
+  GalleryCount,
+  GalleryItem,
+  MediaUploadTarget,
+  PhotoSelectAll,
+} from "./types";
 
 const mediaPath = (eventId: string) => `/events/${eventId}/media`;
 
@@ -44,6 +54,23 @@ export const mediaClient = {
       body: { items },
     }),
 
+  galleryCount: (
+    eventId: string,
+    query: {
+      type?: "photo" | "video" | "all";
+      filter?: "all" | "favorites" | "gold_book";
+      search?: string;
+    } = {},
+  ): Promise<GalleryCount> => {
+    const queryParams: Record<string, string | undefined> = {};
+    if (query.type) queryParams.type = query.type;
+    if (query.filter) queryParams.filter = query.filter;
+    if (query.search) queryParams.search = query.search;
+    return clientFetch<GalleryCount>(`${mediaPath(eventId)}/count`, {
+      query: queryParams,
+    });
+  },
+
   gallery: (
     eventId: string,
     query: GalleryQuery = {},
@@ -76,4 +103,33 @@ export const mediaClient = {
       method: "PATCH",
       body: input,
     }),
+
+  bulkUpdate: (
+    eventId: string,
+    body: MediaBulkSelector & {
+      action: "favorite" | "gold_book";
+      value: boolean;
+    },
+  ): Promise<{ updated: number }> =>
+    clientFetch<{ updated: number }>(`${mediaPath(eventId)}/bulk-update`, {
+      method: "POST",
+      body,
+    }),
+
+  bulkDelete: (eventId: string, body: MediaBulkSelector): Promise<void> =>
+    clientFetch<void>(`${mediaPath(eventId)}/bulk-delete`, {
+      method: "POST",
+      body,
+    }),
+
+  bulkDownload: (eventId: string, body: MediaBulkSelector): Promise<Blob> =>
+    clientFetchBlob(`${mediaPath(eventId)}/bulk-download`, {
+      method: "POST",
+      body,
+    }),
+};
+
+export type MediaBulkSelector = {
+  selectAll?: PhotoSelectAll | null;
+  ids?: string[];
 };

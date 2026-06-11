@@ -27,6 +27,17 @@ export const useMessagesList = (
     enabled: Boolean(eventId),
   });
 
+export const useMessagesCount = (
+  eventId: string,
+  input: { filter?: string; search?: string } = {},
+) =>
+  useQuery({
+    queryKey: queryKeys.messages.count(eventId, input),
+    queryFn: () => messagesClient.count(eventId, input),
+    enabled: Boolean(eventId),
+    staleTime: 30_000,
+  });
+
 export const useInfiniteMessagesList = (
   eventId: string,
   input: Omit<ListMessagesQuery, "cursor"> = {},
@@ -115,9 +126,10 @@ const restoreSnapshots = (
 
 type UpdateContext = {
   previous: [readonly unknown[], unknown][];
-  previousDetail:
-    | { key: readonly unknown[]; data: { message: MessageDetail } | undefined }
-    | null;
+  previousDetail: {
+    key: readonly unknown[];
+    data: { message: MessageDetail } | undefined;
+  } | null;
 };
 
 export const useUpdateMessage = (eventId: string) => {

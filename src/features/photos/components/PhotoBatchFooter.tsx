@@ -32,7 +32,7 @@ export const PhotoBatchFooter = ({
   return (
     <div
       className={cn(
-        "border-border bg-card shadow-top tablet:flex-row tablet:items-center tablet:gap-3 flex w-full shrink-0 flex-col gap-2 border-t px-4 py-3",
+        "border-border bg-card shadow-top tablet:flex-row tablet:items-center tablet:gap-3 desktop:left-(--sidebar-width) fixed inset-x-0 bottom-0 z-20 flex shrink-0 flex-col gap-2 border-t px-4 py-4",
       )}
     >
       <span className="type-body-small font-semibold">
@@ -67,9 +67,7 @@ export const PhotoBatchFooter = ({
           <BookIcon
             width={13}
             height={13}
-            className={
-              allInGoldBook ? "fill-yellow-400 text-yellow-500" : ""
-            }
+            className={allInGoldBook ? "fill-yellow-400 text-yellow-500" : ""}
           />
           <span className="truncate">
             {allInGoldBook

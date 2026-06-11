@@ -8,16 +8,18 @@ import {
 } from "@/components/FilterChipRail";
 import type { EventStats } from "@/lib/api/types";
 import {
-  usePhotoSelectedIds,
+  usePhotoSelectAll,
   usePhotosStore,
   useSubFilter,
   type PhotoSubFilter,
 } from "../store/usePhotosStore";
-import type { PhotoView } from "../adapters";
+import { PhotoSortButton } from "./PhotoSortButton";
+import { PhotoUploadButton } from "./PhotoUploadButton";
 
 type PhotosFilterRailProps = {
-  photos: PhotoView[];
+  eventId: string;
   stats: EventStats | null;
+  allCount: number;
 };
 
 const FILTER_VALUES: { labelKey: string; value: PhotoSubFilter }[] = [
@@ -26,18 +28,26 @@ const FILTER_VALUES: { labelKey: string; value: PhotoSubFilter }[] = [
   { labelKey: "photos__filter__chip_gold_book", value: "gold_book" },
 ];
 
-export const PhotosFilterRail = ({ photos, stats }: PhotosFilterRailProps) => {
+export const PhotosFilterRail = ({
+  eventId,
+  stats,
+  allCount,
+}: PhotosFilterRailProps) => {
   const t = useTranslations();
   const subFilter = useSubFilter();
   const setSubFilter = usePhotosStore((s) => s.setSubFilter);
-  const selectAll = usePhotosStore((s) => s.selectAll);
+  const setSelectAll = usePhotosStore((s) => s.setSelectAll);
   const clearSelection = usePhotosStore((s) => s.clearSelection);
-  const selectedIds = usePhotoSelectedIds();
+  const selectAll = usePhotoSelectAll();
+  const search = usePhotosStore((s) => s.search);
+
+  const statsPhotoCount = stats?.photoCount ?? 0;
+  const totalAllCount = Math.max(allCount, statsPhotoCount);
 
   const chips = FILTER_VALUES.map((c) => ({
     label: t(c.labelKey),
     value: c.value,
-    count: c.value === "all" ? stats?.photoCount : undefined,
+    count: c.value === "all" ? totalAllCount : undefined,
   }));
 
   const chipItems: FilterChipItem[] = chips.map((c) => ({
@@ -53,28 +63,43 @@ export const PhotosFilterRail = ({ photos, stats }: PhotosFilterRailProps) => {
     if (next) setSubFilter(next.value);
   };
 
-  const allSelected =
-    photos.length > 0 && photos.every((p) => selectedIds.has(p.id));
+  const selectAllActive = selectAll !== null;
 
   const handleToggleAll = () => {
-    if (allSelected) clearSelection();
-    else selectAll(photos.map((p) => p.id));
+    if (selectAllActive) {
+      clearSelection();
+    } else {
+      const trimmed = search.trim();
+      clearSelection();
+      setSelectAll({
+        filter: subFilter,
+        search: trimmed || undefined,
+        excludedIds: [],
+      });
+    }
   };
 
-  if (photos.length === 0) return null;
+  if (totalAllCount === 0) return null;
 
   return (
     <FilterChipRail
+      className="border-0 bg-transparent px-0 py-0"
       chips={chipItems}
       activeLabel={activeLabel}
       onSelect={handleSelect}
       leading={
         <Checkbox
-          checked={allSelected}
+          checked={selectAllActive}
           onChange={handleToggleAll}
           aria-label={t("photos__select_all")}
           className="mr-1 ml-2.5"
         />
+      }
+      trailing={
+        <div className="flex gap-2">
+          <PhotoSortButton />
+          <PhotoUploadButton eventId={eventId} />
+        </div>
       }
     />
   );

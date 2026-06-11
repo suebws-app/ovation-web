@@ -6,10 +6,7 @@ import { KioskConfigRow } from "./KioskConfigRow";
 import { KioskToggle } from "./KioskToggle";
 import { KioskWelcomeNote } from "./KioskWelcomeNote";
 import { KioskLanguagePicker } from "./KioskLanguagePicker";
-import type {
-  KioskSettings,
-  UpdateKioskSettingsInput,
-} from "@/lib/api/types";
+import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
 
 type KioskConfigRightProps = {
   settings: KioskSettings;
@@ -31,7 +28,9 @@ export const KioskConfigRight = ({
         <KioskWelcomeNote
           value={settings.welcomeNote ?? ""}
           onChange={(welcomeNote) =>
-            onPatch({ welcomeNote: welcomeNote.length === 0 ? null : welcomeNote })
+            onPatch({
+              welcomeNote: welcomeNote.length === 0 ? null : welcomeNote,
+            })
           }
         />
         <KioskConfigRow

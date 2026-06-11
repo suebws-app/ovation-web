@@ -8,9 +8,9 @@ export const keepsakesApi = {
       next: { revalidate: 60, tags: ["keepsakes-catalog"] },
     }),
 
-  productBySlug: (slug: string) =>
+  productByType: (productType: string) =>
     apiFetch<KeepsakeProductDetailResult>(
-      `/keepsakes/products/${encodeURIComponent(slug)}`,
+      `/keepsakes/products/${encodeURIComponent(productType)}`,
       {
         cache: "force-cache",
         next: { revalidate: 60, tags: ["keepsakes-catalog"] },

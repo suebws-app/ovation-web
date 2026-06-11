@@ -17,11 +17,7 @@ export const PlansButton = ({
 }: PlansButtonProps) => {
   const t = useTranslations();
   return (
-    <Button
-      asChild
-      variant={variant}
-      className={cn("rounded-full", className)}
-    >
+    <Button asChild variant={variant} className={cn("rounded-full", className)}>
       <Link href={appRoutes.app.plans}>{t("activate_link__cta")}</Link>
     </Button>
   );

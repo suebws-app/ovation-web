@@ -24,7 +24,9 @@ export const KeepsakesCollection = ({
 
   const filtered = useMemo(
     () =>
-      products.filter((product) => matchesFilter(product.sku, filter)).map(decorate),
+      products
+        .filter((product) => matchesFilter(product.productType, filter))
+        .map(decorate),
     [products, filter],
   );
 
@@ -50,7 +52,7 @@ export const KeepsakesCollection = ({
         <div className="tablet:grid-cols-2 desktop:grid-cols-3 mt-4.5 grid gap-4.5">
           {filtered.map((product) => (
             <ProductCard
-              key={product.sku}
+              key={product.productType}
               product={product}
               eventId={eventId}
             />

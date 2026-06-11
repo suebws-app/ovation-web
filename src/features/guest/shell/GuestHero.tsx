@@ -8,7 +8,7 @@ type GuestHeroProps = {
 };
 
 export const GuestHero = ({ event }: GuestHeroProps) => (
-  <div className="flex flex-col gap-6_5">
+  <div className="gap-6_5 flex flex-col">
     <HeroPhoto
       partnerAName={event.partnerAName}
       partnerBName={event.partnerBName}

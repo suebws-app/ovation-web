@@ -1,4 +1,4 @@
-import { env } from "@/lib/utils/env";
+import { clientEnv as env } from "@/lib/utils/env.client";
 import { API_BASE_PATH } from "./client";
 
 let cached: string | null = null;

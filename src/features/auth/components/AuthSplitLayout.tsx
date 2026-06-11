@@ -39,7 +39,7 @@ export const AuthSplitLayout = ({
       </div>
     </div>
     <div className="tablet:px-18 desktop:py-16 desktop:overflow-visible flex h-full min-w-0 items-start overflow-y-auto px-5 py-3">
-      <div className="w-full min-w-0 max-w-130">{children}</div>
+      <div className="w-full max-w-130 min-w-0">{children}</div>
     </div>
   </div>
 );
