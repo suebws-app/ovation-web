@@ -10,16 +10,20 @@ import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 type PersonalizeSectionProps = {
   variants: KeepsakeProductVariant[];
+  eventId: string | null;
 };
 
 const COVER_TEXT_MAX = 120;
 const DEDICATION_MAX = 280;
 
-export const PersonalizeSection = ({ variants }: PersonalizeSectionProps) => {
+export const PersonalizeSection = ({
+  variants,
+  eventId,
+}: PersonalizeSectionProps) => {
   const t = useTranslations();
   const { register } = useBookForm();
   const { supportsCoverText, supportsDedication } =
-    usePeechoVariantResolver(variants);
+    usePeechoVariantResolver(variants, eventId);
 
   if (!supportsCoverText && !supportsDedication) return null;
 

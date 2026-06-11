@@ -9,6 +9,7 @@ type MediaPickerTileProps = {
   item: GalleryItem;
   index?: number;
   selected: boolean;
+  selectionOrder: number | null;
   onToggle: (id: string) => void;
   onPreview: (item: GalleryItem) => void;
 };
@@ -20,6 +21,7 @@ export const MediaPickerTile = ({
   item,
   index = 0,
   selected,
+  selectionOrder,
   onToggle,
   onPreview,
 }: MediaPickerTileProps) => {
@@ -43,9 +45,10 @@ export const MediaPickerTile = ({
             alt=""
             fill
             sizes={TILE_SIZES}
-            className="object-cover"
+            className="pointer-events-none object-cover select-none"
             loading="lazy"
             unoptimized
+            draggable={false}
           />
         ) : null}
       </button>
@@ -55,8 +58,12 @@ export const MediaPickerTile = ({
         </span>
       )}
       {selected && (
-        <span className="bg-primary text-primary-foreground pointer-events-none absolute top-1.5 right-1.5 flex size-6 items-center justify-center rounded-full">
-          <CheckIcon width={14} height={14} />
+        <span className="bg-primary text-primary-foreground type-caption pointer-events-none absolute top-1.5 right-1.5 flex size-6 items-center justify-center rounded-full font-bold">
+          {selectionOrder !== null ? (
+            selectionOrder
+          ) : (
+            <CheckIcon width={14} height={14} />
+          )}
         </span>
       )}
       <button

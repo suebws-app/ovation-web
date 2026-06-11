@@ -50,6 +50,7 @@ export const BookCustomizer = ({
       paperType: defaultPaperType,
       sizeKey: defaultSizeKey,
       photoIds: [],
+      photoSelectAll: null,
       coverText: "",
       dedication: "",
     };
@@ -65,7 +66,11 @@ export const BookCustomizer = ({
     <FormProvider {...form}>
       <div className="desktop:grid-cols-[1fr_400px] grid grid-cols-1 gap-6">
         <div className="flex flex-col gap-6">
-          <BookHeaderBadge binding={binding} variants={variants} />
+          <BookHeaderBadge
+            binding={binding}
+            variants={variants}
+            eventId={eventId}
+          />
           <PaperSelect variants={variants} />
           <SizeSelect variants={variants} />
           <PageCountSection
@@ -74,7 +79,7 @@ export const BookCustomizer = ({
             event={event}
             isPro={isPro}
           />
-          <PersonalizeSection variants={variants} />
+          <PersonalizeSection variants={variants} eventId={eventId} />
           <SpineNote binding={binding} />
         </div>
         <BookCheckoutPanel

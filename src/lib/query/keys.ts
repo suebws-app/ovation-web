@@ -32,6 +32,13 @@ export const queryKeys = {
         limit?: number;
       } = {},
     ) => ["gallery", eventId, "infinite", input] as const,
+    count: (
+      eventId: string,
+      input: {
+        type?: "photo" | "video" | "all";
+        filter?: "all" | "favorites" | "gold_book";
+      } = {},
+    ) => ["gallery", eventId, "count", input] as const,
   },
   user: {
     me: () => ["user", "me"] as const,

@@ -461,12 +461,22 @@ export type CheckoutOrderType = "plan" | "keepsake";
 
 export type CheckoutPlanTier = "premium" | "bundle";
 
+export type PhotoSelectAll = {
+  filter: "all" | "favorites" | "gold_book";
+  excludedIds: string[];
+};
+
+export type GalleryCount = {
+  count: number;
+};
+
 export type CheckoutItem = {
   productType: string;
   productVariantId?: string;
   quantity: number;
   customization?: Record<string, unknown>;
   photoIds?: string[];
+  photoSelectAll?: PhotoSelectAll;
 };
 
 export type CheckoutShippingAddress = {

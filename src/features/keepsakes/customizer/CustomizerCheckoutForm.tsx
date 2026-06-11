@@ -17,6 +17,7 @@ import type {
   Event,
   KeepsakeProductDetail,
   KeepsakeProductVariant,
+  PhotoSelectAll,
 } from "@/lib/api/types";
 
 type PriceBreakdown = {
@@ -33,6 +34,7 @@ type CustomizerCheckoutFormProps = {
   event?: Event | null;
   customization: Record<string, unknown>;
   photoIds?: string[];
+  photoSelectAll?: PhotoSelectAll | null;
   selectedVariant?: KeepsakeProductVariant | null;
   isReady: boolean;
   notReadyMessage?: string;
@@ -67,6 +69,7 @@ export const CustomizerCheckoutForm = ({
   event,
   customization,
   photoIds,
+  photoSelectAll,
   selectedVariant,
   isReady,
   notReadyMessage,
@@ -115,7 +118,8 @@ export const CustomizerCheckoutForm = ({
       currency: productCurrency,
       quantity: 1,
       customization,
-      photoIds: photoIds ?? [],
+      photoIds: photoSelectAll ? [] : (photoIds ?? []),
+      photoSelectAll: photoSelectAll ?? null,
       timelineDays: null,
       requiresShipping,
     });
@@ -137,7 +141,8 @@ export const CustomizerCheckoutForm = ({
         eventId,
         productType: product.productType as BindType,
         productVariantId: selectedVariant?.id,
-        photoIds: photoIds ?? [],
+        photoIds: photoSelectAll ? [] : (photoIds ?? []),
+        photoSelectAll: photoSelectAll ?? undefined,
         customization: {
           coverTitle: bookCustomization.coverText,
         },
@@ -169,7 +174,12 @@ export const CustomizerCheckoutForm = ({
             productVariantId: selectedVariant?.id ?? undefined,
             quantity: 1,
             customization,
-            photoIds: photoIds && photoIds.length > 0 ? photoIds : undefined,
+            photoIds: photoSelectAll
+              ? undefined
+              : photoIds && photoIds.length > 0
+                ? photoIds
+                : undefined,
+            photoSelectAll: photoSelectAll ?? undefined,
           },
         ],
         successUrl: `${origin}${appRoutes.checkout.orderSuccess("{CHECKOUT_SESSION_ID}")}`,
@@ -299,8 +309,8 @@ export const CustomizerCheckoutForm = ({
           onClick={handlePreview}
           disabled={
             !eventId ||
-            !photoIds ||
-            photoIds.length === 0 ||
+            (!photoSelectAll &&
+              (!photoIds || photoIds.length === 0)) ||
             previewMutation.isPending
           }
           className="rounded-full"

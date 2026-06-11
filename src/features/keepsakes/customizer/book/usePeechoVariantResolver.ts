@@ -8,6 +8,7 @@ import {
   readNumberAttr,
   readStringAttr,
 } from "../bookFacets";
+import { useGalleryCount } from "@/lib/query/galleryQueries";
 import type { BookFormValues } from "./BookFormContext";
 import type { KeepsakeProductVariant } from "@/lib/api/types";
 
@@ -32,15 +33,26 @@ export type PeechoVariantResolution = {
 
 export const usePeechoVariantResolver = (
   variants: KeepsakeProductVariant[],
+  eventId: string | null = null,
 ): PeechoVariantResolution => {
-  const [paperType, sizeKey, photoIds] = useWatch<
+  const [paperType, sizeKey, photoIds, photoSelectAll] = useWatch<
     BookFormValues,
-    ["paperType", "sizeKey", "photoIds"]
+    ["paperType", "sizeKey", "photoIds", "photoSelectAll"]
   >({
-    name: ["paperType", "sizeKey", "photoIds"],
+    name: ["paperType", "sizeKey", "photoIds", "photoSelectAll"],
   });
 
-  const pageCount = photoIds?.length ?? 0;
+  const countQuery = useGalleryCount(eventId ?? "", {
+    type: "photo",
+    filter: photoSelectAll?.filter ?? "all",
+  });
+
+  const pageCount = photoSelectAll
+    ? Math.max(
+        0,
+        (countQuery.data?.count ?? 0) - photoSelectAll.excludedIds.length,
+      )
+    : (photoIds?.length ?? 0);
 
   return useMemo(() => {
     const { matchingVariants, chosenVariant } = pickVariantForFacets(

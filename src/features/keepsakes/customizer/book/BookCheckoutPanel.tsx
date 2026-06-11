@@ -45,13 +45,34 @@ export const BookCheckoutPanel = ({
     noVariantMatch,
     supportsCoverText,
     supportsDedication,
-  } = usePeechoVariantResolver(variants);
+  } = usePeechoVariantResolver(variants, eventId);
 
-  const [paperType, sizeKey, photoIds, coverText, dedication] = useWatch<
+  const [
+    paperType,
+    sizeKey,
+    photoIds,
+    photoSelectAll,
+    coverText,
+    dedication,
+  ] = useWatch<
     BookFormValues,
-    ["paperType", "sizeKey", "photoIds", "coverText", "dedication"]
+    [
+      "paperType",
+      "sizeKey",
+      "photoIds",
+      "photoSelectAll",
+      "coverText",
+      "dedication",
+    ]
   >({
-    name: ["paperType", "sizeKey", "photoIds", "coverText", "dedication"],
+    name: [
+      "paperType",
+      "sizeKey",
+      "photoIds",
+      "photoSelectAll",
+      "coverText",
+      "dedication",
+    ],
   });
 
   const basePriceCents = chosenVariant?.priceCents ?? 0;
@@ -65,6 +86,7 @@ export const BookCheckoutPanel = ({
           paperType: paperType ?? "",
           sizeKey: sizeKey ?? "",
           photoIds: safePhotoIds,
+          photoSelectAll: photoSelectAll ?? null,
           coverText: coverText ?? "",
           dedication: dedication ?? "",
         },
@@ -76,6 +98,7 @@ export const BookCheckoutPanel = ({
       paperType,
       sizeKey,
       safePhotoIds,
+      photoSelectAll,
       coverText,
       dedication,
       chosenVariant,
@@ -120,6 +143,7 @@ export const BookCheckoutPanel = ({
       event={event}
       customization={customization}
       photoIds={safePhotoIds}
+      photoSelectAll={photoSelectAll ?? null}
       selectedVariant={chosenVariant}
       isReady={isReady}
       notReadyMessage={notReadyMessage}

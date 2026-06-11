@@ -21,6 +21,10 @@ export type KeepsakePreviewInput = {
   productType: BindType;
   productVariantId?: string;
   photoIds: string[];
+  photoSelectAll?: {
+    filter: "all" | "favorites" | "gold_book";
+    excludedIds: string[];
+  };
   messageIds?: string[];
   customization?: {
     coverTitle?: string;

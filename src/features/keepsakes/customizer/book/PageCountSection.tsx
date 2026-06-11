@@ -7,7 +7,11 @@ import { CustomizerSection } from "../CustomizerSection";
 import { MediaPicker } from "../MediaPicker";
 import { useBookForm, type BookFormValues } from "./BookFormContext";
 import { usePeechoVariantResolver } from "./usePeechoVariantResolver";
-import type { Event, KeepsakeProductVariant } from "@/lib/api/types";
+import type {
+  Event,
+  KeepsakeProductVariant,
+  PhotoSelectAll,
+} from "@/lib/api/types";
 
 type PageCountSectionProps = {
   variants: KeepsakeProductVariant[];
@@ -25,10 +29,13 @@ export const PageCountSection = ({
   const watchedPhotoIds = useWatch<BookFormValues, "photoIds">({
     name: "photoIds",
   });
+  const photoSelectAll = useWatch<BookFormValues, "photoSelectAll">({
+    name: "photoSelectAll",
+  });
   const photoIds = useMemo(() => watchedPhotoIds ?? [], [watchedPhotoIds]);
 
   const { minPages, maxPages, pageCount, noVariantMatch } =
-    usePeechoVariantResolver(variants);
+    usePeechoVariantResolver(variants, eventId);
 
   const togglePhoto = useCallback(
     (id: string) => {
@@ -102,24 +109,36 @@ export const PageCountSection = ({
             count: pageCount,
           })}
         </p>
-        {pageCountStatus && (
-          <p
-            role={pageCountStatus.tone === "error" ? "alert" : "status"}
-            className={
-              pageCountStatus.tone === "error"
-                ? "type-body-small text-destructive"
-                : "type-body-small text-foreground"
-            }
-          >
-            {pageCountStatus.message}
-          </p>
-        )}
+        <p
+          role={pageCountStatus?.tone === "error" ? "alert" : "status"}
+          aria-hidden={!pageCountStatus}
+          className={`type-body-small min-h-5 ${
+            pageCountStatus?.tone === "error"
+              ? "text-destructive"
+              : "text-foreground"
+          }`}
+        >
+          {pageCountStatus?.message ?? " "}
+        </p>
         {!noVariantMatch && (
           <MediaPicker
             eventId={eventId}
             type="photo"
             selectedIds={photoIds}
             onToggle={togglePhoto}
+            onChange={(next) =>
+              setValue("photoIds", next, {
+                shouldDirty: true,
+                shouldValidate: true,
+              })
+            }
+            selectAll={photoSelectAll ?? null}
+            onSelectAllChange={(next: PhotoSelectAll | null) =>
+              setValue("photoSelectAll", next, {
+                shouldDirty: true,
+                shouldValidate: true,
+              })
+            }
             emptyHint={t("keepsakes__book_customizer__photos_empty_hint")}
           />
         )}

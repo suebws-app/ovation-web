@@ -4,10 +4,18 @@ import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 export type BookBinding = "hardcover" | "softcover" | "layflat";
 
+export const photoSelectAllSchema = z
+  .object({
+    filter: z.enum(["all", "favorites", "gold_book"]),
+    excludedIds: z.array(z.string()),
+  })
+  .nullable();
+
 export const bookFormSchema = z.object({
   paperType: z.string().min(1),
   sizeKey: z.string().min(1),
   photoIds: z.array(z.string()),
+  photoSelectAll: photoSelectAllSchema,
   coverText: z.string(),
   dedication: z.string(),
 });

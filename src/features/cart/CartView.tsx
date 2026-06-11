@@ -89,7 +89,12 @@ export const CartView = () => {
           productVariantId: item.productVariantId ?? undefined,
           quantity: item.quantity,
           customization: item.customization,
-          photoIds: item.photoIds.length > 0 ? item.photoIds : undefined,
+          photoIds: item.photoSelectAll
+            ? undefined
+            : item.photoIds.length > 0
+              ? item.photoIds
+              : undefined,
+          photoSelectAll: item.photoSelectAll ?? undefined,
         })),
         shippingAddress: shippingAddress
           ? {

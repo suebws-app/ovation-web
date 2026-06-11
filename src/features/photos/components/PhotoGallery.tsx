@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { heightFor, type PhotoView } from "../adapters";
 import { PhotoTile } from "./PhotoTile";
@@ -11,6 +12,29 @@ type PhotoGalleryProps = {
   onToggleSelect: (id: string) => void;
 };
 
+const useColumnCount = (): number => {
+  const [count, setCount] = useState(3);
+
+  useEffect(() => {
+    const large = window.matchMedia("(min-width: 1800px)");
+    const tablet = window.matchMedia("(min-width: 740px)");
+    const compute = () => {
+      if (large.matches) setCount(4);
+      else if (tablet.matches) setCount(3);
+      else setCount(2);
+    };
+    compute();
+    large.addEventListener("change", compute);
+    tablet.addEventListener("change", compute);
+    return () => {
+      large.removeEventListener("change", compute);
+      tablet.removeEventListener("change", compute);
+    };
+  }, []);
+
+  return count;
+};
+
 export const PhotoGallery = ({
   photos,
   selectedIds,
@@ -18,6 +42,18 @@ export const PhotoGallery = ({
   onToggleSelect,
 }: PhotoGalleryProps) => {
   const t = useTranslations();
+  const columnCount = useColumnCount();
+
+  const columns = useMemo(() => {
+    const cols: { tile: PhotoView; index: number }[][] = Array.from(
+      { length: columnCount },
+      () => [],
+    );
+    photos.forEach((tile, index) => {
+      cols[index % columnCount]!.push({ tile, index });
+    });
+    return cols;
+  }, [photos, columnCount]);
 
   if (photos.length === 0) {
     return (
@@ -32,17 +68,21 @@ export const PhotoGallery = ({
 
   return (
     <div className="tablet:p-6 p-4">
-      <div className="tablet:columns-3 large-desktop:columns-4 columns-2 gap-3">
-        {photos.map((tile, i) => (
-          <PhotoTile
-            key={tile.id}
-            tile={tile}
-            height={heightFor(i)}
-            index={i}
-            selected={selectedIds.has(tile.id)}
-            onClick={() => onTileClick(tile.id)}
-            onToggleSelect={() => onToggleSelect(tile.id)}
-          />
+      <div className="flex gap-3">
+        {columns.map((col, colIdx) => (
+          <div key={colIdx} className="flex flex-1 flex-col gap-3">
+            {col.map(({ tile, index }) => (
+              <PhotoTile
+                key={tile.id}
+                tile={tile}
+                height={heightFor(index)}
+                index={index}
+                selected={selectedIds.has(tile.id)}
+                onClick={() => onTileClick(tile.id)}
+                onToggleSelect={() => onToggleSelect(tile.id)}
+              />
+            ))}
+          </div>
         ))}
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { PhotoSelectAll } from "@/lib/api/types";
 
 export type CartItem = {
   id: string;
@@ -15,6 +16,7 @@ export type CartItem = {
   quantity: number;
   customization: Record<string, unknown>;
   photoIds: string[];
+  photoSelectAll?: PhotoSelectAll | null;
   timelineDays: string | null;
   requiresShipping: boolean;
   eventId: string;

@@ -1,5 +1,5 @@
 import { clientFetch, clientFetchPaginated, type Paginated } from "./client";
-import type { GalleryItem, MediaUploadTarget } from "./types";
+import type { GalleryCount, GalleryItem, MediaUploadTarget } from "./types";
 
 const mediaPath = (eventId: string) => `/events/${eventId}/media`;
 
@@ -43,6 +43,18 @@ export const mediaClient = {
       method: "POST",
       body: { items },
     }),
+
+  galleryCount: (
+    eventId: string,
+    query: { type?: "photo" | "video" | "all"; filter?: "all" | "favorites" | "gold_book" } = {},
+  ): Promise<GalleryCount> => {
+    const queryParams: Record<string, string | undefined> = {};
+    if (query.type) queryParams.type = query.type;
+    if (query.filter) queryParams.filter = query.filter;
+    return clientFetch<GalleryCount>(`${mediaPath(eventId)}/count`, {
+      query: queryParams,
+    });
+  },
 
   gallery: (
     eventId: string,

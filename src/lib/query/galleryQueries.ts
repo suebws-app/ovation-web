@@ -4,6 +4,7 @@ import {
   keepPreviousData,
   useInfiniteQuery,
   useMutation,
+  useQuery,
   useQueryClient,
   type InfiniteData,
 } from "@tanstack/react-query";
@@ -19,6 +20,22 @@ type GalleryFilter = {
   search?: string;
   limit?: number;
 };
+
+type GalleryCountInput = {
+  type?: "photo" | "video" | "all";
+  filter?: "all" | "favorites" | "gold_book";
+};
+
+export const useGalleryCount = (
+  eventId: string,
+  input: GalleryCountInput = {},
+) =>
+  useQuery({
+    queryKey: queryKeys.gallery.count(eventId, input),
+    queryFn: () => mediaClient.galleryCount(eventId, input),
+    enabled: Boolean(eventId),
+    staleTime: 30_000,
+  });
 
 export const useInfiniteGallery = (
   eventId: string,
