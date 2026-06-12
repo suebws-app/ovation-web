@@ -38,8 +38,8 @@ export const AuthSplitLayout = ({
         {panel}
       </div>
     </div>
-    <div className="tablet:px-18 desktop:py-16 desktop:overflow-visible flex h-full min-w-0 items-start overflow-y-auto px-5 py-3">
-      <div className="w-full max-w-130 min-w-0">{children}</div>
+    <div className="tablet:px-18 desktop:py-16 desktop:overflow-visible flex h-full min-w-0 items-start justify-center overflow-y-auto px-5 py-3">
+      <div className="mx-auto my-auto w-full max-w-130 min-w-0">{children}</div>
     </div>
   </div>
 );

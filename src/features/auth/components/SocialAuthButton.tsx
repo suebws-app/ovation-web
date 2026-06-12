@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
 
 type SocialAuthButtonProps = {
@@ -13,15 +12,11 @@ type SocialAuthButtonProps = {
 };
 
 export const SocialAuthButton = ({
-  provider,
-  label,
   icon,
   onClick,
   disabled,
   className,
 }: SocialAuthButtonProps) => {
-  const t = useTranslations();
-  const resolvedLabel = label ?? t("auth__social__sign_up_with");
   return (
     <button
       type="button"
@@ -33,7 +28,6 @@ export const SocialAuthButton = ({
       )}
     >
       {icon}
-      {resolvedLabel} {provider}
     </button>
   );
 };

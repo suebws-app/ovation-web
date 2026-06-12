@@ -7,6 +7,7 @@ type: skill
 # Tailwind CSS v4 + shadcn/ui Design System
 
 ## When to Use
+
 - Adding or modifying design tokens (colors, typography, spacing, shadows, radius)
 - Building new UI components
 - Implementing dark mode
@@ -14,6 +15,7 @@ type: skill
 - Using breakpoints, animations, gradients, or custom utilities
 
 ## Core Principles
+
 - **shadcn/ui pattern** — components use Radix UI primitives + cva + cn(), live in `packages/ui/`
 - **Tailwind v4 uses CSS, not JS** — no `tailwind.config.ts`, theme defined via `@theme inline` in CSS
 - **Full token set** — oklch colors, numeric radius, semantic shadows, named breakpoints, animations
@@ -37,62 +39,63 @@ packages/ui/
 ```
 
 Import from app code:
+
 ```typescript
-import { Button } from '@ovation/ui/components/Button'
-import { cn } from '@ovation/ui/utils/cn'
+import { Button } from "@ovation/ui/components/Button";
+import { cn } from "@ovation/ui/utils/cn";
 ```
 
 ## Complete Token Reference
 
 ### Colors (semantic, via CSS vars)
 
-| Token | Tailwind class | Use for |
-|-------|---------------|---------|
-| `background` / `foreground` | `bg-background`, `text-foreground` | Page backgrounds, body text |
-| `card` / `card-foreground` | `bg-card`, `text-card-foreground` | Card surfaces |
-| `popover` / `popover-foreground` | `bg-popover`, `text-popover-foreground` | Dropdowns, popovers |
-| `primary` / `primary-foreground` | `bg-primary`, `text-primary-foreground` | CTAs, links (Cornflower #779FEB) |
-| `secondary` / `secondary-foreground` | `bg-secondary`, `text-secondary-foreground` | Success, positive (Jade #82E19D) |
-| `accent` / `accent-foreground` | `bg-accent`, `text-accent-foreground` | Premium, special (Kernel #EDB974) |
-| `muted` / `muted-foreground` | `bg-muted`, `text-muted-foreground` | Subtle backgrounds, secondary text |
-| `destructive` | `bg-destructive` | Alerts, warnings (Peachy #EC8662) |
-| `danger` | `bg-danger` | Delete, destructive actions (#E55353) |
-| `border` | `border-border` | Borders, dividers |
-| `input` | `border-input` | Input borders |
-| `ring` | `ring-ring` | Focus rings |
-| `warm-cream` / `warm-panel` | `bg-warm-cream`, `bg-warm-panel` | Warm surface tints |
-| `sidebar-*` | `bg-sidebar`, etc. | Sidebar-specific tokens |
-| `chart-1` through `chart-5` | `bg-chart-1`, etc. | Data visualization |
+| Token                                | Tailwind class                              | Use for                               |
+| ------------------------------------ | ------------------------------------------- | ------------------------------------- |
+| `background` / `foreground`          | `bg-background`, `text-foreground`          | Page backgrounds, body text           |
+| `card` / `card-foreground`           | `bg-card`, `text-card-foreground`           | Card surfaces                         |
+| `popover` / `popover-foreground`     | `bg-popover`, `text-popover-foreground`     | Dropdowns, popovers                   |
+| `primary` / `primary-foreground`     | `bg-primary`, `text-primary-foreground`     | CTAs, links (Cornflower #779FEB)      |
+| `secondary` / `secondary-foreground` | `bg-secondary`, `text-secondary-foreground` | Success, positive (Jade #82E19D)      |
+| `accent` / `accent-foreground`       | `bg-accent`, `text-accent-foreground`       | Premium, special (Kernel #EDB974)     |
+| `muted` / `muted-foreground`         | `bg-muted`, `text-muted-foreground`         | Subtle backgrounds, secondary text    |
+| `destructive`                        | `bg-destructive`                            | Alerts, warnings (Peachy #EC8662)     |
+| `danger`                             | `bg-danger`                                 | Delete, destructive actions (#E55353) |
+| `border`                             | `border-border`                             | Borders, dividers                     |
+| `input`                              | `border-input`                              | Input borders                         |
+| `ring`                               | `ring-ring`                                 | Focus rings                           |
+| `warm-cream` / `warm-panel`          | `bg-warm-cream`, `bg-warm-panel`            | Warm surface tints                    |
+| `sidebar-*`                          | `bg-sidebar`, etc.                          | Sidebar-specific tokens               |
+| `chart-1` through `chart-5`          | `bg-chart-1`, etc.                          | Data visualization                    |
 
 ### Breakpoints
 
-| Name | Value | Tailwind prefix |
-|------|-------|-----------------|
-| `mobile` | 390px | `mobile:` |
-| `tablet` | 740px | `tablet:` |
-| `desktop` | 1220px | `desktop:` |
+| Name            | Value  | Tailwind prefix  |
+| --------------- | ------ | ---------------- |
+| `mobile`        | 390px  | `mobile:`        |
+| `tablet`        | 740px  | `tablet:`        |
+| `desktop`       | 1220px | `desktop:`       |
 | `large-desktop` | 1800px | `large-desktop:` |
 
 ```tsx
-<div className="px-4 tablet:px-8 desktop:px-20 large-desktop:px-0">
-  <h1 className="type-h2 tablet:type-h1 desktop:type-display">Responsive</h1>
+<div className="tablet:px-8 desktop:px-20 large-desktop:px-0 px-4">
+  <h1 className="type-h2 tablet:type-h1 desktop:type-h0">Responsive</h1>
 </div>
 ```
 
 ### Border Radius
 
-| Token | Value | Tailwind class |
-|-------|-------|----------------|
-| `none` | 0 | `rounded-none` |
-| `4` | 0.25rem (4px) | `rounded-4` |
-| `6` | 0.375rem (6px) | `rounded-6` |
-| `8` | 0.5rem (8px) | `rounded-8` |
-| `10` | 0.625rem (10px) | `rounded-10` |
-| `12` | 0.75rem (12px) | `rounded-12` |
-| `16` | 1rem (16px) | `rounded-16` |
-| `20` | 1.25rem (20px) | `rounded-20` |
-| `24` | 1.5rem (24px) | `rounded-24` |
-| `full` | pill shape | `rounded-full` |
+| Token  | Value           | Tailwind class |
+| ------ | --------------- | -------------- |
+| `none` | 0               | `rounded-none` |
+| `4`    | 0.25rem (4px)   | `rounded-4`    |
+| `6`    | 0.375rem (6px)  | `rounded-6`    |
+| `8`    | 0.5rem (8px)    | `rounded-8`    |
+| `10`   | 0.625rem (10px) | `rounded-10`   |
+| `12`   | 0.75rem (12px)  | `rounded-12`   |
+| `16`   | 1rem (16px)     | `rounded-16`   |
+| `20`   | 1.25rem (20px)  | `rounded-20`   |
+| `24`   | 1.5rem (24px)   | `rounded-24`   |
+| `full` | pill shape      | `rounded-full` |
 
 ```tsx
 <div className="rounded-12 bg-card p-6">Card with 12px radius</div>
@@ -102,63 +105,63 @@ import { cn } from '@ovation/ui/utils/cn'
 
 ### Shadows
 
-| Token | Tailwind class | Use for |
-|-------|----------------|---------|
-| `shadow` | `shadow` | Default card/panel shadow |
-| `shadow-sm` | `shadow-sm` | Subtle elevation (badges, chips) |
-| `shadow-md` | `shadow-md` | Medium elevation (dropdowns) |
-| `shadow-lg` | `shadow-lg` | High elevation (modals, dialogs) |
-| `shadow-icon` | `shadow-icon` | Icon button elevation |
+| Token          | Tailwind class | Use for                             |
+| -------------- | -------------- | ----------------------------------- |
+| `shadow`       | `shadow`       | Default card/panel shadow           |
+| `shadow-sm`    | `shadow-sm`    | Subtle elevation (badges, chips)    |
+| `shadow-md`    | `shadow-md`    | Medium elevation (dropdowns)        |
+| `shadow-lg`    | `shadow-lg`    | High elevation (modals, dialogs)    |
+| `shadow-icon`  | `shadow-icon`  | Icon button elevation               |
 | `shadow-input` | `shadow-input` | Focused input glow (primary-tinted) |
-| `shadow-none` | `shadow-none` | Remove shadow |
+| `shadow-none`  | `shadow-none`  | Remove shadow                       |
 
 ### Drop Shadows
 
-| Token | Tailwind class | Use for |
-|-------|----------------|---------|
-| `drop-shadow` | `drop-shadow` | Default drop shadow (for non-box elements) |
-| `drop-shadow-sm` | `drop-shadow-sm` | Subtle drop shadow |
-| `drop-shadow-icon` | `drop-shadow-icon` | Icon drop shadow |
+| Token              | Tailwind class     | Use for                                    |
+| ------------------ | ------------------ | ------------------------------------------ |
+| `drop-shadow`      | `drop-shadow`      | Default drop shadow (for non-box elements) |
+| `drop-shadow-sm`   | `drop-shadow-sm`   | Subtle drop shadow                         |
+| `drop-shadow-icon` | `drop-shadow-icon` | Icon drop shadow                           |
 
 ### Extended Spacing
 
 All default Tailwind spacing works. These extend it with half-step and large values:
 
-| Token | Value | Tailwind class |
-|-------|-------|----------------|
-| `4.5` | 1.125rem | `p-4_5`, `gap-4_5` |
-| `6.5` | 1.625rem | `p-6_5`, `gap-6_5` |
-| `7.5` | 1.875rem | `p-7_5`, `gap-7_5` |
-| `8.5` | 2.125rem | `p-8_5`, `gap-8_5` |
-| `11.5` | 2.875rem | `p-11_5` |
-| `13` | 3.25rem | `p-13` |
-| `15` | 3.75rem | `p-15`, `gap-15` |
-| `17` | 4.25rem | `p-17` |
-| `18` | 4.5rem | `p-18` |
-| `21` | 5.25rem | `p-21` |
-| `22` | 5.5rem | `p-22` |
-| `25` | 6.25rem | `p-25` |
-| `26` | 6.5rem | `p-26` |
-| `30` | 7.5rem | `py-30` |
-| `45` | 11.25rem | `h-45` |
-| `50` | 12.5rem | `h-50` |
-| `75` | 18.75rem | `w-75` |
-| `100` | 25rem | `max-w-100` |
-| `safe-area-bottom` | env() | `pb-safe-area-bottom` |
+| Token              | Value    | Tailwind class        |
+| ------------------ | -------- | --------------------- |
+| `4.5`              | 1.125rem | `p-4_5`, `gap-4_5`    |
+| `6.5`              | 1.625rem | `p-6_5`, `gap-6_5`    |
+| `7.5`              | 1.875rem | `p-7_5`, `gap-7_5`    |
+| `8.5`              | 2.125rem | `p-8_5`, `gap-8_5`    |
+| `11.5`             | 2.875rem | `p-11_5`              |
+| `13`               | 3.25rem  | `p-13`                |
+| `15`               | 3.75rem  | `p-15`, `gap-15`      |
+| `17`               | 4.25rem  | `p-17`                |
+| `18`               | 4.5rem   | `p-18`                |
+| `21`               | 5.25rem  | `p-21`                |
+| `22`               | 5.5rem   | `p-22`                |
+| `25`               | 6.25rem  | `p-25`                |
+| `26`               | 6.5rem   | `p-26`                |
+| `30`               | 7.5rem   | `py-30`               |
+| `45`               | 11.25rem | `h-45`                |
+| `50`               | 12.5rem  | `h-50`                |
+| `75`               | 18.75rem | `w-75`                |
+| `100`              | 25rem    | `max-w-100`           |
+| `safe-area-bottom` | env()    | `pb-safe-area-bottom` |
 
 ### Animations
 
-| Token | Tailwind class | Use for |
-|-------|----------------|---------|
-| `fade-in` | `animate-fade-in` | Elements appearing |
-| `fade-out` | `animate-fade-out` | Elements disappearing |
-| `slide-up` | `animate-slide-up` | Content sliding up into view |
-| `slide-down` | `animate-slide-down` | Content sliding down into view |
-| `accordion-down` | `animate-accordion-down` | Radix Accordion open |
-| `accordion-up` | `animate-accordion-up` | Radix Accordion close |
-| `collapsible-down` | `animate-collapsible-down` | Radix Collapsible open |
-| `collapsible-up` | `animate-collapsible-up` | Radix Collapsible close |
-| `pulse-shadow` | `animate-pulse-shadow` | Recording/live indicator glow |
+| Token              | Tailwind class             | Use for                        |
+| ------------------ | -------------------------- | ------------------------------ |
+| `fade-in`          | `animate-fade-in`          | Elements appearing             |
+| `fade-out`         | `animate-fade-out`         | Elements disappearing          |
+| `slide-up`         | `animate-slide-up`         | Content sliding up into view   |
+| `slide-down`       | `animate-slide-down`       | Content sliding down into view |
+| `accordion-down`   | `animate-accordion-down`   | Radix Accordion open           |
+| `accordion-up`     | `animate-accordion-up`     | Radix Accordion close          |
+| `collapsible-down` | `animate-collapsible-down` | Radix Collapsible open         |
+| `collapsible-up`   | `animate-collapsible-up`   | Radix Collapsible close        |
+| `pulse-shadow`     | `animate-pulse-shadow`     | Recording/live indicator glow  |
 
 ```tsx
 <DialogPrimitive.Overlay className="animate-fade-in" />
@@ -172,20 +175,20 @@ Semantic typography utilities defined via `@utility` in `globals.css`. **Always 
 
 Headings use CSS variables for responsive sizing (override `--font-size-heading-*` per breakpoint).
 
-| Utility | Size | Line height | Weight | Use for |
-|---------|------|-------------|--------|---------|
-| `type-display` | 60px | 1 | 700 | Hero headlines, landing pages |
-| `type-h1` | var (32px) | var (40px) | 700 | Page titles |
-| `type-h2` | var (24px) | var (32px) | 600 | Section headings |
-| `type-h3` | var (20px) | var (28px) | 600 | Card titles, subsections |
-| `type-h4` | var (16px) | var (24px) | 600 | Sidebar headings, dialogs |
-| `type-body-large` | 18px | 26px | 400 | Lead paragraphs, feature descriptions |
-| `type-body` | 16px | 24px | 400 | Default body text |
-| `type-body-small` | 14px | 22px | 400 | Secondary text, table cells |
-| `type-caption` | 12px | 20px | 400 | Timestamps, helper text, badges |
-| `type-overline` | 11px | 16px | 600 | Section labels (auto-uppercased) |
-| `type-button-small` | 14px | 22px | 500 | Small button text |
-| `type-button-large` | 18px | 26px | 600 | Large button text |
+| Utility             | Size       | Line height | Weight | Use for                               |
+| ------------------- | ---------- | ----------- | ------ | ------------------------------------- |
+| `type-display`      | 60px       | 1           | 700    | Hero headlines, landing pages         |
+| `type-h1`           | var (32px) | var (40px)  | 700    | Page titles                           |
+| `type-h2`           | var (24px) | var (32px)  | 600    | Section headings                      |
+| `type-h3`           | var (20px) | var (28px)  | 600    | Card titles, subsections              |
+| `type-h4`           | var (16px) | var (24px)  | 600    | Sidebar headings, dialogs             |
+| `type-body-large`   | 18px       | 26px        | 400    | Lead paragraphs, feature descriptions |
+| `type-body`         | 16px       | 24px        | 400    | Default body text                     |
+| `type-body-small`   | 14px       | 22px        | 400    | Secondary text, table cells           |
+| `type-caption`      | 12px       | 20px        | 400    | Timestamps, helper text, badges       |
+| `type-overline`     | 11px       | 16px        | 600    | Section labels (auto-uppercased)      |
+| `type-button-small` | 14px       | 22px        | 500    | Small button text                     |
+| `type-button-large` | 18px       | 26px        | 600    | Large button text                     |
 
 ### Usage
 
@@ -196,7 +199,7 @@ Headings use CSS variables for responsive sizing (override `--font-size-heading-
 <span className="type-overline text-primary">New Feature</span>
 
 // Combine with font-family when needed
-<h1 className="type-display font-serif text-foreground">Hero</h1>
+<h1 className="type-h0 font-serif text-foreground">Hero</h1>
 
 // Override weight when needed
 <p className="type-body-small font-medium text-foreground">Label text</p>
@@ -209,6 +212,7 @@ size: {
 ```
 
 ### Rules
+
 - **NEVER use raw `text-sm`, `text-xs`, `text-lg`, `text-[17px]`** — always use `type-*` utilities
 - Typography utilities set `font-size`, `line-height`, `letter-spacing`, and `font-weight`
 - Override `font-weight` with `font-medium`, `font-semibold`, etc. when the default doesn't fit
@@ -218,13 +222,13 @@ size: {
 
 ## Gradient Utilities
 
-| Utility | Direction | Description |
-|---------|-----------|-------------|
-| `gradient-cream-v` | top → bottom | White to off-white (background) |
-| `gradient-cream-to-transparent-v` | top → bottom | Off-white fading to transparent |
-| `gradient-transparent-to-cream-v` | bottom → top | Transparent to off-white |
-| `gradient-primary-v` | top → bottom | White to light primary tint |
-| `gradient-warm-v` | top → bottom | Off-white → warm-cream → light primary |
+| Utility                           | Direction    | Description                            |
+| --------------------------------- | ------------ | -------------------------------------- |
+| `gradient-cream-v`                | top → bottom | White to off-white (background)        |
+| `gradient-cream-to-transparent-v` | top → bottom | Off-white fading to transparent        |
+| `gradient-transparent-to-cream-v` | bottom → top | Transparent to off-white               |
+| `gradient-primary-v`              | top → bottom | White to light primary tint            |
+| `gradient-warm-v`                 | top → bottom | Off-white → warm-cream → light primary |
 
 ```tsx
 <section className="gradient-warm-v py-30">Hero section with warm gradient</section>
@@ -233,13 +237,15 @@ size: {
 
 ## Custom Utilities
 
-| Utility | Use for |
-|---------|---------|
+| Utility          | Use for                                                 |
+| ---------------- | ------------------------------------------------------- |
 | `hide-scrollbar` | Hide scrollbar on scrollable containers (cross-browser) |
 
 ```tsx
 <div className="hide-scrollbar overflow-x-auto">
-  <div className="flex gap-4">{/* horizontal scroll, no visible scrollbar */}</div>
+  <div className="flex gap-4">
+    {/* horizontal scroll, no visible scrollbar */}
+  </div>
 </div>
 ```
 
@@ -274,26 +280,28 @@ Tailwind v4 uses `@custom-variant` instead of plugin-based variants. Define them
 
 ### When to use custom variants vs conditional classes
 
-| Scenario | Use |
-|----------|-----|
+| Scenario                               | Use                                |
+| -------------------------------------- | ---------------------------------- |
 | Parent state affects multiple children | `@custom-variant` + data attribute |
-| Single element conditional style | `cn()` with ternary |
-| Media/device capability | `@custom-variant` with `@media` |
-| Component visual variant | `cva()` |
+| Single element conditional style       | `cn()` with ternary                |
+| Media/device capability                | `@custom-variant` with `@media`    |
+| Component visual variant               | `cva()`                            |
 
 ## Adding New Tokens
 
 **Colors** — add in three places:
+
 1. `@theme inline { --color-new-token: var(--new-token); }`
 2. `:root { --new-token: oklch(...); }`
 3. `.dark { --new-token: oklch(...); }`
 
 **Other tokens** (radius, spacing, shadows, breakpoints, animations) — add directly in `@theme inline { }`:
+
 ```css
 @theme inline {
   --radius-28: 1.75rem;
   --spacing-32: 8rem;
-  --shadow-xl: 0px 8px 48px oklch(0.35 0.01 260 / 0.20);
+  --shadow-xl: 0px 8px 48px oklch(0.35 0.01 260 / 0.2);
   --animate-bounce-in: bounce-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 ```
@@ -302,11 +310,11 @@ Tailwind v4 uses `@custom-variant` instead of plugin-based variants. Define them
 
 ```typescript
 // packages/ui/src/utils/cn.ts
-import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 ```
 
@@ -377,17 +385,18 @@ export const DialogTitle = ({ className, ...props }: DialogPrimitive.DialogTitle
 
 ## Installed Dependencies
 
-| Package | Purpose |
-|---------|---------|
-| `tailwindcss` v4 | CSS framework |
-| `@tailwindcss/postcss` | PostCSS plugin |
-| `shadcn` | Base CSS (keyframes, Radix variants, scrollbar utility) |
-| `class-variance-authority` | Component variants (cva) |
-| `clsx` | Conditional class names |
-| `tailwind-merge` | Smart class merging |
-| `@radix-ui/react-slot` | Polymorphic `asChild` pattern |
+| Package                    | Purpose                                                 |
+| -------------------------- | ------------------------------------------------------- |
+| `tailwindcss` v4           | CSS framework                                           |
+| `@tailwindcss/postcss`     | PostCSS plugin                                          |
+| `shadcn`                   | Base CSS (keyframes, Radix variants, scrollbar utility) |
+| `class-variance-authority` | Component variants (cva)                                |
+| `clsx`                     | Conditional class names                                 |
+| `tailwind-merge`           | Smart class merging                                     |
+| `@radix-ui/react-slot`     | Polymorphic `asChild` pattern                           |
 
 ## Conventions
+
 - **NEVER use raw Tailwind colors** — no `text-zinc-50`, `bg-slate-900`, `text-gray-500`. Always use theme tokens
 - **NEVER use raw Tailwind text sizes** — no `text-sm`, `text-xs`, `text-lg`, `text-[17px]`. Always use `type-*` utilities
 - **NEVER use raw Tailwind radius** — no `rounded-sm`, `rounded-lg`. Always use numeric tokens: `rounded-8`, `rounded-12`
@@ -402,6 +411,7 @@ export const DialogTitle = ({ className, ...props }: DialogPrimitive.DialogTitle
 - Responsive breakpoints: `mobile` < `tablet` < `desktop` < `large-desktop`
 
 ## Anti-patterns
+
 - **NEVER use `text-zinc-*`, `bg-slate-*`, `text-gray-*` or any raw color** — use theme tokens only
 - **NEVER use `text-sm`, `text-xs`, `text-lg`, `text-[17px]` or any raw text size** — use `type-*` utilities only
 - **NEVER use `rounded-sm`, `rounded-md`, `rounded-lg`** — use `rounded-8`, `rounded-12`, etc.

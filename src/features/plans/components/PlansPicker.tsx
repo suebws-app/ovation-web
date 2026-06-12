@@ -117,7 +117,7 @@ export const PlansPicker = (props: PlansPickerProps) => {
           <Kicker className="text-primary">
             {t("activate_link__eyebrow")}
           </Kicker>
-          <h1 className="type-display mt-3.5 leading-tight font-semibold tracking-tight">
+          <h1 className="type-h0 mt-3.5 leading-tight font-semibold tracking-tight">
             {t("activate_link__title_a")}{" "}
             <span className="text-primary italic">
               {t("activate_link__title_b")}

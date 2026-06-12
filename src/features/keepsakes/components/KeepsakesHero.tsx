@@ -8,7 +8,7 @@ export const KeepsakesHero = () => {
       <Kicker className="tracking-[2px] text-[#9A6B2F]">
         {t("keepsakes__hero__eyebrow")}
       </Kicker>
-      <h1 className="tablet:type-display type-h0 mt-2.5 max-w-225 leading-none font-semibold tracking-tight">
+      <h1 className="tablet:type-h0 type-h0 mt-2.5 max-w-225 leading-none font-semibold tracking-tight">
         {t("keepsakes__hero__title_a")}
         <br />
         <span className="italic" style={{ color: "#C88C36" }}>

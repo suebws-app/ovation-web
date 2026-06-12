@@ -24,7 +24,7 @@ export const SettingsProfileSection = ({
       <span className="type-overline text-primary">
         {t("settings__profile__eyebrow")}
       </span>
-      <h1 className="type-display mt-2 tracking-tight">
+      <h1 className="type-h0 mt-2 tracking-tight">
         {t("settings__profile__title_a")}{" "}
         <span className="text-primary italic">
           {t("settings__profile__title_b")}

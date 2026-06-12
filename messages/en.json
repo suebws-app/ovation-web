@@ -377,7 +377,7 @@
   "auth__forgot__error_turnstile": "Please complete the verification challenge before continuing.",
   "auth__signin__signup_cta": "Start your wedding book →",
   "auth__signin__signup_short": "Sign Up",
-  "auth__signin__protected": "Protected by 2-factor. Your messages never leave your couple account.",
+  "auth__signin__protected": "Protected by 2-factor. Your messages never leave your account.",
   "auth__signin__brand_eyebrow": "18 days after · Lena & Tomás",
   "auth__signin__brand_quote": "The way you look at her — like the room just got quieter.",
   "auth__signin__brand_caption": "87 voices, 1h 42m of stories, 64 photos — held safely for you to revisit whenever you want.",

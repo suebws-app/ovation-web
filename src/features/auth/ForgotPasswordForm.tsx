@@ -4,16 +4,17 @@ import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useTranslations } from "next-intl";
-import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
-import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
-import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
 import { clientEnv as env } from "@/lib/utils/env.client";
+import { AuthScreen } from "./components/AuthScreen";
+import { AuthHeading } from "./components/AuthHeading";
+import { AuthFormError } from "./components/AuthFormError";
+import { AuthSubmitButton } from "./components/AuthSubmitButton";
+import { AuthFooterLink } from "./components/AuthFooterLink";
 import {
   getForgotPasswordSchema,
   type ForgotPasswordFields,
@@ -68,22 +69,16 @@ export const ForgotPasswordForm = () => {
   };
 
   return (
-    <>
-      <Kicker className="text-primary mb-2.5">
-        {t("auth__forgot__eyebrow")}
-      </Kicker>
-      <h1 className="type-h1 leading-tight font-semibold tracking-tight">
-        {t("auth__forgot__title")}{" "}
-        <span className="text-primary italic">
-          {t("auth__forgot__title_emphasis")}
-        </span>
-      </h1>
-      <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
-        {t("auth__forgot__subtitle")}
-      </p>
+    <AuthScreen>
+      <AuthHeading
+        eyebrow={t("auth__forgot__eyebrow")}
+        title={t("auth__forgot__title")}
+        titleEmphasis={t("auth__forgot__title_emphasis")}
+        subtitle={t("auth__forgot__subtitle")}
+      />
 
       {status.kind === "sent" ? (
-        <div className="rounded-12 border-border bg-muted/40 mt-9 border p-6">
+        <div className="rounded-12 border-border bg-muted/40 tablet:mt-6 mt-4 border p-6">
           <p className="type-body-small text-foreground">
             {t.rich("auth__forgot__sent_card", {
               email: () => <strong>{status.email}</strong>,
@@ -91,7 +86,11 @@ export const ForgotPasswordForm = () => {
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-9">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          className="tablet:mt-6 mt-4 w-full"
+        >
           <div>
             <Label htmlFor="forgot-email" className="mb-2">
               {t("auth__email")}
@@ -112,9 +111,7 @@ export const ForgotPasswordForm = () => {
           </div>
 
           {status.kind === "error" && (
-            <p className="type-body-small text-destructive mt-4" role="alert">
-              {status.message}
-            </p>
+            <AuthFormError message={status.message} />
           )}
 
           <div className="mt-6">
@@ -124,29 +121,19 @@ export const ForgotPasswordForm = () => {
             />
           </div>
 
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            size="lg"
-            className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
-          >
-            {isSubmitting
-              ? t("auth__forgot__sending")
-              : t("auth__forgot__submit")}
-            <ArrowRightIcon width={16} height={16} />
-          </Button>
+          <AuthSubmitButton
+            pending={isSubmitting}
+            label={t("auth__forgot__submit")}
+            pendingLabel={t("auth__forgot__sending")}
+          />
         </form>
       )}
 
-      <p className="type-body-small text-muted-foreground mt-9 text-center">
-        {t("auth__forgot__remembered")}{" "}
-        <Link
-          href={appRoutes.auth.signIn}
-          className="text-foreground font-semibold"
-        >
-          {t("auth__forgot__back_signin")}
-        </Link>
-      </p>
-    </>
+      <AuthFooterLink
+        prompt={t("auth__forgot__remembered")}
+        href={appRoutes.auth.signIn}
+        linkLabel={t("auth__forgot__back_signin")}
+      />
+    </AuthScreen>
   );
 };

@@ -47,7 +47,7 @@ export const PlanOptionCard = ({
       )}
       <p className="type-h2 font-semibold">{name}</p>
       <div className="mt-3 flex items-end gap-1.5">
-        <span className="type-display leading-none font-semibold tracking-tight">
+        <span className="type-h0 leading-none font-semibold tracking-tight">
           {price}
         </span>
         <span className="text-muted-foreground type-body-small mb-2.5">
