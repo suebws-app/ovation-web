@@ -16,7 +16,7 @@ const scriptSrc = [
   "https://*.paddle.com",
   "https://*.paddle.dev",
   isDev ? "'unsafe-eval'" : "",
-  isDev ? "'unsafe-inline'" : "",
+  "'unsafe-inline'",
 ]
   .filter(Boolean)
   .join(" ");
