@@ -21,12 +21,11 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
   const params = (await searchParams) ?? {};
   const isUpgrade = params.upgrade === "1";
 
-  const { plans } = await plansApi.list();
-
   if (isUpgrade) {
-    const eligible = PREMIUM_PLANS.includes(user?.planTier || "");
+    const eligible = PREMIUM_PLANS.includes(user.planTier || "");
     if (!eligible) redirect(appRoutes.app.root);
-    const drePlan = plans.find((p) => p.code === "storage_extension");
+    const { plans } = await plansApi.list("addon");
+    const drePlan = plans.find((plan) => plan.code === "storage_extension");
     if (!drePlan) redirect(appRoutes.app.root);
     return (
       <PlansBackGuard>
@@ -37,28 +36,14 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
     );
   }
 
-  if (user.accountType === "pro") {
-    if (user.planTier && user.planTier !== "free") redirect(appRoutes.app.root);
-    const proPlans = plans.filter((plan) => plan.code.startsWith("pro_"));
-    return (
-      <PlansBackGuard>
-        <PlansPicker mode="pro" plans={proPlans} />
-      </PlansBackGuard>
-    );
-  }
+  if (user.planTier && user.planTier !== "free") redirect(appRoutes.app.root);
 
-  if (user.planTier !== "free") redirect(appRoutes.app.root);
+  const mode = user.accountType === "pro" ? "pro" : "couple";
+  const { plans } = await plansApi.list(mode);
 
-  const couplePlans = plans.filter(
-    (plan) =>
-      !plan.code.startsWith("pro_") &&
-      plan.code !== "storage_extension" &&
-      plan.code !== "essentials" &&
-      plan.code !== "free",
-  );
   return (
     <PlansBackGuard>
-      <PlansPicker mode="couple" plans={couplePlans} />
+      <PlansPicker mode={mode} plans={plans} />
     </PlansBackGuard>
   );
 };

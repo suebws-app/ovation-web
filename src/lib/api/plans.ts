@@ -1,6 +1,9 @@
 import { apiFetch } from "./server";
-import type { Plan } from "./types";
+import type { Plan, PlanAudience } from "./types";
 
 export const plansApi = {
-  list: () => apiFetch<{ plans: Plan[] }>("/plans"),
+  list: (audience?: PlanAudience) =>
+    apiFetch<{ plans: Plan[] }>(
+      audience ? `/plans?audience=${audience}` : "/plans",
+    ),
 };

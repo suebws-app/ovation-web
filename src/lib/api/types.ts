@@ -550,6 +550,8 @@ export type CheckoutSessionResult = {
   providerSessionId: string;
 };
 
+export type PlanAudience = "couple" | "pro" | "addon";
+
 export type Plan = {
   id: string;
   code: string;
