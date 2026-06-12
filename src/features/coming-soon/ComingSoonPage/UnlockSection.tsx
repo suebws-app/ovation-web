@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
@@ -24,7 +23,6 @@ const UnlockSuccess = () => (
 
 export const UnlockSection = () => {
   const [state, setState] = useState<UnlockState>("idle");
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,8 +35,7 @@ export const UnlockSection = () => {
     });
     if (res.ok) {
       setState("success");
-      router.push("/");
-      router.refresh();
+      window.location.assign("/");
     } else {
       setState("error");
     }
