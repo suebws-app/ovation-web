@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { MicIcon } from "@ovation/icons/MicIcon";
 import { VideoIcon } from "@ovation/icons/VideoIcon";
 import { CameraIcon } from "@ovation/icons/CameraIcon";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { LandingStepCard } from "./LandingStepCard";
 
 type LandingStepsProps = {
@@ -52,7 +52,7 @@ export const LandingSteps = async ({
   steps.push({
     title: t("guest__landing__step_send_title"),
     subtitle: t("guest__landing__step_send_subtitle"),
-    icon: <ArrowRightIcon width={18} height={18} />,
+    icon: null,
     iconClassName: "bg-secondary",
   });
 

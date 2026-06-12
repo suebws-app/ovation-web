@@ -1,12 +1,7 @@
 import { useTranslations } from "next-intl";
 
-type LinkHeaderProps = {
-  slug: string | null;
-};
-
-export const LinkHeader = ({ slug }: LinkHeaderProps) => {
+export const LinkHeader = () => {
   const t = useTranslations();
-  const path = slug ? `/g/${slug}` : null;
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -14,9 +9,6 @@ export const LinkHeader = ({ slug }: LinkHeaderProps) => {
       <p className="type-body-small text-muted-foreground">
         {t("link_settings__subtitle")}
       </p>
-      {path && (
-        <p className="type-caption text-muted-foreground truncate">{path}</p>
-      )}
     </div>
   );
 };

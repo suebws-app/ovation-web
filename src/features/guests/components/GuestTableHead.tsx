@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
+import { TableHead, TableHeader, TableRow } from "@ovation/ui/components/Table";
+import { guestsTableColumnClasses } from "../tableColumns";
 
 type GuestTableHeadProps = {
   allSelected: boolean;
@@ -13,28 +15,30 @@ export const GuestTableHead = ({
   onToggleAll,
 }: GuestTableHeadProps) => {
   const t = useTranslations();
-  const columns = [
-    { label: t("guests__table__col_guest"), hideMobile: false },
-    { label: t("guests__table__col_messages"), hideMobile: true },
-    { label: t("guests__table__col_status"), hideMobile: true },
-    { label: t("guests__table__col_last_seen"), hideMobile: true },
-    { label: "", hideMobile: true },
-  ];
   return (
-    <div className="border-border bg-background tablet:grid-cols-[28px_minmax(220px,1.4fr)_120px_140px_180px_36px] tablet:gap-3.5 tablet:px-6 grid grid-cols-[28px_1fr_36px] items-center gap-3 border-b px-4 py-3">
-      <Checkbox
-        checked={allSelected}
-        onChange={onToggleAll}
-        aria-label={t("guests__select_all")}
-      />
-      {columns.map((col, i) => (
-        <div
-          key={`${col.label}-${i}`}
-          className={`type-overline text-muted-foreground ${col.hideMobile ? "tablet:block hidden" : ""}`}
-        >
-          {col.label}
-        </div>
-      ))}
-    </div>
+    <TableHeader>
+      <TableRow>
+        <TableHead className={guestsTableColumnClasses.checkbox}>
+          <Checkbox
+            checked={allSelected}
+            onChange={onToggleAll}
+            aria-label={t("guests__select_all")}
+          />
+        </TableHead>
+        <TableHead className={guestsTableColumnClasses.guest}>
+          {t("guests__table__col_guest")}
+        </TableHead>
+        <TableHead className={guestsTableColumnClasses.messages}>
+          {t("guests__table__col_messages")}
+        </TableHead>
+        <TableHead className={guestsTableColumnClasses.status}>
+          {t("guests__table__col_status")}
+        </TableHead>
+        <TableHead className={guestsTableColumnClasses.lastSeen}>
+          {t("guests__table__col_last_seen")}
+        </TableHead>
+        <TableHead className={guestsTableColumnClasses.spacer} />
+      </TableRow>
+    </TableHeader>
   );
 };

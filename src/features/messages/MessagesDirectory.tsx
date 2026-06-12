@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { Table, TableBody, TableSkeleton } from "@ovation/ui/components/Table";
 import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 import type { TAudioPlayer } from "@ovation/ui/hooks/useAudioPlayer";
 import type { EventStats } from "@/lib/api/types";
@@ -23,6 +24,7 @@ import { MessageSearchInput } from "./components/MessageSearchInput";
 import { MessageSortButton } from "./components/MessageSortButton";
 import { MessageTableHead } from "./components/MessageTableHead";
 import { MessagesTableRow } from "./components/MessagesTableRow";
+import { messagesTableSkeletonColumns } from "./tableColumns";
 
 const PAGE_SIZE = 20;
 
@@ -106,9 +108,11 @@ export const MessagesDirectory = ({
   const renderBody = () => {
     if (isPending) {
       return (
-        <p className="type-body-small text-muted-foreground p-8 text-center">
-          {t("messages__loading")}
-        </p>
+        <TableSkeleton
+          className="table-fixed"
+          columns={messagesTableSkeletonColumns}
+          rows={PAGE_SIZE / 2}
+        />
       );
     }
     if (isError) {
@@ -128,26 +132,35 @@ export const MessagesDirectory = ({
         </p>
       );
     }
-    return messages.map((message, i) => {
-      const isCurrentTrack = player.playingId === message.id;
-      const isPlaying = isCurrentTrack && player.isPlaying;
-      return (
-        <MessagesTableRow
-          key={message.id}
-          message={message}
-          index={i}
-          anonymousLabel={anonymous}
-          selected={isMessageSelected(message.id)}
-          isPlaying={isPlaying}
-          progress={isCurrentTrack ? player.progress : 0}
-          currentTime={isCurrentTrack ? player.currentTime : 0}
-          onToggleSelect={() => handleRowToggle(message.id)}
-          onOpen={() => setActiveMessageId(message.id)}
-          onPlay={() => player.toggle(message.id)}
-          isLast={i === messages.length - 1}
+    return (
+      <Table className="table-fixed">
+        <MessageTableHead
+          allSelected={allSelected}
+          onToggleAll={handleToggleAll}
         />
-      );
-    });
+        <TableBody>
+          {messages.map((message, i) => {
+            const isCurrentTrack = player.playingId === message.id;
+            const isPlaying = isCurrentTrack && player.isPlaying;
+            return (
+              <MessagesTableRow
+                key={message.id}
+                message={message}
+                index={i}
+                anonymousLabel={anonymous}
+                selected={isMessageSelected(message.id)}
+                isPlaying={isPlaying}
+                progress={isCurrentTrack ? player.progress : 0}
+                currentTime={isCurrentTrack ? player.currentTime : 0}
+                onToggleSelect={() => handleRowToggle(message.id)}
+                onOpen={() => setActiveMessageId(message.id)}
+                onPlay={() => player.toggle(message.id)}
+              />
+            );
+          })}
+        </TableBody>
+      </Table>
+    );
   };
 
   return (
@@ -175,14 +188,6 @@ export const MessagesDirectory = ({
             {t("messages__toolbar__export_all")}
           </Button>
         </>
-      }
-      tableHead={
-        messages.length > 0 ? (
-          <MessageTableHead
-            allSelected={allSelected}
-            onToggleAll={handleToggleAll}
-          />
-        ) : null
       }
       bottomSlot={
         <InfiniteScrollSentinel

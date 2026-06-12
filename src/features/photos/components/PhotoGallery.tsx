@@ -75,7 +75,7 @@ export const PhotoGallery = ({
   }
 
   return (
-    <div className="tablet:p-6 p-4">
+    <div className="tablet:px-6 tablet:pb-6 px-4 pb-4">
       <div className="flex gap-3">
         {columns.map((col, colIdx) => (
           <div key={colIdx} className="flex flex-1 flex-col gap-3">

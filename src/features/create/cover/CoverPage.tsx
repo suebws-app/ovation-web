@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { InfoIcon } from "@ovation/icons/InfoIcon";
 import { AuthSplitLayout } from "@/features/auth/components/AuthSplitLayout";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
@@ -237,7 +237,6 @@ export const CoverPage = () => {
           className="shadow-primary/40 tablet:mt-5 mt-3 w-full rounded-full shadow-md"
         >
           {t("signup__claim__continue")}
-          <ArrowRightIcon width={16} height={16} />
         </Button>
       </>
     </AuthSplitLayout>

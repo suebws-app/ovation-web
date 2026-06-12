@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { AudioPlayer } from "@ovation/ui/components/AudioPlayer";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
@@ -42,7 +42,6 @@ export const Messages = ({ eventId, messages, totalCount }: MessagesProps) => {
           className="type-body-small text-primary inline-flex items-center gap-1.5 font-semibold hover:underline"
         >
           {t("dashboard__widget__messages__open_inbox")}
-          <ArrowRightIcon width={12} height={12} />
         </Link>
       </div>
 

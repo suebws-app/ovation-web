@@ -47,7 +47,7 @@ export const appRoutes = {
   app: {
     root: "/home",
     settings: "/settings",
-    keepsakes: "/keepsakes",
+    keepsakes: "/shop",
     cart: "/cart",
     orders: "/orders",
     qrCode: "/qr-code",

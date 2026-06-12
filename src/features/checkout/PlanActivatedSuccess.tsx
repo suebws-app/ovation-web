@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Logo } from "@ovation/ui/components/Logo";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { PendingEventCreator } from "./PendingEventCreator";
+import { LogoHeader } from "@/components/LogoHeader";
 
 type PlanActivatedSuccessProps = {
   orderId: string;
@@ -24,9 +24,7 @@ export const PlanActivatedSuccess = async ({
   return (
     <div className="bg-background min-h-screen">
       {!isDre && <PendingEventCreator orderId={orderId} />}
-      <header className="px-6 py-6">
-        <Logo />
-      </header>
+      <LogoHeader />
 
       <main className="mx-auto flex w-full max-w-160 flex-col gap-6 px-6 py-10">
         <div className="rounded-20 bg-card border-border flex flex-col items-center gap-3 border p-8 text-center">

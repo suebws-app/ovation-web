@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { appRoutes } from "@/lib/routes";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { ProductTag } from "./ProductTag";
@@ -70,8 +70,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
                   product.productType,
                 )}
               >
-                {t("keepsakes__product__order")}{" "}
-                <ArrowRightIcon width={12} height={12} />
+                {t("keepsakes__product__order")}
               </Link>
             </Button>
           ) : (

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
 import { HeartIcon } from "@ovation/icons/HeartIcon";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { Link } from "@/i18n/navigation";
@@ -80,7 +80,6 @@ export const GuestThankYouPage = async ({
             >
               <Link href={`/g/${slug}/compose`}>
                 {t("guest__thank_you__cta")}
-                <ArrowRightIcon width={16} height={16} />
               </Link>
             </Button>
           </StickyCTA>

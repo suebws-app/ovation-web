@@ -2,6 +2,7 @@
 
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 
 type CustomizerErrorProps = {
   error: Error & { digest?: string };
@@ -21,7 +22,7 @@ const CustomizerError = ({ error, reset }: CustomizerErrorProps) => {
             Try again
           </Button>
           <Button asChild variant="outline" className="rounded-full">
-            <Link href="/keepsakes">Back to keepsakes</Link>
+            <Link href={appRoutes.app.keepsakes}>Back to keepsakes</Link>
           </Button>
         </div>
       </div>

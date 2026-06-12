@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { OtpInput } from "@ovation/ui/components/OtpInput";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { useSignInStore } from "../useSignInStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
@@ -60,7 +60,6 @@ export const TwoFactorStep = () => {
         className="shadow-primary/40 mt-9 rounded-full px-10 shadow-md"
       >
         {t("auth__signin__twofactor__verify")}
-        <ArrowRightIcon width={16} height={16} />
       </Button>
 
       <p className="type-caption text-muted-foreground mt-11 font-serif italic">
