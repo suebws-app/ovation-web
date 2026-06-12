@@ -12,6 +12,7 @@ import {
 import type { EventStats } from "@/lib/api/types";
 
 import { PhotoBatchFooter } from "./components/PhotoBatchFooter";
+import { PhotoGallerySkeleton } from "./skeletons/PhotoGallerySkeleton";
 import { PhotoGallery } from "./components/PhotoGallery";
 import { PhotoLightbox } from "./components/PhotoLightbox";
 import { PhotosFilterRail } from "./components/PhotosFilterRail";
@@ -138,9 +139,7 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
     >
       <PhotosFilterRail eventId={eventId} stats={stats} allCount={allCount} />
       {isPending ? (
-        <p className="type-body-small text-muted-foreground p-8 text-center">
-          {t("photos__loading")}
-        </p>
+        <PhotoGallerySkeleton />
       ) : isError ? (
         <p className="type-body-small text-destructive p-8 text-center">
           {t("photos__error")}

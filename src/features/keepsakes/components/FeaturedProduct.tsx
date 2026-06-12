@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { appRoutes } from "@/lib/routes";
 import { formatPrice, type DesignedProduct } from "../designTokens";
 import { FeaturePill } from "./FeaturePill";
@@ -65,8 +65,7 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
                   product.productType,
                 )}
               >
-                {t("keepsakes__featured__order_now")}{" "}
-                <ArrowRightIcon width={13} height={13} />
+                {t("keepsakes__featured__order_now")}
               </Link>
             </Button>
           ) : (

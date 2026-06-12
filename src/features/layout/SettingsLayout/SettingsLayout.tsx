@@ -18,7 +18,7 @@ export const SettingsLayout = ({ children }: SettingsLayoutProps) => (
         <Logo />
         <SidebarTrigger />
       </header>
-      <div className="tablet:px-10 tablet:py-11 mx-auto w-full max-w-4xl px-6 py-8">
+      <div className="tablet:px-10 tablet:py-11 max-w-container mx-auto w-full px-6 py-8">
         {children}
       </div>
     </SidebarInset>

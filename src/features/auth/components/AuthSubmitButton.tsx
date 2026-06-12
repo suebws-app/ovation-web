@@ -1,5 +1,4 @@
 import { Button } from "@ovation/ui/components/Button";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { cn } from "@ovation/ui/utils/cn";
 
 type AuthSubmitButtonProps = {
@@ -25,6 +24,5 @@ export const AuthSubmitButton = ({
     )}
   >
     {pending ? pendingLabel : label}
-    <ArrowRightIcon width={16} height={16} />
   </Button>
 );

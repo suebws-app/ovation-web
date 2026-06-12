@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { LockIcon } from "@ovation/icons/LockIcon";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { Button } from "@ovation/ui/components/Button";
 import { formatPrice } from "@/features/keepsakes/designTokens";
 import type { CartTotalsResult } from "@/lib/api/types";
@@ -47,7 +47,6 @@ export const CartMobileCheckoutBar = ({
         {isCheckingOut
           ? t("cart__summary__checkout_pending")
           : t(ctaLabel, { total: formatPrice(totalCents, currency) })}
-        <ArrowRightIcon width={13} height={13} />
       </Button>
     </div>
   );

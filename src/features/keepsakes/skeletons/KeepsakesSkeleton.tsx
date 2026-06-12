@@ -1,35 +1,92 @@
-const TILE_COUNT = 6;
-const tiles = Array.from({ length: TILE_COUNT }, (_, i) => i);
+import { useTranslations } from "next-intl";
+import { Kicker } from "@ovation/ui/components/Kicker";
+import { Skeleton } from "@ovation/ui/components/Skeleton";
+import { cn } from "@ovation/ui/utils/cn";
+import { KeepsakesHero } from "../components/KeepsakesHero";
 
-export const KeepsakesSkeleton = () => (
-  <div className="flex w-full min-w-0 flex-col gap-6 p-6">
-    <div className="bg-card border-border rounded-16 flex flex-col gap-3 border p-6">
-      <div className="bg-muted h-8 w-64 max-w-full animate-pulse rounded" />
-      <div className="bg-muted h-4 w-80 max-w-full animate-pulse rounded" />
+const cards = Array.from({ length: 6 }, (_, i) => i);
+
+const FILTER_LABEL_KEYS = [
+  "keepsakes__filter__all",
+  "keepsakes__filter__printed",
+  "keepsakes__filter__digital",
+  "keepsakes__filter__physical",
+  "keepsakes__filter__gifts",
+] as const;
+
+const StaticFilterTab = ({
+  label,
+  active = false,
+}: {
+  label: string;
+  active?: boolean;
+}) => (
+  <span
+    className={cn(
+      "type-caption rounded-full px-3 py-1.5 font-semibold whitespace-nowrap",
+      active
+        ? "bg-foreground text-background"
+        : "border-border bg-card text-muted-foreground border",
+    )}
+  >
+    {label}
+  </span>
+);
+
+const StaticFilterTabs = () => {
+  const t = useTranslations();
+  return (
+    <div className="flex gap-1.5 overflow-auto">
+      {FILTER_LABEL_KEYS.map((key, i) => (
+        <StaticFilterTab key={key} label={t(key)} active={i === 0} />
+      ))}
     </div>
-    <div className="bg-card border-border rounded-16 desktop:grid-cols-[280px_1fr] grid grid-cols-1 gap-4 border p-5">
-      <div className="bg-muted rounded-12 aspect-square w-full animate-pulse" />
-      <div className="flex flex-col justify-center gap-3">
-        <div className="bg-muted h-6 w-48 animate-pulse rounded" />
-        <div className="bg-muted h-4 w-full max-w-md animate-pulse rounded" />
-        <div className="bg-muted rounded-8 h-10 w-32 animate-pulse" />
+  );
+};
+
+const SkeletonProductCard = () => (
+  <div className="rounded-20 border-border bg-card flex flex-col overflow-hidden border">
+    <Skeleton className="h-45 w-full rounded-none" />
+    <div className="flex flex-1 flex-col gap-1.5 p-4.5">
+      <div className="flex items-start justify-between gap-3">
+        <Skeleton className="h-5 w-32 max-w-full" />
+        <Skeleton className="h-5 w-16 shrink-0" />
       </div>
-    </div>
-    <div className="bg-muted rounded-12 h-20 w-full animate-pulse" />
-    <div className="flex flex-col gap-4">
-      <div className="bg-muted h-6 w-40 animate-pulse rounded" />
-      <div className="tablet:grid-cols-3 desktop:grid-cols-3 grid grid-cols-2 gap-4">
-        {tiles.map((i) => (
-          <div
-            key={i}
-            className="bg-card border-border rounded-12 flex flex-col gap-3 border p-3"
-          >
-            <div className="bg-muted rounded-8 aspect-square w-full animate-pulse" />
-            <div className="bg-muted h-4 w-32 max-w-full animate-pulse rounded" />
-            <div className="bg-muted h-3 w-20 animate-pulse rounded" />
-          </div>
-        ))}
+      <Skeleton className="h-3 w-24" />
+      <Skeleton className="mt-1.5 h-4 w-full max-w-60" />
+      <div className="mt-auto flex gap-2 pt-3.5">
+        <Skeleton className="h-8 flex-1 rounded-full" />
+        <Skeleton className="h-8 w-24 shrink-0 rounded-full" />
       </div>
     </div>
   </div>
 );
+
+export const KeepsakesSkeleton = () => {
+  const t = useTranslations();
+  return (
+    <div className="flex w-full min-w-0 flex-col gap-6 p-6">
+      <div className="flex items-start justify-between gap-4">
+        <KeepsakesHero />
+      </div>
+      <div className="mt-9">
+        <div className="tablet:flex-row tablet:items-end tablet:justify-between flex flex-col gap-4.5">
+          <div>
+            <Kicker className="text-muted-foreground">
+              {t("keepsakes__collection__eyebrow")}
+            </Kicker>
+            <h2 className="type-h2 mt-1.5 font-semibold tracking-tight">
+              {t("keepsakes__collection__title")}
+            </h2>
+          </div>
+          <StaticFilterTabs />
+        </div>
+        <div className="tablet:grid-cols-2 desktop:grid-cols-3 mt-4.5 grid gap-4.5">
+          {cards.map((i) => (
+            <SkeletonProductCard key={i} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { QRCardPreview } from "./QRCardPreview";
 import { formatEuro, type Pricing } from "../pricing";
 import { PAPER_PRICE_PER_CARD, type OrderState } from "../types";
@@ -81,7 +81,6 @@ export const OrderTotalCard = ({
 
       <Button size="lg" className="w-full rounded-full" onClick={onContinue}>
         {ctaLabel}
-        <ArrowRightIcon width={14} height={14} />
       </Button>
       {onBack && (
         <Button

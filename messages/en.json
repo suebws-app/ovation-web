@@ -1931,7 +1931,7 @@
   "link_settings__video_duration__desc": "Maximum length for video submissions.",
   "link_settings__audio_duration__title": "Audio recording length",
   "link_settings__audio_duration__desc": "Maximum length for voice submissions.",
-  "qr_code__link_settings_card__title": "Link settings moved",
+  "qr_code__link_settings_card__title": "Link settings",
   "qr_code__link_settings_card__desc": "Manage submission types, recording length, and link status from a single page.",
   "qr_code__link_settings_card__cta": "Open link settings",
   "kiosk__config__link_redirect__title": "Submission settings",

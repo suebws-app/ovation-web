@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { GiftIcon } from "@ovation/icons/GiftIcon";
 
 export const BundleBanner = () => {
@@ -33,8 +33,7 @@ export const BundleBanner = () => {
         size="lg"
         className="bg-foreground text-background hover:bg-foreground/90 tablet:w-auto w-full rounded-full"
       >
-        {t("keepsakes__bundle__action")}{" "}
-        <ArrowRightIcon width={13} height={13} />
+        {t("keepsakes__bundle__action")}
       </Button>
     </div>
   );

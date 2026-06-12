@@ -6,7 +6,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
 import { CopyIcon } from "@ovation/icons/CopyIcon";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
@@ -101,7 +101,6 @@ export const QRcodeWidget = ({ shortUrl }: QRcodeWidgetProps) => {
         className="type-body-small relative mt-4 inline-flex items-center justify-center gap-2 font-semibold transition-opacity hover:opacity-80"
       >
         {t("dashboard__qr__open_page")}
-        <ArrowRightIcon width={14} height={14} />
       </Link>
     </div>
   );

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { GalleryItem } from "@/lib/api/types";
@@ -77,7 +77,6 @@ export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
         className="type-body-small text-chart-2 inline-flex items-center justify-center gap-1.5 font-semibold hover:underline"
       >
         {t("dashboard__widget__photos__open_gallery")}
-        <ArrowRightIcon width={12} height={12} />
       </Link>
 
       <MediaPreviewDialog

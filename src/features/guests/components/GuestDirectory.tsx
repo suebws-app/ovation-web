@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { Table, TableBody, TableSkeleton } from "@ovation/ui/components/Table";
 import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 import { DataDirectory } from "@/components/DataDirectory";
 import { InfiniteScrollSentinel } from "@/components/InfiniteScrollSentinel";
@@ -26,6 +27,7 @@ import { GuestRow } from "./GuestRow";
 import { GuestSearchInput } from "./GuestSearchInput";
 import { GuestSortButton } from "./GuestSortButton";
 import { GuestTableHead } from "./GuestTableHead";
+import { guestsTableSkeletonColumns } from "../tableColumns";
 
 type GuestDirectoryProps = {
   eventId: string;
@@ -97,9 +99,11 @@ export const GuestDirectory = ({
   const renderBody = () => {
     if (isPending) {
       return (
-        <p className="type-body-small text-muted-foreground p-8 text-center">
-          {t("common__loading")}
-        </p>
+        <TableSkeleton
+          className="table-fixed"
+          columns={guestsTableSkeletonColumns}
+          rows={8}
+        />
       );
     }
     if (isError) {
@@ -119,16 +123,25 @@ export const GuestDirectory = ({
         </p>
       );
     }
-    return filtered.map((guest, i) => (
-      <GuestRow
-        key={guest.id}
-        guest={guest}
-        index={i}
-        selected={isGuestSelected(guest.id)}
-        onToggleSelect={() => handleRowToggle(guest.id)}
-        isLast={i === filtered.length - 1}
-      />
-    ));
+    return (
+      <Table className="table-fixed">
+        <GuestTableHead
+          allSelected={allSelected}
+          onToggleAll={handleToggleAll}
+        />
+        <TableBody>
+          {filtered.map((guest, i) => (
+            <GuestRow
+              key={guest.id}
+              guest={guest}
+              index={i}
+              selected={isGuestSelected(guest.id)}
+              onToggleSelect={() => handleRowToggle(guest.id)}
+            />
+          ))}
+        </TableBody>
+      </Table>
+    );
   };
 
   return (
@@ -162,14 +175,6 @@ export const GuestDirectory = ({
             {t("guests__directory__export")}
           </Button>
         </>
-      }
-      tableHead={
-        filtered.length > 0 ? (
-          <GuestTableHead
-            allSelected={allSelected}
-            onToggleAll={handleToggleAll}
-          />
-        ) : null
       }
       bottomSlot={
         <InfiniteScrollSentinel

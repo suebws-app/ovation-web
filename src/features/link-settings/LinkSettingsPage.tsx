@@ -20,7 +20,6 @@ export const LinkSettingsPage = async () => {
     <div className="mx-auto w-full min-w-0 p-6">
       <LinkSettingsClient
         eventId={event.id}
-        slug={event.slug}
         submissionsEnabled={event.status === "active"}
         couplePhotoUrl={event.couplePhotoUrl}
         initialSettings={settingsRes.settings}

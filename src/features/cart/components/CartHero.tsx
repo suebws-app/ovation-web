@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { appRoutes } from "@/lib/routes";
 import { CheckoutStepIndicator } from "./CheckoutStepIndicator";
 
@@ -19,7 +19,6 @@ export const CartHero = ({ itemCount, step = "cart" }: CartHeroProps) => {
         href={appRoutes.app.keepsakes}
         className="text-muted-foreground hover:text-foreground type-caption inline-flex items-center gap-1.5 self-start tracking-wider"
       >
-        <ArrowRightIcon width={12} height={12} className="rotate-180" />
         {t("cart__hero__back")}
       </Link>
       <div className="tablet:flex-row tablet:items-end tablet:justify-between flex flex-col items-start gap-5">

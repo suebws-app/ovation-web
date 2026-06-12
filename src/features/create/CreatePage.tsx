@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { EventBookForm } from "@/features/create/EventBookForm";
@@ -100,7 +100,6 @@ export const CreatePage = () => {
           className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
         >
           {t("signup__book_details__continue")}
-          <ArrowRightIcon width={16} height={16} />
         </Button>
       }
       className="desktop:min-h-[calc(100vh-89px)] desktop:h-auto desktop:overflow-visible h-[calc(100svh-89px)] overflow-hidden"

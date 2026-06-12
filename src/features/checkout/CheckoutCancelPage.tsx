@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Logo } from "@ovation/ui/components/Logo";
 import { WarningIcon } from "@ovation/icons/WarningIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { LogoHeader } from "@/components/LogoHeader";
 
 type CheckoutCancelPageProps = {
   params: Promise<{ orderId: string }>;
@@ -18,9 +18,7 @@ export const CheckoutCancelPage = async ({
 
   return (
     <div className="bg-background min-h-screen">
-      <header className="px-6 py-6">
-        <Logo />
-      </header>
+      <LogoHeader />
 
       <main className="mx-auto flex w-full max-w-140 flex-col items-center gap-6 px-6 py-12 text-center">
         <div className="rounded-16 bg-muted inline-flex size-16 items-center justify-center">

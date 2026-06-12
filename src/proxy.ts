@@ -16,7 +16,7 @@ const PROTECTED_PREFIXES = [
   "/events",
   "/guests",
   "/photos",
-  "/keepsakes",
+  "/shop",
   "/orders",
   "/cart",
   "/kiosk",
@@ -132,13 +132,21 @@ export const proxy = async (request: NextRequest) => {
     getSessionCookie(request, { cookiePrefix: "ovation" }),
   );
 
+  const isLegacyKeepsakeCustomizer =
+    pathnameWithoutLocale.startsWith("/keepsakes/");
+
   if (
-    matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) &&
+    (matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) ||
+      isLegacyKeepsakeCustomizer) &&
     !isAuthenticated
   ) {
     const loginUrl = new URL("/sign-in", request.url);
     loginUrl.searchParams.set("redirect", pathname);
     return Response.redirect(loginUrl);
+  }
+
+  if (isAuthenticated && pathnameWithoutLocale === "/keepsakes") {
+    return Response.redirect(new URL("/shop", request.url));
   }
 
   if (pathnameWithoutLocale === "/settings") {

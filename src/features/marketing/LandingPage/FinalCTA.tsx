@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "../../../components/SectionTitle";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Button } from "@ovation/ui/components/Button";
 import { Card } from "@ovation/ui/components/Card";
@@ -61,7 +61,6 @@ export const FinalCTA = () => {
                 className="bg-destructive mt-3.5 w-full rounded-full shadow-xl"
               >
                 {t("marketing__cta__button")}
-                <ArrowRightIcon width={16} height={16} />
               </Button>
 
               <p className="text-muted-foreground type-caption mt-3.5 text-center">

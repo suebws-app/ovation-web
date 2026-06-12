@@ -11,7 +11,6 @@ import { LinkAudioDurationCard } from "./components/LinkAudioDurationCard";
 
 type LinkSettingsClientProps = {
   eventId: string;
-  slug: string;
   submissionsEnabled: boolean;
   couplePhotoUrl: string | null;
   initialSettings: LinkSettings;
@@ -19,7 +18,6 @@ type LinkSettingsClientProps = {
 
 export const LinkSettingsClient = ({
   eventId,
-  slug,
   submissionsEnabled,
   couplePhotoUrl,
   initialSettings,
@@ -28,7 +26,7 @@ export const LinkSettingsClient = ({
 
   return (
     <div className="flex flex-col gap-6">
-      <LinkHeader slug={slug} />
+      <LinkHeader />
       <LinkActiveCard eventId={eventId} enabled={submissionsEnabled} />
       <LinkCouplePhotoCard eventId={eventId} initialPhotoUrl={couplePhotoUrl} />
       <LinkSubmissionTypesCard settings={settings} onPatch={patch} />

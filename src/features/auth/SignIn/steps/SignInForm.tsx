@@ -33,6 +33,7 @@ const ALLOWED_REDIRECT_PREFIXES = [
   "/guests",
   "/photos",
   "/keepsakes",
+  "/shop",
   "/orders",
   "/cart",
   "/kiosk",

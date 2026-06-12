@@ -1,19 +1,17 @@
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Logo } from "@ovation/ui/components/Logo";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { LogoHeader } from "@/components/LogoHeader";
 
 export const PaymentSuccessPage = async () => {
   const t = await getTranslations();
 
   return (
     <div className="bg-background min-h-screen">
-      <header className="px-6 py-6">
-        <Logo />
-      </header>
+      <LogoHeader />
 
       <main className="mx-auto flex w-full max-w-lg flex-col items-center px-6 py-16 text-center">
         <div className="rounded-16 bg-secondary/15 mb-6 inline-flex size-20 items-center justify-center">

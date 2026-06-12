@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
+import { TableCell, TableRow } from "@ovation/ui/components/Table";
 import { Waveform } from "@ovation/ui/components/Waveform";
 import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
@@ -16,6 +17,7 @@ import {
   tintFrom,
   waveFrom,
 } from "../adapters";
+import { messagesTableColumnClasses } from "../tableColumns";
 import { MessagePlayButton } from "./MessagePlayButton";
 
 type MessagesTableRowProps = {
@@ -29,7 +31,6 @@ type MessagesTableRowProps = {
   onToggleSelect: () => void;
   onOpen: () => void;
   onPlay: () => void;
-  isLast: boolean;
 };
 
 const formatSec = (sec: number): string => {
@@ -50,7 +51,6 @@ export const MessagesTableRow = ({
   onToggleSelect,
   onOpen,
   onPlay,
-  isLast,
 }: MessagesTableRowProps) => {
   const t = useTranslations();
   const locale = useLocale();
@@ -75,8 +75,7 @@ export const MessagesTableRow = ({
   };
 
   return (
-    <div
-      role="button"
+    <TableRow
       tabIndex={0}
       onClick={handleRowClick}
       onKeyDown={(e) => {
@@ -87,125 +86,109 @@ export const MessagesTableRow = ({
       }}
       aria-label={t("messages__row__open_aria", { name: displayName })}
       style={{ animationDelay }}
-      className={`animate-slide-up-fade hover:bg-muted/40 grid cursor-pointer grid-cols-[28px_1fr_44px] items-center gap-3 px-4 py-3.5 transition-colors @[740px]/table:grid-cols-[28px_minmax(180px,1.4fr)_80px_110px_120px] @[740px]/table:gap-3.5 @[740px]/table:px-6 @[1420px]/table:grid-cols-[28px_minmax(180px,1.4fr)_80px_110px_280px] ${
-        isLast ? "" : "border-border border-b"
-      }`}
+      className="animate-slide-up-fade cursor-pointer"
     >
-      <div data-row-no-open>
+      <TableCell
+        data-row-no-open
+        className={messagesTableColumnClasses.checkbox}
+      >
         <Checkbox
           checked={selected}
           onChange={onToggleSelect}
           aria-label={t("messages__row__select_aria", { name: displayName })}
         />
-      </div>
-      <div className="flex min-w-0 items-center gap-3">
-        <Avatar size="default">
-          <AvatarFallback
-            className="type-body-small text-primary-foreground font-semibold"
-            style={{ background: tintFrom(message.id) }}
-          >
-            {initialsFrom(message.guestNames)}
-          </AvatarFallback>
-        </Avatar>
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
-            <span className="type-body-small truncate font-semibold">
-              {displayName}
-            </span>
-            {message.isFavorite && (
-              <HeartIcon
-                width={12}
-                height={12}
-                fill="var(--destructive)"
-                stroke="none"
-              />
+      </TableCell>
+      <TableCell className={messagesTableColumnClasses.message}>
+        <div className="flex min-w-0 items-center gap-3">
+          <Avatar size="default">
+            <AvatarFallback
+              className="type-body-small text-primary-foreground font-semibold"
+              style={{ background: tintFrom(message.id) }}
+            >
+              {initialsFrom(message.guestNames)}
+            </AvatarFallback>
+          </Avatar>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <span className="type-body-small truncate font-semibold">
+                {displayName}
+              </span>
+              {message.isFavorite && (
+                <HeartIcon
+                  width={12}
+                  height={12}
+                  fill="var(--destructive)"
+                  stroke="none"
+                />
+              )}
+            </div>
+            {noteText && (
+              <p className="type-caption text-muted-foreground line-clamp-1 font-serif italic">
+                &ldquo;{noteText}&rdquo;
+              </p>
             )}
-          </div>
-          {noteText && (
-            <p className="type-caption text-muted-foreground line-clamp-1 font-serif italic">
-              &ldquo;{noteText}&rdquo;
-            </p>
-          )}
-          <div className="mt-1 flex flex-wrap items-center gap-2 @[740px]/table:hidden">
-            <MediaTypeIcons
-              hasAudio={message.hasAudio}
-              hasPhoto={message.hasPhoto}
-              hasVideo={message.hasVideo}
-              hasNote={hasNote}
-            />
-            <span className="type-caption text-muted-foreground">
-              {lastLabel}
-            </span>
+            <div className="mt-1 flex flex-wrap items-center gap-2 @[740px]/table:hidden">
+              <MediaTypeIcons
+                hasAudio={message.hasAudio}
+                hasPhoto={message.hasPhoto}
+                hasVideo={message.hasVideo}
+                hasNote={hasNote}
+              />
+              <span className="type-caption text-muted-foreground">
+                {lastLabel}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="hidden items-center gap-2 @[740px]/table:flex">
-        <MediaTypeIcons
-          hasAudio={message.hasAudio}
-          hasPhoto={message.hasPhoto}
-          hasVideo={message.hasVideo}
-          hasNote={hasNote}
-        />
-      </div>
-      <div className="type-caption text-muted-foreground hidden min-w-0 truncate @[740px]/table:block">
+      </TableCell>
+      <TableCell className={messagesTableColumnClasses.type}>
+        <div className="flex items-center gap-2">
+          <MediaTypeIcons
+            hasAudio={message.hasAudio}
+            hasPhoto={message.hasPhoto}
+            hasVideo={message.hasVideo}
+            hasNote={hasNote}
+          />
+        </div>
+      </TableCell>
+      <TableCell
+        className={`type-caption text-muted-foreground truncate ${messagesTableColumnClasses.date}`}
+      >
         {lastLabel}
-      </div>
-      {message.hasAudio ? (
-        <div
-          data-row-no-open
-          className="hidden min-w-0 items-center justify-end gap-3 @[740px]/table:flex"
-        >
-          <div className="hidden min-w-0 items-center overflow-hidden @[1420px]/table:flex">
-            <Waveform
-              bars={wave.slice(0, 24)}
-              height={28}
-              progress={progress}
-            />
+      </TableCell>
+      <TableCell data-row-no-open className={messagesTableColumnClasses.audio}>
+        {message.hasAudio && (
+          <div className="flex min-w-0 items-center justify-end gap-3">
+            <div className="hidden min-w-0 items-center overflow-hidden @[1420px]/table:flex">
+              <Waveform
+                bars={wave.slice(0, 24)}
+                height={28}
+                progress={progress}
+              />
+            </div>
+            <span className="type-caption text-muted-foreground hidden font-mono whitespace-nowrap @[740px]/table:inline">
+              {formatSec(isPlaying || progress > 0 ? currentTime : 0)}/
+              {duration}
+            </span>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onPlay();
+              }}
+              aria-label={
+                isPlaying
+                  ? t("messages__row__pause_aria", { name: displayName })
+                  : t("messages__row__play_aria", { name: displayName })
+              }
+              className="inline-flex"
+            >
+              <MessagePlayButton playing={isPlaying} />
+            </button>
           </div>
-          <span className="type-caption text-muted-foreground font-mono whitespace-nowrap">
-            {formatSec(isPlaying || progress > 0 ? currentTime : 0)}/{duration}
-          </span>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onPlay();
-            }}
-            aria-label={
-              isPlaying
-                ? t("messages__row__pause_aria", { name: displayName })
-                : t("messages__row__play_aria", { name: displayName })
-            }
-            className="inline-flex"
-          >
-            <MessagePlayButton playing={isPlaying} />
-          </button>
-        </div>
-      ) : (
-        <span aria-hidden className="hidden @[740px]/table:block" />
-      )}
-      <div data-row-no-open className="flex justify-end @[740px]/table:hidden">
-        {message.hasAudio ? (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onPlay();
-            }}
-            aria-label={
-              isPlaying
-                ? t("messages__row__pause_aria", { name: displayName })
-                : t("messages__row__play_aria", { name: displayName })
-            }
-            className="inline-flex"
-          >
-            <MessagePlayButton playing={isPlaying} />
-          </button>
-        ) : (
-          <span aria-hidden />
         )}
-      </div>
-    </div>
+      </TableCell>
+    </TableRow>
   );
 };
 

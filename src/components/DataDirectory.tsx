@@ -7,7 +7,6 @@ type DataDirectoryProps = {
   chips: ReactNode;
   title: ReactNode;
   actions: ReactNode;
-  tableHead?: ReactNode;
   children: ReactNode;
   pagination?: ReactNode;
   bottomSlot?: ReactNode;
@@ -18,7 +17,6 @@ export const DataDirectory = ({
   chips,
   title,
   actions,
-  tableHead,
   children,
   pagination,
   bottomSlot,
@@ -35,11 +33,8 @@ export const DataDirectory = ({
           {actions}
         </div>
       </div>
-      <div className="@container/table overflow-x-auto">
-        {tableHead}
-        <div className={cn("min-h-160", bodyClassName)}>{children}</div>
-        {bottomSlot}
-      </div>
+      <div className={cn("min-h-160", bodyClassName)}>{children}</div>
+      {bottomSlot}
       {pagination}
     </div>
   </div>

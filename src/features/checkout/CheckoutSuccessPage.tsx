@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { Logo } from "@ovation/ui/components/Logo";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { ApiError } from "@/lib/api/client";
 import { ordersApi, planPurchasesApi } from "@/lib/api/orders";
@@ -17,6 +16,7 @@ import {
   progressFor,
   statusKey,
 } from "./orderHelpers";
+import { LogoHeader } from "@/components/LogoHeader";
 
 type CheckoutSuccessPageProps = {
   params: Promise<{ orderId: string }>;
@@ -72,9 +72,7 @@ export const CheckoutSuccessPage = async ({
 
   return (
     <div className="bg-background min-h-screen">
-      <header className="px-6 py-6">
-        <Logo />
-      </header>
+      <LogoHeader />
 
       <main className="mx-auto flex w-full max-w-160 flex-col gap-6 px-6 py-10">
         <div className="rounded-20 bg-card border-border flex flex-col items-center gap-3 border p-8 text-center">

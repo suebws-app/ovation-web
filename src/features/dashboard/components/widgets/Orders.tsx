@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { CartIcon } from "@ovation/icons/CartIcon";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
+
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { Order, OrderStatus } from "@/lib/api/types";
@@ -55,7 +55,6 @@ export const Orders = ({ orders }: OrdersProps) => {
           className="type-body-small text-primary inline-flex shrink-0 items-center gap-1 font-semibold hover:underline"
         >
           {t("dashboard__widget__orders__view_all")}
-          <ArrowRightIcon width={12} height={12} />
         </Link>
       </div>
 
