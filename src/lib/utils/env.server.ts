@@ -42,5 +42,7 @@ export const serverEnv = {
   COMING_SOON_ENABLED: process.env.COMING_SOON_ENABLED ?? "false",
   COMING_SOON_PASSWORD: process.env.COMING_SOON_PASSWORD ?? "",
 
+  REQUIRE_EMAIL_VERIFICATION: process.env.REQUIRE_EMAIL_VERIFICATION === "true",
+
   IS_PRODUCTION: process.env.NODE_ENV === "production",
 } as const;

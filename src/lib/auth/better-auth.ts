@@ -96,8 +96,7 @@ export const auth = betterAuth({
 
   emailAndPassword: {
     enabled: true,
-    // TODO: re-enable in dev. Currently bypassed locally; production stays gated.
-    requireEmailVerification: env.IS_PRODUCTION,
+    requireEmailVerification: env.REQUIRE_EMAIL_VERIFICATION,
     minPasswordLength: 8,
     autoSignIn: true,
     sendResetPassword: async ({ user, url }) => {

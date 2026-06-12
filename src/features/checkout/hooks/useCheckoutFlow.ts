@@ -65,6 +65,9 @@ type UseCheckoutFlowReturn = {
   retry: () => void;
 };
 
+const isUnauthorizedError = (error: unknown): boolean =>
+  ApiError.isApiError(error) && error.status === 401;
+
 export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
   const t = useTranslations();
   const router = useRouter();
@@ -135,6 +138,10 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
             window.location.assign(checkout.checkoutUrl);
             return { kind: "redirecting" };
           } catch (error) {
+            if (isUnauthorizedError(error)) {
+              router.push(appRoutes.auth.verify);
+              return { kind: "redirecting" };
+            }
             return {
               kind: "error",
               message: ApiError.isApiError(error)
@@ -248,6 +255,10 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
             window.location.assign(checkout.checkoutUrl);
             return { kind: "redirecting" };
           } catch (error) {
+            if (isUnauthorizedError(error)) {
+              router.push(appRoutes.auth.verify);
+              return { kind: "redirecting" };
+            }
             return {
               kind: "error",
               message: ApiError.isApiError(error)
@@ -256,6 +267,10 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
             };
           }
         } catch (error) {
+          if (isUnauthorizedError(error)) {
+            router.push(appRoutes.auth.verify);
+            return { kind: "redirecting" };
+          }
           return {
             kind: "error",
             message: ApiError.isApiError(error)
