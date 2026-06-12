@@ -4,6 +4,7 @@ import { getSessionCookie } from "better-auth/cookies";
 import { routing } from "./i18n/routing";
 import { locales } from "./i18n/config";
 import { serverEnv as env } from "./lib/utils/env.server";
+import { buildCsp } from "./lib/utils/csp";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -71,6 +72,9 @@ const hmacHex = async (value: string, secret: string): Promise<string> => {
     .join("");
 };
 
+const generateNonce = (): string =>
+  btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(16))));
+
 const timingSafeEqual = (a: string, b: string): boolean => {
   if (a.length !== b.length) return false;
   const aBytes = new TextEncoder().encode(a);
@@ -104,8 +108,14 @@ export const proxy = async (request: NextRequest) => {
     }
   }
 
-  if (isComingSoonPage || isComingSoonApi || pathname.startsWith("/api/")) {
+  if (isComingSoonApi || pathname.startsWith("/api/")) {
     return NextResponse.next();
+  }
+
+  if (isComingSoonPage) {
+    const response = NextResponse.next();
+    response.headers.set("Content-Security-Policy", buildCsp());
+    return response;
   }
 
   if (
@@ -154,7 +164,20 @@ export const proxy = async (request: NextRequest) => {
     return Response.redirect(new URL("/home", request.url));
   }
 
+  const useStrictCsp =
+    env.IS_PRODUCTION &&
+    (matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) ||
+      matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES) ||
+      isPostAuthSignUpStep);
+
+  const nonce = useStrictCsp ? generateNonce() : undefined;
+  const csp = buildCsp(nonce);
+  if (nonce) {
+    request.headers.set("Content-Security-Policy", csp);
+  }
+
   const response = intlMiddleware(request as never) as NextResponse;
+  response.headers.set("Content-Security-Policy", csp);
 
   if (
     matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) ||
