@@ -54,14 +54,14 @@ so the browser can hit it directly with the session cookie.
 
 ## Useful commands
 
-| Command | What it does |
-|---|---|
-| `pnpm dev` | Next dev server |
-| `pnpm build` | Production build |
-| `pnpm start` | Run production build |
-| `pnpm ts-check` | `tsc --noEmit` |
-| `pnpm lint` | ESLint (use the CLI directly; `next lint` is gone in 16) |
-| `pnpm format` | Prettier write |
+| Command         | What it does                                             |
+| --------------- | -------------------------------------------------------- |
+| `pnpm dev`      | Next dev server                                          |
+| `pnpm build`    | Production build                                         |
+| `pnpm start`    | Run production build                                     |
+| `pnpm ts-check` | `tsc --noEmit`                                           |
+| `pnpm lint`     | ESLint (use the CLI directly; `next lint` is gone in 16) |
+| `pnpm format`   | Prettier write                                           |
 
 ## Project layout
 
@@ -103,7 +103,7 @@ Full list in `.env.example`. The non-obvious ones:
 - **`AUTH_HASH_PEPPER`** — independent secret used to hash IP/UA before
   storing on `session` rows.
 - **`COOKIE_DOMAIN`** — leave empty in dev (`localhost` rejects
-  `Domain` cookies). Set to `.ovation.app` in prod so `app.*` and
+  `Domain` cookies). Set to `.ovationday.com` in prod so `app.*` and
   `api.*` share the cookie.
 - **`TRUSTED_ORIGINS`** — comma-separated origins Better Auth accepts
   for CSRF + redirects.
@@ -114,11 +114,11 @@ Full list in `.env.example`. The non-obvious ones:
 - Service "ovation-web" deploys from this directory
 - Set the same `AUTH_*` secrets the API uses
 - Set `DATABASE_URL=${{ Postgres.DATABASE_URL }}` (same Postgres as API)
-- Set `COOKIE_DOMAIN=.ovation.app`
-- Set `TRUSTED_ORIGINS=https://app.ovation.app,https://ovation.app`
-- Set `NEXT_PUBLIC_API_URL=https://api.ovation.app`
-- DNS: `app.ovation.app` → this service. The API service must be at
-  `api.ovation.app` for the cross-subdomain cookie to flow.
+- Set `COOKIE_DOMAIN=.ovationday.com`
+- Set `TRUSTED_ORIGINS=https://app.ovationday.com,https://ovationday.com`
+- Set `NEXT_PUBLIC_API_URL=https://api.ovationday.com`
+- DNS: `app.ovationday.com` → this service. The API service must be at
+  `api.ovationday.com` for the cross-subdomain cookie to flow.
 
 ## House rules
 
@@ -146,8 +146,8 @@ calling a UI change done.
 - Better Auth's catch-all is the only `/api/auth` route here.
   Old Supabase routes (`/signin`, `/refresh`, etc.) are gone.
 - Server components fetch via `apiFetch` (forwards the cookie header
-  + locale). Client components fetch via `clientFetch` (uses
-  `credentials: 'include'` and auto-attaches CSRF).
+  - locale). Client components fetch via `clientFetch` (uses
+    `credentials: 'include'` and auto-attaches CSRF).
 - `useSession()` from `@/lib/auth/client` is the source of truth for
   signed-in state on the client. Server components use
   `getCurrentUser()` from `@/lib/auth/session`.

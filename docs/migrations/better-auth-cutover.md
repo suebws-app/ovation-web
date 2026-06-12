@@ -61,13 +61,13 @@ Add to `ovation-web/.env.local` and Railway env:
 ```
 DATABASE_URL=postgresql://...
 BETTER_AUTH_SECRET=<openssl rand -base64 32>
-TRUSTED_ORIGINS=https://app.ovation.app,https://ovation.app
+TRUSTED_ORIGINS=https://app.ovationday.com,https://ovationday.com
 GOOGLE_CLIENT_ID=...
 GOOGLE_CLIENT_SECRET=...
 APPLE_CLIENT_ID=...
 APPLE_CLIENT_SECRET=...
 RESEND_API_KEY=re_...
-EMAIL_FROM=Ovation <hello@ovation.app>
+EMAIL_FROM=Ovation <do-not-reply@ovationday.com>
 ```
 
 In `ovation-api`, no new env vars — `FRONTEND_BASE_URL` is already used by
@@ -105,7 +105,7 @@ fresh 10-minute JWT.
 In `src/common/guards/auth.guard.ts`, swap:
 
 ```ts
-const decoded = await this.verifyToken(token, env);  // old: Supabase JWKS
+const decoded = await this.verifyToken(token, env); // old: Supabase JWKS
 const authProviderId = decoded[env.AUTH_USER_ID_CLAIM];
 const user = await usersRepo.findByAuthProviderId(authProviderId);
 ```
@@ -126,14 +126,14 @@ Add `BetterAuthJwtService` to `AuthModule.providers` and export it.
 
 Replace each form's submit handler to use Better Auth's client:
 
-| File | Old | New |
-|---|---|---|
-| `SignInFormStep.tsx` | `authClient.signIn(...)` from `@/lib/api/auth-client` | `signIn.email(...)` from `@/lib/auth/client` |
-| `CreateAccountStep.tsx` | `authClient.signUp(...)` | `signUp.email(...)` |
-| `VerifyEmailStep.tsx` | `authClient.verifyEmail(...)` | Better Auth handles the URL automatically |
-| `ForgotPasswordPage.tsx` | `authClient.resetPasswordEmail(...)` | `authClient.forgetPassword(...)` |
-| `ResetPasswordPage.tsx` | `authClient.resetPassword(...)` | `authClient.resetPassword(...)` (BA client) |
-| `OauthCallbackPage.tsx` | manual code exchange | Better Auth handles `/api/auth/callback/<provider>` automatically; this page can be deleted |
+| File                     | Old                                                   | New                                                                                         |
+| ------------------------ | ----------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `SignInFormStep.tsx`     | `authClient.signIn(...)` from `@/lib/api/auth-client` | `signIn.email(...)` from `@/lib/auth/client`                                                |
+| `CreateAccountStep.tsx`  | `authClient.signUp(...)`                              | `signUp.email(...)`                                                                         |
+| `VerifyEmailStep.tsx`    | `authClient.verifyEmail(...)`                         | Better Auth handles the URL automatically                                                   |
+| `ForgotPasswordPage.tsx` | `authClient.resetPasswordEmail(...)`                  | `authClient.forgetPassword(...)`                                                            |
+| `ResetPasswordPage.tsx`  | `authClient.resetPassword(...)`                       | `authClient.resetPassword(...)` (BA client)                                                 |
+| `OauthCallbackPage.tsx`  | manual code exchange                                  | Better Auth handles `/api/auth/callback/<provider>` automatically; this page can be deleted |
 
 After each form is migrated, delete the corresponding
 `src/app/api/auth/{signin,signout,refresh,oauth,verify-email}/route.ts`.
@@ -147,6 +147,7 @@ cd ovation-api && pnpm remove @supabase/supabase-js
 ```
 
 Delete:
+
 - `ovation-api/src/modules/auth/supabase-auth.provider.ts`
 - Most of `ovation-api/src/modules/auth/auth.controller.ts` (Better Auth
   replaces these routes)

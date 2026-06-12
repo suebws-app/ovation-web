@@ -38,13 +38,13 @@ export const HelpCenterPage = () => {
       title: t("help__resource__chat__title"),
       description: t("help__resource__chat__desc"),
       icon: MessageSquareIcon,
-      href: "mailto:support@ovation.app",
+      href: "mailto:support@ovationday.com",
     },
     {
       title: t("help__resource__email__title"),
       description: t("help__resource__email__desc"),
       icon: MailIcon,
-      href: "mailto:support@ovation.app",
+      href: "mailto:support@ovationday.com",
     },
   ];
 
@@ -111,11 +111,11 @@ export const HelpCenterPage = () => {
           {t("help__contact__body")}
         </p>
         <a
-          href="mailto:support@ovation.app"
+          href="mailto:support@ovationday.com"
           className="bg-secondary text-foreground type-body-small mt-2 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-semibold"
         >
           <MailIcon width={14} height={14} />
-          support@ovation.app
+          support@ovationday.com
         </a>
       </div>
     </div>
