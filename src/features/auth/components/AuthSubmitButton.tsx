@@ -1,5 +1,4 @@
 import { Button } from "@ovation/ui/components/Button";
-
 import { cn } from "@ovation/ui/utils/cn";
 
 type AuthSubmitButtonProps = {
