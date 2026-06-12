@@ -3,11 +3,9 @@
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { UserIcon } from "@ovation/icons/UserIcon";
-import { LockIcon } from "@ovation/icons/LockIcon";
 import { BellIcon } from "@ovation/icons/BellIcon";
 import { CreditCardIcon } from "@ovation/icons/CreditCardIcon";
 import { BoxIcon } from "@ovation/icons/BoxIcon";
-import { WarningIcon } from "@ovation/icons/WarningIcon";
 import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
@@ -36,12 +34,6 @@ const buildGroups = (t: Translator): SidebarNavGroup[] => [
         icon: UserIcon,
       },
       {
-        key: "privacy",
-        label: t("settings__sidebar__privacy"),
-        href: appRoutes.settings.privacy,
-        icon: LockIcon,
-      },
-      {
         key: "notifications",
         label: t("settings__sidebar__notifications"),
         href: appRoutes.settings.notifications,
@@ -58,13 +50,6 @@ const buildGroups = (t: Translator): SidebarNavGroup[] => [
         label: t("settings__sidebar__data"),
         href: appRoutes.settings.data,
         icon: BoxIcon,
-      },
-      {
-        key: "danger",
-        label: t("settings__sidebar__danger"),
-        href: appRoutes.settings.danger,
-        icon: WarningIcon,
-        variant: "warn",
       },
     ],
   },

@@ -41,13 +41,8 @@ const eventIdFromPath = (pathname: string): string | null => {
     .split("/")
     .filter(Boolean)
     .filter((s) => !isLocale(s));
-  if (
-    segments[0] === "app" &&
-    segments[1] === "events" &&
-    segments[2] &&
-    segments[2] !== "new"
-  ) {
-    return segments[2];
+  if (segments[0] === "events" && segments[1] && segments[1] !== "new") {
+    return segments[1];
   }
   return null;
 };
@@ -224,6 +219,11 @@ const buildProEventGroups = (
 ): SidebarNavGroup[] => [
   {
     items: [
+      {
+        label: t("sidebar__nav__home"),
+        href: appRoutes.app.eventHome(eventId),
+        icon: HomeIcon,
+      },
       {
         label: t("sidebar__nav__messages"),
         href: appRoutes.app.eventMessages(eventId),

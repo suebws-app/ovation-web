@@ -12,7 +12,10 @@ export default async function CreateLayout({
 }) {
   const user = await getCurrentUser();
 
-  if (user?.accountType === "pro" && !user.planTier) {
+  if (
+    user?.accountType === "pro" &&
+    (!user.planTier || user.planTier === "free")
+  ) {
     redirect(`${appRoutes.auth.plans}?as=pro`);
   }
 

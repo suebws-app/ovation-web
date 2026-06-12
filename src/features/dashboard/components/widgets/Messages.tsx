@@ -14,15 +14,9 @@ type MessagesProps = {
   eventId: string;
   messages: MessageRowView[];
   totalCount: number;
-  newCount: number;
 };
 
-export const Messages = ({
-  eventId,
-  messages,
-  totalCount,
-  newCount,
-}: MessagesProps) => {
+export const Messages = ({ eventId, messages, totalCount }: MessagesProps) => {
   const t = useTranslations();
   const latest = messages.slice(0, 2);
   const player = useMessageAudioPlayer(eventId);
@@ -41,9 +35,6 @@ export const Messages = ({
             <span className="type-h3 text-muted-foreground ml-2 font-sans font-normal">
               {t("dashboard__widget__messages__unit")}
             </span>
-          </p>
-          <p className="type-body-small text-muted-foreground mt-1">
-            {t("dashboard__widget__messages__since", { count: newCount })}
           </p>
         </div>
         <Link

@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@ovation/ui/components/Button";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { Link } from "@/i18n/navigation";
@@ -50,7 +49,6 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
             <Button asChild size="lg" className="w-full rounded-full shadow-lg">
               <Link href={`/g/${slug}/compose`}>
                 {t("guest__landing__cta_record")}
-                <ArrowRightIcon width={16} height={16} />
               </Link>
             </Button>
           </StickyCTA>

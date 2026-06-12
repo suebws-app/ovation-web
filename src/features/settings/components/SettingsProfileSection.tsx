@@ -2,8 +2,11 @@ import { useTranslations } from "next-intl";
 import type { Event, User } from "@/lib/api/types";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsCard } from "./SettingsCard";
+import { SettingsRow } from "./SettingsRow";
+import { SettingsToggle } from "./SettingsToggle";
 import { ProfileNameForm } from "./ProfileNameForm";
 import { WeddingDetailsForm } from "./WeddingDetailsForm";
+import { ProfileCloseAccount } from "./ProfileCloseAccount";
 
 type SettingsProfileSectionProps = {
   user: User;
@@ -64,6 +67,21 @@ export const SettingsProfileSection = ({
             />
           </div>
         ))}
+
+      <div className="mt-11">
+        <SettingsSectionTitle title={t("settings__privacy__ai__title")} />
+        <SettingsCard>
+          <SettingsRow
+            title={t("settings__privacy__ai__transcribe__title")}
+            description={t("settings__privacy__ai__transcribe__desc")}
+            last
+          >
+            <SettingsToggle on={true} />
+          </SettingsRow>
+        </SettingsCard>
+      </div>
+
+      <ProfileCloseAccount email={user.email} />
     </>
   );
 };

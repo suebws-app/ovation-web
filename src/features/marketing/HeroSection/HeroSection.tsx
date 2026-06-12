@@ -6,7 +6,6 @@ import {
   AvatarFallback,
   AvatarGroup,
 } from "@ovation/ui/components/Avatar";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { HeroShowpiece } from "../HeroShowpiece";
@@ -57,7 +56,6 @@ export const HeroSection = () => {
             <Button size="lg" asChild>
               <Link href={appRoutes.auth.role}>
                 {t("marketing__hero__cta_primary")}
-                <ArrowRightIcon width={18} height={18} />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>

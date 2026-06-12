@@ -18,6 +18,8 @@ import {
 import { downloadMessageAssets } from "@/lib/media/downloadMessageAssets";
 import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
 import { safeHttpUrl } from "@/lib/utils/safe-url";
+import { PhotoLightbox } from "@/features/photos/components/PhotoLightbox";
+import { toPhotoViewFromGallery } from "@/features/photos/adapters";
 import { formatTimeShort } from "../adapters";
 
 import Image from "next/image";
@@ -65,6 +67,7 @@ export const MessageDetailPane = ({
   const { data: detail } = useMessageDetail(eventId, message?.id ?? null);
   const retranscribe = useRetranscribeMessage(eventId);
   const [downloading, setDownloading] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const handleDownload = async () => {
     if (!detail?.message || !message) return;
@@ -227,25 +230,27 @@ export const MessageDetailPane = ({
             {t("messages__detail__media_eyebrow")}
           </Kicker>
           <div className="grid grid-cols-2 gap-2">
-            {photoItems.map((photo) => {
-              const safePhotoUrl = safeHttpUrl(photo.url);
-              return safePhotoUrl ? (
-                <a
+            {photoItems.map((photo, photoIdx) => {
+              const thumbSrc =
+                safeHttpUrl(photo.thumbUrl) ?? safeHttpUrl(photo.url);
+              return thumbSrc ? (
+                <button
+                  type="button"
                   key={photo.id}
-                  href={safePhotoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-12 bg-muted relative block aspect-square overflow-hidden"
+                  onClick={() => setLightboxIndex(photoIdx)}
+                  className="rounded-12 bg-muted hover:ring-primary/40 relative block aspect-square cursor-pointer overflow-hidden transition-shadow hover:ring-2"
+                  aria-label={t("photos__lightbox__open")}
                 >
                   <Image
-                    src={safePhotoUrl}
+                    src={thumbSrc}
                     fill
                     unoptimized
-                    priority
+                    sizes="160px"
+                    loading="lazy"
                     className="object-cover"
                     alt={message.name}
                   />
-                </a>
+                </button>
               ) : null;
             })}
             {safeVideoUrl && (
@@ -261,6 +266,21 @@ export const MessageDetailPane = ({
             )}
           </div>
         </div>
+      )}
+
+      {lightboxIndex !== null && photoItems.length > 0 && (
+        <PhotoLightbox
+          eventId={eventId}
+          photos={photoItems.map((item) =>
+            toPhotoViewFromGallery(item, message.name),
+          )}
+          index={Math.min(lightboxIndex, photoItems.length - 1)}
+          hasNextPage={false}
+          isFetchingNextPage={false}
+          onClose={() => setLightboxIndex(null)}
+          onIndexChange={(i) => setLightboxIndex(i)}
+          onLoadMore={() => undefined}
+        />
       )}
 
       {hasNote && (

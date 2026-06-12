@@ -148,7 +148,7 @@ export type CreateEventInput = {
 export type UpdateEventInput = Partial<CreateEventInput> & {
   welcomeMessage?: string;
   themeColor?: string;
-  couplePhotoUrl?: string;
+  couplePhotoUrl?: string | null;
   defaultLanguage?: SupportedLanguage;
   slug?: string;
   kioskPin?: string;

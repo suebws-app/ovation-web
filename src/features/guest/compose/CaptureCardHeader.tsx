@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@ovation/ui/utils/cn";
 
 type CaptureCardHeaderProps = {
@@ -6,7 +6,7 @@ type CaptureCardHeaderProps = {
   title: string;
   meta?: string;
   iconClassName: string;
-  filled: boolean;
+  iconStyle?: CSSProperties;
 };
 
 export const CaptureCardHeader = ({
@@ -14,14 +14,15 @@ export const CaptureCardHeader = ({
   title,
   meta,
   iconClassName,
-  filled,
+  iconStyle,
 }: CaptureCardHeaderProps) => (
-  <div className="flex items-center gap-3.5">
+  <div className="flex min-w-0 flex-1 items-center gap-3.5">
     <div
       className={cn(
-        "rounded-12 text-primary-foreground flex size-10 shrink-0 items-center justify-center",
+        "rounded-12 flex size-11 shrink-0 items-center justify-center",
         iconClassName,
       )}
+      style={iconStyle}
     >
       {icon}
     </div>
@@ -33,6 +34,5 @@ export const CaptureCardHeader = ({
         </p>
       )}
     </div>
-    {filled && <span className="bg-secondary size-2 shrink-0 rounded-full" />}
   </div>
 );

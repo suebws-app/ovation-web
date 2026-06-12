@@ -1,5 +1,4 @@
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+import { notFound, redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
 import { appRoutes } from "@/lib/routes";
@@ -10,69 +9,34 @@ import { ordersApi } from "@/lib/api/orders";
 import { mediaApi } from "@/lib/api/media";
 
 import { getCurrentUser } from "@/lib/auth/session";
-import { getCurrentEvent } from "@/lib/auth/current-event";
 import { toMessageRowView } from "@/features/messages/adapters";
 
-import { DashboardEmpty } from "./components/DashboardEmpty";
-import { DashboardPlaceholderCTA } from "./components/DashboardPlaceholderCTA";
 import { DashboardBackGuard } from "./components/DashboardBackGuard";
 import { StorageExpiredModal } from "./components/StorageExpiredModal";
-import { DreReturnHandler } from "./components/DreReturnHandler";
 import { QRcodeWidget } from "./components/widgets/QRcodeWidget";
 import { Messages } from "./components/widgets/Messages";
 import { Photos } from "./components/widgets/Photos";
 import { Orders } from "./components/widgets/Orders";
 
-export const DashboardPage = async () => {
+type EventDashboardPageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export const EventDashboardPage = async ({
+  params,
+}: EventDashboardPageProps) => {
+  const { id } = await params;
   const t = await getTranslations();
   const anonymous = t("common__anonymous");
   const user = await getCurrentUser();
   if (!user) redirect(appRoutes.auth.signIn);
-  if (user.accountType === "pro") {
-    const proEventsPage = await eventsApi.list({ limit: 100 });
-    const cookieStore = await cookies();
-    const lastEventId = cookieStore.get("ovation_last_event_id")?.value;
-    const target = lastEventId
-      ? proEventsPage.items.find((e) => e.id === lastEventId)
-      : null;
-    const fallback = proEventsPage.items[0];
-    if (target) redirect(appRoutes.app.event(target.id));
-    if (fallback) redirect(appRoutes.app.event(fallback.id));
-    redirect(appRoutes.app.events);
-  }
-  const event = await getCurrentEvent();
 
-  const expiredModal = (
-    <StorageExpiredModal
-      storageExpiresAt={user.storageExpiresAt}
-      planTier={user.planTier ?? null}
-    />
-  );
-  const dreReturnHandler = <DreReturnHandler />;
-
-  if (!event) {
-    return (
-      <DashboardBackGuard>
-        {expiredModal}
-        {dreReturnHandler}
-        <div className="flex w-full flex-col p-6">
-          <DashboardEmpty />
-        </div>
-      </DashboardBackGuard>
-    );
-  }
-
-  if (!user.onboardingComplete) {
-    return (
-      <DashboardBackGuard>
-        {expiredModal}
-        {dreReturnHandler}
-        <div className="flex w-full flex-col p-6">
-          <DashboardPlaceholderCTA />
-        </div>
-      </DashboardBackGuard>
-    );
-  }
+  const eventResult = await eventsApi.get(id).catch((error) => {
+    if (ApiError.isApiError(error) && error.status === 404) return null;
+    throw error;
+  });
+  if (!eventResult) notFound();
+  const event = eventResult.event;
 
   const [stats, recentMessages, qr, ordersPage, galleryPage] =
     await Promise.all([
@@ -116,7 +80,10 @@ export const DashboardPage = async () => {
 
   return (
     <DashboardBackGuard>
-      {expiredModal}
+      <StorageExpiredModal
+        storageExpiresAt={user.storageExpiresAt}
+        planTier={user.planTier ?? null}
+      />
       <div className="flex w-full flex-col gap-6 p-6">
         <div className="tablet:flex-row tablet:items-start flex flex-col gap-6">
           <div className="tablet:order-2 tablet:w-80 tablet:shrink-0 order-1 flex w-full flex-col gap-6">
