@@ -119,7 +119,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
       }
     }
 
-    router.replace(appRoutes.auth.plans);
+    router.replace(data?.token ? appRoutes.auth.plans : appRoutes.auth.verify);
   };
 
   return {
