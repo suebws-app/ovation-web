@@ -9,21 +9,13 @@ import { AppleIcon } from "@ovation/icons/AppleIcon";
 import { GoogleIcon } from "@ovation/icons/GoogleIcon";
 
 type SocialAuthButtonsProps = {
-  action?: "sign-up" | "sign-in";
   className?: string;
 };
 
 type Provider = "google" | "apple";
 
-export const SocialAuthButtons = ({
-  action = "sign-up",
-  className,
-}: SocialAuthButtonsProps) => {
+export const SocialAuthButtons = ({ className }: SocialAuthButtonsProps) => {
   const t = useTranslations();
-  const label =
-    action === "sign-in"
-      ? t("auth__social__continue_with")
-      : t("auth__social__sign_up_with");
   const [pending, setPending] = useState<Provider | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -53,14 +45,12 @@ export const SocialAuthButtons = ({
       <div className="flex gap-2.5">
         <SocialAuthButton
           provider="Apple"
-          label={label}
           icon={<AppleIcon className="tablet:size-5 size-4" />}
           disabled={true}
           onClick={() => handleProvider("apple")}
         />
         <SocialAuthButton
           provider="Google"
-          label={label}
           icon={<GoogleIcon className="tablet:size-5 size-4" />}
           disabled={pending !== null}
           onClick={() => handleProvider("google")}

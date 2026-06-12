@@ -1,11 +1,10 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
 import { Link } from "@/i18n/navigation";
 
 type WizardHeaderProps = {
-  backHref: string;
+  backHref?: string;
   step: number;
   totalSteps: number;
   title: string;
@@ -25,15 +24,18 @@ export const WizardHeader = ({
   return (
     <div className="flex flex-col gap-3.5">
       <div className="flex items-center justify-between">
-        <Link
-          href={backHref}
-          className="bg-card/85 border-border text-foreground inline-flex items-center gap-1.5 rounded-full border px-3 py-2 shadow-sm backdrop-blur-sm"
-        >
-          <ChevronLeftIcon width={14} height={14} />
-          <span className="type-body-small font-semibold">
-            {t("guest__wizard__back")}
-          </span>
-        </Link>
+        {backHref ? (
+          <Link
+            href={backHref}
+            className="bg-card/85 border-border text-foreground inline-flex items-center rounded-full border px-3 py-2 shadow-sm backdrop-blur-sm"
+          >
+            <span className="type-body-small font-semibold">
+              {t("guest__wizard__back")}
+            </span>
+          </Link>
+        ) : (
+          <span />
+        )}
         <span className="type-caption text-muted-foreground font-mono">
           {t("guest__wizard__step_of", {
             current: padIndex(step),

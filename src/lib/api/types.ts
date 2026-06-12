@@ -148,7 +148,7 @@ export type CreateEventInput = {
 export type UpdateEventInput = Partial<CreateEventInput> & {
   welcomeMessage?: string;
   themeColor?: string;
-  couplePhotoUrl?: string;
+  couplePhotoUrl?: string | null;
   defaultLanguage?: SupportedLanguage;
   slug?: string;
   kioskPin?: string;
@@ -549,6 +549,8 @@ export type CheckoutSessionResult = {
   checkoutUrl: string;
   providerSessionId: string;
 };
+
+export type PlanAudience = "couple" | "pro" | "addon";
 
 export type Plan = {
   id: string;

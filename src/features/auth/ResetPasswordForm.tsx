@@ -5,14 +5,16 @@ import { useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
-import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
-import { Link, useRouter } from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
+import { AuthScreen } from "./components/AuthScreen";
+import { AuthHeading } from "./components/AuthHeading";
+import { AuthFormError } from "./components/AuthFormError";
+import { AuthSubmitButton } from "./components/AuthSubmitButton";
+import { AuthFooterLink } from "./components/AuthFooterLink";
 import {
   getResetPasswordSchema,
   type ResetPasswordFields,
@@ -56,23 +58,20 @@ export const ResetPasswordForm = () => {
   };
 
   return (
-    <>
-      <Kicker className="text-primary mb-2.5">
-        {t("auth__reset__eyebrow")}
-      </Kicker>
-      <h1 className="type-h1 leading-tight font-semibold tracking-tight">
-        {t("auth__reset__title")}
-        <br />
-        <span className="text-primary italic">
-          {t("auth__reset__title_emphasis")}
-        </span>
-      </h1>
-      <p className="type-body-small text-muted-foreground mt-3 leading-relaxed">
-        {t("auth__reset__subtitle")}
-      </p>
+    <AuthScreen>
+      <AuthHeading
+        eyebrow={t("auth__reset__eyebrow")}
+        title={t("auth__reset__title")}
+        titleEmphasis={t("auth__reset__title_emphasis")}
+        subtitle={t("auth__reset__subtitle")}
+      />
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-9">
-        <div className="space-y-5">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+        className="tablet:mt-6 mt-4 w-full"
+      >
+        <div className="tablet:space-y-4.5 space-y-3">
           <div>
             <Label htmlFor="new-password" className="mb-2">
               {t("auth__reset__new_password_label")}
@@ -111,31 +110,19 @@ export const ResetPasswordForm = () => {
           </div>
         </div>
 
-        {submitError && (
-          <p className="type-body-small text-destructive mt-4" role="alert">
-            {submitError}
-          </p>
-        )}
+        {submitError && <AuthFormError message={submitError} />}
 
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          size="lg"
-          className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
-        >
-          {isSubmitting ? t("auth__reset__saving") : t("auth__reset__submit")}
-          <ArrowRightIcon width={16} height={16} />
-        </Button>
+        <AuthSubmitButton
+          pending={isSubmitting}
+          label={t("auth__reset__submit")}
+          pendingLabel={t("auth__reset__saving")}
+        />
       </form>
 
-      <p className="type-body-small text-muted-foreground mt-9 text-center">
-        <Link
-          href={appRoutes.auth.signIn}
-          className="text-foreground font-semibold"
-        >
-          {t("auth__reset__back_signin")}
-        </Link>
-      </p>
-    </>
+      <AuthFooterLink
+        href={appRoutes.auth.signIn}
+        linkLabel={t("auth__reset__back_signin")}
+      />
+    </AuthScreen>
   );
 };

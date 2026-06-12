@@ -54,7 +54,7 @@ export const CouplePlan = () => {
           <Kicker className="text-primary">
             {t("signup__plan__step_label")}
           </Kicker>
-          <h1 className="type-display mt-3.5 leading-tight font-semibold tracking-tight">
+          <h1 className="type-h0 mt-3.5 leading-tight font-semibold tracking-tight">
             {t("signup__plan__title_a")}{" "}
             <span className="text-primary italic">
               {t("signup__plan__title_b")}
@@ -78,21 +78,6 @@ export const CouplePlan = () => {
               onSelect={() => handleSelect(plan.id)}
             />
           ))}
-        </div>
-
-        <div className="type-body-small text-muted-foreground mt-8 text-center">
-          <button
-            type="button"
-            onClick={() => {
-              updateFormData({ selectedPlan: "skipped" });
-              router.push(appRoutes.checkout.root);
-            }}
-            className="text-primary cursor-pointer font-semibold"
-          >
-            {t("signup__plan__skip")}
-          </button>
-          <span className="mx-3 opacity-30">&middot;</span>
-          {t("signup__plan__upgrade_hint")}
         </div>
       </div>
     </div>

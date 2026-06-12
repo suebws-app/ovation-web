@@ -105,14 +105,14 @@ export const EventBookForm = ({
       </div>
 
       <form
-        className="tablet:px-18 tablet:pt-10 tablet:pb-12 flex h-full items-start overflow-y-auto px-5 pt-5 pb-5"
+        className="tablet:px-18 tablet:pt-10 tablet:pb-12 desktop:justify-start flex h-full items-start justify-center overflow-y-auto px-5 pt-5 pb-5"
         onSubmit={(e) => {
           e.preventDefault();
           if (!partnerAName || !partnerBName) return;
           onContinue?.();
         }}
       >
-        <div className="w-full max-w-130">
+        <div className="mx-auto my-auto w-full max-w-130">
           {headerSlot}
           <h1 className="type-h2 tablet:type-h1 leading-tight font-semibold tracking-tight">
             {t("signup__book_details__title_a")}{" "}
@@ -124,7 +124,7 @@ export const EventBookForm = ({
             {subtitle}
           </p>
 
-          <div className="tablet:mt-7 mt-4 grid grid-cols-[1fr_auto_1fr] items-end gap-3.5">
+          <div className="tablet:mt-7 tablet:grid-cols-[1fr_auto_1fr] mt-4 grid grid-cols-1 items-end gap-3.5">
             <div>
               <Label htmlFor="partner-a" className="mb-2">
                 {t("signup__book_details__partner1")}
@@ -137,7 +137,7 @@ export const EventBookForm = ({
                 placeholder={t("signup__book_details__name_placeholder")}
               />
             </div>
-            <span className="text-muted-foreground type-h1 pb-2.5 italic">
+            <span className="text-muted-foreground type-h1 tablet:block hidden pb-2.5 italic">
               &amp;
             </span>
             <div>

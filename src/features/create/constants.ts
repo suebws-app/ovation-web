@@ -2,7 +2,7 @@ export const COVER_OPTIONS = [
   {
     id: "upload",
     tint: "",
-    labelKey: "signup__cover__option_upload",
+    labelKey: "",
     isUpload: true,
   },
   { id: "coastal", tint: "#B9C9D9", labelKey: "signup__cover__option_coastal" },

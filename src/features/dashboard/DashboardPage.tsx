@@ -130,7 +130,6 @@ export const DashboardPage = async () => {
               eventId={event.id}
               messages={messageViews}
               totalCount={totalMessages}
-              newCount={totalMessages}
             />
             <div className="flex flex-col gap-6 min-[1300px]:flex-row min-[1300px]:items-start">
               <Photos

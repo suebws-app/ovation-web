@@ -3,8 +3,7 @@
 import { useEffect, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
@@ -81,7 +80,6 @@ export const ComposeClient = ({
       />
       <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-5 pb-9">
         <WizardHeader
-          backHref={backHref}
           step={1}
           totalSteps={totalSteps}
           title={t("guest__compose__title")}
@@ -103,16 +101,26 @@ export const ComposeClient = ({
           </p>
         )}
       </div>
-      <StickyCTA caption={t("guest__compose__caption")}>
-        <Button
-          type="button"
-          size="lg"
-          className="w-full rounded-full shadow-lg"
-          onClick={handleContinue}
-        >
-          {t("guest__wizard__continue")}
-          <ArrowRightIcon width={16} height={16} />
-        </Button>
+      <StickyCTA layout="split" caption={t("guest__compose__caption")}>
+        <div className="tablet:w-auto flex w-full gap-2">
+          <Button
+            asChild
+            type="button"
+            variant="outline"
+            size="lg"
+            className="flex-1 rounded-full"
+          >
+            <Link href={backHref}>{t("guest__wizard__back")}</Link>
+          </Button>
+          <Button
+            type="button"
+            size="lg"
+            className="tablet:w-auto tablet:px-10 flex-1 rounded-full shadow-lg"
+            onClick={handleContinue}
+          >
+            {t("guest__wizard__continue")}
+          </Button>
+        </div>
       </StickyCTA>
     </div>
   );

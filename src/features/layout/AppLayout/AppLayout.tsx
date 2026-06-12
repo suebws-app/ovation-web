@@ -5,6 +5,7 @@ import { AppSideBar } from "./AppSidebar";
 import { AppHeaderDesktop } from "./AppHeaderDesktop";
 import { AppHeaderMobile } from "./AppHeaderMobile";
 import { SubscriptionAlert } from "./SubscriptionAlert";
+import { ProUpgradeAlert } from "./ProUpgradeAlert";
 import { AppHeader } from "./AppHeader";
 
 type AppLayoutProps = {
@@ -35,6 +36,9 @@ export const AppLayout = ({
               userCreatedAt={user.createdAt}
               storageDays={user.storageDays}
             />
+          )}
+          {showSubscriptionAlert && user.accountType === "pro" && (
+            <ProUpgradeAlert planTier={user.planTier} />
           )}
           <SidebarInset className="min-h-0 flex-1">{children}</SidebarInset>
         </div>

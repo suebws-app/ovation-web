@@ -41,7 +41,7 @@ export const PricingCard = ({
       <p className="type-h1 mt-1.5 font-semibold">{t(nameKey)}</p>
 
       <div className="mt-3 flex items-end gap-1.5">
-        <span className="type-display leading-none font-semibold tracking-tight">
+        <span className="type-h0 leading-none font-semibold tracking-tight">
           {price}
         </span>
         <span className="text-muted-foreground type-body-small mb-2.5">

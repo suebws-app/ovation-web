@@ -42,7 +42,7 @@ export const WelcomeBackStep = () => {
     },
   ];
   return (
-    <div className="relative flex min-h-screen items-center justify-center bg-[radial-gradient(900px_500px_at_50%_20%,_oklch(0.705_0.120_262.5/0.18),_transparent_60%),radial-gradient(700px_500px_at_10%_90%,_oklch(0.833_0.132_151.8/0.10),_transparent_60%),radial-gradient(700px_500px_at_90%_80%,_oklch(0.723_0.135_40/0.08),_transparent_60%)]">
+    <div className="relative flex w-full flex-1 items-center justify-center bg-[radial-gradient(900px_500px_at_50%_20%,_oklch(0.705_0.120_262.5/0.18),_transparent_60%),radial-gradient(700px_500px_at_10%_90%,_oklch(0.833_0.132_151.8/0.10),_transparent_60%),radial-gradient(700px_500px_at_90%_80%,_oklch(0.723_0.135_40/0.08),_transparent_60%)]">
       {polaroids.map((p) => (
         <Polaroid key={p.name} {...p} />
       ))}
@@ -51,7 +51,7 @@ export const WelcomeBackStep = () => {
         <Kicker className="text-primary mb-4.5 tracking-[2.5px]">
           {t("auth__signin__welcome__eyebrow")}
         </Kicker>
-        <h1 className="tablet:type-display type-display leading-none font-semibold tracking-tight">
+        <h1 className="tablet:type-h0 type-h0 leading-none font-semibold tracking-tight">
           {t("auth__signin__welcome__title_a")}
           <br />
           <span className="text-primary italic">

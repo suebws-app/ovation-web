@@ -5,15 +5,16 @@ import { useForm, Controller } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Separator } from "@ovation/ui/components/Separator";
-import { Kicker } from "@ovation/ui/components/Kicker";
-import { Logo } from "@ovation/ui/components/Logo";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { SocialAuthButtons } from "../../components/SocialAuthButtons";
+import { AuthScreen } from "../../components/AuthScreen";
+import { AuthHeading } from "../../components/AuthHeading";
+import { AuthFormError } from "../../components/AuthFormError";
+import { AuthSubmitButton } from "../../components/AuthSubmitButton";
+import { AuthFooterLink } from "../../components/AuthFooterLink";
 import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
@@ -156,37 +157,14 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
   };
 
   return (
-    <div className="tablet:px-20 tablet:py-12 tablet:gap-4 tablet:h-auto tablet:overflow-visible flex h-full flex-col items-center gap-2 overflow-y-auto px-5 py-4">
-      <Logo className="self-start" />
-
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        noValidate
-        className="flex w-full flex-1 flex-col justify-center"
-        style={{ maxWidth: 440 }}
-      >
-        <Kicker className="text-primary tablet:mb-2.5 mb-1.5">
-          {t("auth__signin__eyebrow")}
-        </Kicker>
-        <h1 className="type-h1 tablet:type-display leading-[1.05] font-semibold tracking-tight">
-          {t("auth__signin__title")}
-          <br />
-          <span className="text-primary italic">
-            {t("auth__signin__title_emphasis")}
-          </span>
-        </h1>
-        <p className="type-body-small text-muted-foreground tablet:mt-3.5 mt-2 leading-relaxed">
-          {t("auth__signin__subtitle")}
-        </p>
-
-        <SocialAuthButtons action="sign-in" className="tablet:mt-9 mt-4" />
-
-        <Separator
-          label={t("auth__signin__separator")}
-          className="tablet:my-6 my-3"
+    <AuthScreen footnote={t("auth__signin__protected")}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="w-full">
+        <AuthHeading
+          eyebrow={t("auth__signin__eyebrow")}
+          title={t("auth__signin__title")}
+          titleEmphasis={t("auth__signin__title_emphasis")}
         />
-
-        <div className="tablet:space-y-4.5 space-y-3">
+        <div className="tablet:space-y-4.5 mt-4 space-y-3">
           <div>
             <Label htmlFor="signin-email" className="mb-2">
               {t("auth__email")}
@@ -245,11 +223,7 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
           </Link>
         </div>
 
-        {displayError && (
-          <p className="type-body-small text-destructive mt-4" role="alert">
-            {displayError}
-          </p>
-        )}
+        {displayError && <AuthFormError message={displayError} />}
 
         {unverifiedEmail && (
           <UnverifiedEmailBanner
@@ -268,32 +242,25 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
           </div>
         )}
 
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          size="lg"
-          className="shadow-primary/40 tablet:mt-6 mt-4 w-full rounded-full shadow-md"
-        >
-          {isSubmitting
-            ? t("auth__signin__submit_pending")
-            : t("auth__signin__submit")}
-          <ArrowRightIcon width={16} height={16} />
-        </Button>
+        <AuthSubmitButton
+          pending={isSubmitting}
+          label={t("auth__signin__submit")}
+          pendingLabel={t("auth__signin__submit_pending")}
+        />
 
-        <p className="type-body-small text-muted-foreground tablet:mt-4.5 mt-3 text-center">
-          {t("auth__signin__no_account")}{" "}
-          <Link
-            href={appRoutes.auth.role}
-            className="text-foreground font-semibold"
-          >
-            {t("auth__signin__signup_short")}
-          </Link>
-        </p>
+        <Separator
+          label={t("auth__signin__separator")}
+          className="tablet:my-6 my-3"
+        />
+
+        <SocialAuthButtons />
+
+        <AuthFooterLink
+          prompt={t("auth__signin__no_account")}
+          href={appRoutes.auth.role}
+          linkLabel={t("auth__signin__signup_short")}
+        />
       </form>
-
-      <p className="type-caption text-muted-foreground/60 self-start">
-        {t("auth__signin__protected")}
-      </p>
-    </div>
+    </AuthScreen>
   );
 };

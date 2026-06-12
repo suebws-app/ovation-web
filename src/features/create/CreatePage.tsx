@@ -64,7 +64,7 @@ export const CreatePage = () => {
         </Kicker>
       }
       venueSlot={
-        <div className="mt-4 grid grid-cols-2 gap-3.5">
+        <div className="tablet:grid-cols-2 mt-4 grid grid-cols-1 gap-3.5">
           <div>
             <Label htmlFor="venue-name" className="mb-2">
               {t("signup__book_details__venue_name_label")}
@@ -87,7 +87,7 @@ export const CreatePage = () => {
               placeholder={t("signup__book_details__venue_city_placeholder")}
             />
           </div>
-          <p className="type-caption text-muted-foreground col-span-2 mt-2">
+          <p className="type-caption text-muted-foreground tablet:col-span-2 mt-2">
             {t("signup__book_details__venue_hint")}
           </p>
         </div>

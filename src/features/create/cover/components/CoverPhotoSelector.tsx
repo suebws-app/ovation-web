@@ -45,7 +45,7 @@ export const CoverPhotoSelector = ({
         {COVER_OPTIONS.map((option) => (
           <CoverOption
             key={option.id}
-            label={t(option.labelKey)}
+            label={option.labelKey && t(option.labelKey)}
             tint={option.tint}
             isUpload={option.isUpload}
             selected={coverType === option.id}

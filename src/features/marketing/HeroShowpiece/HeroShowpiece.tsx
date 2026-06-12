@@ -10,7 +10,7 @@ export const HeroShowpiece = () => {
     <div className="relative h-155 w-full">
       <Card className="absolute top-8 left-4 z-1 w-48 rotate-[-9deg] overflow-hidden rounded-2xl shadow-xl">
         <div className="from-muted to-muted-foreground/20 relative flex h-36 items-center justify-center bg-linear-to-br">
-          <span className="text-foreground/70 type-display font-semibold italic">
+          <span className="text-foreground/70 type-h0 font-semibold italic">
             M
           </span>
         </div>
@@ -60,7 +60,7 @@ export const HeroShowpiece = () => {
 
       <Card className="absolute right-4 bottom-10 z-2 w-44 rotate-[7deg] overflow-hidden rounded-2xl shadow-xl">
         <div className="from-primary to-primary/60 relative flex h-32 items-center justify-center bg-linear-to-br">
-          <span className="text-primary-foreground/80 type-display font-semibold italic">
+          <span className="text-primary-foreground/80 type-h0 font-semibold italic">
             J
           </span>
         </div>

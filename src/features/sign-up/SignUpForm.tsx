@@ -1,19 +1,20 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Separator } from "@ovation/ui/components/Separator";
-import { Kicker } from "@ovation/ui/components/Kicker";
-import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { SocialAuthButtons } from "@/features/auth/components/SocialAuthButtons";
+import { AuthScreen } from "@/features/auth/components/AuthScreen";
+import { AuthHeading } from "@/features/auth/components/AuthHeading";
+import { AuthFormError } from "@/features/auth/components/AuthFormError";
+import { AuthSubmitButton } from "@/features/auth/components/AuthSubmitButton";
+import { AuthFooterLink } from "@/features/auth/components/AuthFooterLink";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
@@ -60,151 +61,127 @@ export const SignUpForm = () => {
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <Kicker className="text-primary tablet:mb-3 mb-1.5">
-        {t("auth__signup__eyebrow_step", {
-          step: 3,
-          label: t("auth__signup__create_account__label"),
-        })}
-      </Kicker>
-      <h1 className="type-h3 tablet:type-h1 leading-tight font-semibold tracking-tight">
-        {t("auth__signup__create_account__title")}
-        <br />
-        <span className="text-primary italic">
-          {t("auth__signup__create_account__title_emphasis")}
-        </span>
-      </h1>
-      <p className="type-caption tablet:type-body-small text-muted-foreground tablet:mt-3 mt-1.5 leading-snug">
-        {t("auth__signup__create_account__subtitle")}
-      </p>
-
-      <SocialAuthButtons action="sign-up" className="tablet:mt-8 mt-3" />
-
-      <Separator
-        label={t("auth__signup__create_account__separator")}
-        className="tablet:my-6 my-2.5"
-      />
-
-      <div className="tablet:space-y-5 space-y-2.5">
-        <div>
-          <Label htmlFor="signup-email" className="tablet:mb-2 mb-1">
-            {t("auth__signup__create_account__email_label")}
-          </Label>
-          <Input
-            id="signup-email"
-            type="email"
-            autoComplete="email"
-            placeholder={t("auth__signup__create_account__email_placeholder")}
-            aria-invalid={Boolean(errors.email)}
-            {...register("email")}
-          />
-          {errors.email && (
-            <p className="type-caption text-destructive mt-1.5">
-              {errors.email.message}
-            </p>
-          )}
-        </div>
-        <div>
-          <Label htmlFor="signup-password" className="mb-2">
-            {t("auth__signup__create_account__password_label")}
-          </Label>
-          <Input
-            id="signup-password"
-            type="password"
-            autoComplete="new-password"
-            placeholder={t(
-              "auth__signup__create_account__password_placeholder",
-            )}
-            aria-invalid={Boolean(errors.password)}
-            {...register("password")}
-          />
-          {errors.password ? (
-            <p className="type-caption text-destructive mt-1.5">
-              {errors.password.message}
-            </p>
-          ) : (
-            <p className="type-caption text-muted-foreground tablet:mt-2 mt-1">
-              {t("auth__signup__create_account__password_hint")}
-            </p>
-          )}
-        </div>
-      </div>
-
-      <Controller
-        control={control}
-        name="agreedToTerms"
-        render={({ field, fieldState }) => (
-          <div className="tablet:mt-6 mt-3">
-            <Checkbox
-              checked={field.value}
-              onChange={field.onChange}
-              label={
-                <span>
-                  {t.rich("auth__signup__create_account__terms_label", {
-                    terms: (chunks) => (
-                      <Link
-                        href={appRoutes.legal.terms}
-                        className="text-primary font-semibold"
-                      >
-                        {chunks}
-                      </Link>
-                    ),
-                    privacy: (chunks) => (
-                      <Link
-                        href={appRoutes.legal.privacy}
-                        className="text-primary font-semibold"
-                      >
-                        {chunks}
-                      </Link>
-                    ),
-                  })}
-                </span>
-              }
+    <AuthScreen>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="w-full">
+        <AuthHeading
+          eyebrow={t("auth__signup__create_account__label")}
+          title={t("auth__signup__create_account__title")}
+          titleEmphasis={t("auth__signup__create_account__title_emphasis")}
+        />
+        <div className="tablet:space-y-4.5 mt-4 space-y-3">
+          <div>
+            <Label htmlFor="signup-email" className="mb-2">
+              {t("auth__signup__create_account__email_label")}
+            </Label>
+            <Input
+              id="signup-email"
+              type="email"
+              autoComplete="email"
+              placeholder={t("auth__signup__create_account__email_placeholder")}
+              aria-invalid={Boolean(errors.email)}
+              {...register("email")}
             />
-            {fieldState.error && (
+            {errors.email && (
               <p className="type-caption text-destructive mt-1.5">
-                {fieldState.error.message}
+                {errors.email.message}
               </p>
             )}
           </div>
-        )}
-      />
+          <div>
+            <Label htmlFor="signup-password" className="mb-2">
+              {t("auth__signup__create_account__password_label")}
+            </Label>
+            <Input
+              id="signup-password"
+              type="password"
+              autoComplete="new-password"
+              placeholder={t(
+                "auth__signup__create_account__password_placeholder",
+              )}
+              aria-invalid={Boolean(errors.password)}
+              {...register("password")}
+            />
+            {errors.password ? (
+              <p className="type-caption text-destructive mt-1.5">
+                {errors.password.message}
+              </p>
+            ) : (
+              <p className="type-caption text-muted-foreground mt-1.5">
+                {t("auth__signup__create_account__password_hint")}
+              </p>
+            )}
+          </div>
+        </div>
 
-      <div className="tablet:mt-6 mt-3">
-        <TurnstileWidget
-          resetKey={turnstileResetKey}
-          onSuccess={setTurnstileToken}
-          onExpire={() => setTurnstileToken(null)}
+        <Controller
+          control={control}
+          name="agreedToTerms"
+          render={({ field, fieldState }) => (
+            <div className="mt-3">
+              <Checkbox
+                checked={field.value}
+                onChange={field.onChange}
+                label={
+                  <span>
+                    {t.rich("auth__signup__create_account__terms_label", {
+                      terms: (chunks) => (
+                        <Link
+                          href={appRoutes.legal.terms}
+                          className="text-primary font-semibold"
+                        >
+                          {chunks}
+                        </Link>
+                      ),
+                      privacy: (chunks) => (
+                        <Link
+                          href={appRoutes.legal.privacy}
+                          className="text-primary font-semibold"
+                        >
+                          {chunks}
+                        </Link>
+                      ),
+                    })}
+                  </span>
+                }
+              />
+              {fieldState.error && (
+                <p className="type-caption text-destructive mt-1.5">
+                  {fieldState.error.message}
+                </p>
+              )}
+            </div>
+          )}
         />
-      </div>
 
-      {submitError && (
-        <p className="type-body-small text-destructive mt-4" role="alert">
-          {submitError}
-        </p>
-      )}
+        {submitError && <AuthFormError message={submitError} />}
 
-      <Button
-        type="submit"
-        disabled={isSubmitting}
-        size="lg"
-        className="shadow-primary/40 tablet:mt-6 mt-3 w-full rounded-full shadow-md"
-      >
-        {isSubmitting
-          ? t("auth__signup__create_account__submit_pending")
-          : t("auth__signup__create_account__submit")}
-        <ArrowRightIcon width={16} height={16} />
-      </Button>
+        <div className="mt-6">
+          <TurnstileWidget
+            resetKey={turnstileResetKey}
+            onSuccess={setTurnstileToken}
+            onExpire={() => setTurnstileToken(null)}
+          />
+        </div>
 
-      <p className="type-caption tablet:type-body-small text-muted-foreground tablet:mt-4.5 mt-2 text-center">
-        {t("auth__signup__create_account__has_account")}{" "}
-        <Link
+        <AuthSubmitButton
+          pending={isSubmitting}
+          label={t("auth__signup__create_account__submit")}
+          pendingLabel={t("auth__signup__create_account__submit_pending")}
+        />
+
+        <Separator
+          label={t("auth__signup__create_account__separator")}
+          className="tablet:my-6 my-3"
+        />
+
+        <SocialAuthButtons />
+
+        <AuthFooterLink
+          prompt={t("auth__signup__create_account__has_account")}
           href={appRoutes.auth.signIn}
-          className="text-foreground font-semibold"
-        >
-          {t("auth__signup__create_account__signin_cta")}
-        </Link>
-      </p>
-    </form>
+          linkLabel={t("auth__signup__create_account__signin_cta")}
+        />
+      </form>
+    </AuthScreen>
   );
 };

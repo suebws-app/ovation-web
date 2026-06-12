@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { PublicEvent } from "@/lib/api/types";
+import { LanguageSelect } from "@/components/LanguageSelect";
 import { GuestHero } from "./GuestHero";
-import { LanguagePicker } from "./LanguagePicker";
 
 type GuestWizardShellProps = {
   event: PublicEvent;
@@ -26,7 +26,7 @@ export const GuestWizardShell = ({
       style={heroBackgroundStyle(event.themeColor)}
     >
       <div className="flex items-center justify-between">
-        <LanguagePicker />
+        <LanguageSelect />
       </div>
       <div className="small-desktop:my-auto small-desktop:max-w-md small-desktop:mx-auto gap-6_5 flex flex-col">
         <GuestHero event={event} />
