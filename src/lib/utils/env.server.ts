@@ -27,7 +27,8 @@ export const serverEnv = {
   APPLE_CLIENT_SECRET: process.env.APPLE_CLIENT_SECRET,
 
   RESEND_API_KEY: process.env.RESEND_API_KEY ?? "",
-  EMAIL_FROM: process.env.EMAIL_FROM ?? "Ovation <hello@ovation.app>",
+  EMAIL_FROM: process.env.EMAIL_FROM ?? "Ovation <do-not-reply@ovationday.com>",
+  INTERNAL_API_SECRET: process.env.INTERNAL_API_SECRET ?? "",
 
   PADDLE_CLIENT_TOKEN: process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN ?? "",
   PADDLE_ENV: (process.env.NEXT_PUBLIC_PADDLE_ENV ?? "sandbox") as
