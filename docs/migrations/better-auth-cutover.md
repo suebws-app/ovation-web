@@ -66,12 +66,18 @@ GOOGLE_CLIENT_ID=...
 GOOGLE_CLIENT_SECRET=...
 APPLE_CLIENT_ID=...
 APPLE_CLIENT_SECRET=...
-RESEND_API_KEY=re_...
-EMAIL_FROM=Ovation <do-not-reply@ovationday.com>
 ```
 
 In `ovation-api`, no new env vars — `FRONTEND_BASE_URL` is already used by
 the JWT service to fetch JWKS.
+
+**Env contract:** `ovation-api` `FRONTEND_BASE_URL` **must equal** `ovation-web`
+`NEXT_PUBLIC_APP_URL`. The API enforces this at the
+`/api/v1/internal/emails/*` boundary — if the origin of the verify / reset
+URL submitted by better-auth on the web side doesn't match
+`FRONTEND_BASE_URL`, the API returns 400 and sign-up fails. Keep both in
+sync in every environment (e.g. `https://ovationday.com` in production,
+`http://localhost:3000` in dev).
 
 ## Step 3 — verify the email flow
 
