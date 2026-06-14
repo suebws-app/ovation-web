@@ -513,11 +513,23 @@
   margin-inline: auto;
   max-width: 77.5rem;
   padding-inline: 1.5rem;
-  padding-block: 4rem;
+  padding-block: 2.5rem;
 
   @media (width >= 1024px) {
     padding-inline: 5rem;
     padding-block: 7.5rem;
+  }
+}
+
+@utility section-container-small {
+  margin-inline: auto;
+  max-width: 77.5rem;
+  padding-inline: 1.5rem;
+  padding-block: 2.5rem;
+
+  @media (width >= 1024px) {
+    padding-inline: 5rem;
+    padding-block: 2.5rem;
   }
 }
 

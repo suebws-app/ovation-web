@@ -5,7 +5,38 @@ import { APIError } from "better-auth/api";
 import { nextCookies } from "better-auth/next-js";
 import { Pool } from "pg";
 import { serverEnv as env } from "@/lib/utils/env.server";
+import { locales, type Locale } from "@/i18n/config";
 import { sendResetPasswordEmail, sendVerificationEmail } from "./email-sender";
+
+const SIGNUP_LOCALE_COOKIE = "ovation_signup_locale";
+const LOCALE_PATH_PATTERN = new RegExp(`^/(${locales.join("|")})(?:/|$)`);
+
+const isSupportedLocale = (value: string | undefined): value is Locale =>
+  Boolean(value) && (locales as readonly string[]).includes(value as string);
+
+const parseSignupLocale = (request: Request | undefined): Locale | null => {
+  if (!request) return null;
+  const cookieHeader = request.headers.get("cookie") ?? "";
+  const cookieMatch = cookieHeader
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(`${SIGNUP_LOCALE_COOKIE}=`));
+  if (cookieMatch) {
+    const raw = decodeURIComponent(cookieMatch.split("=")[1] ?? "");
+    if (isSupportedLocale(raw)) return raw;
+  }
+  const referer = request.headers.get("referer");
+  if (referer) {
+    try {
+      const fromReferer = new URL(referer).pathname.match(LOCALE_PATH_PATTERN);
+      if (fromReferer && isSupportedLocale(fromReferer[1]))
+        return fromReferer[1];
+    } catch {
+      // ignore malformed referer
+    }
+  }
+  return null;
+};
 
 export const ACCOUNT_DELETED_ERROR_CODE = "ACCOUNT_DELETED";
 const ACCOUNT_DELETED_MESSAGE =
@@ -325,6 +356,18 @@ export const auth = betterAuth({
     },
     user: {
       create: {
+        before: async (userRecord, ctx) => {
+          const incoming = userRecord as { preferredLanguage?: string | null };
+          const alreadySet =
+            typeof incoming.preferredLanguage === "string" &&
+            isSupportedLocale(incoming.preferredLanguage);
+          if (alreadySet) return { data: userRecord };
+          const fromRequest = parseSignupLocale(ctx?.request);
+          if (!fromRequest) return { data: userRecord };
+          return {
+            data: { ...userRecord, preferredLanguage: fromRequest },
+          };
+        },
         after: async (userRecord) => {
           await recordAuthEvent("login_success", userRecord.id, null, null, {
             firstSignIn: true,

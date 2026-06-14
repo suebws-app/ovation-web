@@ -6,4 +6,5 @@ export const plansApi = {
     apiFetch<{ plans: Plan[] }>(
       audience ? `/plans?audience=${audience}` : "/plans",
     ),
+  findByCode: (code: string) => apiFetch<Plan>(`/plans/${code}`),
 };

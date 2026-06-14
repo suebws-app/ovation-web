@@ -16,7 +16,7 @@ export const ChangelogPage = () => {
   return (
     <>
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__changelog__eyebrow")}
           </Kicker>
@@ -30,7 +30,7 @@ export const ChangelogPage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <div className="max-w-prose">
             {entries.map((entry) => (
               <ChangelogEntry

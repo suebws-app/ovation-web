@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { authClient } from "@/lib/auth/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
@@ -26,6 +26,7 @@ type UseCreateAccountReturn = {
 
 export const useCreateAccount = (): UseCreateAccountReturn => {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
   const updateFormData = useSignUpStore((s) => s.updateFormData);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -49,6 +50,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
         password: string;
         name: string;
         accountType?: string;
+        preferredLanguage?: string;
       },
       fetchOptions?: { headers?: Record<string, string> },
     ) => Promise<{
@@ -62,6 +64,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
         password: values.password,
         name: values.email.split("@")[0] ?? values.email,
         accountType,
+        preferredLanguage: locale,
       },
       turnstileToken
         ? { headers: { "x-turnstile-token": turnstileToken } }

@@ -312,6 +312,7 @@ export type KeepsakeProduct = {
   subtitle: string | null;
   priceCents: number;
   currency: string;
+  comingSoon: boolean;
   imageUrl?: string | null;
   timelineDays?: string | null;
 };

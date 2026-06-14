@@ -15,7 +15,7 @@ export const CareersPage = () => {
   return (
     <>
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__careers__eyebrow")}
           </Kicker>
@@ -34,7 +34,7 @@ export const CareersPage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__careers__values_eyebrow")}
           </Kicker>
@@ -47,7 +47,7 @@ export const CareersPage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__careers__open_eyebrow")}
           </Kicker>

@@ -15,7 +15,7 @@ export const SustainabilityPage = () => {
   return (
     <>
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__sustainability__eyebrow")}
           </Kicker>
@@ -34,7 +34,7 @@ export const SustainabilityPage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
             {commitments.map((c) => (
               <SustainabilityCommitment
