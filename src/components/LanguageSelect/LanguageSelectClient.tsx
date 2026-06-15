@@ -1,25 +1,24 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { type Locale } from "@/i18n/config";
+import { formatNativeLanguageName } from "@/lib/utils/localeFormatters";
 import { GlobeIcon } from "@ovation/icons/GlobeIcon";
+import { ChevronDownIcon } from "@ovation/icons/ChevronDownIcon";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@ovation/ui/components/Select";
-
-const LOCALE_LABELS: Record<Locale, string> = {
-  en: "EN",
-  fr: "FR",
-  nl: "NL",
-  de: "DE",
-  es: "ES",
-  it: "IT",
-};
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@ovation/ui/components/Popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandInput,
+  CommandList,
+} from "@ovation/ui/components/Command";
+import { LanguageOption } from "./LanguageOption";
 
 type LanguageSelectClientProps = {
   availableLocales: Locale[];
@@ -28,28 +27,49 @@ type LanguageSelectClientProps = {
 export const LanguageSelectClient = ({
   availableLocales,
 }: LanguageSelectClientProps) => {
+  const t = useTranslations();
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
-  const handleChange = (value: string) => {
-    document.cookie = `NEXT_LOCALE=${value};path=/;max-age=31536000`;
-    router.replace(pathname, { locale: value as Locale });
+  const handleSelect = (code: Locale) => {
+    setOpen(false);
+    if (code === locale) return;
+    document.cookie = `NEXT_LOCALE=${code};path=/;max-age=31536000`;
+    router.replace(pathname, { locale: code });
   };
 
   return (
-    <Select value={locale} onValueChange={handleChange}>
-      <SelectTrigger className="border-none">
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger
+        type="button"
+        aria-label={t("language_select__label")}
+        className="group hover:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 flex h-8 cursor-pointer items-center gap-1.5 rounded-lg bg-transparent py-2 pr-2 pl-2.5 text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-3"
+      >
         <GlobeIcon className="size-3.5 shrink-0" />
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent position="popper" className="max-h-40">
-        {availableLocales.map((l) => (
-          <SelectItem key={l} value={l}>
-            {LOCALE_LABELS[l]}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+        <span>{locale.toUpperCase()}</span>
+        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 transition-transform duration-150 group-data-[state=open]:rotate-180" />
+      </PopoverTrigger>
+      <PopoverContent className="w-40 p-0" align="center">
+        <Command shouldFilter>
+          <CommandInput
+            placeholder={t("language_select__search_placeholder")}
+          />
+          <CommandList>
+            <CommandEmpty>{t("language_select__empty")}</CommandEmpty>
+            {availableLocales.map((code) => (
+              <LanguageOption
+                key={code}
+                code={code}
+                label={formatNativeLanguageName(code)}
+                isActive={code === locale}
+                onSelect={handleSelect}
+              />
+            ))}
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
   );
 };
