@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/features/marketing/HeroSection";
 import { LogoBar } from "@/features/marketing/LogoBar";
+import { keepsakesApi } from "@/lib/api/keepsakes";
+import { formatPrice } from "@/features/checkout/orderHelpers";
 
 const HowItWorks = dynamic(() =>
   import("./HowItWorks").then((m) => ({
@@ -33,14 +35,30 @@ const FinalCTA = dynamic(() =>
   })),
 );
 
-export const LandingPage = () => {
+const GOLD_BOOK_PRODUCT_TYPE = "hardcover";
+const GOLD_BOOK_FALLBACK_PRICE = "€59";
+
+const fetchGoldBookPrice = async (): Promise<string> => {
+  try {
+    const { products } = await keepsakesApi.catalog();
+    const book = products.find((p) => p.productType === GOLD_BOOK_PRODUCT_TYPE);
+    if (!book) return GOLD_BOOK_FALLBACK_PRICE;
+    return formatPrice(book.priceCents, book.currency);
+  } catch {
+    return GOLD_BOOK_FALLBACK_PRICE;
+  }
+};
+
+export const LandingPage = async () => {
+  const goldBookPrice = await fetchGoldBookPrice();
+
   return (
     <>
       <HeroSection />
       <LogoBar />
       <HowItWorks />
       <SampleSpread />
-      <FeaturesGrid />
+      <FeaturesGrid goldBookPrice={goldBookPrice} />
       <TestimonialSection />
       <FAQSection />
       <FinalCTA />

@@ -18,7 +18,7 @@ export const ForPlannersPage = () => {
   return (
     <>
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__for_planners__eyebrow")}
           </Kicker>
@@ -37,7 +37,7 @@ export const ForPlannersPage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
             {benefits.map((b) => (
               <ForPlannersBenefit key={b.title} title={b.title} body={b.body} />
@@ -47,7 +47,7 @@ export const ForPlannersPage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <div className="flex flex-wrap gap-4">
             <Button size="lg" asChild>
               <Link href={`${appRoutes.create.root}?as=pro`}>

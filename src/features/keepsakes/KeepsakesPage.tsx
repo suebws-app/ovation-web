@@ -21,6 +21,7 @@ export const KeepsakesPage = async () => {
 
   const productsWithStartingPrice = await Promise.all(
     catalog.products.map(async (product) => {
+      if (product.comingSoon) return product;
       const detail = await keepsakesApi
         .productByType(product.productType)
         .catch(() => null);

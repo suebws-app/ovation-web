@@ -23,10 +23,8 @@ const KEEPSAKE_FEAT_KEYS = [
 const GOLD_FEAT_KEYS = [
   "marketing__pricing__gold_feats__everything_in_keepsake",
   "marketing__pricing__gold_feats__the_gold_book_180_pp_linen_bound",
-  "marketing__pricing__gold_feats__custom_cover_foil_monogram",
   "marketing__pricing__gold_feats__archival_grade_paper",
   "marketing__pricing__gold_feats__global_free_shipping",
-  "marketing__pricing__gold_feats__25_off_re_prints_forever",
 ];
 
 const PRO_STARTER_FEAT_KEYS = [

@@ -66,10 +66,6 @@ export const RootFooter = ({ className }: RootFooterProps) => {
           href: appRoutes.marketing.sustainability,
         },
         {
-          label: t("common__footer__company_links__press_kit"),
-          href: appRoutes.marketing.pressKit,
-        },
-        {
           label: t("common__footer__company_links__contact"),
           href: appRoutes.marketing.contact,
         },
@@ -83,20 +79,8 @@ export const RootFooter = ({ className }: RootFooterProps) => {
           href: appRoutes.legal.privacy,
         },
         {
-          label: t("common__footer__legal_links__terms"),
-          href: appRoutes.legal.terms,
-        },
-        {
           label: t("common__footer__legal_links__cookies"),
           href: appRoutes.legal.cookies,
-        },
-        {
-          label: t("common__footer__legal_links__gdpr"),
-          href: appRoutes.legal.gdpr,
-        },
-        {
-          label: t("common__footer__legal_links__dpa_for_planners"),
-          href: appRoutes.legal.dpaForPlanners,
         },
       ],
     },

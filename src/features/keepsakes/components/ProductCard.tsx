@@ -17,7 +17,11 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
   const { name, description, priceCents, currency, timelineDays, design } =
     product;
   const dark = Boolean(design.dark);
-  const canOrder = Boolean(eventId);
+  const isComingSoon = Boolean(product.comingSoon);
+  const canOrder = Boolean(eventId) && !isComingSoon;
+  const effectiveTag = isComingSoon
+    ? t("keepsakes__product__coming_soon")
+    : tag;
 
   return (
     <div className="rounded-20 border-border bg-card flex flex-col overflow-hidden border">
@@ -34,19 +38,21 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
         >
           {t(design.headlineKey)}
         </p>
-        {tag && <ProductTag label={tag} dark={dark} />}
+        {effectiveTag && <ProductTag label={effectiveTag} dark={dark} />}
       </div>
       <div className="flex flex-1 flex-col gap-1.5 p-4.5">
         <div className="flex items-start justify-between gap-3">
           <p className="type-h4 font-semibold">{name ? t(name) : ""}</p>
-          <div className="flex shrink-0 flex-col items-end leading-tight">
-            <span className="type-caption text-muted-foreground">
-              {t("keepsakes__product__starting_from")}
-            </span>
-            <span className="type-body-large text-primary font-serif font-semibold">
-              {formatPrice(priceCents, currency)}
-            </span>
-          </div>
+          {!isComingSoon && (
+            <div className="flex shrink-0 flex-col items-end leading-tight">
+              <span className="type-caption text-muted-foreground">
+                {t("keepsakes__product__starting_from")}
+              </span>
+              <span className="type-body-large text-primary font-serif font-semibold">
+                {formatPrice(priceCents, currency)}
+              </span>
+            </div>
+          )}
         </div>
         <p className="type-caption text-muted-foreground tracking-wider">
           {product.subtitle ? t(product.subtitle) : t(design.subtitleKey)}
@@ -58,7 +64,15 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
           {t(design.taglineKey) || (description ? t(description) : "")}
         </p>
         <div className="mt-auto flex gap-2 pt-3.5">
-          {canOrder && eventId ? (
+          {isComingSoon ? (
+            <Button
+              size="sm"
+              disabled
+              className="bg-foreground text-background flex-1 rounded-full"
+            >
+              {t("keepsakes__product__coming_soon")}
+            </Button>
+          ) : canOrder && eventId ? (
             <Button
               asChild
               size="sm"
@@ -82,9 +96,6 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
               {t("keepsakes__product__create_first")}
             </Button>
           )}
-          <Button disabled variant="outline" size="sm" className="rounded-full">
-            {t("keepsakes__product__preview")}
-          </Button>
         </div>
       </div>
     </div>

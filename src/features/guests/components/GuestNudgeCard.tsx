@@ -5,6 +5,7 @@ import { WhatsAppIcon } from "@ovation/icons/WhatsAppIcon";
 import { SmsIcon } from "@ovation/icons/SmsIcon";
 import { MailIcon } from "@ovation/icons/MailIcon";
 import { NudgeChannelButton } from "./NudgeChannelButton";
+import { clientEnv } from "@/lib/utils/env.client";
 
 export const GuestNudgeCard = () => {
   const t = useTranslations();
@@ -52,7 +53,7 @@ export const GuestNudgeCard = () => {
             {t("guests__nudge__preview_label")}
           </span>{" "}
           <span className="font-serif italic">
-            {t("guests__nudge__preview_body")}
+            {t("guests__nudge__preview_body", { host: clientEnv.APP_HOST })}
           </span>
         </div>
       </div>

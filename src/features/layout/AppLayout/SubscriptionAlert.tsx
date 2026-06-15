@@ -32,7 +32,6 @@ export const SubscriptionAlert = ({
   if (planTier === "storage_extension") return null;
 
   const isFree = !planTier || planTier === "free";
-  const isLifetime = !isFree && storageExpiresAt === null;
 
   let daysLeft: number | null = null;
   if (storageExpiresAt) {
@@ -77,7 +76,6 @@ export const SubscriptionAlert = ({
             {daysLeft !== null && (
               <span>{t("plan_status__days_left", { days: daysLeft })}</span>
             )}
-            {isLifetime && <span>{t("plan_status__lifetime")}</span>}
           </div>
         </div>
         {isFree ? (

@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { LegalSection } from "./LegalSection";
+import { clientEnv } from "@/lib/utils/env.client";
 
 const emailLink = (chunks: React.ReactNode) => (
   <a
@@ -12,45 +13,37 @@ const emailLink = (chunks: React.ReactNode) => (
 
 export const PrivacyPage = () => {
   const t = useTranslations();
+  const supportEmail = clientEnv.SUPPORT_EMAIL;
 
   const sections = [
     {
-      heading: t("marketing__privacy__section1_heading"),
-      body: t("marketing__privacy__section1_body"),
+      heading: t("marketing__privacy__intro_heading"),
+      body: t("marketing__privacy__intro_body"),
     },
     {
-      heading: t("marketing__privacy__section2_heading"),
-      body: t("marketing__privacy__section2_body"),
+      heading: t("marketing__privacy__collect_heading"),
+      body: t("marketing__privacy__collect_body"),
     },
     {
-      heading: t("marketing__privacy__section3_heading"),
-      body: t("marketing__privacy__section3_body"),
+      heading: t("marketing__privacy__use_heading"),
+      body: t("marketing__privacy__use_body"),
     },
     {
-      heading: t("marketing__privacy__section4_heading"),
-      body: t("marketing__privacy__section4_body"),
+      heading: t("marketing__privacy__share_heading"),
+      body: t("marketing__privacy__share_body"),
     },
     {
-      heading: t("marketing__privacy__section5_heading"),
-      body: t("marketing__privacy__section5_body"),
-    },
-    {
-      heading: t("marketing__privacy__section6_heading"),
-      body: t("marketing__privacy__section6_body"),
-    },
-    {
-      heading: t("marketing__privacy__section7_heading"),
-      body: t.rich("marketing__privacy__section7_body", { link: emailLink }),
-    },
-    {
-      heading: t("marketing__privacy__section8_heading"),
-      body: t.rich("marketing__privacy__section8_body", { link: emailLink }),
+      heading: t("marketing__privacy__rights_heading"),
+      body: t.rich("marketing__privacy__rights_body", {
+        email: supportEmail,
+        link: emailLink,
+      }),
     },
   ];
 
   return (
     <section>
-      <div className="section-container">
+      <div className="section-container-small">
         <div className="max-w-prose">
           <h1 className="type-h0 text-foreground font-semibold">
             {t("marketing__privacy__title")}

@@ -1,12 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
 import { authClient } from "@/lib/auth/client";
 import { SocialAuthButton } from "./SocialAuthButton";
 import { AppleIcon } from "@ovation/icons/AppleIcon";
 import { GoogleIcon } from "@ovation/icons/GoogleIcon";
+
+const SIGNUP_LOCALE_COOKIE = "ovation_signup_locale";
+const SIGNUP_LOCALE_TTL_SECONDS = 600;
+
+const persistSignupLocale = (locale: string): void => {
+  if (typeof document === "undefined") return;
+  const secure = window.location.protocol === "https:" ? "; Secure" : "";
+  document.cookie =
+    `${SIGNUP_LOCALE_COOKIE}=${encodeURIComponent(locale)}` +
+    `; Path=/; Max-Age=${SIGNUP_LOCALE_TTL_SECONDS}; SameSite=Lax${secure}`;
+};
 
 type SocialAuthButtonsProps = {
   className?: string;
@@ -16,12 +27,14 @@ type Provider = "google" | "apple";
 
 export const SocialAuthButtons = ({ className }: SocialAuthButtonsProps) => {
   const t = useTranslations();
+  const locale = useLocale();
   const [pending, setPending] = useState<Provider | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleProvider = async (provider: Provider) => {
     setPending(provider);
     setError(null);
+    persistSignupLocale(locale);
     const { error: providerError } = await authClient.signIn.social({
       provider,
       callbackURL: "/home",

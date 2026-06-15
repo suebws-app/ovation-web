@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 import { LegalSection } from "../LegalSection";
-import { CookieType } from "./CookieType";
-import { COOKIE_TYPE_KEYS } from "./constants";
+import { clientEnv } from "@/lib/utils/env.client";
 
 const emailLink = (chunks: React.ReactNode) => (
   <a
@@ -14,32 +13,33 @@ const emailLink = (chunks: React.ReactNode) => (
 
 export const CookiesPage = () => {
   const t = useTranslations();
-
-  const cookieTypes = COOKIE_TYPE_KEYS.map((k) => ({
-    label: t(k.label),
-    body: t(k.body),
-  }));
+  const supportEmail = clientEnv.SUPPORT_EMAIL;
 
   const sections = [
     {
-      heading: t("marketing__cookies__section1_heading"),
-      body: t("marketing__cookies__section1_body"),
+      heading: t("marketing__cookies__intro_heading"),
+      body: t("marketing__cookies__intro_body"),
     },
     {
-      heading: t("marketing__cookies__section2_heading"),
-      body: cookieTypes.map((ct) => (
-        <CookieType key={ct.label} label={ct.label} body={ct.body} />
-      )),
+      heading: t("marketing__cookies__essential_heading"),
+      body: t("marketing__cookies__essential_body"),
     },
     {
-      heading: t("marketing__cookies__section3_heading"),
-      body: t.rich("marketing__cookies__section3_body", { link: emailLink }),
+      heading: t("marketing__cookies__third_party_heading"),
+      body: t("marketing__cookies__third_party_body"),
+    },
+    {
+      heading: t("marketing__cookies__contact_heading"),
+      body: t.rich("marketing__cookies__contact_body", {
+        email: supportEmail,
+        link: emailLink,
+      }),
     },
   ];
 
   return (
     <section>
-      <div className="section-container">
+      <div className="section-container-small">
         <div className="max-w-prose">
           <h1 className="type-h0 text-foreground font-semibold">
             {t("marketing__cookies__title")}

@@ -5,6 +5,7 @@ import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Button } from "@ovation/ui/components/Button";
 import { Card } from "@ovation/ui/components/Card";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { clientEnv } from "@/lib/utils/env.client";
 
 export const FinalCTA = () => {
   const t = useTranslations();
@@ -41,7 +42,9 @@ export const FinalCTA = () => {
 
               <Card className="bg-card/75 mt-3 flex items-center gap-2.5 rounded-2xl p-4 shadow-none backdrop-blur">
                 <span className="text-muted-foreground bg-card border-border type-caption shrink-0 rounded-full border px-2.5 py-1">
-                  {t("marketing__cta__domain_prefix")}
+                  {t("marketing__cta__domain_prefix", {
+                    host: clientEnv.APP_HOST,
+                  })}
                 </span>
                 <span className="text-foreground type-body min-w-0 flex-1 truncate font-serif italic">
                   {t("marketing__cta__domain_placeholder")}

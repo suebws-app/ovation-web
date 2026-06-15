@@ -13,16 +13,12 @@ export const appRoutes = {
     about: "/about",
     careers: "/careers",
     sustainability: "/sustainability",
-    pressKit: "/press-kit",
     contact: "/contact",
   },
 
   legal: {
     privacy: "/legal/privacy",
-    terms: "/legal/terms",
     cookies: "/legal/cookies",
-    gdpr: "/legal/gdpr",
-    dpaForPlanners: "/legal/dpa-for-planners",
   },
 
   auth: {

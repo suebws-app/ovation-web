@@ -9,9 +9,11 @@ import {
   AccordionTrigger,
 } from "@ovation/ui/components/Accordion";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { clientEnv } from "@/lib/utils/env.client";
 
 export const FAQSection = () => {
   const t = useTranslations();
+  const supportEmail = clientEnv.SUPPORT_EMAIL;
 
   const items = FAQ_ITEM_KEYS.map((k) => ({ q: t(k.q), a: t(k.a) }));
 
@@ -33,10 +35,10 @@ export const FAQSection = () => {
               {t("marketing__faq__subtitle")}
             </p>
             <a
-              href={`mailto:${t("marketing__faq__email")}`}
+              href={`mailto:${supportEmail}`}
               className="text-foreground type-body-small mt-5 inline-flex items-center gap-2 font-semibold"
             >
-              {t("marketing__faq__email")}
+              {t("marketing__faq__email", { email: supportEmail })}
             </a>
           </div>
 

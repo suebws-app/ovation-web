@@ -15,7 +15,7 @@ export const ContactPage = () => {
   return (
     <>
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__contact__eyebrow")}
           </Kicker>
@@ -29,7 +29,7 @@ export const ContactPage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <div className="max-w-prose">
             {rows.map((row) => (
               <ContactRow key={row.label} label={row.label} email={row.email} />

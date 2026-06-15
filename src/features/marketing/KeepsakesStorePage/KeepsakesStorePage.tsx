@@ -1,22 +1,30 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { KeepsakeCard } from "./KeepsakeCard";
-import { KEEPSAKE_PRODUCT_KEYS } from "./constants";
+import { keepsakesApi } from "@/lib/api/keepsakes";
+import { formatPrice } from "@/features/checkout/orderHelpers";
 
-export const KeepsakesStorePage = () => {
-  const t = useTranslations();
+export const KeepsakesStorePage = async () => {
+  const t = await getTranslations();
+  const catalog = await keepsakesApi.catalog().catch(() => ({ products: [] }));
 
-  const products = KEEPSAKE_PRODUCT_KEYS.map((k) => ({
-    name: t(k.name),
-    description: t(k.description),
-    price: t(k.price),
+  const comingSoonLabel = t("marketing__keepsakes__coming_soon");
+  const fromLabel = t("marketing__keepsakes__price_from");
+
+  const products = catalog.products.map((product) => ({
+    name: t(product.name),
+    description: t(product.description),
+    price: product.comingSoon
+      ? ""
+      : `${fromLabel} ${formatPrice(product.priceCents, product.currency)}`,
+    comingSoon: product.comingSoon,
   }));
 
   return (
     <>
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__keepsakes__eyebrow")}
           </Kicker>
@@ -35,7 +43,7 @@ export const KeepsakesStorePage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <div className="tablet:grid-cols-2 desktop:grid-cols-3 grid grid-cols-1 gap-6">
             {products.map((product) => (
               <KeepsakeCard
@@ -43,6 +51,8 @@ export const KeepsakesStorePage = () => {
                 name={product.name}
                 description={product.description}
                 price={product.price}
+                comingSoon={product.comingSoon}
+                comingSoonLabel={comingSoonLabel}
               />
             ))}
           </div>

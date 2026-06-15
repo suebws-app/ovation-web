@@ -8,7 +8,7 @@ export const AboutPage = () => {
   return (
     <>
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__about__eyebrow")}
           </Kicker>
@@ -27,7 +27,7 @@ export const AboutPage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <div className="border-border bg-card rounded-16 tablet:p-12 border p-8">
             <p className="text-muted-foreground type-body-small font-semibold tracking-widest uppercase">
               {t("marketing__about__mission_label")}
@@ -40,7 +40,7 @@ export const AboutPage = () => {
       </section>
 
       <section>
-        <div className="section-container">
+        <div className="section-container-small">
           <Kicker className="text-primary">
             {t("marketing__about__team_eyebrow")}
           </Kicker>

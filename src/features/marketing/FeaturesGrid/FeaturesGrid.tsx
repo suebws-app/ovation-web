@@ -2,19 +2,16 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@ovation/ui/components/Badge";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { LockIcon } from "@ovation/icons/LockIcon";
-import { FeaturesRitualBar } from "./FeaturesRitualBar";
 import { FeaturesQrCard } from "./FeaturesQrCard";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { FeatureCard } from "./FeatureCard";
-import {
-  GOLD_BOOK_PRICE,
-  INTEGRATIONS,
-  LANGUAGES,
-  QR_ROTATIONS,
-  RITUAL_BARS,
-} from "./constants";
+import { LANGUAGES, QR_ROTATIONS } from "./constants";
 
-export const FeaturesGrid = () => {
+type FeaturesGridProps = {
+  goldBookPrice: string;
+};
+
+export const FeaturesGrid = ({ goldBookPrice }: FeaturesGridProps) => {
   const t = useTranslations();
 
   return (
@@ -34,29 +31,13 @@ export const FeaturesGrid = () => {
 
         <div className="grid grid-cols-1 gap-4.5 md:grid-cols-4">
           <FeatureCard
-            kicker={t("marketing__features__ritual_eyebrow")}
-            kickerClassName="text-muted-foreground"
-            title={t("marketing__features__ritual_title")}
-            titleClassName="type-h2 tablet:type-h1"
-            className="md:col-span-2"
-          >
-            <p className="text-muted-foreground type-body-small mt-2">
-              {t("marketing__features__ritual_body")}
-            </p>
-            <div className="tablet:mt-auto mt-2 flex items-end gap-0.5">
-              {RITUAL_BARS.map((i) => (
-                <FeaturesRitualBar key={i} index={i} />
-              ))}
-            </div>
-          </FeatureCard>
-
-          <FeatureCard
             kicker={t("marketing__features__lang_eyebrow")}
             kickerClassName="text-destructive"
             title={t("marketing__features__lang_title")}
-            className="bg-destructive/10"
+            titleClassName="type-h2 tablet:type-h1"
+            className="bg-destructive/10 md:col-span-2"
           >
-            <div className="mb-3 flex flex-wrap gap-2">
+            <div className="mt-2 mb-3 flex flex-wrap gap-2">
               {LANGUAGES.map((lang) => (
                 <Badge key={lang} variant="outline">
                   {lang}
@@ -80,7 +61,7 @@ export const FeaturesGrid = () => {
               <div>
                 <p className="text-foreground type-body-small font-semibold">
                   {t("marketing__features__book_price", {
-                    price: GOLD_BOOK_PRICE,
+                    price: goldBookPrice,
                   })}
                 </p>
                 <p className="text-muted-foreground type-caption">
@@ -106,6 +87,7 @@ export const FeaturesGrid = () => {
             kicker={t("marketing__features__qr_eyebrow")}
             kickerClassName="text-muted-foreground"
             title={t("marketing__features__qr_title")}
+            className="md:col-span-2"
           >
             <div className="mt-auto flex items-end gap-1">
               {QR_ROTATIONS.map((rotation, i) => (
@@ -115,19 +97,23 @@ export const FeaturesGrid = () => {
           </FeatureCard>
 
           <FeatureCard
+            kicker={t("marketing__features__kiosk_eyebrow")}
+            kickerClassName="text-muted-foreground"
+            title={t("marketing__features__kiosk_title")}
+            className="bg-muted/40 md:col-span-2"
+          >
+            <p className="text-muted-foreground type-body-small mt-auto">
+              {t("marketing__features__kiosk_body")}
+            </p>
+          </FeatureCard>
+
+          <FeatureCard
             kicker={t("marketing__features__planner_eyebrow")}
             kickerClassName="text-primary"
             title={t("marketing__features__planner_title")}
             titleClassName="type-h2 mb-3"
-            className="bg-primary/10 md:col-span-2"
+            className="bg-primary/10 md:col-span-4"
           >
-            <div className="mb-3 flex flex-wrap gap-2">
-              {INTEGRATIONS.map((name) => (
-                <Badge key={name} variant="outline">
-                  {name}
-                </Badge>
-              ))}
-            </div>
             <p className="text-muted-foreground type-body-small">
               {t("marketing__features__planner_body")}
             </p>
