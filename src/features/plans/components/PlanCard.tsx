@@ -12,6 +12,7 @@ type PlanCardProps = {
   per: string;
   description: string;
   features: string[];
+  priceNote?: string;
   highlighted?: boolean;
   onSelect?: () => void;
 };
@@ -22,6 +23,7 @@ export const PlanCard = ({
   per,
   description,
   features,
+  priceNote,
   highlighted = false,
   onSelect,
 }: PlanCardProps) => {
@@ -41,6 +43,11 @@ export const PlanCard = ({
         <span className="type-h1 font-semibold tracking-tight">{price}</span>
         <span className="type-caption text-muted-foreground">{per}</span>
       </div>
+      {priceNote && (
+        <p className="type-caption text-muted-foreground mt-1 leading-tight">
+          {priceNote}
+        </p>
+      )}
       <p className="type-body-small text-muted-foreground mt-2.5 min-h-10.5 leading-relaxed">
         {description}
       </p>

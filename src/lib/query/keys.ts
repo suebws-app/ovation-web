@@ -66,4 +66,7 @@ export const queryKeys = {
     all: () => ["pdf"] as const,
     render: (renderId: string) => ["pdf", "render", renderId] as const,
   },
+  currencies: {
+    supported: () => ["currencies", "supported"] as const,
+  },
 } as const;

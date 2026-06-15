@@ -6,6 +6,7 @@ import { appRoutes } from "@/lib/routes";
 import { PlansPicker } from "./components/PlansPicker";
 import { DreUpgradeCard } from "./components/DreUpgradeCard";
 import { PlansBackGuard } from "./PlansBackGuard";
+import { CurrencySelect } from "@/components/CurrencySelect";
 
 type PlansPageProps = {
   searchParams?: Promise<{ upgrade?: string }>;
@@ -30,6 +31,9 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
     return (
       <PlansBackGuard>
         <div className="max-w-md">
+          <div className="mb-6 flex justify-end">
+            <CurrencySelect />
+          </div>
           <DreUpgradeCard plan={drePlan} />
         </div>
       </PlansBackGuard>
@@ -43,7 +47,11 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
 
   return (
     <PlansBackGuard>
-      <PlansPicker mode={mode} plans={plans} />
+      <PlansPicker
+        mode={mode}
+        plans={plans}
+        currencySelect={<CurrencySelect />}
+      />
     </PlansBackGuard>
   );
 };

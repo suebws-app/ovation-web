@@ -553,6 +553,24 @@ export type CheckoutSessionResult = {
 
 export type PlanAudience = "couple" | "pro" | "addon";
 
+export type PlanPrice = {
+  currency: string;
+  amount: number;
+  paddlePriceId: string | null;
+};
+
+export type PlanProductVariables = {
+  regularPrice: number;
+  regularPriceFormatted: string;
+  currencySymbol: string;
+};
+
+export type PlanUsdPrice = {
+  amount: number;
+  regularPrice: number;
+  regularPriceFormatted: string;
+};
+
 export type Plan = {
   id: string;
   code: string;
@@ -560,6 +578,9 @@ export type Plan = {
   description: string | null;
   priceCents: number;
   currency: string;
+  price: PlanPrice;
+  productVariables: PlanProductVariables;
+  usdPrice?: PlanUsdPrice;
   messageLimit: number | null;
   storageDays: number | null;
   creditCents: number;
