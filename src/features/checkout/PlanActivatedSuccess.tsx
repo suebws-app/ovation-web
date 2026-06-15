@@ -5,7 +5,6 @@ import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { PendingEventCreator } from "./PendingEventCreator";
-import { LogoHeader } from "@/components/LogoHeader";
 
 type PlanActivatedSuccessProps = {
   orderId: string;
@@ -22,11 +21,9 @@ export const PlanActivatedSuccess = async ({
   const isDre = planCode === DRE_PLAN_CODE;
 
   return (
-    <div className="bg-background min-h-screen">
+    <>
       {!isDre && <PendingEventCreator orderId={orderId} />}
-      <LogoHeader />
-
-      <main className="mx-auto flex w-full max-w-160 flex-col gap-6 px-6 py-10">
+      <>
         <div className="rounded-20 bg-card border-border flex flex-col items-center gap-3 border p-8 text-center">
           <div className="rounded-16 bg-primary/15 inline-flex size-16 items-center justify-center">
             <CheckIcon
@@ -65,7 +62,7 @@ export const PlanActivatedSuccess = async ({
             </Link>
           </Button>
         </div>
-      </main>
-    </div>
+      </>
+    </>
   );
 };
