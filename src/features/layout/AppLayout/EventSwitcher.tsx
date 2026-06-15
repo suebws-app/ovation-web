@@ -19,30 +19,11 @@ import { PlusIcon } from "@ovation/icons/PlusIcon";
 import { SettingsIcon } from "@ovation/icons/SettingsIcon";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
-import { isLocale } from "@/lib/utils/isLocale";
+import { eventLabel } from "@/lib/utils/eventFormatters";
+import { formatYear } from "@/lib/utils/formatDate";
+import { stripLocale } from "@/lib/utils/routing";
 import type { Event } from "@/lib/api/types";
 import { EventOption } from "./EventOption";
-
-const eventLabel = (event: Event, fallback: string): string => {
-  const a = event.partnerAName?.trim();
-  const b = event.partnerBName?.trim();
-  if (a && b) return `${a} & ${b}`;
-  if (a || b) return a || b || fallback;
-  return fallback;
-};
-
-const formatYear = (date: string | null): string | null => {
-  if (!date) return null;
-  const d = new Date(date);
-  if (Number.isNaN(d.getTime())) return null;
-  return String(d.getFullYear());
-};
-
-const stripLocale = (pathname: string): string => {
-  const parts = pathname.split("/").filter(Boolean);
-  const filtered = parts[0] && isLocale(parts[0]) ? parts.slice(1) : parts;
-  return `/${filtered.join("/")}`;
-};
 
 const buildEventTarget = (currentPath: string, newEventId: string): string => {
   const stripped = stripLocale(currentPath);

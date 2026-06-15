@@ -10,6 +10,11 @@ import type {
   GalleryItem,
 } from "@/lib/api/types";
 import { aggregateGuests, type GuestRow } from "@/features/guests/adapters";
+import { saveBlob } from "@/lib/utils/download-blob";
+import { escapeCsv } from "@/lib/utils/csv";
+import { toIsoDate } from "@/lib/utils/formatDate";
+import { safeName } from "@/lib/utils/string";
+import { extensionFromUrl } from "@/lib/utils/url";
 
 export type ExportKind =
   | "audio"
@@ -18,22 +23,6 @@ export type ExportKind =
   | "guests"
   | "everything"
   | "allEventsExcel";
-
-const triggerDownload = (blob: Blob, filename: string) => {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-};
-
-const escapeCsv = (value: string): string => {
-  if (/[",\n]/.test(value)) return `"${value.replace(/"/g, '""')}"`;
-  return value;
-};
 
 const buildGuestsCsv = (guests: GuestRow[]): string => {
   const header = [
@@ -59,25 +48,6 @@ const buildGuestsCsv = (guests: GuestRow[]): string => {
   return [header, ...rows]
     .map((cols) => cols.map(escapeCsv).join(","))
     .join("\n");
-};
-
-const formatDate = (d: Date): string => {
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`;
-};
-
-const safeName = (input: string): string =>
-  input
-    .replace(/[\\/:*?"<>|]+/g, "-")
-    .replace(/\s+/g, " ")
-    .trim() || "untitled";
-
-const extensionFromUrl = (url: string, fallback: string): string => {
-  const path = url.split("?")[0];
-  const match = /\.([a-z0-9]{2,5})$/i.exec(path);
-  return match ? match[1].toLowerCase() : fallback;
 };
 
 const fetchAllSummaries = async (
@@ -283,7 +253,7 @@ export const useEventDataExport = (
           sheets.push(buildGuestSheet(ev, guests));
         }
         const blob = await createXlsxBlob(sheets);
-        triggerDownload(blob, `events ${formatDate(new Date())}.xlsx`);
+        saveBlob(blob, `events ${toIsoDate(new Date())}.xlsx`);
       } finally {
         setPending(null);
       }
@@ -294,13 +264,13 @@ export const useEventDataExport = (
     setPending(kind);
     try {
       const summaries = await fetchAllSummaries(eventId);
-      const dateStamp = formatDate(new Date());
+      const dateStamp = toIsoDate(new Date());
 
       if (kind === "guests") {
         const guests = aggregateGuests(summaries, anonymous);
         const csv = buildGuestsCsv(guests);
         const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-        triggerDownload(blob, `guests ${dateStamp}.csv`);
+        saveBlob(blob, `guests ${dateStamp}.csv`);
         return;
       }
 
@@ -321,14 +291,14 @@ export const useEventDataExport = (
         const files = await buildAudioFiles(details);
         if (files.length === 0) return;
         const blob = await createZipBlob(files);
-        triggerDownload(blob, `audio ${dateStamp}.zip`);
+        saveBlob(blob, `audio ${dateStamp}.zip`);
         return;
       }
 
       if (kind === "transcripts") {
         const text = buildTranscriptsText(details);
         const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-        triggerDownload(blob, `transcripts ${dateStamp}.txt`);
+        saveBlob(blob, `transcripts ${dateStamp}.txt`);
         return;
       }
 
@@ -336,7 +306,7 @@ export const useEventDataExport = (
         const files = await buildPhotoFiles(details);
         if (files.length === 0) return;
         const blob = await createZipBlob(files);
-        triggerDownload(blob, `photos ${dateStamp}.zip`);
+        saveBlob(blob, `photos ${dateStamp}.zip`);
         return;
       }
 
@@ -365,7 +335,7 @@ export const useEventDataExport = (
           blob: new Blob([csv], { type: "text/csv;charset=utf-8" }),
         });
         const blob = await createZipBlob(files);
-        triggerDownload(blob, `event-data ${dateStamp}.zip`);
+        saveBlob(blob, `event-data ${dateStamp}.zip`);
         return;
       }
     } finally {

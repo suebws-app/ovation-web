@@ -11,6 +11,7 @@ import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
 import { MicIcon } from "@ovation/icons/MicIcon";
 import { VideoIcon } from "@ovation/icons/VideoIcon";
 import type { MessageSummary } from "@/lib/api/types";
+import { formatSec } from "@/lib/utils/formatTime";
 import {
   formatDurationShort,
   initialsFrom,
@@ -31,13 +32,6 @@ type MessagesTableRowProps = {
   onToggleSelect: () => void;
   onOpen: () => void;
   onPlay: () => void;
-};
-
-const formatSec = (sec: number): string => {
-  if (!Number.isFinite(sec) || sec < 0) return "0:00";
-  const m = Math.floor(sec / 60);
-  const s = Math.floor(sec % 60);
-  return `${m}:${s.toString().padStart(2, "0")}`;
 };
 
 export const MessagesTableRow = ({

@@ -7,16 +7,10 @@ import {
   type DownloadInputs,
 } from "@/lib/media/downloadMessageAssets";
 import type { MessageDetail, MessageSummary } from "@/lib/api/types";
+import { toIsoDate } from "@/lib/utils/formatDate";
 import { useEventId } from "../context/MessagesEventContext";
 
 const PAGE_LIMIT = 100;
-
-const formatDate = (d: Date): string => {
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`;
-};
 
 const fetchAllSummaries = async (
   eventId: string,
@@ -69,7 +63,7 @@ export const useExportAllMessages = () => {
         }),
       );
 
-      const folderName = `messages ${formatDate(new Date())}`;
+      const folderName = `messages ${toIsoDate(new Date())}`;
       await downloadManyMessages(inputs, folderName, folderName);
     },
   });

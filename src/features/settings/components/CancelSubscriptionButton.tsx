@@ -5,21 +5,13 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { subscriptionsClient } from "@/lib/api/subscriptions-client";
+import { formatLongDate } from "@/lib/utils/formatDate";
 
 type CancelSubscriptionButtonProps = {
   cancelAtPeriodEnd: boolean;
   periodEnd: string | null;
   locale: string;
 };
-
-const formatDate = (iso: string | null, locale: string) =>
-  iso
-    ? new Date(iso).toLocaleDateString(locale, {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
-    : "—";
 
 export const CancelSubscriptionButton = ({
   cancelAtPeriodEnd,
@@ -55,7 +47,7 @@ export const CancelSubscriptionButton = ({
   const body = cancelAtPeriodEnd
     ? t("settings__billing__resume_confirm_body")
     : t("settings__billing__cancel_confirm_body", {
-        date: formatDate(periodEnd, locale),
+        date: formatLongDate(periodEnd, locale),
       });
   const action = cancelAtPeriodEnd
     ? t("settings__billing__resume_confirm_action")

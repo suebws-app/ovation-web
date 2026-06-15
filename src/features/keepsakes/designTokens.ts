@@ -110,18 +110,7 @@ export const computeStartingPriceCents = (
   return cheapest ?? fallbackCents;
 };
 
-export const formatPrice = (priceCents: number, currency: string): string => {
-  try {
-    return new Intl.NumberFormat(undefined, {
-      style: "currency",
-      currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(priceCents / 100);
-  } catch {
-    return `${(priceCents / 100).toFixed(2)} ${currency}`;
-  }
-};
+export { formatMoney as formatPrice } from "@/lib/utils/currency";
 
 export const formatTimeline = (days: string | null | undefined): string => {
   if (!days) return "";

@@ -11,9 +11,7 @@ import { QRCodeMobileBar } from "./components/QRCodeMobileBar";
 import { QRCodeStudio } from "./components/QRCodeStudio";
 import { QRStatsCard } from "./components/QRStatsCard";
 import { QRCodeEmpty } from "./components/QRCodeEmpty";
-
-const coupleNameOf = (partnerA: string, partnerB: string) =>
-  [partnerA, partnerB].filter(Boolean).join(" & ");
+import { coupleNameOf } from "@/lib/utils/eventFormatters";
 
 export const EventQRCodePage = async ({
   params,
