@@ -11,12 +11,7 @@ const sendViaApi = async (
   path: "verification" | "password-reset",
   payload: { to: string; url: string; locale: string },
 ): Promise<boolean> => {
-  if (!env.INTERNAL_API_SECRET) {
-    console.error("[email] INTERNAL_API_SECRET missing — cannot send", {
-      path,
-    });
-    return false;
-  }
+  if (!env.INTERNAL_API_SECRET) return false;
   try {
     const res = await fetch(
       `${env.INTERNAL_API_URL}/api/v1/internal/emails/${path}`,
@@ -39,7 +34,7 @@ const sendViaApi = async (
     }
     return true;
   } catch (err) {
-    console.error("[email] API unreachable — email not sent", {
+    console.error("[email] API unreachable — falling back to direct send", {
       path,
       error: (err as Error).message,
     });
