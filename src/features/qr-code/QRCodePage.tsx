@@ -5,10 +5,7 @@ import { appRoutes } from "@/lib/routes";
 import { getCurrentUser } from "@/lib/auth/session";
 import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { getTranslations } from "next-intl/server";
-import { OrderCtaStrip } from "./components/OrderCtaStrip";
-import { QRCodeDesktopFooter } from "./components/QRCodeDesktopFooter";
 import { QRCodeHeader } from "./components/QRCodeHeader";
-import { QRCodeMobileBar } from "./components/QRCodeMobileBar";
 import { QRCodeStudio } from "./components/QRCodeStudio";
 import { QRStatsCard } from "./components/QRStatsCard";
 import { QRCodeEmpty } from "./components/QRCodeEmpty";
@@ -39,8 +36,8 @@ export const QRCodePage = async () => {
   const isPro = user?.accountType === "pro";
 
   return (
-    <div className="tablet:pb-6 mx-auto w-full min-w-0 p-6 pb-28">
-      <QRCodeHeader guestSlug={event.slug} />
+    <div className="mx-auto w-full min-w-0 p-6">
+      <QRCodeHeader />
       {!isPro && (
         <div className="rounded-16 border-border bg-card mt-6 flex flex-col gap-1 border p-5">
           <p className="type-body-small font-semibold">
@@ -72,11 +69,6 @@ export const QRCodePage = async () => {
           audioMessages={stats?.audioMessages ?? 0}
         />
       </div>
-      <div className="mt-4">
-        <OrderCtaStrip />
-      </div>
-      <QRCodeDesktopFooter />
-      <QRCodeMobileBar />
     </div>
   );
 };

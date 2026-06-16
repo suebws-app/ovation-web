@@ -71,7 +71,7 @@ export const KioskLiveFrame = ({
     enableWakeLock && fullscreenSupported && event.kiosk.fullscreenLock;
 
   const handleExitClick = async () => {
-    if (event.kiosk.exitPin) {
+    if (event.kiosk.fullscreenLock && event.kiosk.exitPin) {
       setExitOpen(true);
       return;
     }
