@@ -5,6 +5,7 @@ import { KeepsakesCollection } from "./components/KeepsakesCollection";
 import { KeepsakesFooter } from "./components/KeepsakesFooter";
 import { KeepsakesHero } from "./components/KeepsakesHero";
 import { computeStartingPriceCents } from "./designTokens";
+import { CurrencySelect } from "@/components/CurrencySelect";
 
 export const KeepsakesPage = async () => {
   const cookieStore = await cookies();
@@ -36,6 +37,7 @@ export const KeepsakesPage = async () => {
     <div className="flex w-full min-w-0 flex-col gap-6 p-6">
       <div className="flex items-start justify-between gap-4">
         <KeepsakesHero />
+        <CurrencySelect />
       </div>
 
       <KeepsakesCollection

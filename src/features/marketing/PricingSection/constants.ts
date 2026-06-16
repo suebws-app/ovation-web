@@ -1,5 +1,6 @@
 export type Tier = {
   key: string;
+  planCode: string | null;
   highlighted: boolean;
   tagKey: string;
   nameKey: string;
@@ -47,6 +48,7 @@ const PRO_STUDIO_FEAT_KEYS = [
 export const COUPLES_TIERS: Tier[] = [
   {
     key: "keepsake",
+    planCode: "premium",
     highlighted: true,
     tagKey: "marketing__pricing__keepsake_tag",
     nameKey: "marketing__pricing__keepsake_name",
@@ -59,6 +61,7 @@ export const COUPLES_TIERS: Tier[] = [
   },
   {
     key: "gold",
+    planCode: "bundle",
     highlighted: false,
     tagKey: "marketing__pricing__gold_tag",
     nameKey: "marketing__pricing__gold_name",
@@ -74,6 +77,7 @@ export const COUPLES_TIERS: Tier[] = [
 export const PRO_TIERS: Tier[] = [
   {
     key: "pro_starter",
+    planCode: "pro_starter",
     highlighted: false,
     tagKey: "marketing__pricing__pro_starter_tag",
     nameKey: "marketing__pricing__pro_starter_name",
@@ -86,6 +90,7 @@ export const PRO_TIERS: Tier[] = [
   },
   {
     key: "pro_studio",
+    planCode: "pro_studio",
     highlighted: true,
     tagKey: "marketing__pricing__pro_studio_tag",
     nameKey: "marketing__pricing__pro_studio_name",

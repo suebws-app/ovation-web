@@ -6,7 +6,7 @@ import { FeatureListItem } from "@ovation/ui/components/FeatureListItem";
 import { Link } from "@/i18n/navigation";
 import type { Tier } from "./constants";
 
-type PricingCardProps = Omit<Tier, "key">;
+type PricingCardProps = Omit<Tier, "key" | "planCode">;
 
 export const PricingCard = ({
   highlighted,

@@ -7,6 +7,8 @@ import { SettingsToggle } from "./SettingsToggle";
 import { ProfileNameForm } from "./ProfileNameForm";
 import { WeddingDetailsForm } from "./WeddingDetailsForm";
 import { ProfileCloseAccount } from "./ProfileCloseAccount";
+import { LanguageSelect } from "@/components/LanguageSelect";
+import { CurrencySelect } from "@/components/CurrencySelect";
 
 type SettingsProfileSectionProps = {
   user: User;
@@ -67,6 +69,28 @@ export const SettingsProfileSection = ({
             />
           </div>
         ))}
+
+      <div className="mt-11">
+        <SettingsSectionTitle
+          title={t("settings__profile__localization")}
+          description={t("settings__profile__localization_description")}
+        />
+        <SettingsCard>
+          <SettingsRow
+            title={t("settings__profile__language_label")}
+            description={t("settings__profile__language_hint")}
+          >
+            <LanguageSelect />
+          </SettingsRow>
+          <SettingsRow
+            title={t("settings__profile__currency_label")}
+            description={t("settings__profile__currency_hint")}
+            last
+          >
+            <CurrencySelect />
+          </SettingsRow>
+        </SettingsCard>
+      </div>
 
       <div className="mt-11">
         <SettingsSectionTitle title={t("settings__privacy__ai__title")} />
