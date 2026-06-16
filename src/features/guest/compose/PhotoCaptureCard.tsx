@@ -12,7 +12,6 @@ import {
 } from "../store/useGuestSubmissionStore";
 import { CaptureCardHeader } from "./CaptureCardHeader";
 import { PhotoThumb } from "./PhotoThumb";
-import { CameraCaptureModal } from "./CameraCaptureModal";
 import { compressImage } from "@/lib/media/compressImage";
 
 const MAX_BYTES = 25 * 1024 * 1024;
@@ -58,7 +57,6 @@ export const PhotoCaptureCard = () => {
   const removePhoto = useGuestSubmissionStore((s) => s.removePhoto);
   const galleryInputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | null>(null);
-  const [cameraOpen, setCameraOpen] = useState(false);
   const [pendingCount, setPendingCount] = useState(0);
 
   const handleFiles = async (files: FileList | null) => {
@@ -107,26 +105,6 @@ export const PhotoCaptureCard = () => {
     }
   };
 
-  const handleCameraCapture = async (file: File) => {
-    setError(null);
-    const available = MAX_PHOTOS - photos.length;
-    if (available <= 0) {
-      setError(t("guest__compose__photo_max_reached", { max: MAX_PHOTOS }));
-      return;
-    }
-    if (file.size > MAX_BYTES) {
-      setError(t("guest__record__photo__error_too_large"));
-      return;
-    }
-    setPendingCount((c) => c + 1);
-    try {
-      const photo = await readPhoto(file);
-      if (photo) addPhotos([photo]);
-    } finally {
-      setPendingCount((c) => Math.max(0, c - 1));
-    }
-  };
-
   const count = photos.length;
   const remaining = MAX_PHOTOS - count;
   const atLimit = remaining <= 0;
@@ -147,18 +125,7 @@ export const PhotoCaptureCard = () => {
           }
         />
         {showInlineCta && (
-          <div className="tablet:w-auto flex w-full gap-2">
-            <Button
-              type="button"
-              variant="ghost"
-              className={`${tonalButtonClass} flex-1`}
-              style={{ color: photoToneColor }}
-              onClick={() => setCameraOpen(true)}
-              disabled={atLimit}
-            >
-              <CameraIcon width={16} height={16} />
-              {t("guest__compose__take_a_photo")}
-            </Button>
+          <div className="tablet:w-auto flex w-full">
             <Button
               type="button"
               variant="ghost"
@@ -168,7 +135,7 @@ export const PhotoCaptureCard = () => {
               disabled={atLimit}
             >
               <ImageIcon width={16} height={16} />
-              {t("guest__compose__choose_from_gallery")}
+              {t("guest__compose__upload_photo")}
             </Button>
           </div>
         )}
@@ -199,24 +166,15 @@ export const PhotoCaptureCard = () => {
       )}
 
       {(count > 0 || pendingCount > 0) && (
-        <div className="tablet:flex-row mt-4 flex flex-col gap-2">
+        <div className="mt-4 flex">
           <Button
             variant="outline"
-            className="tablet:flex-1 w-full rounded-full"
-            onClick={() => setCameraOpen(true)}
-            disabled={atLimit}
-          >
-            <CameraIcon width={14} height={14} />
-            {t("guest__compose__take_a_photo")}
-          </Button>
-          <Button
-            variant="outline"
-            className="tablet:flex-1 w-full rounded-full"
+            className="w-full rounded-full"
             onClick={() => galleryInputRef.current?.click()}
             disabled={atLimit}
           >
             <ImageIcon width={14} height={14} />
-            {t("guest__compose__choose_from_gallery")}
+            {t("guest__compose__upload_photo")}
           </Button>
         </div>
       )}
@@ -238,12 +196,6 @@ export const PhotoCaptureCard = () => {
           {error}
         </p>
       )}
-
-      <CameraCaptureModal
-        open={cameraOpen}
-        onClose={() => setCameraOpen(false)}
-        onCaptured={handleCameraCapture}
-      />
     </div>
   );
 };

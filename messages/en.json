@@ -1383,6 +1383,7 @@
   "guest__compose__photo_max_reached": "You can attach up to {max} photos.",
   "guest__compose__take_a_photo": "Take a photo",
   "guest__compose__choose_from_gallery": "Choose from gallery",
+  "guest__compose__upload_photo": "Upload photo",
   "guest__compose__camera_snap": "Take photo",
   "guest__compose__camera_close": "Close camera",
   "guest__record__photo__error_no_support": "Camera not supported on this device.",
