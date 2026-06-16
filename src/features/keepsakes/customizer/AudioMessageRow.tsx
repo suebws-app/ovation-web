@@ -2,20 +2,12 @@
 
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import type { MessageSummary } from "@/lib/api/types";
+import { formatDuration } from "@/lib/utils/formatTime";
 
 type AudioMessageRowProps = {
   message: MessageSummary;
   selected: boolean;
   onToggle: (id: string) => void;
-};
-
-const formatDuration = (seconds: number | null) => {
-  if (seconds == null) return "";
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60)
-    .toString()
-    .padStart(2, "0");
-  return `${mins}:${secs}`;
 };
 
 export const AudioMessageRow = ({

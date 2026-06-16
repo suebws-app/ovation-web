@@ -1,16 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import type { DreInfo } from "@/lib/api/types";
+import { formatLongDate } from "@/lib/utils/formatDate";
 import { CancelSubscriptionButton } from "./CancelSubscriptionButton";
 import { DreCancelIntentLink } from "./DreCancelIntentLink";
-
-const formatDate = (iso: string | null, locale: string) => {
-  if (!iso) return "—";
-  return new Date(iso).toLocaleDateString(locale, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-};
 
 type DreSectionProps = {
   dre: DreInfo | null;
@@ -36,7 +28,7 @@ export const DreSection = async ({
           <>
             <p className="type-body-small text-muted-foreground">
               {t("settings__billing__dre_cta_body", {
-                date: formatDate(basePlanExpiresAt, locale),
+                date: formatLongDate(basePlanExpiresAt, locale),
               })}
             </p>
           </>
@@ -45,7 +37,7 @@ export const DreSection = async ({
           <>
             <p className="type-body-small text-muted-foreground">
               {t("settings__billing__dre_pending_body", {
-                date: formatDate(basePlanExpiresAt, locale),
+                date: formatLongDate(basePlanExpiresAt, locale),
               })}
             </p>
             <DreCancelIntentLink
@@ -57,7 +49,7 @@ export const DreSection = async ({
           <div className="flex flex-row items-center justify-between">
             <p className="type-body-small text-muted-foreground">
               {t("settings__billing__dre_active_body", {
-                date: formatDate(dre?.currentPeriodEnd ?? null, locale),
+                date: formatLongDate(dre?.currentPeriodEnd ?? null, locale),
               })}
             </p>
             <CancelSubscriptionButton
@@ -71,7 +63,7 @@ export const DreSection = async ({
           <div className="flex flex-row items-start justify-between gap-4">
             <p className="type-body-small text-muted-foreground">
               {t("settings__billing__dre_cancellation_scheduled_body", {
-                date: formatDate(dre?.currentPeriodEnd ?? null, locale),
+                date: formatLongDate(dre?.currentPeriodEnd ?? null, locale),
               })}
             </p>
             <CancelSubscriptionButton

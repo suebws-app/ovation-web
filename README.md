@@ -115,9 +115,9 @@ Full list in `.env.example`. The non-obvious ones:
 - Set the same `AUTH_*` secrets the API uses
 - Set `DATABASE_URL=${{ Postgres.DATABASE_URL }}` (same Postgres as API)
 - Set `COOKIE_DOMAIN=.ovationday.com`
-- Set `TRUSTED_ORIGINS=https://app.ovationday.com,https://ovationday.com`
+- Set `TRUSTED_ORIGINS=https://ovationday.com`
 - Set `NEXT_PUBLIC_API_URL=https://api.ovationday.com`
-- DNS: `app.ovationday.com` → this service. The API service must be at
+- DNS: `ovationday.com` → this service. The API service must be at
   `api.ovationday.com` for the cross-subdomain cookie to flow.
 
 ## House rules

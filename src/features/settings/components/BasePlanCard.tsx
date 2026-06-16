@@ -1,14 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import type { BasePlanInfo } from "@/lib/api/types";
-
-const formatDate = (iso: string | null, locale: string) => {
-  if (!iso) return "—";
-  return new Date(iso).toLocaleDateString(locale, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-};
+import { formatLongDate } from "@/lib/utils/formatDate";
 
 type BasePlanCardProps = {
   plan: BasePlanInfo;
@@ -31,7 +23,7 @@ export const BasePlanCard = async ({ plan, locale }: BasePlanCardProps) => {
             {t("settings__billing__base_plan_expires_label")}
           </span>
           <span className="type-body font-medium">
-            {formatDate(plan.expiresAt, locale)}
+            {formatLongDate(plan.expiresAt, locale)}
           </span>
         </div>
       )}

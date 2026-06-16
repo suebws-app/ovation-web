@@ -10,6 +10,7 @@ import { ApiError } from "@/lib/api/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import { clientEnv as env } from "@/lib/utils/env.client";
+import { getOrigin } from "@/lib/utils/browser";
 import { compressImage } from "@/lib/media/compressImage";
 import { appRoutes } from "@/lib/routes";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
@@ -41,9 +42,6 @@ const toIsoDate = (date: Date | null): string | undefined => {
   if (!date || Number.isNaN(date.getTime())) return undefined;
   return date.toISOString().slice(0, 10);
 };
-
-const getOrigin = () =>
-  typeof window !== "undefined" ? window.location.origin : env.APP_URL;
 
 const uploadCoverPhoto = async (
   eventId: string,
@@ -117,8 +115,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
       const work = (async (): Promise<CheckoutState> => {
         invalidateCsrfToken();
-        const successUrl = `${getOrigin()}${appRoutes.checkout.success}`;
-        const cancelUrl = `${getOrigin()}${appRoutes.auth.plans}`;
+        const successUrl = `${getOrigin(env.APP_URL)}${appRoutes.checkout.success}`;
+        const cancelUrl = `${getOrigin(env.APP_URL)}${appRoutes.auth.plans}`;
         const isPro = signUpFormData.accountType === "pro";
 
         if (isPro) {

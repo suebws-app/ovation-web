@@ -4,14 +4,12 @@ import { useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { paymentsClient } from "@/lib/api/payments-client";
+import { getOrigin } from "@/lib/utils/browser";
 import type { Plan } from "@/lib/api/types";
 
 type DreUpgradeCardProps = {
   plan: Plan;
 };
-
-const getOrigin = () =>
-  typeof window !== "undefined" ? window.location.origin : "";
 
 export const DreUpgradeCard = ({ plan }: DreUpgradeCardProps) => {
   const t = useTranslations();

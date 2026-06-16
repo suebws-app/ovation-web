@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, startTransition } from "react";
-import { useTranslations } from "next-intl";
+import { useEffect, useState, startTransition, type ReactNode } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { PlanCard } from "@/features/plans/components/PlanCard";
@@ -16,11 +16,14 @@ import type {
   ProCheckoutSessionInput,
 } from "@/lib/api/types";
 import { cn } from "@ovation/ui/utils/cn";
+import { formatMoney } from "@/lib/utils/currency";
 
-const formatPrice = (cents: number, currency: string) => {
-  if (cents === 0) return "Free";
-  const symbol = currency === "EUR" ? "€" : currency;
-  return `${symbol}${(cents / 100).toFixed(0)}`;
+const formatPrice = (plan: Plan, locale: string) => {
+  if (plan.priceCents === 0) return "Free";
+  return (
+    plan.productVariables?.regularPriceFormatted ??
+    formatMoney(plan.priceCents, plan.currency, locale)
+  );
 };
 
 const formatPer = (cents: number, isPro: boolean) => {
@@ -28,7 +31,7 @@ const formatPer = (cents: number, isPro: boolean) => {
   return isPro ? "per month" : "one-time";
 };
 
-const buildFeatures = (plan: Plan): string[] => {
+const buildFeatures = (plan: Plan, locale: string): string[] => {
   const features: string[] = [];
   features.push(
     plan.messageLimit === null
@@ -38,22 +41,25 @@ const buildFeatures = (plan: Plan): string[] => {
   if (plan.storageDays === null) features.push("Lifetime storage");
   else features.push(`${plan.storageDays} days storage`);
   if (plan.creditCents > 0) {
-    features.push(`€${(plan.creditCents / 100).toFixed(0)} keepsake credit`);
+    features.push(
+      `${formatMoney(plan.creditCents, plan.currency, locale)} keepsake credit`,
+    );
   }
   features.push("Auto-transcription");
   return features;
 };
 
-const getOrigin = () =>
-  typeof window !== "undefined" ? window.location.origin : "";
+import { getOrigin } from "@/lib/utils/browser";
 
 type PlansPickerProps = {
   mode: "couple" | "pro";
   plans: Plan[];
+  currencySelect?: ReactNode;
 };
 
 export const PlansPicker = (props: PlansPickerProps) => {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
   const [redirecting, setRedirecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -109,6 +115,8 @@ export const PlansPicker = (props: PlansPickerProps) => {
   const sorted = [...props.plans].sort((a, b) => a.sortOrder - b.sortOrder);
   const highlightCode = sorted.find((p) => p.priceCents > 0)?.code;
   const isPro = props.mode === "pro";
+  const resolvedCurrency = sorted[0]?.price?.currency?.toUpperCase();
+  const showFxNote = !!resolvedCurrency && resolvedCurrency !== "EUR";
 
   return (
     <div className="bg-background min-h-[calc(100vh-89px)]">
@@ -126,6 +134,11 @@ export const PlansPicker = (props: PlansPickerProps) => {
           <p className="type-body-small text-muted-foreground mx-auto mt-3.5 max-w-140 leading-relaxed">
             {t("activate_link__subtitle")}
           </p>
+          {props.currencySelect && (
+            <div className="mt-5 flex justify-center">
+              {props.currencySelect}
+            </div>
+          )}
         </div>
 
         <div
@@ -138,10 +151,15 @@ export const PlansPicker = (props: PlansPickerProps) => {
             <PlanCard
               key={plan.id}
               name={plan.name}
-              price={formatPrice(plan.priceCents, plan.currency)}
+              price={formatPrice(plan, locale)}
               per={formatPer(plan.priceCents, isPro)}
               description={plan.description ?? ""}
-              features={buildFeatures(plan)}
+              features={buildFeatures(plan, locale)}
+              priceNote={
+                showFxNote && plan.priceCents > 0
+                  ? t("activate_link__price_approximate_note")
+                  : undefined
+              }
               highlighted={plan.code === highlightCode}
               onSelect={() => handleSelectPlan(plan.code)}
             />

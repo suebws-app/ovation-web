@@ -77,4 +77,7 @@ export const queryKeys = {
       items: { variantId: string; quantity: number; numberOfPages: number }[];
     }) => ["shipping", "quote", input] as const,
   },
+  currencies: {
+    supported: () => ["currencies", "supported"] as const,
+  },
 } as const;

@@ -9,6 +9,7 @@ import { Waveform } from "@/features/dashboard/components/Waveform";
 
 import type { MessageRowView } from "../adapters";
 import { MessagePlayButton } from "./MessagePlayButton";
+import { formatSec } from "@/lib/utils/formatTime";
 import { cn } from "@ovation/ui/utils/cn";
 
 type MessageRowProps = {
@@ -23,13 +24,6 @@ type MessageRowProps = {
   onClick?: () => void;
   onPlay?: () => void;
   onToggleSelect?: () => void;
-};
-
-const formatSec = (sec: number): string => {
-  if (!Number.isFinite(sec) || sec < 0) return "0:00";
-  const m = Math.floor(sec / 60);
-  const s = Math.floor(sec % 60);
-  return `${m}:${s.toString().padStart(2, "0")}`;
 };
 
 export const MessageRow = ({
