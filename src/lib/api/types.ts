@@ -508,6 +508,7 @@ export type CheckoutShippingAddress = {
   city: string;
   country: string;
   postalCode: string;
+  state?: string;
 };
 
 export type CheckoutSessionInput = {

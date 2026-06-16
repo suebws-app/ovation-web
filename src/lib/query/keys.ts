@@ -66,6 +66,17 @@ export const queryKeys = {
     all: () => ["pdf"] as const,
     render: (renderId: string) => ["pdf", "render", renderId] as const,
   },
+  shipping: {
+    all: () => ["shipping"] as const,
+    countries: (variantIds: string[]) =>
+      ["shipping", "countries", [...variantIds].sort()] as const,
+    quote: (input: {
+      countryCode: string;
+      state?: string;
+      currency: string;
+      items: { variantId: string; quantity: number; numberOfPages: number }[];
+    }) => ["shipping", "quote", input] as const,
+  },
   currencies: {
     supported: () => ["currencies", "supported"] as const,
   },
