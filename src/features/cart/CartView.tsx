@@ -1,19 +1,41 @@
 "use client";
 
-import { useCallback, useEffect, useState, startTransition } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  startTransition,
+} from "react";
 import { useTranslations } from "next-intl";
 import { ApiError } from "@/lib/api/client";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import { appRoutes } from "@/lib/routes";
 import type { CartTotalsResult } from "@/lib/api/types";
+import { useShippingQuote } from "@/lib/query/shippingQueries";
+import type { ShippingQuoteBody } from "@/lib/api/shipping-client";
 import { useCartStore, type CartShipping } from "./store/useCartStore";
+import { requiresState } from "./components/StateSelect";
 import { CartHero } from "./components/CartHero";
 import { CartItemsCard } from "./components/CartItemsCard";
 import { CartSummary } from "./components/CartSummary";
 import { CartEmptyState } from "./components/CartEmptyState";
 import { CartShippingForm } from "./components/CartShippingForm";
 import { CartMobileCheckoutBar } from "./components/CartMobileCheckoutBar";
+
+const isSupportedCurrency = (
+  currency: string,
+): currency is ShippingQuoteBody["currency"] =>
+  currency === "EUR" || currency === "USD" || currency === "GBP";
+
+const extractPageCount = (customization: Record<string, unknown>): number => {
+  const raw = customization["pageCount"];
+  if (typeof raw === "number" && Number.isFinite(raw) && raw > 0) {
+    return Math.floor(raw);
+  }
+  return 0;
+};
 
 const CURRENCY_FALLBACK = "EUR";
 
@@ -73,6 +95,46 @@ export const CartView = () => {
   }, [hydrated, fetchTotals]);
 
   const currency = totals?.currency ?? items[0]?.currency ?? CURRENCY_FALLBACK;
+
+  const quoteBody = useMemo<ShippingQuoteBody | null>(() => {
+    if (!requiresShipping || !shipping?.country) return null;
+    if (!isSupportedCurrency(currency)) return null;
+    if (requiresState(shipping.country) && !shipping.state) return null;
+    const quotedItems = items
+      .filter((item) => !!item.productVariantId)
+      .map((item) => ({
+        variantId: item.productVariantId as string,
+        quantity: item.quantity,
+        numberOfPages: extractPageCount(item.customization),
+      }))
+      .filter((item) => item.numberOfPages > 0);
+    if (quotedItems.length === 0) return null;
+    return {
+      countryCode: shipping.country,
+      state: shipping.state,
+      currency,
+      items: quotedItems,
+    };
+  }, [requiresShipping, shipping, currency, items]);
+
+  const shippingQuote = useShippingQuote(quoteBody);
+
+  const mergedTotals = useMemo<CartTotalsResult | null>(() => {
+    if (!totals) return null;
+    if (!shippingQuote.data) return totals;
+    const shippingCents = shippingQuote.data.totalShippingCents;
+    const totalCents =
+      totals.subtotalCents -
+      (totals.promoDiscountCents ?? 0) +
+      shippingCents +
+      totals.taxCents;
+    return {
+      ...totals,
+      shippingCents,
+      totalCents,
+      freeShipping: shippingCents === 0,
+    };
+  }, [totals, shippingQuote.data]);
 
   const performCheckout = async (shippingAddress?: CartShipping) => {
     if (items.length === 0) return;
@@ -151,7 +213,7 @@ export const CartView = () => {
           <div className="tablet:block hidden">
             <CartSummary
               currency={currency}
-              totals={totals}
+              totals={mergedTotals}
               onCheckout={handleCartContinue}
               isCheckingOut={isCheckingOut}
               error={error}
@@ -173,7 +235,7 @@ export const CartView = () => {
           <div className="tablet:block hidden">
             <CartSummary
               currency={currency}
-              totals={totals}
+              totals={mergedTotals}
               onCheckout={() =>
                 shipping ? handleShippingSubmit(shipping) : undefined
               }
@@ -187,7 +249,7 @@ export const CartView = () => {
       {items.length > 0 && (
         <CartMobileCheckoutBar
           currency={currency}
-          totals={totals}
+          totals={mergedTotals}
           onCheckout={
             step === "cart"
               ? handleCartContinue

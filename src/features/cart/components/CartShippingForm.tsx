@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Button } from "@ovation/ui/components/Button";
 import { useCartStore, type CartShipping } from "../store/useCartStore";
+import { CountrySelect } from "./CountrySelect";
+import { StateSelect, requiresState } from "./StateSelect";
 
 type CartShippingFormProps = {
   onBack: () => void;
@@ -20,6 +22,17 @@ export const CartShippingForm = ({
 }: CartShippingFormProps) => {
   const t = useTranslations();
   const existing = useCartStore((s) => s.shipping);
+  const items = useCartStore((s) => s.items);
+  const setShipping = useCartStore((s) => s.setShipping);
+
+  const variantIds = useMemo(
+    () =>
+      items
+        .map((item) => item.productVariantId)
+        .filter((id): id is string => !!id),
+    [items],
+  );
+
   const [form, setForm] = useState<CartShipping>(
     existing ?? {
       name: "",
@@ -27,7 +40,8 @@ export const CartShippingForm = ({
       line2: "",
       city: "",
       postalCode: "",
-      country: "ES",
+      country: "",
+      state: undefined,
     },
   );
   const [error, setError] = useState<Record<string, string>>({});
@@ -36,6 +50,22 @@ export const CartShippingForm = ({
     (field: keyof CartShipping) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
     };
+
+  const handleCountryChange = (country: string) => {
+    const next: CartShipping = {
+      ...form,
+      country,
+      state: requiresState(country) ? form.state : undefined,
+    };
+    setForm(next);
+    setShipping(next);
+  };
+
+  const handleStateChange = (state: string) => {
+    const next: CartShipping = { ...form, state };
+    setForm(next);
+    setShipping(next);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +77,8 @@ export const CartShippingForm = ({
       errs.postalCode = t("cart__shipping__error_required");
     if (form.country.trim().length !== 2)
       errs.country = t("cart__shipping__error_country");
+    if (requiresState(form.country) && !form.state)
+      errs.state = t("cart__shipping__error_required");
     if (Object.keys(errs).length > 0) {
       setError(errs);
       return;
@@ -59,6 +91,7 @@ export const CartShippingForm = ({
       city: form.city.trim(),
       postalCode: form.postalCode.trim(),
       country: form.country.trim().toUpperCase(),
+      state: form.state,
     });
   };
 
@@ -145,16 +178,12 @@ export const CartShippingForm = ({
           </div>
         </div>
         <div>
-          <Label htmlFor="ship-country" className="mb-2">
-            {t("cart__shipping__country")}
-          </Label>
-          <Input
-            id="ship-country"
+          <Label className="mb-2">{t("cart__shipping__country")}</Label>
+          <CountrySelect
             value={form.country}
-            onChange={update("country")}
-            maxLength={2}
-            placeholder="ES"
-            aria-invalid={Boolean(error.country)}
+            onChange={handleCountryChange}
+            variantIds={variantIds}
+            invalid={Boolean(error.country)}
           />
           {error.country && (
             <p className="type-caption text-destructive mt-1">
@@ -162,6 +191,22 @@ export const CartShippingForm = ({
             </p>
           )}
         </div>
+        {requiresState(form.country) && (
+          <div>
+            <Label className="mb-2">{t("cart__shipping__state")}</Label>
+            <StateSelect
+              country={form.country}
+              value={form.state ?? ""}
+              onChange={handleStateChange}
+              invalid={Boolean(error.state)}
+            />
+            {error.state && (
+              <p className="type-caption text-destructive mt-1">
+                {error.state}
+              </p>
+            )}
+          </div>
+        )}
       </div>
       <div className="flex justify-between gap-2">
         <Button

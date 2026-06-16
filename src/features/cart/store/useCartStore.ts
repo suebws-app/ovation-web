@@ -29,6 +29,7 @@ export type CartShipping = {
   city: string;
   postalCode: string;
   country: string;
+  state?: string;
 };
 
 type CartState = {
