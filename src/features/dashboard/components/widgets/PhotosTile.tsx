@@ -36,7 +36,7 @@ export const PhotosTile = ({ item, overlay, onPreview }: PhotosTileProps) => {
   if (overlay) {
     return (
       <Link
-        href={appRoutes.app.photos}
+        href={appRoutes.app.gallery}
         className="rounded-12 bg-muted group relative block aspect-square overflow-hidden"
       >
         {inner}

@@ -8,16 +8,13 @@ import { paymentsClient } from "@/lib/api/payments-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
-import { uploadToTarget } from "@/lib/media/uploadToTarget";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import { getOrigin } from "@/lib/utils/browser";
-import { compressImage } from "@/lib/media/compressImage";
 import { appRoutes } from "@/lib/routes";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import type {
   CheckoutPlanTier,
-  CoverPhotoContentType,
   ProCheckoutSessionInput,
 } from "@/lib/api/types";
 
@@ -31,31 +28,9 @@ const PLAN_TIER_BY_ID: Record<string, CheckoutPlanTier> = {
   gold: "bundle",
 };
 
-const ALLOWED_COVER_MIMES: Record<string, CoverPhotoContentType> = {
-  "image/jpeg": "image/jpeg",
-  "image/png": "image/png",
-  "image/webp": "image/webp",
-  "image/heic": "image/heic",
-};
-
 const toIsoDate = (date: Date | null): string | undefined => {
   if (!date || Number.isNaN(date.getTime())) return undefined;
   return date.toISOString().slice(0, 10);
-};
-
-const uploadCoverPhoto = async (
-  eventId: string,
-  file: File,
-): Promise<string | null> => {
-  if (!ALLOWED_COVER_MIMES[file.type]) return null;
-  const compressed = await compressImage(file);
-  const contentType = ALLOWED_COVER_MIMES[compressed.type] ?? "image/jpeg";
-  const { uploadUrl, key, publicUrl } = await eventsClient.coverUploadUrl(
-    eventId,
-    contentType,
-  );
-  await uploadToTarget({ url: uploadUrl, key }, compressed);
-  return publicUrl;
 };
 
 type UseCheckoutFlowReturn = {
@@ -216,22 +191,6 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           }
           updateEventData({ bookUrl: finalSlug });
 
-          if (eventFormData.coverFile) {
-            try {
-              const publicUrl = await uploadCoverPhoto(
-                event.id,
-                eventFormData.coverFile,
-              );
-              if (publicUrl) {
-                await eventsClient
-                  .update(event.id, { couplePhotoUrl: publicUrl })
-                  .catch(() => undefined);
-              }
-            } catch {
-              // non-fatal
-            }
-          }
-
           await profileClient.markOnboardingComplete().catch(() => undefined);
 
           const planTier = PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
@@ -293,7 +252,6 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     eventFormData.weddingDate,
     eventFormData.venueName,
     eventFormData.venueCity,
-    eventFormData.coverFile,
     signUpFormData.selectedPlan,
     signUpFormData.accountType,
     stashPendingEventData,

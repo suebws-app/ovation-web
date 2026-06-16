@@ -11,6 +11,7 @@ import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { MapPinIcon } from "@ovation/icons/MapPinIcon";
 import { CopyIcon } from "@ovation/icons/CopyIcon";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
+import { ChevronDownIcon } from "@ovation/icons/ChevronDownIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
 import { clientEnv as env } from "@/lib/utils/env.client";
@@ -166,16 +167,23 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
           <Input type="date" {...register("weddingDate")} />
         </SettingsField>
         <SettingsField label={t("settings__wedding__language")}>
-          <select
-            {...register("defaultLanguage")}
-            className="border-border bg-card text-foreground rounded-12 type-body-small w-full border px-3.5 py-3"
-          >
-            {LANG_KEYS.map((l) => (
-              <option key={l.value} value={l.value}>
-                {t(l.labelKey)}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              {...register("defaultLanguage")}
+              className="border-border bg-background text-foreground type-body-small h-10 w-full appearance-none rounded-lg border pr-9 pl-3 outline-none"
+            >
+              {LANG_KEYS.map((l) => (
+                <option key={l.value} value={l.value}>
+                  {t(l.labelKey)}
+                </option>
+              ))}
+            </select>
+            <ChevronDownIcon
+              width={16}
+              height={16}
+              className="text-muted-foreground pointer-events-none absolute top-1/2 right-3 -translate-y-1/2"
+            />
+          </div>
         </SettingsField>
       </div>
 
@@ -216,7 +224,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
             {...register("welcomeMessage")}
             placeholder={t("settings__wedding__welcome_note_placeholder")}
             rows={3}
-            className="border-border bg-card text-foreground rounded-12 type-body-small w-full border p-4 font-serif leading-relaxed outline-none"
+            className="border-border bg-background text-foreground type-body-small w-full rounded-lg border p-3 font-serif leading-relaxed outline-none"
           />
           {errors.welcomeMessage && (
             <span className="type-caption text-destructive mt-1.5 block">
@@ -231,13 +239,13 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
           label={t("settings__wedding__public_link")}
           hint={t("settings__wedding__public_link_hint")}
         >
-          <div className="rounded-12 border-border bg-card flex items-center gap-2 border pr-1.5 pl-3.5">
+          <div className="border-border bg-background flex h-10 items-center gap-2 rounded-lg border pr-1 pl-3">
             <span className="type-body-small text-muted-foreground">
               {env.APP_URL}/
             </span>
             <input
               type="text"
-              className="type-body-small text-foreground min-w-0 flex-1 truncate bg-transparent py-3 outline-none"
+              className="type-body-small text-foreground h-full min-w-0 flex-1 truncate bg-transparent outline-none"
               {...register("slug")}
             />
             <button
@@ -245,7 +253,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
               onClick={handleCopyPublicLink}
               disabled={!slugValue}
               aria-label={t("settings__wedding__public_link_copy")}
-              className="text-muted-foreground hover:text-foreground hover:bg-muted rounded-8 flex size-8 shrink-0 items-center justify-center transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+              className="text-muted-foreground hover:text-foreground hover:bg-muted flex size-7 shrink-0 items-center justify-center rounded-md transition-colors disabled:cursor-not-allowed disabled:opacity-40"
             >
               {copied ? (
                 <CheckIcon width={16} height={16} className="text-secondary" />

@@ -63,12 +63,13 @@ export const DashboardPage = async () => {
   }
 
   if (!user.onboardingComplete) {
+    const firstName = user.fullName?.trim().split(/\s+/)[0] ?? anonymous;
     return (
       <DashboardBackGuard>
         {expiredModal}
         {dreReturnHandler}
         <div className="flex w-full flex-col p-6">
-          <DashboardPlaceholderCTA />
+          <DashboardPlaceholderCTA name={firstName} />
         </div>
       </DashboardBackGuard>
     );
@@ -131,13 +132,13 @@ export const DashboardPage = async () => {
               messages={messageViews}
               totalCount={totalMessages}
             />
-            <div className="flex flex-col gap-6 min-[1300px]:flex-row min-[1300px]:items-start">
+            <div className="flex flex-col gap-6 min-[1300px]:flex-row min-[1300px]:items-stretch">
               <Photos
                 photos={galleryItems}
                 totalCount={totalPhotos}
                 hasMore={hasMorePhotos}
               />
-              <div className="hidden min-w-0 flex-1 min-[1300px]:block">
+              <div className="hidden w-80 shrink-0 min-[1300px]:block">
                 <Orders orders={ordersPage?.items ?? []} />
               </div>
             </div>

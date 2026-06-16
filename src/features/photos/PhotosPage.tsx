@@ -12,8 +12,6 @@ import { PhotosEmptyState } from "./components/PhotosEmptyState";
 import { PhotosPageClient } from "./PhotosPageClient";
 
 export const PhotosPage = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
   const event = await requireFilledCoupleEvent();
   if (!event) return <PhotosEmptyState />;
 

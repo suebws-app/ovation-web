@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { TableCell, TableRow } from "@ovation/ui/components/Table";
@@ -10,7 +10,6 @@ import { MicIcon } from "@ovation/icons/MicIcon";
 import { VideoIcon } from "@ovation/icons/VideoIcon";
 import type { GuestRow as GuestRowData } from "../adapters";
 import { guestsTableColumnClasses } from "../tableColumns";
-import { GuestStatusPill } from "./GuestStatusPill";
 
 type GuestRowProps = {
   guest: GuestRowData;
@@ -26,14 +25,6 @@ export const GuestRow = ({
   onToggleSelect,
 }: GuestRowProps) => {
   const t = useTranslations();
-  const locale = useLocale();
-  const lastDate = new Date(guest.lastAt);
-  const lastLabel = lastDate.toLocaleString(locale, {
-    day: "numeric",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
 
   return (
     <TableRow
@@ -74,70 +65,57 @@ export const GuestRow = ({
             <div className="type-caption text-muted-foreground">
               {t("guests__row__contributions", { count: guest.messageCount })}
             </div>
-            <div className="mt-2 flex flex-wrap items-center gap-2 @[740px]/table:hidden">
-              <GuestStatusPill
-                contributed={guest.messageCount > 0}
-                thanked={false}
-              />
-              <span className="type-caption text-muted-foreground">
-                {lastLabel}
-              </span>
-              {guest.audioCount > 0 && (
-                <MicIcon
-                  width={12}
-                  height={12}
-                  className="text-muted-foreground"
-                />
-              )}
-              {guest.photoCount > 0 && (
+            <div className="type-caption text-muted-foreground mt-2 flex flex-wrap items-center gap-3 @[740px]/table:hidden">
+              <span className="inline-flex items-center gap-1">
                 <ImageIcon
                   width={12}
                   height={12}
                   className="text-muted-foreground"
                 />
-              )}
-              {guest.videoCount > 0 && (
+                {guest.photoCount}
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <MicIcon
+                  width={12}
+                  height={12}
+                  className="text-muted-foreground"
+                />
+                {guest.audioCount}
+              </span>
+              <span className="inline-flex items-center gap-1">
                 <VideoIcon
                   width={12}
                   height={12}
                   className="text-muted-foreground"
                 />
-              )}
+                {guest.videoCount}
+              </span>
             </div>
           </div>
         </div>
       </TableCell>
       <TableCell className={guestsTableColumnClasses.messages}>
-        <div className="type-caption text-muted-foreground flex items-center gap-2">
-          <span className="text-foreground font-semibold">
-            {guest.messageCount}
-          </span>
-          {guest.audioCount > 0 && (
-            <MicIcon width={12} height={12} className="text-muted-foreground" />
-          )}
-          {guest.photoCount > 0 && (
-            <ImageIcon
-              width={12}
-              height={12}
-              className="text-muted-foreground"
-            />
-          )}
-          {guest.videoCount > 0 && (
-            <VideoIcon
-              width={12}
-              height={12}
-              className="text-muted-foreground"
-            />
-          )}
+        <span className="type-body-small font-semibold">
+          {guest.messageCount}
+        </span>
+      </TableCell>
+      <TableCell className={guestsTableColumnClasses.photos}>
+        <div className="type-body-small text-muted-foreground inline-flex items-center gap-1.5">
+          <ImageIcon width={13} height={13} />
+          <span className="text-foreground">{guest.photoCount}</span>
         </div>
       </TableCell>
-      <TableCell className={guestsTableColumnClasses.status}>
-        <GuestStatusPill contributed={guest.messageCount > 0} thanked={false} />
+      <TableCell className={guestsTableColumnClasses.audio}>
+        <div className="type-body-small text-muted-foreground inline-flex items-center gap-1.5">
+          <MicIcon width={13} height={13} />
+          <span className="text-foreground">{guest.audioCount}</span>
+        </div>
       </TableCell>
-      <TableCell
-        className={`type-caption text-muted-foreground truncate ${guestsTableColumnClasses.lastSeen}`}
-      >
-        {lastLabel}
+      <TableCell className={guestsTableColumnClasses.videos}>
+        <div className="type-body-small text-muted-foreground inline-flex items-center gap-1.5">
+          <VideoIcon width={13} height={13} />
+          <span className="text-foreground">{guest.videoCount}</span>
+        </div>
       </TableCell>
       <TableCell className={guestsTableColumnClasses.spacer} />
     </TableRow>

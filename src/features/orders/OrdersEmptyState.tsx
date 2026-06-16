@@ -1,17 +1,13 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Kicker } from "@ovation/ui/components/Kicker";
-import { HeartIcon } from "@ovation/icons/HeartIcon";
+import { BoxIcon } from "@ovation/icons/BoxIcon";
+import { GiftIcon } from "@ovation/icons/GiftIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
-type DashboardPlaceholderCTAProps = {
-  name: string;
-};
-
-export const DashboardPlaceholderCTA = ({
-  name,
-}: DashboardPlaceholderCTAProps) => {
+export const OrdersEmptyState = () => {
   const t = useTranslations();
 
   return (
@@ -24,36 +20,33 @@ export const DashboardPlaceholderCTA = ({
 
         <div className="rounded-20 bg-card border-border relative flex size-40 items-center justify-center border shadow-lg">
           <div className="bg-primary/10 rounded-16 flex size-24 items-center justify-center">
-            <HeartIcon
+            <BoxIcon
               width={42}
               height={42}
               className="text-primary"
               strokeWidth={1.6}
             />
           </div>
+          <div className="bg-primary text-primary-foreground absolute -right-3 -bottom-3 flex size-11 items-center justify-center rounded-full shadow-lg">
+            <GiftIcon width={18} height={18} strokeWidth={2} />
+          </div>
         </div>
       </div>
 
       <div className="tablet:mt-10 mt-8 flex max-w-md flex-col items-center gap-3">
-        <Kicker className="text-primary">
-          {t("dashboard__placeholder__eyebrow")}
-        </Kicker>
-        <h1 className="type-h2 leading-tight font-semibold tracking-tight">
-          {t("dashboard__placeholder__title", { name })}
-        </h1>
+        <h2 className="type-h2 leading-tight tracking-tight">
+          {t("orders__page__empty_title")}
+        </h2>
         <p className="type-body-small text-muted-foreground leading-relaxed">
-          {t("dashboard__placeholder__body")}
+          {t("orders__page__empty_body")}
         </p>
       </div>
 
       <div className="tablet:mt-6 mt-5 flex w-full max-w-sm flex-col items-center gap-2">
-        <Button
-          asChild
-          size="lg"
-          className="shadow-primary/40 w-full rounded-full shadow-md"
-        >
-          <Link href={appRoutes.create.root}>
-            {t("dashboard__placeholder__cta")}
+        <Button asChild size="lg" className="w-full rounded-full">
+          <Link href={appRoutes.app.keepsakes}>
+            <GiftIcon width={16} height={16} />
+            {t("orders__page__empty_cta")}
           </Link>
         </Button>
       </div>

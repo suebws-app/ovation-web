@@ -15,7 +15,7 @@ const PROTECTED_PREFIXES = [
   "/messages",
   "/events",
   "/guests",
-  "/photos",
+  "/gallery",
   "/shop",
   "/orders",
   "/cart",

@@ -18,8 +18,8 @@ export const SettingsField = ({
       {label}
     </span>
     {children ?? (
-      <div className="rounded-12 border-border bg-card type-body-small flex items-center gap-2.5 border px-3.5 py-3">
-        <span className="flex-1">{value}</span>
+      <div className="border-border bg-background type-body-small flex h-10 items-center gap-2.5 rounded-lg border px-3">
+        <span className="flex-1 truncate">{value}</span>
         {adornmentRight}
       </div>
     )}

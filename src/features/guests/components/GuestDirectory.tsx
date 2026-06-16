@@ -27,6 +27,7 @@ import { GuestRow } from "./GuestRow";
 import { GuestSearchInput } from "./GuestSearchInput";
 import { GuestSortButton } from "./GuestSortButton";
 import { GuestTableHead } from "./GuestTableHead";
+import { GuestsDirectoryEmpty } from "./GuestsDirectoryEmpty";
 import { guestsTableSkeletonColumns } from "../tableColumns";
 
 type GuestDirectoryProps = {
@@ -95,6 +96,17 @@ export const GuestDirectory = ({
   };
 
   const { exportCsv, isExporting } = useGuestBulkActions(eventId);
+
+  const isTrulyEmpty =
+    !isPending &&
+    !isError &&
+    guests.length === 0 &&
+    filter === "all" &&
+    !search.trim();
+
+  if (isTrulyEmpty) {
+    return <GuestsDirectoryEmpty eventId={eventId} />;
+  }
 
   const renderBody = () => {
     if (isPending) {

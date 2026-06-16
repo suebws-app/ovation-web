@@ -16,7 +16,7 @@ type PhotosProps = {
   hasMore?: boolean;
 };
 
-const TILE_COUNT = 6;
+const TILE_COUNT = 14;
 
 export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
   const t = useTranslations();
@@ -31,9 +31,9 @@ export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
   const overlayCount = remaining > 0 ? remaining : totalCount - tiles.length;
 
   return (
-    <div className="rounded-20 border-border bg-card flex min-h-62 w-full flex-col gap-4 border p-5 shadow-sm min-[1300px]:w-80 min-[1300px]:shrink-0">
+    <div className="rounded-20 border-border bg-card flex min-h-62 w-full min-w-0 flex-col gap-4 border p-5 shadow-sm min-[1300px]:h-full min-[1300px]:flex-1">
       {tiles.length > 0 && (
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-2 min-[1300px]:grid-cols-7">
           {tiles.map((item, index) => (
             <PhotosTile
               key={item.id}
@@ -73,7 +73,7 @@ export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
       <div className="bg-border h-px w-full" aria-hidden />
 
       <Link
-        href={appRoutes.app.photos}
+        href={appRoutes.app.gallery}
         className="type-body-small text-chart-2 inline-flex items-center justify-center gap-1.5 font-semibold hover:underline"
       >
         {t("dashboard__widget__photos__open_gallery")}

@@ -31,11 +31,14 @@ export const GuestTableHead = ({
         <TableHead className={guestsTableColumnClasses.messages}>
           {t("guests__table__col_messages")}
         </TableHead>
-        <TableHead className={guestsTableColumnClasses.status}>
-          {t("guests__table__col_status")}
+        <TableHead className={guestsTableColumnClasses.photos}>
+          {t("guests__table__col_photos")}
         </TableHead>
-        <TableHead className={guestsTableColumnClasses.lastSeen}>
-          {t("guests__table__col_last_seen")}
+        <TableHead className={guestsTableColumnClasses.audio}>
+          {t("guests__table__col_audio")}
+        </TableHead>
+        <TableHead className={guestsTableColumnClasses.videos}>
+          {t("guests__table__col_videos")}
         </TableHead>
         <TableHead className={guestsTableColumnClasses.spacer} />
       </TableRow>

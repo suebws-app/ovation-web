@@ -1,17 +1,20 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Kicker } from "@ovation/ui/components/Kicker";
-import { HeartIcon } from "@ovation/icons/HeartIcon";
+import { UsersIcon } from "@ovation/icons/UsersIcon";
+import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
+import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
-type DashboardPlaceholderCTAProps = {
-  name: string;
+type GuestsDirectoryEmptyProps = {
+  eventId: string;
 };
 
-export const DashboardPlaceholderCTA = ({
-  name,
-}: DashboardPlaceholderCTAProps) => {
+export const GuestsDirectoryEmpty = ({
+  eventId,
+}: GuestsDirectoryEmptyProps) => {
   const t = useTranslations();
 
   return (
@@ -24,7 +27,7 @@ export const DashboardPlaceholderCTA = ({
 
         <div className="rounded-20 bg-card border-border relative flex size-40 items-center justify-center border shadow-lg">
           <div className="bg-primary/10 rounded-16 flex size-24 items-center justify-center">
-            <HeartIcon
+            <UsersIcon
               width={42}
               height={42}
               className="text-primary"
@@ -35,25 +38,30 @@ export const DashboardPlaceholderCTA = ({
       </div>
 
       <div className="tablet:mt-10 mt-8 flex max-w-md flex-col items-center gap-3">
-        <Kicker className="text-primary">
-          {t("dashboard__placeholder__eyebrow")}
-        </Kicker>
-        <h1 className="type-h2 leading-tight font-semibold tracking-tight">
-          {t("dashboard__placeholder__title", { name })}
-        </h1>
+        <h2 className="type-h2 leading-tight font-semibold tracking-tight">
+          {t("guests__directory__empty_title")}
+        </h2>
         <p className="type-body-small text-muted-foreground leading-relaxed">
-          {t("dashboard__placeholder__body")}
+          {t("guests__directory__empty_hint")}
         </p>
       </div>
 
-      <div className="tablet:mt-6 mt-5 flex w-full max-w-sm flex-col items-center gap-2">
+      <div className="tablet:mt-6 tablet:flex-row tablet:gap-3 mt-5 flex w-full max-w-sm flex-col gap-2">
+        <Button asChild size="lg" className="flex-1 rounded-full">
+          <Link href={appRoutes.app.eventQrCode(eventId)}>
+            <QrCodeIcon width={16} height={16} />
+            {t("sidebar__quick__qr")}
+          </Link>
+        </Button>
         <Button
           asChild
           size="lg"
-          className="shadow-primary/40 w-full rounded-full shadow-md"
+          variant="outline"
+          className="flex-1 rounded-full"
         >
-          <Link href={appRoutes.create.root}>
-            {t("dashboard__placeholder__cta")}
+          <Link href={appRoutes.app.eventLink(eventId)}>
+            <LinkIcon width={16} height={16} />
+            {t("sidebar__quick__link")}
           </Link>
         </Button>
       </div>

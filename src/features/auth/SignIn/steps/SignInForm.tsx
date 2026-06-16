@@ -31,7 +31,7 @@ const ALLOWED_REDIRECT_PREFIXES = [
   "/messages",
   "/events",
   "/guests",
-  "/photos",
+  "/gallery",
   "/keepsakes",
   "/shop",
   "/orders",

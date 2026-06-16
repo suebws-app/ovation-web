@@ -146,7 +146,7 @@ const buildCoupleGroups = (
       },
       {
         label: t("sidebar__nav__photos"),
-        href: appRoutes.app.photos,
+        href: appRoutes.app.gallery,
         icon: ImageIcon,
       },
       {

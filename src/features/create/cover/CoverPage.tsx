@@ -17,10 +17,22 @@ import { useHydrateStore } from "@/lib/storage/useHydrateStore";
 import { useSlugChecker } from "@/features/create/hooks/useSlugChecker";
 import { useSlugSuggestions } from "@/features/create/hooks/useSlugSuggestions";
 import { COVER_OPTIONS } from "@/features/create/constants";
+import { eventsClient } from "@/lib/api/events-client";
+import { profileClient } from "@/lib/api/profile-client";
+import { ApiError } from "@/lib/api/client";
 import { BookPreview } from "./components/BookPreview";
 import { CoverPattern } from "./components/CoverPattern";
 import { CoverPhotoSelector } from "./components/CoverPhotoSelector";
 import { SlugInput } from "./components/SlugInput";
+
+const LAST_EVENT_COOKIE = "ovation_last_event_id";
+const LAST_EVENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+const toIsoDate = (date: Date | null): string | undefined => {
+  if (!date) return undefined;
+  if (Number.isNaN(date.getTime())) return undefined;
+  return date.toISOString().slice(0, 10);
+};
 
 export const CoverPage = () => {
   const t = useTranslations();
@@ -52,43 +64,109 @@ export const CoverPage = () => {
     formData.partner2Name,
   );
 
+  const [coverFile, setCoverFile] = useState<File | null>(null);
+  const [coverFilePreview, setCoverFilePreview] = useState<string | null>(null);
+
   useEffect(() => {
     return () => {
-      if (formData.coverFilePreview) {
-        URL.revokeObjectURL(formData.coverFilePreview);
-      }
+      if (coverFilePreview) URL.revokeObjectURL(coverFilePreview);
     };
-  }, [formData.coverFilePreview]);
+  }, [coverFilePreview]);
 
-  const canContinue = status !== "invalid" && status !== "taken";
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const canContinue =
+    status !== "invalid" && status !== "taken" && !isSubmitting;
 
   const handleSelectPreset = (id: string) => {
-    if (formData.coverFilePreview)
-      URL.revokeObjectURL(formData.coverFilePreview);
-    updateFormData({ coverType: id, coverFile: null, coverFilePreview: null });
+    if (coverFilePreview) URL.revokeObjectURL(coverFilePreview);
+    setCoverFile(null);
+    setCoverFilePreview(null);
+    updateFormData({ coverType: id });
   };
 
   const handleSelectFile = (file: File) => {
-    if (formData.coverFilePreview)
-      URL.revokeObjectURL(formData.coverFilePreview);
+    if (coverFilePreview) URL.revokeObjectURL(coverFilePreview);
     const preview = URL.createObjectURL(file);
-    updateFormData({
-      coverType: "upload",
-      coverFile: file,
-      coverFilePreview: preview,
-    });
+    setCoverFile(file);
+    setCoverFilePreview(preview);
+    updateFormData({ coverType: "" });
   };
 
-  const handleContinue = () => {
-    if (session?.user) {
-      router.push(appRoutes.create.done);
-    } else {
+  const handleContinue = async () => {
+    if (!session?.user) {
       const asFromUrl = searchParams.get("as");
       const type =
         asFromUrl === "pro" || asFromUrl === "couple"
           ? asFromUrl
           : accountType || "couple";
       router.push(`${appRoutes.auth.signUp}?as=${type}`);
+      return;
+    }
+
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const {
+      formData: data,
+      mode,
+      eventId,
+      reset,
+    } = useCreateEventStore.getState();
+
+    try {
+      const partnerAName =
+        data.partner1Name.trim() || t("signup__partner_a_default");
+      const partnerBName =
+        data.partner2Name.trim() || t("signup__partner_b_default");
+      const weddingDate = toIsoDate(data.weddingDate);
+      const venueName = data.venueName?.trim() || undefined;
+      const venueCity = data.venueCity?.trim() || undefined;
+
+      let targetEventId: string;
+      if (mode === "edit" && eventId) {
+        const { event } = await eventsClient.update(eventId, {
+          partnerAName,
+          partnerBName,
+          weddingDate,
+          venueName,
+          venueCity,
+        });
+        targetEventId = event.id;
+      } else {
+        const created = await eventsClient.create({
+          partnerAName,
+          partnerBName,
+          weddingDate,
+          venueName,
+          venueCity,
+        });
+        targetEventId = created.event.id;
+      }
+
+      await profileClient.markOnboardingComplete().catch(() => undefined);
+
+      const desiredSlug = data.bookUrl?.trim();
+      if (desiredSlug && /^[a-z0-9-]{4,20}$/.test(desiredSlug)) {
+        try {
+          await eventsClient.update(targetEventId, { slug: desiredSlug });
+        } catch {
+          // Slug clash — keep existing
+        }
+      }
+
+      document.cookie = `${LAST_EVENT_COOKIE}=${targetEventId}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
+      reset();
+      router.push(appRoutes.app.root);
+    } catch (error) {
+      setSubmitError(
+        ApiError.isApiError(error)
+          ? error.message
+          : t("signup__completion__error_create_default"),
+      );
+      setIsSubmitting(false);
     }
   };
 
@@ -149,9 +227,9 @@ export const CoverPage = () => {
               .filter(Boolean)
               .join(", ")}
             coverImage={
-              formData.coverFilePreview ? (
+              coverFilePreview ? (
                 <img
-                  src={formData.coverFilePreview}
+                  src={coverFilePreview}
                   alt={t("signup__cover__step_label")}
                   className="size-full object-cover"
                 />
@@ -190,8 +268,8 @@ export const CoverPage = () => {
 
         <CoverPhotoSelector
           coverType={formData.coverType}
-          coverFile={formData.coverFile}
-          coverFilePreview={formData.coverFilePreview}
+          coverFile={coverFile}
+          coverFilePreview={coverFilePreview}
           initials={initials}
           onSelectPreset={handleSelectPreset}
           onSelectFile={handleSelectFile}
@@ -236,8 +314,13 @@ export const CoverPage = () => {
           size="lg"
           className="shadow-primary/40 tablet:mt-5 mt-3 w-full rounded-full shadow-md"
         >
-          {t("signup__claim__continue")}
+          {isSubmitting ? t("common__loading") : t("signup__claim__continue")}
         </Button>
+        {submitError && (
+          <p className="type-caption text-destructive mt-2 text-center">
+            {submitError}
+          </p>
+        )}
       </>
     </AuthSplitLayout>
   );
