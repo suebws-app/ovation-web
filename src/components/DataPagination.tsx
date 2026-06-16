@@ -2,6 +2,7 @@
 
 import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
 import { ChevronRightIcon } from "@ovation/icons/ChevronRightIcon";
+import { buildPages } from "@/lib/utils/pagination";
 import { DataPageButton } from "./DataPageButton";
 
 type DataPaginationLabels = {
@@ -16,20 +17,6 @@ type DataPaginationProps = {
   totalPages: number;
   onPageChange: (page: number) => void;
   labels: DataPaginationLabels;
-};
-
-const buildPages = (current: number, totalPages: number): (number | "…")[] => {
-  if (totalPages <= 7) {
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
-  }
-  const pages: (number | "…")[] = [1];
-  const start = Math.max(2, current - 1);
-  const end = Math.min(totalPages - 1, current + 1);
-  if (start > 2) pages.push("…");
-  for (let i = start; i <= end; i++) pages.push(i);
-  if (end < totalPages - 1) pages.push("…");
-  pages.push(totalPages);
-  return pages;
 };
 
 export const DataPagination = ({

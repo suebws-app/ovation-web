@@ -1,6 +1,8 @@
 "use client";
 
 import type { MessageRowView } from "../adapters";
+import { groupBy } from "@/lib/utils/array";
+import { formatWeekdayDate } from "@/lib/utils/formatDate";
 import { MessageDayHeader } from "./MessageDayHeader";
 import { MessageDayListFooter } from "./MessageDayListFooter";
 import { MessageRow } from "./MessageRow";
@@ -18,27 +20,11 @@ type MessageDayListProps = {
   onRowToggleSelect?: (id: string) => void;
 };
 
-const groupLabel = (createdAt: string): string => {
-  const d = new Date(createdAt);
-  if (Number.isNaN(d.getTime())) return "Earlier";
-  return d.toLocaleDateString(undefined, {
-    weekday: "long",
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-};
-
-const groupMessages = (messages: MessageRowView[]) => {
-  const groups: { label: string; items: MessageRowView[] }[] = [];
-  for (const m of messages) {
-    const label = groupLabel(m.createdAt);
-    const existing = groups.find((g) => g.label === label);
-    if (existing) existing.items.push(m);
-    else groups.push({ label, items: [m] });
-  }
-  return groups;
-};
+const groupMessagesByDay = (messages: MessageRowView[]) =>
+  groupBy(messages, (m) => formatWeekdayDate(m.createdAt)).map((g) => ({
+    label: g.key,
+    items: g.items,
+  }));
 
 export const MessageDayList = ({
   messages,
@@ -52,7 +38,7 @@ export const MessageDayList = ({
   onRowPlay,
   onRowToggleSelect,
 }: MessageDayListProps) => {
-  const groups = groupMessages(messages);
+  const groups = groupMessagesByDay(messages);
   const groupOffsets = groups.reduce<number[]>((acc, group, idx) => {
     const prev = idx === 0 ? 0 : acc[idx - 1] + groups[idx - 1].items.length;
     return [...acc, prev];

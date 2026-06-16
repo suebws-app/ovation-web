@@ -1,20 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { MeBillingHistoryItem } from "@/lib/api/types";
-
-const formatDate = (iso: string | null, locale: string) => {
-  if (!iso) return "—";
-  return new Date(iso).toLocaleDateString(locale, {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-};
-
-const formatAmount = (cents: number, currency: string, locale: string) =>
-  new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency: currency.toUpperCase(),
-  }).format(cents / 100);
+import { formatMoney } from "@/lib/utils/currency";
+import { formatDate } from "@/lib/utils/formatDate";
 
 type SubscriptionHistoryTableProps = {
   items: MeBillingHistoryItem[];
@@ -35,7 +22,7 @@ const HistoryRow = ({ item, locale, refundedLabel }: HistoryRowProps) => {
       <td className="px-6 py-4">{formatDate(displayDate, locale)}</td>
       <td className="px-6 py-4 capitalize">{item.planName ?? item.planCode}</td>
       <td className="px-6 py-4">
-        {formatAmount(item.totalCents, item.currency, locale)}
+        {formatMoney(item.totalCents, item.currency, locale)}
       </td>
       <td className="px-6 py-4 capitalize">
         {isRefunded ? (

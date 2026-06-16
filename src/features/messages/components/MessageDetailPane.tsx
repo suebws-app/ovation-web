@@ -21,6 +21,7 @@ import { safeHttpUrl } from "@/lib/utils/safe-url";
 import { PhotoLightbox } from "@/features/photos/components/PhotoLightbox";
 import { toPhotoViewFromGallery } from "@/features/photos/adapters";
 import { formatTimeShort } from "../adapters";
+import { formatSec } from "@/lib/utils/formatTime";
 
 import Image from "next/image";
 import type { MessageRowView } from "../adapters";
@@ -40,13 +41,6 @@ type MessageDetailPaneProps = {
   onSeek?: (ratio: number) => void;
   fullScreen?: boolean;
   onClose?: () => void;
-};
-
-const formatSec = (sec: number): string => {
-  if (!Number.isFinite(sec) || sec < 0) return "0:00";
-  const m = Math.floor(sec / 60);
-  const s = Math.floor(sec % 60);
-  return `${m}:${s.toString().padStart(2, "0")}`;
 };
 
 export const MessageDetailPane = ({

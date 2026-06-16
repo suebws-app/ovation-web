@@ -6,6 +6,7 @@ import { usePathname } from "@/i18n/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { daysBetween } from "@/lib/utils/time";
 import { DrePlanModal } from "./DrePlanModal";
 
 type SubscriptionAlertProps = {
@@ -14,9 +15,6 @@ type SubscriptionAlertProps = {
   userCreatedAt: string | null;
   storageDays: number | null;
 };
-
-const daysBetween = (ms: number) =>
-  Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24)));
 
 export const SubscriptionAlert = ({
   planTier,
