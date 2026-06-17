@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { kioskSettingsClient } from "@/lib/api/kiosk-settings-client";
 import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
+import { toast } from "@/components/Toaster";
 
 const DEBOUNCE_MS = 400;
 
@@ -32,6 +33,7 @@ export const useKioskSettings = (
       const res = await kioskSettingsClient.update(eventId, payload);
       setSettings(res.settings);
     } catch (e) {
+      toast.error("Failed to save");
       setError(e instanceof Error ? e : new Error("Failed to save"));
     } finally {
       setIsSaving(false);

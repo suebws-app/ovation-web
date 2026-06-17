@@ -20,6 +20,7 @@ import { COVER_OPTIONS } from "@/features/create/constants";
 import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
+import { setCookie } from "@/lib/utils/cookies";
 import { BookPreview } from "./components/BookPreview";
 import { CoverPattern } from "./components/CoverPattern";
 import { CoverPhotoSelector } from "./components/CoverPhotoSelector";
@@ -157,7 +158,9 @@ export const CoverPage = () => {
         }
       }
 
-      document.cookie = `${LAST_EVENT_COOKIE}=${targetEventId}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
+      setCookie(LAST_EVENT_COOKIE, targetEventId, {
+        maxAge: LAST_EVENT_COOKIE_MAX_AGE,
+      });
       reset();
       router.push(appRoutes.app.root);
     } catch (error) {

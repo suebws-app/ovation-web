@@ -22,19 +22,14 @@ import { usePathname } from "next/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { User } from "@/lib/api/types";
 import { isLocale } from "@/lib/utils/isLocale";
+import { getCookie, setCookie } from "@/lib/utils/cookies";
 import { NavUser } from "./NavUser";
 import { eventsClient } from "@/lib/api/events-client";
 
 const LAST_EVENT_COOKIE = "ovation_last_event_id";
 const LAST_EVENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
-const readLastEventCookie = (): string | null => {
-  if (typeof document === "undefined") return null;
-  const match = document.cookie.match(
-    /(?:^|;\s*)ovation_last_event_id=([^;]+)/,
-  );
-  return match ? decodeURIComponent(match[1]) : null;
-};
+const readLastEventCookie = (): string | null => getCookie(LAST_EVENT_COOKIE);
 
 const eventIdFromPath = (pathname: string): string | null => {
   const segments = pathname
@@ -54,7 +49,9 @@ const useProEventId = (events: Event[]): string | null => {
 
   useEffect(() => {
     if (fromPath) {
-      document.cookie = `${LAST_EVENT_COOKIE}=${fromPath}; path=/; max-age=${LAST_EVENT_COOKIE_MAX_AGE}; samesite=lax`;
+      setCookie(LAST_EVENT_COOKIE, fromPath, {
+        maxAge: LAST_EVENT_COOKIE_MAX_AGE,
+      });
       startTransition(() => setFallback(fromPath));
       return;
     }

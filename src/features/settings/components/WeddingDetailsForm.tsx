@@ -11,11 +11,10 @@ import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { MapPinIcon } from "@ovation/icons/MapPinIcon";
 import { CopyIcon } from "@ovation/icons/CopyIcon";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
-import { ChevronDownIcon } from "@ovation/icons/ChevronDownIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
 import { clientEnv as env } from "@/lib/utils/env.client";
-import type { Event, SupportedLanguage } from "@/lib/api/types";
+import type { Event } from "@/lib/api/types";
 import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
 import { SettingsField } from "./SettingsField";
 
@@ -27,15 +26,6 @@ type Status =
   | { kind: "idle" }
   | { kind: "saved" }
   | { kind: "error"; message: string };
-
-const LANG_KEYS: { value: SupportedLanguage; labelKey: string }[] = [
-  { value: "en", labelKey: "settings__wedding__lang_en" },
-  { value: "fr", labelKey: "settings__wedding__lang_fr" },
-  { value: "nl", labelKey: "settings__wedding__lang_nl" },
-  { value: "de", labelKey: "settings__wedding__lang_de" },
-  { value: "es", labelKey: "settings__wedding__lang_es" },
-  { value: "it", labelKey: "settings__wedding__lang_it" },
-];
 
 const toIsoDate = (raw: string | null): string => {
   if (!raw) return "";
@@ -65,7 +55,6 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
       venueCity: event.venueCity ?? "",
       welcomeMessage: event.welcomeMessage ?? "",
       slug: event.slug,
-      defaultLanguage: (event.defaultLanguage as SupportedLanguage) ?? "en",
     },
     resolver: standardSchemaResolver(schema),
     mode: "onTouched",
@@ -98,7 +87,6 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         venueCity: values.venueCity || undefined,
         welcomeMessage: values.welcomeMessage || undefined,
         slug: values.slug || undefined,
-        defaultLanguage: values.defaultLanguage,
       });
       reset({
         partnerAName: updated.partnerAName,
@@ -108,7 +96,6 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         venueCity: updated.venueCity ?? "",
         welcomeMessage: updated.welcomeMessage ?? "",
         slug: updated.slug,
-        defaultLanguage: (updated.defaultLanguage as SupportedLanguage) ?? "en",
       });
       setStatus({ kind: "saved" });
       router.refresh();
@@ -153,7 +140,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         </SettingsField>
       </div>
 
-      <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
+      <div className="mt-5">
         <SettingsField
           label={t("settings__wedding__date")}
           adornmentRight={
@@ -165,25 +152,6 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
           }
         >
           <Input type="date" {...register("weddingDate")} />
-        </SettingsField>
-        <SettingsField label={t("settings__wedding__language")}>
-          <div className="relative">
-            <select
-              {...register("defaultLanguage")}
-              className="border-border bg-background text-foreground type-body-small h-10 w-full appearance-none rounded-lg border pr-9 pl-3 outline-none"
-            >
-              {LANG_KEYS.map((l) => (
-                <option key={l.value} value={l.value}>
-                  {t(l.labelKey)}
-                </option>
-              ))}
-            </select>
-            <ChevronDownIcon
-              width={16}
-              height={16}
-              className="text-muted-foreground pointer-events-none absolute top-1/2 right-3 -translate-y-1/2"
-            />
-          </div>
         </SettingsField>
       </div>
 

@@ -19,6 +19,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { authClient } from "@/lib/auth/client";
 import { clientEnv as env } from "@/lib/utils/env.client";
+import { getCookie } from "@/lib/utils/cookies";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
 import { getSignInSchema, type SignInFields } from "../signInSchema";
 import { UnverifiedEmailBanner } from "../components/UnverifiedEmailBanner";
@@ -64,11 +65,10 @@ const isSafeInternalRedirect = (raw: string): boolean => {
 };
 
 const readFailCount = (): number => {
-  if (typeof document === "undefined") return 0;
-  const match = document.cookie.match(
-    new RegExp(`(?:^|;\\s*)${SIGNIN_FAIL_COOKIE}=(\\d+)`),
-  );
-  return match ? Number(match[1]) : 0;
+  const raw = getCookie(SIGNIN_FAIL_COOKIE);
+  if (!raw) return 0;
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) ? parsed : 0;
 };
 
 type SignInFormProps = {

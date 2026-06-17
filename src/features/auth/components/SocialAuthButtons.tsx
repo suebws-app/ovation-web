@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
 import { authClient } from "@/lib/auth/client";
+import { setCookie } from "@/lib/utils/cookies";
 import { SocialAuthButton } from "./SocialAuthButton";
 import { AppleIcon } from "@ovation/icons/AppleIcon";
 import { GoogleIcon } from "@ovation/icons/GoogleIcon";
@@ -12,11 +13,11 @@ const SIGNUP_LOCALE_COOKIE = "ovation_signup_locale";
 const SIGNUP_LOCALE_TTL_SECONDS = 600;
 
 const persistSignupLocale = (locale: string): void => {
-  if (typeof document === "undefined") return;
-  const secure = window.location.protocol === "https:" ? "; Secure" : "";
-  document.cookie =
-    `${SIGNUP_LOCALE_COOKIE}=${encodeURIComponent(locale)}` +
-    `; Path=/; Max-Age=${SIGNUP_LOCALE_TTL_SECONDS}; SameSite=Lax${secure}`;
+  if (typeof window === "undefined") return;
+  setCookie(SIGNUP_LOCALE_COOKIE, locale, {
+    maxAge: SIGNUP_LOCALE_TTL_SECONDS,
+    secure: window.location.protocol === "https:",
+  });
 };
 
 type SocialAuthButtonsProps = {

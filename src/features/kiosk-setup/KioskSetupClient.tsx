@@ -5,7 +5,6 @@ import { KioskHero } from "./components/KioskHero";
 import { KioskChecklist } from "./components/KioskChecklist";
 import { KioskConfigGrid } from "./components/KioskConfigGrid";
 import { KioskPreview } from "./components/KioskPreview";
-import { KioskFooter } from "./components/KioskFooter";
 import { useKioskSettings } from "./useKioskSettings";
 
 type KioskSetupClientProps = {
@@ -21,10 +20,7 @@ export const KioskSetupClient = ({
   settings: initialSettings,
   publicEvent,
 }: KioskSetupClientProps) => {
-  const { settings, patch, isSaving, error } = useKioskSettings(
-    eventId,
-    initialSettings,
-  );
+  const { settings, patch } = useKioskSettings(eventId, initialSettings);
 
   const previewEvent = publicEvent && {
     ...publicEvent,
@@ -56,7 +52,6 @@ export const KioskSetupClient = ({
       />
       <KioskConfigGrid settings={settings} eventId={eventId} onPatch={patch} />
       <KioskPreview slug={slug} event={previewEvent} />
-      <KioskFooter slug={slug} isSaving={isSaving} saveError={error} />
     </>
   );
 };

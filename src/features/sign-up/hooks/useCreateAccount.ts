@@ -7,13 +7,25 @@ import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { appRoutes } from "@/lib/routes";
 import { clientEnv as env } from "@/lib/utils/env.client";
+import { getCookie } from "@/lib/utils/cookies";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import type { SignUpFields } from "@/features/sign-up/signUpSchema";
+import {
+  CURRENCY_COOKIE,
+  isSupportedCurrency,
+  type Currency,
+} from "@/i18n/currency-config";
 
 const toIsoDate = (date: Date | null): string | undefined => {
   if (!date || Number.isNaN(date.getTime())) return undefined;
   return date.toISOString().slice(0, 10);
+};
+
+const readPreferredCurrencyCookie = (): Currency | undefined => {
+  const raw = getCookie(CURRENCY_COOKIE);
+  if (!raw) return undefined;
+  return isSupportedCurrency(raw) ? raw : undefined;
 };
 
 type UseCreateAccountReturn = {
@@ -51,12 +63,15 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
         name: string;
         accountType?: string;
         preferredLanguage?: string;
+        preferredCurrency?: string;
       },
       fetchOptions?: { headers?: Record<string, string> },
     ) => Promise<{
       data?: { token?: string | null } | null;
       error?: { message?: string; code?: string } | null;
     }>;
+
+    const preferredCurrency = readPreferredCurrencyCookie();
 
     const { error, data } = await signUpEmail(
       {
@@ -65,6 +80,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
         name: values.email.split("@")[0] ?? values.email,
         accountType,
         preferredLanguage: locale,
+        ...(preferredCurrency ? { preferredCurrency } : {}),
       },
       turnstileToken
         ? { headers: { "x-turnstile-token": turnstileToken } }

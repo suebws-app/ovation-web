@@ -5,6 +5,9 @@ import { useLocale, useTranslations } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { type Locale } from "@/i18n/config";
 import { formatNativeLanguageName } from "@/lib/utils/localeFormatters";
+import { setCookie } from "@/lib/utils/cookies";
+
+const NEXT_LOCALE_COOKIE_MAX_AGE = 31536000;
 import { GlobeIcon } from "@ovation/icons/GlobeIcon";
 import { ChevronDownIcon } from "@ovation/icons/ChevronDownIcon";
 import {
@@ -36,7 +39,7 @@ export const LanguageSelectClient = ({
   const handleSelect = (code: Locale) => {
     setOpen(false);
     if (code === locale) return;
-    document.cookie = `NEXT_LOCALE=${code};path=/;max-age=31536000`;
+    setCookie("NEXT_LOCALE", code, { maxAge: NEXT_LOCALE_COOKIE_MAX_AGE });
     router.replace(pathname, { locale: code });
   };
 
