@@ -28,20 +28,20 @@ export const QuantityStep = ({
       key: "standard",
       title: t("qr_cards_order__qty__paper_standard_t"),
       description: t("qr_cards_order__qty__paper_standard_d"),
-      priceLabel: "€0",
+      priceLabel: t("qr_cards_order__qty__price_standard"),
     },
     {
       key: "letter",
       title: t("qr_cards_order__qty__paper_letter_t"),
       description: t("qr_cards_order__qty__paper_letter_d"),
-      priceLabel: "+€1.20 each",
+      priceLabel: t("qr_cards_order__qty__price_letter"),
       badge: t("qr_cards_order__qty__most_chosen"),
     },
     {
       key: "vellum",
       title: t("qr_cards_order__qty__paper_vellum_t"),
       description: t("qr_cards_order__qty__paper_vellum_d"),
-      priceLabel: "+€2.40 each",
+      priceLabel: t("qr_cards_order__qty__price_vellum"),
     },
   ];
 

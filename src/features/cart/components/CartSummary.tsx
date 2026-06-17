@@ -18,6 +18,8 @@ type CartSummaryProps = {
   isCheckingOut: boolean;
   error: string | null;
   ctaLabel: string;
+  disabled?: boolean;
+  hideCheckout?: boolean;
 };
 
 export const CartSummary = ({
@@ -27,6 +29,8 @@ export const CartSummary = ({
   isCheckingOut,
   error,
   ctaLabel,
+  disabled = false,
+  hideCheckout = false,
 }: CartSummaryProps) => {
   const t = useTranslations();
   const itemCount = useCartStore((s) => s.itemCount());
@@ -110,18 +114,20 @@ export const CartSummary = ({
         </p>
       )}
 
-      <Button
-        type="button"
-        size="lg"
-        className="rounded-full"
-        onClick={onCheckout}
-        disabled={isCheckingOut || itemCount === 0}
-      >
-        <LockIcon width={13} height={13} />
-        {isCheckingOut
-          ? t("cart__summary__checkout_pending")
-          : t(ctaLabel, { total: formatPrice(totalCents, currency) })}
-      </Button>
+      {!hideCheckout && (
+        <Button
+          type="button"
+          size="lg"
+          className="rounded-full"
+          onClick={onCheckout}
+          disabled={isCheckingOut || itemCount === 0 || disabled}
+        >
+          <LockIcon width={13} height={13} />
+          {isCheckingOut
+            ? t("cart__summary__checkout_pending")
+            : t(ctaLabel, { total: formatPrice(totalCents, currency) })}
+        </Button>
+      )}
 
       <div className="text-muted-foreground type-caption flex items-center justify-center gap-3.5">
         <span className="inline-flex items-center gap-1">

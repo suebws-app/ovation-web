@@ -1,49 +1,47 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Button } from "@ovation/ui/components/Button";
-import { useCartStore, type CartShipping } from "../store/useCartStore";
+import type { CartShipping } from "../store/useCartStore";
 import { CountrySelect } from "./CountrySelect";
 import { StateSelect, requiresState } from "./StateSelect";
 
-type CartShippingFormProps = {
-  onBack: () => void;
+type CartItemShippingFormProps = {
+  initial: CartShipping | null;
+  variantIds: string[];
+  title: string;
+  description?: string;
+  submitLabel: string;
   onSubmit: (shipping: CartShipping) => void;
-  isSubmitting: boolean;
+  onBack: () => void;
+  isSubmitting?: boolean;
 };
 
-export const CartShippingForm = ({
-  onBack,
+const emptyShipping: CartShipping = {
+  name: "",
+  line1: "",
+  line2: "",
+  city: "",
+  postalCode: "",
+  country: "",
+  state: undefined,
+};
+
+export const CartItemShippingForm = ({
+  initial,
+  variantIds,
+  title,
+  description,
+  submitLabel,
   onSubmit,
-  isSubmitting,
-}: CartShippingFormProps) => {
+  onBack,
+  isSubmitting = false,
+}: CartItemShippingFormProps) => {
   const t = useTranslations();
-  const existing = useCartStore((s) => s.shipping);
-  const items = useCartStore((s) => s.items);
-  const setShipping = useCartStore((s) => s.setShipping);
-
-  const variantIds = useMemo(
-    () =>
-      items
-        .map((item) => item.productVariantId)
-        .filter((id): id is string => !!id),
-    [items],
-  );
-
-  const [form, setForm] = useState<CartShipping>(
-    existing ?? {
-      name: "",
-      line1: "",
-      line2: "",
-      city: "",
-      postalCode: "",
-      country: "",
-      state: undefined,
-    },
-  );
+  const [form, setForm] = useState<CartShipping>(initial ?? emptyShipping);
   const [error, setError] = useState<Record<string, string>>({});
 
   const update =
@@ -52,19 +50,15 @@ export const CartShippingForm = ({
     };
 
   const handleCountryChange = (country: string) => {
-    const next: CartShipping = {
-      ...form,
+    setForm((prev) => ({
+      ...prev,
       country,
-      state: requiresState(country) ? form.state : undefined,
-    };
-    setForm(next);
-    setShipping(next);
+      state: requiresState(country) ? prev.state : undefined,
+    }));
   };
 
   const handleStateChange = (state: string) => {
-    const next: CartShipping = { ...form, state };
-    setForm(next);
-    setShipping(next);
+    setForm((prev) => ({ ...prev, state }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -101,11 +95,11 @@ export const CartShippingForm = ({
       className="rounded-20 border-border bg-card flex flex-col gap-5 border p-7"
     >
       <h2 className="type-h3 font-serif font-semibold tracking-tight">
-        {t("cart__shipping__title")}
+        {title}
       </h2>
-      <p className="text-muted-foreground type-body-small">
-        {t("cart__shipping__description")}
-      </p>
+      {description && (
+        <p className="text-muted-foreground type-body-small">{description}</p>
+      )}
       <div className="flex flex-col gap-4">
         <div>
           <Label htmlFor="ship-name" className="mb-2">
@@ -218,9 +212,7 @@ export const CartShippingForm = ({
           {t("cart__shipping__back")}
         </Button>
         <Button type="submit" className="rounded-full" disabled={isSubmitting}>
-          {isSubmitting
-            ? t("cart__summary__checkout_pending")
-            : t("cart__shipping__continue")}
+          {isSubmitting ? t("cart__summary__checkout_pending") : submitLabel}
         </Button>
       </div>
     </form>

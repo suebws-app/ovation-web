@@ -9,11 +9,16 @@ import { BoxIcon } from "@ovation/icons/BoxIcon";
 import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
+import type { User } from "@/lib/api/types";
 import { appRoutes } from "@/lib/routes";
+import type { PlanTier } from "@/lib/api/types";
 
 type Translator = ReturnType<typeof useTranslations>;
 
-const buildGroups = (t: Translator): SidebarNavGroup[] => [
+const buildGroups = (
+  t: Translator,
+  planTier: PlanTier | string | null,
+): SidebarNavGroup[] => [
   {
     items: [
       {
@@ -39,12 +44,16 @@ const buildGroups = (t: Translator): SidebarNavGroup[] => [
         href: appRoutes.settings.notifications,
         icon: BellIcon,
       },
-      {
-        key: "subscription",
-        label: t("settings__sidebar__subscription"),
-        href: appRoutes.settings.billing,
-        icon: CreditCardIcon,
-      },
+      ...(planTier !== "free"
+        ? [
+            {
+              key: "subscription",
+              label: t("settings__sidebar__subscription"),
+              href: appRoutes.settings.billing,
+              icon: CreditCardIcon,
+            },
+          ]
+        : []),
       {
         key: "data",
         label: t("settings__sidebar__data"),
@@ -55,9 +64,13 @@ const buildGroups = (t: Translator): SidebarNavGroup[] => [
   },
 ];
 
-export const SettingsSidebar = () => {
+type SettingsSidebarProps = {
+  user: User | null;
+};
+
+export const SettingsSidebar = ({ user }: SettingsSidebarProps) => {
   const t = useTranslations();
-  const groups = buildGroups(t);
+  const groups = buildGroups(t, user?.planTier ?? null);
 
   return <Sidebar header={<Logo />} groups={groups} />;
 };

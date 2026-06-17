@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Dialog, VisuallyHidden } from "radix-ui";
 import { XIcon } from "@ovation/icons/XIcon";
 import type { GalleryItem } from "@/lib/api/types";
@@ -14,6 +15,7 @@ export const MediaPreviewDialog = ({
   item,
   onOpenChange,
 }: MediaPreviewDialogProps) => {
+  const t = useTranslations();
   const open = item !== null;
   const src = item?.url ?? item?.thumbUrl ?? null;
 
@@ -29,9 +31,9 @@ export const MediaPreviewDialog = ({
           onCloseAutoFocus={(event) => event.preventDefault()}
         >
           <VisuallyHidden.Root>
-            <Dialog.Title>Media preview</Dialog.Title>
+            <Dialog.Title>{t("keepsakes__media_preview__title")}</Dialog.Title>
             <Dialog.Description>
-              Full-size preview of the selected media item.
+              {t("keepsakes__media_preview__description")}
             </Dialog.Description>
           </VisuallyHidden.Root>
           {src && item?.type === "video" ? (
@@ -55,7 +57,7 @@ export const MediaPreviewDialog = ({
             </div>
           ) : null}
           <Dialog.Close
-            aria-label="Close preview"
+            aria-label={t("keepsakes__media_preview__close")}
             className="bg-background/90 text-foreground hover:bg-background absolute top-6 right-6 flex size-10 items-center justify-center rounded-full transition-colors"
           >
             <XIcon width={18} height={18} />

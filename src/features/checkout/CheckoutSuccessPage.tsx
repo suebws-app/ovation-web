@@ -45,5 +45,7 @@ export const CheckoutSuccessPage = async ({
         ? t("checkout__success__toast_order")
         : t("checkout__success__toast_payment");
 
-  return <CheckoutSuccessRedirect message={message} />;
+  return (
+    <CheckoutSuccessRedirect message={message} clearCart={kind === "order"} />
+  );
 };

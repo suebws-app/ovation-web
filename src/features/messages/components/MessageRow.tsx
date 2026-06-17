@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback } from "@ovation/ui/components/Avatar";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { BookIcon } from "@ovation/icons/BookIcon";
@@ -38,118 +39,129 @@ export const MessageRow = ({
   onClick,
   onPlay,
   onToggleSelect,
-}: MessageRowProps) => (
-  <div
-    role="button"
-    tabIndex={0}
-    onClick={onClick}
-    onKeyDown={(e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        onClick?.();
-      }
-    }}
-    style={{ animationDelay: `${Math.min(index, 12) * 40}ms` }}
-    className={cn(
-      "animate-slide-up-fade border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors",
-      selected
-        ? "border-l-primary bg-primary/5 border-l-3"
-        : "hover:bg-muted/50 border-l-3 border-l-transparent",
-    )}
-  >
-    <span className="inline-flex" onClick={(e) => e.stopPropagation()}>
-      <Checkbox
-        checked={checked}
-        onChange={() => onToggleSelect?.()}
-        aria-label={`Select message from ${message.name}`}
-      />
-    </span>
+}: MessageRowProps) => {
+  const t = useTranslations();
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
+      style={{ animationDelay: `${Math.min(index, 12) * 40}ms` }}
+      className={cn(
+        "animate-slide-up-fade border-border tablet:grid-cols-[28px_48px_1fr_100px_60px_36px] tablet:gap-4 tablet:px-6 grid w-full cursor-pointer grid-cols-[28px_48px_1fr_60px_36px] items-center gap-3 border-b px-4 py-3 text-left transition-colors",
+        selected
+          ? "border-l-primary bg-primary/5 border-l-3"
+          : "hover:bg-muted/50 border-l-3 border-l-transparent",
+      )}
+    >
+      <span className="inline-flex" onClick={(e) => e.stopPropagation()}>
+        <Checkbox
+          checked={checked}
+          onChange={() => onToggleSelect?.()}
+          aria-label={t("messages__row__select_message", {
+            name: message.name,
+          })}
+        />
+      </span>
 
-    <span className="inline-flex">
-      <Avatar size="lg" className={index % 2 ? "rotate-2" : "-rotate-2"}>
-        <AvatarFallback
-          className="type-body-small text-primary-foreground font-semibold"
-          style={{ background: message.tint }}
-        >
-          {message.initials}
-        </AvatarFallback>
-      </Avatar>
-    </span>
+      <span className="inline-flex">
+        <Avatar size="lg" className={index % 2 ? "rotate-2" : "-rotate-2"}>
+          <AvatarFallback
+            className="type-body-small text-primary-foreground font-semibold"
+            style={{ background: message.tint }}
+          >
+            {message.initials}
+          </AvatarFallback>
+        </Avatar>
+      </span>
 
-    <div className="min-w-0">
-      <div className="flex items-center gap-2">
-        <span className="type-body text-foreground font-semibold">
-          {message.name}
-        </span>
-        {message.favorited && (
-          <HeartIcon
-            width={13}
-            height={13}
-            className="fill-destructive text-destructive"
-          />
-        )}
-        {message.inGoldBook && (
-          <BookIcon width={13} height={13} className="text-[#9A6B2F]" />
-        )}
-        {message.language && (
-          <span className="rounded-4 bg-primary/10 type-caption text-primary px-1.5 py-0.5 font-bold tracking-wider uppercase">
-            {message.language}
+      <div className="min-w-0">
+        <div className="flex items-center gap-2">
+          <span className="type-body text-foreground font-semibold">
+            {message.name}
           </span>
+          {message.favorited && (
+            <HeartIcon
+              width={13}
+              height={13}
+              className="fill-destructive text-destructive"
+            />
+          )}
+          {message.inGoldBook && (
+            <BookIcon width={13} height={13} className="text-[#9A6B2F]" />
+          )}
+          {message.language && (
+            <span className="rounded-4 bg-primary/10 type-caption text-primary px-1.5 py-0.5 font-bold tracking-wider uppercase">
+              {message.language}
+            </span>
+          )}
+          {message.hasPhoto && (
+            <ImageIcon
+              width={12}
+              height={12}
+              className="text-muted-foreground"
+            />
+          )}
+        </div>
+        {message.relation && (
+          <p className="type-caption text-muted-foreground">
+            {message.relation}
+          </p>
         )}
-        {message.hasPhoto && (
-          <ImageIcon width={12} height={12} className="text-muted-foreground" />
+        {(message.note || message.quote) && (
+          <p className="type-body-small text-muted-foreground mt-1 truncate font-serif italic">
+            &ldquo;{message.note || message.quote}&rdquo;
+          </p>
         )}
       </div>
-      {message.relation && (
-        <p className="type-caption text-muted-foreground">{message.relation}</p>
-      )}
-      {(message.note || message.quote) && (
-        <p className="type-body-small text-muted-foreground mt-1 truncate font-serif italic">
-          &ldquo;{message.note || message.quote}&rdquo;
-        </p>
-      )}
-    </div>
 
-    <div className="tablet:block hidden" onClick={(e) => e.stopPropagation()}>
-      {message.hasAudio && (
-        <Waveform
-          bars={message.wave.slice(0, 24)}
-          height={28}
-          progress={isCurrent ? progress : 0}
-        />
-      )}
-    </div>
+      <div className="tablet:block hidden" onClick={(e) => e.stopPropagation()}>
+        {message.hasAudio && (
+          <Waveform
+            bars={message.wave.slice(0, 24)}
+            height={28}
+            progress={isCurrent ? progress : 0}
+          />
+        )}
+      </div>
 
-    <span
-      className="type-caption text-muted-foreground tablet:text-right block font-mono"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {message.hasAudio
-        ? `${formatSec(isCurrent ? currentTime : 0)}/${message.duration}`
-        : ""}
-    </span>
-
-    {message.hasAudio ? (
       <span
-        role="button"
-        tabIndex={0}
-        onClick={(e) => {
-          e.stopPropagation();
-          onPlay?.();
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
+        className="type-caption text-muted-foreground tablet:text-right block font-mono"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {message.hasAudio
+          ? `${formatSec(isCurrent ? currentTime : 0)}/${message.duration}`
+          : ""}
+      </span>
+
+      {message.hasAudio ? (
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={(e) => {
             e.stopPropagation();
             onPlay?.();
-          }
-        }}
-        className="inline-flex"
-      >
-        <MessagePlayButton playing={playing} />
-      </span>
-    ) : (
-      <span />
-    )}
-  </div>
-);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.stopPropagation();
+              onPlay?.();
+            }
+          }}
+          className="inline-flex"
+        >
+          <MessagePlayButton playing={playing} />
+        </span>
+      ) : (
+        <span />
+      )}
+    </div>
+  );
+};

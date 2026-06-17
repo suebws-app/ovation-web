@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { GalleryItem } from "@/lib/api/types";
@@ -11,6 +12,7 @@ type PhotosTileProps = {
 };
 
 export const PhotosTile = ({ item, overlay, onPreview }: PhotosTileProps) => {
+  const t = useTranslations();
   const thumb = item.thumbUrl ?? item.url;
   const inner = (
     <>
@@ -48,7 +50,7 @@ export const PhotosTile = ({ item, overlay, onPreview }: PhotosTileProps) => {
     <button
       type="button"
       onClick={() => onPreview(item)}
-      aria-label="Preview photo"
+      aria-label={t("dashboard__photos__preview")}
       className="rounded-12 bg-muted group relative block aspect-square cursor-pointer overflow-hidden"
     >
       {inner}

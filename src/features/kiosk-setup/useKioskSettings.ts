@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { kioskSettingsClient } from "@/lib/api/kiosk-settings-client";
 import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
 import { toast } from "@/components/Toaster";
@@ -16,6 +17,7 @@ export const useKioskSettings = (
   eventId: string,
   initial: KioskSettings,
 ): UseKioskSettingsResult => {
+  const t = useTranslations();
   const [settings, setSettings] = useState<KioskSettings>(initial);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -38,7 +40,7 @@ export const useKioskSettings = (
     } finally {
       setIsSaving(false);
     }
-  }, [eventId]);
+  }, [eventId, t]);
 
   const patch = useCallback(
     (changes: UpdateKioskSettingsInput) => {

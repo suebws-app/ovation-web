@@ -12,16 +12,25 @@ import { ApiError } from "@/lib/api/client";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import { appRoutes } from "@/lib/routes";
-import type { CartTotalsResult } from "@/lib/api/types";
-import { useShippingQuote } from "@/lib/query/shippingQueries";
+import type {
+  CartTotalsResult,
+  CheckoutShippingAddress,
+} from "@/lib/api/types";
+import { useShippingQuotes } from "@/lib/query/shippingQueries";
 import type { ShippingQuoteBody } from "@/lib/api/shipping-client";
-import { useCartStore, type CartShipping } from "./store/useCartStore";
+import {
+  useCartStore,
+  effectiveItemShipping,
+  type CartItem,
+  type CartShipping,
+} from "./store/useCartStore";
 import { requiresState } from "./components/StateSelect";
 import { CartHero } from "./components/CartHero";
 import { CartItemsCard } from "./components/CartItemsCard";
 import { CartSummary } from "./components/CartSummary";
 import { CartEmptyState } from "./components/CartEmptyState";
-import { CartShippingForm } from "./components/CartShippingForm";
+import { CartShippingAddresses } from "./components/CartShippingAddresses";
+import { CartItemShippingForm } from "./components/CartItemShippingForm";
 import { CartMobileCheckoutBar } from "./components/CartMobileCheckoutBar";
 
 const isSupportedCurrency = (
@@ -37,6 +46,25 @@ const extractPageCount = (customization: Record<string, unknown>): number => {
   return 0;
 };
 
+const isValidShipping = (s: CartShipping | null): boolean =>
+  !!s &&
+  !!s.name.trim() &&
+  !!s.line1.trim() &&
+  !!s.city.trim() &&
+  !!s.postalCode.trim() &&
+  s.country.trim().length === 2 &&
+  (!requiresState(s.country) || !!s.state);
+
+const toCheckoutAddress = (s: CartShipping): CheckoutShippingAddress => ({
+  name: s.name,
+  line1: s.line1,
+  line2: s.line2,
+  city: s.city,
+  postalCode: s.postalCode,
+  country: s.country,
+  state: s.state,
+});
+
 const CURRENCY_FALLBACK = "EUR";
 
 type Step = "cart" | "shipping";
@@ -46,13 +74,13 @@ export const CartView = () => {
   const items = useCartStore((s) => s.items);
   const itemCount = useCartStore((s) => s.itemCount());
   const shipping = useCartStore((s) => s.shipping);
-  const setShipping = useCartStore((s) => s.setShipping);
+  const setItemShipping = useCartStore((s) => s.setItemShipping);
   const promoCode = useCartStore((s) => s.promoCode);
   const requiresShipping = useCartStore((s) => s.requiresShipping());
-  const clear = useCartStore((s) => s.clear);
 
   const [hydrated, setHydrated] = useState(false);
   const [step, setStep] = useState<Step>("cart");
+  const [editItemId, setEditItemId] = useState<string | null>(null);
   const [totals, setTotals] = useState<CartTotalsResult | null>(null);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -96,48 +124,78 @@ export const CartView = () => {
 
   const currency = totals?.currency ?? items[0]?.currency ?? CURRENCY_FALLBACK;
 
-  const quoteBody = useMemo<ShippingQuoteBody | null>(() => {
-    if (!requiresShipping || !shipping?.country) return null;
-    if (!isSupportedCurrency(currency)) return null;
-    if (requiresState(shipping.country) && !shipping.state) return null;
-    const quotedItems = items
-      .filter((item) => !!item.productVariantId)
-      .map((item) => ({
-        variantId: item.productVariantId as string,
+  const quoteBodies = useMemo<ShippingQuoteBody[]>(() => {
+    if (!requiresShipping || !isSupportedCurrency(currency)) return [];
+    const byDestination = new Map<string, ShippingQuoteBody>();
+    for (const item of items) {
+      if (!item.requiresShipping || !item.productVariantId) continue;
+      const addr = effectiveItemShipping(item, shipping);
+      if (!addr?.country) continue;
+      if (requiresState(addr.country) && !addr.state) continue;
+      const numberOfPages = extractPageCount(item.customization);
+      if (numberOfPages <= 0) continue;
+      const key = `${addr.country}|${addr.state ?? ""}`;
+      const quotedItem = {
+        variantId: item.productVariantId,
         quantity: item.quantity,
-        numberOfPages: extractPageCount(item.customization),
-      }))
-      .filter((item) => item.numberOfPages > 0);
-    if (quotedItems.length === 0) return null;
-    return {
-      countryCode: shipping.country,
-      state: shipping.state,
-      currency,
-      items: quotedItems,
-    };
-  }, [requiresShipping, shipping, currency, items]);
+        numberOfPages,
+      };
+      const existing = byDestination.get(key);
+      if (existing) {
+        existing.items.push(quotedItem);
+      } else {
+        byDestination.set(key, {
+          countryCode: addr.country,
+          state: addr.state,
+          currency,
+          items: [quotedItem],
+        });
+      }
+    }
+    return [...byDestination.values()];
+  }, [requiresShipping, currency, items, shipping]);
 
-  const shippingQuote = useShippingQuote(quoteBody);
+  const shippingQuotes = useShippingQuotes(quoteBodies);
+
+  const aggregatedShipping = useMemo<number | null>(() => {
+    if (quoteBodies.length === 0) return null;
+    if (!shippingQuotes.every((q) => q.data)) return null;
+    return shippingQuotes.reduce(
+      (sum, q) => sum + (q.data?.totalShippingCents ?? 0),
+      0,
+    );
+  }, [quoteBodies, shippingQuotes]);
 
   const mergedTotals = useMemo<CartTotalsResult | null>(() => {
     if (!totals) return null;
-    if (!shippingQuote.data) return totals;
-    const shippingCents = shippingQuote.data.totalShippingCents;
+    if (aggregatedShipping === null) return totals;
     const totalCents =
       totals.subtotalCents -
       (totals.promoDiscountCents ?? 0) +
-      shippingCents +
+      aggregatedShipping +
       totals.taxCents;
     return {
       ...totals,
-      shippingCents,
+      shippingCents: aggregatedShipping,
       totalCents,
-      freeShipping: shippingCents === 0,
+      freeShipping: aggregatedShipping === 0,
     };
-  }, [totals, shippingQuote.data]);
+  }, [totals, aggregatedShipping]);
 
-  const performCheckout = async (shippingAddress?: CartShipping) => {
+  const allAddressesValid = useMemo(
+    () =>
+      items
+        .filter((i) => i.requiresShipping)
+        .every((i) => isValidShipping(effectiveItemShipping(i, shipping))),
+    [items, shipping],
+  );
+
+  const performCheckout = async () => {
     if (items.length === 0) return;
+    if (requiresShipping && !allAddressesValid) {
+      setError(t("cart__addresses__incomplete"));
+      return;
+    }
     setError(null);
     setIsCheckingOut(true);
     try {
@@ -146,33 +204,29 @@ export const CartView = () => {
       const result = await paymentsClient.createCheckoutSession({
         eventId: items[0].eventId,
         orderType: "keepsake",
-        items: items.map((item) => ({
-          productType: item.productType,
-          productVariantId: item.productVariantId ?? undefined,
-          quantity: item.quantity,
-          customization: item.customization,
-          photoIds: item.photoSelectAll
-            ? undefined
-            : item.photoIds.length > 0
-              ? item.photoIds
-              : undefined,
-          photoSelectAll: item.photoSelectAll ?? undefined,
-        })),
-        shippingAddress: shippingAddress
-          ? {
-              name: shippingAddress.name,
-              line1: shippingAddress.line1,
-              line2: shippingAddress.line2,
-              city: shippingAddress.city,
-              postalCode: shippingAddress.postalCode,
-              country: shippingAddress.country,
-            }
-          : undefined,
+        items: items.map((item) => {
+          const addr = item.requiresShipping
+            ? effectiveItemShipping(item, shipping)
+            : null;
+          return {
+            productType: item.productType,
+            productVariantId: item.productVariantId ?? undefined,
+            quantity: item.quantity,
+            customization: item.customization,
+            photoIds: item.photoSelectAll
+              ? undefined
+              : item.photoIds.length > 0
+                ? item.photoIds
+                : undefined,
+            photoSelectAll: item.photoSelectAll ?? undefined,
+            shippingAddress: addr ? toCheckoutAddress(addr) : undefined,
+          };
+        }),
+        shippingAddress: shipping ? toCheckoutAddress(shipping) : undefined,
         promoCode: promoCode ?? undefined,
         successUrl: `${origin}${appRoutes.checkout.orderSuccess("{CHECKOUT_SESSION_ID}")}`,
         cancelUrl: `${origin}${appRoutes.checkout.cancel("{CHECKOUT_SESSION_ID}")}`,
       });
-      clear();
       window.location.assign(result.checkoutUrl);
     } catch (err) {
       setError(
@@ -186,18 +240,49 @@ export const CartView = () => {
 
   const handleCartContinue = () => {
     if (requiresShipping) {
+      setEditItemId(null);
       setStep("shipping");
     } else {
-      performCheckout();
+      void performCheckout();
     }
   };
 
-  const handleShippingSubmit = (next: CartShipping) => {
-    setShipping(next);
-    performCheckout(next);
+  const editingItem: CartItem | null = editItemId
+    ? (items.find((i) => i.id === editItemId) ?? null)
+    : null;
+
+  const handleFormSubmit = (next: CartShipping) => {
+    if (editItemId) setItemShipping(editItemId, next);
+    setEditItemId(null);
   };
 
   if (!hydrated) return null;
+
+  const renderShippingStep = () => {
+    if (editingItem) {
+      return (
+        <CartItemShippingForm
+          initial={effectiveItemShipping(editingItem, shipping)}
+          variantIds={
+            editingItem.productVariantId ? [editingItem.productVariantId] : []
+          }
+          title={t("cart__shipping__title")}
+          description={t("cart__shipping__description")}
+          submitLabel={t("cart__addresses__save")}
+          onSubmit={handleFormSubmit}
+          onBack={() => setEditItemId(null)}
+        />
+      );
+    }
+    return (
+      <CartShippingAddresses
+        items={items}
+        onEditItem={setEditItemId}
+        onBack={() => setStep("cart")}
+        error={error}
+      />
+    );
+  };
 
   return (
     <div className="tablet:pb-6 flex flex-col gap-7 p-6 pb-32">
@@ -227,21 +312,16 @@ export const CartView = () => {
         </div>
       ) : (
         <div className="desktop:grid-cols-[minmax(0,1fr)_380px] grid items-start gap-6">
-          <CartShippingForm
-            onBack={() => setStep("cart")}
-            onSubmit={handleShippingSubmit}
-            isSubmitting={isCheckingOut}
-          />
+          {renderShippingStep()}
           <div className="tablet:block hidden">
             <CartSummary
               currency={currency}
               totals={mergedTotals}
-              onCheckout={() =>
-                shipping ? handleShippingSubmit(shipping) : undefined
-              }
+              onCheckout={() => void performCheckout()}
               isCheckingOut={isCheckingOut}
               error={error}
               ctaLabel="cart__summary__checkout"
+              disabled={!allAddressesValid}
             />
           </div>
         </div>
@@ -251,9 +331,7 @@ export const CartView = () => {
           currency={currency}
           totals={mergedTotals}
           onCheckout={
-            step === "cart"
-              ? handleCartContinue
-              : () => (shipping ? handleShippingSubmit(shipping) : undefined)
+            step === "cart" ? handleCartContinue : () => void performCheckout()
           }
           isCheckingOut={isCheckingOut}
           itemCount={itemCount}

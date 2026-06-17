@@ -56,7 +56,7 @@ export const CountrySelect = ({
       value={value || undefined}
       onValueChange={onChange}
       onOpenChange={handleOpenChange}
-      disabled={disabled || isLoading || isError || countries.length === 0}
+      disabled={disabled || isLoading}
     >
       <SelectTrigger aria-invalid={invalid} className="w-full">
         <SelectValue placeholder={placeholder} />

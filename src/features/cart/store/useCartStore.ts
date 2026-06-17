@@ -20,6 +20,7 @@ export type CartItem = {
   timelineDays: string | null;
   requiresShipping: boolean;
   eventId: string;
+  shipping?: CartShipping | null;
 };
 
 export type CartShipping = {
@@ -32,6 +33,11 @@ export type CartShipping = {
   state?: string;
 };
 
+export const effectiveItemShipping = (
+  item: Pick<CartItem, "shipping">,
+  sharedShipping: CartShipping | null,
+): CartShipping | null => item.shipping ?? sharedShipping ?? null;
+
 type CartState = {
   items: CartItem[];
   shipping: CartShipping | null;
@@ -42,6 +48,7 @@ type CartState = {
   increment: (id: string) => void;
   decrement: (id: string) => void;
   setShipping: (shipping: CartShipping | null) => void;
+  setItemShipping: (id: string, shipping: CartShipping | null) => void;
   setPromoCode: (code: string | null) => void;
   clear: () => void;
   itemCount: () => number;
@@ -85,6 +92,10 @@ export const useCartStore = create<CartState>()(
           ),
         })),
       setShipping: (shipping) => set({ shipping }),
+      setItemShipping: (id, shipping) =>
+        set((state) => ({
+          items: state.items.map((i) => (i.id === id ? { ...i, shipping } : i)),
+        })),
       setPromoCode: (promoCode) => set({ promoCode }),
       clear: () => set({ items: [], shipping: null, promoCode: null }),
       itemCount: () =>

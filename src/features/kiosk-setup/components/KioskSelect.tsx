@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { ChevronDownIcon } from "@ovation/icons/ChevronDownIcon";
 import { cn } from "@ovation/ui/utils/cn";
 
@@ -21,6 +22,7 @@ export const KioskSelect = <T extends string | number>({
   onChange,
   className,
 }: KioskSelectProps<T>) => {
+  const t = useTranslations();
   const numeric = typeof value === "number";
   return (
     <span
@@ -36,7 +38,7 @@ export const KioskSelect = <T extends string | number>({
         className="text-muted-foreground"
       />
       <select
-        aria-label="Select option"
+        aria-label={t("kiosk_setup__select__placeholder")}
         className="absolute inset-0 cursor-pointer opacity-0"
         value={value}
         onChange={(e) =>

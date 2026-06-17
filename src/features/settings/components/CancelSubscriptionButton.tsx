@@ -36,7 +36,7 @@ export const CancelSubscriptionButton = ({
         setOpen(false);
         router.refresh();
       } catch (err) {
-        setError(err instanceof Error ? err.message : "error");
+        setError(err instanceof Error ? err.message : t("common__error"));
       }
     });
   };

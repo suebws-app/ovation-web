@@ -3,7 +3,12 @@ import type { Currency } from "@/i18n/currency-config";
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
-export type PlanTier = "premium" | "bundle" | "pro_starter" | "pro_studio";
+export type PlanTier =
+  | "premium"
+  | "bundle"
+  | "pro_starter"
+  | "pro_studio"
+  | "free";
 
 export type AccountType = "couple" | "pro";
 
@@ -493,6 +498,7 @@ export type CheckoutItem = {
   customization?: Record<string, unknown>;
   photoIds?: string[];
   photoSelectAll?: PhotoSelectAll;
+  shippingAddress?: CheckoutShippingAddress;
 };
 
 export type CheckoutShippingAddress = {

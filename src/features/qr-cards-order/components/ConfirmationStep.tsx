@@ -44,7 +44,7 @@ export const ConfirmationStep = ({
       <div className="rounded-16 border-border bg-card tablet:grid-cols-2 mt-10 grid gap-5 border p-6 text-left">
         <div>
           <p className="type-overline text-muted-foreground font-semibold tracking-wider">
-            Shipping to
+            {t("qr_cards_order__confirm__shipping_to")}
           </p>
           <p className="type-body-small mt-1.5 leading-relaxed">
             <span className="font-semibold">
@@ -59,15 +59,17 @@ export const ConfirmationStep = ({
         </div>
         <div>
           <p className="type-overline text-muted-foreground font-semibold tracking-wider">
-            Charged today
+            {t("qr_cards_order__confirm__charged_today")}
           </p>
           <p className="type-h1 mt-1.5 font-semibold tracking-tight">
             {formatEuro(pricing.total)}
           </p>
           <p className="type-caption text-muted-foreground mt-0.5">
             {state.cardNumber
-              ? `Card ·· ${state.cardNumber.slice(-4)}`
-              : "Receipt emailed"}
+              ? t("qr_cards_order__confirm__card_ending", {
+                  last4: state.cardNumber.slice(-4),
+                })
+              : t("qr_cards_order__confirm__receipt_emailed")}
           </p>
         </div>
       </div>

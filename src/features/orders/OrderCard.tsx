@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import type { Order } from "@/lib/api/types";
 import { translateKey } from "@/lib/utils/translateKey";
+import { formatVariantName } from "@/lib/utils/formatVariantName";
 import {
   formatOrderDate,
   formatPrice,
@@ -41,7 +42,9 @@ export const OrderCard = ({
         <div className="flex flex-col gap-0.5">
           <span className="type-body-small font-semibold">
             {translateKey(t, order.productName)}
-            {order.variantName ? ` — ${order.variantName}` : ""}
+            {formatVariantName(order.variantName)
+              ? ` — ${formatVariantName(order.variantName)}`
+              : ""}
           </span>
           <span className="type-caption text-muted-foreground">
             {formatOrderDate(order.createdAt)} · #{order.id.slice(0, 8)}

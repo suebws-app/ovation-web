@@ -5,6 +5,7 @@ import { cn } from "@ovation/ui/utils/cn";
 import { TruckIcon } from "@ovation/icons/TruckIcon";
 import { TrashIcon } from "@ovation/icons/TrashIcon";
 import { formatPrice } from "@/features/keepsakes/designTokens";
+import { formatVariantName } from "@/lib/utils/formatVariantName";
 import { useCartStore, type CartItem } from "../store/useCartStore";
 import { QuantityStepper } from "./QuantityStepper";
 import { CartLineItemArt } from "./CartLineItemArt";
@@ -39,7 +40,9 @@ export const CartLineItem = ({ item, isLast }: CartLineItemProps) => {
         </div>
         {(subtitle || item.variantName) && (
           <div className="type-caption text-muted-foreground mt-0.5">
-            {[subtitle, item.variantName].filter(Boolean).join(" · ")}
+            {[subtitle, formatVariantName(item.variantName)]
+              .filter(Boolean)
+              .join(" · ")}
           </div>
         )}
         <div className="mt-3.5 flex flex-wrap items-center gap-4">

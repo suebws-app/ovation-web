@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { MaximizeIcon } from "@ovation/icons/MaximizeIcon";
 import type { GalleryItem } from "@/lib/api/types";
@@ -25,6 +26,7 @@ export const MediaPickerTile = ({
   onToggle,
   onPreview,
 }: MediaPickerTileProps) => {
+  const t = useTranslations();
   const thumb = item.thumbUrl ?? item.url;
   return (
     <div
@@ -36,7 +38,7 @@ export const MediaPickerTile = ({
       <button
         type="button"
         onClick={() => onToggle(item.id)}
-        aria-label={selected ? "Deselect" : "Select"}
+        aria-label={selected ? t("common__deselect") : t("common__select")}
         className="absolute inset-0 h-full w-full cursor-default"
       >
         {thumb ? (
@@ -54,7 +56,7 @@ export const MediaPickerTile = ({
       </button>
       {item.type === "video" && (
         <span className="type-caption bg-foreground/70 text-background rounded-8 pointer-events-none absolute bottom-1.5 left-1.5 px-1.5 py-0.5">
-          Video
+          {t("common__video")}
         </span>
       )}
       {selected && (
@@ -72,7 +74,7 @@ export const MediaPickerTile = ({
           event.stopPropagation();
           onPreview(item);
         }}
-        aria-label="Preview"
+        aria-label={t("common__preview")}
         className="bg-foreground/70 text-background hover:bg-foreground absolute right-1.5 bottom-1.5 flex size-7 cursor-pointer items-center justify-center rounded-full transition-colors"
       >
         <MaximizeIcon width={14} height={14} />

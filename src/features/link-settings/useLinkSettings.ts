@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { linkSettingsClient } from "@/lib/api/link-settings-client";
 import type { LinkSettings, UpdateLinkSettingsInput } from "@/lib/api/types";
 
@@ -15,6 +16,7 @@ export const useLinkSettings = (
   eventId: string,
   initial: LinkSettings,
 ): UseLinkSettingsResult => {
+  const t = useTranslations();
   const [settings, setSettings] = useState<LinkSettings>(initial);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -32,11 +34,13 @@ export const useLinkSettings = (
       const res = await linkSettingsClient.update(eventId, payload);
       setSettings(res.settings);
     } catch (e) {
-      setError(e instanceof Error ? e : new Error("Failed to save"));
+      setError(
+        e instanceof Error ? e : new Error(t("link_settings__save_error")),
+      );
     } finally {
       setIsSaving(false);
     }
-  }, [eventId]);
+  }, [eventId, t]);
 
   const patch = useCallback(
     (changes: UpdateLinkSettingsInput) => {

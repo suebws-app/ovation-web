@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 type KioskPinInputProps = {
   value: string | null;
@@ -8,6 +9,7 @@ type KioskPinInputProps = {
 };
 
 export const KioskPinInput = ({ value, onChange }: KioskPinInputProps) => {
+  const t = useTranslations();
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState("");
 
@@ -21,7 +23,7 @@ export const KioskPinInput = ({ value, onChange }: KioskPinInputProps) => {
         }}
         className="border-border bg-card type-body-small hover:bg-background cursor-pointer rounded-full border px-3.5 py-2 font-mono tracking-widest transition-colors"
       >
-        {value ? "•".repeat(4) : "Set PIN"}
+        {value ? "•".repeat(4) : t("kiosk_setup__pin__set")}
       </button>
     );
   }

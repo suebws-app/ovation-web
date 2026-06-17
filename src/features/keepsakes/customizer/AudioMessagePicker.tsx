@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, startTransition } from "react";
+import { useTranslations } from "next-intl";
 import { messagesClient } from "@/lib/api/messages-client";
 import { ApiError } from "@/lib/api/client";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
@@ -24,6 +25,7 @@ export const AudioMessagePicker = ({
   onSelectAll,
   emptyHint,
 }: AudioMessagePickerProps) => {
+  const t = useTranslations();
   const [source, setSource] = useState<SourceFilter>("all");
   const [messages, setMessages] = useState<MessageSummary[]>([]);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
@@ -58,7 +60,9 @@ export const AudioMessagePicker = ({
       .catch((err) => {
         if (reqId !== requestIdRef.current) return;
         setError(
-          ApiError.isApiError(err) ? err.message : "Could not load messages",
+          ApiError.isApiError(err)
+            ? err.message
+            : t("keepsakes__audio_picker__load_error"),
         );
       })
       .finally(() => {
@@ -84,7 +88,7 @@ export const AudioMessagePicker = ({
             className="type-caption text-muted-foreground tracking-wider"
             role="status"
           >
-            Updating…
+            {t("keepsakes__audio_picker__updating")}
           </span>
         )}
       </div>
@@ -104,7 +108,9 @@ export const AudioMessagePicker = ({
               checked={allSelected}
               onChange={(checked) => onSelectAll(checked ? allIds : [])}
             />
-            Select all ({messages.length})
+            {t("keepsakes__audio_picker__select_all", {
+              count: messages.length,
+            })}
           </label>
           <div
             className={`rounded-12 border-border bg-card flex flex-col divide-y divide-(--border) overflow-hidden border transition-opacity ${

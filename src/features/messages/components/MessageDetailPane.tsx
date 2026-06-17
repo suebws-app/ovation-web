@@ -181,7 +181,7 @@ export const MessageDetailPane = ({
             <div className="min-w-0 flex-1">
               <div
                 role="slider"
-                aria-label="Seek"
+                aria-label={t("messages__detail__seek")}
                 aria-valuemin={0}
                 aria-valuemax={1}
                 aria-valuenow={progress}

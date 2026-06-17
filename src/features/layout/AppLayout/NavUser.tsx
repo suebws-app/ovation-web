@@ -104,12 +104,15 @@ export const NavUser = ({ user }: NavUserProps) => {
                   {t("nav_user__settings")}
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href={appRoutes.settings.billing}>
-                  <StarIcon />
-                  {t("nav_user__subscription")}
-                </Link>
-              </DropdownMenuItem>
+
+              {user.planTier !== "free" ? (
+                <DropdownMenuItem asChild>
+                  <Link href={appRoutes.settings.billing}>
+                    <StarIcon />
+                    {t("nav_user__subscription")}
+                  </Link>
+                </DropdownMenuItem>
+              ) : null}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem

@@ -29,7 +29,7 @@ export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
     <Sheet>
       <SheetTrigger asChild>
         <button
-          aria-label="Open menu"
+          aria-label={t("nav__open_menu")}
           className="text-foreground hover:bg-muted tablet:hidden flex size-9 items-center justify-center rounded-full transition"
         >
           <MenuIcon className="size-5" />
@@ -49,7 +49,7 @@ export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
           </SheetClose>
           <SheetClose asChild>
             <button
-              aria-label="Close menu"
+              aria-label={t("nav__close_menu")}
               className="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-full transition"
             >
               <XIcon className="size-5" />

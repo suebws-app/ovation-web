@@ -170,6 +170,9 @@ export const CustomizerCheckoutForm = ({
 
   const handleAddToCart = () => {
     if (!eventId) return;
+    const itemShipping = requiresShipping
+      ? (validateShipping(persistedShipping).cleaned ?? null)
+      : null;
     add({
       eventId,
       productType: product.productType,
@@ -190,6 +193,7 @@ export const CustomizerCheckoutForm = ({
       photoSelectAll: photoSelectAll ?? null,
       timelineDays: null,
       requiresShipping,
+      shipping: itemShipping,
     });
     setAddedToCart(true);
   };

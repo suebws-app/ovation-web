@@ -18,34 +18,43 @@ import type {
 import { cn } from "@ovation/ui/utils/cn";
 import { formatMoney } from "@/lib/utils/currency";
 
-const formatPrice = (plan: Plan, locale: string) => {
-  if (plan.priceCents === 0) return "Free";
+type Translator = (
+  key: string,
+  values?: Record<string, string | number>,
+) => string;
+
+const formatPrice = (plan: Plan, locale: string, t: Translator) => {
+  if (plan.priceCents === 0) return t("plans__price_free");
   return (
     plan.productVariables?.regularPriceFormatted ??
     formatMoney(plan.priceCents, plan.currency, locale)
   );
 };
 
-const formatPer = (cents: number, isPro: boolean) => {
-  if (cents === 0) return "free, forever";
-  return isPro ? "per month" : "one-time";
+const formatPer = (cents: number, isPro: boolean, t: Translator) => {
+  if (cents === 0) return t("plans__per_free");
+  return isPro ? t("plans__per_monthly") : t("plans__per_onetime");
 };
 
-const buildFeatures = (plan: Plan, locale: string): string[] => {
+const buildFeatures = (plan: Plan, locale: string, t: Translator): string[] => {
   const features: string[] = [];
   features.push(
     plan.messageLimit === null
-      ? "Unlimited messages"
-      : `Up to ${plan.messageLimit} messages`,
+      ? t("plans__feature_unlimited_messages")
+      : t("plans__feature_message_limit", { count: plan.messageLimit }),
   );
-  if (plan.storageDays === null) features.push("Lifetime storage");
-  else features.push(`${plan.storageDays} days storage`);
+  if (plan.storageDays === null)
+    features.push(t("plans__feature_lifetime_storage"));
+  else
+    features.push(t("plans__feature_storage_days", { days: plan.storageDays }));
   if (plan.creditCents > 0) {
     features.push(
-      `${formatMoney(plan.creditCents, plan.currency, locale)} keepsake credit`,
+      t("plans__feature_keepsake_credit", {
+        amount: formatMoney(plan.creditCents, plan.currency, locale),
+      }),
     );
   }
-  features.push("Auto-transcription");
+  features.push(t("plans__feature_auto_transcription"));
   return features;
 };
 
@@ -151,10 +160,10 @@ export const PlansPicker = (props: PlansPickerProps) => {
             <PlanCard
               key={plan.id}
               name={plan.name}
-              price={formatPrice(plan, locale)}
-              per={formatPer(plan.priceCents, isPro)}
+              price={formatPrice(plan, locale, t)}
+              per={formatPer(plan.priceCents, isPro, t)}
               description={plan.description ?? ""}
-              features={buildFeatures(plan, locale)}
+              features={buildFeatures(plan, locale, t)}
               priceNote={
                 showFxNote && plan.priceCents > 0
                   ? t("activate_link__price_approximate_note")
