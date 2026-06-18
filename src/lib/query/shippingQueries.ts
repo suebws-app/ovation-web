@@ -1,6 +1,6 @@
 "use client";
 
-import { useQueries, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import {
   shippingClient,
   type ShippingQuoteBody,
@@ -31,15 +31,4 @@ export const useShippingQuote = (
     enabled: enabled && !!input && input.items.length > 0,
     staleTime: 5 * 60 * 1000,
     gcTime: 5 * 60 * 1000,
-  });
-
-export const useShippingQuotes = (bodies: ShippingQuoteBody[]) =>
-  useQueries({
-    queries: bodies.map((body) => ({
-      queryKey: queryKeys.shipping.quote(body),
-      queryFn: () => shippingClient.quote(body),
-      enabled: body.items.length > 0,
-      staleTime: 5 * 60 * 1000,
-      gcTime: 5 * 60 * 1000,
-    })),
   });

@@ -526,12 +526,15 @@ export type CartTotalsItem = {
   productType: string;
   productVariantId?: string;
   quantity: number;
+  customization?: Record<string, unknown>;
+  shippingAddress?: { country: string; state?: string };
 };
 
 export type CartTotalsInput = {
   eventId: string;
   items: CartTotalsItem[];
   shippingCountry?: string;
+  shippingState?: string;
   promoCode?: string;
 };
 
@@ -540,10 +543,13 @@ export type CartTotalsResult = {
   subtotalCents: number;
   promoDiscountCents?: number;
   shippingCents: number;
+  shippingByItem?: number[];
   taxCents: number;
   totalCents: number;
   vatRate: number;
   freeShipping: boolean;
+  shippingUnavailable?: boolean;
+  detectedCountry?: string;
 };
 
 export type CheckoutSessionResult = {

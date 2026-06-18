@@ -18,6 +18,7 @@ type CartItemShippingFormProps = {
   onSubmit: (shipping: CartShipping) => void;
   onBack: () => void;
   isSubmitting?: boolean;
+  defaultCountry?: string;
 };
 
 const emptyShipping: CartShipping = {
@@ -39,9 +40,15 @@ export const CartItemShippingForm = ({
   onSubmit,
   onBack,
   isSubmitting = false,
+  defaultCountry,
 }: CartItemShippingFormProps) => {
   const t = useTranslations();
-  const [form, setForm] = useState<CartShipping>(initial ?? emptyShipping);
+  const [form, setForm] = useState<CartShipping>(
+    initial ?? {
+      ...emptyShipping,
+      country: defaultCountry ?? "",
+    },
+  );
   const [error, setError] = useState<Record<string, string>>({});
 
   const update =

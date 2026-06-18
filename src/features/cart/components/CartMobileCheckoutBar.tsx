@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { LockIcon } from "@ovation/icons/LockIcon";
 
 import { Button } from "@ovation/ui/components/Button";
+import { Skeleton } from "@ovation/ui/components/Skeleton";
 import { formatPrice } from "@/features/keepsakes/designTokens";
 import type { CartTotalsResult } from "@/lib/api/types";
 
@@ -14,6 +15,9 @@ type CartMobileCheckoutBarProps = {
   isCheckingOut: boolean;
   itemCount: number;
   ctaLabel: string;
+  loading?: boolean;
+  disabled?: boolean;
+  error?: string | null;
 };
 
 export const CartMobileCheckoutBar = ({
@@ -23,17 +27,29 @@ export const CartMobileCheckoutBar = ({
   isCheckingOut,
   itemCount,
   ctaLabel,
+  loading,
+  disabled = false,
+  error,
 }: CartMobileCheckoutBarProps) => {
   const t = useTranslations();
   const totalCents = totals?.totalCents ?? 0;
   return (
     <div className="tablet:hidden bg-card border-border fixed inset-x-0 bottom-0 z-40 border-t p-4 shadow">
+      {error && (
+        <p className="type-caption text-destructive mb-2" role="alert">
+          {error}
+        </p>
+      )}
       <div className="mb-2 flex items-baseline justify-between">
         <span className="type-caption text-muted-foreground">
           {t("cart__mobile__items", { count: itemCount })}
         </span>
         <span className="type-h3 font-serif font-semibold tracking-tight">
-          {formatPrice(totalCents, currency)}
+          {(loading ?? totals === null) ? (
+            <Skeleton className="h-6 w-20" />
+          ) : (
+            formatPrice(totalCents, currency)
+          )}
         </span>
       </div>
       <Button
@@ -41,7 +57,7 @@ export const CartMobileCheckoutBar = ({
         size="lg"
         className="w-full rounded-full"
         onClick={onCheckout}
-        disabled={isCheckingOut || itemCount === 0}
+        disabled={isCheckingOut || itemCount === 0 || disabled}
       >
         <LockIcon width={13} height={13} />
         {isCheckingOut

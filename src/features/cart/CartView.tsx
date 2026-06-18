@@ -7,23 +7,25 @@ import {
   useState,
   startTransition,
 } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ApiError } from "@/lib/api/client";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import { appRoutes } from "@/lib/routes";
+import { useSession } from "@/lib/auth/client";
+import { useInlinePaddleCheckout } from "@/features/checkout/paddle/useInlinePaddleCheckout";
 import type {
   CartTotalsResult,
   CheckoutShippingAddress,
 } from "@/lib/api/types";
-import { useShippingQuotes } from "@/lib/query/shippingQueries";
-import type { ShippingQuoteBody } from "@/lib/api/shipping-client";
 import {
   useCartStore,
   effectiveItemShipping,
   type CartItem,
   type CartShipping,
 } from "./store/useCartStore";
+import { useBuyNowStore } from "./store/useBuyNowStore";
 import { requiresState } from "./components/StateSelect";
 import { CartHero } from "./components/CartHero";
 import { CartItemsCard } from "./components/CartItemsCard";
@@ -31,20 +33,10 @@ import { CartSummary } from "./components/CartSummary";
 import { CartEmptyState } from "./components/CartEmptyState";
 import { CartShippingAddresses } from "./components/CartShippingAddresses";
 import { CartItemShippingForm } from "./components/CartItemShippingForm";
+import { CartInlineShippingForm } from "./components/CartInlineShippingForm";
 import { CartMobileCheckoutBar } from "./components/CartMobileCheckoutBar";
-
-const isSupportedCurrency = (
-  currency: string,
-): currency is ShippingQuoteBody["currency"] =>
-  currency === "EUR" || currency === "USD" || currency === "GBP";
-
-const extractPageCount = (customization: Record<string, unknown>): number => {
-  const raw = customization["pageCount"];
-  if (typeof raw === "number" && Number.isFinite(raw) && raw > 0) {
-    return Math.floor(raw);
-  }
-  return 0;
-};
+import { CartPaymentPending } from "./components/CartPaymentPending";
+import { CartCheckoutConfirmation } from "./components/CartCheckoutConfirmation";
 
 const isValidShipping = (s: CartShipping | null): boolean =>
   !!s &&
@@ -65,29 +57,113 @@ const toCheckoutAddress = (s: CartShipping): CheckoutShippingAddress => ({
   state: s.state,
 });
 
+const withCountry = (
+  base: CartShipping | null,
+  country: string,
+): CartShipping => ({
+  name: "",
+  line1: "",
+  line2: "",
+  city: "",
+  postalCode: "",
+  state: undefined,
+  ...(base ?? {}),
+  country,
+});
+
 const CURRENCY_FALLBACK = "EUR";
 
-type Step = "cart" | "shipping";
+type Step = "cart" | "shipping" | "payment" | "confirm";
 
 export const CartView = () => {
   const t = useTranslations();
-  const items = useCartStore((s) => s.items);
-  const itemCount = useCartStore((s) => s.itemCount());
-  const shipping = useCartStore((s) => s.shipping);
+  const searchParams = useSearchParams();
+  const isBuyNow = searchParams.get("buyNow") === "1";
+
+  const cartItems = useCartStore((s) => s.items);
+  const cartShipping = useCartStore((s) => s.shipping);
+  const setCartShipping = useCartStore((s) => s.setShipping);
   const setItemShipping = useCartStore((s) => s.setItemShipping);
+  const clearCart = useCartStore((s) => s.clear);
   const promoCode = useCartStore((s) => s.promoCode);
-  const requiresShipping = useCartStore((s) => s.requiresShipping());
+
+  const buyNowItem = useBuyNowStore((s) => s.item);
+  const buyNowShipping = useBuyNowStore((s) => s.shipping);
+  const setBuyNowShipping = useBuyNowStore((s) => s.setShipping);
+  const clearBuyNow = useBuyNowStore((s) => s.clear);
+
+  const { data: session } = useSession();
+  const userEmail = session?.user?.email ?? null;
+
+  const buyNowActive = isBuyNow && !!buyNowItem;
+
+  const items: CartItem[] = useMemo(
+    () =>
+      buyNowActive
+        ? [{ ...buyNowItem!, id: "buynow", shipping: buyNowShipping }]
+        : cartItems,
+    [buyNowActive, buyNowItem, buyNowShipping, cartItems],
+  );
+
+  const itemCount = items.reduce((sum, i) => sum + i.quantity, 0);
+  const requiresShipping = items.some((i) => i.requiresShipping);
+
+  // Address resolved per item: own address, else the shared default.
+  const addressForItem = useCallback(
+    (item: CartItem): CartShipping | null =>
+      buyNowActive ? buyNowShipping : effectiveItemShipping(item, cartShipping),
+    [buyNowActive, buyNowShipping, cartShipping],
+  );
 
   const [hydrated, setHydrated] = useState(false);
-  const [step, setStep] = useState<Step>("cart");
+  const [step, setStep] = useState<Step>(buyNowActive ? "shipping" : "cart");
   const [editItemId, setEditItemId] = useState<string | null>(null);
   const [totals, setTotals] = useState<CartTotalsResult | null>(null);
+  const [totalsLoading, setTotalsLoading] = useState(true);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [confirmedOrderId, setConfirmedOrderId] = useState<string | null>(null);
+
+  const paddle = useInlinePaddleCheckout({
+    userEmail,
+    onCompleted: (orderId) => {
+      setConfirmedOrderId(orderId ?? null);
+      clearCart();
+      clearBuyNow();
+      setIsCheckingOut(false);
+      setStep("confirm");
+    },
+    onClosed: () => {
+      setIsCheckingOut(false);
+      setStep("shipping");
+    },
+  });
 
   useEffect(() => {
     startTransition(() => setHydrated(true));
   }, []);
+
+  // Default the shared/buy-now country from the visitor's IP location once
+  // totals (which carry detectedCountry) have loaded.
+  useEffect(() => {
+    if (!hydrated || !requiresShipping || !totals) return;
+    const country = totals.detectedCountry ?? "NL";
+    if (buyNowActive) {
+      if (!buyNowShipping?.country)
+        setBuyNowShipping(withCountry(buyNowShipping, country));
+    } else if (!cartShipping?.country) {
+      setCartShipping(withCountry(cartShipping, country));
+    }
+  }, [
+    hydrated,
+    requiresShipping,
+    totals,
+    buyNowActive,
+    buyNowShipping,
+    cartShipping,
+    setBuyNowShipping,
+    setCartShipping,
+  ]);
 
   const fetchTotals = useCallback(async () => {
     if (items.length === 0) {
@@ -97,12 +173,18 @@ export const CartView = () => {
     try {
       const result = await paymentsClient.computeCartTotals({
         eventId: items[0].eventId,
-        items: items.map((i) => ({
-          productType: i.productType,
-          productVariantId: i.productVariantId ?? undefined,
-          quantity: i.quantity,
-        })),
-        shippingCountry: shipping?.country,
+        items: items.map((i) => {
+          const addr = i.requiresShipping ? addressForItem(i) : null;
+          return {
+            productType: i.productType,
+            productVariantId: i.productVariantId ?? undefined,
+            quantity: i.quantity,
+            customization: i.customization,
+            shippingAddress: addr?.country
+              ? { country: addr.country, state: addr.state }
+              : undefined,
+          };
+        }),
         promoCode: promoCode ?? undefined,
       });
       setTotals(result);
@@ -113,87 +195,56 @@ export const CartView = () => {
           : t("cart__error__totals_failed"),
       );
     }
-  }, [items, shipping, promoCode, t]);
+  }, [items, addressForItem, promoCode, t]);
 
   useEffect(() => {
     if (!hydrated) return;
-    startTransition(() => {
-      void fetchTotals();
-    });
+    const handle = window.setTimeout(async () => {
+      setTotalsLoading(true);
+      await fetchTotals();
+      setTotalsLoading(false);
+    }, 500);
+    return () => window.clearTimeout(handle);
   }, [hydrated, fetchTotals]);
 
   const currency = totals?.currency ?? items[0]?.currency ?? CURRENCY_FALLBACK;
+  const defaultCountry = totals ? (totals.detectedCountry ?? "NL") : undefined;
 
-  const quoteBodies = useMemo<ShippingQuoteBody[]>(() => {
-    if (!requiresShipping || !isSupportedCurrency(currency)) return [];
-    const byDestination = new Map<string, ShippingQuoteBody>();
-    for (const item of items) {
-      if (!item.requiresShipping || !item.productVariantId) continue;
-      const addr = effectiveItemShipping(item, shipping);
-      if (!addr?.country) continue;
-      if (requiresState(addr.country) && !addr.state) continue;
-      const numberOfPages = extractPageCount(item.customization);
-      if (numberOfPages <= 0) continue;
-      const key = `${addr.country}|${addr.state ?? ""}`;
-      const quotedItem = {
-        variantId: item.productVariantId,
-        quantity: item.quantity,
-        numberOfPages,
-      };
-      const existing = byDestination.get(key);
-      if (existing) {
-        existing.items.push(quotedItem);
-      } else {
-        byDestination.set(key, {
-          countryCode: addr.country,
-          state: addr.state,
-          currency,
-          items: [quotedItem],
-        });
-      }
-    }
-    return [...byDestination.values()];
-  }, [requiresShipping, currency, items, shipping]);
-
-  const shippingQuotes = useShippingQuotes(quoteBodies);
-
-  const aggregatedShipping = useMemo<number | null>(() => {
-    if (quoteBodies.length === 0) return null;
-    if (!shippingQuotes.every((q) => q.data)) return null;
-    return shippingQuotes.reduce(
-      (sum, q) => sum + (q.data?.totalShippingCents ?? 0),
-      0,
-    );
-  }, [quoteBodies, shippingQuotes]);
-
-  const mergedTotals = useMemo<CartTotalsResult | null>(() => {
-    if (!totals) return null;
-    if (aggregatedShipping === null) return totals;
-    const totalCents =
-      totals.subtotalCents -
-      (totals.promoDiscountCents ?? 0) +
-      aggregatedShipping +
-      totals.taxCents;
-    return {
-      ...totals,
-      shippingCents: aggregatedShipping,
-      totalCents,
-      freeShipping: aggregatedShipping === 0,
-    };
-  }, [totals, aggregatedShipping]);
+  const shippingByItemId = useMemo<Record<string, number>>(() => {
+    const arr = totals?.shippingByItem ?? [];
+    const map: Record<string, number> = {};
+    items.forEach((item, index) => {
+      if (typeof arr[index] === "number") map[item.id] = arr[index];
+    });
+    return map;
+  }, [totals, items]);
 
   const allAddressesValid = useMemo(
     () =>
       items
         .filter((i) => i.requiresShipping)
-        .every((i) => isValidShipping(effectiveItemShipping(i, shipping))),
-    [items, shipping],
+        .every((i) => isValidShipping(addressForItem(i))),
+    [items, addressForItem],
+  );
+
+  const variantIds = useMemo(
+    () =>
+      items
+        .filter((i) => i.requiresShipping)
+        .map((i) => i.productVariantId)
+        .filter((id): id is string => !!id),
+    [items],
   );
 
   const performCheckout = async () => {
+    if (isCheckingOut || step === "payment" || step === "confirm") return;
     if (items.length === 0) return;
     if (requiresShipping && !allAddressesValid) {
       setError(t("cart__addresses__incomplete"));
+      return;
+    }
+    if (totals?.shippingUnavailable) {
+      setError(t("cart__error__shipping_unavailable"));
       return;
     }
     setError(null);
@@ -205,9 +256,7 @@ export const CartView = () => {
         eventId: items[0].eventId,
         orderType: "keepsake",
         items: items.map((item) => {
-          const addr = item.requiresShipping
-            ? effectiveItemShipping(item, shipping)
-            : null;
+          const addr = item.requiresShipping ? addressForItem(item) : null;
           return {
             productType: item.productType,
             productVariantId: item.productVariantId ?? undefined,
@@ -222,12 +271,25 @@ export const CartView = () => {
             shippingAddress: addr ? toCheckoutAddress(addr) : undefined,
           };
         }),
-        shippingAddress: shipping ? toCheckoutAddress(shipping) : undefined,
+        shippingAddress: buyNowActive
+          ? buyNowShipping
+            ? toCheckoutAddress(buyNowShipping)
+            : undefined
+          : cartShipping
+            ? toCheckoutAddress(cartShipping)
+            : undefined,
         promoCode: promoCode ?? undefined,
         successUrl: `${origin}${appRoutes.checkout.orderSuccess("{CHECKOUT_SESSION_ID}")}`,
         cancelUrl: `${origin}${appRoutes.checkout.cancel("{CHECKOUT_SESSION_ID}")}`,
       });
-      window.location.assign(result.checkoutUrl);
+      const opened = await paddle.open(result.providerSessionId);
+      if (!opened) {
+        setError(t("cart__error__payment_unavailable"));
+        setStep("shipping");
+        setIsCheckingOut(false);
+        return;
+      }
+      setStep("payment");
     } catch (err) {
       setError(
         ApiError.isApiError(err)
@@ -258,11 +320,42 @@ export const CartView = () => {
 
   if (!hydrated) return null;
 
+  if (step !== "confirm" && buyNowActive === false && isBuyNow) {
+    return <CartEmptyState />;
+  }
+
   const renderShippingStep = () => {
+    if (buyNowActive) {
+      return (
+        <div className="flex flex-col gap-5">
+          <CartInlineShippingForm
+            value={buyNowShipping}
+            onChange={setBuyNowShipping}
+            variantIds={variantIds}
+            title={t("cart__shipping__title")}
+            subtitle={t("cart__shipping__description")}
+            idPrefix="buynow-ship"
+            defaultCountry={defaultCountry}
+          />
+          <CartItemsCard
+            items={items}
+            shippingByItemId={shippingByItemId}
+            currency={currency}
+            readOnly
+            loading={totalsLoading}
+          />
+          {error && (
+            <p className="type-body-small text-destructive" role="alert">
+              {error}
+            </p>
+          )}
+        </div>
+      );
+    }
     if (editingItem) {
       return (
         <CartItemShippingForm
-          initial={effectiveItemShipping(editingItem, shipping)}
+          initial={effectiveItemShipping(editingItem, cartShipping)}
           variantIds={
             editingItem.productVariantId ? [editingItem.productVariantId] : []
           }
@@ -271,12 +364,17 @@ export const CartView = () => {
           submitLabel={t("cart__addresses__save")}
           onSubmit={handleFormSubmit}
           onBack={() => setEditItemId(null)}
+          defaultCountry={defaultCountry}
         />
       );
     }
     return (
       <CartShippingAddresses
         items={items}
+        shippingByItemId={shippingByItemId}
+        currency={currency}
+        loading={totalsLoading}
+        defaultCountry={defaultCountry}
         onEditItem={setEditItemId}
         onBack={() => setStep("cart")}
         error={error}
@@ -284,29 +382,48 @@ export const CartView = () => {
     );
   };
 
+  const showCartStep = step === "cart" && !buyNowActive;
+  const showCheckoutChrome = step !== "payment" && step !== "confirm";
+  const shippingUnavailable = !!totals?.shippingUnavailable;
+  const checkoutDisabled = !allAddressesValid || shippingUnavailable;
+  const summaryError =
+    error ??
+    (shippingUnavailable ? t("cart__error__shipping_unavailable") : null);
+
+  const heroStep =
+    step === "cart" ? "cart" : step === "shipping" ? "address" : step;
+
   return (
     <div className="tablet:pb-6 flex flex-col gap-7 p-6 pb-32">
-      <CartHero
-        itemCount={itemCount}
-        step={step === "shipping" ? "address" : "cart"}
-      />
-      {items.length === 0 ? (
+      <CartHero itemCount={itemCount} step={heroStep} hideCart={isBuyNow} />
+      {step === "confirm" ? (
+        <CartCheckoutConfirmation orderId={confirmedOrderId} />
+      ) : step === "payment" ? (
+        <CartPaymentPending />
+      ) : items.length === 0 ? (
         <CartEmptyState />
-      ) : step === "cart" ? (
+      ) : showCartStep ? (
         <div className="desktop:grid-cols-[minmax(0,1fr)_380px] grid items-start gap-6">
-          <CartItemsCard items={items} />
+          <CartItemsCard
+            items={items}
+            shippingByItemId={shippingByItemId}
+            currency={currency}
+            loading={totalsLoading}
+          />
           <div className="tablet:block hidden">
             <CartSummary
               currency={currency}
-              totals={mergedTotals}
+              totals={totals}
               onCheckout={handleCartContinue}
               isCheckingOut={isCheckingOut}
               error={error}
+              itemCount={itemCount}
               ctaLabel={
                 requiresShipping
                   ? "cart__summary__continue"
                   : "cart__summary__checkout"
               }
+              loading={totalsLoading}
             />
           </div>
         </div>
@@ -316,30 +433,35 @@ export const CartView = () => {
           <div className="tablet:block hidden">
             <CartSummary
               currency={currency}
-              totals={mergedTotals}
+              totals={totals}
               onCheckout={() => void performCheckout()}
               isCheckingOut={isCheckingOut}
-              error={error}
+              error={summaryError}
+              itemCount={itemCount}
               ctaLabel="cart__summary__checkout"
-              disabled={!allAddressesValid}
+              disabled={checkoutDisabled}
+              loading={totalsLoading}
             />
           </div>
         </div>
       )}
-      {items.length > 0 && (
+      {items.length > 0 && showCheckoutChrome && (
         <CartMobileCheckoutBar
           currency={currency}
-          totals={mergedTotals}
+          totals={totals}
           onCheckout={
-            step === "cart" ? handleCartContinue : () => void performCheckout()
+            showCartStep ? handleCartContinue : () => void performCheckout()
           }
           isCheckingOut={isCheckingOut}
           itemCount={itemCount}
+          disabled={!showCartStep && checkoutDisabled}
+          error={!showCartStep ? summaryError : null}
           ctaLabel={
-            step === "cart" && requiresShipping
+            showCartStep && requiresShipping
               ? "cart__summary__continue"
               : "cart__summary__checkout"
           }
+          loading={totalsLoading}
         />
       )}
     </div>

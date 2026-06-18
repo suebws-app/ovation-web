@@ -2,14 +2,20 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { Skeleton } from "@ovation/ui/components/Skeleton";
 import { translateKey } from "@/lib/utils/translateKey";
 import { formatVariantName } from "@/lib/utils/formatVariantName";
+import { formatPrice } from "@/features/keepsakes/designTokens";
 import { useCartStore, type CartItem } from "../store/useCartStore";
 import { CartAddressCard } from "./CartAddressCard";
 import { CartInlineShippingForm } from "./CartInlineShippingForm";
 
 type CartShippingAddressesProps = {
   items: CartItem[];
+  shippingByItemId: Record<string, number>;
+  currency: string;
+  loading: boolean;
+  defaultCountry?: string;
   onEditItem: (id: string) => void;
   onBack: () => void;
   error: string | null;
@@ -17,6 +23,10 @@ type CartShippingAddressesProps = {
 
 export const CartShippingAddresses = ({
   items,
+  shippingByItemId,
+  currency,
+  loading,
+  defaultCountry,
   onEditItem,
   onBack,
   error,
@@ -51,14 +61,29 @@ export const CartShippingAddresses = ({
       </div>
 
       {singleItem ? (
-        <CartInlineShippingForm
-          value={singleItem.shipping ?? null}
-          onChange={(next) => setItemShipping(singleItem.id, next)}
-          variantIds={
-            singleItem.productVariantId ? [singleItem.productVariantId] : []
-          }
-          idPrefix={`item-${singleItem.id}`}
-        />
+        <>
+          <CartInlineShippingForm
+            value={singleItem.shipping ?? null}
+            onChange={(next) => setItemShipping(singleItem.id, next)}
+            variantIds={
+              singleItem.productVariantId ? [singleItem.productVariantId] : []
+            }
+            idPrefix={`item-${singleItem.id}`}
+            defaultCountry={defaultCountry}
+          />
+          {loading ? (
+            <Skeleton className="h-3 w-24" />
+          ) : (
+            typeof shippingByItemId[singleItem.id] === "number" &&
+            shippingByItemId[singleItem.id] > 0 && (
+              <span className="type-caption text-foreground font-medium">
+                {t("cart__addresses__shipping_price", {
+                  price: formatPrice(shippingByItemId[singleItem.id], currency),
+                })}
+              </span>
+            )
+          )}
+        </>
       ) : (
         <>
           {showDefaultForm && (
@@ -69,6 +94,7 @@ export const CartShippingAddresses = ({
               title={t("cart__addresses__default_title")}
               subtitle={t("cart__addresses__default_subtitle")}
               idPrefix="default-ship"
+              defaultCountry={defaultCountry}
             />
           )}
 
@@ -82,6 +108,9 @@ export const CartShippingAddresses = ({
                   subtitle={formatVariantName(item.variantName)}
                   shipping={usingDefault ? null : (item.shipping ?? null)}
                   usingDefault={usingDefault}
+                  shippingCents={shippingByItemId[item.id]}
+                  currency={currency}
+                  loading={loading}
                   onEdit={() => onEditItem(item.id)}
                 />
               );

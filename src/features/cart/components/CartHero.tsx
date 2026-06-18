@@ -9,9 +9,14 @@ import { CheckoutStepIndicator } from "./CheckoutStepIndicator";
 type CartHeroProps = {
   itemCount: number;
   step?: "cart" | "address" | "payment" | "confirm";
+  hideCart?: boolean;
 };
 
-export const CartHero = ({ itemCount, step = "cart" }: CartHeroProps) => {
+export const CartHero = ({
+  itemCount,
+  step = "cart",
+  hideCart = false,
+}: CartHeroProps) => {
   const t = useTranslations();
   return (
     <div className="flex flex-col gap-3">
@@ -36,7 +41,7 @@ export const CartHero = ({ itemCount, step = "cart" }: CartHeroProps) => {
             {t("cart__hero__description")}
           </p>
         </div>
-        <CheckoutStepIndicator active={step === "cart" ? "cart" : "address"} />
+        <CheckoutStepIndicator active={step} hideCart={hideCart} />
       </div>
     </div>
   );

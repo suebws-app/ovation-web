@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { Skeleton } from "@ovation/ui/components/Skeleton";
+import { formatPrice } from "@/features/keepsakes/designTokens";
 import type { CartShipping } from "../store/useCartStore";
 
 type CartAddressCardProps = {
@@ -9,6 +11,9 @@ type CartAddressCardProps = {
   subtitle?: string | null;
   shipping: CartShipping | null;
   usingDefault?: boolean;
+  shippingCents?: number;
+  currency: string;
+  loading?: boolean;
   onEdit: () => void;
 };
 
@@ -28,6 +33,9 @@ export const CartAddressCard = ({
   subtitle,
   shipping,
   usingDefault = false,
+  shippingCents,
+  currency,
+  loading = false,
   onEdit,
 }: CartAddressCardProps) => {
   const t = useTranslations();
@@ -55,6 +63,18 @@ export const CartAddressCard = ({
           <span className="type-caption text-destructive mt-1">
             {t("cart__addresses__needed")}
           </span>
+        )}
+        {loading ? (
+          <Skeleton className="mt-1 h-3 w-20" />
+        ) : (
+          typeof shippingCents === "number" &&
+          shippingCents > 0 && (
+            <span className="type-caption text-foreground mt-1 font-medium">
+              {t("cart__addresses__shipping_price", {
+                price: formatPrice(shippingCents, currency),
+              })}
+            </span>
+          )
         )}
       </div>
       <Button
