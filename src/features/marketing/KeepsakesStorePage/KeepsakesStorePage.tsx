@@ -4,6 +4,7 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 import { KeepsakeCard } from "./KeepsakeCard";
 import { keepsakesApi } from "@/lib/api/keepsakes";
 import { formatPrice } from "@/features/checkout/orderHelpers";
+import { CurrencySelect } from "@/components/CurrencySelect";
 
 export const KeepsakesStorePage = async () => {
   const t = await getTranslations();
@@ -25,9 +26,12 @@ export const KeepsakesStorePage = async () => {
     <>
       <section>
         <div className="section-container-small">
-          <Kicker className="text-primary">
-            {t("marketing__keepsakes__eyebrow")}
-          </Kicker>
+          <div className="flex items-start justify-between gap-4">
+            <Kicker className="text-primary">
+              {t("marketing__keepsakes__eyebrow")}
+            </Kicker>
+            <CurrencySelect />
+          </div>
           <SectionTitle as="h1" className="mt-4 leading-none tracking-tighter">
             <span className="text-foreground block">
               {t("marketing__keepsakes__title_line1")}

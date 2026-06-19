@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Zaloguj się, aby kontynuować.",
+  "errors__forbidden": "Nie masz dostępu do tej treści.",
+  "errors__not_found": "Nie znaleziono.",
+  "errors__message_limit_reached": "Ta księga gości jest pełna — zajrzyj później!",
+  "errors__event_not_active": "Ta księga gości jest zamknięta.",
+  "errors__rate_limited": "Zwolnij na chwilę i spróbuj ponownie.",
+  "errors__generic": "Coś poszło nie tak. Numer referencyjny: {traceId}",
+  "errors__pro_required": "Wymagane jest konto profesjonalne.",
+  "errors__pro_event_limit_reached": "Osiągnięto limit 12 wydarzeń w planie Starter. Przejdź na Studio, aby mieć nieograniczoną liczbę wydarzeń.",
+  "errors__pro_subscription_required": "Do tworzenia wydarzeń wymagana jest aktywna subskrypcja Pro."
+}

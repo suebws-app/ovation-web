@@ -11,8 +11,6 @@ export type CreateEventFormData = {
   venueName: string;
   venueCity: string;
   coverType: string;
-  coverFile: File | null;
-  coverFilePreview: string | null;
   bookUrl: string;
 };
 
@@ -34,8 +32,6 @@ const initialFormData: CreateEventFormData = {
   venueName: "",
   venueCity: "",
   coverType: "",
-  coverFile: null,
-  coverFilePreview: null,
   bookUrl: "",
 };
 
@@ -50,10 +46,7 @@ const weddingDateReviver = (key: string, value: unknown) => {
   return value;
 };
 
-type PersistedFormData = Omit<
-  CreateEventFormData,
-  "coverFile" | "coverFilePreview"
->;
+type PersistedFormData = CreateEventFormData;
 type PersistedState = {
   formData: PersistedFormData;
   mode: CreateEventMode;
@@ -83,15 +76,7 @@ export const useCreateEventStore = create<CreateEventStore>()(
         { reviver: weddingDateReviver },
       ),
       partialize: (state): PersistedState => ({
-        formData: {
-          partner1Name: state.formData.partner1Name,
-          partner2Name: state.formData.partner2Name,
-          weddingDate: state.formData.weddingDate,
-          venueName: state.formData.venueName,
-          venueCity: state.formData.venueCity,
-          coverType: state.formData.coverType,
-          bookUrl: state.formData.bookUrl,
-        },
+        formData: state.formData,
         mode: state.mode,
         eventId: state.eventId,
       }),
@@ -117,8 +102,6 @@ export const useCreateEventStore = create<CreateEventStore>()(
             ...persistedForm,
             weddingDate,
             coverType,
-            coverFile: null,
-            coverFilePreview: null,
           },
         };
       },

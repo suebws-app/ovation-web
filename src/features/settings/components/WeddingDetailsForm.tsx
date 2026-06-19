@@ -14,7 +14,7 @@ import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
 import { clientEnv as env } from "@/lib/utils/env.client";
-import type { Event, SupportedLanguage } from "@/lib/api/types";
+import type { Event } from "@/lib/api/types";
 import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
 import { SettingsField } from "./SettingsField";
 
@@ -26,15 +26,6 @@ type Status =
   | { kind: "idle" }
   | { kind: "saved" }
   | { kind: "error"; message: string };
-
-const LANG_KEYS: { value: SupportedLanguage; labelKey: string }[] = [
-  { value: "en", labelKey: "settings__wedding__lang_en" },
-  { value: "fr", labelKey: "settings__wedding__lang_fr" },
-  { value: "nl", labelKey: "settings__wedding__lang_nl" },
-  { value: "de", labelKey: "settings__wedding__lang_de" },
-  { value: "es", labelKey: "settings__wedding__lang_es" },
-  { value: "it", labelKey: "settings__wedding__lang_it" },
-];
 
 const toIsoDate = (raw: string | null): string => {
   if (!raw) return "";
@@ -64,7 +55,6 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
       venueCity: event.venueCity ?? "",
       welcomeMessage: event.welcomeMessage ?? "",
       slug: event.slug,
-      defaultLanguage: (event.defaultLanguage as SupportedLanguage) ?? "en",
     },
     resolver: standardSchemaResolver(schema),
     mode: "onTouched",
@@ -97,7 +87,6 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         venueCity: values.venueCity || undefined,
         welcomeMessage: values.welcomeMessage || undefined,
         slug: values.slug || undefined,
-        defaultLanguage: values.defaultLanguage,
       });
       reset({
         partnerAName: updated.partnerAName,
@@ -107,7 +96,6 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         venueCity: updated.venueCity ?? "",
         welcomeMessage: updated.welcomeMessage ?? "",
         slug: updated.slug,
-        defaultLanguage: (updated.defaultLanguage as SupportedLanguage) ?? "en",
       });
       setStatus({ kind: "saved" });
       router.refresh();
@@ -152,7 +140,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         </SettingsField>
       </div>
 
-      <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
+      <div className="mt-5">
         <SettingsField
           label={t("settings__wedding__date")}
           adornmentRight={
@@ -164,18 +152,6 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
           }
         >
           <Input type="date" {...register("weddingDate")} />
-        </SettingsField>
-        <SettingsField label={t("settings__wedding__language")}>
-          <select
-            {...register("defaultLanguage")}
-            className="border-border bg-card text-foreground rounded-12 type-body-small w-full border px-3.5 py-3"
-          >
-            {LANG_KEYS.map((l) => (
-              <option key={l.value} value={l.value}>
-                {t(l.labelKey)}
-              </option>
-            ))}
-          </select>
         </SettingsField>
       </div>
 
@@ -216,7 +192,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
             {...register("welcomeMessage")}
             placeholder={t("settings__wedding__welcome_note_placeholder")}
             rows={3}
-            className="border-border bg-card text-foreground rounded-12 type-body-small w-full border p-4 font-serif leading-relaxed outline-none"
+            className="border-border bg-background text-foreground type-body-small w-full rounded-lg border p-3 font-serif leading-relaxed outline-none"
           />
           {errors.welcomeMessage && (
             <span className="type-caption text-destructive mt-1.5 block">
@@ -231,13 +207,13 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
           label={t("settings__wedding__public_link")}
           hint={t("settings__wedding__public_link_hint")}
         >
-          <div className="rounded-12 border-border bg-card flex items-center gap-2 border pr-1.5 pl-3.5">
+          <div className="border-border bg-background flex h-10 items-center gap-2 rounded-lg border pr-1 pl-3">
             <span className="type-body-small text-muted-foreground">
               {env.APP_URL}/
             </span>
             <input
               type="text"
-              className="type-body-small text-foreground min-w-0 flex-1 truncate bg-transparent py-3 outline-none"
+              className="type-body-small text-foreground h-full min-w-0 flex-1 truncate bg-transparent outline-none"
               {...register("slug")}
             />
             <button
@@ -245,7 +221,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
               onClick={handleCopyPublicLink}
               disabled={!slugValue}
               aria-label={t("settings__wedding__public_link_copy")}
-              className="text-muted-foreground hover:text-foreground hover:bg-muted rounded-8 flex size-8 shrink-0 items-center justify-center transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+              className="text-muted-foreground hover:text-foreground hover:bg-muted flex size-7 shrink-0 items-center justify-center rounded-md transition-colors disabled:cursor-not-allowed disabled:opacity-40"
             >
               {copied ? (
                 <CheckIcon width={16} height={16} className="text-secondary" />

@@ -128,8 +128,12 @@ export const clientFetch = async <T>(
     ? await fetch(url, init)
     : await fetchWithCsrfRetry(url, init, method);
   if (!res.ok) throw await parseError(res);
+  if (res.status === 204) return undefined as T;
   const json = await readJson<{ data: T }>(res);
-  return (json?.data ?? (undefined as T)) as T;
+  if (json?.data === undefined) {
+    throw new ApiError(res.status, "EMPTY_RESPONSE", "Empty response body");
+  }
+  return json.data;
 };
 
 export const clientFetchPaginated = async <T>(

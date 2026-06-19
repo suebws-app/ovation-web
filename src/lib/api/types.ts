@@ -1,17 +1,14 @@
-export const SUPPORTED_LANGUAGES = [
-  "en",
-  "fr",
-  "nl",
-  "de",
-  "es",
-  "it",
-] as const;
-
-export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
+import type { Locale } from "@/i18n/config";
+import type { Currency } from "@/i18n/currency-config";
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
-export type PlanTier = "premium" | "bundle" | "pro_starter" | "pro_studio";
+export type PlanTier =
+  | "premium"
+  | "bundle"
+  | "pro_starter"
+  | "pro_studio"
+  | "free";
 
 export type AccountType = "couple" | "pro";
 
@@ -44,7 +41,8 @@ export type User = {
   email: string;
   fullName: string | null;
   avatarUrl: string | null;
-  preferredLanguage: SupportedLanguage | string;
+  preferredLanguage: Locale;
+  preferredCurrency: Currency | null;
   role: string;
   accountType: AccountType;
   planTier: PlanTier | string | null;
@@ -83,7 +81,7 @@ export type Event = {
   themeColor: string;
   couplePhotoUrl: string | null;
   status: EventStatus | string;
-  defaultLanguage: SupportedLanguage | string;
+  defaultLanguage: Locale;
   createdAt: string;
   updatedAt: string;
 };
@@ -149,7 +147,7 @@ export type UpdateEventInput = Partial<CreateEventInput> & {
   welcomeMessage?: string;
   themeColor?: string;
   couplePhotoUrl?: string | null;
-  defaultLanguage?: SupportedLanguage;
+  defaultLanguage?: Locale;
   slug?: string;
   kioskPin?: string;
   submissionsEnabled?: boolean;
@@ -182,7 +180,8 @@ export type UpdateMessageInput = {
 export type UpdateProfileInput = {
   fullName?: string;
   avatarUrl?: string;
-  preferredLanguage?: SupportedLanguage;
+  preferredLanguage?: Locale;
+  preferredCurrency?: Currency | null;
   emailPreferences?: EmailPreferences;
 };
 
@@ -499,6 +498,7 @@ export type CheckoutItem = {
   customization?: Record<string, unknown>;
   photoIds?: string[];
   photoSelectAll?: PhotoSelectAll;
+  shippingAddress?: CheckoutShippingAddress;
 };
 
 export type CheckoutShippingAddress = {
@@ -508,6 +508,7 @@ export type CheckoutShippingAddress = {
   city: string;
   country: string;
   postalCode: string;
+  state?: string;
 };
 
 export type CheckoutSessionInput = {
@@ -525,12 +526,15 @@ export type CartTotalsItem = {
   productType: string;
   productVariantId?: string;
   quantity: number;
+  customization?: Record<string, unknown>;
+  shippingAddress?: { country: string; state?: string };
 };
 
 export type CartTotalsInput = {
   eventId: string;
   items: CartTotalsItem[];
   shippingCountry?: string;
+  shippingState?: string;
   promoCode?: string;
 };
 
@@ -539,10 +543,13 @@ export type CartTotalsResult = {
   subtotalCents: number;
   promoDiscountCents?: number;
   shippingCents: number;
+  shippingByItem?: number[];
   taxCents: number;
   totalCents: number;
   vatRate: number;
   freeShipping: boolean;
+  shippingUnavailable?: boolean;
+  detectedCountry?: string;
 };
 
 export type CheckoutSessionResult = {
@@ -553,6 +560,24 @@ export type CheckoutSessionResult = {
 
 export type PlanAudience = "couple" | "pro" | "addon";
 
+export type PlanPrice = {
+  currency: string;
+  amount: number;
+  paddlePriceId: string | null;
+};
+
+export type PlanProductVariables = {
+  regularPrice: number;
+  regularPriceFormatted: string;
+  currencySymbol: string;
+};
+
+export type PlanUsdPrice = {
+  amount: number;
+  regularPrice: number;
+  regularPriceFormatted: string;
+};
+
 export type Plan = {
   id: string;
   code: string;
@@ -560,6 +585,9 @@ export type Plan = {
   description: string | null;
   priceCents: number;
   currency: string;
+  price: PlanPrice;
+  productVariables: PlanProductVariables;
+  usdPrice?: PlanUsdPrice;
   messageLimit: number | null;
   storageDays: number | null;
   creditCents: number;
@@ -687,8 +715,8 @@ export type KioskSettings = {
   welcomeShowPhoto: boolean;
   welcomeShowLanguagePicker: boolean;
   welcomeChime: boolean;
-  defaultLanguage: SupportedLanguage | string;
-  supportedLanguages: (SupportedLanguage | string)[];
+  defaultLanguage: Locale;
+  supportedLanguages: Locale[];
   createdAt: string;
   updatedAt: string;
 };

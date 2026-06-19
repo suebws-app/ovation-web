@@ -1,0 +1,9 @@
+{
+  "account__title": "Fiók",
+  "account__profile": "Profil",
+  "account__preferences": "Beállítások",
+  "account__email_settings": "E-mail beállítások",
+  "account__payment_methods": "Fizetési módok",
+  "account__delete_account": "Fiók törlése",
+  "account__delete_confirm": "Ez a művelet nem visszavonható. Biztos vagy benne?"
+}

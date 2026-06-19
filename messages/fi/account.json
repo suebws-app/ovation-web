@@ -1,0 +1,9 @@
+{
+  "account__title": "Tili",
+  "account__profile": "Profiili",
+  "account__preferences": "Asetukset",
+  "account__email_settings": "Sähköpostiasetukset",
+  "account__payment_methods": "Maksutavat",
+  "account__delete_account": "Poista tili",
+  "account__delete_confirm": "Tätä toimintoa ei voi peruuttaa. Oletko varma?"
+}

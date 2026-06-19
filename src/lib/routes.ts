@@ -37,7 +37,6 @@ export const appRoutes = {
   create: {
     root: "/create",
     cover: "/create/cover",
-    done: "/create/done",
   },
 
   app: {
@@ -51,7 +50,7 @@ export const appRoutes = {
     plans: "/plans",
     messages: "/messages",
     message: (messageId: string) => `/messages/${messageId}`,
-    photos: "/photos",
+    gallery: "/gallery",
     guests: "/guests",
     kiosk: "/kiosk",
     link: "/link",

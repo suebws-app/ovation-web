@@ -66,7 +66,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
         <div className="mt-auto flex gap-2 pt-3.5">
           {isComingSoon ? (
             <Button
-              size="sm"
+              size="default"
               disabled
               className="bg-foreground text-background flex-1 rounded-full"
             >
@@ -75,7 +75,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
           ) : canOrder && eventId ? (
             <Button
               asChild
-              size="sm"
+              size="default"
               className="bg-foreground text-background hover:bg-foreground/90 flex-1 rounded-full"
             >
               <Link

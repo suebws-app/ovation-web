@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Prijavi se za nastavak.",
+  "errors__forbidden": "Nemaš pristup ovome.",
+  "errors__not_found": "Nije pronađeno.",
+  "errors__message_limit_reached": "Ova je knjiga gostiju puna — provjeri kasnije!",
+  "errors__event_not_active": "Ova je knjiga gostiju zatvorena.",
+  "errors__rate_limited": "Uspori malo, pa pokušaj ponovno.",
+  "errors__generic": "Nešto je pošlo po zlu. Referenca: {traceId}",
+  "errors__pro_required": "Potreban je profesionalni račun.",
+  "errors__pro_event_limit_reached": "Dosegao/la si ograničenje od 12 događanja na Starter planu. Nadogradi na Studio za neograničena događanja.",
+  "errors__pro_subscription_required": "Aktivna Pro pretplata potrebna je za stvaranje događanja."
+}

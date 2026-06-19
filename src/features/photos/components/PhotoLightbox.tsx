@@ -350,7 +350,9 @@ export const PhotoLightbox = ({
                 ref={isActive ? activeThumbRef : null}
                 type="button"
                 onClick={() => onIndexChange(i)}
-                aria-label={`Show photo ${i + 1}`}
+                aria-label={t("photos__lightbox__show_photo", {
+                  number: i + 1,
+                })}
                 aria-current={isActive ? "true" : undefined}
                 className={cn(
                   "rounded-8 relative h-14 w-14 shrink-0 cursor-pointer overflow-hidden transition-all",

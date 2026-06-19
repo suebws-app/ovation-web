@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { QRCodeCanvas, QRCodeSVG } from "qrcode.react";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { saveDataUrl } from "@/lib/utils/download-blob";
+import { buildLogoSrc } from "../utils";
 import { FormatRow } from "./FormatRow";
 
 type DownloadCardProps = {
@@ -11,20 +13,6 @@ type DownloadCardProps = {
   shortUrl: string;
   dark: string;
   light: string;
-};
-
-const triggerDownload = (data: string, filename: string) => {
-  const link = document.createElement("a");
-  link.href = data;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
-
-const buildLogoSrc = (background: string, foreground: string) => {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="${background}"/><text x="24" y="33" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="700" fill="${foreground}">O</text></svg>`;
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 };
 
 const QR_EXPORT_SIZE = 1024;
@@ -49,7 +37,7 @@ export const DownloadCard = ({
         canvasContainerRef.current?.querySelector("canvas") ?? null;
       if (!canvas) return;
       const dataUrl = canvas.toDataURL("image/png");
-      triggerDownload(dataUrl, `${slug}-qr.png`);
+      saveDataUrl(dataUrl, `${slug}-qr.png`);
     } finally {
       setPending(null);
     }
@@ -67,7 +55,7 @@ export const DownloadCard = ({
         { type: "image/svg+xml;charset=utf-8" },
       );
       const url = URL.createObjectURL(blob);
-      triggerDownload(url, `${slug}-qr.svg`);
+      saveDataUrl(url, `${slug}-qr.svg`);
       URL.revokeObjectURL(url);
     } finally {
       setPending(null);

@@ -6,6 +6,7 @@ import { SettingsRow } from "./SettingsRow";
 import { SettingsToggle } from "./SettingsToggle";
 import { ProfileNameForm } from "./ProfileNameForm";
 import { WeddingDetailsForm } from "./WeddingDetailsForm";
+import { LocalizationForm } from "./LocalizationForm";
 import { ProfileCloseAccount } from "./ProfileCloseAccount";
 
 type SettingsProfileSectionProps = {
@@ -67,6 +68,18 @@ export const SettingsProfileSection = ({
             />
           </div>
         ))}
+
+      <div className="mt-11">
+        <SettingsSectionTitle
+          title={t("settings__profile__localization")}
+          description={t("settings__profile__localization_description")}
+        />
+        <SettingsCard>
+          <div className="py-5.5">
+            <LocalizationForm user={user} />
+          </div>
+        </SettingsCard>
+      </div>
 
       <div className="mt-11">
         <SettingsSectionTitle title={t("settings__privacy__ai__title")} />

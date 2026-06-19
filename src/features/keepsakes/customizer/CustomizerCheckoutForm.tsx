@@ -3,12 +3,11 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useCartStore } from "@/features/cart/store/useCartStore";
-import { paymentsClient } from "@/lib/api/payments-client";
+import { useBuyNowStore } from "@/features/cart/store/useBuyNowStore";
 import { ApiError } from "@/lib/api/client";
-import { clientEnv as env } from "@/lib/utils/env.client";
 import { formatPrice } from "../designTokens";
 import { useCreateKeepsakePreview } from "@/lib/query/pdfQueries";
 import { PreviewPdfModal } from "./PreviewPdfModal";
@@ -81,8 +80,9 @@ export const CustomizerCheckoutForm = ({
   priceBreakdown,
 }: CustomizerCheckoutFormProps) => {
   const t = useTranslations();
+  const router = useRouter();
   const add = useCartStore((s) => s.add);
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const startBuyNow = useBuyNowStore((s) => s.start);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [addedToCart, setAddedToCart] = useState(false);
   const [previewRenderId, setPreviewRenderId] = useState<string | null>(null);
@@ -99,31 +99,38 @@ export const CustomizerCheckoutForm = ({
   const effectivePriceCents =
     unitPriceCents ?? selectedVariant?.priceCents ?? 0;
   const productCurrency = selectedVariant?.currency ?? "EUR";
-  const buttonDisabled = !eventId || !isReady || isCheckingOut;
+  const buttonDisabled = !eventId || !isReady;
   const showBreakdown = Boolean(
     priceBreakdown &&
     priceBreakdown.pricePerPageCents > 0 &&
     priceBreakdown.pageCount > 0,
   );
 
+  const buildItem = (id: string) => ({
+    eventId: id,
+    productType: product.productType,
+    productNameKey: product.name,
+    productSubtitleKey: product.subtitle,
+    productVariantId: selectedVariant?.id ?? null,
+    variantName: selectedVariant?.name ?? null,
+    unitPriceCents: effectivePriceCents,
+    currency: productCurrency,
+    quantity: 1,
+    customization: {
+      ...customization,
+      ...(priceBreakdown?.pageCount
+        ? { pageCount: priceBreakdown.pageCount }
+        : {}),
+    },
+    photoIds: photoSelectAll ? [] : (photoIds ?? []),
+    photoSelectAll: photoSelectAll ?? null,
+    timelineDays: null,
+    requiresShipping,
+  });
+
   const handleAddToCart = () => {
     if (!eventId) return;
-    add({
-      eventId,
-      productType: product.productType,
-      productNameKey: product.name,
-      productSubtitleKey: product.subtitle,
-      productVariantId: selectedVariant?.id ?? null,
-      variantName: selectedVariant?.name ?? null,
-      unitPriceCents: effectivePriceCents,
-      currency: productCurrency,
-      quantity: 1,
-      customization,
-      photoIds: photoSelectAll ? [] : (photoIds ?? []),
-      photoSelectAll: photoSelectAll ?? null,
-      timelineDays: null,
-      requiresShipping,
-    });
+    add(buildItem(eventId));
     setAddedToCart(true);
   };
 
@@ -160,42 +167,11 @@ export const CustomizerCheckoutForm = ({
     }
   };
 
-  const handleBuyNow = async () => {
+  const handleBuyNow = () => {
     if (!eventId) return;
     setSubmitError(null);
-    setIsCheckingOut(true);
-    try {
-      const origin =
-        typeof window !== "undefined" ? window.location.origin : env.APP_URL;
-      const result = await paymentsClient.createCheckoutSession({
-        eventId,
-        orderType: "keepsake",
-        items: [
-          {
-            productType: product.productType,
-            productVariantId: selectedVariant?.id ?? undefined,
-            quantity: 1,
-            customization,
-            photoIds: photoSelectAll
-              ? undefined
-              : photoIds && photoIds.length > 0
-                ? photoIds
-                : undefined,
-            photoSelectAll: photoSelectAll ?? undefined,
-          },
-        ],
-        successUrl: `${origin}${appRoutes.checkout.orderSuccess("{CHECKOUT_SESSION_ID}")}`,
-        cancelUrl: `${origin}${appRoutes.checkout.cancel("{CHECKOUT_SESSION_ID}")}`,
-      });
-      window.location.assign(result.checkoutUrl);
-    } catch (err) {
-      setSubmitError(
-        ApiError.isApiError(err)
-          ? err.message
-          : t("keepsakes__order__error_default"),
-      );
-      setIsCheckingOut(false);
-    }
+    startBuyNow(buildItem(eventId));
+    router.push(`${appRoutes.app.cart}?buyNow=1`);
   };
 
   return (
@@ -275,11 +251,14 @@ export const CustomizerCheckoutForm = ({
               )}
             </span>
           </div>
-          {priceBreakdown.blankPageAdded && (
-            <p className="type-caption text-muted-foreground">
-              {t("keepsakes__book_customizer__price_blank_page_note")}
-            </p>
-          )}
+          <p
+            aria-hidden={!priceBreakdown.blankPageAdded}
+            className={`type-caption text-muted-foreground ${
+              priceBreakdown.blankPageAdded ? "" : "invisible"
+            }`}
+          >
+            {t("keepsakes__book_customizer__price_blank_page_note")}
+          </p>
           <div className="border-border type-body-small mt-1 flex items-center justify-between gap-2 border-t pt-1.5 font-semibold">
             <span>{t("keepsakes__book_customizer__price_total")}</span>
             <span>
@@ -295,11 +274,9 @@ export const CustomizerCheckoutForm = ({
           disabled={buttonDisabled}
           className="rounded-full"
         >
-          {isCheckingOut
-            ? t("keepsakes__order__starting")
-            : t("keepsakes__order__buy_now", {
-                amount: formatPrice(effectivePriceCents, productCurrency),
-              })}
+          {t("keepsakes__order__buy_now", {
+            amount: formatPrice(effectivePriceCents, productCurrency),
+          })}
         </Button>
         <Button
           type="button"

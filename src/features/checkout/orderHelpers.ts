@@ -38,16 +38,7 @@ export const toneFor = (
 ): "primary" | "secondary" | "destructive" | "muted" =>
   STATUS_TONE[status] ?? "muted";
 
-export const formatPrice = (priceCents: number, currency: string): string => {
-  try {
-    return new Intl.NumberFormat(undefined, {
-      style: "currency",
-      currency,
-    }).format(priceCents / 100);
-  } catch {
-    return `${(priceCents / 100).toFixed(2)} ${currency}`;
-  }
-};
+export { formatMoney as formatPrice } from "@/lib/utils/currency";
 
 export const formatOrderDate = (raw: string): string => {
   const d = new Date(raw);

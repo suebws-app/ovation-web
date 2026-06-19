@@ -2,9 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@ovation/ui/components/Button";
-import { EyeIcon } from "@ovation/icons/EyeIcon";
-import { Link } from "@/i18n/navigation";
 import type { PublicEvent } from "@/lib/api/types";
 import { KioskLiveFrame } from "./KioskLiveFrame";
 import { KioskPreviewTab } from "./KioskPreviewTab";
@@ -74,12 +71,6 @@ export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
     <div>
       <div className="mb-3.5 flex items-baseline justify-between">
         <h2 className="type-h2 tracking-tight">{t("kiosk__preview__title")}</h2>
-        <Button asChild size="sm" className="rounded-full">
-          <Link href={`/g/${slug}`}>
-            <EyeIcon width={13} height={13} />
-            {t("kiosk__preview__open_as_guest")}
-          </Link>
-        </Button>
       </div>
       <div className="rounded-20 border-border bg-card border p-5 shadow">
         <div className="mb-3.5 flex gap-1.5">
@@ -97,7 +88,7 @@ export const KioskPreview = ({ slug, event }: KioskPreviewProps) => {
           className="rounded-16 bg-background flex justify-center p-6"
         >
           <div
-            className="rounded-24 border-foreground/90 relative overflow-hidden border-[14px] shadow-lg"
+            className="rounded-24 border-foreground/90 relative overflow-hidden border-14 shadow-lg"
             style={{ width: outerWidth, height: outerHeight }}
           >
             <div

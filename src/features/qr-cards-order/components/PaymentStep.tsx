@@ -34,13 +34,13 @@ export const PaymentStep = ({ state, setField }: PaymentStepProps) => {
           type="button"
           className="rounded-12 type-body bg-foreground text-background flex h-12 items-center justify-center font-semibold"
         >
-          Pay — Apple Pay
+          {t("qr_cards_order__payment__apple_pay")}
         </button>
         <button
           type="button"
           className="rounded-12 type-body border-border bg-card text-foreground hover:bg-muted flex h-12 items-center justify-center border font-semibold"
         >
-          G Pay — Google Pay
+          {t("qr_cards_order__payment__google_pay")}
         </button>
       </div>
 

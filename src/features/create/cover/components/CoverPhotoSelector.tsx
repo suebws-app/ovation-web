@@ -48,7 +48,9 @@ export const CoverPhotoSelector = ({
             label={option.labelKey && t(option.labelKey)}
             tint={option.tint}
             isUpload={option.isUpload}
-            selected={coverType === option.id}
+            selected={
+              option.isUpload ? Boolean(coverFile) : coverType === option.id
+            }
             initials={initials}
             onClick={() => handlePreset(option.id)}
           />

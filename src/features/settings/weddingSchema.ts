@@ -28,7 +28,6 @@ export const getWeddingSchema = (t: T) =>
         (v) => v === "" || (v.length >= 4 && SLUG_RE.test(v)),
         t("validation__slug_format"),
       ),
-    defaultLanguage: z.enum(["en", "fr", "nl", "de", "es", "it"]),
   });
 
 export type WeddingFields = {
@@ -39,5 +38,4 @@ export type WeddingFields = {
   venueCity?: string;
   welcomeMessage?: string;
   slug: string;
-  defaultLanguage: "en" | "fr" | "nl" | "de" | "es" | "it";
 };

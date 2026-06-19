@@ -1,14 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { LockIcon } from "@ovation/icons/LockIcon";
 import { ShieldIcon } from "@ovation/icons/ShieldIcon";
 import { Button } from "@ovation/ui/components/Button";
+import { Skeleton } from "@ovation/ui/components/Skeleton";
 import { formatPrice } from "@/features/keepsakes/designTokens";
 import { useCartStore } from "../store/useCartStore";
 import { CartSummaryRow } from "./CartSummaryRow";
-import { PromoCodeField } from "./PromoCodeField";
 import type { CartTotalsResult } from "@/lib/api/types";
 
 type CartSummaryProps = {
@@ -18,6 +17,10 @@ type CartSummaryProps = {
   isCheckingOut: boolean;
   error: string | null;
   ctaLabel: string;
+  disabled?: boolean;
+  hideCheckout?: boolean;
+  loading?: boolean;
+  itemCount?: number;
 };
 
 export const CartSummary = ({
@@ -27,25 +30,23 @@ export const CartSummary = ({
   isCheckingOut,
   error,
   ctaLabel,
+  disabled = false,
+  hideCheckout = false,
+  loading: loadingProp,
+  itemCount: itemCountProp,
 }: CartSummaryProps) => {
   const t = useTranslations();
-  const itemCount = useCartStore((s) => s.itemCount());
-  const promoCode = useCartStore((s) => s.promoCode);
-  const setPromoCode = useCartStore((s) => s.setPromoCode);
-  const [appliedPromo, setAppliedPromo] = useState<string | null>(promoCode);
+  const storeItemCount = useCartStore((s) => s.itemCount());
+  const itemCount = itemCountProp ?? storeItemCount;
+  const appliedPromo = useCartStore((s) => s.promoCode);
 
+  const loading = loadingProp ?? totals === null;
   const subtotalCents = totals?.subtotalCents ?? 0;
-  const taxCents = totals?.taxCents ?? 0;
   const shippingCents = totals?.shippingCents ?? 0;
   const totalCents = totals?.totalCents ?? 0;
   const freeShipping = totals?.freeShipping ?? false;
-  const vatRate = totals?.vatRate ?? 0.1;
   const promoDiscount = totals?.promoDiscountCents ?? 0;
-
-  const handleApplyPromo = (code: string) => {
-    setAppliedPromo(code);
-    setPromoCode(code);
-  };
+  const priceSkeleton = <Skeleton className="h-4 w-16" />;
 
   return (
     <div className="rounded-20 border-border bg-card desktop:sticky desktop:top-5 flex flex-col gap-4 border p-7">
@@ -56,7 +57,7 @@ export const CartSummary = ({
       <div className="flex flex-col gap-2.5">
         <CartSummaryRow
           label={t("cart__summary__subtotal")}
-          value={formatPrice(subtotalCents, currency)}
+          value={loading ? priceSkeleton : formatPrice(subtotalCents, currency)}
         />
         {promoDiscount > 0 && (
           <CartSummaryRow
@@ -70,20 +71,16 @@ export const CartSummary = ({
         <CartSummaryRow
           label={t("cart__summary__shipping")}
           value={
-            freeShipping
-              ? t("cart__summary__shipping_free")
-              : formatPrice(shippingCents, currency)
+            loading
+              ? priceSkeleton
+              : freeShipping
+                ? t("cart__summary__shipping_free")
+                : formatPrice(shippingCents, currency)
           }
           emphasis={freeShipping ? "positive" : "default"}
           helper={
             freeShipping ? t("cart__summary__shipping_helper") : undefined
           }
-        />
-        <CartSummaryRow
-          label={t("cart__summary__vat", {
-            rate: Math.round(vatRate * 100),
-          })}
-          value={formatPrice(taxCents, currency)}
         />
       </div>
 
@@ -93,16 +90,19 @@ export const CartSummary = ({
         <span className="type-body-small font-bold">
           {t("cart__summary__total")}
         </span>
-        <span className="type-h2 font-serif font-semibold tracking-tight">
-          {formatPrice(totalCents, currency)}
+        <span className="flex items-baseline gap-1.5">
+          <span className="type-h2 font-serif font-semibold tracking-tight">
+            {loading ? (
+              <Skeleton className="h-7 w-24" />
+            ) : (
+              formatPrice(totalCents, currency)
+            )}
+          </span>
+          <span className="type-caption text-muted-foreground">
+            {t("cart__summary__incl_vat")}
+          </span>
         </span>
       </div>
-
-      <PromoCodeField
-        onApply={handleApplyPromo}
-        disabled={isCheckingOut}
-        appliedCode={appliedPromo}
-      />
 
       {error && (
         <p className="type-caption text-destructive" role="alert">
@@ -110,18 +110,20 @@ export const CartSummary = ({
         </p>
       )}
 
-      <Button
-        type="button"
-        size="lg"
-        className="rounded-full"
-        onClick={onCheckout}
-        disabled={isCheckingOut || itemCount === 0}
-      >
-        <LockIcon width={13} height={13} />
-        {isCheckingOut
-          ? t("cart__summary__checkout_pending")
-          : t(ctaLabel, { total: formatPrice(totalCents, currency) })}
-      </Button>
+      {!hideCheckout && (
+        <Button
+          type="button"
+          size="lg"
+          className="rounded-full"
+          onClick={onCheckout}
+          disabled={isCheckingOut || itemCount === 0 || disabled}
+        >
+          <LockIcon width={13} height={13} />
+          {isCheckingOut
+            ? t("cart__summary__checkout_pending")
+            : t(ctaLabel, { total: formatPrice(totalCents, currency) })}
+        </Button>
+      )}
 
       <div className="text-muted-foreground type-caption flex items-center justify-center gap-3.5">
         <span className="inline-flex items-center gap-1">

@@ -1,0 +1,9 @@
+{
+  "account__title": "Акаунт",
+  "account__profile": "Профіль",
+  "account__preferences": "Налаштування",
+  "account__email_settings": "Налаштування електронної пошти",
+  "account__payment_methods": "Способи оплати",
+  "account__delete_account": "Видалити акаунт",
+  "account__delete_confirm": "Цю дію не можна скасувати. Ти впевнений(на)?"
+}

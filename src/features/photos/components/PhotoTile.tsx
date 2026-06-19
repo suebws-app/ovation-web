@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { BookIcon } from "@ovation/icons/BookIcon";
 import { VideoIcon } from "@ovation/icons/VideoIcon";
@@ -24,6 +25,7 @@ export const PhotoTile = ({
   onClick,
   onToggleSelect,
 }: PhotoTileProps) => {
+  const t = useTranslations();
   const {
     thumbUrl,
     url,
@@ -96,7 +98,7 @@ export const PhotoTile = ({
         {isVideo && (
           <span className="type-caption absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 font-medium text-white">
             <VideoIcon width={11} height={11} />
-            <span>Video</span>
+            <span>{t("common__video")}</span>
           </span>
         )}
 
@@ -108,7 +110,7 @@ export const PhotoTile = ({
           <Checkbox
             checked={selected}
             onChange={() => onToggleSelect?.()}
-            aria-label={`Select photo from ${name}`}
+            aria-label={t("photos__tile__select_photo", { name })}
             className="bg-white/90"
           />
         </span>

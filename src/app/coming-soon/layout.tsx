@@ -1,4 +1,6 @@
 import { Rubik } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import "@/app/globals.css";
 
 const rubik = Rubik({
@@ -8,10 +10,22 @@ const rubik = Rubik({
   adjustFontFallback: true,
 });
 
-const ComingSoonLayout = ({ children }: { children: React.ReactNode }) => (
-  <html lang="en" className={`${rubik.variable} antialiased`}>
-    <body className="font-sans">{children}</body>
-  </html>
-);
+const ComingSoonLayout = async ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const messages = await getMessages();
+
+  return (
+    <html lang="en" className={`${rubik.variable} antialiased`}>
+      <body className="font-sans">
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+};
 
 export default ComingSoonLayout;

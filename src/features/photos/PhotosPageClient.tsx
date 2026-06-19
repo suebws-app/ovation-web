@@ -15,6 +15,7 @@ import { PhotoBatchFooter } from "./components/PhotoBatchFooter";
 import { PhotoGallerySkeleton } from "./skeletons/PhotoGallerySkeleton";
 import { PhotoGallery } from "./components/PhotoGallery";
 import { PhotoLightbox } from "./components/PhotoLightbox";
+import { PhotosDirectoryEmpty } from "./components/PhotosDirectoryEmpty";
 import { PhotosFilterRail } from "./components/PhotosFilterRail";
 import { usePhotoBulkActions } from "./hooks/usePhotoBulkActions";
 import { toPhotoViewFromGallery } from "./adapters";
@@ -122,6 +123,8 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
       />
     ) : null;
 
+  const hasNoPhotosEver = stats?.photoCount === 0;
+
   return (
     <FeaturePageLayout
       batchFooter={
@@ -137,27 +140,37 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
       }
       overlay={lightbox}
     >
-      <PhotosFilterRail eventId={eventId} stats={stats} allCount={allCount} />
-      {isPending ? (
-        <PhotoGallerySkeleton />
-      ) : isError ? (
-        <p className="type-body-small text-destructive p-8 text-center">
-          {t("photos__error")}
-        </p>
+      {hasNoPhotosEver ? (
+        <PhotosDirectoryEmpty eventId={eventId} />
       ) : (
         <>
-          <PhotoGallery
-            photos={photos}
-            isSelected={isSelected}
-            onTileClick={handleTileClick}
-            onToggleSelect={handleToggleSelect}
+          <PhotosFilterRail
+            eventId={eventId}
+            stats={stats}
+            allCount={allCount}
           />
-          <InfiniteScrollSentinel
-            hasNextPage={Boolean(hasNextPage)}
-            isFetchingNextPage={isFetchingNextPage}
-            onLoadMore={fetchNextPage}
-            loadingLabel={t("photos__lightbox__loading_more")}
-          />
+          {isPending ? (
+            <PhotoGallerySkeleton />
+          ) : isError ? (
+            <p className="type-body-small text-destructive p-8 text-center">
+              {t("photos__error")}
+            </p>
+          ) : (
+            <>
+              <PhotoGallery
+                photos={photos}
+                isSelected={isSelected}
+                onTileClick={handleTileClick}
+                onToggleSelect={handleToggleSelect}
+              />
+              <InfiniteScrollSentinel
+                hasNextPage={Boolean(hasNextPage)}
+                isFetchingNextPage={isFetchingNextPage}
+                onLoadMore={fetchNextPage}
+                loadingLabel={t("photos__lightbox__loading_more")}
+              />
+            </>
+          )}
         </>
       )}
     </FeaturePageLayout>

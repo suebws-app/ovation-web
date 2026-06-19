@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { AppProviders } from "@/features/layout/AppProviders";
+import { Toaster } from "@/components/Toaster";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default async function LocaleLayout({
         />
         <NextIntlClientProvider messages={messages}>
           <AppProviders>{children}</AppProviders>
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>

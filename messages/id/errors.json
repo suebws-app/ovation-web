@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Silakan masuk untuk melanjutkan.",
+  "errors__forbidden": "Anda tidak memiliki akses ke ini.",
+  "errors__not_found": "Tidak ditemukan.",
+  "errors__message_limit_reached": "Buku tamu ini penuh — periksa lagi nanti!",
+  "errors__event_not_active": "Buku tamu ini ditutup.",
+  "errors__rate_limited": "Pelan sebentar, lalu coba lagi.",
+  "errors__generic": "Terjadi kesalahan. Referensi: {traceId}",
+  "errors__pro_required": "Akun profesional diperlukan.",
+  "errors__pro_event_limit_reached": "Anda telah mencapai batas 12 acara di paket Starter. Tingkatkan ke Studio untuk acara tanpa batas.",
+  "errors__pro_subscription_required": "Langganan Pro aktif diperlukan untuk membuat acara."
+}

@@ -5,7 +5,7 @@ import { KioskConfigCard } from "./KioskConfigCard";
 import { KioskConfigRow } from "./KioskConfigRow";
 import { KioskToggle } from "./KioskToggle";
 import { KioskWelcomeNote } from "./KioskWelcomeNote";
-import { KioskLanguagePicker } from "./KioskLanguagePicker";
+import { KioskLanguagesSelect } from "./KioskLanguagesSelect";
 import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
 
 type KioskConfigRightProps = {
@@ -51,7 +51,7 @@ export const KioskConfigRight = ({
         title={t("kiosk__config__languages_section__title")}
         description={t("kiosk__config__languages_section__desc")}
       >
-        <KioskLanguagePicker
+        <KioskLanguagesSelect
           defaultLanguage={settings.defaultLanguage}
           supportedLanguages={settings.supportedLanguages}
           onChange={onPatch}

@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Inicia sesión para continuar.",
+  "errors__forbidden": "No tienes acceso a esto.",
+  "errors__not_found": "No encontrado.",
+  "errors__message_limit_reached": "Este libro de invitados está lleno — ¡vuelve más tarde!",
+  "errors__event_not_active": "Este libro de invitados está cerrado.",
+  "errors__rate_limited": "Espera un momento e inténtalo de nuevo.",
+  "errors__generic": "Algo salió mal. Referencia: {traceId}",
+  "errors__pro_required": "Se requiere una cuenta profesional.",
+  "errors__pro_event_limit_reached": "Has alcanzado el límite de 12 eventos del plan Starter. Mejora a Studio para tener eventos ilimitados.",
+  "errors__pro_subscription_required": "Necesitas una suscripción Pro activa para crear eventos."
+}

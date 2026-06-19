@@ -1,10 +1,11 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { cn } from "@ovation/ui/utils/cn";
 
 type CartSummaryRowProps = {
   label: string;
-  value: string;
+  value: ReactNode;
   emphasis?: "default" | "positive";
   helper?: string;
 };

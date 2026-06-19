@@ -23,6 +23,7 @@ import { MessageFilterChips } from "./components/MessageFilterChips";
 import { MessageSearchInput } from "./components/MessageSearchInput";
 import { MessageSortButton } from "./components/MessageSortButton";
 import { MessageTableHead } from "./components/MessageTableHead";
+import { MessagesDirectoryEmpty } from "./components/MessagesDirectoryEmpty";
 import { MessagesTableRow } from "./components/MessagesTableRow";
 import { messagesTableSkeletonColumns } from "./tableColumns";
 
@@ -72,6 +73,16 @@ export const MessagesDirectory = ({
     () => (data?.pages ?? []).flatMap((p) => p.items),
     [data?.pages],
   );
+
+  const hasNoMessagesEver = stats?.totalMessages === 0;
+  const isTrulyEmpty =
+    hasNoMessagesEver ||
+    (!isPending &&
+      !isError &&
+      messages.length === 0 &&
+      filter === "all" &&
+      !trimmedSearch &&
+      !hasNextPage);
 
   const selectAllActive = selectAll !== null;
   const allSelected = selectAllActive;
@@ -162,6 +173,10 @@ export const MessagesDirectory = ({
       </Table>
     );
   };
+
+  if (isTrulyEmpty) {
+    return <MessagesDirectoryEmpty eventId={eventId} />;
+  }
 
   return (
     <DataDirectory

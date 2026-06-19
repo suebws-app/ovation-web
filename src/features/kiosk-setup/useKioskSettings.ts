@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { kioskSettingsClient } from "@/lib/api/kiosk-settings-client";
 import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
+import { toast } from "@/components/Toaster";
 
 const DEBOUNCE_MS = 400;
 
@@ -15,6 +17,7 @@ export const useKioskSettings = (
   eventId: string,
   initial: KioskSettings,
 ): UseKioskSettingsResult => {
+  const t = useTranslations();
   const [settings, setSettings] = useState<KioskSettings>(initial);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -32,11 +35,14 @@ export const useKioskSettings = (
       const res = await kioskSettingsClient.update(eventId, payload);
       setSettings(res.settings);
     } catch (e) {
-      setError(e instanceof Error ? e : new Error("Failed to save"));
+      toast.error(t("link_settings__save_error"));
+      setError(
+        e instanceof Error ? e : new Error(t("link_settings__save_error")),
+      );
     } finally {
       setIsSaving(false);
     }
-  }, [eventId]);
+  }, [eventId, t]);
 
   const patch = useCallback(
     (changes: UpdateKioskSettingsInput) => {

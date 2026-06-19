@@ -7,9 +7,19 @@ import { CartLineItem } from "./CartLineItem";
 
 type CartItemsCardProps = {
   items: CartItem[];
+  shippingByItemId?: Record<string, number>;
+  currency?: string;
+  readOnly?: boolean;
+  loading?: boolean;
 };
 
-export const CartItemsCard = ({ items }: CartItemsCardProps) => {
+export const CartItemsCard = ({
+  items,
+  shippingByItemId,
+  currency,
+  readOnly = false,
+  loading = false,
+}: CartItemsCardProps) => {
   const t = useTranslations();
   const clear = useCartStore((s) => s.clear);
   return (
@@ -21,14 +31,16 @@ export const CartItemsCard = ({ items }: CartItemsCardProps) => {
             · {t("cart__items__count", { count: items.length })}
           </span>
         </h2>
-        <button
-          type="button"
-          onClick={clear}
-          className="type-caption text-muted-foreground hover:text-foreground inline-flex cursor-pointer items-center gap-1.5 transition-colors"
-        >
-          <TrashIcon width={12} height={12} />
-          {t("cart__items__clear")}
-        </button>
+        {!readOnly && (
+          <button
+            type="button"
+            onClick={clear}
+            className="type-caption text-muted-foreground hover:text-foreground inline-flex cursor-pointer items-center gap-1.5 transition-colors"
+          >
+            <TrashIcon width={12} height={12} />
+            {t("cart__items__clear")}
+          </button>
+        )}
       </div>
       <div className="bg-border h-px" />
       {items.map((item, index) => (
@@ -36,6 +48,10 @@ export const CartItemsCard = ({ items }: CartItemsCardProps) => {
           key={item.id}
           item={item}
           isLast={index === items.length - 1}
+          shippingCents={shippingByItemId?.[item.id]}
+          currency={currency}
+          readOnly={readOnly}
+          loading={loading}
         />
       ))}
     </div>

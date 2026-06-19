@@ -4,21 +4,8 @@ import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import type { Event } from "@/lib/api/types";
-
-const eventLabel = (event: Event, fallback: string): string => {
-  const a = event.partnerAName?.trim();
-  const b = event.partnerBName?.trim();
-  if (a && b) return `${a} & ${b}`;
-  if (a || b) return a || b || fallback;
-  return fallback;
-};
-
-const formatYear = (date: string | null): string | null => {
-  if (!date) return null;
-  const d = new Date(date);
-  if (Number.isNaN(d.getTime())) return null;
-  return String(d.getFullYear());
-};
+import { eventLabel } from "@/lib/utils/eventFormatters";
+import { formatYear } from "@/lib/utils/formatDate";
 
 type EventOptionProps = {
   event: Event;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useId } from "react";
+import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
 
 type KioskStepSliderProps<T extends number> = {
@@ -16,6 +17,7 @@ export const KioskStepSlider = <T extends number>({
   labels,
   onChange,
 }: KioskStepSliderProps<T>) => {
+  const t = useTranslations();
   const id = useId();
   const index = Math.max(0, steps.indexOf(value));
   const percent = steps.length > 1 ? (index / (steps.length - 1)) * 100 : 0;
@@ -40,7 +42,7 @@ export const KioskStepSlider = <T extends number>({
           value={index}
           onChange={(e) => onChange(steps[Number(e.target.value)])}
           className="absolute inset-0 w-full cursor-pointer opacity-0"
-          aria-label="Slider"
+          aria-label={t("kiosk_setup__slider__label")}
         />
       </div>
       <div className="type-caption text-muted-foreground mt-2 flex justify-between">

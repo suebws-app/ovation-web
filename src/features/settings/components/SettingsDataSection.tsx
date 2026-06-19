@@ -20,6 +20,7 @@ import {
   useEventDataExport,
   type ExportKind,
 } from "../hooks/useEventDataExport";
+import { coupleNameOf } from "@/lib/utils/eventFormatters";
 
 type IndividualEntry = {
   titleKey: string;
@@ -44,19 +45,11 @@ const INDIVIDUAL_ENTRIES: IndividualEntry[] = [
     kind: "photos",
   },
   {
-    titleKey: "settings__data__individual__pdf__title",
-    descKey: "settings__data__individual__pdf__desc",
-    kind: null,
-  },
-  {
     titleKey: "settings__data__individual__guests__title",
     descKey: "settings__data__individual__guests__desc",
     kind: "guests",
   },
 ];
-
-const coupleNameOf = (partnerA: string, partnerB: string) =>
-  [partnerA, partnerB].filter(Boolean).join(" & ");
 
 type SettingsDataSectionProps = {
   events: Event[];

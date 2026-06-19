@@ -9,7 +9,7 @@ import { LogOutIcon } from "@ovation/icons/LogOutIcon";
 import type { PublicEvent } from "@/lib/api/types";
 import { useFullscreen } from "@/lib/hooks/useFullscreen";
 import { useWakeLock } from "@/lib/hooks/useWakeLock";
-import { KioskLiveLanguagePill } from "./KioskLiveLanguagePill";
+import { KioskLiveLanguagePopover } from "./KioskLiveLanguagePopover";
 import { KioskFullscreenGuard } from "./KioskFullscreenGuard";
 import { KioskExitDialog } from "./KioskExitDialog";
 import { KioskOfflineOverlay } from "@/features/kiosk/components/KioskOfflineOverlay";
@@ -18,16 +18,6 @@ type KioskLiveFrameProps = {
   slug: string;
   event: PublicEvent;
   enableWakeLock?: boolean;
-};
-
-const LANGUAGE_LABELS: Record<string, { flag: string; label: string }> = {
-  en: { flag: "\uD83C\uDDEC\uD83C\uDDE7", label: "English" },
-  fr: { flag: "\uD83C\uDDEB\uD83C\uDDF7", label: "Français" },
-  nl: { flag: "\uD83C\uDDF3\uD83C\uDDF1", label: "Nederlands" },
-  de: { flag: "\uD83C\uDDE9\uD83C\uDDEA", label: "Deutsch" },
-  es: { flag: "\uD83C\uDDEA\uD83C\uDDF8", label: "Español" },
-  it: { flag: "\uD83C\uDDEE\uD83C\uDDF9", label: "Italiano" },
-  pt: { flag: "\uD83C\uDDF5\uD83C\uDDF9", label: "Português" },
 };
 
 const formatWeddingDate = (raw: string | null): string => {
@@ -59,6 +49,14 @@ export const KioskLiveFrame = ({
   const isClosed = !event.submissionOpen || event.limitReached;
   const showThanks = searchParams.get("submitted") === "1";
   const [exitOpen, setExitOpen] = useState(false);
+  const showLanguagePicker =
+    event.kiosk.welcomeShowLanguagePicker &&
+    event.supportedLanguages.length > 1;
+
+  const handleLanguageSelect = (lang: string) => {
+    if (lang === currentLocale) return;
+    router.replace(pathname, { locale: lang });
+  };
 
   const {
     isFullscreen,
@@ -71,7 +69,7 @@ export const KioskLiveFrame = ({
     enableWakeLock && fullscreenSupported && event.kiosk.fullscreenLock;
 
   const handleExitClick = async () => {
-    if (event.kiosk.exitPin) {
+    if (event.kiosk.fullscreenLock && event.kiosk.exitPin) {
       setExitOpen(true);
       return;
     }
@@ -234,29 +232,15 @@ export const KioskLiveFrame = ({
         </div>
       </div>
 
-      <div className="relative z-10 flex items-center justify-between px-7 py-5.5">
-        <div className="flex flex-wrap gap-2">
-          {event.kiosk.welcomeShowLanguagePicker &&
-            event.supportedLanguages.map((lang) => {
-              const meta = LANGUAGE_LABELS[lang] ?? {
-                flag: "\uD83C\uDF10",
-                label: lang.toUpperCase(),
-              };
-              return (
-                <KioskLiveLanguagePill
-                  key={lang}
-                  flag={meta.flag}
-                  label={meta.label}
-                  active={lang === currentLocale}
-                  onClick={() => {
-                    if (lang === currentLocale) return;
-                    router.replace(pathname, { locale: lang });
-                  }}
-                />
-              );
-            })}
+      {showLanguagePicker && (
+        <div className="relative z-10 flex items-center justify-end px-7 py-5.5">
+          <KioskLiveLanguagePopover
+            languages={event.supportedLanguages}
+            currentLocale={currentLocale}
+            onSelect={handleLanguageSelect}
+          />
         </div>
-      </div>
+      )}
     </div>
   );
 };

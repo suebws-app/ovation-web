@@ -1,0 +1,9 @@
+{
+  "account__title": "Konto",
+  "account__profile": "Profil",
+  "account__preferences": "Einstellungen",
+  "account__email_settings": "E-Mail-Einstellungen",
+  "account__payment_methods": "Zahlungsmethoden",
+  "account__delete_account": "Konto löschen",
+  "account__delete_confirm": "Diese Aktion kann nicht rückgängig gemacht werden. Bist du sicher?"
+}

@@ -1,0 +1,9 @@
+{
+  "account__title": "Paskyra",
+  "account__profile": "Profilis",
+  "account__preferences": "Nuostatos",
+  "account__email_settings": "El. pašto nustatymai",
+  "account__payment_methods": "Mokėjimo būdai",
+  "account__delete_account": "Ištrinti paskyrą",
+  "account__delete_confirm": "Šio veiksmo nebus galima atšaukti. Ar tikrai nori tęsti?"
+}

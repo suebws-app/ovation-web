@@ -200,6 +200,11 @@ export const auth = betterAuth({
         required: false,
         fieldName: "preferred_language",
       },
+      preferredCurrency: {
+        type: "string",
+        required: false,
+        fieldName: "preferred_currency",
+      },
       role: {
         type: "string",
         defaultValue: "user",

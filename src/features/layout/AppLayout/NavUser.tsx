@@ -26,17 +26,7 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { signOut } from "@/lib/auth/client";
 import type { User } from "@/lib/api/types";
-
-const initialsOf = (user: User): string => {
-  const source = user.fullName?.trim() || user.email;
-  const parts = source.split(/[\s@]+/).filter(Boolean);
-  const first = parts[0]?.[0] ?? "";
-  const second = parts[1]?.[0] ?? "";
-  return (first + second).toUpperCase() || "U";
-};
-
-const displayName = (user: User): string =>
-  user.fullName?.trim() || user.email.split("@")[0] || "Account";
+import { displayName, initialsOf } from "@/lib/utils/userFormatters";
 
 type NavUserProps = {
   user: User;
@@ -114,12 +104,15 @@ export const NavUser = ({ user }: NavUserProps) => {
                   {t("nav_user__settings")}
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href={appRoutes.settings.billing}>
-                  <StarIcon />
-                  {t("nav_user__subscription")}
-                </Link>
-              </DropdownMenuItem>
+
+              {user.planTier !== "free" ? (
+                <DropdownMenuItem asChild>
+                  <Link href={appRoutes.settings.billing}>
+                    <StarIcon />
+                    {t("nav_user__subscription")}
+                  </Link>
+                </DropdownMenuItem>
+              ) : null}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
