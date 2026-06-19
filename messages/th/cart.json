@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "ฟรี",
   "cart__summary__shipping_helper": "ฟรีเมื่อสั่งซื้อมากกว่า €100",
   "cart__summary__vat": "ภาษีมูลค่าเพิ่ม ({rate}%)",
+  "cart__summary__incl_vat": "รวม VAT",
   "cart__summary__total": "รวมทั้งสิ้น",
   "cart__summary__promo_placeholder": "รหัสโปรโมชั่น",
   "cart__summary__promo_apply": "ใช้รหัส",
@@ -49,5 +50,12 @@
   "cart__shipping__back": "กลับไปยังตะกร้า",
   "cart__shipping__continue": "ไปต่อที่การชำระเงิน",
   "cart__shipping__error_required": "จำเป็นต้องกรอก",
-  "cart__shipping__error_country": "เลือกประเทศ"
+  "cart__shipping__error_country": "เลือกประเทศ",
+  "cart__payment__pending_title": "กำลังดำเนินการชำระเงิน",
+  "cart__payment__pending_body": "โปรดอย่าปิดหน้าต่างนี้ เรากำลังยืนยันคำสั่งซื้ออย่างปลอดภัยกับผู้ให้บริการชำระเงิน",
+  "cart__confirm__title": "สั่งซื้อสำเร็จ",
+  "cart__confirm__body": "ขอบคุณสำหรับคำสั่งซื้อ เราได้ส่งอีเมลยืนยันพร้อมรายละเอียดให้แล้ว",
+  "cart__confirm__reference": "อ้างอิง: {id}",
+  "cart__confirm__view_order": "ดูคำสั่งซื้อ",
+  "cart__confirm__continue": "ช้อปต่อ"
 }

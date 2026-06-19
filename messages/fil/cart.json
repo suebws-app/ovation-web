@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Libre",
   "cart__summary__shipping_helper": "Libre kapag lagpas sa €100",
   "cart__summary__vat": "VAT ({rate}%)",
+  "cart__summary__incl_vat": "kasama ang VAT",
   "cart__summary__total": "Kabuuan",
   "cart__summary__promo_placeholder": "Promo code",
   "cart__summary__promo_apply": "I-apply",
@@ -49,5 +50,12 @@
   "cart__shipping__back": "Bumalik sa cart",
   "cart__shipping__continue": "Magpatuloy sa pagbabayad",
   "cart__shipping__error_required": "Kinakailangan",
-  "cart__shipping__error_country": "Pumili ng bansa"
+  "cart__shipping__error_country": "Pumili ng bansa",
+  "cart__payment__pending_title": "Pinoproseso ang iyong bayad",
+  "cart__payment__pending_body": "Mangyaring huwag isara ang window na ito. Ligtas naming kinukumpirma ang order sa payment provider.",
+  "cart__confirm__title": "Naitala ang order",
+  "cart__confirm__body": "Salamat sa iyong order. Nagpadala kami ng confirmation email kasama ang mga detalye.",
+  "cart__confirm__reference": "Reference: {id}",
+  "cart__confirm__view_order": "Tingnan ang order",
+  "cart__confirm__continue": "Magpatuloy sa pamimili"
 }

@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Gratis",
   "cart__summary__shipping_helper": "Gratis över 100 EUR",
   "cart__summary__vat": "Moms ({rate}%)",
+  "cart__summary__incl_vat": "inkl. moms",
   "cart__summary__total": "Totalt",
   "cart__summary__promo_placeholder": "Rabattkod",
   "cart__summary__promo_apply": "Använd",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Lägg till adress",
   "cart__addresses__use_different": "Använd en annan adress",
   "cart__addresses__save": "Spara adress",
-  "cart__addresses__incomplete": "Vänligen fyll i leveransadressen för varje produkt."
+  "cart__addresses__incomplete": "Vänligen fyll i leveransadressen för varje produkt.",
+  "cart__payment__pending_title": "Behandlar din betalning",
+  "cart__payment__pending_body": "Stäng inte detta fönster. Vi bekräftar din beställning säkert hos betalningsleverantören.",
+  "cart__confirm__title": "Beställning lagd",
+  "cart__confirm__body": "Tack för din beställning. Vi har skickat ett bekräftelsemejl med detaljerna.",
+  "cart__confirm__reference": "Referens: {id}",
+  "cart__confirm__view_order": "Visa beställning",
+  "cart__confirm__continue": "Fortsätt handla"
 }

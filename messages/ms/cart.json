@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Percuma",
   "cart__summary__shipping_helper": "Percuma melebihi €100",
   "cart__summary__vat": "VAT ({rate}%)",
+  "cart__summary__incl_vat": "termasuk VAT",
   "cart__summary__total": "Jumlah",
   "cart__summary__promo_placeholder": "Kod promosi",
   "cart__summary__promo_apply": "Guna",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Tambah alamat",
   "cart__addresses__use_different": "Gunakan alamat berbeza",
   "cart__addresses__save": "Simpan alamat",
-  "cart__addresses__incomplete": "Sila lengkapkan alamat penghantaran untuk setiap produk."
+  "cart__addresses__incomplete": "Sila lengkapkan alamat penghantaran untuk setiap produk.",
+  "cart__payment__pending_title": "Memproses pembayaran anda",
+  "cart__payment__pending_body": "Sila jangan tutup tetingkap ini. Kami sedang mengesahkan pesanan dengan selamat bersama penyedia pembayaran.",
+  "cart__confirm__title": "Pesanan diterima",
+  "cart__confirm__body": "Terima kasih atas pesanan anda. Kami telah menghantar e-mel pengesahan dengan butirannya.",
+  "cart__confirm__reference": "Rujukan: {id}",
+  "cart__confirm__view_order": "Lihat pesanan",
+  "cart__confirm__continue": "Teruskan membeli-belah"
 }

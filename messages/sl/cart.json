@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Brezplačno",
   "cart__summary__shipping_helper": "Brezplačno nad €100",
   "cart__summary__vat": "DDV ({rate}%)",
+  "cart__summary__incl_vat": "vklj. DDV",
   "cart__summary__total": "Skupaj",
   "cart__summary__promo_placeholder": "Promocijska koda",
   "cart__summary__promo_apply": "Uporabi",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Dodaj naslov",
   "cart__addresses__use_different": "Uporabi drug naslov",
   "cart__addresses__save": "Shrani naslov",
-  "cart__addresses__incomplete": "Izpolnite naslov za dostavo za vsak izdelek."
+  "cart__addresses__incomplete": "Izpolnite naslov za dostavo za vsak izdelek.",
+  "cart__payment__pending_title": "Obdelujemo plačilo",
+  "cart__payment__pending_body": "Prosimo, ne zaprite tega okna. Naročilo varno potrjujemo pri ponudniku plačil.",
+  "cart__confirm__title": "Naročilo oddano",
+  "cart__confirm__body": "Hvala za naročilo. Poslali smo potrditveno e-pošto s podrobnostmi.",
+  "cart__confirm__reference": "Sklic: {id}",
+  "cart__confirm__view_order": "Ogled naročila",
+  "cart__confirm__continue": "Nadaljuj nakupovanje"
 }

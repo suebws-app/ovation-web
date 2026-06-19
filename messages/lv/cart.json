@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Bezmaksas",
   "cart__summary__shipping_helper": "Bezmaksas virs €100",
   "cart__summary__vat": "PVN ({rate}%)",
+  "cart__summary__incl_vat": "ar PVN",
   "cart__summary__total": "Kopā",
   "cart__summary__promo_placeholder": "Akcijas kods",
   "cart__summary__promo_apply": "Pielietot",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Pievienot adresi",
   "cart__addresses__use_different": "Izmantot citu adresi",
   "cart__addresses__save": "Saglabāt adresi",
-  "cart__addresses__incomplete": "Lūdzu, aizpildiet piegādes adresi katram produktam."
+  "cart__addresses__incomplete": "Lūdzu, aizpildiet piegādes adresi katram produktam.",
+  "cart__payment__pending_title": "Apstrādājam maksājumu",
+  "cart__payment__pending_body": "Lūdzu, neaizveriet šo logu. Mēs droši apstiprinām pasūtījumu pie maksājumu pakalpojumu sniedzēja.",
+  "cart__confirm__title": "Pasūtījums iesniegts",
+  "cart__confirm__body": "Paldies par pasūtījumu. Esam nosūtījuši apstiprinājuma e-pastu ar detaļām.",
+  "cart__confirm__reference": "Atsauce: {id}",
+  "cart__confirm__view_order": "Skatīt pasūtījumu",
+  "cart__confirm__continue": "Turpināt iepirkties"
 }

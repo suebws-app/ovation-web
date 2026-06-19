@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Miễn phí",
   "cart__summary__shipping_helper": "Miễn phí cho đơn trên €100",
   "cart__summary__vat": "VAT ({rate}%)",
+  "cart__summary__incl_vat": "đã bao gồm VAT",
   "cart__summary__total": "Tổng cộng",
   "cart__summary__promo_placeholder": "Mã khuyến mãi",
   "cart__summary__promo_apply": "Áp dụng",
@@ -49,5 +50,12 @@
   "cart__shipping__back": "Quay lại giỏ hàng",
   "cart__shipping__continue": "Tiếp tục thanh toán",
   "cart__shipping__error_required": "Bắt buộc",
-  "cart__shipping__error_country": "Chọn quốc gia"
+  "cart__shipping__error_country": "Chọn quốc gia",
+  "cart__payment__pending_title": "Đang xử lý thanh toán",
+  "cart__payment__pending_body": "Vui lòng không đóng cửa sổ này. Chúng tôi đang xác nhận đơn hàng một cách an toàn với nhà cung cấp thanh toán.",
+  "cart__confirm__title": "Đã đặt đơn hàng",
+  "cart__confirm__body": "Cảm ơn bạn đã đặt hàng. Chúng tôi đã gửi email xác nhận với các chi tiết.",
+  "cart__confirm__reference": "Mã tham chiếu: {id}",
+  "cart__confirm__view_order": "Xem đơn hàng",
+  "cart__confirm__continue": "Tiếp tục mua sắm"
 }

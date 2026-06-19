@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Nemokamai",
   "cart__summary__shipping_helper": "Nemokamai nuo 100 €",
   "cart__summary__vat": "PVM ({rate}%)",
+  "cart__summary__incl_vat": "su PVM",
   "cart__summary__total": "Iš viso",
   "cart__summary__promo_placeholder": "Akcijos kodas",
   "cart__summary__promo_apply": "Pritaikyti",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Pridėti adresą",
   "cart__addresses__use_different": "Naudoti kitą adresą",
   "cart__addresses__save": "Išsaugoti adresą",
-  "cart__addresses__incomplete": "Užpildykite pristatymo adresą kiekvienam produktui."
+  "cart__addresses__incomplete": "Užpildykite pristatymo adresą kiekvienam produktui.",
+  "cart__payment__pending_title": "Apdorojame mokėjimą",
+  "cart__payment__pending_body": "Prašome neuždaryti šio lango. Saugiai patvirtiname užsakymą su mokėjimo paslaugų teikėju.",
+  "cart__confirm__title": "Užsakymas pateiktas",
+  "cart__confirm__body": "Ačiū už užsakymą. Išsiuntėme patvirtinimo el. laišką su išsamia informacija.",
+  "cart__confirm__reference": "Nuoroda: {id}",
+  "cart__confirm__view_order": "Peržiūrėti užsakymą",
+  "cart__confirm__continue": "Tęsti apsipirkimą"
 }

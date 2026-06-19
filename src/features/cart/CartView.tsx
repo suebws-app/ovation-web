@@ -243,10 +243,10 @@ export const CartView = () => {
       setError(t("cart__addresses__incomplete"));
       return;
     }
-    if (totals?.shippingUnavailable) {
-      setError(t("cart__error__shipping_unavailable"));
-      return;
-    }
+    // if (totals?.shippingUnavailable) {
+    //   setError(t("cart__error__shipping_unavailable"));
+    //   return;
+    // }
     setError(null);
     setIsCheckingOut(true);
     try {
@@ -377,7 +377,6 @@ export const CartView = () => {
         defaultCountry={defaultCountry}
         onEditItem={setEditItemId}
         onBack={() => setStep("cart")}
-        error={error}
       />
     );
   };

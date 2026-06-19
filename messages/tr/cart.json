@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Ücretsiz",
   "cart__summary__shipping_helper": "100€ üzeri ücretsiz",
   "cart__summary__vat": "KDV ({rate}%)",
+  "cart__summary__incl_vat": "KDV dahil",
   "cart__summary__total": "Toplam",
   "cart__summary__promo_placeholder": "Promosyon kodu",
   "cart__summary__promo_apply": "Uygula",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Adres ekle",
   "cart__addresses__use_different": "Farklı bir adres kullan",
   "cart__addresses__save": "Adresi kaydet",
-  "cart__addresses__incomplete": "Lütfen her ürün için kargo adresini eksiksiz doldur."
+  "cart__addresses__incomplete": "Lütfen her ürün için kargo adresini eksiksiz doldur.",
+  "cart__payment__pending_title": "Ödemeniz işleniyor",
+  "cart__payment__pending_body": "Lütfen bu pencereyi kapatmayın. Siparişinizi ödeme sağlayıcıyla güvenli şekilde onaylıyoruz.",
+  "cart__confirm__title": "Sipariş alındı",
+  "cart__confirm__body": "Siparişiniz için teşekkürler. Detayları içeren bir onay e-postası gönderdik.",
+  "cart__confirm__reference": "Referans: {id}",
+  "cart__confirm__view_order": "Siparişi görüntüle",
+  "cart__confirm__continue": "Alışverişe devam et"
 }

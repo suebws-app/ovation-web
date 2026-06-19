@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Ilmainen",
   "cart__summary__shipping_helper": "Ilmainen yli 100 €",
   "cart__summary__vat": "ALV ({rate}%)",
+  "cart__summary__incl_vat": "sis. ALV",
   "cart__summary__total": "Yhteensä",
   "cart__summary__promo_placeholder": "Tarjouskoodi",
   "cart__summary__promo_apply": "Käytä",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Lisää osoite",
   "cart__addresses__use_different": "Käytä eri osoitetta",
   "cart__addresses__save": "Tallenna osoite",
-  "cart__addresses__incomplete": "Täytä toimitusosoite jokaiselle tuotteelle."
+  "cart__addresses__incomplete": "Täytä toimitusosoite jokaiselle tuotteelle.",
+  "cart__payment__pending_title": "Käsittelemme maksuasi",
+  "cart__payment__pending_body": "Älä sulje tätä ikkunaa. Vahvistamme tilauksesi turvallisesti maksupalveluntarjoajan kanssa.",
+  "cart__confirm__title": "Tilaus tehty",
+  "cart__confirm__body": "Kiitos tilauksestasi. Lähetimme vahvistussähköpostin tilauksen tiedoilla.",
+  "cart__confirm__reference": "Viite: {id}",
+  "cart__confirm__view_order": "Näytä tilaus",
+  "cart__confirm__continue": "Jatka ostoksia"
 }

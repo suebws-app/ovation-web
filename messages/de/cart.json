@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Kostenlos",
   "cart__summary__shipping_helper": "Kostenlos ab 100 €",
   "cart__summary__vat": "MwSt. ({rate}%)",
+  "cart__summary__incl_vat": "inkl. MwSt.",
   "cart__summary__total": "Gesamt",
   "cart__summary__promo_placeholder": "Aktionscode",
   "cart__summary__promo_apply": "Anwenden",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Adresse hinzufügen",
   "cart__addresses__use_different": "Andere Adresse verwenden",
   "cart__addresses__save": "Adresse speichern",
-  "cart__addresses__incomplete": "Bitte vervollständige die Lieferadresse für jedes Produkt."
+  "cart__addresses__incomplete": "Bitte vervollständige die Lieferadresse für jedes Produkt.",
+  "cart__payment__pending_title": "Zahlung wird verarbeitet",
+  "cart__payment__pending_body": "Bitte schließe dieses Fenster nicht. Wir bestätigen deine Bestellung sicher beim Zahlungsanbieter.",
+  "cart__confirm__title": "Bestellung aufgegeben",
+  "cart__confirm__body": "Danke für deine Bestellung. Wir haben dir eine Bestätigungs-E-Mail mit den Details geschickt.",
+  "cart__confirm__reference": "Referenz: {id}",
+  "cart__confirm__view_order": "Bestellung ansehen",
+  "cart__confirm__continue": "Weiter einkaufen"
 }

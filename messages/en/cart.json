@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Free",
   "cart__summary__shipping_helper": "Free over €100",
   "cart__summary__vat": "VAT ({rate}%)",
+  "cart__summary__incl_vat": "inc. VAT",
   "cart__summary__total": "Total",
   "cart__summary__promo_placeholder": "Promo code",
   "cart__summary__promo_apply": "Apply",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Add address",
   "cart__addresses__use_different": "Use a different address",
   "cart__addresses__save": "Save address",
-  "cart__addresses__incomplete": "Please complete the shipping address for every product."
+  "cart__addresses__incomplete": "Please complete the shipping address for every product.",
+  "cart__payment__pending_title": "Processing your payment",
+  "cart__payment__pending_body": "Please don’t close this window. We’re securely confirming your order with the payment provider.",
+  "cart__confirm__title": "Order placed",
+  "cart__confirm__body": "Thanks for your order. We’ve sent a confirmation email with the details.",
+  "cart__confirm__reference": "Reference: {id}",
+  "cart__confirm__view_order": "View order",
+  "cart__confirm__continue": "Continue shopping"
 }
