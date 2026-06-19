@@ -1,0 +1,9 @@
+{
+  "account__title": "Account",
+  "account__profile": "Profiel",
+  "account__preferences": "Voorkeuren",
+  "account__email_settings": "E-mailinstellingen",
+  "account__payment_methods": "Betaalmethodes",
+  "account__delete_account": "Account verwijderen",
+  "account__delete_confirm": "Deze actie kan niet ongedaan worden gemaakt. Weet je het zeker?"
+}

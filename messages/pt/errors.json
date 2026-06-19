@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Inicie sessão para continuar.",
+  "errors__forbidden": "Não tem acesso a isto.",
+  "errors__not_found": "Não encontrado.",
+  "errors__message_limit_reached": "Este livro de convidados está cheio — volte mais tarde!",
+  "errors__event_not_active": "Este livro de convidados está fechado.",
+  "errors__rate_limited": "Abrande por um momento e tente novamente.",
+  "errors__generic": "Algo correu mal. Referência: {traceId}",
+  "errors__pro_required": "É necessária uma conta profissional.",
+  "errors__pro_event_limit_reached": "Atingiu o limite de 12 eventos no plano Starter. Atualize para Studio para eventos ilimitados.",
+  "errors__pro_subscription_required": "É necessária uma subscrição Pro ativa para criar eventos."
+}

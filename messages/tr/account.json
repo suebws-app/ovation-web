@@ -1,0 +1,9 @@
+{
+  "account__title": "Hesap",
+  "account__profile": "Profil",
+  "account__preferences": "Tercihler",
+  "account__email_settings": "E-posta ayarları",
+  "account__payment_methods": "Ödeme yöntemleri",
+  "account__delete_account": "Hesabı sil",
+  "account__delete_confirm": "Bu işlem geri alınamaz. Emin misin?"
+}

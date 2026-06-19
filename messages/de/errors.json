@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Bitte melde dich an, um fortzufahren.",
+  "errors__forbidden": "Du hast keinen Zugriff darauf.",
+  "errors__not_found": "Nicht gefunden.",
+  "errors__message_limit_reached": "Dieses Gästebuch ist voll — schau später wieder vorbei!",
+  "errors__event_not_active": "Dieses Gästebuch ist geschlossen.",
+  "errors__rate_limited": "Einen Moment durchatmen und dann erneut versuchen.",
+  "errors__generic": "Etwas ist schiefgegangen. Referenz: {traceId}",
+  "errors__pro_required": "Ein professionelles Konto ist erforderlich.",
+  "errors__pro_event_limit_reached": "Du hast das Limit von 12 Events im Starter-Tarif erreicht. Upgrade auf Studio für unbegrenzte Events.",
+  "errors__pro_subscription_required": "Ein aktives Pro-Abonnement ist erforderlich, um Events zu erstellen."
+}

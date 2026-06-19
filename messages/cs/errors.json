@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Pro pokračování se prosím přihlas.",
+  "errors__forbidden": "K tomu nemáš přístup.",
+  "errors__not_found": "Nenalezeno.",
+  "errors__message_limit_reached": "Tato kniha hostů je plná — zkus to později!",
+  "errors__event_not_active": "Tato kniha hostů je uzavřená.",
+  "errors__rate_limited": "Trochu zpomal a zkus to znovu.",
+  "errors__generic": "Něco se pokazilo. Reference: {traceId}",
+  "errors__pro_required": "Vyžaduje se profesionální účet.",
+  "errors__pro_event_limit_reached": "Dosáhl jsi limitu 12 událostí v plánu Starter. Přejdi na Studio pro neomezené události.",
+  "errors__pro_subscription_required": "Pro vytváření událostí je nutné aktivní předplatné Pro."
+}

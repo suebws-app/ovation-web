@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Mag-sign in para magpatuloy.",
+  "errors__forbidden": "Wala kang access dito.",
+  "errors__not_found": "Hindi natagpuan.",
+  "errors__message_limit_reached": "Puno na ang guestbook na ito — bumalik mamaya!",
+  "errors__event_not_active": "Sarado ang guestbook na ito.",
+  "errors__rate_limited": "Sandali muna, pagkatapos ay subukang muli.",
+  "errors__generic": "May nangyaring mali. Reference: {traceId}",
+  "errors__pro_required": "Kinakailangan ang isang professional account.",
+  "errors__pro_event_limit_reached": "Naabot mo na ang 12-event na limitasyon sa Starter plan. Mag-upgrade sa Studio para sa walang-limitasyong mga event.",
+  "errors__pro_subscription_required": "Kinakailangan ang aktibong Pro subscription para makagawa ng mga event."
+}

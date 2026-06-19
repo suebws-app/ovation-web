@@ -1,0 +1,9 @@
+{
+  "account__title": "Účet",
+  "account__profile": "Profil",
+  "account__preferences": "Predvoľby",
+  "account__email_settings": "Nastavenia e-mailu",
+  "account__payment_methods": "Spôsoby platby",
+  "account__delete_account": "Zmazať účet",
+  "account__delete_confirm": "Túto akciu nie je možné vrátiť späť. Si si istý?"
+}

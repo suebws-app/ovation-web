@@ -1,0 +1,9 @@
+{
+  "account__title": "Cont",
+  "account__profile": "Profil",
+  "account__preferences": "Preferințe",
+  "account__email_settings": "Setări de email",
+  "account__payment_methods": "Metode de plată",
+  "account__delete_account": "Șterge contul",
+  "account__delete_confirm": "Această acțiune nu poate fi anulată. Ești sigur?"
+}

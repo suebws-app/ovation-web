@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Vennligst logg inn for å fortsette.",
+  "errors__forbidden": "Du har ikke tilgang til dette.",
+  "errors__not_found": "Ikke funnet.",
+  "errors__message_limit_reached": "Denne gjesteboken er full — sjekk igjen senere!",
+  "errors__event_not_active": "Denne gjesteboken er stengt.",
+  "errors__rate_limited": "Ta det med ro et øyeblikk, og prøv igjen.",
+  "errors__generic": "Noe gikk galt. Referanse: {traceId}",
+  "errors__pro_required": "En profesjonell konto er påkrevd.",
+  "errors__pro_event_limit_reached": "Du har nådd grensen på 12 arrangementer på Starter-planen. Oppgrader til Studio for ubegrenset antall arrangementer.",
+  "errors__pro_subscription_required": "Et aktivt Pro-abonnement er påkrevd for å opprette arrangementer."
+}

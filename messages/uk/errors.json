@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Будь ласка, увійди, щоб продовжити.",
+  "errors__forbidden": "У тебе немає доступу до цього.",
+  "errors__not_found": "Не знайдено.",
+  "errors__message_limit_reached": "Ця книга гостей заповнена — повернись пізніше!",
+  "errors__event_not_active": "Цю книгу гостей закрито.",
+  "errors__rate_limited": "Притримай на хвилинку, потім спробуй ще раз.",
+  "errors__generic": "Щось пішло не так. Код: {traceId}",
+  "errors__pro_required": "Потрібен професійний акаунт.",
+  "errors__pro_event_limit_reached": "Ти досяг(ла) ліміту в 12 подій на плані Starter. Перейди на Studio для необмеженої кількості подій.",
+  "errors__pro_subscription_required": "Для створення подій потрібна активна підписка Pro."
+}

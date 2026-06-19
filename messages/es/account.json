@@ -1,0 +1,9 @@
+{
+  "account__title": "Cuenta",
+  "account__profile": "Perfil",
+  "account__preferences": "Preferencias",
+  "account__email_settings": "Configuración de correo",
+  "account__payment_methods": "Métodos de pago",
+  "account__delete_account": "Eliminar cuenta",
+  "account__delete_confirm": "Esta acción no se puede deshacer. ¿Estás seguro?"
+}

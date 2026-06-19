@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Pre pokračovanie sa prosím prihlás.",
+  "errors__forbidden": "K tomuto nemáš prístup.",
+  "errors__not_found": "Nenájdené.",
+  "errors__message_limit_reached": "Táto kniha hostí je plná — skontroluj to neskôr!",
+  "errors__event_not_active": "Táto kniha hostí je zatvorená.",
+  "errors__rate_limited": "Spomaľ na chvíľu a potom to skús znova.",
+  "errors__generic": "Niečo sa pokazilo. Referencia: {traceId}",
+  "errors__pro_required": "Vyžaduje sa profesionálny účet.",
+  "errors__pro_event_limit_reached": "Dosiahol si limit 12 udalostí na pláne Starter. Prejdi na Studio pre neobmedzený počet udalostí.",
+  "errors__pro_subscription_required": "Pre vytváranie udalostí je potrebné aktívne Pro predplatné."
+}

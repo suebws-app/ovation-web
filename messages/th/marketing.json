@@ -1,0 +1,152 @@
+{
+  "marketing__nav__how_it_works": "วิธีการทำงาน",
+  "marketing__nav__keepsakes": "ของที่ระลึก",
+  "marketing__nav__pricing": "ราคา",
+  "marketing__nav__stories": "เรื่องราว",
+  "marketing__nav__for_planners": "สำหรับผู้จัดงาน",
+  "marketing__nav__sign_in": "เข้าสู่ระบบ",
+  "marketing__nav__cta": "เริ่มสร้างหนังสือของคุณ",
+  "marketing__nav__theme": "รูปแบบการแสดงผล",
+
+  "marketing__hero__badge": "ใช้งานแล้วในงานแต่งงานกว่า {count}+ งาน ใน {countries} ประเทศ",
+  "marketing__hero__title_line1": "งานแต่งงานของคุณ",
+  "marketing__hero__title_line2": "ผ่านเสียงของคนที่คุณรัก",
+  "marketing__hero__description": "Ovation คือแอปเก็บความทรงจำสำหรับคนที่คุณรักที่สุด แขกเพียงสแกน QR Code แล้วฝากข้อความเสียง วิดีโอ รูปภาพ หรือข้อความถึงคุณ คุณสามารถกลับมาฟังและดูได้ทุกเมื่อ ตราบเท่าที่คุณต้องการ",
+  "marketing__hero__cta_primary": "เริ่มสร้างหนังสือของคุณ",
+  "marketing__hero__cta_secondary": "ดูตัวอย่างหนังสือ",
+  "marketing__hero__social_proof": "คะแนนเฉลี่ย {rating} ★ · คู่รักกลับมาอ่านทุกปีในวันครบรอบ",
+
+  "marketing__logos__title": "ได้รับการนำเสนอใน",
+
+  "marketing__how__eyebrow": "Ovation ทำงานอย่างไร",
+  "marketing__how__title_line1": "3 ขั้นตอนง่าย ๆ",
+  "marketing__how__title_line2": "เพื่อเก็บไว้ย้อนดูตลอดไป",
+  "marketing__how__subtitle": "ออกแบบมาให้แม้แต่คุณยายวัย 82 ปีก็สามารถฝากข้อความได้โดยไม่ต้องขอความช่วยเหลือ",
+
+  "marketing__how__step1_tag": "10 นาที",
+  "marketing__how__step1_title": "ตั้งค่าหนังสือของคุณ",
+  "marketing__how__step1_body": "เลือกวันแต่งงาน เพิ่มชื่อคู่บ่าวสาวและรูปหน้าปก ซึ่งจะกลายเป็นหน้าต้อนรับสำหรับแขกของคุณ เราจะพิมพ์ชุดการ์ด QR แบบพรีเมียมสำหรับทุกโต๊ะและจัดส่งให้ทันเวลา",
+
+  "marketing__how__step2_tag": "ในวันงาน",
+  "marketing__how__step2_title": "แขกฝากข้อความเสียง วิดีโอ หรือข้อความ",
+  "marketing__how__step2_body": "แขกเพียงสแกน เลือกภาษา และเลือกวิธีการส่งข้อความ ไม่ว่าจะเป็นเสียงหรือวิดีโอความยาว 30–60 วินาที หรือข้อความเขียน พร้อมแนบรูปภาพได้ในทุกข้อความ ไม่ต้องดาวน์โหลดแอป ใช้งานได้กับสมาร์ตโฟนเกือบทุกรุ่นในช่วง 8 ปีที่ผ่านมา",
+
+  "marketing__how__step3_tag": "ตราบเท่าที่คุณต้องการ",
+  "marketing__how__step3_title": "กล่องข้อความของคุณ คลังความทรงจำของคุณ",
+  "marketing__how__step3_body": "หลังจบงานแต่ง ข้อความเสียงทั้งหมดจะอยู่ในกล่องข้อความของคุณ บันทึกข้อความโปรด สั่งทำ Gold Book หรือดาวน์โหลดไฟล์ .zip ของต้นฉบับทั้งหมดได้ทุกเมื่อ เป็นคลังข้อมูลที่คุณเก็บไว้บนอุปกรณ์ของคุณเอง",
+
+  "marketing__how__step3_time_label": "วันอังคาร · 7:12 น.",
+  "marketing__how__step3_quote": "\"Mi niña. คืนนี้ฉันมองดูเธอเต้นรำ และเห็นแม่ของเธออยู่ในทุกการเคลื่อนไหว เธอคงภูมิใจในตัวเธอมากแน่ ๆ\"",
+
+  "marketing__sample__eyebrow": "ข้อความจริง",
+  "marketing__sample__title_start": "ไม่ใช่แค่แบบฟอร์ม",
+  "marketing__sample__title_end": "แต่คือเสียงจริง",
+  "marketing__sample__description": "สมุดอวยพรงานแต่งแบบดั้งเดิมมักเต็มไปด้วยคำว่า \"ยินดีด้วย!!\" แต่ Ovation เก็บได้ทั้งน้ำเสียงสั่นเครือของคุณพ่อ เสียงหัวเราะของเพื่อนสนิท และคำพูดจากคุณยายในภาษาของเธอเอง ทุกข้อความจะถูกถอดเสียงอัตโนมัติตามภาษาที่พูด และคุณสามารถดาวน์โหลดไฟล์ต้นฉบับทั้งหมดได้ทุกเมื่อ",
+
+  "marketing__sample__stat1_value": "6",
+  "marketing__sample__stat1_label": "ภาษาที่ถอดเสียงอัตโนมัติได้",
+
+  "marketing__sample__stat2_value": ".zip",
+  "marketing__sample__stat2_label": "ดาวน์โหลดไฟล์ต้นฉบับได้ทุกเวลา",
+
+  "marketing__sample__stat3_value": "0",
+  "marketing__sample__stat3_label": "ไม่ต้องดาวน์โหลดแอป",
+
+  "marketing__sample__entry_label": "รายการที่ 47 · Mas de la Calma, Girona",
+
+  "marketing__sample__quote": "\"Mi niña. คืนนี้ฉันมองดูเธอเต้นรำ และเห็นแม่ของเธอ—ขอให้เธอไปสู่สุขคติ—อยู่ในทุกการเคลื่อนไหว เธอคงภูมิใจในตัวเธอมาก และฉันก็ภูมิใจเช่นกัน ขอให้มีชีวิตที่ยืนยาวและเรียนรู้ที่จะถกเถียงกันอย่างเข้าใจนะลูก\"",
+
+  "marketing__sample__author_name": "Abuela Carmen",
+  "marketing__sample__author_role": "คุณยายของเจ้าสาว · บันทึกเป็นภาษาสเปน",
+  "marketing__sample__saved_tag": "♡ บันทึกไว้ใน Gold Book",
+  "marketing__features__eyebrow": "ทุกอย่างในหนังสือเล่มเดียว",
+  "marketing__features__title_line1": "ใส่ใจในสิ่งที่สำคัญ",
+  "marketing__features__title_line2": "และเรียบง่ายในสิ่งที่ไม่จำเป็น",
+  "marketing__features__lang_eyebrow": "ตรวจจับอัตโนมัติ",
+  "marketing__features__lang_title": "รองรับ 6 ภาษา พร้อมถอดเสียงอัตโนมัติตามภาษาที่แขกพูด",
+  "marketing__features__book_eyebrow": "ของที่ระลึก",
+  "marketing__features__book_title": "Gold Book และอีกมากมาย — ปั๊มตัวอักษร วินิล และวิดีโอรวมความทรงจำ",
+  "marketing__features__book_price": "เริ่มต้นที่ {price}",
+  "marketing__features__book_shipping": "จัดส่งภายใน 2–3 สัปดาห์",
+  "marketing__features__privacy_eyebrow": "เป็นส่วนตัวโดยค่าเริ่มต้น",
+  "marketing__features__privacy_title": "มีเพียงคุณและคู่ของคุณเท่านั้นที่สามารถดูข้อมูลได้",
+  "marketing__features__privacy_detail": "HTTPS ทุกหน้า · GDPR · จัดเก็บข้อมูลในสหภาพยุโรป · ดาวน์โหลดข้อมูลของคุณได้ทุกเมื่อ",
+  "marketing__features__qr_eyebrow": "จัดส่งถึงบ้าน",
+  "marketing__features__qr_title": "การ์ด QR แบบเลตเตอร์เพรส จัดส่งทั่วโลก",
+  "marketing__features__kiosk_eyebrow": "ตัวเลือกเพิ่มเติม",
+  "marketing__features__kiosk_title": "เปลี่ยน iPad เครื่องเก่าให้เป็นจุดบันทึกข้อความแบบบริการตนเอง",
+  "marketing__features__kiosk_body": "ล็อกเต็มหน้าจอ ออกจากระบบด้วย PIN เหมาะสำหรับตั้งที่โต๊ะต้อนรับ",
+  "marketing__features__planner_eyebrow": "สำหรับผู้จัดงาน",
+  "marketing__features__planner_title": "ขาตั้ง QR ขนาดเล็กสำหรับทุกโต๊ะ พร้อมแดชบอร์ดสำหรับผู้จัดงาน",
+  "marketing__features__planner_body": "นำเข้ารายชื่อแขกจำนวนมาก จัดการหลายงานจากแดชบอร์ดเดียว และมอบสิทธิ์ผู้ช่วยให้กับผู้จัดงานของคุณ",
+
+  "marketing__testimonial__eyebrow": "จากคู่รักจริง",
+  "marketing__testimonial__quote": "\"เราเปิดฟังข้อความจากคุณพ่อผู้ล่วงลับในวันครบรอบแต่งงานปีแรก ตอนเที่ยงคืนในครัว ฉันไม่รู้จักผลิตภัณฑ์อื่นใดที่มอบช่วงเวลานั้นให้เราได้\"",
+  "marketing__testimonial__couple_name": "Sofía Ruiz & Matteo Bernal",
+  "marketing__testimonial__couple_detail": "แต่งงานเมื่อ 12 กันยายน 2024 · มายอร์กา",
+  "marketing__testimonial__stat1_value": "2,840",
+  "marketing__testimonial__stat1_label": "งานแต่งงานที่ให้บริการ",
+  "marketing__testimonial__stat2_value": "148,000",
+  "marketing__testimonial__stat2_label": "ข้อความเสียงที่บันทึก",
+  "marketing__testimonial__stat3_value": "4.9 ★",
+  "marketing__testimonial__stat3_label": "คะแนนเฉลี่ยจากคู่รัก (612 รีวิว)",
+
+  "marketing__pricing__eyebrow": "ราคา",
+  "marketing__pricing__title": "ราคาที่เรียบง่ายและตรงไปตรงมา",
+  "marketing__pricing__subtitle": "คู่รักจ่ายเพียงครั้งเดียว ส่วนมืออาชีพสามารถเลือกแพ็กเกจรายเดือนที่เติบโตไปพร้อมธุรกิจของคุณ",
+
+  "marketing__pricing__tab_couples": "คู่รัก",
+  "marketing__pricing__tab_professionals": "มืออาชีพ",
+
+  "marketing__pricing__one_time": "ชำระครั้งเดียว",
+  "marketing__pricing__per_month": "/ เดือน",
+
+  "marketing__pricing__keepsake_tag": "ตัวเลือกยอดนิยม",
+  "marketing__pricing__keepsake_name": "Keepsake",
+  "marketing__pricing__keepsake_desc": "ประสบการณ์ Ovation แบบสมบูรณ์ เก็บทุกข้อความเสียงจากงานแต่งของคุณและเข้าถึงออนไลน์ได้ตลอด 1 ปี",
+
+  "marketing__pricing__keepsake_feats__up_to_250_guests": "รองรับแขกสูงสุด 250 คน",
+  "marketing__pricing__keepsake_feats__letterpress_qr_card_deck_shipped": "ชุดการ์ด QR แบบเลตเตอร์เพรสพร้อมจัดส่ง",
+  "marketing__pricing__keepsake_feats__unlimited_languages_translations": "ภาษาและการแปลไม่จำกัด",
+  "marketing__pricing__keepsake_feats__planner_co_pilot_seat": "สิทธิ์ผู้ช่วยสำหรับผู้จัดงาน",
+  "marketing__pricing__keepsake_feats__priority_guest_support": "บริการช่วยเหลือแขกระดับพรีเมียม",
+  "marketing__pricing__keepsake_feats__custom_couple_domain": "URL เฉพาะสำหรับคู่รัก",
+
+  "marketing__pricing__keepsake_cta": "เลือก Keepsake",
+
+  "marketing__pricing__gold_tag": "ประสบการณ์แบบเต็มรูปแบบ",
+  "marketing__pricing__gold_name": "Gold Book",
+  "marketing__pricing__gold_desc": "ทุกอย่างใน Keepsake พร้อมหนังสือจริง 180 หน้า เข้าเล่มผ้าลินินคุณภาพสูง",
+
+  "marketing__pricing__gold_feats__everything_in_keepsake": "ทุกอย่างที่มีใน Keepsake",
+  "marketing__pricing__gold_feats__the_gold_book_180_pp_linen_bound": "Gold Book (สูงสุด 180 หน้า ปกแข็งพรีเมียม)",
+  "marketing__pricing__gold_feats__archival_grade_paper": "ตัวเลือกกระดาษคุณภาพสำหรับการเก็บรักษาระยะยาว",
+  "marketing__pricing__gold_feats__global_free_shipping": "จัดส่งฟรีภายในสหภาพยุโรป",
+
+  "marketing__pricing__gold_cta": "เลือก Gold Book",
+
+  "marketing__pricing__pro_starter_tag": "ช่างภาพและผู้จัดงาน",
+  "marketing__pricing__pro_starter_name": "Starter",
+  "marketing__pricing__pro_starter_desc": "สำหรับผู้สร้างสรรค์อิสระที่รับงานได้สูงสุด 12 งานต่อปี",
+
+  "marketing__pricing__pro_starter_feats__up_to_12_events": "สูงสุด 12 งานต่อปี",
+  "marketing__pricing__pro_starter_feats__full_couple_experience": "ประสบการณ์เต็มรูปแบบสำหรับคู่รักในทุกงาน",
+  "marketing__pricing__pro_starter_feats__letterpress_qr_cards": "ชุดการ์ด QR แบบเลตเตอร์เพรสสำหรับแต่ละงาน",
+  "marketing__pricing__pro_starter_feats__client_dashboard": "แดชบอร์ดสำหรับลูกค้า",
+  "marketing__pricing__pro_starter_feats__co_pilot_seat": "สิทธิ์ผู้ช่วยผู้จัดงาน",
+
+  "marketing__pricing__pro_starter_cta": "เริ่มทดลองใช้ฟรี",
+
+  "marketing__pricing__pro_studio_tag": "สตูดิโอและเอเจนซี",
+  "marketing__pricing__pro_studio_name": "Studio",
+  "marketing__pricing__pro_studio_desc": "สำหรับทีมที่ดูแลช่างภาพหลายคนและงานได้ไม่จำกัด",
+
+  "marketing__pricing__pro_studio_feats__unlimited_events": "จำนวนงานไม่จำกัด",
+  "marketing__pricing__pro_studio_feats__everything_in_starter": "ทุกอย่างที่มีใน Starter",
+  "marketing__pricing__pro_studio_feats__multi_seat_access": "สิทธิ์ใช้งานหลายบัญชีสำหรับทีม (เร็ว ๆ นี้)",
+  "marketing__pricing__pro_studio_feats__custom_branding": "หน้าอีเวนต์แบบ White-label (เร็ว ๆ นี้)",
+  "marketing__pricing__pro_studio_feats__analytics": "แดชบอร์ดวิเคราะห์และรายงานผล",
+  "marketing__pricing__pro_studio_feats__account_manager": "ผู้ดูแลบัญชีเฉพาะ",
+
+  "marketing__pricing__pro_studio_cta": "เริ่มทดลองใช้ฟรี"
+}

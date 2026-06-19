@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Logga in för att fortsätta.",
+  "errors__forbidden": "Du har inte åtkomst till detta.",
+  "errors__not_found": "Hittades inte.",
+  "errors__message_limit_reached": "Den här gästboken är full — kom tillbaka senare!",
+  "errors__event_not_active": "Den här gästboken är stängd.",
+  "errors__rate_limited": "Sakta ner ett ögonblick och försök sedan igen.",
+  "errors__generic": "Något gick fel. Referens: {traceId}",
+  "errors__pro_required": "Ett professionellt konto krävs.",
+  "errors__pro_event_limit_reached": "Du har nått gränsen på 12 evenemang på Starter-planen. Uppgradera till Studio för obegränsat antal evenemang.",
+  "errors__pro_subscription_required": "En aktiv Pro-prenumeration krävs för att skapa evenemang."
+}
