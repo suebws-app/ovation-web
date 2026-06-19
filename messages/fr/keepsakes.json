@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Livre d'or",
   "keepsakes__book_customizer__spine_title": "Tranche",
   "keepsakes__book_customizer__spine_description": "La largeur de la tranche est calculée automatiquement à l'envoi pour impression.",
-  "keepsakes__book_customizer__spine_body": "La largeur de la tranche sera calculée par Peecho en fonction du nombre de pages final et du grammage du papier.",
+  "keepsakes__book_customizer__spine_body": "La largeur de la tranche sera calculée en fonction du nombre de pages final et du grammage du papier.",
   "keepsakes__book_customizer__personalize_title": "Personnaliser",
   "keepsakes__book_customizer__personalize_description": "Touches optionnelles imprimées à l'intérieur de votre livre.",
   "keepsakes__book_customizer__cover_text_label": "Texte de couverture (facultatif)",

@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold Book",
   "keepsakes__book_customizer__spine_title": "책등",
   "keepsakes__book_customizer__spine_description": "책등 너비는 인쇄 발송 시 자동으로 계산됩니다.",
-  "keepsakes__book_customizer__spine_body": "책등 너비는 최종 페이지 수와 종이 재질에 따라 Peecho에서 계산됩니다.",
+  "keepsakes__book_customizer__spine_body": "책등 너비는 최종 페이지 수와 종이 재질에 따라 계산됩니다.",
   "keepsakes__book_customizer__personalize_title": "개인화",
   "keepsakes__book_customizer__personalize_description": "북 내부에 인쇄되는 선택 요소.",
   "keepsakes__book_customizer__cover_text_label": "표지 텍스트 (선택)",

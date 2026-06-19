@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Золота книга",
   "keepsakes__book_customizer__spine_title": "Корінець",
   "keepsakes__book_customizer__spine_description": "Ширина корінця обчислюється автоматично, щойно вашу книгу буде надіслано на друк.",
-  "keepsakes__book_customizer__spine_body": "Ширину корінця визначить Peecho на основі остаточної кількості сторінок і типу паперу.",
+  "keepsakes__book_customizer__spine_body": "Ширину корінця буде визначено на основі остаточної кількості сторінок і типу паперу.",
   "keepsakes__book_customizer__personalize_title": "Персоналізація",
   "keepsakes__book_customizer__personalize_description": "Необов'язкові деталі, надруковані всередині вашої книги.",
   "keepsakes__book_customizer__cover_text_label": "Текст на обкладинці (необов'язково)",

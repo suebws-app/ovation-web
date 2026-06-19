@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Zlatna knjiga",
   "keepsakes__book_customizer__spine_title": "Hrbat",
   "keepsakes__book_customizer__spine_description": "Širina hrpta izračunava se automatski kada se knjiga pošalje u tisak.",
-  "keepsakes__book_customizer__spine_body": "Širinu hrpta izračunat će Peecho na temelju konačnog broja stranica i vrste papira.",
+  "keepsakes__book_customizer__spine_body": "Širinu hrpta izračunat će se na temelju konačnog broja stranica i vrste papira.",
   "keepsakes__book_customizer__personalize_title": "Personalizirajte",
   "keepsakes__book_customizer__personalize_description": "Neobavezni detalji otisnuti unutar vaše knjige.",
   "keepsakes__book_customizer__cover_text_label": "Tekst na koricama (neobavezno)",

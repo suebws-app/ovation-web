@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold Book",
   "keepsakes__book_customizer__spine_title": "Rygg",
   "keepsakes__book_customizer__spine_description": "Ryggens bredd beräknas automatiskt när din bok skickas till tryck.",
-  "keepsakes__book_customizer__spine_body": "Ryggens bredd beräknas av Peecho baserat på ditt slutliga sidantal och pappersval.",
+  "keepsakes__book_customizer__spine_body": "Ryggens bredd beräknas baserat på ditt slutliga sidantal och pappersval.",
   "keepsakes__book_customizer__personalize_title": "Personalisera",
   "keepsakes__book_customizer__personalize_description": "Valfria detaljer tryckta inuti din bok.",
   "keepsakes__book_customizer__cover_text_label": "Omslagstext (valfritt)",

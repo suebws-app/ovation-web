@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold Book",
   "keepsakes__book_customizer__spine_title": "Selkä",
   "keepsakes__book_customizer__spine_description": "Selän leveys lasketaan automaattisesti, kun kirja lähetetään painoon.",
-  "keepsakes__book_customizer__spine_body": "Peecho laskee selän leveyden lopullisen sivumäärän ja paperilaadun perusteella.",
+  "keepsakes__book_customizer__spine_body": "Selän leveys lasketaan lopullisen sivumäärän ja paperilaadun perusteella.",
   "keepsakes__book_customizer__personalize_title": "Personoi",
   "keepsakes__book_customizer__personalize_description": "Valinnaisia yksityiskohtia kirjasi sisälle.",
   "keepsakes__book_customizer__cover_text_label": "Kannen teksti (valinnainen)",

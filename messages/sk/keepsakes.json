@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "Chrbát",
   "keepsakes__book_customizer__spine_description": "Šírka chrbta sa vypočíta automaticky po odoslaní knihy do tlače.",
-  "keepsakes__book_customizer__spine_body": "Šírku chrbta vypočíta Peecho na základe tvojho finálneho počtu strán a typu papiera.",
+  "keepsakes__book_customizer__spine_body": "Šírku chrbta sa vypočíta na základe tvojho finálneho počtu strán a typu papiera.",
   "keepsakes__book_customizer__personalize_title": "Personalizácia",
   "keepsakes__book_customizer__personalize_description": "Voliteľné dotyky vytlačené vnútri tvojej knihy.",
   "keepsakes__book_customizer__cover_text_label": "Text obalu (voliteľné)",

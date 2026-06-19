@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold Book",
   "keepsakes__book_customizer__spine_title": "Grzbiet",
   "keepsakes__book_customizer__spine_description": "Szerokość grzbietu jest obliczana automatycznie po wysłaniu księgi do druku.",
-  "keepsakes__book_customizer__spine_body": "Szerokość grzbietu zostanie obliczona przez Peecho na podstawie ostatecznej liczby stron i rodzaju papieru.",
+  "keepsakes__book_customizer__spine_body": "Szerokość grzbietu zostanie obliczona na podstawie ostatecznej liczby stron i rodzaju papieru.",
   "keepsakes__book_customizer__personalize_title": "Personalizuj",
   "keepsakes__book_customizer__personalize_description": "Opcjonalne akcenty wydrukowane wewnątrz Twojej księgi.",
   "keepsakes__book_customizer__cover_text_label": "Tekst na okładce (opcjonalnie)",

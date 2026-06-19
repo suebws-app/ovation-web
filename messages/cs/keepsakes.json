@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "Hřbet",
   "keepsakes__book_customizer__spine_description": "Šířka hřbetu se vypočítá automaticky po odeslání tvé knihy do tisku.",
-  "keepsakes__book_customizer__spine_body": "Šířku hřbetu vypočítá Peecho na základě tvého konečného počtu stran a typu papíru.",
+  "keepsakes__book_customizer__spine_body": "Šířku hřbetu se vypočítá na základě tvého konečného počtu stran a typu papíru.",
   "keepsakes__book_customizer__personalize_title": "Personalizace",
   "keepsakes__book_customizer__personalize_description": "Volitelné dotyky vytištěné uvnitř tvé knihy.",
   "keepsakes__book_customizer__cover_text_label": "Text obálky (volitelný)",
