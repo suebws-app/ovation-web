@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold Book",
   "keepsakes__book_customizer__spine_title": "Lomo",
   "keepsakes__book_customizer__spine_description": "El grosor del lomo se calcula automáticamente cuando tu libro se envía a imprimir.",
-  "keepsakes__book_customizer__spine_body": "Peecho calculará el grosor del lomo según el número final de páginas y el tipo de papel.",
+  "keepsakes__book_customizer__spine_body": "El grosor del lomo se calculará según el número final de páginas y el tipo de papel.",
   "keepsakes__book_customizer__personalize_title": "Personalizar",
   "keepsakes__book_customizer__personalize_description": "Detalles opcionales impresos dentro de tu libro.",
   "keepsakes__book_customizer__cover_text_label": "Texto de portada (opcional)",

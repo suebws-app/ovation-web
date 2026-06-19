@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "Rygg",
   "keepsakes__book_customizer__spine_description": "Ryggbredden beregnes automatisk når boken din sendes til trykk.",
-  "keepsakes__book_customizer__spine_body": "Ryggbredde vil bli beregnet av Peecho basert på det endelige sideantallet og papirkvaliteten.",
+  "keepsakes__book_customizer__spine_body": "Ryggbredde vil bli beregnet basert på det endelige sideantallet og papirkvaliteten.",
   "keepsakes__book_customizer__personalize_title": "Tilpass",
   "keepsakes__book_customizer__personalize_description": "Valgfrie detaljer trykt inni boken din.",
   "keepsakes__book_customizer__cover_text_label": "Forsidetekst (valgfritt)",

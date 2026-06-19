@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "Dorso",
   "keepsakes__book_customizer__spine_description": "La larghezza del dorso viene calcolata automaticamente una volta che il tuo libro viene inviato in stampa.",
-  "keepsakes__book_customizer__spine_body": "La larghezza del dorso sarà calcolata da Peecho in base al numero finale di pagine e al tipo di carta.",
+  "keepsakes__book_customizer__spine_body": "La larghezza del dorso sarà calcolata in base al numero finale di pagine e al tipo di carta.",
   "keepsakes__book_customizer__personalize_title": "Personalizza",
   "keepsakes__book_customizer__personalize_description": "Tocchi opzionali stampati all'interno del tuo libro.",
   "keepsakes__book_customizer__cover_text_label": "Testo di copertina (opzionale)",

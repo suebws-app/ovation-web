@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "Ryg",
   "keepsakes__book_customizer__spine_description": "Rygbredden beregnes automatisk, når din bog sendes til tryk.",
-  "keepsakes__book_customizer__spine_body": "Rygbredden beregnes af Peecho baseret på dit endelige sideantal og papirtype.",
+  "keepsakes__book_customizer__spine_body": "Rygbredden beregnes baseret på dit endelige sideantal og papirtype.",
   "keepsakes__book_customizer__personalize_title": "Personliggør",
   "keepsakes__book_customizer__personalize_description": "Valgfrie detaljer trykt inde i din bog.",
   "keepsakes__book_customizer__cover_text_label": "Forsidetekst (valgfrit)",

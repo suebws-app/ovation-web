@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold Book",
   "keepsakes__book_customizer__spine_title": "Lombada",
   "keepsakes__book_customizer__spine_description": "A largura da lombada é calculada automaticamente assim que o livro for enviado para impressão.",
-  "keepsakes__book_customizer__spine_body": "A largura da lombada será calculada pela Peecho com base na contagem final de páginas e no papel.",
+  "keepsakes__book_customizer__spine_body": "A largura da lombada será calculada com base na contagem final de páginas e no papel.",
   "keepsakes__book_customizer__personalize_title": "Personalizar",
   "keepsakes__book_customizer__personalize_description": "Detalhes opcionais impressos no interior do livro.",
   "keepsakes__book_customizer__cover_text_label": "Texto da capa (opcional)",

@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "Cotor",
   "keepsakes__book_customizer__spine_description": "Lățimea cotorului este calculată automat odată ce cartea ta este trimisă la tipar.",
-  "keepsakes__book_customizer__spine_body": "Lățimea cotorului va fi calculată de Peecho pe baza numărului final de pagini și a tipului de hârtie.",
+  "keepsakes__book_customizer__spine_body": "Lățimea cotorului va fi calculată pe baza numărului final de pagini și a tipului de hârtie.",
   "keepsakes__book_customizer__personalize_title": "Personalizează",
   "keepsakes__book_customizer__personalize_description": "Atingeri opționale tipărite în interiorul cărții tale.",
   "keepsakes__book_customizer__cover_text_label": "Text copertă (opțional)",

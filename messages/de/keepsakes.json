@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold Book",
   "keepsakes__book_customizer__spine_title": "Buchrücken",
   "keepsakes__book_customizer__spine_description": "Die Buchrückenbreite wird automatisch berechnet, sobald dein Buch in den Druck geht.",
-  "keepsakes__book_customizer__spine_body": "Die Buchrückenbreite wird von Peecho anhand deiner endgültigen Seitenzahl und Papierart berechnet.",
+  "keepsakes__book_customizer__spine_body": "Die Buchrückenbreite wird anhand deiner endgültigen Seitenzahl und Papierart berechnet.",
   "keepsakes__book_customizer__personalize_title": "Personalisieren",
   "keepsakes__book_customizer__personalize_description": "Optionale Details, die in deinem Buch gedruckt werden.",
   "keepsakes__book_customizer__cover_text_label": "Cover-Text (optional)",

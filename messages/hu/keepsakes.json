@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "Gerinc",
   "keepsakes__book_customizer__spine_description": "A gerinc szélességét automatikusan kiszámítjuk, amint a könyved nyomtatásra megy.",
-  "keepsakes__book_customizer__spine_body": "A gerinc szélességét a Peecho kalkulálja a végső oldalszám és papír alapján.",
+  "keepsakes__book_customizer__spine_body": "A gerinc szélességét kalkuláljuk a végső oldalszám és papír alapján.",
   "keepsakes__book_customizer__personalize_title": "Személyre szabás",
   "keepsakes__book_customizer__personalize_description": "Opcionális részletek nyomtatva a könyved belsejében.",
   "keepsakes__book_customizer__cover_text_label": "Borító szöveg (opcionális)",

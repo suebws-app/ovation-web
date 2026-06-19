@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "สันหนังสือ",
   "keepsakes__book_customizer__spine_description": "ความกว้างของสันหนังสือคำนวณอัตโนมัติเมื่อส่งหนังสือของคุณไปพิมพ์",
-  "keepsakes__book_customizer__spine_body": "ความกว้างของสันหนังสือจะถูกคำนวณโดย Peecho ตามจำนวนหน้าและกระดาษสุดท้าย",
+  "keepsakes__book_customizer__spine_body": "ความกว้างของสันหนังสือจะถูกคำนวณตามจำนวนหน้าและกระดาษสุดท้าย",
   "keepsakes__book_customizer__personalize_title": "ปรับแต่ง",
   "keepsakes__book_customizer__personalize_description": "การปรับแต่งที่ไม่บังคับพิมพ์ภายในหนังสือของคุณ",
   "keepsakes__book_customizer__cover_text_label": "ข้อความบนปก (ไม่บังคับ)",
