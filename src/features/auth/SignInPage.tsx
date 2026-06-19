@@ -9,7 +9,7 @@ export const SignInPage = async () => {
   const initialFailCount = raw && /^\d+$/.test(raw) ? Number(raw) : 0;
   return (
     <>
-      <BackNavigationGuard redirectTo={appRoutes.auth.signIn} />
+      <BackNavigationGuard redirectTo={appRoutes.home} />
       <SignInFlow step="form" initialFailCount={initialFailCount} />
     </>
   );
