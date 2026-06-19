@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
 import { TruckIcon } from "@ovation/icons/TruckIcon";
 import { TrashIcon } from "@ovation/icons/TrashIcon";
+import { Skeleton } from "@ovation/ui/components/Skeleton";
 import { formatPrice } from "@/features/keepsakes/designTokens";
 import { formatVariantName } from "@/lib/utils/formatVariantName";
 import { useCartStore, type CartItem } from "../store/useCartStore";
@@ -13,9 +14,20 @@ import { CartLineItemArt } from "./CartLineItemArt";
 type CartLineItemProps = {
   item: CartItem;
   isLast: boolean;
+  shippingCents?: number;
+  currency?: string;
+  readOnly?: boolean;
+  loading?: boolean;
 };
 
-export const CartLineItem = ({ item, isLast }: CartLineItemProps) => {
+export const CartLineItem = ({
+  item,
+  isLast,
+  shippingCents,
+  currency,
+  readOnly = false,
+  loading = false,
+}: CartLineItemProps) => {
   const t = useTranslations();
   const remove = useCartStore((s) => s.remove);
   const increment = useCartStore((s) => s.increment);
@@ -52,34 +64,54 @@ export const CartLineItem = ({ item, isLast }: CartLineItemProps) => {
               {shipsLabel}
             </span>
           )}
-          <button
-            type="button"
-            onClick={() => remove(item.id)}
-            className="type-caption text-destructive inline-flex cursor-pointer items-center gap-1 font-semibold"
-          >
-            <TrashIcon width={12} height={12} />
-            {t("cart__line__remove")}
-          </button>
+          {!readOnly && (
+            <button
+              type="button"
+              onClick={() => remove(item.id)}
+              className="type-caption text-destructive inline-flex cursor-pointer items-center gap-1 font-semibold"
+            >
+              <TrashIcon width={12} height={12} />
+              {t("cart__line__remove")}
+            </button>
+          )}
         </div>
       </div>
       <div className="tablet:flex hidden flex-col items-end gap-2">
-        <QuantityStepper
-          value={item.quantity}
-          onIncrement={() => increment(item.id)}
-          onDecrement={() => decrement(item.id)}
-        />
-      </div>
-      <div className="min-w-16 text-right">
-        <div className="type-h4 font-serif font-semibold tracking-tight">
-          {formatPrice(lineTotalCents, item.currency)}
-        </div>
-        <div className="tablet:hidden mt-2 flex justify-end">
+        {!readOnly && (
           <QuantityStepper
             value={item.quantity}
             onIncrement={() => increment(item.id)}
             onDecrement={() => decrement(item.id)}
           />
+        )}
+      </div>
+      <div className="min-w-16 text-right">
+        <div className="type-h4 font-serif font-semibold tracking-tight">
+          {formatPrice(lineTotalCents, item.currency)}
         </div>
+        {loading && item.requiresShipping ? (
+          <div className="mt-1 flex justify-end">
+            <Skeleton className="h-3 w-20" />
+          </div>
+        ) : (
+          typeof shippingCents === "number" &&
+          shippingCents > 0 && (
+            <div className="type-caption text-muted-foreground mt-1">
+              {t("cart__line__shipping", {
+                price: formatPrice(shippingCents, currency ?? item.currency),
+              })}
+            </div>
+          )
+        )}
+        {!readOnly && (
+          <div className="tablet:hidden mt-2 flex justify-end">
+            <QuantityStepper
+              value={item.quantity}
+              onIncrement={() => increment(item.id)}
+              onDecrement={() => decrement(item.id)}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

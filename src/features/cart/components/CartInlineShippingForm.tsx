@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
@@ -14,6 +15,7 @@ type CartInlineShippingFormProps = {
   title?: string;
   subtitle?: string | null;
   idPrefix?: string;
+  defaultCountry?: string;
 };
 
 const emptyShipping: CartShipping = {
@@ -33,9 +35,17 @@ export const CartInlineShippingForm = ({
   title,
   subtitle,
   idPrefix = "inline-ship",
+  defaultCountry,
 }: CartInlineShippingFormProps) => {
   const t = useTranslations();
   const form = value ?? emptyShipping;
+
+  useEffect(() => {
+    if (defaultCountry && !form.country) {
+      onChange({ ...form, country: defaultCountry });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultCountry]);
 
   const update =
     (field: keyof CartShipping) => (e: React.ChangeEvent<HTMLInputElement>) => {

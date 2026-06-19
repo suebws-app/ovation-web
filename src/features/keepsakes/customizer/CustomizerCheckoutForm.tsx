@@ -1,22 +1,16 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
-import {
-  useCartStore,
-  type CartShipping,
-} from "@/features/cart/store/useCartStore";
-import { paymentsClient } from "@/lib/api/payments-client";
+import { useCartStore } from "@/features/cart/store/useCartStore";
+import { useBuyNowStore } from "@/features/cart/store/useBuyNowStore";
 import { ApiError } from "@/lib/api/client";
-import { clientEnv as env } from "@/lib/utils/env.client";
 import { formatPrice } from "../designTokens";
 import { useCreateKeepsakePreview } from "@/lib/query/pdfQueries";
 import { PreviewPdfModal } from "./PreviewPdfModal";
-import { CustomizerShippingFields } from "./CustomizerShippingFields";
-import { requiresState } from "@/features/cart/components/StateSelect";
 import type { BindType } from "@/lib/api/keepsakes-client";
 import type {
   Event,
@@ -86,71 +80,15 @@ export const CustomizerCheckoutForm = ({
   priceBreakdown,
 }: CustomizerCheckoutFormProps) => {
   const t = useTranslations();
+  const router = useRouter();
   const add = useCartStore((s) => s.add);
-  const persistedShipping = useCartStore((s) => s.shipping);
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const startBuyNow = useBuyNowStore((s) => s.start);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [addedToCart, setAddedToCart] = useState(false);
   const [previewRenderId, setPreviewRenderId] = useState<string | null>(null);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewError, setPreviewError] = useState<string | null>(null);
-  const [shippingErrors, setShippingErrors] = useState<
-    Partial<Record<keyof CartShipping, string>>
-  >({});
   const previewMutation = useCreateKeepsakePreview();
-
-  const variantIds = useMemo(
-    () => (selectedVariant?.id ? [selectedVariant.id] : []),
-    [selectedVariant],
-  );
-
-  const validateShipping = (
-    shipping: CartShipping | null,
-  ): {
-    valid: boolean;
-    errors: Partial<Record<keyof CartShipping, string>>;
-    cleaned?: CartShipping;
-  } => {
-    const errs: Partial<Record<keyof CartShipping, string>> = {};
-    if (!shipping) {
-      return {
-        valid: false,
-        errors: {
-          name: t("cart__shipping__error_required"),
-          line1: t("cart__shipping__error_required"),
-          city: t("cart__shipping__error_required"),
-          postalCode: t("cart__shipping__error_required"),
-          country: t("cart__shipping__error_country"),
-        },
-      };
-    }
-    if (!shipping.name.trim()) errs.name = t("cart__shipping__error_required");
-    if (!shipping.line1.trim())
-      errs.line1 = t("cart__shipping__error_required");
-    if (!shipping.city.trim()) errs.city = t("cart__shipping__error_required");
-    if (!shipping.postalCode.trim())
-      errs.postalCode = t("cart__shipping__error_required");
-    if (shipping.country.trim().length !== 2)
-      errs.country = t("cart__shipping__error_country");
-    if (requiresState(shipping.country) && !shipping.state)
-      errs.state = t("cart__shipping__error_required");
-    if (Object.keys(errs).length > 0) {
-      return { valid: false, errors: errs };
-    }
-    return {
-      valid: true,
-      errors: {},
-      cleaned: {
-        name: shipping.name.trim(),
-        line1: shipping.line1.trim(),
-        line2: shipping.line2?.trim() || undefined,
-        city: shipping.city.trim(),
-        postalCode: shipping.postalCode.trim(),
-        country: shipping.country.trim().toUpperCase(),
-        state: shipping.state,
-      },
-    };
-  };
 
   useEffect(() => {
     if (!addedToCart) return;
@@ -161,40 +99,38 @@ export const CustomizerCheckoutForm = ({
   const effectivePriceCents =
     unitPriceCents ?? selectedVariant?.priceCents ?? 0;
   const productCurrency = selectedVariant?.currency ?? "EUR";
-  const buttonDisabled = !eventId || !isReady || isCheckingOut;
+  const buttonDisabled = !eventId || !isReady;
   const showBreakdown = Boolean(
     priceBreakdown &&
     priceBreakdown.pricePerPageCents > 0 &&
     priceBreakdown.pageCount > 0,
   );
 
+  const buildItem = (id: string) => ({
+    eventId: id,
+    productType: product.productType,
+    productNameKey: product.name,
+    productSubtitleKey: product.subtitle,
+    productVariantId: selectedVariant?.id ?? null,
+    variantName: selectedVariant?.name ?? null,
+    unitPriceCents: effectivePriceCents,
+    currency: productCurrency,
+    quantity: 1,
+    customization: {
+      ...customization,
+      ...(priceBreakdown?.pageCount
+        ? { pageCount: priceBreakdown.pageCount }
+        : {}),
+    },
+    photoIds: photoSelectAll ? [] : (photoIds ?? []),
+    photoSelectAll: photoSelectAll ?? null,
+    timelineDays: null,
+    requiresShipping,
+  });
+
   const handleAddToCart = () => {
     if (!eventId) return;
-    const itemShipping = requiresShipping
-      ? (validateShipping(persistedShipping).cleaned ?? null)
-      : null;
-    add({
-      eventId,
-      productType: product.productType,
-      productNameKey: product.name,
-      productSubtitleKey: product.subtitle,
-      productVariantId: selectedVariant?.id ?? null,
-      variantName: selectedVariant?.name ?? null,
-      unitPriceCents: effectivePriceCents,
-      currency: productCurrency,
-      quantity: 1,
-      customization: {
-        ...customization,
-        ...(priceBreakdown?.pageCount
-          ? { pageCount: priceBreakdown.pageCount }
-          : {}),
-      },
-      photoIds: photoSelectAll ? [] : (photoIds ?? []),
-      photoSelectAll: photoSelectAll ?? null,
-      timelineDays: null,
-      requiresShipping,
-      shipping: itemShipping,
-    });
+    add(buildItem(eventId));
     setAddedToCart(true);
   };
 
@@ -231,55 +167,11 @@ export const CustomizerCheckoutForm = ({
     }
   };
 
-  const handleBuyNow = async () => {
+  const handleBuyNow = () => {
     if (!eventId) return;
     setSubmitError(null);
-
-    let shippingPayload: CartShipping | undefined;
-    if (requiresShipping) {
-      const result = validateShipping(persistedShipping);
-      if (!result.valid) {
-        setShippingErrors(result.errors);
-        return;
-      }
-      setShippingErrors({});
-      shippingPayload = result.cleaned;
-    }
-
-    setIsCheckingOut(true);
-    try {
-      const origin =
-        typeof window !== "undefined" ? window.location.origin : env.APP_URL;
-      const result = await paymentsClient.createCheckoutSession({
-        eventId,
-        orderType: "keepsake",
-        items: [
-          {
-            productType: product.productType,
-            productVariantId: selectedVariant?.id ?? undefined,
-            quantity: 1,
-            customization,
-            photoIds: photoSelectAll
-              ? undefined
-              : photoIds && photoIds.length > 0
-                ? photoIds
-                : undefined,
-            photoSelectAll: photoSelectAll ?? undefined,
-          },
-        ],
-        shippingAddress: shippingPayload,
-        successUrl: `${origin}${appRoutes.checkout.orderSuccess("{CHECKOUT_SESSION_ID}")}`,
-        cancelUrl: `${origin}${appRoutes.checkout.cancel("{CHECKOUT_SESSION_ID}")}`,
-      });
-      window.location.assign(result.checkoutUrl);
-    } catch (err) {
-      setSubmitError(
-        ApiError.isApiError(err)
-          ? err.message
-          : t("keepsakes__order__error_default"),
-      );
-      setIsCheckingOut(false);
-    }
+    startBuyNow(buildItem(eventId));
+    router.push(`${appRoutes.app.cart}?buyNow=1`);
   };
 
   return (
@@ -334,12 +226,6 @@ export const CustomizerCheckoutForm = ({
           </Link>
         </div>
       )}
-      {requiresShipping && eventId && (
-        <CustomizerShippingFields
-          variantIds={variantIds}
-          errors={shippingErrors}
-        />
-      )}
       {showBreakdown && priceBreakdown && (
         <div className="rounded-12 border-border bg-muted/30 flex flex-col gap-1.5 border px-3 py-2.5">
           <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
@@ -388,11 +274,9 @@ export const CustomizerCheckoutForm = ({
           disabled={buttonDisabled}
           className="rounded-full"
         >
-          {isCheckingOut
-            ? t("keepsakes__order__starting")
-            : t("keepsakes__order__buy_now", {
-                amount: formatPrice(effectivePriceCents, productCurrency),
-              })}
+          {t("keepsakes__order__buy_now", {
+            amount: formatPrice(effectivePriceCents, productCurrency),
+          })}
         </Button>
         <Button
           type="button"
