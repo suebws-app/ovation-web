@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "Nugarėlė",
   "keepsakes__book_customizer__spine_description": "Nugarėlės plotis apskaičiuojamas automatiškai, kai knyga siunčiama spausdinti.",
-  "keepsakes__book_customizer__spine_body": "Nugarėlės plotį apskaičiuos Peecho pagal galutinį puslapių skaičių ir popieriaus tipą.",
+  "keepsakes__book_customizer__spine_body": "Nugarėlės plotį bus apskaičiuotas pagal galutinį puslapių skaičių ir popieriaus tipą.",
   "keepsakes__book_customizer__personalize_title": "Personalizuoti",
   "keepsakes__book_customizer__personalize_description": "Pasirinktinai atspausdinami detalės jūsų knygos viduje.",
   "keepsakes__book_customizer__cover_text_label": "Viršelio tekstas (neprivaloma)",

@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold Book",
   "keepsakes__book_customizer__spine_title": "Sırt",
   "keepsakes__book_customizer__spine_description": "Sırt genişliği, kitabın baskıya gönderildiğinde otomatik olarak hesaplanır.",
-  "keepsakes__book_customizer__spine_body": "Sırt genişliği, Peecho tarafından nihai sayfa sayın ve kâğıt türüne göre hesaplanır.",
+  "keepsakes__book_customizer__spine_body": "Sırt genişliği nihai sayfa sayın ve kâğıt türüne göre hesaplanır.",
   "keepsakes__book_customizer__personalize_title": "Kişiselleştir",
   "keepsakes__book_customizer__personalize_description": "Kitabının içine basılacak isteğe bağlı dokunuşlar.",
   "keepsakes__book_customizer__cover_text_label": "Kapak metni (isteğe bağlı)",

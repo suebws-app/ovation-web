@@ -74,7 +74,7 @@
   "keepsakes__book_customizer__photos_filter_gold_book": "Gold book",
   "keepsakes__book_customizer__spine_title": "Spine",
   "keepsakes__book_customizer__spine_description": "Spine width is calculated automatically once your book is sent for print.",
-  "keepsakes__book_customizer__spine_body": "Spine width will be calculated by Peecho based on your final page count and paper stock.",
+  "keepsakes__book_customizer__spine_body": "Spine width will be calculated based on your final page count and paper stock.",
   "keepsakes__book_customizer__personalize_title": "Personalize",
   "keepsakes__book_customizer__personalize_description": "Optional touches printed inside your book.",
   "keepsakes__book_customizer__cover_text_label": "Cover text (optional)",
