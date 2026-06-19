@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Безкоштовно",
   "cart__summary__shipping_helper": "Безкоштовно понад €100",
   "cart__summary__vat": "ПДВ ({rate}%)",
+  "cart__summary__incl_vat": "вкл. ПДВ",
   "cart__summary__total": "Разом",
   "cart__summary__promo_placeholder": "Промокод",
   "cart__summary__promo_apply": "Застосувати",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Додати адресу",
   "cart__addresses__use_different": "Використати іншу адресу",
   "cart__addresses__save": "Зберегти адресу",
-  "cart__addresses__incomplete": "Будь ласка, заповніть адресу доставки для кожного товару."
+  "cart__addresses__incomplete": "Будь ласка, заповніть адресу доставки для кожного товару.",
+  "cart__payment__pending_title": "Обробляємо платіж",
+  "cart__payment__pending_body": "Будь ласка, не закривайте це вікно. Ми безпечно підтверджуємо ваше замовлення з провайдером платежів.",
+  "cart__confirm__title": "Замовлення прийнято",
+  "cart__confirm__body": "Дякуємо за замовлення. Ми надіслали електронний лист з підтвердженням і деталями.",
+  "cart__confirm__reference": "Посилання: {id}",
+  "cart__confirm__view_order": "Переглянути замовлення",
+  "cart__confirm__continue": "Продовжити покупки"
 }

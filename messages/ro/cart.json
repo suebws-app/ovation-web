@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Gratuit",
   "cart__summary__shipping_helper": "Gratuit pentru peste 100 €",
   "cart__summary__vat": "TVA ({rate}%)",
+  "cart__summary__incl_vat": "TVA incl.",
   "cart__summary__total": "Total",
   "cart__summary__promo_placeholder": "Cod promoțional",
   "cart__summary__promo_apply": "Aplică",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Adaugă adresă",
   "cart__addresses__use_different": "Folosește o altă adresă",
   "cart__addresses__save": "Salvează adresa",
-  "cart__addresses__incomplete": "Te rugăm să completezi adresa de livrare pentru fiecare produs."
+  "cart__addresses__incomplete": "Te rugăm să completezi adresa de livrare pentru fiecare produs.",
+  "cart__payment__pending_title": "Procesăm plata",
+  "cart__payment__pending_body": "Te rugăm să nu închizi această fereastră. Confirmăm în siguranță comanda la furnizorul de plată.",
+  "cart__confirm__title": "Comandă plasată",
+  "cart__confirm__body": "Mulțumim pentru comandă. Ți-am trimis un e-mail de confirmare cu detaliile.",
+  "cart__confirm__reference": "Referință: {id}",
+  "cart__confirm__view_order": "Vezi comanda",
+  "cart__confirm__continue": "Continuă cumpărăturile"
 }

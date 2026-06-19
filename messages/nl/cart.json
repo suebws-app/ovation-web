@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Gratis",
   "cart__summary__shipping_helper": "Gratis vanaf €100",
   "cart__summary__vat": "BTW ({rate}%)",
+  "cart__summary__incl_vat": "incl. btw",
   "cart__summary__total": "Totaal",
   "cart__summary__promo_placeholder": "Kortingscode",
   "cart__summary__promo_apply": "Toepassen",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Adres toevoegen",
   "cart__addresses__use_different": "Een ander adres gebruiken",
   "cart__addresses__save": "Adres opslaan",
-  "cart__addresses__incomplete": "Vul het verzendadres voor elk product volledig in."
+  "cart__addresses__incomplete": "Vul het verzendadres voor elk product volledig in.",
+  "cart__payment__pending_title": "Betaling verwerken",
+  "cart__payment__pending_body": "Sluit dit venster niet. We bevestigen je bestelling veilig bij de betalingsprovider.",
+  "cart__confirm__title": "Bestelling geplaatst",
+  "cart__confirm__body": "Bedankt voor je bestelling. We hebben je een bevestigingsmail met de details gestuurd.",
+  "cart__confirm__reference": "Referentie: {id}",
+  "cart__confirm__view_order": "Bestelling bekijken",
+  "cart__confirm__continue": "Verder winkelen"
 }

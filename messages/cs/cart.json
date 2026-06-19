@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Zdarma",
   "cart__summary__shipping_helper": "Zdarma nad 100 €",
   "cart__summary__vat": "DPH ({rate}%)",
+  "cart__summary__incl_vat": "vč. DPH",
   "cart__summary__total": "Celkem",
   "cart__summary__promo_placeholder": "Slevový kód",
   "cart__summary__promo_apply": "Použít",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Přidat adresu",
   "cart__addresses__use_different": "Použít jinou adresu",
   "cart__addresses__save": "Uložit adresu",
-  "cart__addresses__incomplete": "Vyplňte prosím doručovací adresu pro každý produkt."
+  "cart__addresses__incomplete": "Vyplňte prosím doručovací adresu pro každý produkt.",
+  "cart__payment__pending_title": "Zpracováváme platbu",
+  "cart__payment__pending_body": "Prosím nezavírejte toto okno. Bezpečně potvrzujeme objednávku u poskytovatele platby.",
+  "cart__confirm__title": "Objednávka přijata",
+  "cart__confirm__body": "Děkujeme za objednávku. Potvrzení s detaily jsme poslali e-mailem.",
+  "cart__confirm__reference": "Reference: {id}",
+  "cart__confirm__view_order": "Zobrazit objednávku",
+  "cart__confirm__continue": "Pokračovat v nákupu"
 }

@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Gratis",
   "cart__summary__shipping_helper": "Gratis over €100",
   "cart__summary__vat": "MVA ({rate}%)",
+  "cart__summary__incl_vat": "inkl. mva.",
   "cart__summary__total": "Totalt",
   "cart__summary__promo_placeholder": "Rabattkode",
   "cart__summary__promo_apply": "Bruk",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Legg til adresse",
   "cart__addresses__use_different": "Bruk en annen adresse",
   "cart__addresses__save": "Lagre adresse",
-  "cart__addresses__incomplete": "Vennligst fyll ut leveringsadressen for hvert produkt."
+  "cart__addresses__incomplete": "Vennligst fyll ut leveringsadressen for hvert produkt.",
+  "cart__payment__pending_title": "Behandler betalingen",
+  "cart__payment__pending_body": "Vennligst ikke lukk dette vinduet. Vi bekrefter bestillingen sikkert hos betalingstilbyderen.",
+  "cart__confirm__title": "Bestilling lagt inn",
+  "cart__confirm__body": "Takk for bestillingen. Vi har sendt en bekreftelses-e-post med detaljene.",
+  "cart__confirm__reference": "Referanse: {id}",
+  "cart__confirm__view_order": "Vis bestilling",
+  "cart__confirm__continue": "Fortsett å handle"
 }

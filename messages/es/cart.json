@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Gratis",
   "cart__summary__shipping_helper": "Gratis desde 100 €",
   "cart__summary__vat": "IVA ({rate}%)",
+  "cart__summary__incl_vat": "IVA incl.",
   "cart__summary__total": "Total",
   "cart__summary__promo_placeholder": "Código promocional",
   "cart__summary__promo_apply": "Aplicar",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Añadir dirección",
   "cart__addresses__use_different": "Usar una dirección diferente",
   "cart__addresses__save": "Guardar dirección",
-  "cart__addresses__incomplete": "Completa la dirección de envío para cada producto."
+  "cart__addresses__incomplete": "Completa la dirección de envío para cada producto.",
+  "cart__payment__pending_title": "Procesando tu pago",
+  "cart__payment__pending_body": "Por favor, no cierres esta ventana. Estamos confirmando tu pedido de forma segura con el proveedor de pago.",
+  "cart__confirm__title": "Pedido realizado",
+  "cart__confirm__body": "Gracias por tu pedido. Te hemos enviado un correo de confirmación con los detalles.",
+  "cart__confirm__reference": "Referencia: {id}",
+  "cart__confirm__view_order": "Ver pedido",
+  "cart__confirm__continue": "Seguir comprando"
 }

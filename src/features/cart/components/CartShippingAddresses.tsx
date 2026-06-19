@@ -18,7 +18,6 @@ type CartShippingAddressesProps = {
   defaultCountry?: string;
   onEditItem: (id: string) => void;
   onBack: () => void;
-  error: string | null;
 };
 
 export const CartShippingAddresses = ({
@@ -29,7 +28,6 @@ export const CartShippingAddresses = ({
   defaultCountry,
   onEditItem,
   onBack,
-  error,
 }: CartShippingAddressesProps) => {
   const t = useTranslations();
   const sharedShipping = useCartStore((s) => s.shipping);
@@ -117,12 +115,6 @@ export const CartShippingAddresses = ({
             })}
           </div>
         </>
-      )}
-
-      {error && (
-        <p className="type-body-small text-destructive" role="alert">
-          {error}
-        </p>
       )}
 
       <div className="flex">

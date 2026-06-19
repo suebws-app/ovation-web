@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Tasuta",
   "cart__summary__shipping_helper": "Tasuta üle 100 €",
   "cart__summary__vat": "Käibemaks ({rate}%)",
+  "cart__summary__incl_vat": "sh. käibemaks",
   "cart__summary__total": "Kokku",
   "cart__summary__promo_placeholder": "Sooduskood",
   "cart__summary__promo_apply": "Rakenda",
@@ -60,5 +61,12 @@
   "cart__addresses__add": "Lisa aadress",
   "cart__addresses__use_different": "Kasuta teist aadressi",
   "cart__addresses__save": "Salvesta aadress",
-  "cart__addresses__incomplete": "Palun täida tarneaadress iga toote jaoks."
+  "cart__addresses__incomplete": "Palun täida tarneaadress iga toote jaoks.",
+  "cart__payment__pending_title": "Töötleme makset",
+  "cart__payment__pending_body": "Palun ärge sulgege seda akent. Kinnitame tellimust turvaliselt makseteenuse pakkujaga.",
+  "cart__confirm__title": "Tellimus esitatud",
+  "cart__confirm__body": "Aitäh tellimuse eest. Saatsime kinnituse koos üksikasjadega e-posti aadressile.",
+  "cart__confirm__reference": "Viide: {id}",
+  "cart__confirm__view_order": "Vaata tellimust",
+  "cart__confirm__continue": "Jätka ostlemist"
 }

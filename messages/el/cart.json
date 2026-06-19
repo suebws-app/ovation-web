@@ -18,6 +18,7 @@
   "cart__summary__shipping_free": "Δωρεάν",
   "cart__summary__shipping_helper": "Δωρεάν άνω των €100",
   "cart__summary__vat": "ΦΠΑ ({rate}%)",
+  "cart__summary__incl_vat": "συμπ. ΦΠΑ",
   "cart__summary__total": "Σύνολο",
   "cart__summary__promo_placeholder": "Κωδικός προσφοράς",
   "cart__summary__promo_apply": "Εφαρμογή",
@@ -49,5 +50,12 @@
   "cart__shipping__back": "Πίσω στο καλάθι",
   "cart__shipping__continue": "Συνέχεια στην πληρωμή",
   "cart__shipping__error_required": "Υποχρεωτικό",
-  "cart__shipping__error_country": "Επίλεξε χώρα"
+  "cart__shipping__error_country": "Επίλεξε χώρα",
+  "cart__payment__pending_title": "Επεξεργασία πληρωμής",
+  "cart__payment__pending_body": "Παρακαλούμε μην κλείσετε αυτό το παράθυρο. Επιβεβαιώνουμε με ασφάλεια την παραγγελία σας με τον πάροχο πληρωμής.",
+  "cart__confirm__title": "Η παραγγελία καταχωρήθηκε",
+  "cart__confirm__body": "Ευχαριστούμε για την παραγγελία. Στείλαμε επιβεβαίωση με τις λεπτομέρειες στο email σας.",
+  "cart__confirm__reference": "Αναφορά: {id}",
+  "cart__confirm__view_order": "Προβολή παραγγελίας",
+  "cart__confirm__continue": "Συνέχεια αγορών"
 }
