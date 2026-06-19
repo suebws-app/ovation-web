@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter as useNextRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -15,9 +15,11 @@ import { formatNativeLanguageName } from "@/lib/utils/localeFormatters";
 import {
   CURRENCY_COOKIE,
   DEFAULT_CURRENCY,
-  SUPPORTED_CURRENCIES,
+  FALLBACK_CURRENCIES,
+  isSupportedCurrency,
   type Currency,
 } from "@/i18n/currency-config";
+import { useSupportedCurrencies } from "@/lib/query/currencyQueries";
 import { setCookie } from "@/lib/utils/cookies";
 
 const COOKIE_MAX_AGE_ONE_YEAR = 31536000;
@@ -72,14 +74,21 @@ export const LocalizationForm = ({ user }: LocalizationFormProps) => {
     : (locales[0] ?? "en");
   const initialCurrency: Currency = user.preferredCurrency ?? DEFAULT_CURRENCY;
 
+  const { data: supportedCurrenciesData } = useSupportedCurrencies();
+
   const languageOptions = locales.map((code) => ({
     value: code,
     label: formatNativeLanguageName(code),
   }));
-  const currencyOptions = SUPPORTED_CURRENCIES.map((code) => ({
-    value: code,
-    label: code,
-  }));
+
+  const currencyOptions = useMemo(() => {
+    const fromApi =
+      supportedCurrenciesData?.currencies?.filter(isSupportedCurrency) ?? [];
+    const available = fromApi.length > 0 ? fromApi : [...FALLBACK_CURRENCIES];
+    const codes = new Set<Currency>(available);
+    codes.add(initialCurrency);
+    return [...codes].map((code) => ({ value: code, label: code }));
+  }, [supportedCurrenciesData, initialCurrency]);
 
   const {
     control,
