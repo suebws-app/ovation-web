@@ -13,25 +13,8 @@ const EXACT_PRICE_CURRENCIES = new Set<string>([
   "XPF",
 ]);
 
-const AMBIGUOUS_SYMBOL_CURRENCIES = new Set<string>([
-  "USD",
-  "CAD",
-  "AUD",
-  "NZD",
-  "HKD",
-  "SGD",
-  "MXN",
-]);
-
 export const isExactPriceCurrency = (currency: string): boolean =>
   EXACT_PRICE_CURRENCIES.has(currency.toUpperCase());
-
-export const currencyDisplayMode = (
-  currency: string,
-): "narrowSymbol" | "symbol" =>
-  AMBIGUOUS_SYMBOL_CURRENCIES.has(currency.toUpperCase())
-    ? "symbol"
-    : "narrowSymbol";
 
 export const toDisplayAmount = (amount: number, currency: string): number =>
   isExactPriceCurrency(currency) ? amount : amount / 100;
@@ -40,7 +23,7 @@ const buildFormatter = (currency: string, locale: string): Intl.NumberFormat =>
   new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-    currencyDisplay: currencyDisplayMode(currency),
+    currencyDisplay: "symbol",
   });
 
 export const formatMoney = (

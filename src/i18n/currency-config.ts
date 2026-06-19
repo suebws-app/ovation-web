@@ -1,4 +1,4 @@
-export const SUPPORTED_CURRENCIES = [
+const SUPPORTED_CURRENCIES = [
   "EUR",
   "USD",
   "AUD",
@@ -29,6 +29,7 @@ export const SUPPORTED_CURRENCIES = [
 export type Currency = (typeof SUPPORTED_CURRENCIES)[number];
 
 export const DEFAULT_CURRENCY: Currency = "EUR";
+export const FALLBACK_CURRENCIES: readonly Currency[] = ["EUR", "USD", "GBP"];
 export const CURRENCY_COOKIE = "NEXT_CURRENCY";
 
 const SUPPORTED_SET = new Set<string>(SUPPORTED_CURRENCIES);

@@ -6,7 +6,7 @@ import { useSupportedCurrencies } from "@/lib/query/currencyQueries";
 import { useCurrency } from "@/i18n/useCurrency";
 import { buildCurrencyLabel } from "@/lib/utils/currency";
 import {
-  SUPPORTED_CURRENCIES,
+  FALLBACK_CURRENCIES,
   isSupportedCurrency,
   type Currency,
 } from "@/i18n/currency-config";
@@ -40,7 +40,7 @@ export const CurrencySelectClient = ({
   const availableCurrencies = useMemo<Currency[]>(() => {
     const fromApi = data?.currencies?.filter(isSupportedCurrency);
     if (fromApi && fromApi.length > 0) return fromApi;
-    return [...SUPPORTED_CURRENCIES];
+    return [...FALLBACK_CURRENCIES];
   }, [data]);
 
   const handleSelect = (code: Currency) => {
