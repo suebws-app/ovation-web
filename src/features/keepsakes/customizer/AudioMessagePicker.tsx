@@ -68,7 +68,7 @@ export const AudioMessagePicker = ({
       .finally(() => {
         if (reqId === requestIdRef.current) setRefreshing(false);
       });
-  }, [eventId, source]);
+  }, [eventId, source, t]);
 
   const allIds = useMemo(() => messages.map((m) => m.id), [messages]);
   const allSelected =
@@ -113,7 +113,7 @@ export const AudioMessagePicker = ({
             })}
           </label>
           <div
-            className={`rounded-12 border-border bg-card flex flex-col divide-y divide-(--border) overflow-hidden border transition-opacity ${
+            className={`rounded-12 border-border bg-card divide-border flex flex-col divide-y overflow-hidden border transition-opacity ${
               refreshing ? "opacity-60" : "opacity-100"
             }`}
           >

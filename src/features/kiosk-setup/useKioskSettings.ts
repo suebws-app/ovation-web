@@ -35,8 +35,10 @@ export const useKioskSettings = (
       const res = await kioskSettingsClient.update(eventId, payload);
       setSettings(res.settings);
     } catch (e) {
-      toast.error("Failed to save");
-      setError(e instanceof Error ? e : new Error("Failed to save"));
+      toast.error(t("link_settings__save_error"));
+      setError(
+        e instanceof Error ? e : new Error(t("link_settings__save_error")),
+      );
     } finally {
       setIsSaving(false);
     }
