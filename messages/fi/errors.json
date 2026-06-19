@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Kirjaudu sisään jatkaaksesi.",
+  "errors__forbidden": "Sinulla ei ole oikeuksia tähän.",
+  "errors__not_found": "Ei löytynyt.",
+  "errors__message_limit_reached": "Tämä vieraskirja on täynnä — tarkista myöhemmin uudelleen!",
+  "errors__event_not_active": "Tämä vieraskirja on suljettu.",
+  "errors__rate_limited": "Hidasta hetki ja yritä sitten uudelleen.",
+  "errors__generic": "Jokin meni pieleen. Viite: {traceId}",
+  "errors__pro_required": "Ammattilaistili vaaditaan.",
+  "errors__pro_event_limit_reached": "Olet saavuttanut 12 tapahtuman rajan Starter-tilauksessa. Päivitä Studioon saadaksesi rajattomasti tapahtumia.",
+  "errors__pro_subscription_required": "Aktiivinen Pro-tilaus vaaditaan tapahtumien luomiseen."
+}

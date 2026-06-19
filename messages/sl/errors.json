@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Za nadaljevanje se prijavi.",
+  "errors__forbidden": "Do tega nimaš dostopa.",
+  "errors__not_found": "Ni najdeno.",
+  "errors__message_limit_reached": "Ta knjiga gostov je polna — preveri kasneje!",
+  "errors__event_not_active": "Ta knjiga gostov je zaprta.",
+  "errors__rate_limited": "Malo počasneje, nato poskusi znova.",
+  "errors__generic": "Nekaj je šlo narobe. Sklic: {traceId}",
+  "errors__pro_required": "Potreben je profesionalni račun.",
+  "errors__pro_event_limit_reached": "Dosegel/-la si omejitev 12 dogodkov v naročnini Starter. Nadgradi na Studio za neomejeno dogodkov.",
+  "errors__pro_subscription_required": "Za ustvarjanje dogodkov je potrebna aktivna Pro naročnina."
+}

@@ -1,0 +1,9 @@
+{
+  "account__title": "Konts",
+  "account__profile": "Profils",
+  "account__preferences": "Iestatījumi",
+  "account__email_settings": "E-pasta iestatījumi",
+  "account__payment_methods": "Maksājumu metodes",
+  "account__delete_account": "Dzēst kontu",
+  "account__delete_confirm": "Šo darbību nevar atsaukt. Vai tiešām vēlies turpināt?"
+}

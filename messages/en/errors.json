@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Please sign in to continue.",
+  "errors__forbidden": "You don't have access to this.",
+  "errors__not_found": "Not found.",
+  "errors__message_limit_reached": "This guestbook is full — check back later!",
+  "errors__event_not_active": "This guestbook is closed.",
+  "errors__rate_limited": "Slow down a moment, then try again.",
+  "errors__generic": "Something went wrong. Reference: {traceId}",
+  "errors__pro_required": "A professional account is required.",
+  "errors__pro_event_limit_reached": "You've reached the 12-event limit on the Starter plan. Upgrade to Studio for unlimited events.",
+  "errors__pro_subscription_required": "An active Pro subscription is required to create events."
+}

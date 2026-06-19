@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Log in om verder te gaan.",
+  "errors__forbidden": "Je hebt hier geen toegang toe.",
+  "errors__not_found": "Niet gevonden.",
+  "errors__message_limit_reached": "Dit gastenboek is vol — kijk later nog eens!",
+  "errors__event_not_active": "Dit gastenboek is gesloten.",
+  "errors__rate_limited": "Rustig aan, en probeer het zo opnieuw.",
+  "errors__generic": "Er ging iets mis. Referentie: {traceId}",
+  "errors__pro_required": "Een professioneel account is vereist.",
+  "errors__pro_event_limit_reached": "Je hebt de limiet van 12 events op het Starter-abonnement bereikt. Upgrade naar Studio voor onbeperkte events.",
+  "errors__pro_subscription_required": "Een actief Pro-abonnement is vereist om events aan te maken."
+}

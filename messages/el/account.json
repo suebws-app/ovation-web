@@ -1,0 +1,9 @@
+{
+  "account__title": "Λογαριασμός",
+  "account__profile": "Προφίλ",
+  "account__preferences": "Προτιμήσεις",
+  "account__email_settings": "Ρυθμίσεις email",
+  "account__payment_methods": "Μέθοδοι πληρωμής",
+  "account__delete_account": "Διαγραφή λογαριασμού",
+  "account__delete_confirm": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Είσαι σίγουρος;"
+}

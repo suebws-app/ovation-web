@@ -1,0 +1,9 @@
+{
+  "account__title": "Tài khoản",
+  "account__profile": "Hồ sơ",
+  "account__preferences": "Tùy chọn",
+  "account__email_settings": "Cài đặt email",
+  "account__payment_methods": "Phương thức thanh toán",
+  "account__delete_account": "Xóa tài khoản",
+  "account__delete_confirm": "Hành động này không thể hoàn tác. Bạn có chắc chắn không?"
+}

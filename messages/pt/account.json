@@ -1,0 +1,9 @@
+{
+  "account__title": "Conta",
+  "account__profile": "Perfil",
+  "account__preferences": "Preferências",
+  "account__email_settings": "Definições de e-mail",
+  "account__payment_methods": "Métodos de pagamento",
+  "account__delete_account": "Eliminar conta",
+  "account__delete_confirm": "Esta ação não pode ser anulada. Tem a certeza?"
+}

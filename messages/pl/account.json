@@ -1,0 +1,9 @@
+{
+  "account__title": "Konto",
+  "account__profile": "Profil",
+  "account__preferences": "Preferencje",
+  "account__email_settings": "Ustawienia e-maila",
+  "account__payment_methods": "Metody płatności",
+  "account__delete_account": "Usuń konto",
+  "account__delete_confirm": "Tej operacji nie można cofnąć. Czy na pewno chcesz kontynuować?"
+}

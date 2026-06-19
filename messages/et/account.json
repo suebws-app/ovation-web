@@ -1,0 +1,9 @@
+{
+  "account__title": "Konto",
+  "account__profile": "Profiil",
+  "account__preferences": "Eelistused",
+  "account__email_settings": "E-posti seaded",
+  "account__payment_methods": "Maksemeetodid",
+  "account__delete_account": "Kustuta konto",
+  "account__delete_confirm": "Seda tegevust ei saa tagasi võtta. Oled kindel?"
+}

@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Devam etmek için lütfen giriş yap.",
+  "errors__forbidden": "Buna erişim yetkin yok.",
+  "errors__not_found": "Bulunamadı.",
+  "errors__message_limit_reached": "Bu konuk defteri dolu — sonra tekrar bak!",
+  "errors__event_not_active": "Bu konuk defteri kapalı.",
+  "errors__rate_limited": "Biraz yavaşla, sonra tekrar dene.",
+  "errors__generic": "Bir şeyler ters gitti. Referans: {traceId}",
+  "errors__pro_required": "Profesyonel bir hesap gerekli.",
+  "errors__pro_event_limit_reached": "Starter planındaki 12 etkinlik sınırına ulaştın. Sınırsız etkinlik için Studio'ya yükselt.",
+  "errors__pro_subscription_required": "Etkinlik oluşturmak için aktif bir Pro aboneliği gerekli."
+}

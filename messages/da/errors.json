@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Log venligst ind for at fortsætte.",
+  "errors__forbidden": "Du har ikke adgang til dette.",
+  "errors__not_found": "Ikke fundet.",
+  "errors__message_limit_reached": "Denne gæstebog er fuld — kig forbi senere!",
+  "errors__event_not_active": "Denne gæstebog er lukket.",
+  "errors__rate_limited": "Tag en pause et øjeblik, og prøv så igen.",
+  "errors__generic": "Noget gik galt. Reference: {traceId}",
+  "errors__pro_required": "Der kræves en professionel konto.",
+  "errors__pro_event_limit_reached": "Du har nået grænsen på 12 begivenheder på Starter-abonnementet. Opgrader til Studio for ubegrænsede begivenheder.",
+  "errors__pro_subscription_required": "Et aktivt Pro-abonnement er påkrævet for at oprette begivenheder."
+}

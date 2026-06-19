@@ -1,0 +1,9 @@
+{
+  "account__title": "Akun",
+  "account__profile": "Profil",
+  "account__preferences": "Preferensi",
+  "account__email_settings": "Pengaturan email",
+  "account__payment_methods": "Metode pembayaran",
+  "account__delete_account": "Hapus akun",
+  "account__delete_confirm": "Tindakan ini tidak dapat dibatalkan. Apakah Anda yakin?"
+}

@@ -1,0 +1,9 @@
+{
+  "account__title": "Račun",
+  "account__profile": "Profil",
+  "account__preferences": "Nastavitve",
+  "account__email_settings": "Nastavitve e-pošte",
+  "account__payment_methods": "Načini plačila",
+  "account__delete_account": "Izbriši račun",
+  "account__delete_confirm": "Tega dejanja ni mogoče razveljaviti. Ali si prepričan/-a?"
+}

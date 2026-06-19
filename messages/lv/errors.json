@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Lūdzu, pieslēdzies, lai turpinātu.",
+  "errors__forbidden": "Tev nav piekļuves šim.",
+  "errors__not_found": "Nav atrasts.",
+  "errors__message_limit_reached": "Šī viesu grāmata ir pilna — atgriezies vēlāk!",
+  "errors__event_not_active": "Šī viesu grāmata ir slēgta.",
+  "errors__rate_limited": "Lūdzu, nedaudz palēnini un mēģini vēlreiz.",
+  "errors__generic": "Kaut kas nogāja greizi. Atsauce: {traceId}",
+  "errors__pro_required": "Nepieciešams profesionālais konts.",
+  "errors__pro_event_limit_reached": "Esi sasniedzis 12 pasākumu ierobežojumu Starter plānā. Jaunini uz Studio, lai iegūtu neierobežotus pasākumus.",
+  "errors__pro_subscription_required": "Lai veidotu pasākumus, ir nepieciešams aktīvs Pro abonements."
+}

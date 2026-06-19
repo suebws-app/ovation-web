@@ -1,0 +1,9 @@
+{
+  "account__title": "Account",
+  "account__profile": "Profile",
+  "account__preferences": "Preferences",
+  "account__email_settings": "Email settings",
+  "account__payment_methods": "Payment methods",
+  "account__delete_account": "Delete account",
+  "account__delete_confirm": "This action cannot be undone. Are you sure?"
+}

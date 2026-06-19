@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Jätkamiseks logi sisse.",
+  "errors__forbidden": "Sul puudub sellele ligipääs.",
+  "errors__not_found": "Ei leitud.",
+  "errors__message_limit_reached": "See külalisteraamat on täis — vaata hiljem uuesti!",
+  "errors__event_not_active": "See külalisteraamat on suletud.",
+  "errors__rate_limited": "Hetkeks pidurdage, seejärel proovige uuesti.",
+  "errors__generic": "Midagi läks valesti. Viide: {traceId}",
+  "errors__pro_required": "Vajalik on professionaalne konto.",
+  "errors__pro_event_limit_reached": "Oled saavutanud 12 sündmuse piiri Starter plaanis. Uuenda Studio plaanile piiramatute sündmuste jaoks.",
+  "errors__pro_subscription_required": "Sündmuste loomiseks on vajalik aktiivne Pro tellimus."
+}

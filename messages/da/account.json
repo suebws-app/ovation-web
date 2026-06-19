@@ -1,0 +1,9 @@
+{
+  "account__title": "Konto",
+  "account__profile": "Profil",
+  "account__preferences": "Indstillinger",
+  "account__email_settings": "E-mailindstillinger",
+  "account__payment_methods": "Betalingsmetoder",
+  "account__delete_account": "Slet konto",
+  "account__delete_confirm": "Denne handling kan ikke fortrydes. Er du sikker?"
+}

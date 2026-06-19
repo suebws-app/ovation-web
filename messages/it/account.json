@@ -1,0 +1,9 @@
+{
+  "account__title": "Account",
+  "account__profile": "Profilo",
+  "account__preferences": "Preferenze",
+  "account__email_settings": "Impostazioni email",
+  "account__payment_methods": "Metodi di pagamento",
+  "account__delete_account": "Elimina account",
+  "account__delete_confirm": "Questa azione non può essere annullata. Sei sicuro?"
+}

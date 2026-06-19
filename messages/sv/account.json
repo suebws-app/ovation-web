@@ -1,0 +1,9 @@
+{
+  "account__title": "Konto",
+  "account__profile": "Profil",
+  "account__preferences": "Inställningar",
+  "account__email_settings": "E-postinställningar",
+  "account__payment_methods": "Betalningsmetoder",
+  "account__delete_account": "Radera konto",
+  "account__delete_confirm": "Denna åtgärd kan inte ångras. Är du säker?"
+}

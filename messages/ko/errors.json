@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "계속하려면 로그인해 주세요.",
+  "errors__forbidden": "이 항목에 접근할 권한이 없습니다.",
+  "errors__not_found": "찾을 수 없습니다.",
+  "errors__message_limit_reached": "이 방명록이 가득 찼어요 — 나중에 다시 확인해 주세요!",
+  "errors__event_not_active": "이 방명록은 종료되었습니다.",
+  "errors__rate_limited": "잠시 후 다시 시도해 주세요.",
+  "errors__generic": "문제가 발생했습니다. 참조 번호: {traceId}",
+  "errors__pro_required": "전문가용 계정이 필요합니다.",
+  "errors__pro_event_limit_reached": "Starter 플랜의 12개 이벤트 한도에 도달했습니다. 무제한 이벤트를 원하시면 Studio로 업그레이드하세요.",
+  "errors__pro_subscription_required": "이벤트를 만들려면 활성 Pro 구독이 필요합니다."
+}

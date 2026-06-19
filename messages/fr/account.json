@@ -1,0 +1,9 @@
+{
+  "account__title": "Compte",
+  "account__profile": "Profil",
+  "account__preferences": "Préférences",
+  "account__email_settings": "Paramètres e-mail",
+  "account__payment_methods": "Moyens de paiement",
+  "account__delete_account": "Supprimer le compte",
+  "account__delete_confirm": "Cette action est irréversible. Es-tu sûr ?"
+}

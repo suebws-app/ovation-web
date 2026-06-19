@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Connecte-toi pour continuer.",
+  "errors__forbidden": "Tu n'as pas accès à ceci.",
+  "errors__not_found": "Introuvable.",
+  "errors__message_limit_reached": "Ce livre d'or est plein — reviens plus tard !",
+  "errors__event_not_active": "Ce livre d'or est fermé.",
+  "errors__rate_limited": "Ralentis un instant, puis réessaie.",
+  "errors__generic": "Une erreur est survenue. Référence : {traceId}",
+  "errors__pro_required": "Un compte professionnel est requis.",
+  "errors__pro_event_limit_reached": "Tu as atteint la limite de 12 événements du forfait Starter. Passe à Studio pour des événements illimités.",
+  "errors__pro_subscription_required": "Un abonnement Pro actif est requis pour créer des événements."
+}

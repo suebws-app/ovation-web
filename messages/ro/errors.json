@@ -1,0 +1,12 @@
+{
+  "errors__unauthorized": "Te rugăm să te conectezi pentru a continua.",
+  "errors__forbidden": "Nu ai acces la asta.",
+  "errors__not_found": "Nu a fost găsit.",
+  "errors__message_limit_reached": "Această carte de oaspeți este plină — revino mai târziu!",
+  "errors__event_not_active": "Această carte de oaspeți este închisă.",
+  "errors__rate_limited": "Încetinește un moment, apoi încearcă din nou.",
+  "errors__generic": "Ceva nu a mers bine. Referință: {traceId}",
+  "errors__pro_required": "Este necesar un cont profesional.",
+  "errors__pro_event_limit_reached": "Ai atins limita de 12 evenimente pe planul Starter. Fă upgrade la Studio pentru evenimente nelimitate.",
+  "errors__pro_subscription_required": "Este necesar un abonament Pro activ pentru a crea evenimente."
+}
