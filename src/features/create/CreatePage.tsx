@@ -15,6 +15,7 @@ import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useHydrateStore } from "@/lib/storage/useHydrateStore";
+import { startNavigation } from "@/components/NavigationProgress";
 
 export const CreatePage = () => {
   const t = useTranslations();
@@ -33,12 +34,22 @@ export const CreatePage = () => {
     else if (as === "couple") setAccountType({ accountType: "couple" });
   }, [searchParams, setAccountType]);
 
+  useEffect(() => {
+    const as = searchParams.get("as");
+    const target =
+      as === "couple" || as === "pro"
+        ? `${appRoutes.create.cover}?as=${as}`
+        : appRoutes.create.cover;
+    router.prefetch(target);
+  }, [router, searchParams]);
+
   const handleContinue = () => {
     const as = searchParams.get("as");
     const target =
       as === "couple" || as === "pro"
         ? `${appRoutes.create.cover}?as=${as}`
         : appRoutes.create.cover;
+    startNavigation();
     router.push(target);
   };
 

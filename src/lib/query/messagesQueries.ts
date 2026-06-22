@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  keepPreviousData,
   useInfiniteQuery,
   useMutation,
   useQuery,
@@ -52,6 +53,7 @@ export const useInfiniteMessagesList = (
     initialPageParam: null as string | null,
     getNextPageParam: (last) => last.nextCursor ?? null,
     enabled: Boolean(eventId),
+    placeholderData: keepPreviousData,
   });
 
 export const useMessageDetail = (eventId: string, messageId: string | null) =>
@@ -201,7 +203,8 @@ export const useUpdateMessage = (eventId: string) => {
       }
     },
     onSettled: () => {
-      qc.invalidateQueries({ queryKey: queryKeys.messages.lists(eventId) });
+      qc.invalidateQueries({ queryKey: queryKeys.messages.all(eventId) });
+      qc.invalidateQueries({ queryKey: queryKeys.events.stats(eventId) });
     },
   });
 };

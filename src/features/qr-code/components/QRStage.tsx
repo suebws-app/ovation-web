@@ -1,10 +1,6 @@
-"use client";
-
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { QRCodeSVG } from "qrcode.react";
 import { buildLogoSrc } from "../utils";
-import { QRTabButton } from "./QRTabButton";
 
 type QRStageProps = {
   coupleName: string;
@@ -29,17 +25,11 @@ export const QRStage = ({
   light,
 }: QRStageProps) => {
   const t = useTranslations();
-  const [activeTab, setActiveTab] = useState(0);
-  const tabs = [
-    t("qr__stage__tab_standard"),
-    t("qr__stage__tab_with_photo"),
-    t("qr__stage__tab_poster"),
-  ];
 
   const logoSrc = buildLogoSrc(dark, light);
 
   return (
-    <div className="rounded-20 from-primary to-primary/80 tablet:p-12 relative flex flex-col items-center gap-5 overflow-hidden bg-gradient-to-br p-7">
+    <div className="rounded-20 from-primary to-primary/80 tablet:p-12 relative flex flex-col items-center gap-5 overflow-hidden bg-linear-to-br p-7">
       <div
         className="pointer-events-none absolute -top-15 -right-15 size-55 rounded-full"
         style={{
@@ -87,17 +77,6 @@ export const QRStage = ({
       <p className="type-body-small text-primary-foreground/90 relative font-mono tracking-wider">
         {displayUrl(shortUrl)}
       </p>
-
-      <div className="relative flex gap-2">
-        {tabs.map((tab, i) => (
-          <QRTabButton
-            key={tab}
-            label={tab}
-            active={activeTab === i}
-            onClick={() => setActiveTab(i)}
-          />
-        ))}
-      </div>
     </div>
   );
 };

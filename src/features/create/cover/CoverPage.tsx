@@ -14,9 +14,11 @@ import { useSession } from "@/lib/auth/client";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useHydrateStore } from "@/lib/storage/useHydrateStore";
+import { startNavigation } from "@/components/NavigationProgress";
 import { useSlugChecker } from "@/features/create/hooks/useSlugChecker";
 import { useSlugSuggestions } from "@/features/create/hooks/useSlugSuggestions";
 import { COVER_OPTIONS } from "@/features/create/constants";
+import { CoverPageSkeleton } from "@/features/create/skeletons/CoverPageSkeleton";
 import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
@@ -102,6 +104,7 @@ export const CoverPage = () => {
         asFromUrl === "pro" || asFromUrl === "couple"
           ? asFromUrl
           : accountType || "couple";
+      startNavigation();
       router.push(`${appRoutes.auth.signUp}?as=${type}`);
       return;
     }
@@ -162,6 +165,7 @@ export const CoverPage = () => {
         maxAge: LAST_EVENT_COOKIE_MAX_AGE,
       });
       reset();
+      startNavigation();
       router.push(appRoutes.app.root);
     } catch (error) {
       setSubmitError(
@@ -209,7 +213,7 @@ export const CoverPage = () => {
   const isInitialSuggestedSlug =
     !userEditedSlug && slug.trim() === generatedSlug;
 
-  if (!hydrated) return null;
+  if (!hydrated) return <CoverPageSkeleton />;
 
   return (
     <AuthSplitLayout

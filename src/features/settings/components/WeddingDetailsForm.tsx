@@ -1,12 +1,19 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
+import { Calendar } from "@ovation/ui/components/DatePicker";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@ovation/ui/components/Popover";
+import { cn } from "@ovation/ui/utils/cn";
 import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { MapPinIcon } from "@ovation/icons/MapPinIcon";
 import { CopyIcon } from "@ovation/icons/CopyIcon";
@@ -64,6 +71,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
   const welcomeMessage = useWatch({ control, name: "welcomeMessage" }) ?? "";
   const slugValue = useWatch({ control, name: "slug" }) ?? "";
   const [copied, setCopied] = useState(false);
+  const [datePickerOpen, setDatePickerOpen] = useState(false);
 
   const handleCopyPublicLink = async () => {
     const url = `${env.APP_URL}/${slugValue}`;
@@ -141,17 +149,65 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
       </div>
 
       <div className="mt-5">
-        <SettingsField
-          label={t("settings__wedding__date")}
-          adornmentRight={
-            <CalendarIcon
-              width={16}
-              height={16}
-              className="text-muted-foreground"
-            />
-          }
-        >
-          <Input type="date" {...register("weddingDate")} />
+        <SettingsField label={t("settings__wedding__date")}>
+          <Controller
+            control={control}
+            name="weddingDate"
+            render={({ field }) => {
+              const selectedDate = field.value
+                ? new Date(field.value)
+                : undefined;
+              return (
+                <Popover open={datePickerOpen} onOpenChange={setDatePickerOpen}>
+                  <PopoverTrigger asChild>
+                    <button
+                      type="button"
+                      className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring hover:border-primary/40 flex h-10 w-full cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-left text-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
+                    >
+                      <CalendarIcon
+                        width={16}
+                        height={16}
+                        className="text-primary shrink-0"
+                      />
+                      <span
+                        className={cn(
+                          "min-w-0 flex-1 truncate",
+                          selectedDate
+                            ? "font-medium"
+                            : "text-muted-foreground",
+                        )}
+                      >
+                        {selectedDate
+                          ? selectedDate.toLocaleDateString("en-GB", {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            })
+                          : t("signup__book_details__date_placeholder")}
+                      </span>
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    align="start"
+                    sideOffset={8}
+                    className="rounded-16 w-auto p-3"
+                  >
+                    <Calendar
+                      mode="single"
+                      selected={selectedDate}
+                      onSelect={(date) => {
+                        field.onChange(
+                          date ? date.toISOString().slice(0, 10) : "",
+                        );
+                        setDatePickerOpen(false);
+                      }}
+                      className="mx-auto"
+                    />
+                  </PopoverContent>
+                </Popover>
+              );
+            }}
+          />
         </SettingsField>
       </div>
 

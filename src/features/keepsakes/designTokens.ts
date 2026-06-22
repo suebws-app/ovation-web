@@ -1,5 +1,4 @@
-import { getBillablePages } from "@/lib/utils/billablePages";
-import type { KeepsakeProduct } from "@/lib/api/types";
+import type { KeepsakeProduct, KeepsakeProductVariant } from "@/lib/api/types";
 
 export type KeepsakeDesign = {
   subtitleKey: string;
@@ -83,32 +82,23 @@ export const decorate = (product: KeepsakeProduct): DesignedProduct => ({
   design: designFor(product.productType),
 });
 
-export const computeStartingPriceCents = (
-  variants: Array<{
-    priceCents: number | null;
-    attributes: Record<string, unknown>;
-  }>,
-  fallbackCents: number,
-): number => {
-  const readNumber = (
-    attrs: Record<string, unknown>,
-    key: string,
-  ): number | null => {
-    const value = attrs[key];
-    return typeof value === "number" && Number.isFinite(value) ? value : null;
-  };
-  let cheapest: number | null = null;
+export const cheapestVariant = (
+  variants: KeepsakeProductVariant[],
+): KeepsakeProductVariant | null => {
+  let best: KeepsakeProductVariant | null = null;
   for (const variant of variants) {
     if (variant.priceCents === null) continue;
-    const minPages = readNumber(variant.attributes, "minPages") ?? 0;
-    const pricePerPageCents =
-      readNumber(variant.attributes, "pricePerPageCents") ?? 0;
-    const start =
-      variant.priceCents + getBillablePages(minPages) * pricePerPageCents;
-    if (cheapest === null || start < cheapest) cheapest = start;
+    if (best === null || variant.priceCents < (best.priceCents ?? Infinity)) {
+      best = variant;
+    }
   }
-  return cheapest ?? fallbackCents;
+  return best;
 };
+
+export const computeStartingPriceCents = (
+  variants: KeepsakeProductVariant[],
+  fallbackCents: number,
+): number => cheapestVariant(variants)?.priceCents ?? fallbackCents;
 
 export { formatMoney as formatPrice } from "@/lib/utils/currency";
 

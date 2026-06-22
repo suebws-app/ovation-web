@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
+import { startNavigation } from "@/components/NavigationProgress";
 import { authClient } from "@/lib/auth/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { eventsClient } from "@/lib/api/events-client";
@@ -138,6 +139,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
       }
     }
 
+    startNavigation();
     router.replace(data?.token ? appRoutes.auth.plans : appRoutes.auth.verify);
   };
 

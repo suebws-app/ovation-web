@@ -28,9 +28,12 @@ export const resolveActiveKey = (
   let bestLength = -1;
   for (const group of groups) {
     for (const item of group.items) {
-      if (matchesPath(item.href, pathname) && item.href.length > bestLength) {
-        bestKey = itemKey(item);
-        bestLength = item.href.length;
+      const targets = [item.href, ...(item.matchPaths ?? [])];
+      for (const target of targets) {
+        if (matchesPath(target, pathname) && target.length > bestLength) {
+          bestKey = itemKey(item);
+          bestLength = target.length;
+        }
       }
     }
   }

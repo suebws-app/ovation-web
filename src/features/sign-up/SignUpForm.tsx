@@ -5,6 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
@@ -27,6 +28,7 @@ import { useCreateAccount } from "@/features/sign-up/hooks/useCreateAccount";
 
 export const SignUpForm = () => {
   const t = useTranslations();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const updateFormData = useSignUpStore((s) => s.updateFormData);
   const storedEmail = useSignUpStore((s) => s.formData.email);
@@ -43,6 +45,11 @@ export const SignUpForm = () => {
     else if (as === "couple") updateFormData({ accountType: "couple" });
     if (plan) updateFormData({ selectedPlan: plan });
   }, [searchParams, updateFormData]);
+
+  useEffect(() => {
+    router.prefetch(appRoutes.auth.plans);
+    router.prefetch(appRoutes.auth.verify);
+  }, [router]);
 
   const {
     register,

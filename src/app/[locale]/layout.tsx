@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { AppProviders } from "@/features/layout/AppProviders";
 import { Toaster } from "@/components/Toaster";
+import { NavigationProgress } from "@/components/NavigationProgress";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default async function LocaleLayout({
           strategy="beforeInteractive"
         />
         <NextIntlClientProvider messages={messages}>
+          <NavigationProgress />
           <AppProviders>{children}</AppProviders>
           <Toaster />
         </NextIntlClientProvider>
