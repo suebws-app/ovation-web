@@ -13,6 +13,7 @@ type AppLayoutProps = {
   events: Event[];
   children: React.ReactNode;
   showSubscriptionAlert?: boolean;
+  planActivating?: boolean;
 };
 
 export const AppLayout = ({
@@ -20,6 +21,7 @@ export const AppLayout = ({
   events,
   children,
   showSubscriptionAlert = true,
+  planActivating = false,
 }: AppLayoutProps) => {
   return (
     <SidebarProvider>
@@ -35,10 +37,14 @@ export const AppLayout = ({
               storageExpiresAt={user.storageExpiresAt}
               userCreatedAt={user.createdAt}
               storageDays={user.storageDays}
+              planActivating={planActivating}
             />
           )}
           {showSubscriptionAlert && user.accountType === "pro" && (
-            <ProUpgradeAlert planTier={user.planTier} />
+            <ProUpgradeAlert
+              planTier={user.planTier}
+              planActivating={planActivating}
+            />
           )}
           <SidebarInset className="min-h-0 flex-1">{children}</SidebarInset>
         </div>

@@ -27,19 +27,19 @@ export const Sonner = (props: ToasterProps) => {
       style={
         {
           "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
+          "--normal-text": "#fff",
           "--normal-border": "var(--border)",
           "--success-bg": "var(--secondary)",
-          "--success-text": "var(--secondary-foreground)",
+          "--success-text": "#fff",
           "--success-border": "var(--secondary)",
           "--error-bg": "var(--danger)",
-          "--error-text": "var(--primary-foreground)",
+          "--error-text": "#fff",
           "--error-border": "var(--danger)",
           "--warning-bg": "var(--accent)",
-          "--warning-text": "var(--accent-foreground)",
+          "--warning-text": "#fff",
           "--warning-border": "var(--accent)",
           "--info-bg": "var(--muted)",
-          "--info-text": "var(--muted-foreground)",
+          "--info-text": "#fff",
           "--info-border": "var(--border)",
         } as React.CSSProperties
       }

@@ -4,19 +4,26 @@ import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Link, usePathname } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { useOptimisticPlanStore } from "@/features/checkout/useOptimisticPlanStore";
 
 type ProUpgradeAlertProps = {
   planTier: string | null;
+  planActivating?: boolean;
 };
 
-export const ProUpgradeAlert = ({ planTier }: ProUpgradeAlertProps) => {
+export const ProUpgradeAlert = ({
+  planTier,
+  planActivating = false,
+}: ProUpgradeAlertProps) => {
   const t = useTranslations();
   const pathname = usePathname();
+  const activatingOrderId = useOptimisticPlanStore((s) => s.activatingOrderId);
 
   if (pathname.startsWith(appRoutes.app.plans)) return null;
 
   const isFree = !planTier || planTier === "free";
   if (!isFree) return null;
+  if (planActivating || activatingOrderId) return null;
 
   return (
     <div className="max-w-container mx-auto w-full px-6 pt-2">
