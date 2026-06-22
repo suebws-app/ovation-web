@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Supprimer la langue",
   "kiosk_setup__select__placeholder": "Sélectionner une option",
   "kiosk_setup__slider__label": "Curseur",
-  "kiosk_setup__save_error": "Échec de l'enregistrement"
+  "kiosk_setup__save_error": "Échec de l'enregistrement",
+  "kiosk_setup__pin__change": "Modifier le PIN",
+  "kiosk__gate__title": "Saisir le PIN du kiosque",
+  "kiosk__gate__hint": "Tapez le PIN à 4 chiffres pour ouvrir le kiosque.",
+  "kiosk__gate__submit": "Ouvrir le kiosque",
+  "kiosk__gate__verifying": "Vérification…",
+  "kiosk__gate__wrong": "PIN incorrect. Réessayez.",
+  "kiosk__gate__rate_limited": "Trop de tentatives. Attendez un instant et réessayez.",
+  "kiosk__share__eyebrow": "Partager le lien du kiosque",
+  "kiosk__share__desc": "Envoyez ce lien à la personne qui installera le kiosque le jour J. Elle aura besoin du PIN pour l'ouvrir.",
+  "kiosk__share__copy": "Copier le lien",
+  "kiosk__share__copied": "Copié !",
+  "kiosk__share__pin_set": "Le PIN par défaut est 1234. Modifiez-le depuis la carte de verrouillage avant de partager."
 }

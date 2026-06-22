@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 
 type KioskStartWarningDialogProps = {
   open: boolean;
-  missingPin: boolean;
   missingFullscreenLock: boolean;
   onCancel: () => void;
   onConfirm: () => void;
@@ -13,7 +12,6 @@ type KioskStartWarningDialogProps = {
 
 export const KioskStartWarningDialog = ({
   open,
-  missingPin,
   missingFullscreenLock,
   onCancel,
   onConfirm,
@@ -50,7 +48,6 @@ export const KioskStartWarningDialog = ({
           {t("kiosk__start_warning__intro")}
         </p>
         <ul className="type-body-small text-foreground list-disc space-y-1 pl-5">
-          {missingPin && <li>{t("kiosk__start_warning__missing_pin")}</li>}
           {missingFullscreenLock && (
             <li>{t("kiosk__start_warning__missing_lock")}</li>
           )}

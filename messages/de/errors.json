@@ -8,5 +8,6 @@
   "errors__generic": "Etwas ist schiefgegangen. Referenz: {traceId}",
   "errors__pro_required": "Ein professionelles Konto ist erforderlich.",
   "errors__pro_event_limit_reached": "Du hast das Limit von 12 Events im Starter-Tarif erreicht. Upgrade auf Studio für unbegrenzte Events.",
-  "errors__pro_subscription_required": "Ein aktives Pro-Abonnement ist erforderlich, um Events zu erstellen."
+  "errors__pro_subscription_required": "Ein aktives Pro-Abonnement ist erforderlich, um Events zu erstellen.",
+  "errors__kiosk_pin_invalid": "PIN stimmt nicht. Bitte erneut versuchen."
 }

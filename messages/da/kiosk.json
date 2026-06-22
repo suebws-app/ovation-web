@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Fjern sprog",
   "kiosk_setup__select__placeholder": "Vælg mulighed",
   "kiosk_setup__slider__label": "Skyder",
-  "kiosk_setup__save_error": "Kunne ikke gemme"
+  "kiosk_setup__save_error": "Kunne ikke gemme",
+  "kiosk_setup__pin__change": "Skift PIN",
+  "kiosk__gate__title": "Indtast kiosk-PIN",
+  "kiosk__gate__hint": "Indtast den 4-cifrede PIN for at åbne kiosken.",
+  "kiosk__gate__submit": "Åbn kiosk",
+  "kiosk__gate__verifying": "Kontrollerer…",
+  "kiosk__gate__wrong": "Forkert PIN. Prøv igen.",
+  "kiosk__gate__rate_limited": "For mange forsøg. Vent et øjeblik og prøv igen.",
+  "kiosk__share__eyebrow": "Del kiosk-linket",
+  "kiosk__share__desc": "Send dette link til den, der opsætter kiosken på dagen. De skal bruge PIN'en for at åbne den.",
+  "kiosk__share__copy": "Kopier link",
+  "kiosk__share__copied": "Kopieret!",
+  "kiosk__share__pin_set": "Standard-PIN er 1234. Skift den i låsekortet før deling."
 }

@@ -8,5 +8,6 @@
   "errors__generic": "Valami hiba történt. Hivatkozás: {traceId}",
   "errors__pro_required": "Szakmai fiók szükséges.",
   "errors__pro_event_limit_reached": "Elérted a 12 esemény limitet a Starter csomagon. Frissíts Studio csomagra a korlátlan eseményekért.",
-  "errors__pro_subscription_required": "Aktív Pro előfizetés szükséges az események létrehozásához."
+  "errors__pro_subscription_required": "Aktív Pro előfizetés szükséges az események létrehozásához.",
+  "errors__kiosk_pin_invalid": "A PIN nem egyezik. Próbálja újra."
 }

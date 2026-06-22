@@ -8,5 +8,6 @@
   "errors__generic": "Đã xảy ra lỗi. Mã tham chiếu: {traceId}",
   "errors__pro_required": "Cần có tài khoản chuyên nghiệp.",
   "errors__pro_event_limit_reached": "Bạn đã đạt giới hạn 12 sự kiện trên gói Starter. Nâng cấp lên Studio để có sự kiện không giới hạn.",
-  "errors__pro_subscription_required": "Cần có gói Pro đang hoạt động để tạo sự kiện."
+  "errors__pro_subscription_required": "Cần có gói Pro đang hoạt động để tạo sự kiện.",
+  "errors__kiosk_pin_invalid": "PIN này không khớp. Vui lòng thử lại."
 }

@@ -35,17 +35,13 @@ export const KioskSetupClient = ({
       welcomeChime: settings.welcomeChime,
       fullscreenLock: settings.fullscreenLock,
       guidedMode: settings.guidedMode,
-      exitPin: settings.exitPin,
+      requiresPin: settings.hasPin,
     },
   };
 
   return (
     <>
-      <KioskHero
-        slug={slug}
-        exitPin={settings.exitPin}
-        fullscreenLock={settings.fullscreenLock}
-      />
+      <KioskHero slug={slug} fullscreenLock={settings.fullscreenLock} />
       <KioskChecklist
         eventId={eventId}
         onTestClick={() => {
@@ -54,7 +50,12 @@ export const KioskSetupClient = ({
           }
         }}
       />
-      <KioskConfigGrid settings={settings} eventId={eventId} onPatch={patch} />
+      <KioskConfigGrid
+        slug={slug}
+        settings={settings}
+        eventId={eventId}
+        onPatch={patch}
+      />
       <KioskPreview slug={slug} event={previewEvent} />
     </>
   );

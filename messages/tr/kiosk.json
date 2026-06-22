@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Dili kaldır",
   "kiosk_setup__select__placeholder": "Seçenek seç",
   "kiosk_setup__slider__label": "Kaydırıcı",
-  "kiosk_setup__save_error": "Kaydedilemedi"
+  "kiosk_setup__save_error": "Kaydedilemedi",
+  "kiosk_setup__pin__change": "PIN'i değiştir",
+  "kiosk__gate__title": "Kiosk PIN'ini girin",
+  "kiosk__gate__hint": "Kioskı açmak için 4 haneli PIN'i girin.",
+  "kiosk__gate__submit": "Kioskı aç",
+  "kiosk__gate__verifying": "Doğrulanıyor…",
+  "kiosk__gate__wrong": "Yanlış PIN. Tekrar deneyin.",
+  "kiosk__gate__rate_limited": "Çok fazla deneme. Bir süre bekleyin ve tekrar deneyin.",
+  "kiosk__share__eyebrow": "Kiosk bağlantısını paylaş",
+  "kiosk__share__desc": "Bu bağlantıyı, kioskı gün içinde kuracak kişiye gönderin. Açmak için PIN'e ihtiyaçları olacak.",
+  "kiosk__share__copy": "Bağlantıyı kopyala",
+  "kiosk__share__copied": "Kopyalandı!",
+  "kiosk__share__pin_set": "Varsayılan PIN 1234'tür. Paylaşmadan önce kilit kartından değiştirin."
 }

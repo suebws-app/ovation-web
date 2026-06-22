@@ -8,5 +8,6 @@
   "errors__generic": "Kažkas nepavyko. Nuoroda: {traceId}",
   "errors__pro_required": "Reikalinga profesionalo paskyra.",
   "errors__pro_event_limit_reached": "Pasiekei 12 renginių ribą su Starter planu. Atnaujink į Studio ir kurk neribotai renginių.",
-  "errors__pro_subscription_required": "Renginiams kurti reikalinga aktyvi Pro prenumerata."
+  "errors__pro_subscription_required": "Renginiams kurti reikalinga aktyvi Pro prenumerata.",
+  "errors__kiosk_pin_invalid": "Šis PIN nesutampa. Bandykite dar kartą."
 }

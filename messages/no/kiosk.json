@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Fjern språk",
   "kiosk_setup__select__placeholder": "Velg alternativ",
   "kiosk_setup__slider__label": "Glidebryter",
-  "kiosk_setup__save_error": "Kunne ikke lagre"
+  "kiosk_setup__save_error": "Kunne ikke lagre",
+  "kiosk_setup__pin__change": "Endre PIN",
+  "kiosk__gate__title": "Skriv inn kiosk-PIN",
+  "kiosk__gate__hint": "Skriv inn 4-sifret PIN for å åpne kiosken.",
+  "kiosk__gate__submit": "Åpne kiosk",
+  "kiosk__gate__verifying": "Kontrollerer…",
+  "kiosk__gate__wrong": "Feil PIN. Prøv igjen.",
+  "kiosk__gate__rate_limited": "For mange forsøk. Vent et øyeblikk og prøv igjen.",
+  "kiosk__share__eyebrow": "Del kiosk-lenken",
+  "kiosk__share__desc": "Send denne lenken til den som setter opp kiosken på dagen. De trenger PIN-en for å åpne den.",
+  "kiosk__share__copy": "Kopier lenke",
+  "kiosk__share__copied": "Kopiert!",
+  "kiosk__share__pin_set": "Standard-PIN er 1234. Endre den i låsekortet før deling."
 }

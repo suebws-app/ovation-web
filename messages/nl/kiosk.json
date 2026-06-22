@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Taal verwijderen",
   "kiosk_setup__select__placeholder": "Kies een optie",
   "kiosk_setup__slider__label": "Schuifregelaar",
-  "kiosk_setup__save_error": "Opslaan mislukt"
+  "kiosk_setup__save_error": "Opslaan mislukt",
+  "kiosk_setup__pin__change": "PIN wijzigen",
+  "kiosk__gate__title": "Voer kiosk-PIN in",
+  "kiosk__gate__hint": "Voer de 4-cijferige PIN in om de kiosk te openen.",
+  "kiosk__gate__submit": "Kiosk openen",
+  "kiosk__gate__verifying": "Controleren…",
+  "kiosk__gate__wrong": "Onjuiste PIN. Probeer het opnieuw.",
+  "kiosk__gate__rate_limited": "Te veel pogingen. Wacht even en probeer het opnieuw.",
+  "kiosk__share__eyebrow": "Deel de kiosk-link",
+  "kiosk__share__desc": "Stuur deze link naar degene die de kiosk op de dag instelt. Ze hebben de PIN nodig om hem te openen.",
+  "kiosk__share__copy": "Link kopiëren",
+  "kiosk__share__copied": "Gekopieerd!",
+  "kiosk__share__pin_set": "Standaard-PIN is 1234. Wijzig deze in de vergrendelingskaart voordat je deelt."
 }

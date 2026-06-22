@@ -8,5 +8,6 @@
   "errors__generic": "Nešto je pošlo po zlu. Referenca: {traceId}",
   "errors__pro_required": "Potreban je profesionalni račun.",
   "errors__pro_event_limit_reached": "Dosegao/la si ograničenje od 12 događanja na Starter planu. Nadogradi na Studio za neograničena događanja.",
-  "errors__pro_subscription_required": "Aktivna Pro pretplata potrebna je za stvaranje događanja."
+  "errors__pro_subscription_required": "Aktivna Pro pretplata potrebna je za stvaranje događanja.",
+  "errors__kiosk_pin_invalid": "Taj PIN ne odgovara. Pokušaj ponovo."
 }

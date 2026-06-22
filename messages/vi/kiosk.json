@@ -108,5 +108,17 @@
   "kiosk__config__lockdown__guided__on": "Bật chế độ hướng dẫn",
   "kiosk__config__link_redirect__title": "Cài đặt gửi tin nhắn",
   "kiosk__config__link_redirect__desc": "Điều khách có thể gửi và độ dài ghi hiện nằm trên trang cài đặt liên kết — được chia sẻ bởi liên kết, mã QR và kiosk của bạn.",
-  "kiosk__config__link_redirect__cta": "Mở cài đặt liên kết"
+  "kiosk__config__link_redirect__cta": "Mở cài đặt liên kết",
+  "kiosk_setup__pin__change": "Đổi PIN",
+  "kiosk__gate__title": "Nhập PIN kiosk",
+  "kiosk__gate__hint": "Nhập PIN 4 chữ số để mở kiosk.",
+  "kiosk__gate__submit": "Mở kiosk",
+  "kiosk__gate__verifying": "Đang kiểm tra…",
+  "kiosk__gate__wrong": "PIN sai. Vui lòng thử lại.",
+  "kiosk__gate__rate_limited": "Quá nhiều lần thử. Vui lòng đợi một chút và thử lại.",
+  "kiosk__share__eyebrow": "Chia sẻ liên kết kiosk",
+  "kiosk__share__desc": "Gửi liên kết này cho người sẽ thiết lập kiosk trong ngày. Họ sẽ cần PIN để mở.",
+  "kiosk__share__copy": "Sao chép liên kết",
+  "kiosk__share__copied": "Đã sao chép!",
+  "kiosk__share__pin_set": "PIN mặc định là 1234. Hãy đổi từ thẻ khóa trước khi chia sẻ."
 }

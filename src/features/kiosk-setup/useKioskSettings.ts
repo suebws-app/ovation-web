@@ -13,6 +13,18 @@ type UseKioskSettingsResult = {
   error: Error | null;
 };
 
+const applyOptimistic = (
+  prev: KioskSettings,
+  changes: UpdateKioskSettingsInput,
+): KioskSettings => {
+  const { kioskPin, ...settingsChanges } = changes;
+  const next: KioskSettings = { ...prev, ...settingsChanges };
+  if (kioskPin !== undefined) {
+    next.hasPin = true;
+  }
+  return next;
+};
+
 export const useKioskSettings = (
   eventId: string,
   initial: KioskSettings,
@@ -33,7 +45,7 @@ export const useKioskSettings = (
     setError(null);
     try {
       const res = await kioskSettingsClient.update(eventId, payload);
-      setSettings(() => ({ ...res.settings, ...pendingRef.current }));
+      setSettings(() => applyOptimistic(res.settings, pendingRef.current));
     } catch (e) {
       toast.error(t("link_settings__save_error"));
       setError(
@@ -46,7 +58,7 @@ export const useKioskSettings = (
 
   const patch = useCallback(
     (changes: UpdateKioskSettingsInput) => {
-      setSettings((prev) => ({ ...prev, ...changes }));
+      setSettings((prev) => applyOptimistic(prev, changes));
       pendingRef.current = { ...pendingRef.current, ...changes };
       if (timerRef.current) clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => {

@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Ukloni jezik",
   "kiosk_setup__select__placeholder": "Odaberite opciju",
   "kiosk_setup__slider__label": "Klizač",
-  "kiosk_setup__save_error": "Spremanje nije uspjelo"
+  "kiosk_setup__save_error": "Spremanje nije uspjelo",
+  "kiosk_setup__pin__change": "Promijeni PIN",
+  "kiosk__gate__title": "Unesi PIN kioska",
+  "kiosk__gate__hint": "Upiši 4-znamenkasti PIN za otvaranje kioska.",
+  "kiosk__gate__submit": "Otvori kiosk",
+  "kiosk__gate__verifying": "Provjera…",
+  "kiosk__gate__wrong": "Pogrešan PIN. Pokušaj ponovo.",
+  "kiosk__gate__rate_limited": "Previše pokušaja. Pričekaj trenutak i pokušaj ponovo.",
+  "kiosk__share__eyebrow": "Podijeli vezu kioska",
+  "kiosk__share__desc": "Pošalji ovu vezu osobi koja će postaviti kiosk na dan. Trebat će joj PIN za otvaranje.",
+  "kiosk__share__copy": "Kopiraj vezu",
+  "kiosk__share__copied": "Kopirano!",
+  "kiosk__share__pin_set": "Zadani PIN je 1234. Promijeni ga u kartici zaključavanja prije dijeljenja."
 }

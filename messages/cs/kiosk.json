@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Odebrat jazyk",
   "kiosk_setup__select__placeholder": "Vyberte možnost",
   "kiosk_setup__slider__label": "Posuvník",
-  "kiosk_setup__save_error": "Uložení se nezdařilo"
+  "kiosk_setup__save_error": "Uložení se nezdařilo",
+  "kiosk_setup__pin__change": "Změnit PIN",
+  "kiosk__gate__title": "Zadejte PIN kiosku",
+  "kiosk__gate__hint": "Zadejte 4místný PIN pro otevření kiosku.",
+  "kiosk__gate__submit": "Otevřít kiosk",
+  "kiosk__gate__verifying": "Ověřování…",
+  "kiosk__gate__wrong": "Nesprávný PIN. Zkuste to znovu.",
+  "kiosk__gate__rate_limited": "Příliš mnoho pokusů. Počkejte chvíli a zkuste to znovu.",
+  "kiosk__share__eyebrow": "Sdílet odkaz na kiosk",
+  "kiosk__share__desc": "Pošlete tento odkaz osobě, která bude kiosk v den akce instalovat. Bude potřebovat PIN k jeho otevření.",
+  "kiosk__share__copy": "Kopírovat odkaz",
+  "kiosk__share__copied": "Zkopírováno!",
+  "kiosk__share__pin_set": "Výchozí PIN je 1234. Změňte ho v kartě zamčení před sdílením."
 }

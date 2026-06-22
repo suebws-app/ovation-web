@@ -37,8 +37,6 @@ export const GuestComposePage = async ({
         capturePhoto={event.kiosk.capturePhoto}
         maxVideoDurationSec={event.kiosk.maxVideoDurationSeconds}
         maxAudioDurationSec={event.kiosk.maxAudioDurationSeconds}
-        exitPin={event.kiosk.exitPin}
-        fullscreenLock={event.kiosk.fullscreenLock}
         sourceParam={sourceParam}
       />
     </GuestWizardShell>

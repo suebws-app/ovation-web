@@ -11,22 +11,19 @@ import { KioskStartWarningDialog } from "./KioskStartWarningDialog";
 
 type KioskStatusCardProps = {
   slug: string | null;
-  exitPin?: string | null;
   fullscreenLock?: boolean;
 };
 
 export const KioskStatusCard = ({
   slug,
-  exitPin,
   fullscreenLock,
 }: KioskStatusCardProps) => {
   const t = useTranslations();
   const router = useRouter();
   const [warningOpen, setWarningOpen] = useState(false);
 
-  const missingPin = !exitPin;
   const missingFullscreenLock = !fullscreenLock;
-  const needsWarning = missingPin || missingFullscreenLock;
+  const needsWarning = missingFullscreenLock;
 
   const handleStartClick = () => {
     if (!slug) return;
@@ -71,7 +68,6 @@ export const KioskStatusCard = ({
       </div>
       <KioskStartWarningDialog
         open={warningOpen}
-        missingPin={missingPin}
         missingFullscreenLock={missingFullscreenLock}
         onCancel={() => setWarningOpen(false)}
         onConfirm={handleConfirm}

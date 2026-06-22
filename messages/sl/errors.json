@@ -8,5 +8,6 @@
   "errors__generic": "Nekaj je šlo narobe. Sklic: {traceId}",
   "errors__pro_required": "Potreben je profesionalni račun.",
   "errors__pro_event_limit_reached": "Dosegel/-la si omejitev 12 dogodkov v naročnini Starter. Nadgradi na Studio za neomejeno dogodkov.",
-  "errors__pro_subscription_required": "Za ustvarjanje dogodkov je potrebna aktivna Pro naročnina."
+  "errors__pro_subscription_required": "Za ustvarjanje dogodkov je potrebna aktivna Pro naročnina.",
+  "errors__kiosk_pin_invalid": "Ta PIN se ne ujema. Poskusite znova."
 }

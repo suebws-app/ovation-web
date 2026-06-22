@@ -17,7 +17,6 @@ import { uploadToTarget, UploadError } from "@/lib/media/uploadToTarget";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
-import { KioskFullscreenGuard } from "@/features/kiosk-setup/components/KioskFullscreenGuard";
 import { ReviewItem } from "./ReviewItem";
 import { ReviewPhotoTile } from "./ReviewPhotoTile";
 
@@ -80,17 +79,10 @@ const mapSubmitError = (error: unknown, t: Translator): string => {
 
 type ReviewClientProps = {
   slug: string;
-  exitPin: string | null;
-  fullscreenLock: boolean;
   sourceParam: string | null;
 };
 
-export const ReviewClient = ({
-  slug,
-  exitPin,
-  fullscreenLock,
-  sourceParam,
-}: ReviewClientProps) => {
+export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
@@ -286,11 +278,6 @@ export const ReviewClient = ({
 
   return (
     <div className="flex flex-1 flex-col">
-      <KioskFullscreenGuard
-        active={isKioskSession && fullscreenLock}
-        exitPin={exitPin}
-        exitHref="/kiosk"
-      />
       <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-5 pb-9">
         <WizardHeader
           step={2}

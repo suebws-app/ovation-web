@@ -8,5 +8,6 @@
   "errors__generic": "Er ging iets mis. Referentie: {traceId}",
   "errors__pro_required": "Een professioneel account is vereist.",
   "errors__pro_event_limit_reached": "Je hebt de limiet van 12 events op het Starter-abonnement bereikt. Upgrade naar Studio voor onbeperkte events.",
-  "errors__pro_subscription_required": "Een actief Pro-abonnement is vereist om events aan te maken."
+  "errors__pro_subscription_required": "Een actief Pro-abonnement is vereist om events aan te maken.",
+  "errors__kiosk_pin_invalid": "Die PIN klopt niet. Probeer het opnieuw."
 }

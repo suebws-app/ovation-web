@@ -30,12 +30,7 @@ export const GuestReviewPage = async ({
 
   return (
     <GuestWizardShell event={event}>
-      <ReviewClient
-        slug={slug}
-        exitPin={event.kiosk.exitPin}
-        fullscreenLock={event.kiosk.fullscreenLock}
-        sourceParam={sourceParam}
-      />
+      <ReviewClient slug={slug} sourceParam={sourceParam} />
     </GuestWizardShell>
   );
 };

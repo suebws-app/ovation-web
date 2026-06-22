@@ -8,5 +8,6 @@
   "errors__generic": "Něco se pokazilo. Reference: {traceId}",
   "errors__pro_required": "Vyžaduje se profesionální účet.",
   "errors__pro_event_limit_reached": "Dosáhl jsi limitu 12 událostí v plánu Starter. Přejdi na Studio pro neomezené události.",
-  "errors__pro_subscription_required": "Pro vytváření událostí je nutné aktivní předplatné Pro."
+  "errors__pro_subscription_required": "Pro vytváření událostí je nutné aktivní předplatné Pro.",
+  "errors__kiosk_pin_invalid": "Tento PIN nesouhlasí. Zkuste to znovu."
 }

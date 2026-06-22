@@ -2,49 +2,65 @@
 
 import { useEffect, useRef, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
+import { publicClient } from "@/lib/api/public-client";
+import { ApiError } from "@/lib/api/client";
 
 type KioskExitDialogProps = {
   open: boolean;
-  expectedPin: string | null;
+  slug: string;
+  requiresPin: boolean;
   onCancel: () => void;
   onConfirm: () => void;
 };
 
 export const KioskExitDialog = ({
   open,
-  expectedPin,
+  slug,
+  requiresPin,
   onCancel,
   onConfirm,
 }: KioskExitDialogProps) => {
   const t = useTranslations();
   const [draft, setDraft] = useState("");
-  const [error, setError] = useState(false);
+  const [errorKey, setErrorKey] = useState<string | null>(null);
+  const [verifying, setVerifying] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (!open) {
       startTransition(() => {
         setDraft("");
-        setError(false);
+        setErrorKey(null);
+        setVerifying(false);
       });
       return;
     }
-    if (!expectedPin) {
+    if (!requiresPin) {
       onConfirm();
       return;
     }
     setTimeout(() => inputRef.current?.focus(), 0);
-  }, [open, expectedPin, onConfirm]);
+  }, [open, requiresPin, onConfirm]);
 
-  if (!open || !expectedPin) return null;
+  if (!open || !requiresPin) return null;
 
-  const submit = () => {
-    if (draft === expectedPin) {
+  const submit = async () => {
+    if (draft.length !== 4 || verifying) return;
+    setVerifying(true);
+    setErrorKey(null);
+    try {
+      await publicClient.verifyKioskPin(slug, draft);
       onConfirm();
-    } else {
-      setError(true);
+    } catch (error) {
+      if (ApiError.isApiError(error) && error.status === 429) {
+        setErrorKey("kiosk__gate__rate_limited");
+      } else {
+        setErrorKey("kiosk__exit__wrong");
+      }
       setDraft("");
       inputRef.current?.focus();
+    } finally {
+      setVerifying(false);
     }
   };
 
@@ -73,20 +89,21 @@ export const KioskExitDialog = ({
           maxLength={4}
           autoComplete="off"
           value={draft}
+          disabled={verifying}
           onChange={(e) => {
-            setError(false);
+            setErrorKey(null);
             setDraft(e.target.value.replace(/\D/g, "").slice(0, 4));
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") submit();
             if (e.key === "Escape") onCancel();
           }}
-          className="border-border focus:border-primary type-h2 w-40 rounded-full border-2 px-4 py-2 text-center font-mono tracking-widest transition-colors outline-none"
+          className="border-border focus:border-primary type-h2 w-40 rounded-full border-2 px-4 py-2 text-center font-mono tracking-widest transition-colors outline-none disabled:opacity-60"
           placeholder="••••"
         />
-        {error && (
+        {errorKey && (
           <p className="type-body-small text-destructive" role="alert">
-            {t("kiosk__exit__wrong")}
+            {t(errorKey)}
           </p>
         )}
         <div className="mt-2 flex w-full gap-2">
@@ -100,10 +117,12 @@ export const KioskExitDialog = ({
           <button
             type="button"
             onClick={submit}
-            disabled={draft.length !== 4}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 type-body-small flex-1 cursor-pointer rounded-full px-4 py-2.5 font-semibold transition-colors"
+            disabled={draft.length !== 4 || verifying}
+            className="bg-primary text-primary-foreground hover:bg-primary/90 type-body-small flex-1 cursor-pointer rounded-full px-4 py-2.5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {t("kiosk__exit__confirm")}
+            {verifying
+              ? t("kiosk__gate__verifying")
+              : t("kiosk__exit__confirm")}
           </button>
         </div>
       </div>

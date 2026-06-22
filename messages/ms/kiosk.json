@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Alih keluar bahasa",
   "kiosk_setup__select__placeholder": "Pilih pilihan",
   "kiosk_setup__slider__label": "Penggelangsar",
-  "kiosk_setup__save_error": "Gagal menyimpan"
+  "kiosk_setup__save_error": "Gagal menyimpan",
+  "kiosk_setup__pin__change": "Tukar PIN",
+  "kiosk__gate__title": "Masukkan PIN kiosk",
+  "kiosk__gate__hint": "Taip PIN 4 digit untuk membuka kiosk.",
+  "kiosk__gate__submit": "Buka kiosk",
+  "kiosk__gate__verifying": "Menyemak…",
+  "kiosk__gate__wrong": "PIN salah. Cuba lagi.",
+  "kiosk__gate__rate_limited": "Terlalu banyak percubaan. Tunggu seketika dan cuba lagi.",
+  "kiosk__share__eyebrow": "Kongsi pautan kiosk",
+  "kiosk__share__desc": "Hantar pautan ini kepada sesiapa yang akan menetapkan kiosk pada hari itu. Mereka memerlukan PIN untuk membukanya.",
+  "kiosk__share__copy": "Salin pautan",
+  "kiosk__share__copied": "Disalin!",
+  "kiosk__share__pin_set": "PIN lalai ialah 1234. Tukarnya dari kad kunci sebelum berkongsi."
 }

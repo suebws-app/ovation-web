@@ -8,5 +8,6 @@
   "errors__generic": "Une erreur est survenue. Référence : {traceId}",
   "errors__pro_required": "Un compte professionnel est requis.",
   "errors__pro_event_limit_reached": "Tu as atteint la limite de 12 événements du forfait Starter. Passe à Studio pour des événements illimités.",
-  "errors__pro_subscription_required": "Un abonnement Pro actif est requis pour créer des événements."
+  "errors__pro_subscription_required": "Un abonnement Pro actif est requis pour créer des événements.",
+  "errors__kiosk_pin_invalid": "Ce PIN ne correspond pas. Réessayez."
 }

@@ -108,5 +108,17 @@
   "kiosk__config__lockdown__guided__on": "โหมด guided เปิดอยู่",
   "kiosk__config__link_redirect__title": "การตั้งค่าการส่ง",
   "kiosk__config__link_redirect__desc": "สิ่งที่ผู้ร่วมงานส่งได้และความยาวการบันทึกอยู่ในหน้าตั้งค่าลิงก์แล้ว — แชร์โดยลิงก์ คิวอาร์โค้ด และคีออสของคุณ",
-  "kiosk__config__link_redirect__cta": "เปิดการตั้งค่าลิงก์"
+  "kiosk__config__link_redirect__cta": "เปิดการตั้งค่าลิงก์",
+  "kiosk_setup__pin__change": "เปลี่ยน PIN",
+  "kiosk__gate__title": "ป้อน PIN ของคีออส",
+  "kiosk__gate__hint": "พิมพ์ PIN 4 หลักเพื่อเปิดคีออส",
+  "kiosk__gate__submit": "เปิดคีออส",
+  "kiosk__gate__verifying": "กำลังตรวจสอบ…",
+  "kiosk__gate__wrong": "PIN ไม่ถูกต้อง โปรดลองอีกครั้ง",
+  "kiosk__gate__rate_limited": "พยายามมากเกินไป โปรดรอสักครู่แล้วลองอีกครั้ง",
+  "kiosk__share__eyebrow": "แชร์ลิงก์คีออส",
+  "kiosk__share__desc": "ส่งลิงก์นี้ให้ผู้ที่จะตั้งค่าคีออสในวันงาน พวกเขาต้องใช้ PIN เพื่อเปิด",
+  "kiosk__share__copy": "คัดลอกลิงก์",
+  "kiosk__share__copied": "คัดลอกแล้ว!",
+  "kiosk__share__pin_set": "PIN เริ่มต้นคือ 1234 เปลี่ยนได้ในการ์ดล็อกก่อนแชร์"
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
@@ -17,6 +17,7 @@ import { KioskOfflineOverlay } from "@/features/kiosk/components/KioskOfflineOve
 type KioskLiveFrameProps = {
   slug: string;
   event: PublicEvent;
+  exitHref?: string;
   enableWakeLock?: boolean;
 };
 
@@ -36,6 +37,7 @@ const formatWeddingDate = (raw: string | null): string => {
 export const KioskLiveFrame = ({
   slug,
   event,
+  exitHref = "/",
   enableWakeLock = false,
 }: KioskLiveFrameProps) => {
   const t = useTranslations();
@@ -49,6 +51,8 @@ export const KioskLiveFrame = ({
   const isClosed = !event.submissionOpen || event.limitReached;
   const showThanks = searchParams.get("submitted") === "1";
   const [exitOpen, setExitOpen] = useState(false);
+  const leaveOnConfirmRef = useRef(false);
+  const skipNextGuardRef = useRef(false);
   const showLanguagePicker =
     event.kiosk.welcomeShowLanguagePicker &&
     event.supportedLanguages.length > 1;
@@ -65,30 +69,52 @@ export const KioskLiveFrame = ({
     exit: exitFullscreen,
   } = useFullscreen();
 
-  const fullscreenLockActive =
-    enableWakeLock && fullscreenSupported && event.kiosk.fullscreenLock;
+  const clearKioskSession = () => {
+    if (typeof window === "undefined") return;
+    try {
+      window.sessionStorage.removeItem(`kiosk-access:${slug}`);
+    } catch {
+      // ignore
+    }
+  };
 
   const handleExitClick = async () => {
-    if (event.kiosk.fullscreenLock && event.kiosk.exitPin) {
+    const shouldLeave = !isFullscreen;
+    if (event.kiosk.requiresPin) {
+      leaveOnConfirmRef.current = shouldLeave;
       setExitOpen(true);
       return;
+    }
+    if (isFullscreen) {
+      skipNextGuardRef.current = true;
     }
     try {
       await exitFullscreen();
     } catch {
       // ignore
     }
-    router.push("/kiosk");
+    if (shouldLeave) {
+      clearKioskSession();
+      router.push(exitHref);
+    }
   };
 
   const handleManualExitConfirm = async () => {
     setExitOpen(false);
+    const shouldLeave = leaveOnConfirmRef.current;
+    leaveOnConfirmRef.current = false;
+    if (isFullscreen) {
+      skipNextGuardRef.current = true;
+    }
     try {
       await exitFullscreen();
     } catch {
       // ignore
     }
-    router.push("/kiosk");
+    if (shouldLeave) {
+      clearKioskSession();
+      router.push(exitHref);
+    }
   };
 
   useWakeLock(enableWakeLock);
@@ -118,13 +144,15 @@ export const KioskLiveFrame = ({
 
       <KioskOfflineOverlay />
       <KioskFullscreenGuard
-        active={fullscreenLockActive}
-        exitPin={event.kiosk.exitPin}
-        exitHref="/kiosk"
+        active={enableWakeLock && fullscreenSupported}
+        slug={slug}
+        requiresPin={event.kiosk.requiresPin}
+        skipNextExitRef={skipNextGuardRef}
       />
       <KioskExitDialog
         open={exitOpen}
-        expectedPin={event.kiosk.exitPin}
+        slug={slug}
+        requiresPin={event.kiosk.requiresPin}
         onCancel={() => setExitOpen(false)}
         onConfirm={handleManualExitConfirm}
       />

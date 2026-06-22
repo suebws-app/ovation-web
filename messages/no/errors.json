@@ -8,5 +8,6 @@
   "errors__generic": "Noe gikk galt. Referanse: {traceId}",
   "errors__pro_required": "En profesjonell konto er påkrevd.",
   "errors__pro_event_limit_reached": "Du har nådd grensen på 12 arrangementer på Starter-planen. Oppgrader til Studio for ubegrenset antall arrangementer.",
-  "errors__pro_subscription_required": "Et aktivt Pro-abonnement er påkrevd for å opprette arrangementer."
+  "errors__pro_subscription_required": "Et aktivt Pro-abonnement er påkrevd for å opprette arrangementer.",
+  "errors__kiosk_pin_invalid": "Den PIN-en passer ikke. Prøv igjen."
 }

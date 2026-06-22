@@ -7,15 +7,18 @@ import { KioskConfigCard } from "./KioskConfigCard";
 import { KioskConfigRow } from "./KioskConfigRow";
 import { KioskToggle } from "./KioskToggle";
 import { KioskPinInput } from "./KioskPinInput";
+import { KioskShareCard } from "./KioskShareCard";
 import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
 
 type KioskConfigLeftProps = {
+  slug: string | null;
   settings: KioskSettings;
   eventId: string | null;
   onPatch: (changes: UpdateKioskSettingsInput) => void;
 };
 
 export const KioskConfigLeft = ({
+  slug,
   settings,
   eventId,
   onPatch,
@@ -26,6 +29,7 @@ export const KioskConfigLeft = ({
     : appRoutes.app.link;
   return (
     <div className="flex flex-col gap-5">
+      {slug && <KioskShareCard slug={slug} />}
       <div className="rounded-16 border-border bg-card flex flex-col gap-2 border px-7 py-5">
         <div className="type-h3 font-semibold">
           {t("kiosk__config__link_redirect__title")}
@@ -49,16 +53,7 @@ export const KioskConfigLeft = ({
           title={t("kiosk__config__lockdown__pin__title")}
           description={t("kiosk__config__lockdown__pin__desc")}
         >
-          <KioskPinInput
-            value={settings.exitPin}
-            onChange={(exitPin) => {
-              if (!exitPin && settings.fullscreenLock) {
-                onPatch({ exitPin, fullscreenLock: false });
-                return;
-              }
-              onPatch({ exitPin });
-            }}
-          />
+          <KioskPinInput onChange={(kioskPin) => onPatch({ kioskPin })} />
         </KioskConfigRow>
         <KioskConfigRow
           title={t("kiosk__config__lockdown__fullscreen__title")}
@@ -67,7 +62,6 @@ export const KioskConfigLeft = ({
         >
           <KioskToggle
             on={settings.fullscreenLock}
-            disabled={!settings.exitPin}
             onChange={(fullscreenLock) => onPatch({ fullscreenLock })}
           />
         </KioskConfigRow>

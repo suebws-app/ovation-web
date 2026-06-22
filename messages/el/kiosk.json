@@ -108,5 +108,17 @@
   "kiosk__config__lockdown__guided__on": "Καθοδηγούμενη λειτουργία ενεργή",
   "kiosk__config__link_redirect__title": "Ρυθμίσεις υποβολής",
   "kiosk__config__link_redirect__desc": "Το τι μπορούν να υποβάλουν οι καλεσμένοι και η διάρκεια εγγραφής βρίσκονται τώρα στη σελίδα ρυθμίσεων συνδέσμου — κοινόχρηστα για τον σύνδεσμο, τον κωδικό QR και το κιόσκι.",
-  "kiosk__config__link_redirect__cta": "Άνοιγμα ρυθμίσεων συνδέσμου"
+  "kiosk__config__link_redirect__cta": "Άνοιγμα ρυθμίσεων συνδέσμου",
+  "kiosk_setup__pin__change": "Αλλαγή PIN",
+  "kiosk__gate__title": "Εισαγάγετε το PIN του kiosk",
+  "kiosk__gate__hint": "Πληκτρολογήστε το 4ψήφιο PIN για να ανοίξετε το kiosk.",
+  "kiosk__gate__submit": "Άνοιγμα kiosk",
+  "kiosk__gate__verifying": "Επαλήθευση…",
+  "kiosk__gate__wrong": "Λάθος PIN. Δοκιμάστε ξανά.",
+  "kiosk__gate__rate_limited": "Πάρα πολλές προσπάθειες. Περιμένετε μια στιγμή και δοκιμάστε ξανά.",
+  "kiosk__share__eyebrow": "Κοινοποίηση συνδέσμου kiosk",
+  "kiosk__share__desc": "Στείλτε αυτόν τον σύνδεσμο σε όποιον θα ρυθμίσει το kiosk την ημέρα. Θα χρειαστεί το PIN για να το ανοίξει.",
+  "kiosk__share__copy": "Αντιγραφή συνδέσμου",
+  "kiosk__share__copied": "Αντιγράφηκε!",
+  "kiosk__share__pin_set": "Το προεπιλεγμένο PIN είναι 1234. Αλλάξτε το από την κάρτα κλειδώματος πριν από την κοινοποίηση."
 }
