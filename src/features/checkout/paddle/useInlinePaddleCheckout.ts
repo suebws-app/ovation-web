@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { initializePaddle, type Paddle } from "@paddle/paddle-js";
 import { clientEnv as env } from "@/lib/utils/env.client";
+import { useOptimisticPlanStore } from "../useOptimisticPlanStore";
 
 type PaddleCustomData = { orderId?: string } | undefined;
 
@@ -43,6 +44,8 @@ export const useInlinePaddleCheckout = ({
             console.error(
               "Paddle checkout.completed missing custom_data.orderId",
             );
+          } else {
+            useOptimisticPlanStore.getState().markActivating(orderId);
           }
           paddleRef.current?.Checkout.close();
           onCompletedRef.current(orderId);

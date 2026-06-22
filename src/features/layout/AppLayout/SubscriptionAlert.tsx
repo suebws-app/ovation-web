@@ -7,6 +7,7 @@ import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { daysBetween } from "@/lib/utils/time";
+import { useOptimisticPlanStore } from "@/features/checkout/useOptimisticPlanStore";
 import { DrePlanModal } from "./DrePlanModal";
 
 type SubscriptionAlertProps = {
@@ -14,6 +15,7 @@ type SubscriptionAlertProps = {
   storageExpiresAt: string | null;
   userCreatedAt: string | null;
   storageDays: number | null;
+  planActivating?: boolean;
 };
 
 export const SubscriptionAlert = ({
@@ -21,15 +23,18 @@ export const SubscriptionAlert = ({
   storageExpiresAt,
   userCreatedAt,
   storageDays,
+  planActivating = false,
 }: SubscriptionAlertProps) => {
   const t = useTranslations();
   const pathname = usePathname();
   const [dreModalOpen, setDreModalOpen] = useState(false);
+  const activatingOrderId = useOptimisticPlanStore((s) => s.activatingOrderId);
 
   if (pathname.startsWith(appRoutes.app.plans)) return null;
   if (planTier === "storage_extension") return null;
 
   const isFree = !planTier || planTier === "free";
+  if (isFree && (planActivating || activatingOrderId)) return null;
 
   let daysLeft: number | null = null;
   if (storageExpiresAt) {

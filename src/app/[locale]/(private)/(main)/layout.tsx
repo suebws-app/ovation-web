@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 import { eventsApi } from "@/lib/api/events";
 import { appRoutes } from "@/lib/routes";
+import { ACTIVATING_COOKIE_NAME } from "@/features/checkout/useOptimisticPlanStore";
 import type { Event } from "@/lib/api/types";
 
 const AUTH_COOKIE_NAMES = [
@@ -38,8 +39,11 @@ export default async function AppRootLayout({
     if (result?.event) eventsList = [result.event];
   }
 
+  const cookieStore = await cookies();
+  const planActivating = !!cookieStore.get(ACTIVATING_COOKIE_NAME);
+
   return (
-    <AppLayout user={user} events={eventsList}>
+    <AppLayout user={user} events={eventsList} planActivating={planActivating}>
       {children}
     </AppLayout>
   );

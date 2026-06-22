@@ -19,12 +19,14 @@ type GalleryFilter = {
   sort?: "newest" | "oldest";
   search?: string;
   limit?: number;
+  includeOwnerUploads?: boolean;
 };
 
 type GalleryCountInput = {
   type?: "photo" | "video" | "all";
   filter?: "all" | "favorites" | "gold_book";
   search?: string;
+  includeOwnerUploads?: boolean;
 };
 
 export const useGalleryCount = (
@@ -51,6 +53,7 @@ export const useInfiniteGallery = (
         sort: input.sort,
         search: input.search,
         limit: input.limit,
+        includeOwnerUploads: input.includeOwnerUploads,
         cursor: pageParam ?? undefined,
       }),
     initialPageParam: null as string | null,

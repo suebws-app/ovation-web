@@ -33,6 +33,7 @@ export type GalleryQuery = {
   search?: string;
   cursor?: string;
   limit?: number;
+  includeOwnerUploads?: boolean;
 };
 
 export const mediaClient = {
@@ -60,12 +61,15 @@ export const mediaClient = {
       type?: "photo" | "video" | "all";
       filter?: "all" | "favorites" | "gold_book";
       search?: string;
+      includeOwnerUploads?: boolean;
     } = {},
   ): Promise<GalleryCount> => {
-    const queryParams: Record<string, string | undefined> = {};
+    const queryParams: Record<string, string | boolean | undefined> = {};
     if (query.type) queryParams.type = query.type;
     if (query.filter) queryParams.filter = query.filter;
     if (query.search) queryParams.search = query.search;
+    if (query.includeOwnerUploads !== undefined)
+      queryParams.includeOwnerUploads = query.includeOwnerUploads;
     return clientFetch<GalleryCount>(`${mediaPath(eventId)}/count`, {
       query: queryParams,
     });
@@ -75,13 +79,16 @@ export const mediaClient = {
     eventId: string,
     query: GalleryQuery = {},
   ): Promise<Paginated<GalleryItem>> => {
-    const queryParams: Record<string, string | number | undefined> = {};
+    const queryParams: Record<string, string | number | boolean | undefined> =
+      {};
     if (query.type) queryParams.type = query.type;
     if (query.filter) queryParams.filter = query.filter;
     if (query.sort) queryParams.sort = query.sort;
     if (query.search) queryParams.search = query.search;
     if (query.cursor) queryParams.cursor = query.cursor;
     if (query.limit !== undefined) queryParams.limit = query.limit;
+    if (query.includeOwnerUploads !== undefined)
+      queryParams.includeOwnerUploads = query.includeOwnerUploads;
     return clientFetchPaginated<GalleryItem>(mediaPath(eventId), {
       query: queryParams,
     });

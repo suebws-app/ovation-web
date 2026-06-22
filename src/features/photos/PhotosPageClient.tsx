@@ -65,12 +65,14 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
     sort,
     search: trimmedSearch || undefined,
     limit: PAGE_SIZE,
+    includeOwnerUploads: true,
   });
 
   const allCountQuery = useGalleryCount(eventId, {
     type: "all",
     filter: "all",
     search: trimmedSearch || undefined,
+    includeOwnerUploads: true,
   });
 
   const anonymous = t("common__anonymous");
