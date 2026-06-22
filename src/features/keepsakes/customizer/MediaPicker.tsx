@@ -82,6 +82,7 @@ export const MediaPicker = ({
     filter: source,
     limit: PAGE_SIZE,
     sort: "newest",
+    includeOwnerUploads: true,
   });
 
   const items = useMemo(
@@ -92,6 +93,7 @@ export const MediaPicker = ({
   const countQuery = useGalleryCount(eventId ?? "", {
     type,
     filter: selectAll?.filter ?? "all",
+    includeOwnerUploads: true,
   });
 
   useEffect(() => {

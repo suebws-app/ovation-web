@@ -47,6 +47,7 @@ export const usePeechoVariantResolver = (
   const countQuery = useGalleryCount(eventId ?? "", {
     type: "photo",
     filter: photoSelectAll?.filter ?? "all",
+    includeOwnerUploads: true,
   });
 
   const pageCount = photoSelectAll

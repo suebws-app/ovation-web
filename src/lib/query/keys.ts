@@ -34,6 +34,7 @@ export const queryKeys = {
         sort?: "newest" | "oldest";
         search?: string;
         limit?: number;
+        includeOwnerUploads?: boolean;
       } = {},
     ) => ["gallery", eventId, "infinite", input] as const,
     count: (
@@ -42,6 +43,7 @@ export const queryKeys = {
         type?: "photo" | "video" | "all";
         filter?: "all" | "favorites" | "gold_book";
         search?: string;
+        includeOwnerUploads?: boolean;
       } = {},
     ) => ["gallery", eventId, "count", input] as const,
   },
