@@ -14,7 +14,7 @@ export const KioskWelcomeNote = ({
 }: KioskWelcomeNoteProps) => {
   const t = useTranslations();
   return (
-    <div className="border-border border-b py-5">
+    <div className="py-5">
       <div className="type-caption text-muted-foreground mb-2 font-semibold">
         {t("kiosk__config__welcome__note_label")}
       </div>

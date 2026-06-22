@@ -150,6 +150,7 @@ const buildCoupleGroups = (
         label: t("sidebar__nav__keepsakes"),
         href: appRoutes.app.keepsakes,
         icon: StarIcon,
+        matchPaths: ["/keepsakes"],
       },
       {
         label: t("sidebar__nav__orders"),

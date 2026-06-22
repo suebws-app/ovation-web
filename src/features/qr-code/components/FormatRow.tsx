@@ -5,7 +5,6 @@ type FormatRowProps = {
   ext: string;
   desc: string;
   size: string;
-  primary: boolean;
   onClick?: () => void;
   disabled?: boolean;
 };
@@ -14,7 +13,6 @@ export const FormatRow = ({
   ext,
   desc,
   size,
-  primary,
   onClick,
   disabled,
 }: FormatRowProps) => (
@@ -24,14 +22,7 @@ export const FormatRow = ({
       disabled && !onClick && "opacity-60",
     )}
   >
-    <div
-      className={cn(
-        "rounded-8 type-caption flex size-10 items-center justify-center font-bold tracking-wider",
-        primary
-          ? "bg-primary/10 text-primary"
-          : "border-border bg-card text-muted-foreground border",
-      )}
-    >
+    <div className="rounded-8 type-caption flex size-10 items-center justify-center font-bold tracking-wider">
       {ext}
     </div>
     <div className="min-w-0 flex-1">
@@ -45,11 +36,8 @@ export const FormatRow = ({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "flex size-8.5 items-center justify-center rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-50",
+        "border-border bg-card text-foreground hover:bg-primary hover:text-primary-foreground flex size-8.5 items-center justify-center rounded-full border transition-colors disabled:cursor-not-allowed disabled:opacity-50",
         !disabled && "cursor-pointer",
-        primary
-          ? "bg-primary text-primary-foreground shadow-primary/35 shadow-md"
-          : "border-border bg-card text-foreground hover:bg-muted border",
       )}
     >
       <DownloadIcon width={15} height={15} strokeWidth={1.7} />

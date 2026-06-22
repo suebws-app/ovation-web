@@ -30,7 +30,7 @@ export const MessageSortButton = () => {
     OPTIONS.find((o) => o.value === sort)?.labelKey ?? OPTIONS[0].labelKey;
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <button
           type="button"

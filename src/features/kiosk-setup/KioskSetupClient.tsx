@@ -41,7 +41,11 @@ export const KioskSetupClient = ({
 
   return (
     <>
-      <KioskHero slug={slug} />
+      <KioskHero
+        slug={slug}
+        exitPin={settings.exitPin}
+        fullscreenLock={settings.fullscreenLock}
+      />
       <KioskChecklist
         eventId={eventId}
         onTestClick={() => {

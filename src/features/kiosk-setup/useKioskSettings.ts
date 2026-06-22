@@ -33,7 +33,7 @@ export const useKioskSettings = (
     setError(null);
     try {
       const res = await kioskSettingsClient.update(eventId, payload);
-      setSettings(res.settings);
+      setSettings(() => ({ ...res.settings, ...pendingRef.current }));
     } catch (e) {
       toast.error(t("link_settings__save_error"));
       setError(

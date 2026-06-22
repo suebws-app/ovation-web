@@ -46,22 +46,29 @@ export const KioskConfigLeft = ({
         description={t("kiosk__config__lockdown_section__desc")}
       >
         <KioskConfigRow
-          title={t("kiosk__config__lockdown__fullscreen__title")}
-          description={t("kiosk__config__lockdown__fullscreen__desc")}
-        >
-          <KioskToggle
-            on={settings.fullscreenLock}
-            onChange={(fullscreenLock) => onPatch({ fullscreenLock })}
-          />
-        </KioskConfigRow>
-        <KioskConfigRow
           title={t("kiosk__config__lockdown__pin__title")}
           description={t("kiosk__config__lockdown__pin__desc")}
-          last
         >
           <KioskPinInput
             value={settings.exitPin}
-            onChange={(exitPin) => onPatch({ exitPin })}
+            onChange={(exitPin) => {
+              if (!exitPin && settings.fullscreenLock) {
+                onPatch({ exitPin, fullscreenLock: false });
+                return;
+              }
+              onPatch({ exitPin });
+            }}
+          />
+        </KioskConfigRow>
+        <KioskConfigRow
+          title={t("kiosk__config__lockdown__fullscreen__title")}
+          description={t("kiosk__config__lockdown__fullscreen__desc")}
+          last
+        >
+          <KioskToggle
+            on={settings.fullscreenLock}
+            disabled={!settings.exitPin}
+            onChange={(fullscreenLock) => onPatch({ fullscreenLock })}
           />
         </KioskConfigRow>
       </KioskConfigCard>

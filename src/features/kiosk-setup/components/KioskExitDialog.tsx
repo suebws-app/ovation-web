@@ -101,7 +101,7 @@ export const KioskExitDialog = ({
             type="button"
             onClick={submit}
             disabled={draft.length !== 4}
-            className="bg-foreground text-background type-body-small flex-1 cursor-pointer rounded-full px-4 py-2.5 font-semibold disabled:opacity-50"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 type-body-small flex-1 cursor-pointer rounded-full px-4 py-2.5 font-semibold transition-colors"
           >
             {t("kiosk__exit__confirm")}
           </button>

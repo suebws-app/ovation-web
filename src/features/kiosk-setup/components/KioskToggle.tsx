@@ -6,15 +6,22 @@ import { cn } from "@ovation/ui/utils/cn";
 type KioskToggleProps = {
   on?: boolean;
   defaultOn?: boolean;
+  disabled?: boolean;
   onChange?: (value: boolean) => void;
 };
 
-export const KioskToggle = ({ on, defaultOn, onChange }: KioskToggleProps) => {
+export const KioskToggle = ({
+  on,
+  defaultOn,
+  disabled = false,
+  onChange,
+}: KioskToggleProps) => {
   const isControlled = on !== undefined && onChange !== undefined;
   const [internal, setInternal] = useState<boolean>(defaultOn ?? on ?? false);
   const value = isControlled ? (on as boolean) : internal;
 
   const handleClick = () => {
+    if (disabled) return;
     const next = !value;
     if (!isControlled) setInternal(next);
     onChange?.(next);
@@ -25,10 +32,13 @@ export const KioskToggle = ({ on, defaultOn, onChange }: KioskToggleProps) => {
       type="button"
       role="switch"
       aria-checked={value}
+      aria-disabled={disabled}
+      disabled={disabled}
       onClick={handleClick}
       className={cn(
-        "relative h-5.5 w-10 shrink-0 cursor-pointer rounded-full transition-colors",
+        "relative h-5.5 w-10 shrink-0 rounded-full transition-colors",
         value ? "bg-primary" : "bg-muted-foreground/30",
+        disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
       )}
     >
       <div

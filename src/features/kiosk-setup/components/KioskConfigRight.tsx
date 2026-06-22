@@ -2,8 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { KioskConfigCard } from "./KioskConfigCard";
-import { KioskConfigRow } from "./KioskConfigRow";
-import { KioskToggle } from "./KioskToggle";
 import { KioskWelcomeNote } from "./KioskWelcomeNote";
 import { KioskLanguagesSelect } from "./KioskLanguagesSelect";
 import type { KioskSettings, UpdateKioskSettingsInput } from "@/lib/api/types";
@@ -33,18 +31,6 @@ export const KioskConfigRight = ({
             })
           }
         />
-        <KioskConfigRow
-          title={t("kiosk__config__welcome__lang_picker__title")}
-          description={t("kiosk__config__welcome__lang_picker__desc")}
-          last
-        >
-          <KioskToggle
-            on={settings.welcomeShowLanguagePicker}
-            onChange={(welcomeShowLanguagePicker) =>
-              onPatch({ welcomeShowLanguagePicker })
-            }
-          />
-        </KioskConfigRow>
       </KioskConfigCard>
 
       <KioskConfigCard
@@ -54,6 +40,7 @@ export const KioskConfigRight = ({
         <KioskLanguagesSelect
           defaultLanguage={settings.defaultLanguage}
           supportedLanguages={settings.supportedLanguages}
+          welcomeShowLanguagePicker={settings.welcomeShowLanguagePicker}
           onChange={onPatch}
         />
       </KioskConfigCard>

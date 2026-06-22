@@ -120,19 +120,18 @@ export const DownloadCard = ({
         {t("qr_code__download__eyebrow")}
       </Kicker>
       <div className="flex flex-col gap-2">
-        {formats.map((f, i) => (
+        {formats.map((f) => (
           <FormatRow
             key={f.ext}
             ext={f.ext}
             desc={f.desc}
             size={f.size}
-            primary={i === 0}
             onClick={f.onClick}
             disabled={!f.enabled || pending !== null}
           />
         ))}
       </div>
-      <div className="absolute top-0 -left-[9999px]" aria-hidden="true">
+      <div className="absolute top-0 -left-2499.75" aria-hidden="true">
         <div ref={canvasContainerRef}>
           <QRCodeCanvas
             value={shortUrl}

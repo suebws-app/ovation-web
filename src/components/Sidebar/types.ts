@@ -7,6 +7,7 @@ export type SidebarNavItem = {
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
   badge?: number | string;
   variant?: "default" | "warn";
+  matchPaths?: string[];
 };
 
 export type SidebarNavGroup = {

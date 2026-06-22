@@ -3,7 +3,13 @@
 import { useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { buildPaperFacets, buildSizeFacets, paperTypeOf } from "../bookFacets";
+import {
+  buildPaperFacets,
+  buildSizeFacets,
+  paperTypeOf,
+  sizeKeyOf,
+} from "../bookFacets";
+import { cheapestVariant } from "../../designTokens";
 import {
   bindingFromProductType,
   bookFormSchema,
@@ -40,12 +46,18 @@ export const BookCustomizer = ({
   const binding = bindingFromProductType(product.productType);
 
   const defaultValues = useMemo<BookFormValues>(() => {
-    const defaultPaperType = buildPaperFacets(variants)[0] ?? "";
-    const defaultSizeKey = defaultPaperType
-      ? (buildSizeFacets(
-          variants.filter((v) => paperTypeOf(v) === defaultPaperType),
-        )[0]?.sizeKey ?? "")
-      : "";
+    const cheapest = cheapestVariant(variants);
+    const cheapestPaperType = cheapest ? paperTypeOf(cheapest) : null;
+    const cheapestSizeKey = cheapest ? sizeKeyOf(cheapest) : null;
+    const fallbackPaperType = buildPaperFacets(variants)[0] ?? "";
+    const defaultPaperType = cheapestPaperType ?? fallbackPaperType;
+    const defaultSizeKey =
+      cheapestSizeKey ??
+      (defaultPaperType
+        ? (buildSizeFacets(
+            variants.filter((v) => paperTypeOf(v) === defaultPaperType),
+          )[0]?.sizeKey ?? "")
+        : "");
     return {
       paperType: defaultPaperType,
       sizeKey: defaultSizeKey,
