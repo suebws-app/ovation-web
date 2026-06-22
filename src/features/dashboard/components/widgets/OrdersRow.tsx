@@ -74,7 +74,7 @@ export const OrdersRow = ({
 
   return (
     <div
-      className="flex items-center gap-4 py-4"
+      className="mobile:items-center flex items-start gap-4 py-4"
       style={{ borderTop: notFirst ? "1px solid var(--border)" : "none" }}
     >
       <span
@@ -82,33 +82,35 @@ export const OrdersRow = ({
       >
         {productIcon(productKey)}
       </span>
-      <div className="min-w-0 flex-1">
-        <p className="type-body-small truncate font-serif font-semibold">
-          {productLabel}
-          {order.quantity > 1 && (
-            <span className="text-muted-foreground ml-1 font-sans">
-              ×{order.quantity}
-            </span>
-          )}
-        </p>
-        <p className="type-caption text-muted-foreground mt-0.5 truncate">
-          {shortId(order.id)} · {formatDateShort(order.createdAt)}
-        </p>
-      </div>
-      <div className="flex shrink-0 flex-col items-end gap-1">
-        <p className="type-body-small font-serif font-semibold">
-          {formatPrice(order.totalCents, order.currency)}
-        </p>
-        <span
-          className={`${visual.className} type-caption inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold`}
-        >
-          {visual.withCheck ? (
-            <CheckIcon width={10} height={10} />
-          ) : (
-            <span className="inline-block size-1.5 rounded-full bg-current" />
-          )}
-          {statusLabel}
-        </span>
+      <div className="mobile:flex-row mobile:items-center mobile:justify-between mobile:gap-4 flex min-w-0 flex-1 flex-col gap-2">
+        <div className="min-w-0">
+          <p className="type-body-small truncate font-serif font-semibold">
+            {productLabel}
+            {order.quantity > 1 && (
+              <span className="text-muted-foreground ml-1 font-sans">
+                ×{order.quantity}
+              </span>
+            )}
+          </p>
+          <p className="type-caption text-muted-foreground mt-0.5 truncate">
+            {shortId(order.id)} · {formatDateShort(order.createdAt)}
+          </p>
+        </div>
+        <div className="mobile:items-end flex shrink-0 flex-col items-start gap-1">
+          <p className="type-body-small font-serif font-semibold">
+            {formatPrice(order.totalCents, order.currency)}
+          </p>
+          <span
+            className={`${visual.className} type-caption inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold`}
+          >
+            {visual.withCheck ? (
+              <CheckIcon width={10} height={10} />
+            ) : (
+              <span className="inline-block size-1.5 rounded-full bg-current" />
+            )}
+            {statusLabel}
+          </span>
+        </div>
       </div>
     </div>
   );

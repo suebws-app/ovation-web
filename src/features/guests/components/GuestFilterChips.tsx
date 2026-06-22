@@ -41,7 +41,7 @@ export const GuestFilterChips = ({
   const t = useTranslations();
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="hide-scrollbar flex min-h-fit items-center gap-2 overflow-auto">
       {FILTERS.map((f) => (
         <Chip
           key={f.value}

@@ -28,7 +28,7 @@ export const PhotoUploadButton = ({ eventId }: PhotoUploadButtonProps) => {
   };
 
   return (
-    <div className="flex flex-col items-end gap-1">
+    <div className="flex shrink-0 flex-col items-end gap-1">
       <input
         ref={inputRef}
         type="file"

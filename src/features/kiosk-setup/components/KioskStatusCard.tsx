@@ -11,22 +11,19 @@ import { KioskStartWarningDialog } from "./KioskStartWarningDialog";
 
 type KioskStatusCardProps = {
   slug: string | null;
-  exitPin?: string | null;
   fullscreenLock?: boolean;
 };
 
 export const KioskStatusCard = ({
   slug,
-  exitPin,
   fullscreenLock,
 }: KioskStatusCardProps) => {
   const t = useTranslations();
   const router = useRouter();
   const [warningOpen, setWarningOpen] = useState(false);
 
-  const missingPin = !exitPin;
   const missingFullscreenLock = !fullscreenLock;
-  const needsWarning = missingPin || missingFullscreenLock;
+  const needsWarning = missingFullscreenLock;
 
   const handleStartClick = () => {
     if (!slug) return;
@@ -43,7 +40,7 @@ export const KioskStatusCard = ({
   };
 
   return (
-    <div className="rounded-20 border-border bg-card w-85 border p-5.5 shadow">
+    <div className="rounded-20 border-border bg-card desktop:w-85 w-full border p-5.5 shadow">
       <div className="type-overline text-muted-foreground flex items-center gap-2.5">
         <span className="bg-muted-foreground/50 size-2 rounded-full" />
         {t("kiosk__hero__status_offline")}
@@ -71,7 +68,6 @@ export const KioskStatusCard = ({
       </div>
       <KioskStartWarningDialog
         open={warningOpen}
-        missingPin={missingPin}
         missingFullscreenLock={missingFullscreenLock}
         onCancel={() => setWarningOpen(false)}
         onConfirm={handleConfirm}

@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Quitar idioma",
   "kiosk_setup__select__placeholder": "Selecciona una opción",
   "kiosk_setup__slider__label": "Deslizador",
-  "kiosk_setup__save_error": "Error al guardar"
+  "kiosk_setup__save_error": "Error al guardar",
+  "kiosk_setup__pin__change": "Cambiar PIN",
+  "kiosk__gate__title": "Introduce el PIN del kiosco",
+  "kiosk__gate__hint": "Escribe el PIN de 4 dígitos para abrir el kiosco.",
+  "kiosk__gate__submit": "Abrir kiosco",
+  "kiosk__gate__verifying": "Comprobando…",
+  "kiosk__gate__wrong": "PIN incorrecto. Inténtalo de nuevo.",
+  "kiosk__gate__rate_limited": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
+  "kiosk__share__eyebrow": "Compartir el enlace del kiosco",
+  "kiosk__share__desc": "Envía este enlace a quien instale el kiosco el día. Necesitará el PIN para abrirlo.",
+  "kiosk__share__copy": "Copiar enlace",
+  "kiosk__share__copied": "¡Copiado!",
+  "kiosk__share__pin_set": "El PIN predeterminado es 1234. Cámbialo desde la tarjeta de bloqueo antes de compartir."
 }

@@ -8,5 +8,6 @@
   "errors__generic": "Ceva nu a mers bine. Referință: {traceId}",
   "errors__pro_required": "Este necesar un cont profesional.",
   "errors__pro_event_limit_reached": "Ai atins limita de 12 evenimente pe planul Starter. Fă upgrade la Studio pentru evenimente nelimitate.",
-  "errors__pro_subscription_required": "Este necesar un abonament Pro activ pentru a crea evenimente."
+  "errors__pro_subscription_required": "Este necesar un abonament Pro activ pentru a crea evenimente.",
+  "errors__kiosk_pin_invalid": "Acest PIN nu se potrivește. Încearcă din nou."
 }

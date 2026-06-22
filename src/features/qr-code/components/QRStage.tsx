@@ -61,6 +61,7 @@ export const QRStage = ({
         <QRCodeSVG
           value={shortUrl}
           size={220}
+          className="tablet:size-55 size-40"
           level="H"
           marginSize={0}
           fgColor={dark}

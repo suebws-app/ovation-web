@@ -14,10 +14,8 @@ import {
   type PhotoSubFilter,
 } from "../store/usePhotosStore";
 import { PhotoSortButton } from "./PhotoSortButton";
-import { PhotoUploadButton } from "./PhotoUploadButton";
 
 type PhotosFilterRailProps = {
-  eventId: string;
   stats: EventStats | null;
   allCount: number;
 };
@@ -29,7 +27,6 @@ const FILTER_VALUES: { labelKey: string; value: PhotoSubFilter }[] = [
 ];
 
 export const PhotosFilterRail = ({
-  eventId,
   stats,
   allCount,
 }: PhotosFilterRailProps) => {
@@ -83,7 +80,7 @@ export const PhotosFilterRail = ({
 
   return (
     <FilterChipRail
-      className="border-0 bg-transparent px-0 py-0"
+      className="min-w-0 flex-1 border-0 bg-transparent px-0 py-0"
       chips={chipItems}
       activeLabel={activeLabel}
       onSelect={handleSelect}
@@ -98,7 +95,6 @@ export const PhotosFilterRail = ({
       trailing={
         <div className="flex gap-2">
           <PhotoSortButton />
-          <PhotoUploadButton eventId={eventId} />
         </div>
       }
     />

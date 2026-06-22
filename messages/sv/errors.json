@@ -8,5 +8,6 @@
   "errors__generic": "Något gick fel. Referens: {traceId}",
   "errors__pro_required": "Ett professionellt konto krävs.",
   "errors__pro_event_limit_reached": "Du har nått gränsen på 12 evenemang på Starter-planen. Uppgradera till Studio för obegränsat antal evenemang.",
-  "errors__pro_subscription_required": "En aktiv Pro-prenumeration krävs för att skapa evenemang."
+  "errors__pro_subscription_required": "En aktiv Pro-prenumeration krävs för att skapa evenemang.",
+  "errors__kiosk_pin_invalid": "PIN-koden stämmer inte. Försök igen."
 }

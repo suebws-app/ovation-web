@@ -4,11 +4,10 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 type KioskPinInputProps = {
-  value: string | null;
-  onChange: (value: string | null) => void;
+  onChange: (pin: string) => void;
 };
 
-export const KioskPinInput = ({ value, onChange }: KioskPinInputProps) => {
+export const KioskPinInput = ({ onChange }: KioskPinInputProps) => {
   const t = useTranslations();
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState("");
@@ -18,22 +17,18 @@ export const KioskPinInput = ({ value, onChange }: KioskPinInputProps) => {
       <button
         type="button"
         onClick={() => {
-          setDraft(value ?? "");
+          setDraft("");
           setEditing(true);
         }}
         className="border-border bg-card type-body-small hover:bg-background cursor-pointer rounded-full border px-3.5 py-2 font-mono tracking-widest transition-colors"
       >
-        {value ? "•".repeat(4) : t("kiosk_setup__pin__set")}
+        {t("kiosk_setup__pin__change")}
       </button>
     );
   }
 
   const commit = () => {
     setEditing(false);
-    if (draft.length === 0) {
-      onChange(null);
-      return;
-    }
     if (/^\d{4}$/.test(draft)) {
       onChange(draft);
     }

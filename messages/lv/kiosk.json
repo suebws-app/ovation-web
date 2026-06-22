@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Noņemt valodu",
   "kiosk_setup__select__placeholder": "Izvēlieties opciju",
   "kiosk_setup__slider__label": "Slīdnis",
-  "kiosk_setup__save_error": "Neizdevās saglabāt"
+  "kiosk_setup__save_error": "Neizdevās saglabāt",
+  "kiosk_setup__pin__change": "Mainīt PIN",
+  "kiosk__gate__title": "Ievadiet kioska PIN",
+  "kiosk__gate__hint": "Ierakstiet 4 ciparu PIN, lai atvērtu kiosku.",
+  "kiosk__gate__submit": "Atvērt kiosku",
+  "kiosk__gate__verifying": "Pārbauda…",
+  "kiosk__gate__wrong": "Nepareizs PIN. Mēģiniet vēlreiz.",
+  "kiosk__gate__rate_limited": "Pārāk daudz mēģinājumu. Pagaidiet brīdi un mēģiniet vēlreiz.",
+  "kiosk__share__eyebrow": "Kopīgot kioska saiti",
+  "kiosk__share__desc": "Nosūtiet šo saiti personai, kas kiosku iestatīs dienā. Tai būs nepieciešams PIN, lai to atvērtu.",
+  "kiosk__share__copy": "Kopēt saiti",
+  "kiosk__share__copied": "Nokopēts!",
+  "kiosk__share__pin_set": "Noklusējuma PIN ir 1234. Mainiet to bloķēšanas kartē pirms kopīgošanas."
 }

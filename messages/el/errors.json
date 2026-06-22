@@ -8,5 +8,6 @@
   "errors__generic": "Κάτι πήγε στραβά. Αναφορά: {traceId}",
   "errors__pro_required": "Απαιτείται επαγγελματικός λογαριασμός.",
   "errors__pro_event_limit_reached": "Έχεις φτάσει το όριο των 12 εκδηλώσεων στο πλάνο Starter. Αναβάθμισε σε Studio για απεριόριστες εκδηλώσεις.",
-  "errors__pro_subscription_required": "Απαιτείται ενεργή συνδρομή Pro για τη δημιουργία εκδηλώσεων."
+  "errors__pro_subscription_required": "Απαιτείται ενεργή συνδρομή Pro για τη δημιουργία εκδηλώσεων.",
+  "errors__kiosk_pin_invalid": "Αυτό το PIN δεν ταιριάζει. Δοκιμάστε ξανά."
 }

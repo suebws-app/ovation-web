@@ -82,4 +82,11 @@ export const publicClient = {
       body: { channel },
       skipCsrf: true,
     }),
+
+  verifyKioskPin: (slug: string, pin: string) =>
+    clientFetch<{ ok: true }>(`/public/events/${slug}/kiosk/verify-pin`, {
+      method: "POST",
+      body: { pin },
+      skipCsrf: true,
+    }),
 };

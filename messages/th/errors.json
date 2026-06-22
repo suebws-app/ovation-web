@@ -8,5 +8,6 @@
   "errors__generic": "เกิดข้อผิดพลาดบางอย่าง รหัสอ้างอิง: {traceId}",
   "errors__pro_required": "ต้องใช้บัญชีมืออาชีพ",
   "errors__pro_event_limit_reached": "คุณใช้สิทธิ์ครบ 12 อีเวนต์ในแพ็กเกจ Starter แล้ว อัปเกรดเป็น Studio เพื่อสร้างอีเวนต์ได้ไม่จำกัด",
-  "errors__pro_subscription_required": "ต้องมีการสมัครสมาชิก Pro ที่ใช้งานอยู่จึงจะสร้างอีเวนต์ได้"
+  "errors__pro_subscription_required": "ต้องมีการสมัครสมาชิก Pro ที่ใช้งานอยู่จึงจะสร้างอีเวนต์ได้",
+  "errors__kiosk_pin_invalid": "PIN ไม่ตรงกัน โปรดลองอีกครั้ง"
 }

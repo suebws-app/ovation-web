@@ -7,7 +7,6 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
-import { KioskFullscreenGuard } from "@/features/kiosk-setup/components/KioskFullscreenGuard";
 import { VoiceCaptureCard } from "./VoiceCaptureCard";
 import { VideoCaptureCard } from "./VideoCaptureCard";
 import { PhotoCaptureCard } from "./PhotoCaptureCard";
@@ -20,8 +19,6 @@ type ComposeClientProps = {
   capturePhoto: boolean;
   maxVideoDurationSec: number;
   maxAudioDurationSec: number;
-  exitPin: string | null;
-  fullscreenLock: boolean;
   sourceParam: string | null;
 };
 
@@ -32,8 +29,6 @@ export const ComposeClient = ({
   capturePhoto,
   maxVideoDurationSec,
   maxAudioDurationSec,
-  exitPin,
-  fullscreenLock,
   sourceParam,
 }: ComposeClientProps) => {
   const t = useTranslations();
@@ -73,11 +68,6 @@ export const ComposeClient = ({
 
   return (
     <div className="flex flex-1 flex-col">
-      <KioskFullscreenGuard
-        active={isKioskSession && fullscreenLock}
-        exitPin={exitPin}
-        exitHref="/kiosk"
-      />
       <div className="tablet:px-8 small-desktop:px-10 small-desktop:py-9 flex flex-1 flex-col gap-6 px-5 pt-5 pb-9">
         <WizardHeader
           step={1}

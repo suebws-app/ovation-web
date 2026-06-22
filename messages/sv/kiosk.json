@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Ta bort språk",
   "kiosk_setup__select__placeholder": "Välj alternativ",
   "kiosk_setup__slider__label": "Skjutreglage",
-  "kiosk_setup__save_error": "Det gick inte att spara"
+  "kiosk_setup__save_error": "Det gick inte att spara",
+  "kiosk_setup__pin__change": "Ändra PIN",
+  "kiosk__gate__title": "Ange kiosk-PIN",
+  "kiosk__gate__hint": "Skriv den 4-siffriga PIN-koden för att öppna kiosken.",
+  "kiosk__gate__submit": "Öppna kiosk",
+  "kiosk__gate__verifying": "Kontrollerar…",
+  "kiosk__gate__wrong": "Fel PIN. Försök igen.",
+  "kiosk__gate__rate_limited": "För många försök. Vänta en stund och försök igen.",
+  "kiosk__share__eyebrow": "Dela kiosk-länken",
+  "kiosk__share__desc": "Skicka denna länk till den som ställer in kiosken på dagen. De behöver PIN-koden för att öppna den.",
+  "kiosk__share__copy": "Kopiera länk",
+  "kiosk__share__copied": "Kopierat!",
+  "kiosk__share__pin_set": "Standard-PIN är 1234. Ändra den i låsningskortet före delning."
 }

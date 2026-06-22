@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Elimină limba",
   "kiosk_setup__select__placeholder": "Selectează o opțiune",
   "kiosk_setup__slider__label": "Glisor",
-  "kiosk_setup__save_error": "Salvarea a eșuat"
+  "kiosk_setup__save_error": "Salvarea a eșuat",
+  "kiosk_setup__pin__change": "Schimbă PIN-ul",
+  "kiosk__gate__title": "Introdu PIN-ul kioscului",
+  "kiosk__gate__hint": "Introdu PIN-ul de 4 cifre pentru a deschide kioscul.",
+  "kiosk__gate__submit": "Deschide kioscul",
+  "kiosk__gate__verifying": "Se verifică…",
+  "kiosk__gate__wrong": "PIN incorect. Încearcă din nou.",
+  "kiosk__gate__rate_limited": "Prea multe încercări. Așteaptă un moment și încearcă din nou.",
+  "kiosk__share__eyebrow": "Distribuie linkul kioscului",
+  "kiosk__share__desc": "Trimite acest link persoanei care va instala kioscul în ziua respectivă. Va avea nevoie de PIN pentru a-l deschide.",
+  "kiosk__share__copy": "Copiază linkul",
+  "kiosk__share__copied": "Copiat!",
+  "kiosk__share__pin_set": "PIN-ul implicit este 1234. Schimbă-l din cardul de blocare înainte de distribuire."
 }

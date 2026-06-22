@@ -191,7 +191,7 @@ export const MessagesDirectory = ({
       title={t("messages__directory__title")}
       actions={
         <>
-          <MessageSearchInput className="tablet:w-56 w-full min-w-0 flex-1" />
+          <MessageSearchInput />
           <MessageSortButton />
           <Button
             size="sm"

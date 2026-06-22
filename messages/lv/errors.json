@@ -8,5 +8,6 @@
   "errors__generic": "Kaut kas nogāja greizi. Atsauce: {traceId}",
   "errors__pro_required": "Nepieciešams profesionālais konts.",
   "errors__pro_event_limit_reached": "Esi sasniedzis 12 pasākumu ierobežojumu Starter plānā. Jaunini uz Studio, lai iegūtu neierobežotus pasākumus.",
-  "errors__pro_subscription_required": "Lai veidotu pasākumus, ir nepieciešams aktīvs Pro abonements."
+  "errors__pro_subscription_required": "Lai veidotu pasākumus, ir nepieciešams aktīvs Pro abonements.",
+  "errors__kiosk_pin_invalid": "Šis PIN nesakrīt. Mēģiniet vēlreiz."
 }

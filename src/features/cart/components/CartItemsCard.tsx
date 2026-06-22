@@ -35,10 +35,14 @@ export const CartItemsCard = ({
           <button
             type="button"
             onClick={clear}
-            className="type-caption text-muted-foreground hover:text-foreground inline-flex cursor-pointer items-center gap-1.5 transition-colors"
+            aria-label={t("cart__items__clear")}
+            className="type-caption text-muted-foreground hover:text-foreground border-border tablet:border-0 tablet:px-0 tablet:py-0 inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1.5 transition-colors"
           >
-            <TrashIcon width={12} height={12} />
-            {t("cart__items__clear")}
+            <span className="tablet:hidden text-base leading-none">🗑️</span>
+            <TrashIcon className="tablet:block hidden" width={12} height={12} />
+            <span className="tablet:inline hidden">
+              {t("cart__items__clear")}
+            </span>
           </button>
         )}
       </div>

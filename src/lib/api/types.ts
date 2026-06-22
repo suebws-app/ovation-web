@@ -149,7 +149,6 @@ export type UpdateEventInput = Partial<CreateEventInput> & {
   couplePhotoUrl?: string | null;
   defaultLanguage?: Locale;
   slug?: string;
-  kioskPin?: string;
   submissionsEnabled?: boolean;
 };
 
@@ -229,7 +228,7 @@ export type PublicKioskSettings = {
   welcomeChime: boolean;
   fullscreenLock: boolean;
   guidedMode: boolean;
-  exitPin: string | null;
+  requiresPin: boolean;
 };
 
 export type PublicEvent = {
@@ -709,7 +708,7 @@ export type KioskSettings = {
   returnAfterSeconds: number;
   fullscreenLock: boolean;
   guidedMode: boolean;
-  exitPin: string | null;
+  hasPin: boolean;
   airplaneMode: boolean;
   welcomeNote: string | null;
   welcomeShowPhoto: boolean;
@@ -722,5 +721,7 @@ export type KioskSettings = {
 };
 
 export type UpdateKioskSettingsInput = Partial<
-  Omit<KioskSettings, "id" | "eventId" | "createdAt" | "updatedAt">
->;
+  Omit<KioskSettings, "id" | "eventId" | "hasPin" | "createdAt" | "updatedAt">
+> & {
+  kioskPin?: string;
+};

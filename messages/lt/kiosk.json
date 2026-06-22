@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Pašalinti kalbą",
   "kiosk_setup__select__placeholder": "Pasirinkite parinktį",
   "kiosk_setup__slider__label": "Slankiklis",
-  "kiosk_setup__save_error": "Nepavyko išsaugoti"
+  "kiosk_setup__save_error": "Nepavyko išsaugoti",
+  "kiosk_setup__pin__change": "Keisti PIN",
+  "kiosk__gate__title": "Įveskite kiosko PIN",
+  "kiosk__gate__hint": "Įveskite 4 skaitmenų PIN, kad atidarytumėte kioską.",
+  "kiosk__gate__submit": "Atidaryti kioską",
+  "kiosk__gate__verifying": "Tikrinama…",
+  "kiosk__gate__wrong": "Neteisingas PIN. Bandykite dar kartą.",
+  "kiosk__gate__rate_limited": "Per daug bandymų. Palaukite akimirką ir bandykite dar kartą.",
+  "kiosk__share__eyebrow": "Dalintis kiosko nuoroda",
+  "kiosk__share__desc": "Nusiųskite šią nuorodą tam, kas tą dieną nustatys kioską. Jam reikės PIN, kad atidarytų.",
+  "kiosk__share__copy": "Kopijuoti nuorodą",
+  "kiosk__share__copied": "Nukopijuota!",
+  "kiosk__share__pin_set": "Numatytasis PIN yra 1234. Pakeiskite jį užrakto kortelėje prieš dalindamiesi."
 }

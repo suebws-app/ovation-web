@@ -8,5 +8,6 @@
   "errors__generic": "Something went wrong. Reference: {traceId}",
   "errors__pro_required": "A professional account is required.",
   "errors__pro_event_limit_reached": "You've reached the 12-event limit on the Starter plan. Upgrade to Studio for unlimited events.",
-  "errors__pro_subscription_required": "An active Pro subscription is required to create events."
+  "errors__pro_subscription_required": "An active Pro subscription is required to create events.",
+  "errors__kiosk_pin_invalid": "That PIN didn't match. Try again."
 }

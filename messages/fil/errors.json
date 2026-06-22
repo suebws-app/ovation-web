@@ -8,5 +8,6 @@
   "errors__generic": "May nangyaring mali. Reference: {traceId}",
   "errors__pro_required": "Kinakailangan ang isang professional account.",
   "errors__pro_event_limit_reached": "Naabot mo na ang 12-event na limitasyon sa Starter plan. Mag-upgrade sa Studio para sa walang-limitasyong mga event.",
-  "errors__pro_subscription_required": "Kinakailangan ang aktibong Pro subscription para makagawa ng mga event."
+  "errors__pro_subscription_required": "Kinakailangan ang aktibong Pro subscription para makagawa ng mga event.",
+  "errors__kiosk_pin_invalid": "Hindi tumutugma ang PIN na ito. Subukang muli."
 }

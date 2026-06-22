@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "언어 제거",
   "kiosk_setup__select__placeholder": "옵션 선택",
   "kiosk_setup__slider__label": "슬라이더",
-  "kiosk_setup__save_error": "저장 실패"
+  "kiosk_setup__save_error": "저장 실패",
+  "kiosk_setup__pin__change": "PIN 변경",
+  "kiosk__gate__title": "키오스크 PIN 입력",
+  "kiosk__gate__hint": "키오스크를 열려면 4자리 PIN을 입력하세요.",
+  "kiosk__gate__submit": "키오스크 열기",
+  "kiosk__gate__verifying": "확인 중…",
+  "kiosk__gate__wrong": "잘못된 PIN입니다. 다시 시도하세요.",
+  "kiosk__gate__rate_limited": "시도가 너무 많습니다. 잠시 후 다시 시도하세요.",
+  "kiosk__share__eyebrow": "키오스크 링크 공유",
+  "kiosk__share__desc": "당일 키오스크를 설치할 사람에게 이 링크를 보내세요. 열기 위해 PIN이 필요합니다.",
+  "kiosk__share__copy": "링크 복사",
+  "kiosk__share__copied": "복사됨!",
+  "kiosk__share__pin_set": "기본 PIN은 1234입니다. 공유하기 전에 잠금 카드에서 변경하세요."
 }

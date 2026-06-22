@@ -135,7 +135,10 @@ export const proxy = async (request: NextRequest) => {
   const isLegacyKeepsakeCustomizer =
     pathnameWithoutLocale.startsWith("/keepsakes/");
 
+  const isPublicKioskRoute = /^\/kiosk\/[^/]+/.test(pathnameWithoutLocale);
+
   if (
+    !isPublicKioskRoute &&
     (matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) ||
       isLegacyKeepsakeCustomizer) &&
     !isAuthenticated
@@ -174,6 +177,7 @@ export const proxy = async (request: NextRequest) => {
 
   const useStrictCsp =
     env.IS_PRODUCTION &&
+    !isPublicKioskRoute &&
     (matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) ||
       matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES) ||
       isPostAuthSignUpStep);
@@ -188,8 +192,9 @@ export const proxy = async (request: NextRequest) => {
   response.headers.set("Content-Security-Policy", csp);
 
   if (
-    matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) ||
-    matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES)
+    !isPublicKioskRoute &&
+    (matchesPrefix(pathnameWithoutLocale, PROTECTED_PREFIXES) ||
+      matchesPrefix(pathnameWithoutLocale, AUTH_PREFIXES))
   ) {
     response.headers.set(
       "Cache-Control",

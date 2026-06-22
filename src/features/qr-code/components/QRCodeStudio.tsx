@@ -50,7 +50,7 @@ export const QRCodeStudio = ({
           dark={style.dark}
           light={style.light}
         />
-        <div className="flex flex-col gap-4">
+        <div className="flex min-w-0 flex-col gap-4">
           <UrlCard slug={slug} shortUrl={shortUrl} />
           <StylePicker selectedId={style.id} onSelectStyle={setStyle} />
         </div>

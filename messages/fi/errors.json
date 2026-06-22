@@ -8,5 +8,6 @@
   "errors__generic": "Jokin meni pieleen. Viite: {traceId}",
   "errors__pro_required": "Ammattilaistili vaaditaan.",
   "errors__pro_event_limit_reached": "Olet saavuttanut 12 tapahtuman rajan Starter-tilauksessa. Päivitä Studioon saadaksesi rajattomasti tapahtumia.",
-  "errors__pro_subscription_required": "Aktiivinen Pro-tilaus vaaditaan tapahtumien luomiseen."
+  "errors__pro_subscription_required": "Aktiivinen Pro-tilaus vaaditaan tapahtumien luomiseen.",
+  "errors__kiosk_pin_invalid": "PIN ei täsmää. Yritä uudelleen."
 }

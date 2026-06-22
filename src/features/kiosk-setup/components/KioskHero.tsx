@@ -3,20 +3,15 @@ import { KioskStatusCard } from "./KioskStatusCard";
 
 type KioskHeroProps = {
   slug: string | null;
-  exitPin?: string | null;
   fullscreenLock?: boolean;
 };
 
-export const KioskHero = ({
-  slug,
-  exitPin,
-  fullscreenLock,
-}: KioskHeroProps) => {
+export const KioskHero = ({ slug, fullscreenLock }: KioskHeroProps) => {
   const t = useTranslations();
   return (
-    <div className="rounded-20 bg-card tablet:p-10 desktop:p-12 relative overflow-hidden p-8">
+    <div className="rounded-20 bg-card tablet:p-10 desktop:p-12 relative overflow-hidden p-6">
       <div className="bg-primary/10 absolute -top-10 -right-10 size-70 rounded-full" />
-      <div className="desktop:grid-cols-[1fr_auto] relative grid items-end gap-10">
+      <div className="desktop:grid-cols-[1fr_auto] desktop:gap-10 relative grid items-end gap-6">
         <div>
           <span className="type-overline text-primary">
             {t("kiosk__hero__eyebrow")}
@@ -33,11 +28,7 @@ export const KioskHero = ({
           </p>
         </div>
 
-        <KioskStatusCard
-          slug={slug}
-          exitPin={exitPin}
-          fullscreenLock={fullscreenLock}
-        />
+        <KioskStatusCard slug={slug} fullscreenLock={fullscreenLock} />
       </div>
     </div>
   );

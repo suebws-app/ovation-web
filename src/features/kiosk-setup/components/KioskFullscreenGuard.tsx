@@ -1,31 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState, startTransition } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  startTransition,
+  type RefObject,
+} from "react";
 import { useFullscreen } from "@/lib/hooks/useFullscreen";
-import { useRouter } from "@/i18n/navigation";
 import { KioskExitDialog } from "./KioskExitDialog";
 
 type KioskFullscreenGuardProps = {
-  exitPin: string | null;
-  exitHref: string;
+  slug: string;
+  requiresPin: boolean;
   active: boolean;
+  skipNextExitRef?: RefObject<boolean>;
 };
 
 export const KioskFullscreenGuard = ({
-  exitPin,
-  exitHref,
+  slug,
+  requiresPin,
   active,
+  skipNextExitRef,
 }: KioskFullscreenGuardProps) => {
-  const router = useRouter();
-  const {
-    isFullscreen,
-    isSupported,
-    enter: enterFullscreen,
-    exit: exitFullscreen,
-  } = useFullscreen();
+  const { isFullscreen, isSupported, enter: enterFullscreen } = useFullscreen();
   const [open, setOpen] = useState(false);
   const wasFullscreenRef = useRef(false);
-  const exitConfirmedRef = useRef(false);
 
   useEffect(() => {
     if (!active || !isSupported) {
@@ -35,19 +35,15 @@ export const KioskFullscreenGuard = ({
     const justExited = wasFullscreenRef.current && !isFullscreen;
     wasFullscreenRef.current = isFullscreen;
     if (!justExited) return;
-    if (exitConfirmedRef.current) return;
-    if (exitPin) startTransition(() => setOpen(true));
-  }, [active, isSupported, isFullscreen, exitPin]);
-
-  const handleConfirm = async () => {
-    exitConfirmedRef.current = true;
-    setOpen(false);
-    try {
-      await exitFullscreen();
-    } catch {
-      // ignore
+    if (skipNextExitRef?.current) {
+      skipNextExitRef.current = false;
+      return;
     }
-    router.push(exitHref);
+    if (requiresPin) startTransition(() => setOpen(true));
+  }, [active, isSupported, isFullscreen, requiresPin, skipNextExitRef]);
+
+  const handleConfirm = () => {
+    setOpen(false);
   };
 
   const handleCancel = () => {
@@ -60,7 +56,8 @@ export const KioskFullscreenGuard = ({
   return (
     <KioskExitDialog
       open={open}
-      expectedPin={exitPin}
+      slug={slug}
+      requiresPin={requiresPin}
       onCancel={handleCancel}
       onConfirm={handleConfirm}
     />

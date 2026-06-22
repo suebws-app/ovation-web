@@ -8,5 +8,6 @@
   "errors__generic": "Niečo sa pokazilo. Referencia: {traceId}",
   "errors__pro_required": "Vyžaduje sa profesionálny účet.",
   "errors__pro_event_limit_reached": "Dosiahol si limit 12 udalostí na pláne Starter. Prejdi na Studio pre neobmedzený počet udalostí.",
-  "errors__pro_subscription_required": "Pre vytváranie udalostí je potrebné aktívne Pro predplatné."
+  "errors__pro_subscription_required": "Pre vytváranie udalostí je potrebné aktívne Pro predplatné.",
+  "errors__kiosk_pin_invalid": "Tento PIN nesúhlasí. Skúste znova."
 }

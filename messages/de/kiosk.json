@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Sprache entfernen",
   "kiosk_setup__select__placeholder": "Option auswählen",
   "kiosk_setup__slider__label": "Schieberegler",
-  "kiosk_setup__save_error": "Speichern fehlgeschlagen"
+  "kiosk_setup__save_error": "Speichern fehlgeschlagen",
+  "kiosk_setup__pin__change": "PIN ändern",
+  "kiosk__gate__title": "Kiosk-PIN eingeben",
+  "kiosk__gate__hint": "Geben Sie die 4-stellige PIN ein, um den Kiosk zu öffnen.",
+  "kiosk__gate__submit": "Kiosk öffnen",
+  "kiosk__gate__verifying": "Wird geprüft…",
+  "kiosk__gate__wrong": "Falsche PIN. Bitte erneut versuchen.",
+  "kiosk__gate__rate_limited": "Zu viele Versuche. Bitte warten Sie einen Moment.",
+  "kiosk__share__eyebrow": "Kiosk-Link teilen",
+  "kiosk__share__desc": "Senden Sie diesen Link an die Person, die den Kiosk am Tag einrichtet. Sie benötigt die PIN, um ihn zu öffnen.",
+  "kiosk__share__copy": "Link kopieren",
+  "kiosk__share__copied": "Kopiert!",
+  "kiosk__share__pin_set": "Standard-PIN ist 1234. Ändern Sie sie in der Lockdown-Karte vor dem Teilen."
 }

@@ -108,7 +108,7 @@ export const CartInlineShippingForm = ({
             onChange={update("line2")}
           />
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="tablet:grid-cols-2 grid grid-cols-1 gap-3">
           <div>
             <Label htmlFor={`${idPrefix}-city`} className="mb-1.5">
               {t("cart__shipping__city")}

@@ -8,5 +8,6 @@
   "errors__generic": "Terjadi kesalahan. Referensi: {traceId}",
   "errors__pro_required": "Akun profesional diperlukan.",
   "errors__pro_event_limit_reached": "Anda telah mencapai batas 12 acara di paket Starter. Tingkatkan ke Studio untuk acara tanpa batas.",
-  "errors__pro_subscription_required": "Langganan Pro aktif diperlukan untuk membuat acara."
+  "errors__pro_subscription_required": "Langganan Pro aktif diperlukan untuk membuat acara.",
+  "errors__kiosk_pin_invalid": "PIN ini tidak cocok. Coba lagi."
 }

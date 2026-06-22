@@ -62,10 +62,24 @@ export const useFullscreen = (): {
     } else if (el.webkitRequestFullscreen) {
       await el.webkitRequestFullscreen().catch(() => undefined);
     }
+    const nav = navigator as Navigator & {
+      keyboard?: {
+        lock?: (codes: string[]) => Promise<void>;
+        unlock?: () => void;
+      };
+    };
+    await nav.keyboard?.lock?.(["Escape"]).catch(() => undefined);
   }, []);
 
   const exit = useCallback(async () => {
     if (typeof document === "undefined") return;
+    const nav = navigator as Navigator & {
+      keyboard?: {
+        lock?: (codes: string[]) => Promise<void>;
+        unlock?: () => void;
+      };
+    };
+    nav.keyboard?.unlock?.();
     const d = document as FullscreenDocument;
     if (d.exitFullscreen) {
       await d.exitFullscreen().catch(() => undefined);

@@ -8,5 +8,6 @@
   "errors__generic": "Bir şeyler ters gitti. Referans: {traceId}",
   "errors__pro_required": "Profesyonel bir hesap gerekli.",
   "errors__pro_event_limit_reached": "Starter planındaki 12 etkinlik sınırına ulaştın. Sınırsız etkinlik için Studio'ya yükselt.",
-  "errors__pro_subscription_required": "Etkinlik oluşturmak için aktif bir Pro aboneliği gerekli."
+  "errors__pro_subscription_required": "Etkinlik oluşturmak için aktif bir Pro aboneliği gerekli.",
+  "errors__kiosk_pin_invalid": "Bu PIN eşleşmedi. Tekrar deneyin."
 }

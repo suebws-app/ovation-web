@@ -8,5 +8,6 @@
   "errors__generic": "Sesuatu yang tidak kena berlaku. Rujukan: {traceId}",
   "errors__pro_required": "Akaun profesional diperlukan.",
   "errors__pro_event_limit_reached": "Anda telah mencapai had 12 acara pada pelan Starter. Naik taraf ke Studio untuk acara tanpa had.",
-  "errors__pro_subscription_required": "Langganan Pro yang aktif diperlukan untuk mencipta acara."
+  "errors__pro_subscription_required": "Langganan Pro yang aktif diperlukan untuk mencipta acara.",
+  "errors__kiosk_pin_invalid": "PIN ini tidak sepadan. Cuba lagi."
 }

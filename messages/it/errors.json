@@ -8,5 +8,6 @@
   "errors__generic": "Qualcosa è andato storto. Riferimento: {traceId}",
   "errors__pro_required": "È richiesto un account professionale.",
   "errors__pro_event_limit_reached": "Hai raggiunto il limite di 12 eventi sul piano Starter. Passa a Studio per eventi illimitati.",
-  "errors__pro_subscription_required": "È richiesto un abbonamento Pro attivo per creare eventi."
+  "errors__pro_subscription_required": "È richiesto un abbonamento Pro attivo per creare eventi.",
+  "errors__kiosk_pin_invalid": "Questo PIN non corrisponde. Riprova."
 }

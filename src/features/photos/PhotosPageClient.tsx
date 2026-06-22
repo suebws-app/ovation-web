@@ -17,6 +17,7 @@ import { PhotoGallery } from "./components/PhotoGallery";
 import { PhotoLightbox } from "./components/PhotoLightbox";
 import { PhotosDirectoryEmpty } from "./components/PhotosDirectoryEmpty";
 import { PhotosFilterRail } from "./components/PhotosFilterRail";
+import { PhotoUploadButton } from "./components/PhotoUploadButton";
 import { usePhotoBulkActions } from "./hooks/usePhotoBulkActions";
 import { toPhotoViewFromGallery } from "./adapters";
 import {
@@ -146,11 +147,10 @@ export const PhotosPageClient = ({ eventId, stats }: PhotosPageClientProps) => {
         <PhotosDirectoryEmpty eventId={eventId} />
       ) : (
         <>
-          <PhotosFilterRail
-            eventId={eventId}
-            stats={stats}
-            allCount={allCount}
-          />
+          <div className="flex items-center gap-2">
+            <PhotosFilterRail stats={stats} allCount={allCount} />
+            <PhotoUploadButton eventId={eventId} />
+          </div>
           {isPending ? (
             <PhotoGallerySkeleton />
           ) : isError ? (

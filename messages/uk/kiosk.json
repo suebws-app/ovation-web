@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Видалити мову",
   "kiosk_setup__select__placeholder": "Виберіть варіант",
   "kiosk_setup__slider__label": "Повзунок",
-  "kiosk_setup__save_error": "Не вдалося зберегти"
+  "kiosk_setup__save_error": "Не вдалося зберегти",
+  "kiosk_setup__pin__change": "Змінити PIN",
+  "kiosk__gate__title": "Введіть PIN кіоску",
+  "kiosk__gate__hint": "Введіть 4-значний PIN, щоб відкрити кіоск.",
+  "kiosk__gate__submit": "Відкрити кіоск",
+  "kiosk__gate__verifying": "Перевірка…",
+  "kiosk__gate__wrong": "Неправильний PIN. Спробуйте ще раз.",
+  "kiosk__gate__rate_limited": "Забагато спроб. Зачекайте хвилинку та спробуйте ще раз.",
+  "kiosk__share__eyebrow": "Поділіться посиланням на кіоск",
+  "kiosk__share__desc": "Надішліть це посилання тому, хто налаштовуватиме кіоск у день події. Йому знадобиться PIN, щоб його відкрити.",
+  "kiosk__share__copy": "Копіювати посилання",
+  "kiosk__share__copied": "Скопійовано!",
+  "kiosk__share__pin_set": "Стандартний PIN — 1234. Змініть його у картці блокування перед поширенням."
 }

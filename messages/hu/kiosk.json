@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Nyelv eltávolítása",
   "kiosk_setup__select__placeholder": "Válassz egy lehetőséget",
   "kiosk_setup__slider__label": "Csúszka",
-  "kiosk_setup__save_error": "A mentés nem sikerült"
+  "kiosk_setup__save_error": "A mentés nem sikerült",
+  "kiosk_setup__pin__change": "PIN módosítása",
+  "kiosk__gate__title": "Adja meg a kioszk PIN-kódját",
+  "kiosk__gate__hint": "Írja be a 4 jegyű PIN-kódot a kioszk megnyitásához.",
+  "kiosk__gate__submit": "Kioszk megnyitása",
+  "kiosk__gate__verifying": "Ellenőrzés…",
+  "kiosk__gate__wrong": "Hibás PIN. Próbálja újra.",
+  "kiosk__gate__rate_limited": "Túl sok próbálkozás. Várjon egy pillanatot, és próbálja újra.",
+  "kiosk__share__eyebrow": "Kioszk hivatkozás megosztása",
+  "kiosk__share__desc": "Küldje el ezt a linket annak, aki a kioszkot a napon beállítja. Szüksége lesz a PIN-kódra a megnyitáshoz.",
+  "kiosk__share__copy": "Hivatkozás másolása",
+  "kiosk__share__copied": "Másolva!",
+  "kiosk__share__pin_set": "Alapértelmezett PIN: 1234. Módosítsa a lezárás kártyán megosztás előtt."
 }

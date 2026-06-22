@@ -27,7 +27,7 @@ export const CheckoutStepIndicator = ({
     : ALL_STEPS;
   const activeIndex = STEPS.findIndex((s) => s.key === active);
   return (
-    <div className="border-border bg-card flex items-center rounded-full border px-2.5 py-2">
+    <div className="border-border bg-card hide-scrollbar flex max-w-full items-center overflow-x-auto rounded-full border px-2.5 py-2">
       {STEPS.map((step, index) => (
         <CheckoutStepDot
           key={step.key}

@@ -8,5 +8,6 @@
   "errors__generic": "Щось пішло не так. Код: {traceId}",
   "errors__pro_required": "Потрібен професійний акаунт.",
   "errors__pro_event_limit_reached": "Ти досяг(ла) ліміту в 12 подій на плані Starter. Перейди на Studio для необмеженої кількості подій.",
-  "errors__pro_subscription_required": "Для створення подій потрібна активна підписка Pro."
+  "errors__pro_subscription_required": "Для створення подій потрібна активна підписка Pro.",
+  "errors__kiosk_pin_invalid": "Цей PIN не збігається. Спробуйте ще раз."
 }

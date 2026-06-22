@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Remover idioma",
   "kiosk_setup__select__placeholder": "Selecionar opção",
   "kiosk_setup__slider__label": "Cursor",
-  "kiosk_setup__save_error": "Falha ao guardar"
+  "kiosk_setup__save_error": "Falha ao guardar",
+  "kiosk_setup__pin__change": "Alterar PIN",
+  "kiosk__gate__title": "Introduzir PIN do quiosque",
+  "kiosk__gate__hint": "Digite o PIN de 4 dígitos para abrir o quiosque.",
+  "kiosk__gate__submit": "Abrir quiosque",
+  "kiosk__gate__verifying": "A verificar…",
+  "kiosk__gate__wrong": "PIN incorreto. Tente novamente.",
+  "kiosk__gate__rate_limited": "Demasiadas tentativas. Aguarde um momento e tente novamente.",
+  "kiosk__share__eyebrow": "Partilhar o link do quiosque",
+  "kiosk__share__desc": "Envie este link a quem montar o quiosque no dia. Precisará do PIN para o abrir.",
+  "kiosk__share__copy": "Copiar link",
+  "kiosk__share__copied": "Copiado!",
+  "kiosk__share__pin_set": "O PIN predefinido é 1234. Altere-o no cartão de bloqueio antes de partilhar."
 }

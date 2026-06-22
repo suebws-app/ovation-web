@@ -121,5 +121,17 @@
   "kiosk_setup__language__remove": "Hapus bahasa",
   "kiosk_setup__select__placeholder": "Pilih opsi",
   "kiosk_setup__slider__label": "Slider",
-  "kiosk_setup__save_error": "Gagal menyimpan"
+  "kiosk_setup__save_error": "Gagal menyimpan",
+  "kiosk_setup__pin__change": "Ubah PIN",
+  "kiosk__gate__title": "Masukkan PIN kiosk",
+  "kiosk__gate__hint": "Ketik PIN 4 digit untuk membuka kiosk.",
+  "kiosk__gate__submit": "Buka kiosk",
+  "kiosk__gate__verifying": "Memeriksa…",
+  "kiosk__gate__wrong": "PIN salah. Coba lagi.",
+  "kiosk__gate__rate_limited": "Terlalu banyak percobaan. Tunggu sebentar dan coba lagi.",
+  "kiosk__share__eyebrow": "Bagikan tautan kiosk",
+  "kiosk__share__desc": "Kirim tautan ini ke orang yang akan menyiapkan kiosk pada hari acara. Mereka memerlukan PIN untuk membukanya.",
+  "kiosk__share__copy": "Salin tautan",
+  "kiosk__share__copied": "Disalin!",
+  "kiosk__share__pin_set": "PIN default adalah 1234. Ubah dari kartu pengunci sebelum membagikan."
 }
