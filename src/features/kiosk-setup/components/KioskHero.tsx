@@ -3,9 +3,15 @@ import { KioskStatusCard } from "./KioskStatusCard";
 
 type KioskHeroProps = {
   slug: string | null;
+  exitPin?: string | null;
+  fullscreenLock?: boolean;
 };
 
-export const KioskHero = ({ slug }: KioskHeroProps) => {
+export const KioskHero = ({
+  slug,
+  exitPin,
+  fullscreenLock,
+}: KioskHeroProps) => {
   const t = useTranslations();
   return (
     <div className="rounded-20 bg-card tablet:p-10 desktop:p-12 relative overflow-hidden p-8">
@@ -27,7 +33,11 @@ export const KioskHero = ({ slug }: KioskHeroProps) => {
           </p>
         </div>
 
-        <KioskStatusCard slug={slug} />
+        <KioskStatusCard
+          slug={slug}
+          exitPin={exitPin}
+          fullscreenLock={fullscreenLock}
+        />
       </div>
     </div>
   );

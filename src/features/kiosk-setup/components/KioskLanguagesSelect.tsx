@@ -8,6 +8,8 @@ import {
 } from "@ovation/ui/components/MultiSelect";
 import { locales, defaultLocale, type Locale } from "@/i18n/config";
 import { formatNativeLanguageName } from "@/lib/utils/localeFormatters";
+import { KioskConfigRow } from "./KioskConfigRow";
+import { KioskToggle } from "./KioskToggle";
 
 const CORE_LANGUAGES: readonly Locale[] = ["en", "de", "fr", "es"] as Locale[];
 
@@ -29,15 +31,18 @@ const resolveBrowserLocale = (): Locale | null => {
 type KioskLanguagesSelectProps = {
   defaultLanguage: string;
   supportedLanguages: string[];
+  welcomeShowLanguagePicker: boolean;
   onChange: (next: {
     defaultLanguage?: Locale;
     supportedLanguages?: Locale[];
+    welcomeShowLanguagePicker?: boolean;
   }) => void;
 };
 
 export const KioskLanguagesSelect = ({
   defaultLanguage,
   supportedLanguages,
+  welcomeShowLanguagePicker,
   onChange,
 }: KioskLanguagesSelectProps) => {
   const t = useTranslations();
@@ -106,17 +111,29 @@ export const KioskLanguagesSelect = ({
   };
 
   return (
-    <div className="py-5">
-      <MultiSelect<Locale>
-        value={supportedLanguages as Locale[]}
-        onChange={handleChange}
-        options={sortedOptions}
-        placeholder={t("kiosk__config__languages__add")}
-        searchPlaceholder={t("language_select__search_placeholder")}
-        emptyText={t("language_select__empty")}
-        ariaLabel={t("language_select__label")}
-        className="w-full!"
-      />
-    </div>
+    <>
+      <KioskConfigRow
+        title={t("kiosk__config__welcome__lang_picker__title")}
+        description={t("kiosk__config__welcome__lang_picker__desc")}
+      >
+        <KioskToggle
+          on={welcomeShowLanguagePicker}
+          onChange={(next) => onChange({ welcomeShowLanguagePicker: next })}
+        />
+      </KioskConfigRow>
+      <div className="py-5">
+        <MultiSelect<Locale>
+          value={supportedLanguages as Locale[]}
+          onChange={handleChange}
+          options={sortedOptions}
+          placeholder={t("kiosk__config__languages__add")}
+          searchPlaceholder={t("language_select__search_placeholder")}
+          emptyText={t("language_select__empty")}
+          ariaLabel={t("language_select__label")}
+          disabled={!welcomeShowLanguagePicker}
+          className="w-full!"
+        />
+      </div>
+    </>
   );
 };
