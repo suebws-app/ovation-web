@@ -41,7 +41,7 @@ export const CartLineItem = ({
   return (
     <div
       className={cn(
-        "tablet:grid-cols-[90px_1fr_auto_auto] grid grid-cols-[64px_1fr_auto] items-start gap-5 py-5",
+        "mobile:grid-cols-[64px_1fr_auto] mobile:gap-y-5 tablet:grid-cols-[90px_1fr_auto_auto] grid grid-cols-[64px_1fr] items-start gap-x-5 gap-y-3 py-5",
         !isLast && "border-border border-b",
       )}
     >
@@ -85,7 +85,7 @@ export const CartLineItem = ({
           />
         )}
       </div>
-      <div className="min-w-16 text-right">
+      <div className="mobile:col-span-1 col-span-2 min-w-16 text-right">
         <div className="type-h4 font-serif font-semibold tracking-tight">
           {formatPrice(lineTotalCents, item.currency)}
         </div>

@@ -43,7 +43,7 @@ export const KioskStatusCard = ({
   };
 
   return (
-    <div className="rounded-20 border-border bg-card w-85 border p-5.5 shadow">
+    <div className="rounded-20 border-border bg-card desktop:w-85 w-full border p-5.5 shadow">
       <div className="type-overline text-muted-foreground flex items-center gap-2.5">
         <span className="bg-muted-foreground/50 size-2 rounded-full" />
         {t("kiosk__hero__status_offline")}

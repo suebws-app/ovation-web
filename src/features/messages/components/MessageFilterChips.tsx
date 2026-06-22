@@ -79,7 +79,7 @@ export const MessageFilterChips = ({
   stats,
   onSelect,
 }: MessageFilterChipsProps) => (
-  <div className="flex flex-wrap items-center gap-2">
+  <div className="hide-scrollbar flex min-h-fit items-center gap-2 overflow-auto">
     {FILTERS.map((f) => (
       <MessageFilterChip
         key={f.value}

@@ -26,7 +26,7 @@ export const FilterChipRail = ({
 }: FilterChipRailProps) => (
   <div
     className={cn(
-      "border-border bg-card flex min-h-fit items-center gap-2 overflow-auto border-b px-4 py-3",
+      "border-border bg-card hide-scrollbar flex min-h-fit items-center gap-2 overflow-auto border-b px-4 py-3",
       className,
     )}
   >

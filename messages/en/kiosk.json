@@ -11,7 +11,7 @@
   "kiosk__hero__status_lead": "Start the kiosk from the device you'll use at the venue.",
   "kiosk__hero__start": "Start kiosk on this device",
   "kiosk__hero__needs_event": "Create your event first",
-  "kiosk__hero__qr_hint": "Or scan your event QR on the device you'll use — it'll open kiosk instantly.",
+  "kiosk__hero__qr_hint": "This device will be used for the kiosk.",
   "kiosk__live__mode": "Kiosk mode",
   "kiosk__live__locked": "Locked",
   "kiosk__offline__title": "Connection lost",

@@ -36,7 +36,7 @@ export const CheckoutStepDot = ({
       >
         {index + 1}
       </span>
-      {label}
+      <span className="tablet:inline hidden">{label}</span>
     </span>
     {!isLast && <span className="bg-border mx-1 h-px w-3.5" />}
   </>
