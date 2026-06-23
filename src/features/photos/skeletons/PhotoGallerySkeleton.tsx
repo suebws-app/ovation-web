@@ -27,12 +27,10 @@ const SkeletonTileColumn = ({
 );
 
 export const PhotoGallerySkeleton = () => (
-  <div className="tablet:p-6 p-4">
-    <div className="flex gap-3">
-      <SkeletonTileColumn offset={0} />
-      <SkeletonTileColumn offset={1} />
-      <SkeletonTileColumn offset={2} className="tablet:flex hidden" />
-      <SkeletonTileColumn offset={3} className="large-desktop:flex hidden" />
-    </div>
+  <div className="flex gap-3">
+    <SkeletonTileColumn offset={0} />
+    <SkeletonTileColumn offset={1} />
+    <SkeletonTileColumn offset={2} className="tablet:flex hidden" />
+    <SkeletonTileColumn offset={3} className="large-desktop:flex hidden" />
   </div>
 );

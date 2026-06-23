@@ -1,18 +1,23 @@
+import { Card, CardContent } from "@ovation/ui/components/Card";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
+
 const ITEM_COUNT = 3;
 const items = Array.from({ length: ITEM_COUNT }, (_, i) => i);
 const summaryRows = Array.from({ length: 4 }, (_, i) => i);
 
 export const CartSkeleton = () => (
-  <div className="tablet:p-6 flex w-full flex-col gap-6 p-4">
-    <div className="bg-card border-border rounded-12 flex items-center justify-between border p-5">
-      <div className="flex flex-col gap-2">
-        <div className="bg-muted h-6 w-32 animate-pulse rounded" />
-        <div className="bg-muted h-4 w-48 animate-pulse rounded" />
-      </div>
-      <div className="bg-muted h-9 w-9 animate-pulse rounded-full" />
-    </div>
+  <div className={containerClassName}>
+    <Card>
+      <CardContent className="flex items-center justify-between">
+        <div className="flex flex-col gap-2">
+          <div className="bg-muted h-6 w-32 animate-pulse rounded" />
+          <div className="bg-muted h-4 w-48 animate-pulse rounded" />
+        </div>
+        <div className="bg-muted h-9 w-9 animate-pulse rounded-full" />
+      </CardContent>
+    </Card>
     <div className="desktop:grid-cols-[1fr_360px] grid grid-cols-1 gap-6">
-      <div className="bg-card border-border rounded-12 flex flex-col border">
+      <Card>
         {items.map((i) => (
           <div
             key={i}
@@ -26,17 +31,19 @@ export const CartSkeleton = () => (
             <div className="bg-muted h-5 w-16 shrink-0 animate-pulse rounded" />
           </div>
         ))}
-      </div>
-      <div className="bg-card border-border rounded-12 flex flex-col gap-4 border p-5">
-        <div className="bg-muted h-5 w-28 animate-pulse rounded" />
-        {summaryRows.map((i) => (
-          <div key={i} className="flex items-center justify-between">
-            <div className="bg-muted h-3.5 w-20 animate-pulse rounded" />
-            <div className="bg-muted h-3.5 w-16 animate-pulse rounded" />
-          </div>
-        ))}
-        <div className="bg-muted rounded-8 mt-2 h-11 w-full animate-pulse" />
-      </div>
+      </Card>
+      <Card>
+        <CardContent className="flex flex-col gap-4">
+          <div className="bg-muted h-5 w-28 animate-pulse rounded" />
+          {summaryRows.map((i) => (
+            <div key={i} className="flex items-center justify-between">
+              <div className="bg-muted h-3.5 w-20 animate-pulse rounded" />
+              <div className="bg-muted h-3.5 w-16 animate-pulse rounded" />
+            </div>
+          ))}
+          <div className="bg-muted rounded-8 mt-2 h-11 w-full animate-pulse" />
+        </CardContent>
+      </Card>
     </div>
   </div>
 );

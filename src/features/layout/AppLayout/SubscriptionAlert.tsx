@@ -62,7 +62,7 @@ export const SubscriptionAlert = ({
     ? t("app__no_subscription__cta")
     : t("app__plan__dre_upsell_cta");
   return (
-    <div className="max-w-container mx-auto w-full px-6 pt-2">
+    <div className="max-w-container tablet:px-6 mx-auto w-full px-2 pt-2">
       <div className="rounded-16 border-primary/40 bg-primary/10 tablet:flex-row tablet:items-center tablet:gap-5 tablet:p-6 flex flex-col gap-4 border p-5">
         <div className="rounded-12 bg-primary text-primary-foreground type-h3 flex size-12 shrink-0 items-center justify-center font-bold">
           ✦

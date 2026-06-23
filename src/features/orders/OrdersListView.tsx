@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
-import { Kicker } from "@ovation/ui/components/Kicker";
 import { FeaturePageLayout } from "@/components/FeaturePageLayout";
+import { PageHeading } from "@/components/PageHeading";
 import { useOrdersList } from "@/lib/query/ordersQueries";
 import { OrderDetailModal } from "@/features/keepsakes/components/OrderDetailModal";
 import type { Order } from "@/lib/api/types";
@@ -45,12 +45,12 @@ export const OrdersListView = ({ title, eventId }: OrdersListViewProps) => {
           <OrdersListSkeleton />
         ) : (
           <>
-            <div className="flex flex-col gap-1">
-              <Kicker className="text-muted-foreground">
-                {t("orders__page__eyebrow")}
-              </Kicker>
-              <h1 className="type-h1 font-semibold tracking-tight">{title}</h1>
-            </div>
+            <PageHeading
+              kicker={t("orders__page__eyebrow")}
+              kickerClassName="text-muted-foreground"
+            >
+              {title}
+            </PageHeading>
 
             {isError && (
               <p className="type-body-small text-destructive" role="alert">

@@ -3,6 +3,9 @@ import { BookIcon } from "@ovation/icons/BookIcon";
 import { MailIcon } from "@ovation/icons/MailIcon";
 import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
 import { VideoIcon } from "@ovation/icons/VideoIcon";
+import { PageHeading } from "@/components/PageHeading";
+import { clientEnv } from "@/lib/utils/env.client";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { HelpFaqItem } from "./components/HelpFaqItem";
 import { HelpResourceCard } from "./components/HelpResourceCard";
 
@@ -18,55 +21,54 @@ const FAQ_KEYS = [
 
 export const HelpCenterPage = () => {
   const t = useTranslations();
+  const supportMailto = `mailto:${clientEnv.SUPPORT_EMAIL}`;
 
   const resources = [
     {
       title: t("help__resource__guide__title"),
       description: t("help__resource__guide__desc"),
       icon: BookIcon,
-      href: "https://ovation.help/guide",
+      href: `${clientEnv.HELP_URL}/guide`,
       external: true,
     },
     {
       title: t("help__resource__videos__title"),
       description: t("help__resource__videos__desc"),
       icon: VideoIcon,
-      href: "https://ovation.help/videos",
+      href: `${clientEnv.HELP_URL}/videos`,
       external: true,
     },
     {
       title: t("help__resource__chat__title"),
       description: t("help__resource__chat__desc"),
       icon: MessageSquareIcon,
-      href: "mailto:support@ovationday.com",
+      href: supportMailto,
     },
     {
       title: t("help__resource__email__title"),
       description: t("help__resource__email__desc"),
       icon: MailIcon,
-      href: "mailto:support@ovationday.com",
+      href: supportMailto,
     },
   ];
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-6 p-6">
-      <div className="rounded-20 bg-card tablet:p-12 desktop:p-14 desktop:py-16 relative mb-20 p-8 py-10">
+    <div className={containerClassName}>
+      <div className="rounded-20 bg-card tablet:p-12 desktop:p-14 desktop:py-16 relative mb-10 p-8 py-10">
         <div className="bg-primary/10 pointer-events-none absolute -top-20 -right-20 size-80 rounded-full" />
         <div className="bg-secondary/10 pointer-events-none absolute -bottom-24 -left-16 size-60 rounded-full" />
         <div className="relative flex max-w-2xl flex-col gap-4">
-          <span className="type-overline text-primary tracking-widest">
-            {t("help__hero__eyebrow")}
-          </span>
-          <h1
-            className="font-serif tracking-tight"
-            style={{ fontSize: "3rem", lineHeight: 1.15, fontWeight: 700 }}
+          <PageHeading
+            kicker={t("help__hero__eyebrow")}
+            kickerClassName="text-primary tracking-widest"
+            className="font-serif"
           >
             {t("help__hero__title_a")}{" "}
             <span className="text-primary italic">
               {t("help__hero__title_b")}
             </span>
             .
-          </h1>
+          </PageHeading>
           <p className="type-body text-muted-foreground max-w-xl leading-relaxed">
             {t("help__hero__subtitle")}
           </p>
@@ -111,11 +113,11 @@ export const HelpCenterPage = () => {
           {t("help__contact__body")}
         </p>
         <a
-          href="mailto:support@ovationday.com"
+          href={supportMailto}
           className="bg-secondary text-foreground type-body-small mt-2 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-semibold"
         >
           <MailIcon width={14} height={14} />
-          support@ovationday.com
+          {clientEnv.SUPPORT_EMAIL}
         </a>
       </div>
     </div>

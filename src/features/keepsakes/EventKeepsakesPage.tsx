@@ -1,4 +1,5 @@
 import { keepsakesApi } from "@/lib/api/keepsakes";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { KeepsakesCollection } from "./components/KeepsakesCollection";
 import { KeepsakesFooter } from "./components/KeepsakesFooter";
 import { KeepsakesHero } from "./components/KeepsakesHero";
@@ -27,7 +28,7 @@ export const EventKeepsakesPage = async ({
   );
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-6 p-6">
+    <div className={containerClassName}>
       <div className="flex items-start justify-between gap-4">
         <KeepsakesHero />
       </div>

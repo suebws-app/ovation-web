@@ -48,7 +48,7 @@ export const SubscriptionHistoryTable = async ({
 
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="type-heading-small">
+      <h2 className="tablet:type-h2 type-h3 tracking-tight">
         {t("settings__billing__history_title")}
       </h2>
       <div className="rounded-16 border-border bg-card overflow-x-auto border">

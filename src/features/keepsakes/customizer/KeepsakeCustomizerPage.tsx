@@ -3,6 +3,7 @@ import { keepsakesApi } from "@/lib/api/keepsakes";
 import { eventsApi } from "@/lib/api/events";
 import { ApiError } from "@/lib/api/client";
 import { getCurrentUser } from "@/lib/auth/session";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { designFor } from "../designTokens";
 import { CustomizerHeader } from "./CustomizerHeader";
 import { BookCustomizer } from "./book/BookCustomizer";
@@ -43,7 +44,7 @@ export const KeepsakeCustomizerPage = async ({
   const isPro = user?.accountType === "pro";
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-6 p-6">
+    <div className={containerClassName}>
       <CustomizerHeader product={detail.product} design={design} />
       <KeepsakeCustomizerSwitch
         product={detail.product}

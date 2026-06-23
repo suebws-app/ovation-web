@@ -1,16 +1,18 @@
+import { Card } from "@ovation/ui/components/Card";
+
 const CARDS = [0, 1];
 
 export const RolePageCardsSkeleton = () => (
   <div className="tablet:grid-cols-2 tablet:mt-10 tablet:gap-5 mt-5 grid grid-cols-1 gap-3">
     {CARDS.map((i) => (
-      <div
+      <Card
         key={i}
-        className="bg-card border-border tablet:gap-4 tablet:p-8 flex h-full flex-col gap-2 rounded-3xl border p-5"
+        className="tablet:gap-4 tablet:p-8 flex h-full flex-col gap-2 rounded-3xl p-5"
       >
         <div className="bg-foreground/10 h-5 w-32 animate-pulse rounded" />
         <div className="bg-foreground/10 h-3.5 w-full max-w-56 animate-pulse rounded" />
         <div className="bg-foreground/10 h-3.5 w-3/4 animate-pulse rounded" />
-      </div>
+      </Card>
     ))}
   </div>
 );

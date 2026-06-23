@@ -17,7 +17,7 @@ export const AuthHeading = ({
     {eyebrow && (
       <Kicker className="text-primary tablet:mb-2.5 mb-1.5">{eyebrow}</Kicker>
     )}
-    <h1 className="type-h0 leading-[1.05] font-semibold tracking-tight">
+    <h1 className="tablet:type-h0 type-h1 leading-[1.05] font-semibold tracking-tight">
       {title}
       {titleEmphasis && (
         <>

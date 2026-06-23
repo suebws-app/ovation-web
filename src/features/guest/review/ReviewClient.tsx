@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { Card, CardContent } from "@ovation/ui/components/Card";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { MicIcon } from "@ovation/icons/MicIcon";
@@ -286,20 +287,22 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
           subtitle={t("guest__review__subtitle")}
         />
 
-        <div className="bg-card border-border rounded-16 border p-5">
-          <Label htmlFor="guest-name" className="mb-2">
-            {t("guest__record__name_label")}
-          </Label>
-          <Input
-            id="guest-name"
-            type="text"
-            autoComplete="name"
-            placeholder={t("guest__record__name_placeholder")}
-            value={guestName}
-            onChange={(e) => setGuestName(e.target.value)}
-            disabled={submitting}
-          />
-        </div>
+        <Card>
+          <CardContent>
+            <Label htmlFor="guest-name" className="mb-2">
+              {t("guest__record__name_label")}
+            </Label>
+            <Input
+              id="guest-name"
+              type="text"
+              autoComplete="name"
+              placeholder={t("guest__record__name_placeholder")}
+              value={guestName}
+              onChange={(e) => setGuestName(e.target.value)}
+              disabled={submitting}
+            />
+          </CardContent>
+        </Card>
 
         <div className="flex flex-col gap-2.5">
           {audio && (
@@ -364,35 +367,37 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
         </div>
 
         {submitting && (
-          <div
-            className={`bg-card border-border rounded-16 animate-slide-up flex flex-col gap-3 border p-5 ${hasFailedTask ? "animate-shake" : ""}`}
+          <Card
+            className={`animate-slide-up ${hasFailedTask ? "animate-shake" : ""}`}
           >
-            <div className="flex items-center justify-between gap-3">
-              <span className="type-body-small font-semibold">
-                {phase === "sending"
-                  ? t("guest__record__sending")
-                  : t("guest__record__uploading_label")}
-              </span>
-              <span className="type-caption text-muted-foreground tabular-nums transition-opacity duration-200">
-                {phase === "sending"
-                  ? ""
-                  : tasks.length > 0
-                    ? `${overallPct}%`
-                    : ""}
-              </span>
-            </div>
-            <div className="bg-muted h-2 w-full overflow-hidden rounded-full">
-              <div
-                className={`h-full rounded-full transition-[width] duration-300 ease-out ${hasFailedTask ? "bg-destructive" : "bg-primary"}`}
-                style={{
-                  width:
-                    phase === "sending"
-                      ? "100%"
-                      : `${tasks.length > 0 ? overallPct : 0}%`,
-                }}
-              />
-            </div>
-          </div>
+            <CardContent className="flex flex-col gap-3">
+              <div className="flex items-center justify-between gap-3">
+                <span className="type-body-small font-semibold">
+                  {phase === "sending"
+                    ? t("guest__record__sending")
+                    : t("guest__record__uploading_label")}
+                </span>
+                <span className="type-caption text-muted-foreground tabular-nums transition-opacity duration-200">
+                  {phase === "sending"
+                    ? ""
+                    : tasks.length > 0
+                      ? `${overallPct}%`
+                      : ""}
+                </span>
+              </div>
+              <div className="bg-muted h-2 w-full overflow-hidden rounded-full">
+                <div
+                  className={`h-full rounded-full transition-[width] duration-300 ease-out ${hasFailedTask ? "bg-destructive" : "bg-primary"}`}
+                  style={{
+                    width:
+                      phase === "sending"
+                        ? "100%"
+                        : `${tasks.length > 0 ? overallPct : 0}%`,
+                  }}
+                />
+              </div>
+            </CardContent>
+          </Card>
         )}
 
         {submitError && (

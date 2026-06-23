@@ -1,5 +1,6 @@
 import { linkSettingsApi } from "@/lib/api/link-settings";
 import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { LinkSettingsClient } from "./LinkSettingsClient";
 import { LinkEmpty } from "./components/LinkEmpty";
 
@@ -8,7 +9,7 @@ export const LinkSettingsPage = async () => {
 
   if (!event) {
     return (
-      <div className="flex w-full flex-col p-6">
+      <div className={containerClassName}>
         <LinkEmpty />
       </div>
     );
@@ -17,7 +18,7 @@ export const LinkSettingsPage = async () => {
   const settingsRes = await linkSettingsApi.get(event.id);
 
   return (
-    <div className="mx-auto w-full min-w-0 p-6">
+    <div className={containerClassName}>
       <LinkSettingsClient
         eventId={event.id}
         submissionsEnabled={event.status === "active"}

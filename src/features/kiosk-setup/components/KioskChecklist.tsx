@@ -129,7 +129,7 @@ export const KioskChecklist = ({
   return (
     <div>
       <div className="mb-3.5 flex items-baseline justify-between">
-        <h2 className="type-h2 tracking-tight">
+        <h2 className="tablet:type-h2 type-h3 tracking-tight">
           {t("kiosk__checklist__title")}
         </h2>
         <span className="type-caption text-muted-foreground">

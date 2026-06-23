@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { Card, CardContent } from "@ovation/ui/components/Card";
 import { BoxIcon } from "@ovation/icons/BoxIcon";
 import {
   Select,
@@ -11,9 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@ovation/ui/components/Select";
+import { PageHeading } from "@/components/PageHeading";
 import type { Event } from "@/lib/api/types";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
-import { SettingsCard } from "./SettingsCard";
 import { SettingsRow } from "./SettingsRow";
 import { ExportHeroCard } from "./ExportHeroCard";
 import {
@@ -92,52 +93,53 @@ export const SettingsDataSection = ({
   };
 
   return (
-    <>
-      <span className="type-overline text-primary">
-        {t("settings__data__eyebrow")}
-      </span>
-      <h1 className="type-h0 mt-2 tracking-tight">
-        {t("settings__data__title_a")}{" "}
-        <span className="text-primary italic">
-          {t("settings__data__title_b")}
-        </span>
-      </h1>
-      <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
-        {t("settings__data__subtitle")}
-      </p>
+    <div className="flex flex-col gap-6">
+      <div>
+        <PageHeading kicker={t("settings__data__eyebrow")}>
+          {t("settings__data__title_a")}{" "}
+          <span className="text-primary italic">
+            {t("settings__data__title_b")}
+          </span>
+        </PageHeading>
+        <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
+          {t("settings__data__subtitle")}
+        </p>
+      </div>
 
       {isPro && events.length > 0 && (
-        <div className="mt-8">
+        <section>
           <SettingsSectionTitle
             title={t("settings__data__all_events__title")}
             description={t("settings__data__all_events__desc")}
           />
-          <SettingsCard>
-            <SettingsRow
-              title={t("settings__data__all_events__row_title")}
-              description={t("settings__data__all_events__row_desc", {
-                count: events.length,
-              })}
-              last
-            >
-              <Button
-                variant="outline"
-                size="sm"
-                className="rounded-full"
-                disabled={isBusy}
-                onClick={() => run("allEventsExcel")}
+          <Card>
+            <CardContent>
+              <SettingsRow
+                title={t("settings__data__all_events__row_title")}
+                description={t("settings__data__all_events__row_desc", {
+                  count: events.length,
+                })}
+                last
               >
-                <BoxIcon width={13} height={13} />
-                {pending === "allEventsExcel"
-                  ? t("common__loading")
-                  : t("settings__data__all_events__cta")}
-              </Button>
-            </SettingsRow>
-          </SettingsCard>
-        </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full"
+                  disabled={isBusy}
+                  onClick={() => run("allEventsExcel")}
+                >
+                  <BoxIcon width={13} height={13} />
+                  {pending === "allEventsExcel"
+                    ? t("common__loading")
+                    : t("settings__data__all_events__cta")}
+                </Button>
+              </SettingsRow>
+            </CardContent>
+          </Card>
+        </section>
       )}
 
-      <div className="mt-9">
+      <section className="tablet:gap-6 flex flex-col gap-4">
         <SettingsSectionTitle
           title={t("settings__data__per_event__title")}
           description={t("settings__data__per_event__desc")}
@@ -184,8 +186,8 @@ export const SettingsDataSection = ({
           eventLabel={eventLabel}
         />
 
-        <div className="mt-6">
-          <SettingsCard>
+        <Card>
+          <CardContent>
             {INDIVIDUAL_ENTRIES.map((entry, i) => {
               const disabled = entry.kind === null || !isAvailable || isBusy;
               const loading = entry.kind !== null && pending === entry.kind;
@@ -213,9 +215,9 @@ export const SettingsDataSection = ({
                 </SettingsRow>
               );
             })}
-          </SettingsCard>
-        </div>
-      </div>
-    </>
+          </CardContent>
+        </Card>
+      </section>
+    </div>
   );
 };

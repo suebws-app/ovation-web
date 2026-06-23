@@ -1,7 +1,8 @@
 import { useTranslations } from "next-intl";
+import { Card, CardContent } from "@ovation/ui/components/Card";
+import { PageHeading } from "@/components/PageHeading";
 import type { Event, User } from "@/lib/api/types";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
-import { SettingsCard } from "./SettingsCard";
 import { SettingsRow } from "./SettingsRow";
 import { SettingsToggle } from "./SettingsToggle";
 import { ProfileNameForm } from "./ProfileNameForm";
@@ -21,80 +22,81 @@ export const SettingsProfileSection = ({
   const t = useTranslations();
   const isPro = user.accountType === "pro";
   return (
-    <>
-      <span className="type-overline text-primary">
-        {t("settings__profile__eyebrow")}
-      </span>
-      <h1 className="type-h0 mt-2 tracking-tight">
-        {t("settings__profile__title_a")}{" "}
-        <span className="text-primary italic">
-          {t("settings__profile__title_b")}
-        </span>
-      </h1>
-      <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
-        {t("settings__profile__subtitle")}
-      </p>
+    <div className="tablet:gap-10 flex flex-1 flex-col gap-6">
+      <div>
+        <PageHeading kicker={t("settings__profile__eyebrow")}>
+          {t("settings__profile__title_a")}{" "}
+          <span className="text-primary italic">
+            {t("settings__profile__title_b")}
+          </span>
+        </PageHeading>
+        <p className="type-body text-muted-foreground mt-2.5 max-w-xl">
+          {t("settings__profile__subtitle")}
+        </p>
+      </div>
 
-      <div className="mt-9">
+      <section>
         <SettingsSectionTitle
           title={t("settings__profile__your_account")}
           description={t("settings__profile__your_account_description")}
         />
-        <SettingsCard>
-          <div className="py-5.5">
+        <Card>
+          <CardContent>
             <ProfileNameForm user={user} />
-          </div>
-        </SettingsCard>
-      </div>
+          </CardContent>
+        </Card>
+      </section>
 
       {!isPro &&
         (event ? (
-          <div className="mt-11">
+          <section>
             <SettingsSectionTitle
               title={t("settings__profile__wedding_details")}
               description={t("settings__profile__wedding_details_description")}
             />
-            <SettingsCard>
-              <div className="py-5.5">
+            <Card>
+              <CardContent>
                 <WeddingDetailsForm event={event} />
-              </div>
-            </SettingsCard>
-          </div>
+              </CardContent>
+            </Card>
+          </section>
         ) : (
-          <div className="mt-11">
+          <section>
             <SettingsSectionTitle
               title={t("settings__profile__wedding_details")}
               description={t("settings__profile__wedding_details_no_event")}
             />
-          </div>
+          </section>
         ))}
 
-      <div className="mt-11">
+      <section>
         <SettingsSectionTitle
           title={t("settings__profile__localization")}
           description={t("settings__profile__localization_description")}
         />
-        <SettingsCard>
-          <div className="py-5.5">
+        <Card>
+          <CardContent>
             <LocalizationForm user={user} />
-          </div>
-        </SettingsCard>
-      </div>
+          </CardContent>
+        </Card>
+      </section>
 
-      <div className="mt-11">
+      <section>
         <SettingsSectionTitle title={t("settings__privacy__ai__title")} />
-        <SettingsCard>
-          <SettingsRow
-            title={t("settings__privacy__ai__transcribe__title")}
-            description={t("settings__privacy__ai__transcribe__desc")}
-            last
-          >
-            <SettingsToggle on={true} />
-          </SettingsRow>
-        </SettingsCard>
-      </div>
+        <Card>
+          <CardContent>
+            <SettingsRow
+              title={t("settings__privacy__ai__transcribe__title")}
+              description={t("settings__privacy__ai__transcribe__desc")}
+              last
+            >
+              <SettingsToggle on={true} />
+            </SettingsRow>
+          </CardContent>
+        </Card>
+      </section>
 
       <ProfileCloseAccount email={user.email} />
-    </>
+    </div>
   );
 };

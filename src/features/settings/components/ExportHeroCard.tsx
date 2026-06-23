@@ -18,7 +18,7 @@ export const ExportHeroCard = ({
 }: ExportHeroCardProps) => {
   const t = useTranslations();
   return (
-    <div className="rounded-20 from-primary to-primary/80 text-primary-foreground relative mt-8 overflow-hidden bg-gradient-to-br p-8">
+    <div className="rounded-20 from-primary to-primary/80 text-primary-foreground relative overflow-hidden bg-linear-to-br p-8">
       <div className="bg-destructive/30 absolute -top-10 -right-10 size-55 rounded-full" />
       <div className="desktop:grid-cols-[1fr_auto] desktop:gap-10 relative grid items-center gap-6">
         <div>

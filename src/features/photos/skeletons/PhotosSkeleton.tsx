@@ -1,4 +1,5 @@
 import { Skeleton } from "@ovation/ui/components/Skeleton";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { PhotoGallerySkeleton } from "./PhotoGallerySkeleton";
 
 const chips = Array.from({ length: 3 }, (_, i) => i);
@@ -8,7 +9,7 @@ const SkeletonChip = () => (
 );
 
 export const PhotosSkeleton = () => (
-  <div className="tablet:p-6 flex w-full flex-1 flex-col p-4">
+  <div className={containerClassName}>
     <div className="flex min-h-fit items-center gap-2 overflow-hidden">
       <Skeleton className="mr-1 ml-2.5 size-4 shrink-0" />
       {chips.map((i) => (

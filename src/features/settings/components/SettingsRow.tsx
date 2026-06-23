@@ -5,6 +5,7 @@ type SettingsRowProps = {
   description?: React.ReactNode;
   last?: boolean;
   warn?: boolean;
+  stackOnMobile?: boolean;
   children: React.ReactNode;
 };
 
@@ -13,11 +14,13 @@ export const SettingsRow = ({
   description,
   last,
   warn,
+  stackOnMobile,
   children,
 }: SettingsRowProps) => (
   <div
     className={cn(
-      "tablet:gap-10 grid grid-cols-[1fr_auto] items-start gap-4 py-5.5",
+      "tablet:grid-cols-[1fr_auto] tablet:gap-10 grid items-start gap-4 py-4 first:pt-0 last:pb-0",
+      stackOnMobile ? "grid-cols-1" : "grid-cols-[1fr_auto]",
       !last && "border-border border-b",
     )}
   >
