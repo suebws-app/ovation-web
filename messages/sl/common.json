@@ -57,5 +57,9 @@
   "common__dismiss": "Zapri",
   "common__or": "ali",
   "nav__open_menu": "Odpri meni",
-  "nav__close_menu": "Zapri meni"
+  "nav__close_menu": "Zapri meni",
+  "common__theme__label": "Tema",
+  "common__theme__light": "Svetla",
+  "common__theme__dark": "Temna",
+  "common__theme__system": "Sistemska"
 }

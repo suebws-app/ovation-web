@@ -57,5 +57,9 @@
   "common__dismiss": "Sulge",
   "common__or": "või",
   "nav__open_menu": "Ava menüü",
-  "nav__close_menu": "Sulge menüü"
+  "nav__close_menu": "Sulge menüü",
+  "common__theme__label": "Teema",
+  "common__theme__light": "Hele",
+  "common__theme__dark": "Tume",
+  "common__theme__system": "Süsteemi"
 }

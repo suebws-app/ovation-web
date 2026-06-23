@@ -4,11 +4,11 @@ import { Toaster as SonnerPrimitive, type ToasterProps } from "sonner";
 import { useThemeStore } from "../utils/useThemeStore";
 
 export const Sonner = (props: ToasterProps) => {
-  const theme = useThemeStore((s) => s.theme);
+  const resolvedTheme = useThemeStore((s) => s.resolvedTheme);
 
   return (
     <SonnerPrimitive
-      theme={theme}
+      theme={resolvedTheme}
       position="top-center"
       richColors
       closeButton

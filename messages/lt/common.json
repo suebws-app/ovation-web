@@ -57,5 +57,9 @@
   "common__dismiss": "Atmesti",
   "common__or": "arba",
   "nav__open_menu": "Atverti meniu",
-  "nav__close_menu": "Uždaryti meniu"
+  "nav__close_menu": "Uždaryti meniu",
+  "common__theme__label": "Tema",
+  "common__theme__light": "Šviesi",
+  "common__theme__dark": "Tamsi",
+  "common__theme__system": "Sistemos"
 }

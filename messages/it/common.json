@@ -57,5 +57,9 @@
   "common__dismiss": "Ignora",
   "common__or": "o",
   "nav__open_menu": "Apri menu",
-  "nav__close_menu": "Chiudi menu"
+  "nav__close_menu": "Chiudi menu",
+  "common__theme__label": "Tema",
+  "common__theme__light": "Chiaro",
+  "common__theme__dark": "Scuro",
+  "common__theme__system": "Sistema"
 }

@@ -1,6 +1,7 @@
 import { SidebarInset, SidebarProvider } from "@ovation/ui/components/Sidebar";
 import type { Event, User } from "@/lib/api/types";
 import { UpgradeLimitModal } from "@/features/upgrade/UpgradeLimitModal";
+import { ThemeBridge } from "@/features/theme/ThemeBridge";
 import { AppSideBar } from "./AppSidebar";
 import { AppHeaderDesktop } from "./AppHeaderDesktop";
 import { AppHeaderMobile } from "./AppHeaderMobile";
@@ -50,6 +51,7 @@ export const AppLayout = ({
         </div>
       </div>
       <UpgradeLimitModal />
+      <ThemeBridge initialTheme={user.theme ?? null} />
     </SidebarProvider>
   );
 };

@@ -57,5 +57,9 @@
   "common__dismiss": "Închide",
   "common__or": "sau",
   "nav__open_menu": "Deschide meniul",
-  "nav__close_menu": "Închide meniul"
+  "nav__close_menu": "Închide meniul",
+  "common__theme__label": "Temă",
+  "common__theme__light": "Luminoasă",
+  "common__theme__dark": "Întunecată",
+  "common__theme__system": "Sistem"
 }

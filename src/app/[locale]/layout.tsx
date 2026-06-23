@@ -1,5 +1,6 @@
 import { Rubik, Noto_Sans } from "next/font/google";
 import Script from "next/script";
+import { cookies } from "next/headers";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -39,11 +40,14 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
+  const cookieStore = await cookies();
+  const themeCookie = cookieStore.get("ovation_theme")?.value;
+  const initialDarkClass = themeCookie === "dark" ? " dark" : "";
 
   return (
     <html
       lang={locale}
-      className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased`}
+      className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased${initialDarkClass}`}
       suppressHydrationWarning
     >
       <body className="flex max-h-dvh flex-1 flex-col font-sans">

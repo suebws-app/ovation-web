@@ -3,6 +3,7 @@
 import { useEffect, useState, startTransition } from "react";
 import { useTranslations } from "next-intl";
 import { CartIcon } from "@ovation/icons/CartIcon";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useCartStore } from "@/features/cart/store/useCartStore";
@@ -30,6 +31,7 @@ export const AppHeader = () => {
             {t("sidebar__credit_available", { amount: credit })}
           </span>
         )}
+        <ThemeToggle />
         <Link
           href={appRoutes.app.cart}
           className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3.5 py-2 font-semibold transition-colors"

@@ -57,5 +57,9 @@
   "common__dismiss": "Lukk",
   "common__or": "eller",
   "nav__open_menu": "Åpne meny",
-  "nav__close_menu": "Lukk meny"
+  "nav__close_menu": "Lukk meny",
+  "common__theme__label": "Tema",
+  "common__theme__light": "Lyst",
+  "common__theme__dark": "Mørkt",
+  "common__theme__system": "System"
 }

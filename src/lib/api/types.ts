@@ -36,6 +36,8 @@ export type EmailPreferences = {
   alerts: boolean;
 };
 
+export type ThemePreference = "light" | "dark" | "system";
+
 export type User = {
   id: string;
   email: string;
@@ -54,6 +56,7 @@ export type User = {
   keepsakeCreditCents: number;
   stripeCustomerId: string | null;
   emailPreferences: EmailPreferences | null;
+  theme: ThemePreference | null;
   primaryEventId: string | null;
   onboardingComplete: boolean;
   createdAt: string;
@@ -182,6 +185,7 @@ export type UpdateProfileInput = {
   preferredLanguage?: Locale;
   preferredCurrency?: Currency | null;
   emailPreferences?: EmailPreferences;
+  theme?: ThemePreference;
 };
 
 export type Paginated<T> = {

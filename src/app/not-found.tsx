@@ -6,6 +6,7 @@ import { appRoutes } from "@/lib/routes";
 import { loadMessages } from "@/i18n/loadMessages";
 import { RootHeader } from "@/features/layout/RootHeader";
 import { RootFooter } from "@/features/layout/RootFooter";
+import { ThemeInitScript } from "@/components/ThemeInitScript";
 
 const RootNotFound = async () => {
   const messages = await loadMessages("en");
@@ -14,6 +15,7 @@ const RootNotFound = async () => {
   return (
     <html lang="en" className="h-dvh antialiased" suppressHydrationWarning>
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
+        <ThemeInitScript />
         <NextIntlClientProvider locale="en" messages={messages}>
           <div className="flex min-h-dvh shrink-0 flex-col">
             <RootHeader />

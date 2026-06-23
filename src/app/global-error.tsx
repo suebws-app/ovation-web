@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { RootHeader } from "@/features/layout/RootHeader";
 import { RootFooter } from "@/features/layout/RootFooter";
+import { ThemeInitScript } from "@/components/ThemeInitScript";
 import errorMessages from "../../messages/en/errors.json";
 import marketingMessages from "../../messages/en/marketing.json";
 import commonMessages from "../../messages/en/common.json";
@@ -77,6 +78,7 @@ const GlobalError = () => {
   return (
     <html lang="en" className="h-dvh antialiased" suppressHydrationWarning>
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
+        <ThemeInitScript />
         <NextIntlClientProvider locale="en" messages={messages}>
           <GlobalErrorContent />
         </NextIntlClientProvider>

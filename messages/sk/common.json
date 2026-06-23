@@ -57,5 +57,9 @@
   "common__dismiss": "Zavrieť",
   "common__or": "alebo",
   "nav__open_menu": "Otvoriť menu",
-  "nav__close_menu": "Zavrieť menu"
+  "nav__close_menu": "Zavrieť menu",
+  "common__theme__label": "Motív",
+  "common__theme__light": "Svetlý",
+  "common__theme__dark": "Tmavý",
+  "common__theme__system": "Systémový"
 }

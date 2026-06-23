@@ -57,5 +57,9 @@
   "common__dismiss": "Tutup",
   "common__or": "atau",
   "nav__open_menu": "Buka menu",
-  "nav__close_menu": "Tutup menu"
+  "nav__close_menu": "Tutup menu",
+  "common__theme__label": "Tema",
+  "common__theme__light": "Cerah",
+  "common__theme__dark": "Gelap",
+  "common__theme__system": "Sistem"
 }

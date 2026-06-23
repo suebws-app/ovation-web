@@ -57,5 +57,9 @@
   "common__dismiss": "Odbaci",
   "common__or": "ili",
   "nav__open_menu": "Otvori izbornik",
-  "nav__close_menu": "Zatvori izbornik"
+  "nav__close_menu": "Zatvori izbornik",
+  "common__theme__label": "Tema",
+  "common__theme__light": "Svijetla",
+  "common__theme__dark": "Tamna",
+  "common__theme__system": "Sustav"
 }

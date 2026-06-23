@@ -57,5 +57,9 @@
   "common__dismiss": "Zavřít",
   "common__or": "nebo",
   "nav__open_menu": "Otevřít menu",
-  "nav__close_menu": "Zavřít menu"
+  "nav__close_menu": "Zavřít menu",
+  "common__theme__label": "Motiv",
+  "common__theme__light": "Světlý",
+  "common__theme__dark": "Tmavý",
+  "common__theme__system": "Systémový"
 }
