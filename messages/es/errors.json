@@ -9,5 +9,15 @@
   "errors__pro_required": "Se requiere una cuenta profesional.",
   "errors__pro_event_limit_reached": "Has alcanzado el límite de 12 eventos del plan Starter. Mejora a Studio para tener eventos ilimitados.",
   "errors__pro_subscription_required": "Necesitas una suscripción Pro activa para crear eventos.",
-  "errors__kiosk_pin_invalid": "Ese PIN no coincide. Inténtalo de nuevo."
+  "errors__kiosk_pin_invalid": "Ese PIN no coincide. Inténtalo de nuevo.",
+  "errors__not_found__kicker": "404 — Página no encontrada",
+  "errors__not_found__headline_line1": "Esta página tomó",
+  "errors__not_found__headline_line2": "un camino diferente.",
+  "errors__not_found__description": "La página que buscas no existe, ha sido movida o nunca pasó del ensayo. Volvamos a donde están los momentos.",
+  "errors__not_found__back_home": "Volver al inicio",
+  "errors__server__kicker": "Algo salió mal",
+  "errors__server__headline_line1": "Un pequeño tropiezo",
+  "errors__server__headline_line2": "entre bastidores.",
+  "errors__server__description": "Algo salió mal por nuestra parte. Inténtalo de nuevo — y si sigue ocurriendo, vuelve al inicio y mantendremos las cosas en marcha.",
+  "errors__server__back_home": "Volver al inicio"
 }

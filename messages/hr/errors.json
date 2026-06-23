@@ -9,5 +9,15 @@
   "errors__pro_required": "Potreban je profesionalni račun.",
   "errors__pro_event_limit_reached": "Dosegao/la si ograničenje od 12 događanja na Starter planu. Nadogradi na Studio za neograničena događanja.",
   "errors__pro_subscription_required": "Aktivna Pro pretplata potrebna je za stvaranje događanja.",
-  "errors__kiosk_pin_invalid": "Taj PIN ne odgovara. Pokušaj ponovo."
+  "errors__kiosk_pin_invalid": "Taj PIN ne odgovara. Pokušaj ponovo.",
+  "errors__not_found__kicker": "404 — Stranica nije pronađena",
+  "errors__not_found__headline_line1": "Ova stranica krenula je",
+  "errors__not_found__headline_line2": "drugim putem.",
+  "errors__not_found__description": "Stranica koju tražite ne postoji, premještena je ili nikada nije prošla probu. Vratimo vas tamo gdje se događaju trenuci.",
+  "errors__not_found__back_home": "Natrag na početnu",
+  "errors__server__kicker": "Nešto je puklo",
+  "errors__server__headline_line1": "Mali zastoj",
+  "errors__server__headline_line2": "iza kulisa.",
+  "errors__server__description": "Nešto je pošlo po krivu kod nas. Pokušajte ponovno — i ako se nastavi, vratite se na početnu i mi nastavljamo dalje.",
+  "errors__server__back_home": "Natrag na početnu"
 }

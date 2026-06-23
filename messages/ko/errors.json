@@ -9,5 +9,15 @@
   "errors__pro_required": "전문가용 계정이 필요합니다.",
   "errors__pro_event_limit_reached": "Starter 플랜의 12개 이벤트 한도에 도달했습니다. 무제한 이벤트를 원하시면 Studio로 업그레이드하세요.",
   "errors__pro_subscription_required": "이벤트를 만들려면 활성 Pro 구독이 필요합니다.",
-  "errors__kiosk_pin_invalid": "PIN이 일치하지 않습니다. 다시 시도하세요."
+  "errors__kiosk_pin_invalid": "PIN이 일치하지 않습니다. 다시 시도하세요.",
+  "errors__not_found__kicker": "404 — 페이지를 찾을 수 없습니다",
+  "errors__not_found__headline_line1": "이 페이지는",
+  "errors__not_found__headline_line2": "다른 길로 갔습니다.",
+  "errors__not_found__description": "찾으시는 페이지가 존재하지 않거나, 이동되었거나, 리허설을 통과하지 못했습니다. 순간이 일어나는 곳으로 다시 안내해 드릴게요.",
+  "errors__not_found__back_home": "홈으로 돌아가기",
+  "errors__server__kicker": "문제가 발생했습니다",
+  "errors__server__headline_line1": "작은 문제가",
+  "errors__server__headline_line2": "무대 뒤에서 생겼어요.",
+  "errors__server__description": "저희 쪽에서 문제가 발생했습니다. 다시 시도해 주세요 — 계속 발생하면 홈으로 돌아가시면 저희가 계속 진행하겠습니다.",
+  "errors__server__back_home": "홈으로 돌아가기"
 }

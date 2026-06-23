@@ -9,5 +9,15 @@
   "errors__pro_required": "Een professioneel account is vereist.",
   "errors__pro_event_limit_reached": "Je hebt de limiet van 12 events op het Starter-abonnement bereikt. Upgrade naar Studio voor onbeperkte events.",
   "errors__pro_subscription_required": "Een actief Pro-abonnement is vereist om events aan te maken.",
-  "errors__kiosk_pin_invalid": "Die PIN klopt niet. Probeer het opnieuw."
+  "errors__kiosk_pin_invalid": "Die PIN klopt niet. Probeer het opnieuw.",
+  "errors__not_found__kicker": "404 — Pagina niet gevonden",
+  "errors__not_found__headline_line1": "Deze pagina nam",
+  "errors__not_found__headline_line2": "een andere weg.",
+  "errors__not_found__description": "De pagina die je zoekt bestaat niet, is verplaatst of heeft het nooit verder dan de repetitie gehaald. Laten we je terugbrengen naar waar de momenten gebeuren.",
+  "errors__not_found__back_home": "Terug naar home",
+  "errors__server__kicker": "Er ging iets mis",
+  "errors__server__headline_line1": "Een kleine hapering",
+  "errors__server__headline_line2": "achter de schermen.",
+  "errors__server__description": "Er ging iets mis aan onze kant. Probeer het opnieuw — en als het blijft gebeuren, ga terug naar home en we gaan door.",
+  "errors__server__back_home": "Terug naar home"
 }

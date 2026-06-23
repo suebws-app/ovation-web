@@ -1,23 +1,14 @@
 "use client";
 
-import { NextIntlClientProvider, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { RootHeader } from "@/features/layout/RootHeader";
 import { RootFooter } from "@/features/layout/RootFooter";
-import errorMessages from "../../messages/en/errors.json";
-import marketingMessages from "../../messages/en/marketing.json";
-import commonMessages from "../../messages/en/common.json";
 
-const messages = {
-  ...errorMessages,
-  ...marketingMessages,
-  ...commonMessages,
-};
-
-const GlobalErrorContent = () => {
+export const ErrorPage = () => {
   const t = useTranslations();
 
   return (
@@ -72,17 +63,3 @@ const GlobalErrorContent = () => {
     </>
   );
 };
-
-const GlobalError = () => {
-  return (
-    <html lang="en" className="h-dvh antialiased" suppressHydrationWarning>
-      <body className="flex max-h-dvh flex-1 flex-col font-sans">
-        <NextIntlClientProvider locale="en" messages={messages}>
-          <GlobalErrorContent />
-        </NextIntlClientProvider>
-      </body>
-    </html>
-  );
-};
-
-export default GlobalError;

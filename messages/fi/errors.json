@@ -9,5 +9,15 @@
   "errors__pro_required": "Ammattilaistili vaaditaan.",
   "errors__pro_event_limit_reached": "Olet saavuttanut 12 tapahtuman rajan Starter-tilauksessa. Päivitä Studioon saadaksesi rajattomasti tapahtumia.",
   "errors__pro_subscription_required": "Aktiivinen Pro-tilaus vaaditaan tapahtumien luomiseen.",
-  "errors__kiosk_pin_invalid": "PIN ei täsmää. Yritä uudelleen."
+  "errors__kiosk_pin_invalid": "PIN ei täsmää. Yritä uudelleen.",
+  "errors__not_found__kicker": "404 — Sivua ei löytynyt",
+  "errors__not_found__headline_line1": "Tämä sivu otti",
+  "errors__not_found__headline_line2": "toisen polun.",
+  "errors__not_found__description": "Etsimääsi sivua ei ole, se on siirretty tai se ei koskaan päässyt harjoituksia pidemmälle. Palataan sinne, missä hetket tapahtuvat.",
+  "errors__not_found__back_home": "Takaisin etusivulle",
+  "errors__server__kicker": "Jotain meni rikki",
+  "errors__server__headline_line1": "Pieni töyssy",
+  "errors__server__headline_line2": "kulissien takana.",
+  "errors__server__description": "Meidän puolellamme meni jotain pieleen. Yritä uudelleen — ja jos ongelma jatkuu, palaa etusivulle, niin jatkamme eteenpäin.",
+  "errors__server__back_home": "Takaisin etusivulle"
 }

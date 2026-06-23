@@ -9,5 +9,15 @@
   "errors__pro_required": "Потрібен професійний акаунт.",
   "errors__pro_event_limit_reached": "Ти досяг(ла) ліміту в 12 подій на плані Starter. Перейди на Studio для необмеженої кількості подій.",
   "errors__pro_subscription_required": "Для створення подій потрібна активна підписка Pro.",
-  "errors__kiosk_pin_invalid": "Цей PIN не збігається. Спробуйте ще раз."
+  "errors__kiosk_pin_invalid": "Цей PIN не збігається. Спробуйте ще раз.",
+  "errors__not_found__kicker": "404 — Сторінку не знайдено",
+  "errors__not_found__headline_line1": "Ця сторінка обрала",
+  "errors__not_found__headline_line2": "інший шлях.",
+  "errors__not_found__description": "Сторінка, яку ви шукаєте, не існує, була переміщена або так і не пройшла репетицію. Повернімося туди, де відбуваються моменти.",
+  "errors__not_found__back_home": "Повернутися на головну",
+  "errors__server__kicker": "Щось зламалося",
+  "errors__server__headline_line1": "Невелика заминка",
+  "errors__server__headline_line2": "за лаштунками.",
+  "errors__server__description": "У нас щось пішло не так. Спробуйте ще раз — і якщо проблема повторюється, поверніться на головну, і ми продовжимо.",
+  "errors__server__back_home": "Повернутися на головну"
 }

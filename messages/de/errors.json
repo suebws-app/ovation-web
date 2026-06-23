@@ -9,5 +9,15 @@
   "errors__pro_required": "Ein professionelles Konto ist erforderlich.",
   "errors__pro_event_limit_reached": "Du hast das Limit von 12 Events im Starter-Tarif erreicht. Upgrade auf Studio für unbegrenzte Events.",
   "errors__pro_subscription_required": "Ein aktives Pro-Abonnement ist erforderlich, um Events zu erstellen.",
-  "errors__kiosk_pin_invalid": "PIN stimmt nicht. Bitte erneut versuchen."
+  "errors__kiosk_pin_invalid": "PIN stimmt nicht. Bitte erneut versuchen.",
+  "errors__not_found__kicker": "404 — Seite nicht gefunden",
+  "errors__not_found__headline_line1": "Diese Seite hat",
+  "errors__not_found__headline_line2": "einen anderen Weg genommen.",
+  "errors__not_found__description": "Die gesuchte Seite existiert nicht, wurde verschoben oder hat es nicht über die Probe hinaus geschafft. Lass uns dich zurück dorthin bringen, wo die Momente geschehen.",
+  "errors__not_found__back_home": "Zurück zur Startseite",
+  "errors__server__kicker": "Etwas ist schiefgegangen",
+  "errors__server__headline_line1": "Ein kleiner Schluckauf",
+  "errors__server__headline_line2": "hinter den Kulissen.",
+  "errors__server__description": "Bei uns ist etwas schiefgegangen. Versuche es erneut — und wenn es weiterhin passiert, kehre zur Startseite zurück und wir bringen alles zum Laufen.",
+  "errors__server__back_home": "Zurück zur Startseite"
 }

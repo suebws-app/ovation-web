@@ -9,5 +9,15 @@
   "errors__pro_required": "Nepieciešams profesionālais konts.",
   "errors__pro_event_limit_reached": "Esi sasniedzis 12 pasākumu ierobežojumu Starter plānā. Jaunini uz Studio, lai iegūtu neierobežotus pasākumus.",
   "errors__pro_subscription_required": "Lai veidotu pasākumus, ir nepieciešams aktīvs Pro abonements.",
-  "errors__kiosk_pin_invalid": "Šis PIN nesakrīt. Mēģiniet vēlreiz."
+  "errors__kiosk_pin_invalid": "Šis PIN nesakrīt. Mēģiniet vēlreiz.",
+  "errors__not_found__kicker": "404 — Lapa nav atrasta",
+  "errors__not_found__headline_line1": "Šī lapa devās",
+  "errors__not_found__headline_line2": "citu ceļu.",
+  "errors__not_found__description": "Meklētā lapa neeksistē, ir pārvietota vai nekad netika tālāk par mēģinājumu. Atgriezīsimies tur, kur notiek mirkļi.",
+  "errors__not_found__back_home": "Atpakaļ uz sākumu",
+  "errors__server__kicker": "Kaut kas saplīsa",
+  "errors__server__headline_line1": "Mazs traucējums",
+  "errors__server__headline_line2": "aizkulisēs.",
+  "errors__server__description": "Mūsu pusē kaut kas nogāja greizi. Mēģini vēlreiz — un, ja tas turpinās, atgriezies sākumā, mēs turpināsim.",
+  "errors__server__back_home": "Atpakaļ uz sākumu"
 }

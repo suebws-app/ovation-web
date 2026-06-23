@@ -1,24 +1,13 @@
-"use client";
-
-import { NextIntlClientProvider, useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { RootHeader } from "@/features/layout/RootHeader";
 import { RootFooter } from "@/features/layout/RootFooter";
-import errorMessages from "../../messages/en/errors.json";
-import marketingMessages from "../../messages/en/marketing.json";
-import commonMessages from "../../messages/en/common.json";
 
-const messages = {
-  ...errorMessages,
-  ...marketingMessages,
-  ...commonMessages,
-};
-
-const GlobalErrorContent = () => {
-  const t = useTranslations();
+export const NotFoundPage = async () => {
+  const t = await getTranslations();
 
   return (
     <>
@@ -26,11 +15,11 @@ const GlobalErrorContent = () => {
         <RootHeader />
         <main className="bg-warm-cream relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 py-16">
           <div
-            className="bg-destructive/20 pointer-events-none absolute -top-30 -left-30 size-100 rounded-full blur-3xl"
+            className="bg-primary/20 pointer-events-none absolute -top-30 -left-30 size-100 rounded-full blur-3xl"
             aria-hidden="true"
           />
           <div
-            className="bg-primary/15 pointer-events-none absolute -right-20 -bottom-30 size-100 rounded-full blur-3xl"
+            className="bg-destructive/15 pointer-events-none absolute -right-20 -bottom-30 size-100 rounded-full blur-3xl"
             aria-hidden="true"
           />
           <div
@@ -41,27 +30,27 @@ const GlobalErrorContent = () => {
           <div className="relative w-full max-w-xl">
             <div className="mb-6 flex justify-center">
               <Kicker className="text-destructive type-body-large">
-                {t("errors__server__kicker")}
+                {t("errors__not_found__kicker")}
               </Kicker>
             </div>
 
             <h1 className="tablet:type-h0 type-h1 mb-4 text-center leading-none tracking-tighter">
               <span className="text-foreground block">
-                {t("errors__server__headline_line1")}
+                {t("errors__not_found__headline_line1")}
               </span>
               <span className="text-primary block italic">
-                {t("errors__server__headline_line2")}
+                {t("errors__not_found__headline_line2")}
               </span>
             </h1>
 
             <p className="type-body text-muted-foreground mb-10 text-center leading-relaxed">
-              {t("errors__server__description")}
+              {t("errors__not_found__description")}
             </p>
 
             <div className="flex justify-center">
               <Button asChild size="lg" className="rounded-full">
                 <Link href={appRoutes.home}>
-                  {t("errors__server__back_home")}
+                  {t("errors__not_found__back_home")}
                 </Link>
               </Button>
             </div>
@@ -72,17 +61,3 @@ const GlobalErrorContent = () => {
     </>
   );
 };
-
-const GlobalError = () => {
-  return (
-    <html lang="en" className="h-dvh antialiased" suppressHydrationWarning>
-      <body className="flex max-h-dvh flex-1 flex-col font-sans">
-        <NextIntlClientProvider locale="en" messages={messages}>
-          <GlobalErrorContent />
-        </NextIntlClientProvider>
-      </body>
-    </html>
-  );
-};
-
-export default GlobalError;

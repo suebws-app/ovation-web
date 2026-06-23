@@ -9,5 +9,15 @@
   "errors__pro_required": "Vyžaduje sa profesionálny účet.",
   "errors__pro_event_limit_reached": "Dosiahol si limit 12 udalostí na pláne Starter. Prejdi na Studio pre neobmedzený počet udalostí.",
   "errors__pro_subscription_required": "Pre vytváranie udalostí je potrebné aktívne Pro predplatné.",
-  "errors__kiosk_pin_invalid": "Tento PIN nesúhlasí. Skúste znova."
+  "errors__kiosk_pin_invalid": "Tento PIN nesúhlasí. Skúste znova.",
+  "errors__not_found__kicker": "404 — Stránka nenájdená",
+  "errors__not_found__headline_line1": "Táto stránka šla",
+  "errors__not_found__headline_line2": "inou cestou.",
+  "errors__not_found__description": "Stránka, ktorú hľadáte, neexistuje, bola presunutá alebo sa nikdy nedostala cez skúšku. Vráťme vás tam, kde sa okamihy dejú.",
+  "errors__not_found__back_home": "Späť na domovskú stránku",
+  "errors__server__kicker": "Niečo sa pokazilo",
+  "errors__server__headline_line1": "Malé zaváhanie",
+  "errors__server__headline_line2": "v zákulisí.",
+  "errors__server__description": "Na našej strane sa niečo pokazilo. Skúste to znova — a ak problém pretrváva, vráťte sa na domovskú stránku a my všetko udržíme v chode.",
+  "errors__server__back_home": "Späť na domovskú stránku"
 }

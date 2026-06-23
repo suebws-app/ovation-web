@@ -9,5 +9,15 @@
   "errors__pro_required": "Reikalinga profesionalo paskyra.",
   "errors__pro_event_limit_reached": "Pasiekei 12 renginių ribą su Starter planu. Atnaujink į Studio ir kurk neribotai renginių.",
   "errors__pro_subscription_required": "Renginiams kurti reikalinga aktyvi Pro prenumerata.",
-  "errors__kiosk_pin_invalid": "Šis PIN nesutampa. Bandykite dar kartą."
+  "errors__kiosk_pin_invalid": "Šis PIN nesutampa. Bandykite dar kartą.",
+  "errors__not_found__kicker": "404 — Puslapis nerastas",
+  "errors__not_found__headline_line1": "Šis puslapis pasuko",
+  "errors__not_found__headline_line2": "kitu keliu.",
+  "errors__not_found__description": "Ieškomo puslapio nėra, jis buvo perkeltas arba taip ir nepraėjo repeticijos. Grįžkime ten, kur vyksta akimirkos.",
+  "errors__not_found__back_home": "Atgal į pagrindinį",
+  "errors__server__kicker": "Kažkas sugedo",
+  "errors__server__headline_line1": "Mažas užkliuvimas",
+  "errors__server__headline_line2": "už kulisų.",
+  "errors__server__description": "Mūsų pusėje kažkas nepavyko. Bandyk dar kartą — ir jei problema kartojasi, grįžk į pagrindinį puslapį, o mes tęsime.",
+  "errors__server__back_home": "Atgal į pagrindinį"
 }

@@ -9,5 +9,15 @@
   "errors__pro_required": "Akun profesional diperlukan.",
   "errors__pro_event_limit_reached": "Anda telah mencapai batas 12 acara di paket Starter. Tingkatkan ke Studio untuk acara tanpa batas.",
   "errors__pro_subscription_required": "Langganan Pro aktif diperlukan untuk membuat acara.",
-  "errors__kiosk_pin_invalid": "PIN ini tidak cocok. Coba lagi."
+  "errors__kiosk_pin_invalid": "PIN ini tidak cocok. Coba lagi.",
+  "errors__not_found__kicker": "404 — Halaman tidak ditemukan",
+  "errors__not_found__headline_line1": "Halaman ini menempuh",
+  "errors__not_found__headline_line2": "jalan yang berbeda.",
+  "errors__not_found__description": "Halaman yang Anda cari tidak ada, telah dipindahkan, atau tidak pernah melewati tahap latihan. Mari kita kembali ke tempat momen-momen terjadi.",
+  "errors__not_found__back_home": "Kembali ke beranda",
+  "errors__server__kicker": "Ada yang rusak",
+  "errors__server__headline_line1": "Sedikit gangguan",
+  "errors__server__headline_line2": "di balik layar.",
+  "errors__server__description": "Ada yang tidak beres di pihak kami. Coba lagi — dan jika terus terjadi, kembali ke beranda dan kami akan terus berjalan.",
+  "errors__server__back_home": "Kembali ke beranda"
 }

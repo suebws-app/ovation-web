@@ -9,5 +9,15 @@
   "errors__pro_required": "Der kræves en professionel konto.",
   "errors__pro_event_limit_reached": "Du har nået grænsen på 12 begivenheder på Starter-abonnementet. Opgrader til Studio for ubegrænsede begivenheder.",
   "errors__pro_subscription_required": "Et aktivt Pro-abonnement er påkrævet for at oprette begivenheder.",
-  "errors__kiosk_pin_invalid": "Den PIN passer ikke. Prøv igen."
+  "errors__kiosk_pin_invalid": "Den PIN passer ikke. Prøv igen.",
+  "errors__not_found__kicker": "404 — Siden blev ikke fundet",
+  "errors__not_found__headline_line1": "Denne side tog",
+  "errors__not_found__headline_line2": "en anden vej.",
+  "errors__not_found__description": "Siden, du leder efter, findes ikke, er flyttet eller kom aldrig forbi prøven. Lad os få dig tilbage til, hvor øjeblikkene sker.",
+  "errors__not_found__back_home": "Tilbage til forsiden",
+  "errors__server__kicker": "Noget gik i stykker",
+  "errors__server__headline_line1": "En lille hikke",
+  "errors__server__headline_line2": "bag kulisserne.",
+  "errors__server__description": "Noget gik galt hos os. Prøv igen — og hvis det fortsætter, gå tilbage til forsiden, så holder vi tingene kørende.",
+  "errors__server__back_home": "Tilbage til forsiden"
 }
