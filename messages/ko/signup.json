@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "파트너 1",
   "signup__partner_2_fallback": "파트너 2",
   "signup__pricing__choose": "{name} 선택",
+  "signup__pricing__billing_disclaimer": "결제 시 최종 청구 금액이 현지 통화로 표시될 수 있습니다.",
   "signup__book_preview__volume": "Ovation · 1권"
 }

@@ -26,7 +26,6 @@ export const SidebarItem = ({ item, active }: SidebarItemProps) => {
 
   return (
     <SidebarMenuItem>
-      {badge != null ? <SidebarMenuBadge>{badge}</SidebarMenuBadge> : null}
       <SidebarMenuButton
         asChild
         isActive={active}
@@ -38,6 +37,7 @@ export const SidebarItem = ({ item, active }: SidebarItemProps) => {
         <PrefetchLink href={href} onClick={handleClick}>
           {Icon ? <Icon width={20} height={20} /> : null}
           <span>{label}</span>
+          {badge != null ? <SidebarMenuBadge>{badge}</SidebarMenuBadge> : null}
         </PrefetchLink>
       </SidebarMenuButton>
     </SidebarMenuItem>

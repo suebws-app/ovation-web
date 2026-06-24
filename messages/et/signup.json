@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Partner 1",
   "signup__partner_2_fallback": "Partner 2",
   "signup__pricing__choose": "Vali {name}",
+  "signup__pricing__billing_disclaimer": "Lõppmakse võidakse kuvada teie kohalikus valuutas kassas.",
   "signup__book_preview__volume": "Ovation · I köide"
 }

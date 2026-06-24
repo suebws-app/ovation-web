@@ -3,6 +3,8 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { Alert, AlertDescription } from "@ovation/ui/components/Alert";
+import { WarningIcon } from "@ovation/icons/WarningIcon";
 import { Link, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useCartStore } from "@/features/cart/store/useCartStore";
@@ -22,6 +24,8 @@ import type {
 type PriceBreakdown = {
   baseCents: number;
   pageCount: number;
+  chargeablePages: number;
+  includedPages: number;
   pricePerPageCents: number;
   pagesSurchargeCents: number;
   totalCents: number;
@@ -201,9 +205,12 @@ export const CustomizerCheckoutForm = ({
         </p>
       )}
       {eventId && !isReady && notReadyMessage && (
-        <p className="type-body-small text-muted-foreground" role="status">
-          {notReadyMessage}
-        </p>
+        <Alert variant="warning">
+          <WarningIcon />
+          <AlertDescription className="type-caption">
+            {notReadyMessage}
+          </AlertDescription>
+        </Alert>
       )}
       {submitError && (
         <p className="type-body-small text-destructive" role="alert">
@@ -229,28 +236,38 @@ export const CustomizerCheckoutForm = ({
       {showBreakdown && priceBreakdown && (
         <div className="rounded-12 border-border bg-muted/30 flex flex-col gap-1.5 border px-3 py-2.5">
           <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
-            <span>{t("keepsakes__book_customizer__price_base")}</span>
+            <span>
+              {t("keepsakes__book_customizer__price_base", {
+                name: t(product.name),
+                count:
+                  priceBreakdown.chargeablePages > 0
+                    ? priceBreakdown.includedPages
+                    : 0,
+              })}
+            </span>
             <span>
               {formatPricePrecise(priceBreakdown.baseCents, productCurrency)}
             </span>
           </div>
-          <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
-            <span>
-              {t("keepsakes__book_customizer__price_pages_line", {
-                count: priceBreakdown.pageCount,
-                perPage: formatPricePrecise(
-                  priceBreakdown.pricePerPageCents,
+          {priceBreakdown.chargeablePages > 0 && (
+            <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
+              <span>
+                {t("keepsakes__book_customizer__price_pages_line", {
+                  count: priceBreakdown.chargeablePages,
+                  perPage: formatPricePrecise(
+                    priceBreakdown.pricePerPageCents,
+                    productCurrency,
+                  ),
+                })}
+              </span>
+              <span>
+                {formatPricePrecise(
+                  priceBreakdown.pagesSurchargeCents,
                   productCurrency,
-                ),
-              })}
-            </span>
-            <span>
-              {formatPricePrecise(
-                priceBreakdown.pagesSurchargeCents,
-                productCurrency,
-              )}
-            </span>
-          </div>
+                )}
+              </span>
+            </div>
+          )}
           <p
             aria-hidden={!priceBreakdown.blankPageAdded}
             className={`type-caption text-muted-foreground ${

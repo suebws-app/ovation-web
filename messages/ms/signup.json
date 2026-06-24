@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Pasangan 1",
   "signup__partner_2_fallback": "Pasangan 2",
   "signup__pricing__choose": "Pilih {name}",
+  "signup__pricing__billing_disclaimer": "Bayaran akhir mungkin dipaparkan dalam mata wang tempatan anda semasa pembayaran.",
   "signup__book_preview__volume": "Ovation · Jilid I"
 }

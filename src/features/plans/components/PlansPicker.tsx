@@ -169,6 +169,7 @@ export const PlansPicker = (props: PlansPickerProps) => {
                   ? t("activate_link__price_approximate_note")
                   : undefined
               }
+              showBillingDisclaimer={plan.priceCents > 0}
               highlighted={plan.code === highlightCode}
               onSelect={() => handleSelectPlan(plan.code)}
             />

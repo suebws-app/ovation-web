@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Partenaire 1",
   "signup__partner_2_fallback": "Partenaire 2",
   "signup__pricing__choose": "Choisir {name}",
+  "signup__pricing__billing_disclaimer": "Le montant final peut s'afficher dans votre devise locale au moment du paiement.",
   "signup__book_preview__volume": "Ovation · Volume I"
 }

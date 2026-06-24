@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Partner 1",
   "signup__partner_2_fallback": "Partner 2",
   "signup__pricing__choose": "Choose {name}",
+  "signup__pricing__billing_disclaimer": "Final charge may show in your local currency at checkout.",
   "signup__book_preview__volume": "Ovation · Volume I"
 }

@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Partner 1",
   "signup__partner_2_fallback": "Partner 2",
   "signup__pricing__choose": "Kies {name}",
+  "signup__pricing__billing_disclaimer": "Het eindbedrag wordt mogelijk weergegeven in je lokale valuta bij het afrekenen.",
   "signup__book_preview__volume": "Ovation · Deel I"
 }

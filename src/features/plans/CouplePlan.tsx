@@ -75,6 +75,7 @@ export const CouplePlan = () => {
               description={plan.description}
               features={plan.features}
               highlighted={plan.highlighted}
+              showBillingDisclaimer
               onSelect={() => handleSelect(plan.id)}
             />
           ))}

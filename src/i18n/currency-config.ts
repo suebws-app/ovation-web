@@ -1,3 +1,14 @@
+/**
+ * Source of truth: ECB ∩ Paddle.
+ *
+ * Each currency here must satisfy two conditions:
+ *  - ECB publishes its daily reference rate (so we can derive prices).
+ *  - Paddle supports billing in it (so checkout succeeds).
+ *
+ * Keep this list in lockstep with the backend `SUPPORTED_CURRENCIES` in
+ * ovation-api/src/modules/currency/supported-currencies.ts. See that file's
+ * JSDoc for the rationale and the list of currencies excluded from each side.
+ */
 const SUPPORTED_CURRENCIES = [
   "EUR",
   "USD",
