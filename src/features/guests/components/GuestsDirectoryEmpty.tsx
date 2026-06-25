@@ -19,7 +19,7 @@ export const GuestsDirectoryEmpty = ({
 
   return (
     <div className="tablet:py-20 relative flex w-full flex-col items-center justify-center overflow-hidden px-4 py-12 text-center">
-      <div className="bg-primary/8 pointer-events-none absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
+      <div className="bg-primary/8 pointer-events-none absolute top-1/2 left-1/2 size-105 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
 
       <div className="relative">
         <div className="border-primary/15 animate-tap-pulse pointer-events-none absolute -inset-3 rounded-[28px] border" />
@@ -47,18 +47,13 @@ export const GuestsDirectoryEmpty = ({
       </div>
 
       <div className="tablet:mt-6 tablet:flex-row tablet:gap-3 mt-5 flex w-full max-w-sm flex-col gap-2">
-        <Button asChild size="lg" className="flex-1 rounded-full">
+        <Button asChild className="flex-1 rounded-full">
           <Link href={appRoutes.app.eventQrCode(eventId)}>
             <QrCodeIcon width={16} height={16} />
             {t("sidebar__quick__qr")}
           </Link>
         </Button>
-        <Button
-          asChild
-          size="lg"
-          variant="outline"
-          className="flex-1 rounded-full"
-        >
+        <Button asChild variant="outline" className="flex-1 rounded-full">
           <Link href={appRoutes.app.eventLink(eventId)}>
             <LinkIcon width={16} height={16} />
             {t("sidebar__quick__link")}

@@ -75,7 +75,7 @@ export const ConfirmationStep = ({
       </div>
 
       <div className="mt-10">
-        <Button asChild size="lg" className="rounded-full">
+        <Button asChild className="rounded-full">
           <Link href={appRoutes.app.root}>
             {t("qr_cards_order__confirm__back_dashboard")}
           </Link>

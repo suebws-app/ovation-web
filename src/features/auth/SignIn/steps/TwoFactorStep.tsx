@@ -55,7 +55,6 @@ export const TwoFactorStep = () => {
       <Button
         onClick={() => router.push(appRoutes.auth.signInWelcome)}
         disabled={formData.otpCode.length < 6}
-        size="lg"
         className="shadow-primary/40 mt-9 rounded-full px-10 shadow-md"
       >
         {t("auth__signin__twofactor__verify")}

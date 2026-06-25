@@ -50,7 +50,7 @@ export const ErrorPage = () => {
             </p>
 
             <div className="flex justify-center">
-              <Button asChild size="lg" className="rounded-full">
+              <Button asChild className="rounded-full">
                 <Link href={appRoutes.home}>
                   {t("errors__server__back_home")}
                 </Link>

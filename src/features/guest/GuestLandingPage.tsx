@@ -46,7 +46,7 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
         </div>
         {canSubmit ? (
           <StickyCTA caption={t("guest__landing__cta_caption")}>
-            <Button asChild size="lg" className="w-full rounded-full shadow-lg">
+            <Button asChild className="w-full rounded-full shadow-lg">
               <Link href={`/g/${slug}/compose`}>
                 {t("guest__landing__cta_record")}
               </Link>
@@ -54,7 +54,7 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
           </StickyCTA>
         ) : (
           <StickyCTA>
-            <div className="rounded-16 bg-warm-cream border-border p-4_5 border">
+            <div className="rounded-16 bg-warm-cream border-border border p-4.5">
               <p className="type-body-small text-foreground/85 text-center">
                 {closedMessage}
               </p>

@@ -58,7 +58,6 @@ export const CartMobileCheckoutBar = ({
       </div>
       <Button
         type="button"
-        size="lg"
         className="w-full rounded-full"
         onClick={onCheckout}
         disabled={

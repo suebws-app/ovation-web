@@ -116,7 +116,6 @@ export const CartSummary = ({
       {!hideCheckout && (
         <Button
           type="button"
-          size="lg"
           className="rounded-full"
           onClick={onCheckout}
           disabled={isCheckingOut || itemCount === 0 || loading || disabled}
