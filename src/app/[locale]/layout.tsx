@@ -1,5 +1,4 @@
 import { Rubik, Noto_Sans } from "next/font/google";
-import Script from "next/script";
 import { cookies } from "next/headers";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -8,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { AppProviders } from "@/features/layout/AppProviders";
 import { Toaster } from "@/components/Toaster";
 import { NavigationProgress } from "@/components/NavigationProgress";
+import { ThemeInitScript } from "@/components/ThemeInitScript";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -51,11 +51,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
-        <Script
-          id="theme-init"
-          src="/theme-init.js"
-          strategy="beforeInteractive"
-        />
+        <ThemeInitScript />
         <NextIntlClientProvider messages={messages}>
           <NavigationProgress />
           <AppProviders>{children}</AppProviders>

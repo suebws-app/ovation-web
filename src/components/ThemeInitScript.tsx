@@ -1,8 +1,6 @@
-const THEME_INIT_SCRIPT = `(function(){try{var d=document.documentElement;var cm=document.cookie.match(/(?:^|;\\s*)ovation_theme=([^;]*)/);var cv=cm?decodeURIComponent(cm[1]):null;var s=JSON.parse(localStorage.getItem("theme")||"{}");var sv=s&&s.state&&s.state.theme;var t=cv||sv||"light";var isDark=t==="dark"||(t==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches);d.classList.toggle("dark",isDark);}catch{}})();`;
+import Script from "next/script";
 
 export const ThemeInitScript = () => (
-  <script
-    id="theme-init"
-    dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
-  />
+  // eslint-disable-next-line @next/next/no-before-interactive-script-outside-document
+  <Script id="theme-init" src="/theme-init.js" strategy="beforeInteractive" />
 );

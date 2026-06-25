@@ -20,5 +20,11 @@ export const clientEnv = {
 
   TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "",
 
+  SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN ?? "",
+
+  POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY ?? "",
+  POSTHOG_HOST:
+    process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
+
   IS_PRODUCTION: process.env.NODE_ENV === "production",
 } as const;

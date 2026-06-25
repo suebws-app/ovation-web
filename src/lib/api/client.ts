@@ -1,3 +1,4 @@
+import { captureException } from "@sentry/nextjs";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import type { ApiErrorBody } from "./types";
 import { getCsrfToken, invalidateCsrfToken } from "./csrf-token";
@@ -55,7 +56,20 @@ export const parseError = async (res: Response): Promise<ApiError> => {
   const body = (await res.json().catch(() => null)) as ApiErrorBody | null;
   const code = body?.error?.code ?? "HTTP_ERROR";
   const message = body?.error?.message ?? res.statusText ?? "Request failed";
-  return new ApiError(res.status, code, message, body?.error?.details);
+  const err = new ApiError(res.status, code, message, body?.error?.details);
+  if (err.status >= 500) {
+    captureException(err, {
+      tags: { source: "apiFetch", status: String(err.status), code },
+    });
+  }
+  return err;
+};
+
+const captureNetworkError = (err: unknown, path: string) => {
+  captureException(err, {
+    tags: { source: "apiFetch", kind: "network" },
+    extra: { path },
+  });
 };
 
 export const buildRequestInit = (
@@ -117,16 +131,28 @@ const fetchWithCsrfRetry = async (
   return res;
 };
 
+const runClientFetch = async (
+  path: string,
+  options: ApiFetchOptions,
+): Promise<Response> => {
+  const method = (options.method ?? "GET").toUpperCase();
+  const init = buildRequestInit(options);
+  const url = buildClientUrl(path, options.query);
+  try {
+    return options.skipCsrf
+      ? await fetch(url, init)
+      : await fetchWithCsrfRetry(url, init, method);
+  } catch (err) {
+    captureNetworkError(err, path);
+    throw err;
+  }
+};
+
 export const clientFetch = async <T>(
   path: string,
   options: ApiFetchOptions = {},
 ): Promise<T> => {
-  const method = (options.method ?? "GET").toUpperCase();
-  const init = buildRequestInit(options);
-  const url = buildClientUrl(path, options.query);
-  const res = options.skipCsrf
-    ? await fetch(url, init)
-    : await fetchWithCsrfRetry(url, init, method);
+  const res = await runClientFetch(path, options);
   if (!res.ok) throw await parseError(res);
   if (res.status === 204) return undefined as T;
   const json = await readJson<{ data: T }>(res);
@@ -140,12 +166,7 @@ export const clientFetchPaginated = async <T>(
   path: string,
   options: ApiFetchOptions = {},
 ): Promise<Paginated<T>> => {
-  const method = (options.method ?? "GET").toUpperCase();
-  const init = buildRequestInit(options);
-  const url = buildClientUrl(path, options.query);
-  const res = options.skipCsrf
-    ? await fetch(url, init)
-    : await fetchWithCsrfRetry(url, init, method);
+  const res = await runClientFetch(path, options);
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
   return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };
@@ -155,12 +176,7 @@ export const clientFetchBlob = async (
   path: string,
   options: ApiFetchOptions = {},
 ): Promise<Blob> => {
-  const method = (options.method ?? "GET").toUpperCase();
-  const init = buildRequestInit(options);
-  const url = buildClientUrl(path, options.query);
-  const res = options.skipCsrf
-    ? await fetch(url, init)
-    : await fetchWithCsrfRetry(url, init, method);
+  const res = await runClientFetch(path, options);
   if (!res.ok) throw await parseError(res);
   return res.blob();
 };

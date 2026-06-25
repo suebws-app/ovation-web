@@ -1,4 +1,5 @@
 import "server-only";
+import { captureException } from "@sentry/nextjs";
 import { headers as nextHeaders } from "next/headers";
 import { getLocale } from "next-intl/server";
 import { serverEnv as env } from "@/lib/utils/env.server";
@@ -31,12 +32,27 @@ const withSessionHeaders = async (init: RequestInit): Promise<RequestInit> => {
   return { ...init, headers };
 };
 
+const runApiFetch = async (
+  path: string,
+  options: ApiFetchOptions,
+): Promise<Response> => {
+  const init = await withSessionHeaders(buildRequestInit(options));
+  try {
+    return await fetch(buildBackendUrl(path, options.query), init);
+  } catch (err) {
+    captureException(err, {
+      tags: { source: "apiFetch", kind: "network", side: "server" },
+      extra: { path },
+    });
+    throw err;
+  }
+};
+
 export const apiFetch = async <T>(
   path: string,
   options: ApiFetchOptions = {},
 ): Promise<T> => {
-  const init = await withSessionHeaders(buildRequestInit(options));
-  const res = await fetch(buildBackendUrl(path, options.query), init);
+  const res = await runApiFetch(path, options);
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T }>(res);
   return (json?.data ?? (undefined as T)) as T;
@@ -46,8 +62,7 @@ export const apiFetchPaginated = async <T>(
   path: string,
   options: ApiFetchOptions = {},
 ): Promise<Paginated<T>> => {
-  const init = await withSessionHeaders(buildRequestInit(options));
-  const res = await fetch(buildBackendUrl(path, options.query), init);
+  const res = await runApiFetch(path, options);
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
   return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };
