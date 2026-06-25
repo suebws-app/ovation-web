@@ -28,6 +28,7 @@
   "cart__empty__cta": "Emléktárgyak böngészése",
   "cart__error__checkout_failed": "A fizetés nem sikerült. Próbáld újra.",
   "cart__error__totals_failed": "Nem sikerült kiszámítani az összegeket.",
+  "cart__error__shipping_unavailable": "A szállítás nem érhető el a kiválasztott címre.",
   "cart__summary__continue": "Folytatás · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 tétel} other {# tétel}}",
   "cart__shipping__title": "Szállítási cím",

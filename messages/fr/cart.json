@@ -28,6 +28,7 @@
   "cart__empty__cta": "Découvrir les keepsakes",
   "cart__error__checkout_failed": "Le paiement a échoué. Réessaie.",
   "cart__error__totals_failed": "Impossible de calculer les totaux.",
+  "cart__error__shipping_unavailable": "La livraison n'est pas disponible pour l'adresse sélectionnée.",
   "cart__summary__continue": "Continuer · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 article} other {# articles}}",
   "cart__shipping__title": "Adresse de livraison",

@@ -28,6 +28,7 @@
   "cart__empty__cta": "Explorar keepsakes",
   "cart__error__checkout_failed": "Falha no pagamento. Por favor, tente novamente.",
   "cart__error__totals_failed": "Não foi possível calcular os totais.",
+  "cart__error__shipping_unavailable": "O envio não está disponível para o endereço selecionado.",
   "cart__summary__continue": "Continuar · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 artigo} other {# artigos}}",
   "cart__shipping__title": "Morada de envio",

@@ -28,6 +28,7 @@
   "cart__empty__cta": "Răsfoiește keepsakes",
   "cart__error__checkout_failed": "Plata a eșuat. Te rugăm să încerci din nou.",
   "cart__error__totals_failed": "Nu am putut calcula totalurile.",
+  "cart__error__shipping_unavailable": "Livrarea nu este disponibilă pentru adresa selectată.",
   "cart__summary__continue": "Continuă · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 articol} other {# articole}}",
   "cart__shipping__title": "Adresă de livrare",

@@ -28,6 +28,7 @@
   "cart__empty__cta": "Bla i minner",
   "cart__error__checkout_failed": "Betaling mislyktes. Prøv igjen.",
   "cart__error__totals_failed": "Kunne ikke beregne totalbeløp.",
+  "cart__error__shipping_unavailable": "Frakt er ikke tilgjengelig for den valgte adressen.",
   "cart__summary__continue": "Fortsett · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 vare} other {# varer}}",
   "cart__shipping__title": "Leveringsadresse",

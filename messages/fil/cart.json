@@ -28,6 +28,7 @@
   "cart__empty__cta": "Mag-browse ng keepsakes",
   "cart__error__checkout_failed": "Nabigo ang checkout. Pakisubukang muli.",
   "cart__error__totals_failed": "Hindi makalkula ang kabuuan.",
+  "cart__error__shipping_unavailable": "Hindi available ang pagpapadala sa napiling address.",
   "cart__summary__continue": "Magpatuloy · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 item} other {# na item}}",
   "cart__shipping__title": "Shipping address",

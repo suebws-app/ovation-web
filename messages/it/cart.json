@@ -28,6 +28,7 @@
   "cart__empty__cta": "Sfoglia i keepsake",
   "cart__error__checkout_failed": "Checkout non riuscito. Riprova.",
   "cart__error__totals_failed": "Impossibile calcolare i totali.",
+  "cart__error__shipping_unavailable": "La spedizione non è disponibile per l'indirizzo selezionato.",
   "cart__summary__continue": "Continua · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 articolo} other {# articoli}}",
   "cart__shipping__title": "Indirizzo di spedizione",

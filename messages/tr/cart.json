@@ -28,6 +28,7 @@
   "cart__empty__cta": "Keepsake'lere göz at",
   "cart__error__checkout_failed": "Ödeme başarısız oldu. Lütfen tekrar dene.",
   "cart__error__totals_failed": "Toplamlar hesaplanamadı.",
+  "cart__error__shipping_unavailable": "Seçilen adrese gönderim yapılamıyor.",
   "cart__summary__continue": "Devam et · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 ürün} other {# ürün}}",
   "cart__shipping__title": "Kargo adresi",

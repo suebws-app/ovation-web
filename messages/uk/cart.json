@@ -28,6 +28,7 @@
   "cart__empty__cta": "Переглянути Keepsakes",
   "cart__error__checkout_failed": "Не вдалося оформити замовлення. Спробуй ще раз.",
   "cart__error__totals_failed": "Не вдалося порахувати підсумок.",
+  "cart__error__shipping_unavailable": "Доставка на обрану адресу недоступна.",
   "cart__summary__continue": "Продовжити · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 товар} other {# товарів}}",
   "cart__shipping__title": "Адреса доставки",

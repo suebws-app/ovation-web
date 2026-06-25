@@ -28,6 +28,7 @@
   "cart__empty__cta": "Przeglądaj pamiątki",
   "cart__error__checkout_failed": "Płatność nie powiodła się. Spróbuj ponownie.",
   "cart__error__totals_failed": "Nie można obliczyć sumy.",
+  "cart__error__shipping_unavailable": "Wysyłka na wybrany adres jest niedostępna.",
   "cart__summary__continue": "Kontynuuj · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 produkt} other {# produktów}}",
   "cart__shipping__title": "Adres dostawy",

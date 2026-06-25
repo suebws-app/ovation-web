@@ -28,6 +28,7 @@
   "cart__empty__cta": "Bläddra bland keepsakes",
   "cart__error__checkout_failed": "Kassan misslyckades. Försök igen.",
   "cart__error__totals_failed": "Kunde inte beräkna totalsumma.",
+  "cart__error__shipping_unavailable": "Frakt är inte tillgänglig till den valda adressen.",
   "cart__summary__continue": "Fortsätt · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 artikel} other {# artiklar}}",
   "cart__shipping__title": "Leveransadress",

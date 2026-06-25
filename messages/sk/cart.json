@@ -28,6 +28,7 @@
   "cart__empty__cta": "Prezerať pamiatky",
   "cart__error__checkout_failed": "Pokladňa zlyhala. Skús to prosím znova.",
   "cart__error__totals_failed": "Súčty sa nepodarilo vypočítať.",
+  "cart__error__shipping_unavailable": "Doručenie na vybranú adresu nie je dostupné.",
   "cart__summary__continue": "Pokračovať · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 položka} other {# položiek}}",
   "cart__shipping__title": "Doručovacia adresa",

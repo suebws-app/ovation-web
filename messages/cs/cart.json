@@ -28,6 +28,7 @@
   "cart__empty__cta": "Procházet keepsakes",
   "cart__error__checkout_failed": "Platba se nezdařila. Zkus to prosím znovu.",
   "cart__error__totals_failed": "Nepodařilo se spočítat celkové částky.",
+  "cart__error__shipping_unavailable": "Doprava na vybranou adresu není dostupná.",
   "cart__summary__continue": "Pokračovat · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 položka} other {# položek}}",
   "cart__shipping__title": "Doručovací adresa",

@@ -28,6 +28,7 @@
   "cart__empty__cta": "Se keepsakes",
   "cart__error__checkout_failed": "Betalingen mislykkedes. Prøv venligst igen.",
   "cart__error__totals_failed": "Kunne ikke beregne totaler.",
+  "cart__error__shipping_unavailable": "Forsendelse er ikke tilgængelig for den valgte adresse.",
   "cart__summary__continue": "Fortsæt · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 vare} other {# varer}}",
   "cart__shipping__title": "Leveringsadresse",
