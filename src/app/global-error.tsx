@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { captureException } from "@sentry/nextjs";
 import { NextIntlClientProvider, useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Button } from "@ovation/ui/components/Button";
@@ -74,7 +76,16 @@ const GlobalErrorContent = () => {
   );
 };
 
-const GlobalError = () => {
+const GlobalError = ({
+  error,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) => {
+  useEffect(() => {
+    captureException(error);
+  }, [error]);
+
   return (
     <html lang="en" className="h-dvh antialiased" suppressHydrationWarning>
       <body className="flex max-h-dvh flex-1 flex-col font-sans">

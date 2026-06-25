@@ -108,7 +108,11 @@ export const proxy = async (request: NextRequest) => {
     }
   }
 
-  if (isComingSoonApi || pathname.startsWith("/api/")) {
+  if (
+    isComingSoonApi ||
+    pathname.startsWith("/api/") ||
+    pathname.startsWith("/monitoring")
+  ) {
     return NextResponse.next();
   }
 
@@ -185,6 +189,7 @@ export const proxy = async (request: NextRequest) => {
   const nonce = useStrictCsp ? generateNonce() : undefined;
   const csp = buildCsp(nonce);
   if (nonce) {
+    request.headers.set("x-nonce", nonce);
     request.headers.set("Content-Security-Policy", csp);
   }
 

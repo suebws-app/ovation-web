@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import { withSentryConfig } from "@sentry/nextjs";
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -77,4 +78,25 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+const baseConfig = withNextIntl(nextConfig);
+
+const hasSentryProject =
+  !!process.env.SENTRY_ORG && !!process.env.SENTRY_PROJECT;
+
+const canUploadSourceMaps = !isDev && !!process.env.SENTRY_AUTH_TOKEN;
+
+export default hasSentryProject
+  ? withSentryConfig(baseConfig, {
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      silent: !process.env.CI,
+      sourcemaps: canUploadSourceMaps
+        ? { deleteSourcemapsAfterUpload: true }
+        : { disable: true },
+      disableLogger: true,
+      telemetry: false,
+      widenClientFileUpload: true,
+      tunnelRoute: "/monitoring",
+    })
+  : baseConfig;
