@@ -38,6 +38,8 @@ export const BookCheckoutPanel = ({
     chosenVariant,
     pageCount,
     billablePages,
+    chargeablePages,
+    includedPages,
     minPages,
     maxPages,
     pricePerPageCents,
@@ -147,6 +149,8 @@ export const BookCheckoutPanel = ({
       priceBreakdown={{
         baseCents: basePriceCents,
         pageCount: billablePages,
+        chargeablePages,
+        includedPages,
         pricePerPageCents,
         pagesSurchargeCents,
         totalCents: totalPriceCents,

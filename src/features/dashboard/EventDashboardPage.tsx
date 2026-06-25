@@ -8,7 +8,12 @@ import { messagesApi } from "@/lib/api/messages";
 import { ordersApi } from "@/lib/api/orders";
 import { mediaApi } from "@/lib/api/media";
 
+import { cn } from "@ovation/ui/utils/cn";
 import { getCurrentUser } from "@/lib/auth/session";
+import {
+  containerClassName,
+  stackClassName,
+} from "@/lib/utils/layoutClassNames";
 import { toMessageRowView } from "@/features/messages/adapters";
 
 import { DashboardBackGuard } from "./components/DashboardBackGuard";
@@ -84,21 +89,38 @@ export const EventDashboardPage = async ({
         storageExpiresAt={user.storageExpiresAt}
         planTier={user.planTier ?? null}
       />
-      <div className="flex w-full flex-col gap-6 p-6">
-        <div className="tablet:flex-row tablet:items-start flex flex-col gap-6">
-          <div className="tablet:order-2 tablet:w-80 tablet:shrink-0 order-1 flex w-full flex-col gap-6">
+      <div className={containerClassName}>
+        <div
+          className={cn(stackClassName, "tablet:flex-row tablet:items-start")}
+        >
+          <div
+            className={cn(
+              stackClassName,
+              "tablet:order-2 tablet:w-80 tablet:shrink-0 order-1 w-full",
+            )}
+          >
             <QRcodeWidget shortUrl={qr?.shortUrl ?? `/g/${event.slug}`} />
             <div className="min-[1300px]:hidden">
               <Orders orders={ordersPage?.items ?? []} />
             </div>
           </div>
-          <div className="tablet:order-1 order-2 flex min-w-0 flex-1 flex-col gap-6">
+          <div
+            className={cn(
+              stackClassName,
+              "tablet:order-1 order-2 min-w-0 flex-1",
+            )}
+          >
             <Messages
               eventId={event.id}
               messages={messageViews}
               totalCount={totalMessages}
             />
-            <div className="flex flex-col gap-6 min-[1300px]:flex-row min-[1300px]:items-start">
+            <div
+              className={cn(
+                stackClassName,
+                "min-[1300px]:flex-row min-[1300px]:items-start",
+              )}
+            >
               <Photos
                 photos={galleryItems}
                 totalCount={totalPhotos}

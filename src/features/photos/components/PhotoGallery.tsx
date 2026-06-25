@@ -75,24 +75,22 @@ export const PhotoGallery = ({
   }
 
   return (
-    <div className="tablet:px-6 tablet:pb-6 px-4 pb-4">
-      <div className="flex gap-3">
-        {columns.map((col, colIdx) => (
-          <div key={colIdx} className="flex flex-1 flex-col gap-3">
-            {col.map(({ tile, index }) => (
-              <PhotoTile
-                key={tile.id}
-                tile={tile}
-                height={heightFor(index)}
-                index={index}
-                selected={isSelected(tile.id)}
-                onClick={() => onTileClick(tile.id)}
-                onToggleSelect={() => onToggleSelect(tile.id)}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
+    <div className="flex gap-3">
+      {columns.map((col, colIdx) => (
+        <div key={colIdx} className="flex flex-1 flex-col gap-3">
+          {col.map(({ tile, index }) => (
+            <PhotoTile
+              key={tile.id}
+              tile={tile}
+              height={heightFor(index)}
+              index={index}
+              selected={isSelected(tile.id)}
+              onClick={() => onTileClick(tile.id)}
+              onToggleSelect={() => onToggleSelect(tile.id)}
+            />
+          ))}
+        </div>
+      ))}
     </div>
   );
 };

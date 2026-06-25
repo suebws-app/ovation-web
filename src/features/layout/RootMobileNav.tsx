@@ -6,7 +6,7 @@ import { MenuIcon } from "@ovation/icons/MenuIcon";
 import { XIcon } from "@ovation/icons/XIcon";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Button } from "@ovation/ui/components/Button";
-import { ThemeToggle } from "@ovation/ui/components/ThemeToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   Sheet,
   SheetContent,

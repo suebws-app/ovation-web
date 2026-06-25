@@ -1,5 +1,6 @@
 import { eventsApi } from "@/lib/api/events";
 import { linkSettingsApi } from "@/lib/api/link-settings";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { LinkSettingsClient } from "./LinkSettingsClient";
 import { LinkEmpty } from "./components/LinkEmpty";
 
@@ -14,7 +15,7 @@ export const EventLinkSettingsPage = async ({
 
   if (!event) {
     return (
-      <div className="flex w-full flex-col p-6">
+      <div className={containerClassName}>
         <LinkEmpty />
       </div>
     );
@@ -23,7 +24,7 @@ export const EventLinkSettingsPage = async ({
   const settingsRes = await linkSettingsApi.get(event.id);
 
   return (
-    <div className="mx-auto w-full min-w-0 p-6">
+    <div className={containerClassName}>
       <LinkSettingsClient
         eventId={event.id}
         submissionsEnabled={event.status === "active"}

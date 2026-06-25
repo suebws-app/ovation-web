@@ -57,5 +57,9 @@
   "common__dismiss": "Zamknij",
   "common__or": "lub",
   "nav__open_menu": "Otwórz menu",
-  "nav__close_menu": "Zamknij menu"
+  "nav__close_menu": "Zamknij menu",
+  "common__theme__label": "Motyw",
+  "common__theme__light": "Jasny",
+  "common__theme__dark": "Ciemny",
+  "common__theme__system": "Systemowy"
 }

@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { Card, CardContent } from "@ovation/ui/components/Card";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import type { EmailPreferences, User } from "@/lib/api/types";
-import { SettingsCard } from "./SettingsCard";
 import { SettingsRow } from "./SettingsRow";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsToggle } from "./SettingsToggle";
@@ -81,23 +81,25 @@ export const NotificationPrefs = ({ user }: NotificationPrefsProps) => {
   };
 
   return (
-    <div className="mt-9">
+    <section>
       <SettingsSectionTitle title={t("settings__notif__section")} />
-      <SettingsCard>
-        {ROW_KEYS.map((row, i) => (
-          <SettingsRow
-            key={row.key}
-            title={t(row.titleKey)}
-            description={t(row.descKey)}
-            last={i === ROW_KEYS.length - 1}
-          >
-            <SettingsToggle
-              on={prefs[row.key]}
-              onChange={() => handleToggle(row.key)}
-            />
-          </SettingsRow>
-        ))}
-      </SettingsCard>
+      <Card>
+        <CardContent>
+          {ROW_KEYS.map((row, i) => (
+            <SettingsRow
+              key={row.key}
+              title={t(row.titleKey)}
+              description={t(row.descKey)}
+              last={i === ROW_KEYS.length - 1}
+            >
+              <SettingsToggle
+                on={prefs[row.key]}
+                onChange={() => handleToggle(row.key)}
+              />
+            </SettingsRow>
+          ))}
+        </CardContent>
+      </Card>
 
       <div className="mt-3 flex items-center gap-3">
         {status.kind === "saving" && (
@@ -116,6 +118,6 @@ export const NotificationPrefs = ({ user }: NotificationPrefsProps) => {
           </span>
         )}
       </div>
-    </div>
+    </section>
   );
 };

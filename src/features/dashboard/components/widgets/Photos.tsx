@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
 
+import { Card, CardContent } from "@ovation/ui/components/Card";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { GalleryItem } from "@/lib/api/types";
@@ -65,63 +66,65 @@ export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
   const overlayCount = remaining > 0 ? remaining : totalCount - tiles.length;
 
   return (
-    <div
+    <Card
       ref={containerRef}
-      className="rounded-20 border-border bg-card flex min-h-62 w-full min-w-0 flex-col gap-4 border p-5 shadow-sm min-[1300px]:h-full min-[1300px]:flex-1"
+      className="min-h-62 w-full min-w-0 min-[1300px]:h-full min-[1300px]:flex-1"
     >
-      {tiles.length > 0 && (
-        <div className={`grid gap-2 ${COLS_CLASS[cols]}`}>
-          {tiles.map((item, index) => (
-            <PhotosTile
-              key={item.id}
-              item={item}
-              onPreview={setPreview}
-              overlay={
-                index === tiles.length - 1 && showOverlay
-                  ? t("dashboard__widget__photos__more", {
-                      count: Math.max(1, overlayCount),
-                    })
-                  : undefined
-              }
-            />
-          ))}
-        </div>
-      )}
+      <CardContent className="flex flex-col gap-4">
+        {tiles.length > 0 && (
+          <div className={`grid gap-2 ${COLS_CLASS[cols]}`}>
+            {tiles.map((item, index) => (
+              <PhotosTile
+                key={item.id}
+                item={item}
+                onPreview={setPreview}
+                overlay={
+                  index === tiles.length - 1 && showOverlay
+                    ? t("dashboard__widget__photos__more", {
+                        count: Math.max(1, overlayCount),
+                      })
+                    : undefined
+                }
+              />
+            ))}
+          </div>
+        )}
 
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <span className="bg-chart-2/20 text-chart-2 rounded-12 inline-flex size-10 items-center justify-center">
-            <ImageIcon width={18} height={18} />
-          </span>
-          <div>
-            <p className="type-body font-serif font-semibold">
-              {totalCount}
-              <span className="type-body text-muted-foreground ml-1.5 font-sans font-normal">
-                {t("dashboard__widget__photos__unit")}
-              </span>
-            </p>
-            <p className="type-caption text-muted-foreground">
-              {t("dashboard__widget__photos__subtitle")}
-            </p>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <span className="bg-chart-2/20 text-chart-2 rounded-12 inline-flex size-10 items-center justify-center">
+              <ImageIcon width={18} height={18} />
+            </span>
+            <div>
+              <p className="type-body font-serif font-semibold">
+                {totalCount}
+                <span className="type-body text-muted-foreground ml-1.5 font-sans font-normal">
+                  {t("dashboard__widget__photos__unit")}
+                </span>
+              </p>
+              <p className="type-caption text-muted-foreground">
+                {t("dashboard__widget__photos__subtitle")}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="bg-border h-px w-full" aria-hidden />
+        <div className="bg-border h-px w-full" aria-hidden />
 
-      <Link
-        href={appRoutes.app.gallery}
-        className="type-body-small text-chart-2 inline-flex items-center justify-center gap-1.5 font-semibold hover:underline"
-      >
-        {t("dashboard__widget__photos__open_gallery")}
-      </Link>
+        <Link
+          href={appRoutes.app.gallery}
+          className="type-body-small text-chart-2 inline-flex items-center justify-center gap-1.5 font-semibold hover:underline"
+        >
+          {t("dashboard__widget__photos__open_gallery")}
+        </Link>
 
-      <MediaPreviewDialog
-        item={preview}
-        onOpenChange={(open) => {
-          if (!open) setPreview(null);
-        }}
-      />
-    </div>
+        <MediaPreviewDialog
+          item={preview}
+          onOpenChange={(open) => {
+            if (!open) setPreview(null);
+          }}
+        />
+      </CardContent>
+    </Card>
   );
 };

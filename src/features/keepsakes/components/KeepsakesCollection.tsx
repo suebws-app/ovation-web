@@ -37,7 +37,7 @@ export const KeepsakesCollection = ({
           <Kicker className="text-muted-foreground">
             {t("keepsakes__collection__eyebrow")}
           </Kicker>
-          <h2 className="type-h2 mt-1.5 font-semibold tracking-tight">
+          <h2 className="tablet:type-h2 type-h3 mt-1.5 font-semibold tracking-tight">
             {t("keepsakes__collection__title")}
           </h2>
         </div>

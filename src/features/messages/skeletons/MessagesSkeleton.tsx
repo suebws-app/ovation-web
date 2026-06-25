@@ -1,5 +1,6 @@
 import { Skeleton } from "@ovation/ui/components/Skeleton";
 import { TableSkeleton } from "@ovation/ui/components/Table";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { messagesTableSkeletonColumns } from "../tableColumns";
 
 const chips = Array.from({ length: 5 }, (_, i) => i);
@@ -9,7 +10,7 @@ const SkeletonChip = () => (
 );
 
 export const MessagesSkeleton = () => (
-  <div className="tablet:p-6 flex w-full flex-1 flex-col gap-6 p-4">
+  <div className={containerClassName}>
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center gap-2">
         {chips.map((i) => (

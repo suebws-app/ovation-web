@@ -3,15 +3,8 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 import { eventsApi } from "@/lib/api/events";
-import { appRoutes } from "@/lib/routes";
 import { ACTIVATING_COOKIE_NAME } from "@/features/checkout/useOptimisticPlanStore";
 import type { Event } from "@/lib/api/types";
-
-const AUTH_COOKIE_NAMES = [
-  "ovation.session_token",
-  "ovation.session_data",
-  "ovation.csrf_token",
-];
 
 export default async function AppRootLayout({
   children,
@@ -20,13 +13,7 @@ export default async function AppRootLayout({
 }) {
   const user = await getCurrentUser();
   if (!user) {
-    const cookieStore = await cookies();
-    for (const name of AUTH_COOKIE_NAMES) {
-      if (cookieStore.get(name)) {
-        cookieStore.delete(name);
-      }
-    }
-    redirect(appRoutes.auth.signIn);
+    redirect("/api/session/clear");
   }
 
   let eventsList: Event[] = [];

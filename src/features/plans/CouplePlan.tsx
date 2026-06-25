@@ -54,7 +54,7 @@ export const CouplePlan = () => {
           <Kicker className="text-primary">
             {t("signup__plan__step_label")}
           </Kicker>
-          <h1 className="type-h0 mt-3.5 leading-tight font-semibold tracking-tight">
+          <h1 className="tablet:type-h0 type-h1 mt-3.5 leading-tight font-semibold tracking-tight">
             {t("signup__plan__title_a")}{" "}
             <span className="text-primary italic">
               {t("signup__plan__title_b")}
@@ -75,6 +75,7 @@ export const CouplePlan = () => {
               description={plan.description}
               features={plan.features}
               highlighted={plan.highlighted}
+              showBillingDisclaimer
               onSelect={() => handleSelect(plan.id)}
             />
           ))}

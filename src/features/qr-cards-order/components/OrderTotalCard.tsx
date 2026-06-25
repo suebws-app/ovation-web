@@ -84,7 +84,6 @@ export const OrderTotalCard = ({
       </Button>
       {onBack && (
         <Button
-          size="lg"
           variant="ghost"
           className="mt-2.5 w-full rounded-full"
           onClick={onBack}

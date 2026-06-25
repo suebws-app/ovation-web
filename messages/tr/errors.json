@@ -9,5 +9,15 @@
   "errors__pro_required": "Profesyonel bir hesap gerekli.",
   "errors__pro_event_limit_reached": "Starter planındaki 12 etkinlik sınırına ulaştın. Sınırsız etkinlik için Studio'ya yükselt.",
   "errors__pro_subscription_required": "Etkinlik oluşturmak için aktif bir Pro aboneliği gerekli.",
-  "errors__kiosk_pin_invalid": "Bu PIN eşleşmedi. Tekrar deneyin."
+  "errors__kiosk_pin_invalid": "Bu PIN eşleşmedi. Tekrar deneyin.",
+  "errors__not_found__kicker": "404 — Sayfa bulunamadı",
+  "errors__not_found__headline_line1": "Bu sayfa",
+  "errors__not_found__headline_line2": "farklı bir yol seçti.",
+  "errors__not_found__description": "Aradığınız sayfa mevcut değil, taşınmış ya da prova aşamasını geçememiş. Anların yaşandığı yere geri dönelim.",
+  "errors__not_found__back_home": "Ana sayfaya dön",
+  "errors__server__kicker": "Bir şeyler bozuldu",
+  "errors__server__headline_line1": "Küçük bir aksaklık",
+  "errors__server__headline_line2": "perde arkasında.",
+  "errors__server__description": "Bizim tarafımızda bir şey ters gitti. Tekrar deneyin — ve sorun devam ederse, ana sayfaya dönün, biz devam edelim.",
+  "errors__server__back_home": "Ana sayfaya dön"
 }

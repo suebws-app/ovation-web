@@ -9,5 +9,15 @@
   "errors__pro_required": "Szakmai fiók szükséges.",
   "errors__pro_event_limit_reached": "Elérted a 12 esemény limitet a Starter csomagon. Frissíts Studio csomagra a korlátlan eseményekért.",
   "errors__pro_subscription_required": "Aktív Pro előfizetés szükséges az események létrehozásához.",
-  "errors__kiosk_pin_invalid": "A PIN nem egyezik. Próbálja újra."
+  "errors__kiosk_pin_invalid": "A PIN nem egyezik. Próbálja újra.",
+  "errors__not_found__kicker": "404 — Az oldal nem található",
+  "errors__not_found__headline_line1": "Ez az oldal",
+  "errors__not_found__headline_line2": "másik utat választott.",
+  "errors__not_found__description": "A keresett oldal nem létezik, áthelyezték, vagy soha nem jutott túl a próbán. Vezessünk vissza oda, ahol a pillanatok történnek.",
+  "errors__not_found__back_home": "Vissza a főoldalra",
+  "errors__server__kicker": "Valami elromlott",
+  "errors__server__headline_line1": "Egy kis zökkenő",
+  "errors__server__headline_line2": "a kulisszák mögött.",
+  "errors__server__description": "Nálunk valami félrement. Próbáld újra — és ha továbbra is előfordul, térj vissza a főoldalra, és haladunk tovább.",
+  "errors__server__back_home": "Vissza a főoldalra"
 }

@@ -4,7 +4,7 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 export const CheckoutRedirecting = () => {
   const t = useTranslations();
   return (
-    <div className="bg-background flex min-h-[calc(100vh-89px)] flex-col items-center justify-center text-center">
+    <div className="bg-background tablet:px-6 flex min-h-[calc(100vh-89px)] flex-col items-center justify-center px-4 text-center">
       <div className="bg-primary/15 mb-7 inline-flex size-20 items-center justify-center rounded-full">
         <span className="border-primary size-8 animate-spin rounded-full border-3 border-t-transparent" />
       </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { AudioPlayer } from "@ovation/ui/components/AudioPlayer";
+import { Card, CardContent } from "@ovation/ui/components/Card";
 import { Link, useRouter } from "@/i18n/navigation";
 import type { MessageRowView } from "@/features/messages/adapters";
 import { useMessageAudioPlayer } from "@/features/messages/hooks/useMessageAudioPlayer";
@@ -59,14 +60,16 @@ export const MessageList = ({
 
   if (messages.length === 0) {
     return (
-      <div className="rounded-20 border-border bg-card border p-8 text-center">
-        <h2 className="type-h2 font-semibold">
-          {t("dashboard__messages__empty_title")}
-        </h2>
-        <p className="type-body-small text-muted-foreground mt-2">
-          {t("dashboard__messages__empty_body")}
-        </p>
-      </div>
+      <Card>
+        <CardContent className="text-center">
+          <h2 className="tablet:type-h2 type-h3 font-semibold">
+            {t("dashboard__messages__empty_title")}
+          </h2>
+          <p className="type-body-small text-muted-foreground mt-2">
+            {t("dashboard__messages__empty_body")}
+          </p>
+        </CardContent>
+      </Card>
     );
   }
 
@@ -75,7 +78,7 @@ export const MessageList = ({
   return (
     <div>
       <div className="mb-5 flex items-baseline justify-between">
-        <h2 className="type-h2 font-semibold">
+        <h2 className="tablet:type-h2 type-h3 font-semibold">
           {t("dashboard__messages__title")}
         </h2>
         <Link
@@ -86,7 +89,7 @@ export const MessageList = ({
         </Link>
       </div>
 
-      <div className="rounded-20 border-border bg-card overflow-hidden border">
+      <Card className="overflow-hidden">
         {visible.map((m, i) => {
           const isCurrent = player.playingId === m.id;
           return (
@@ -111,7 +114,7 @@ export const MessageList = ({
             />
           );
         })}
-      </div>
+      </Card>
       <AudioPlayer player={player} />
       {warmUrls.map((url) => (
         <audio

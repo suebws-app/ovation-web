@@ -57,5 +57,9 @@
   "common__dismiss": "Stäng",
   "common__or": "eller",
   "nav__open_menu": "Öppna meny",
-  "nav__close_menu": "Stäng meny"
+  "nav__close_menu": "Stäng meny",
+  "common__theme__label": "Tema",
+  "common__theme__light": "Ljust",
+  "common__theme__dark": "Mörkt",
+  "common__theme__system": "System"
 }

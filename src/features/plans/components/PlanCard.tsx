@@ -13,6 +13,12 @@ type PlanCardProps = {
   description: string;
   features: string[];
   priceNote?: string;
+  /**
+   * When true (recurring/paid plans), render the
+   * `signup__pricing__billing_disclaimer` line under the price. Hidden for
+   * free tier where there is no billing.
+   */
+  showBillingDisclaimer?: boolean;
   highlighted?: boolean;
   onSelect?: () => void;
 };
@@ -24,6 +30,7 @@ export const PlanCard = ({
   description,
   features,
   priceNote,
+  showBillingDisclaimer = false,
   highlighted = false,
   onSelect,
 }: PlanCardProps) => {
@@ -46,6 +53,11 @@ export const PlanCard = ({
       {priceNote && (
         <p className="type-caption text-muted-foreground mt-1 leading-tight">
           {priceNote}
+        </p>
+      )}
+      {showBillingDisclaimer && (
+        <p className="type-caption text-muted-foreground mt-1 leading-tight">
+          {t("signup__pricing__billing_disclaimer")}
         </p>
       )}
       <p className="type-body-small text-muted-foreground mt-2.5 min-h-10.5 leading-relaxed">

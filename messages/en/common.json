@@ -56,6 +56,10 @@
   "common__deselect": "Deselect",
   "common__dismiss": "Dismiss",
   "common__or": "or",
+  "common__theme__label": "Theme",
+  "common__theme__light": "Light",
+  "common__theme__dark": "Dark",
+  "common__theme__system": "System",
   "nav__open_menu": "Open menu",
   "nav__close_menu": "Close menu"
 }

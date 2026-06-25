@@ -9,5 +9,15 @@
   "errors__pro_required": "Akaun profesional diperlukan.",
   "errors__pro_event_limit_reached": "Anda telah mencapai had 12 acara pada pelan Starter. Naik taraf ke Studio untuk acara tanpa had.",
   "errors__pro_subscription_required": "Langganan Pro yang aktif diperlukan untuk mencipta acara.",
-  "errors__kiosk_pin_invalid": "PIN ini tidak sepadan. Cuba lagi."
+  "errors__kiosk_pin_invalid": "PIN ini tidak sepadan. Cuba lagi.",
+  "errors__not_found__kicker": "404 — Halaman tidak dijumpai",
+  "errors__not_found__headline_line1": "Halaman ini mengambil",
+  "errors__not_found__headline_line2": "jalan yang berbeza.",
+  "errors__not_found__description": "Halaman yang anda cari tidak wujud, telah dipindahkan, atau tidak pernah melepasi sesi latihan. Mari kita bawa anda kembali ke tempat momen berlaku.",
+  "errors__not_found__back_home": "Kembali ke laman utama",
+  "errors__server__kicker": "Sesuatu rosak",
+  "errors__server__headline_line1": "Sedikit gangguan",
+  "errors__server__headline_line2": "di sebalik tabir.",
+  "errors__server__description": "Ada masalah di pihak kami. Cuba lagi — dan jika ia berterusan, kembali ke laman utama dan kami akan teruskan.",
+  "errors__server__back_home": "Kembali ke laman utama"
 }

@@ -2,9 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { LockIcon } from "@ovation/icons/LockIcon";
-import { ShieldIcon } from "@ovation/icons/ShieldIcon";
 import { Button } from "@ovation/ui/components/Button";
-import { Skeleton } from "@ovation/ui/components/Skeleton";
 import { formatPrice } from "@/features/keepsakes/designTokens";
 import { useCartStore } from "../store/useCartStore";
 import { CartSummaryRow } from "./CartSummaryRow";
@@ -44,9 +42,15 @@ export const CartSummary = ({
   const subtotalCents = totals?.subtotalCents ?? 0;
   const shippingCents = totals?.shippingCents ?? 0;
   const totalCents = totals?.totalCents ?? 0;
-  const freeShipping = totals?.freeShipping ?? false;
   const promoDiscount = totals?.promoDiscountCents ?? 0;
-  const priceSkeleton = <Skeleton className="h-4 w-16" />;
+  const priceSkeleton = (
+    <span
+      aria-hidden="true"
+      className="bg-muted-foreground/15 animate-pulse rounded text-transparent"
+    >
+      {formatPrice(0, currency)}
+    </span>
+  );
 
   return (
     <div className="rounded-20 border-border bg-card desktop:sticky desktop:top-5 flex flex-col gap-4 border p-7">
@@ -59,28 +63,22 @@ export const CartSummary = ({
           label={t("cart__summary__subtotal")}
           value={loading ? priceSkeleton : formatPrice(subtotalCents, currency)}
         />
-        {promoDiscount > 0 && (
+        {(promoDiscount > 0 || (loading && appliedPromo)) && (
           <CartSummaryRow
             label={t("cart__summary__promo_applied", {
               code: appliedPromo ?? "",
             })}
-            value={`−${formatPrice(promoDiscount, currency)}`}
+            value={
+              loading
+                ? priceSkeleton
+                : `−${formatPrice(promoDiscount, currency)}`
+            }
             emphasis="positive"
           />
         )}
         <CartSummaryRow
           label={t("cart__summary__shipping")}
-          value={
-            loading
-              ? priceSkeleton
-              : freeShipping
-                ? t("cart__summary__shipping_free")
-                : formatPrice(shippingCents, currency)
-          }
-          emphasis={freeShipping ? "positive" : "default"}
-          helper={
-            freeShipping ? t("cart__summary__shipping_helper") : undefined
-          }
+          value={loading ? priceSkeleton : formatPrice(shippingCents, currency)}
         />
       </div>
 
@@ -91,9 +89,14 @@ export const CartSummary = ({
           {t("cart__summary__total")}
         </span>
         <span className="flex items-baseline gap-1.5">
-          <span className="type-h2 font-serif font-semibold tracking-tight">
+          <span className="type-h2 font-serif font-semibold tracking-tight tabular-nums">
             {loading ? (
-              <Skeleton className="h-7 w-24" />
+              <span
+                aria-hidden="true"
+                className="bg-muted-foreground/15 animate-pulse rounded text-transparent"
+              >
+                {formatPrice(0, currency)}
+              </span>
             ) : (
               formatPrice(totalCents, currency)
             )}
@@ -116,26 +119,16 @@ export const CartSummary = ({
           size="lg"
           className="rounded-full"
           onClick={onCheckout}
-          disabled={isCheckingOut || itemCount === 0 || disabled}
+          disabled={isCheckingOut || itemCount === 0 || loading || disabled}
         >
           <LockIcon width={13} height={13} />
           {isCheckingOut
             ? t("cart__summary__checkout_pending")
-            : t(ctaLabel, { total: formatPrice(totalCents, currency) })}
+            : t(ctaLabel, {
+                total: loading ? "…" : formatPrice(totalCents, currency),
+              })}
         </Button>
       )}
-
-      <div className="text-muted-foreground type-caption flex items-center justify-center gap-3.5">
-        <span className="inline-flex items-center gap-1">
-          <ShieldIcon width={11} height={11} className="text-secondary" />
-          {t("cart__summary__returns")}
-        </span>
-        <span>·</span>
-        <span className="inline-flex items-center gap-1">
-          <LockIcon width={11} height={11} />
-          {t("cart__summary__secured")}
-        </span>
-      </div>
     </div>
   );
 };

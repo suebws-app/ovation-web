@@ -57,5 +57,9 @@
   "common__dismiss": "Hylkää",
   "common__or": "tai",
   "nav__open_menu": "Avaa valikko",
-  "nav__close_menu": "Sulje valikko"
+  "nav__close_menu": "Sulje valikko",
+  "common__theme__label": "Teema",
+  "common__theme__light": "Vaalea",
+  "common__theme__dark": "Tumma",
+  "common__theme__system": "Järjestelmä"
 }

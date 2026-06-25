@@ -9,5 +9,15 @@
   "errors__pro_required": "A professional account is required.",
   "errors__pro_event_limit_reached": "You've reached the 12-event limit on the Starter plan. Upgrade to Studio for unlimited events.",
   "errors__pro_subscription_required": "An active Pro subscription is required to create events.",
-  "errors__kiosk_pin_invalid": "That PIN didn't match. Try again."
+  "errors__kiosk_pin_invalid": "That PIN didn't match. Try again.",
+  "errors__not_found__kicker": "404 — Page not found",
+  "errors__not_found__headline_line1": "This page took",
+  "errors__not_found__headline_line2": "a different path.",
+  "errors__not_found__description": "The page you're looking for doesn't exist, has been moved, or never made it past rehearsal. Let's get you back to where the moments are happening.",
+  "errors__not_found__back_home": "Back to home",
+  "errors__server__kicker": "Something broke",
+  "errors__server__headline_line1": "A little hiccup",
+  "errors__server__headline_line2": "behind the scenes.",
+  "errors__server__description": "Something went wrong on our end. Try again — and if it keeps happening, head back home and we'll keep things moving.",
+  "errors__server__back_home": "Back to home"
 }

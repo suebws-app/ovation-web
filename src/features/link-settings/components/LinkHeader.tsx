@@ -1,11 +1,12 @@
 import { useTranslations } from "next-intl";
+import { PageHeading } from "@/components/PageHeading";
 
 export const LinkHeader = () => {
   const t = useTranslations();
 
   return (
     <div className="flex flex-col gap-1.5">
-      <h1 className="type-h2 font-semibold">{t("link_settings__title")}</h1>
+      <PageHeading>{t("link_settings__title")}</PageHeading>
       <p className="type-body-small text-muted-foreground">
         {t("link_settings__subtitle")}
       </p>

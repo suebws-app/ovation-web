@@ -18,6 +18,8 @@ export type PeechoVariantResolution = {
   matchingVariants: KeepsakeProductVariant[];
   pageCount: number;
   billablePages: number;
+  includedPages: number;
+  chargeablePages: number;
   minPages: number | null;
   maxPages: number | null;
   pricePerPageCents: number;
@@ -75,6 +77,7 @@ export const usePeechoVariantResolver = (
       readStringAttr(attributes, "paperType");
     const pricePerPageCents =
       readNumberAttr(attributes, "pricePerPageCents") ?? 0;
+    const includedPages = readNumberAttr(attributes, "includedPages") ?? 0;
     const supportsCoverText =
       readBoolAttr(attributes, "supportsCoverText") ?? true;
     const supportsDedication =
@@ -87,8 +90,9 @@ export const usePeechoVariantResolver = (
       (maxPages === null || pageCount <= maxPages);
 
     const billablePages = getBillablePages(pageCount);
+    const chargeablePages = Math.max(0, billablePages - includedPages);
     const basePriceCents = chosenVariant?.priceCents ?? null;
-    const pagesSurchargeCents = billablePages * pricePerPageCents;
+    const pagesSurchargeCents = chargeablePages * pricePerPageCents;
     const totalPriceCents =
       basePriceCents === null ? null : basePriceCents + pagesSurchargeCents;
 
@@ -97,6 +101,8 @@ export const usePeechoVariantResolver = (
       matchingVariants,
       pageCount,
       billablePages,
+      includedPages,
+      chargeablePages,
       minPages,
       maxPages,
       pricePerPageCents,

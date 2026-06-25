@@ -7,7 +7,7 @@ import { appRoutes } from "@/lib/routes";
 import { SocialIcon } from "./SocialIcon";
 import { FooterColumn } from "./FooterColumn";
 import { Link } from "@/i18n/navigation";
-import { ThemeToggle } from "@ovation/ui/components/ThemeToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 type RootFooterProps = {
   className?: string;

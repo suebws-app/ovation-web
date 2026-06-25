@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "1. partneris",
   "signup__partner_2_fallback": "2. partneris",
   "signup__pricing__choose": "Izvēlēties {name}",
+  "signup__pricing__billing_disclaimer": "Galīgā summa var tikt parādīta jūsu vietējā valūtā norēķinoties.",
   "signup__book_preview__volume": "Ovation · I sējums"
 }

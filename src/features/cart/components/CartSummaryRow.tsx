@@ -27,7 +27,7 @@ export const CartSummaryRow = ({
     </span>
     <span
       className={cn(
-        "type-body-small font-mono font-semibold",
+        "type-body-small font-mono font-semibold tabular-nums",
         emphasis === "positive" && "text-secondary",
       )}
     >

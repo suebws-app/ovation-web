@@ -57,5 +57,9 @@
   "common__dismiss": "Elvetés",
   "common__or": "vagy",
   "nav__open_menu": "Menü megnyitása",
-  "nav__close_menu": "Menü bezárása"
+  "nav__close_menu": "Menü bezárása",
+  "common__theme__label": "Téma",
+  "common__theme__light": "Világos",
+  "common__theme__dark": "Sötét",
+  "common__theme__system": "Rendszer"
 }

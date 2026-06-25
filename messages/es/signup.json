@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Pareja 1",
   "signup__partner_2_fallback": "Pareja 2",
   "signup__pricing__choose": "Elegir {name}",
+  "signup__pricing__billing_disclaimer": "El cargo final puede mostrarse en tu moneda local al pagar.",
   "signup__book_preview__volume": "Ovation · Volumen I"
 }

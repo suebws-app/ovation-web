@@ -33,7 +33,7 @@ export const ComingSoonPage = async () => {
           </Kicker>
         </div>
 
-        <h1 className="type-h0 mb-4 text-center leading-none tracking-tighter">
+        <h1 className="tablet:type-h0 type-h1 mb-4 text-center leading-none tracking-tighter">
           <span className="text-foreground block">
             {t("coming_soon__headline_line1")}
           </span>

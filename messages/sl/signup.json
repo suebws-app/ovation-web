@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Partner 1",
   "signup__partner_2_fallback": "Partner 2",
   "signup__pricing__choose": "Izberi {name}",
+  "signup__pricing__billing_disclaimer": "Končni znesek se lahko prikaže v vaši lokalni valuti ob plačilu.",
   "signup__book_preview__volume": "Ovation · Zvezek I"
 }

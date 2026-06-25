@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { Card, CardContent } from "@ovation/ui/components/Card";
 import { MicIcon } from "@ovation/icons/MicIcon";
 import { StopIcon } from "@ovation/icons/StopIcon";
 import { useAudioRecorder } from "./useAudioRecorder";
@@ -37,55 +38,57 @@ export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
   }, [recorder.recording, setAudio, onCaptured]);
 
   return (
-    <div className="bg-card border-border rounded-16 gap-4_5 p-6_5 flex flex-col items-center border text-center">
-      <p className="type-body-small text-muted-foreground max-w-sm">
-        {t("guest__record__audio__hint", {
-          seconds: recorder.maxDurationSec,
-        })}
-      </p>
+    <Card>
+      <CardContent className="gap-4_5 flex flex-col items-center text-center">
+        <p className="type-body-small text-muted-foreground max-w-sm">
+          {t("guest__record__audio__hint", {
+            seconds: recorder.maxDurationSec,
+          })}
+        </p>
 
-      {recorder.state === "recording" ? (
-        <>
-          <div className="type-h1 font-semibold tabular-nums">
-            {formatTime(recorder.elapsed)}
-            <span className="type-body-small text-muted-foreground ml-2">
-              / {formatTime(recorder.maxDurationSec)}
-            </span>
-          </div>
+        {recorder.state === "recording" ? (
+          <>
+            <div className="type-h1 font-semibold tabular-nums">
+              {formatTime(recorder.elapsed)}
+              <span className="type-body-small text-muted-foreground ml-2">
+                / {formatTime(recorder.maxDurationSec)}
+              </span>
+            </div>
+            <Button
+              type="button"
+              onClick={recorder.stop}
+              size="lg"
+              className="rounded-full"
+            >
+              <StopIcon width={16} height={16} />
+              {t("guest__record__audio__stop")}
+            </Button>
+          </>
+        ) : (
           <Button
             type="button"
-            onClick={recorder.stop}
+            onClick={recorder.start}
             size="lg"
+            disabled={recorder.state === "requesting"}
             className="rounded-full"
           >
-            <StopIcon width={16} height={16} />
-            {t("guest__record__audio__stop")}
+            {recorder.state === "requesting" ? (
+              t("guest__record__audio__requesting")
+            ) : (
+              <>
+                <MicIcon width={16} height={16} />
+                {t("guest__record__audio__start")}
+              </>
+            )}
           </Button>
-        </>
-      ) : (
-        <Button
-          type="button"
-          onClick={recorder.start}
-          size="lg"
-          disabled={recorder.state === "requesting"}
-          className="rounded-full"
-        >
-          {recorder.state === "requesting" ? (
-            t("guest__record__audio__requesting")
-          ) : (
-            <>
-              <MicIcon width={16} height={16} />
-              {t("guest__record__audio__start")}
-            </>
-          )}
-        </Button>
-      )}
+        )}
 
-      {recorder.error && (
-        <p className="type-body-small text-destructive" role="alert">
-          {recorder.error}
-        </p>
-      )}
-    </div>
+        {recorder.error && (
+          <p className="type-body-small text-destructive" role="alert">
+            {recorder.error}
+          </p>
+        )}
+      </CardContent>
+    </Card>
   );
 };

@@ -21,7 +21,7 @@ export const DreSection = async ({
   return (
     <div>
       <div className="rounded-16 border-border bg-card flex flex-col gap-4 border p-6">
-        <h2 className="type-heading-small">
+        <h2 className="tablet:type-h2 type-h3 tracking-tight">
           {t("settings__billing__dre_title")}
         </h2>
         {(state === "none" || state === "expired") && (

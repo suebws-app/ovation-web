@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Skeleton } from "@ovation/ui/components/Skeleton";
 import { cn } from "@ovation/ui/utils/cn";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { KeepsakesHero } from "../components/KeepsakesHero";
 
 const cards = Array.from({ length: 6 }, (_, i) => i);
@@ -65,7 +66,7 @@ const SkeletonProductCard = () => (
 export const KeepsakesSkeleton = () => {
   const t = useTranslations();
   return (
-    <div className="flex w-full min-w-0 flex-col gap-6 p-6">
+    <div className={containerClassName}>
       <div className="flex items-start justify-between gap-4">
         <KeepsakesHero />
       </div>
@@ -75,7 +76,7 @@ export const KeepsakesSkeleton = () => {
             <Kicker className="text-muted-foreground">
               {t("keepsakes__collection__eyebrow")}
             </Kicker>
-            <h2 className="type-h2 mt-1.5 font-semibold tracking-tight">
+            <h2 className="tablet:type-h2 type-h3 mt-1.5 font-semibold tracking-tight">
               {t("keepsakes__collection__title")}
             </h2>
           </div>

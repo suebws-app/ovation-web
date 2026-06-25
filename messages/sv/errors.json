@@ -9,5 +9,15 @@
   "errors__pro_required": "Ett professionellt konto krävs.",
   "errors__pro_event_limit_reached": "Du har nått gränsen på 12 evenemang på Starter-planen. Uppgradera till Studio för obegränsat antal evenemang.",
   "errors__pro_subscription_required": "En aktiv Pro-prenumeration krävs för att skapa evenemang.",
-  "errors__kiosk_pin_invalid": "PIN-koden stämmer inte. Försök igen."
+  "errors__kiosk_pin_invalid": "PIN-koden stämmer inte. Försök igen.",
+  "errors__not_found__kicker": "404 — Sidan hittades inte",
+  "errors__not_found__headline_line1": "Den här sidan tog",
+  "errors__not_found__headline_line2": "en annan väg.",
+  "errors__not_found__description": "Sidan du letar efter finns inte, har flyttats eller tog sig aldrig förbi repetitionen. Låt oss få dig tillbaka till där ögonblicken händer.",
+  "errors__not_found__back_home": "Tillbaka till start",
+  "errors__server__kicker": "Något gick sönder",
+  "errors__server__headline_line1": "En liten hicka",
+  "errors__server__headline_line2": "bakom kulisserna.",
+  "errors__server__description": "Något gick fel hos oss. Försök igen — och om det fortsätter, gå tillbaka till start så håller vi saker rullande.",
+  "errors__server__back_home": "Tillbaka till start"
 }

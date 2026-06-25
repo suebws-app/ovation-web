@@ -34,7 +34,7 @@ export const DreUpgradeCard = ({ plan }: DreUpgradeCardProps) => {
 
   return (
     <div className="rounded-16 border-border bg-card flex flex-col gap-4 border p-6">
-      <h2 className="type-heading-small">{plan.name}</h2>
+      <h2 className="tablet:type-h2 type-h3 tracking-tight">{plan.name}</h2>
       <p className="type-body-small text-muted-foreground">
         {t("plans__dre__description")}
       </p>

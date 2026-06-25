@@ -50,34 +50,6 @@ export const PageCountSection = ({
     [photoIds, setValue],
   );
 
-  const pageCountStatus = (() => {
-    if (noVariantMatch) {
-      return {
-        tone: "error" as const,
-        message: t("keepsakes__book_customizer__no_variant_label"),
-      };
-    }
-    if (minPages !== null && pageCount < minPages) {
-      return {
-        tone: "warn" as const,
-        message: t("keepsakes__book_customizer__below_min_label", {
-          needed: minPages - pageCount,
-          min: minPages,
-        }),
-      };
-    }
-    if (maxPages !== null && pageCount > maxPages) {
-      return {
-        tone: "warn" as const,
-        message: t("keepsakes__book_customizer__above_max_label", {
-          extra: pageCount - maxPages,
-          max: maxPages,
-        }),
-      };
-    }
-    return null;
-  })();
-
   const photosBadge =
     minPages !== null && maxPages !== null
       ? t("keepsakes__book_customizer__photos_badge_range", {
@@ -108,17 +80,6 @@ export const PageCountSection = ({
           {t("keepsakes__book_customizer__current_count_label", {
             count: pageCount,
           })}
-        </p>
-        <p
-          role={pageCountStatus?.tone === "error" ? "alert" : "status"}
-          aria-hidden={!pageCountStatus}
-          className={`type-body-small min-h-5 ${
-            pageCountStatus?.tone === "error"
-              ? "text-destructive"
-              : "text-foreground"
-          }`}
-        >
-          {pageCountStatus?.message ?? " "}
         </p>
         {!noVariantMatch && (
           <MediaPicker

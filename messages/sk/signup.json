@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Partner 1",
   "signup__partner_2_fallback": "Partner 2",
   "signup__pricing__choose": "Vybrať {name}",
+  "signup__pricing__billing_disclaimer": "Konečná suma sa môže zobraziť vo vašej miestnej mene pri platbe.",
   "signup__book_preview__volume": "Ovation · Zväzok I"
 }

@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { cn } from "@ovation/ui/utils/cn";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 
 type FeaturePageLayoutProps = {
   children: ReactNode;
@@ -22,14 +23,7 @@ export const FeaturePageLayout = ({
 }: FeaturePageLayoutProps) => (
   <div className="flex w-full flex-1">
     <div className="relative flex w-full min-w-0 flex-1 flex-col">
-      <div
-        className={cn(
-          "tablet:p-6 flex flex-1 flex-col gap-6 p-4",
-          contentClassName,
-        )}
-      >
-        {children}
-      </div>
+      <div className={cn(containerClassName, contentClassName)}>{children}</div>
       {batchFooter}
       {overlay}
     </div>

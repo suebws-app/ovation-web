@@ -2,6 +2,7 @@ import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { kioskSettingsApi } from "@/lib/api/kiosk-settings";
 import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { KioskHero } from "./components/KioskHero";
 import { KioskChecklist } from "./components/KioskChecklist";
 import { KioskSetupClient } from "./KioskSetupClient";
@@ -11,7 +12,7 @@ export const KioskSetupPage = async () => {
 
   if (!event) {
     return (
-      <div className="flex w-full min-w-0 flex-col gap-6 p-6">
+      <div className={containerClassName}>
         <KioskHero slug={null} />
         <KioskChecklist />
       </div>
@@ -27,7 +28,7 @@ export const KioskSetupPage = async () => {
   ]);
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-6 p-6">
+    <div className={containerClassName}>
       <KioskSetupClient
         eventId={event.id}
         slug={event.slug}

@@ -57,5 +57,9 @@
   "common__dismiss": "닫기",
   "common__or": "또는",
   "nav__open_menu": "메뉴 열기",
-  "nav__close_menu": "메뉴 닫기"
+  "nav__close_menu": "메뉴 닫기",
+  "common__theme__label": "테마",
+  "common__theme__light": "라이트",
+  "common__theme__dark": "다크",
+  "common__theme__system": "시스템"
 }

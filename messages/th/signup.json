@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "คู่ที่ 1",
   "signup__partner_2_fallback": "คู่ที่ 2",
   "signup__pricing__choose": "เลือก {name}",
+  "signup__pricing__billing_disclaimer": "ยอดเรียกเก็บสุดท้ายอาจแสดงเป็นสกุลเงินท้องถิ่นของคุณเมื่อชำระเงิน",
   "signup__book_preview__volume": "Ovation · เล่มที่ I"
 }

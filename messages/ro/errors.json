@@ -9,5 +9,15 @@
   "errors__pro_required": "Este necesar un cont profesional.",
   "errors__pro_event_limit_reached": "Ai atins limita de 12 evenimente pe planul Starter. Fă upgrade la Studio pentru evenimente nelimitate.",
   "errors__pro_subscription_required": "Este necesar un abonament Pro activ pentru a crea evenimente.",
-  "errors__kiosk_pin_invalid": "Acest PIN nu se potrivește. Încearcă din nou."
+  "errors__kiosk_pin_invalid": "Acest PIN nu se potrivește. Încearcă din nou.",
+  "errors__not_found__kicker": "404 — Pagina nu a fost găsită",
+  "errors__not_found__headline_line1": "Această pagină a luat",
+  "errors__not_found__headline_line2": "un alt drum.",
+  "errors__not_found__description": "Pagina pe care o cauți nu există, a fost mutată sau nu a trecut niciodată de repetiție. Hai să te ducem înapoi acolo unde se întâmplă momentele.",
+  "errors__not_found__back_home": "Înapoi acasă",
+  "errors__server__kicker": "Ceva s-a stricat",
+  "errors__server__headline_line1": "Un mic sughit",
+  "errors__server__headline_line2": "în culise.",
+  "errors__server__description": "Ceva nu a mers bine la noi. Încearcă din nou — și dacă problema persistă, întoarce-te acasă și vom continua.",
+  "errors__server__back_home": "Înapoi acasă"
 }

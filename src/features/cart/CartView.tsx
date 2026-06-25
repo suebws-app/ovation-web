@@ -9,10 +9,12 @@ import {
 } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { cn } from "@ovation/ui/utils/cn";
 import { ApiError } from "@/lib/api/client";
 import { paymentsClient } from "@/lib/api/payments-client";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import { appRoutes } from "@/lib/routes";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { useSession } from "@/lib/auth/client";
 import { useInlinePaddleCheckout } from "@/features/checkout/paddle/useInlinePaddleCheckout";
 import type {
@@ -393,7 +395,7 @@ export const CartView = () => {
     step === "cart" ? "cart" : step === "shipping" ? "address" : step;
 
   return (
-    <div className="tablet:pb-6 flex flex-col gap-7 p-6 pb-32">
+    <div className={cn(containerClassName, "tablet:pb-6 pb-32")}>
       <CartHero itemCount={itemCount} step={heroStep} hideCart={isBuyNow} />
       {step === "confirm" ? (
         <CartCheckoutConfirmation orderId={confirmedOrderId} />

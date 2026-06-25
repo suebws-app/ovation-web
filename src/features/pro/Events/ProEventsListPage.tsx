@@ -3,6 +3,8 @@ import { eventsApi } from "@/lib/api/events";
 import { appRoutes } from "@/lib/routes";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
+import { PageHeading } from "@/components/PageHeading";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { ProEventRow } from "./ProEventRow";
 
 export const ProEventsListPage = async () => {
@@ -11,11 +13,9 @@ export const ProEventsListPage = async () => {
   const events = eventsPage?.items ?? [];
 
   return (
-    <div className="flex w-full flex-col gap-6 p-6">
+    <div className={containerClassName}>
       <div className="flex items-center justify-between">
-        <h1 className="type-h2 font-semibold">
-          {t("app__pro__events__title")}
-        </h1>
+        <PageHeading>{t("app__pro__events__title")}</PageHeading>
         <Button asChild size="sm">
           <Link href={appRoutes.create.root}>
             {t("app__pro__events__new_event")}

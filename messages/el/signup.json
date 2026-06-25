@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Σύντροφος 1",
   "signup__partner_2_fallback": "Σύντροφος 2",
   "signup__pricing__choose": "Διάλεξε {name}",
+  "signup__pricing__billing_disclaimer": "Η τελική χρέωση ενδέχεται να εμφανιστεί στο τοπικό σας νόμισμα κατά την ολοκλήρωση της αγοράς.",
   "signup__book_preview__volume": "Ovation · Τόμος I"
 }

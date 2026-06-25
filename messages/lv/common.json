@@ -57,5 +57,9 @@
   "common__dismiss": "Aizvērt",
   "common__or": "vai",
   "nav__open_menu": "Atvērt izvēlni",
-  "nav__close_menu": "Aizvērt izvēlni"
+  "nav__close_menu": "Aizvērt izvēlni",
+  "common__theme__label": "Tēma",
+  "common__theme__light": "Gaiša",
+  "common__theme__dark": "Tumša",
+  "common__theme__system": "Sistēmas"
 }

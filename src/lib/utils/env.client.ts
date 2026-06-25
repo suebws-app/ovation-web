@@ -1,11 +1,15 @@
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 const EMAIL_DOMAIN = process.env.NEXT_PUBLIC_EMAIL_DOMAIN ?? "ovationday.com";
+const HELP_URL = (
+  process.env.NEXT_PUBLIC_HELP_URL ?? "https://ovation.help"
+).replace(/\/$/, "");
 
 export const clientEnv = {
   APP_URL,
   APP_HOST: APP_URL.replace(/^https?:\/\//, "").replace(/\/$/, ""),
   EMAIL_DOMAIN,
   SUPPORT_EMAIL: `support@${EMAIL_DOMAIN}`,
+  HELP_URL,
   API_URL: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001",
   MEDIA_DOMAIN: process.env.NEXT_PUBLIC_MEDIA_DOMAIN ?? "",
 

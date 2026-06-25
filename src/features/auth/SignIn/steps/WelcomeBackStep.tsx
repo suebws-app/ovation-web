@@ -51,7 +51,7 @@ export const WelcomeBackStep = () => {
         <Kicker className="text-primary mb-4.5 tracking-[2.5px]">
           {t("auth__signin__welcome__eyebrow")}
         </Kicker>
-        <h1 className="tablet:type-h0 type-h0 leading-none font-semibold tracking-tight">
+        <h1 className="tablet:type-h0 type-h1 leading-none font-semibold tracking-tight">
           {t("auth__signin__welcome__title_a")}
           <br />
           <span className="text-primary italic">

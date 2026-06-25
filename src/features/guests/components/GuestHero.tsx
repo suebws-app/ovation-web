@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
+import { PageHeading } from "@/components/PageHeading";
 
 type GuestHeroProps = {
   totalMessages: number;
@@ -30,17 +31,14 @@ export const GuestHero = ({ totalMessages, inviteUrl }: GuestHeroProps) => {
       <div className="bg-primary/10 absolute -top-15 -right-15 size-80 rounded-full" />
       <div className="desktop:grid-cols-[1fr_auto] desktop:gap-10 relative grid items-end gap-6">
         <div>
-          <span className="type-overline text-primary">
-            {t("guests__hero__eyebrow")}
-          </span>
-          <h1 className="type-h0 mt-2.5 tracking-tight">
+          <PageHeading kicker={t("guests__hero__eyebrow")}>
             {t.rich("guests__hero__title", {
               count: totalMessages,
               emph: (chunks) => (
                 <span className="text-primary italic">{chunks}</span>
               ),
             })}
-          </h1>
+          </PageHeading>
           <p className="type-body text-muted-foreground mt-3.5 max-w-xl">
             {t("guests__hero__subtitle")}
           </p>

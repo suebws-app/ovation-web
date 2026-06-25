@@ -9,5 +9,15 @@
   "errors__pro_required": "È richiesto un account professionale.",
   "errors__pro_event_limit_reached": "Hai raggiunto il limite di 12 eventi sul piano Starter. Passa a Studio per eventi illimitati.",
   "errors__pro_subscription_required": "È richiesto un abbonamento Pro attivo per creare eventi.",
-  "errors__kiosk_pin_invalid": "Questo PIN non corrisponde. Riprova."
+  "errors__kiosk_pin_invalid": "Questo PIN non corrisponde. Riprova.",
+  "errors__not_found__kicker": "404 — Pagina non trovata",
+  "errors__not_found__headline_line1": "Questa pagina ha preso",
+  "errors__not_found__headline_line2": "una strada diversa.",
+  "errors__not_found__description": "La pagina che stai cercando non esiste, è stata spostata o non ha mai superato le prove. Torniamo dove accadono i momenti.",
+  "errors__not_found__back_home": "Torna alla home",
+  "errors__server__kicker": "Qualcosa è andato storto",
+  "errors__server__headline_line1": "Un piccolo intoppo",
+  "errors__server__headline_line2": "dietro le quinte.",
+  "errors__server__description": "Qualcosa è andato storto da parte nostra. Riprova — e se continua a succedere, torna alla home e proseguiremo.",
+  "errors__server__back_home": "Torna alla home"
 }

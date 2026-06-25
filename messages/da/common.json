@@ -57,5 +57,9 @@
   "common__dismiss": "Afvis",
   "common__or": "eller",
   "nav__open_menu": "Åbn menu",
-  "nav__close_menu": "Luk menu"
+  "nav__close_menu": "Luk menu",
+  "common__theme__label": "Tema",
+  "common__theme__light": "Lyst",
+  "common__theme__dark": "Mørkt",
+  "common__theme__system": "System"
 }

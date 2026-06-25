@@ -139,5 +139,6 @@
   "signup__partner_1_fallback": "Partner 1",
   "signup__partner_2_fallback": "Partner 2",
   "signup__pricing__choose": "{name} wählen",
+  "signup__pricing__billing_disclaimer": "Endbetrag wird beim Bezahlen ggf. in deiner Landeswährung angezeigt.",
   "signup__book_preview__volume": "Ovation · Band I"
 }

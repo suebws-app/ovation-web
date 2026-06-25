@@ -9,6 +9,7 @@ import { QRCodeStudio } from "./components/QRCodeStudio";
 import { QRStatsCard } from "./components/QRStatsCard";
 import { QRCodeEmpty } from "./components/QRCodeEmpty";
 import { coupleNameOf } from "@/lib/utils/eventFormatters";
+import { containerClassName } from "@/lib/utils/layoutClassNames";
 
 export const EventQRCodePage = async ({
   params,
@@ -23,7 +24,7 @@ export const EventQRCodePage = async ({
 
   if (!event) {
     return (
-      <div className="flex w-full flex-col p-6">
+      <div className={containerClassName}>
         <QRCodeEmpty />
       </div>
     );
@@ -43,10 +44,10 @@ export const EventQRCodePage = async ({
   const isPro = user?.accountType === "pro";
 
   return (
-    <div className="mx-auto w-full min-w-0 p-6">
+    <div className={containerClassName}>
       <QRCodeHeader />
       {!isPro && (
-        <div className="rounded-16 border-border bg-card mt-6 flex flex-col gap-1 border p-5">
+        <div className="rounded-16 border-border bg-card flex flex-col gap-1 border p-5">
           <p className="type-body-small font-semibold">
             {t("qr_code__link_settings_card__title")}
           </p>
@@ -61,21 +62,17 @@ export const EventQRCodePage = async ({
           </Link>
         </div>
       )}
-      <div className="mt-6">
-        <QRCodeStudio
-          coupleName={coupleNameOf(event.partnerAName, event.partnerBName)}
-          slug={event.slug}
-          shortUrl={qr?.shortUrl ?? `/g/${event.slug}`}
-        />
-      </div>
-      <div className="mt-4">
-        <QRStatsCard
-          totalMessages={stats?.totalMessages ?? 0}
-          photoCount={stats?.photoCount ?? 0}
-          videoCount={stats?.videoCount ?? 0}
-          audioMessages={stats?.audioMessages ?? 0}
-        />
-      </div>
+      <QRCodeStudio
+        coupleName={coupleNameOf(event.partnerAName, event.partnerBName)}
+        slug={event.slug}
+        shortUrl={qr?.shortUrl ?? `/g/${event.slug}`}
+      />
+      <QRStatsCard
+        totalMessages={stats?.totalMessages ?? 0}
+        photoCount={stats?.photoCount ?? 0}
+        videoCount={stats?.videoCount ?? 0}
+        audioMessages={stats?.audioMessages ?? 0}
+      />
     </div>
   );
 };
