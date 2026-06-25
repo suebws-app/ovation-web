@@ -28,6 +28,7 @@
   "cart__empty__cta": "Brskaj po spominkih",
   "cart__error__checkout_failed": "Plačilo ni uspelo. Poskusi znova.",
   "cart__error__totals_failed": "Skupnih zneskov ni bilo mogoče izračunati.",
+  "cart__error__shipping_unavailable": "Dostava na izbrani naslov ni na voljo.",
   "cart__summary__continue": "Nadaljuj · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 izdelek} other {# izdelkov}}",
   "cart__shipping__title": "Naslov za dostavo",

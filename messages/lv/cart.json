@@ -28,6 +28,7 @@
   "cart__empty__cta": "Pārlūkot Keepsakes",
   "cart__error__checkout_failed": "Apmaksa neizdevās. Lūdzu, mēģini vēlreiz.",
   "cart__error__totals_failed": "Nevarējām aprēķināt kopsummu.",
+  "cart__error__shipping_unavailable": "Piegāde uz izvēlēto adresi nav pieejama.",
   "cart__summary__continue": "Turpināt · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 vienība} other {# vienības}}",
   "cart__shipping__title": "Piegādes adrese",

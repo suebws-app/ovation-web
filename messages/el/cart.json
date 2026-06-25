@@ -28,6 +28,7 @@
   "cart__empty__cta": "Δες τα keepsakes",
   "cart__error__checkout_failed": "Η ολοκλήρωση απέτυχε. Δοκίμασε ξανά.",
   "cart__error__totals_failed": "Δεν μπορέσαμε να υπολογίσουμε τα σύνολα.",
+  "cart__error__shipping_unavailable": "Η αποστολή δεν είναι διαθέσιμη για την επιλεγμένη διεύθυνση.",
   "cart__summary__continue": "Συνέχεια · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 αντικείμενο} other {# αντικείμενα}}",
   "cart__shipping__title": "Διεύθυνση αποστολής",

@@ -28,6 +28,7 @@
   "cart__empty__cta": "Selaa muistoesineitä",
   "cart__error__checkout_failed": "Kassan avaaminen epäonnistui. Yritä uudelleen.",
   "cart__error__totals_failed": "Summia ei voitu laskea.",
+  "cart__error__shipping_unavailable": "Toimitus valittuun osoitteeseen ei ole käytettävissä.",
   "cart__summary__continue": "Jatka · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 tuote} other {# tuotetta}}",
   "cart__shipping__title": "Toimitusosoite",

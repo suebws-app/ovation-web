@@ -29,6 +29,7 @@
   "cart__empty__cta": "Browse keepsakes",
   "cart__error__checkout_failed": "Checkout failed. Please try again.",
   "cart__error__totals_failed": "Could not compute totals.",
+  "cart__error__shipping_unavailable": "Shipping is not available for the selected address.",
   "cart__summary__continue": "Continue · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 item} other {# items}}",
   "cart__shipping__title": "Shipping address",

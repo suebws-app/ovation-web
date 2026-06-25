@@ -28,6 +28,7 @@
   "cart__empty__cta": "Lihat Keepsake",
   "cart__error__checkout_failed": "Pembayaran gagal. Sila cuba lagi.",
   "cart__error__totals_failed": "Tidak dapat mengira jumlah.",
+  "cart__error__shipping_unavailable": "Penghantaran tidak tersedia ke alamat yang dipilih.",
   "cart__summary__continue": "Teruskan · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 item} other {# item}}",
   "cart__shipping__title": "Alamat penghantaran",

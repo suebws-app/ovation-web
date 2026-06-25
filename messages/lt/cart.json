@@ -28,6 +28,7 @@
   "cart__empty__cta": "Naršyti suvenyrus",
   "cart__error__checkout_failed": "Apmokėti nepavyko. Pabandyk dar kartą.",
   "cart__error__totals_failed": "Nepavyko apskaičiuoti sumų.",
+  "cart__error__shipping_unavailable": "Pristatymas pasirinktu adresu negalimas.",
   "cart__summary__continue": "Tęsti · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 prekė} few {# prekės} other {# prekių}}",
   "cart__shipping__title": "Pristatymo adresas",

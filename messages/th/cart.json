@@ -28,6 +28,7 @@
   "cart__empty__cta": "เลือกชม Keepsakes",
   "cart__error__checkout_failed": "การชำระเงินล้มเหลว กรุณาลองอีกครั้ง",
   "cart__error__totals_failed": "ไม่สามารถคำนวณยอดรวมได้",
+  "cart__error__shipping_unavailable": "ไม่สามารถจัดส่งไปยังที่อยู่ที่เลือกได้",
   "cart__summary__continue": "ดำเนินการต่อ · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 รายการ} other {# รายการ}}",
   "cart__shipping__title": "ที่อยู่จัดส่ง",

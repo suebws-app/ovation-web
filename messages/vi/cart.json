@@ -28,6 +28,7 @@
   "cart__empty__cta": "Duyệt các quà lưu niệm",
   "cart__error__checkout_failed": "Thanh toán thất bại. Vui lòng thử lại.",
   "cart__error__totals_failed": "Không thể tính tổng.",
+  "cart__error__shipping_unavailable": "Không thể giao hàng đến địa chỉ đã chọn.",
   "cart__summary__continue": "Tiếp tục · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 sản phẩm} other {# sản phẩm}}",
   "cart__shipping__title": "Địa chỉ giao hàng",

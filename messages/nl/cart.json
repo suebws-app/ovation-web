@@ -28,6 +28,7 @@
   "cart__empty__cta": "Bekijk keepsakes",
   "cart__error__checkout_failed": "Afrekenen mislukt. Probeer het opnieuw.",
   "cart__error__totals_failed": "Kon totalen niet berekenen.",
+  "cart__error__shipping_unavailable": "Verzending naar het gekozen adres is niet mogelijk.",
   "cart__summary__continue": "Doorgaan · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 artikel} other {# artikelen}}",
   "cart__shipping__title": "Verzendadres",

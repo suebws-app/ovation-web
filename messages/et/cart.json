@@ -28,6 +28,7 @@
   "cart__empty__cta": "Sirvi mälestusi",
   "cart__error__checkout_failed": "Kassa ebaõnnestus. Palun proovi uuesti.",
   "cart__error__totals_failed": "Summade arvutamine ebaõnnestus.",
+  "cart__error__shipping_unavailable": "Tarne valitud aadressile pole saadaval.",
   "cart__summary__continue": "Jätka · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 toode} other {# toodet}}",
   "cart__shipping__title": "Saatmise aadress",

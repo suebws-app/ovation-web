@@ -28,6 +28,7 @@
   "cart__empty__cta": "Keepsakes ansehen",
   "cart__error__checkout_failed": "Bezahlvorgang fehlgeschlagen. Bitte versuche es erneut.",
   "cart__error__totals_failed": "Summen konnten nicht berechnet werden.",
+  "cart__error__shipping_unavailable": "Versand zur ausgewählten Adresse ist nicht verfügbar.",
   "cart__summary__continue": "Weiter · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 Artikel} other {# Artikel}}",
   "cart__shipping__title": "Lieferadresse",

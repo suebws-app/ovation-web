@@ -28,6 +28,7 @@
   "cart__empty__cta": "Pregledaj Keepsake",
   "cart__error__checkout_failed": "Naplata nije uspjela. Pokušaj ponovno.",
   "cart__error__totals_failed": "Nismo mogli izračunati ukupne iznose.",
+  "cart__error__shipping_unavailable": "Dostava na odabranu adresu nije dostupna.",
   "cart__summary__continue": "Nastavi · {total}",
   "cart__mobile__items": "{count, plural, =1 {1 stavka} other {# stavki}}",
   "cart__shipping__title": "Adresa za dostavu",

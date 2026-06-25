@@ -28,6 +28,7 @@
   "cart__empty__cta": "Keepsake 둘러보기",
   "cart__error__checkout_failed": "결제에 실패했습니다. 다시 시도해 주세요.",
   "cart__error__totals_failed": "합계를 계산할 수 없습니다.",
+  "cart__error__shipping_unavailable": "선택한 주소로 배송할 수 없습니다.",
   "cart__summary__continue": "계속하기 · {total}",
   "cart__mobile__items": "{count, plural, =1 {1개 상품} other {#개 상품}}",
   "cart__shipping__title": "배송 주소",
