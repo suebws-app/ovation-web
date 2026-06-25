@@ -57,7 +57,6 @@ export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
             <Button
               type="button"
               onClick={recorder.stop}
-              size="lg"
               className="rounded-full"
             >
               <StopIcon width={16} height={16} />
@@ -68,7 +67,6 @@ export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
           <Button
             type="button"
             onClick={recorder.start}
-            size="lg"
             disabled={recorder.state === "requesting"}
             className="rounded-full"
           >

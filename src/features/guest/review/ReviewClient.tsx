@@ -415,14 +415,12 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
             asChild
             type="button"
             variant="outline"
-            size="lg"
             className="flex-1 rounded-full"
           >
             <Link href={backHref}>{t("guest__wizard__back")}</Link>
           </Button>
           <Button
             type="button"
-            size="lg"
             className="tablet:px-10 flex-1 rounded-full whitespace-nowrap shadow-lg"
             disabled={submitting}
             onClick={handleSubmit}

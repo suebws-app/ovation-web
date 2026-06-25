@@ -36,7 +36,6 @@ export const CartCheckoutConfirmation = ({
       <div className="flex flex-col items-center gap-3">
         <Button
           type="button"
-          size="lg"
           className="rounded-full"
           onClick={() => router.push(appRoutes.app.orders)}
         >

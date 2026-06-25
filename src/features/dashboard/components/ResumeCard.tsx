@@ -49,7 +49,6 @@ export const ResumeCard = ({ message }: ResumeCardProps) => {
         </div>
         <Button
           onClick={handleResume}
-          size="lg"
           className="shadow-primary/40 tablet:w-auto w-full gap-2.5 rounded-full shadow-md"
         >
           <PlayIcon width={16} height={16} />

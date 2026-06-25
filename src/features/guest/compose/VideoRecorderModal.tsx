@@ -147,7 +147,6 @@ export const VideoRecorderModal = ({
         {isRecording ? (
           <Button
             type="button"
-            size="lg"
             variant="destructive"
             onClick={recorder.stop}
             className="rounded-full px-8 shadow-lg"
@@ -158,7 +157,6 @@ export const VideoRecorderModal = ({
         ) : (
           <Button
             type="button"
-            size="lg"
             onClick={recorder.start}
             disabled={!canRecord}
             className="rounded-full px-8 shadow-lg"

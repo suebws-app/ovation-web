@@ -17,7 +17,6 @@ export const AuthSubmitButton = ({
   <Button
     type="submit"
     disabled={pending}
-    size="lg"
     className={cn(
       "shadow-primary/40 tablet:mt-6 mt-4 w-full rounded-full shadow-md",
       className,

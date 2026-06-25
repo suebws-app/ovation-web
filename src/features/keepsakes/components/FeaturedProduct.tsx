@@ -56,7 +56,6 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
           {canOrder && eventId ? (
             <Button
               asChild
-              size="lg"
               className="bg-foreground text-background hover:bg-foreground/90 rounded-full"
             >
               <Link
@@ -70,7 +69,6 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
             </Button>
           ) : (
             <Button
-              size="lg"
               disabled
               className="bg-foreground text-background rounded-full"
             >

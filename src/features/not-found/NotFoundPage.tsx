@@ -48,7 +48,7 @@ export const NotFoundPage = async () => {
             </p>
 
             <div className="flex justify-center">
-              <Button asChild size="lg" className="rounded-full">
+              <Button asChild className="rounded-full">
                 <Link href={appRoutes.home}>
                   {t("errors__not_found__back_home")}
                 </Link>

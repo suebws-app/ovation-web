@@ -42,7 +42,7 @@ export const AppHeaderDesktop = ({ isPro }: AppHeaderDesktopProps) => {
   if (!showBreadcrumb) return null;
 
   return (
-    <header className="max-w-container desktop:flex mx-auto hidden h-16 w-full items-center justify-between px-6 py-3">
+    <header className="max-w-container tablet:px-6 mx-auto flex h-16 w-full items-center justify-between px-4 py-3">
       {showBreadcrumb ? (
         <Breadcrumb>
           <BreadcrumbList className="type-caption">

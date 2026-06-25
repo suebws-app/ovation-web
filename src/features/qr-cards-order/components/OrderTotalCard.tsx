@@ -79,7 +79,7 @@ export const OrderTotalCard = ({
         </span>
       </div>
 
-      <Button size="lg" className="w-full rounded-full" onClick={onContinue}>
+      <Button className="w-full rounded-full" onClick={onContinue}>
         {ctaLabel}
       </Button>
       {onBack && (

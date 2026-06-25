@@ -318,7 +318,6 @@ export const CoverPage = () => {
         <Button
           onClick={handleContinue}
           disabled={!canContinue}
-          size="lg"
           className="shadow-primary/40 tablet:mt-5 mt-3 w-full rounded-full shadow-md"
         >
           {isSubmitting ? t("common__loading") : t("signup__claim__continue")}

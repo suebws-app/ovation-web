@@ -42,18 +42,13 @@ export const MessagesDirectoryEmpty = ({
       </div>
 
       <div className="tablet:mt-6 tablet:flex-row tablet:gap-3 mt-5 flex w-full max-w-sm flex-col gap-2">
-        <Button asChild size="lg" className="flex-1 rounded-full">
+        <Button asChild className="flex-1 rounded-full">
           <Link href={appRoutes.app.eventQrCode(eventId)}>
             <QrCodeIcon width={16} height={16} />
             {t("sidebar__quick__qr")}
           </Link>
         </Button>
-        <Button
-          asChild
-          size="lg"
-          variant="outline"
-          className="flex-1 rounded-full"
-        >
+        <Button asChild variant="outline" className="flex-1 rounded-full">
           <Link href={appRoutes.app.eventLink(eventId)}>
             <LinkIcon width={16} height={16} />
             {t("sidebar__quick__link")}

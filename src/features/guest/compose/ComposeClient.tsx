@@ -97,14 +97,12 @@ export const ComposeClient = ({
             asChild
             type="button"
             variant="outline"
-            size="lg"
             className="flex-1 rounded-full"
           >
             <Link href={backHref}>{t("guest__wizard__back")}</Link>
           </Button>
           <Button
             type="button"
-            size="lg"
             className="tablet:w-auto tablet:px-10 flex-1 rounded-full shadow-lg"
             onClick={handleContinue}
           >

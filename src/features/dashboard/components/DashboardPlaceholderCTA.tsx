@@ -49,7 +49,6 @@ export const DashboardPlaceholderCTA = ({
       <div className="tablet:mt-6 mt-5 flex w-full max-w-sm flex-col items-center gap-2">
         <Button
           asChild
-          size="lg"
           className="shadow-primary/40 w-full rounded-full shadow-md"
         >
           <Link href={appRoutes.create.root}>

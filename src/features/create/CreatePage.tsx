@@ -107,7 +107,6 @@ export const CreatePage = () => {
         <Button
           type="submit"
           disabled={!partner1Name || !partner2Name}
-          size="lg"
           className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
         >
           {t("signup__book_details__continue")}

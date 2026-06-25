@@ -29,7 +29,7 @@ export const PhotosDirectoryEmpty = ({
 
   return (
     <div className="tablet:py-20 relative flex w-full flex-col items-center justify-center overflow-hidden px-4 py-12 text-center">
-      <div className="bg-primary/8 pointer-events-none absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
+      <div className="bg-primary/8 pointer-events-none absolute top-1/2 left-1/2 size-105 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
 
       <div className="relative">
         <div className="border-primary/15 animate-tap-pulse pointer-events-none absolute -inset-3 rounded-[28px] border" />
@@ -73,7 +73,6 @@ export const PhotosDirectoryEmpty = ({
         </span>
         <Button
           type="button"
-          size="lg"
           onClick={handleClick}
           disabled={isUploading}
           className="w-full rounded-full"

@@ -29,10 +29,7 @@ export const BundleBanner = () => {
           })}
         </p>
       </div>
-      <Button
-        size="lg"
-        className="bg-foreground text-background hover:bg-foreground/90 tablet:w-auto w-full rounded-full"
-      >
+      <Button className="bg-foreground text-background hover:bg-foreground/90 tablet:w-auto w-full rounded-full">
         {t("keepsakes__bundle__action")}
       </Button>
     </div>
