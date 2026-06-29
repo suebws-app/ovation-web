@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Pakipasok ang iyong pangalan",
   "guest__record__schema__name_too_long": "Masyadong mahaba ang pangalan",
   "guest__record__schema__note_required": "Sumulat ng kahit ano bago ibahagi",
-  "guest__record__schema__note_too_long": "Limitado sa 200 na karakter ang mga tala"
+  "guest__record__schema__note_too_long": "Limitado sa 200 na karakter ang mga tala",
+  "guest_invitation__eyebrow": "Inimbitahan ka",
+  "guest_invitation__greeting": "Mahal kong {name},",
+  "guest_invitation__intro": "Gustong-gusto ng {partnerA} at {partnerB} ang iyong basbas sa boses o video — upang itago habambuhay.",
+  "guest_invitation__cta": "Mag-iwan ng mensahe",
+  "guest_invitation__cta_caption": "Boses, video, larawan o mabilis na sulat. Diretso sa mag-asawa.",
+  "guest_invitation__closed_limit": "Puno na ang mga mensahe — pero salamat sa pagdalo.",
+  "guest_invitation__closed_not_open": "Hindi pa bukas ang mga mensahe. Bumalik ka mamaya.",
+  "guest_invitation__closed_other": "Hindi tumatanggap ng mensahe sa ngayon."
 }

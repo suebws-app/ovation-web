@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Будь ласка, введи своє ім'я",
   "guest__record__schema__name_too_long": "Ім'я задовге",
   "guest__record__schema__note_required": "Напиши щось перед тим, як поділитися",
-  "guest__record__schema__note_too_long": "Нотатки обмежено 200 символами"
+  "guest__record__schema__note_too_long": "Нотатки обмежено 200 символами",
+  "guest_invitation__eyebrow": "Тебе запрошено",
+  "guest_invitation__greeting": "Любий/Люба {name},",
+  "guest_invitation__intro": "{partnerA} і {partnerB} із задоволенням приймуть твоє благословення голосом або відео — щоб зберегти назавжди.",
+  "guest_invitation__cta": "Залишити повідомлення",
+  "guest_invitation__cta_caption": "Голос, відео, фото або коротка нотатка. Йде прямо до пари.",
+  "guest_invitation__closed_limit": "Повідомлення досягли ліміту — але дякуємо, що завітав/завітала.",
+  "guest_invitation__closed_not_open": "Повідомлення ще не відкриті. Зайди пізніше.",
+  "guest_invitation__closed_other": "Повідомлення зараз не приймають надсилань."
 }

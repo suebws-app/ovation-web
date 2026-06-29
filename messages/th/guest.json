@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "กรุณากรอกชื่อของคุณ",
   "guest__record__schema__name_too_long": "ชื่อยาวเกินไป",
   "guest__record__schema__note_required": "เขียนข้อความก่อนแบ่งปัน",
-  "guest__record__schema__note_too_long": "ข้อความจำกัดที่ 200 ตัวอักษร"
+  "guest__record__schema__note_too_long": "ข้อความจำกัดที่ 200 ตัวอักษร",
+  "guest_invitation__eyebrow": "คุณได้รับเชิญ",
+  "guest_invitation__greeting": "เรียน {name},",
+  "guest_invitation__intro": "{partnerA} และ {partnerB} อยากได้รับคำอวยพรของคุณในรูปแบบเสียงหรือวิดีโอ — เพื่อเก็บไว้ตลอดไป",
+  "guest_invitation__cta": "ฝากข้อความ",
+  "guest_invitation__cta_caption": "เสียง วิดีโอ ภาพถ่าย หรือบันทึกสั้นๆ ส่งตรงถึงคู่บ่าวสาว",
+  "guest_invitation__closed_limit": "ข้อความเต็มแล้ว — แต่ขอบคุณที่มา",
+  "guest_invitation__closed_not_open": "ข้อความยังไม่เปิด กลับมาดูใหม่เร็วๆ นี้",
+  "guest_invitation__closed_other": "ข้อความไม่รับการส่งในขณะนี้"
 }

@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Vennligst skriv inn navnet ditt",
   "guest__record__schema__name_too_long": "Navnet er for langt",
   "guest__record__schema__note_required": "Skriv noe før du deler",
-  "guest__record__schema__note_too_long": "Hilsener er begrenset til 200 tegn"
+  "guest__record__schema__note_too_long": "Hilsener er begrenset til 200 tegn",
+  "guest_invitation__eyebrow": "Du er invitert",
+  "guest_invitation__greeting": "Kjære {name},",
+  "guest_invitation__intro": "{partnerA} og {partnerB} ville elske din velsignelse i stemme eller video — å bevare for alltid.",
+  "guest_invitation__cta": "Legg igjen en melding",
+  "guest_invitation__cta_caption": "Stemme, video, foto eller en rask notat. Går direkte til paret.",
+  "guest_invitation__closed_limit": "Meldingene har nådd kapasiteten — men takk for at du kom.",
+  "guest_invitation__closed_not_open": "Meldinger er ikke åpne ennå. Kom tilbake snart.",
+  "guest_invitation__closed_other": "Meldinger godtar ikke innsendinger akkurat nå."
 }

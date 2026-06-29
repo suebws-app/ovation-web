@@ -48,6 +48,8 @@ export const SubscriptionAlert = ({
     daysLeft = Math.max(0, storageDays - elapsedDays);
   }
 
+  if (!isFree && (daysLeft === null || daysLeft > 30)) return null;
+
   const planNameMap: Record<string, string> = {
     premium: t("plan_name__premium"),
     bundle: t("plan_name__bundle"),

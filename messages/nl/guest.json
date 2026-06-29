@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Vul je naam in",
   "guest__record__schema__name_too_long": "Naam is te lang",
   "guest__record__schema__note_required": "Schrijf iets voordat je deelt",
-  "guest__record__schema__note_too_long": "Notities zijn beperkt tot 200 tekens"
+  "guest__record__schema__note_too_long": "Notities zijn beperkt tot 200 tekens",
+  "guest_invitation__eyebrow": "Je bent uitgenodigd",
+  "guest_invitation__greeting": "Beste {name},",
+  "guest_invitation__intro": "{partnerA} en {partnerB} zouden je zegen graag in stem of video ontvangen — om voor altijd te bewaren.",
+  "guest_invitation__cta": "Laat een bericht achter",
+  "guest_invitation__cta_caption": "Stem, video, foto of een korte notitie. Gaat direct naar het stel.",
+  "guest_invitation__closed_limit": "De berichten zijn vol — maar bedankt dat je er was.",
+  "guest_invitation__closed_not_open": "Berichten zijn nog niet open. Kom snel terug.",
+  "guest_invitation__closed_other": "Berichten worden op dit moment niet geaccepteerd."
 }

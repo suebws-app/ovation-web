@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Ange ditt namn",
   "guest__record__schema__name_too_long": "Namnet är för långt",
   "guest__record__schema__note_required": "Skriv något innan du delar",
-  "guest__record__schema__note_too_long": "Hälsningar är begränsade till 200 tecken"
+  "guest__record__schema__note_too_long": "Hälsningar är begränsade till 200 tecken",
+  "guest_invitation__eyebrow": "Du är inbjuden",
+  "guest_invitation__greeting": "Kära {name},",
+  "guest_invitation__intro": "{partnerA} och {partnerB} skulle älska din välsignelse i röst eller video — att bevara för alltid.",
+  "guest_invitation__cta": "Lämna ett meddelande",
+  "guest_invitation__cta_caption": "Röst, video, foto eller en snabb anteckning. Går direkt till paret.",
+  "guest_invitation__closed_limit": "Meddelandena är fulla — men tack för att du kom.",
+  "guest_invitation__closed_not_open": "Meddelanden är inte öppna ännu. Kom tillbaka snart.",
+  "guest_invitation__closed_other": "Meddelanden tar inte emot bidrag just nu."
 }

@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Unesi svoje ime",
   "guest__record__schema__name_too_long": "Ime je predugo",
   "guest__record__schema__note_required": "Napiši nešto prije nego što podijeliš",
-  "guest__record__schema__note_too_long": "Poruke su ograničene na 200 znakova"
+  "guest__record__schema__note_too_long": "Poruke su ograničene na 200 znakova",
+  "guest_invitation__eyebrow": "Pozvan(a) si",
+  "guest_invitation__greeting": "Dragi/Draga {name},",
+  "guest_invitation__intro": "{partnerA} i {partnerB} bi voljeli tvoj blagoslov u glasu ili videu — da sačuvaju zauvijek.",
+  "guest_invitation__cta": "Ostavi poruku",
+  "guest_invitation__cta_caption": "Glas, video, fotka ili kratka napomena. Ide ravno paru.",
+  "guest_invitation__closed_limit": "Poruke su dosegle kapacitet — ali hvala što si došao/došla.",
+  "guest_invitation__closed_not_open": "Poruke još nisu otvorene. Vrati se uskoro.",
+  "guest_invitation__closed_other": "Poruke trenutačno ne primaju prijave."
 }

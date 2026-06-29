@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Zadaj svoje meno",
   "guest__record__schema__name_too_long": "Meno je príliš dlhé",
   "guest__record__schema__note_required": "Pred zdieľaním niečo napíš",
-  "guest__record__schema__note_too_long": "Poznámky sú obmedzené na 200 znakov"
+  "guest__record__schema__note_too_long": "Poznámky sú obmedzené na 200 znakov",
+  "guest_invitation__eyebrow": "Si pozvaný(á)",
+  "guest_invitation__greeting": "Milý/Milá {name},",
+  "guest_invitation__intro": "{partnerA} a {partnerB} by veľmi radi prijali tvoje požehnanie hlasom alebo videom — aby si ho uchovali navždy.",
+  "guest_invitation__cta": "Zanechať správu",
+  "guest_invitation__cta_caption": "Hlas, video, foto alebo rýchla poznámka. Ide priamo páru.",
+  "guest_invitation__closed_limit": "Správy dosiahli limit — ale ďakujeme, že si prišiel/prišla.",
+  "guest_invitation__closed_not_open": "Správy ešte nie sú otvorené. Vráť sa čoskoro.",
+  "guest_invitation__closed_other": "Správy momentálne neprijímajú príspevky."
 }

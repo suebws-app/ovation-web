@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Įvesk savo vardą",
   "guest__record__schema__name_too_long": "Vardas per ilgas",
   "guest__record__schema__note_required": "Prieš dalindamasis parašyk ką nors",
-  "guest__record__schema__note_too_long": "Užrašai apriboti iki 200 simbolių"
+  "guest__record__schema__note_too_long": "Užrašai apriboti iki 200 simbolių",
+  "guest_invitation__eyebrow": "Tu esi pakviestas(-a)",
+  "guest_invitation__greeting": "Mielas/Miela {name},",
+  "guest_invitation__intro": "{partnerA} ir {partnerB} mielai priimtų tavo palaiminimą balsu ar vaizdu — kad išsaugotų amžinai.",
+  "guest_invitation__cta": "Palikti žinutę",
+  "guest_invitation__cta_caption": "Balsas, vaizdas, nuotrauka ar trumpas raštelis. Eina tiesiai porai.",
+  "guest_invitation__closed_limit": "Žinutės pasiekė talpą — bet ačiū, kad atvykai.",
+  "guest_invitation__closed_not_open": "Žinutės dar neatvertos. Grįžk netrukus.",
+  "guest_invitation__closed_other": "Žinutės šiuo metu nepriima įrašų."
 }

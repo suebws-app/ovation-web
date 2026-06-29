@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Te rugăm să introduci numele tău",
   "guest__record__schema__name_too_long": "Numele este prea lung",
   "guest__record__schema__note_required": "Scrie ceva înainte de a împărtăși",
-  "guest__record__schema__note_too_long": "Notele sunt limitate la 200 de caractere"
+  "guest__record__schema__note_too_long": "Notele sunt limitate la 200 de caractere",
+  "guest_invitation__eyebrow": "Ești invitat(ă)",
+  "guest_invitation__greeting": "Drag(ă) {name},",
+  "guest_invitation__intro": "{partnerA} și {partnerB} ar adora binecuvântarea ta în voce sau video — pentru a o păstra pentru totdeauna.",
+  "guest_invitation__cta": "Lasă un mesaj",
+  "guest_invitation__cta_caption": "Voce, video, foto sau o notă rapidă. Merge direct la cuplu.",
+  "guest_invitation__closed_limit": "Mesajele au atins capacitatea — dar mulțumim că ai venit.",
+  "guest_invitation__closed_not_open": "Mesajele nu sunt încă deschise. Revino în curând.",
+  "guest_invitation__closed_other": "Mesajele nu acceptă trimiteri în acest moment."
 }
