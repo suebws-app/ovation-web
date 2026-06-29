@@ -1,12 +1,11 @@
 import { useTranslations } from "next-intl";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { messagesClient } from "@/lib/api/messages-client";
-import { queryKeys } from "@/lib/query/keys";
 import {
   downloadManyMessages,
   type DownloadInputs,
 } from "@/lib/media/downloadMessageAssets";
-import type { MessageDetail, MessageSummary } from "@/lib/api/types";
+import type { MessageSummary } from "@/lib/api/types";
 import { toIsoDate } from "@/lib/utils/formatDate";
 import { useEventId } from "../context/MessagesEventContext";
 
@@ -30,7 +29,6 @@ const fetchAllSummaries = async (
 
 export const useExportAllMessages = () => {
   const eventId = useEventId();
-  const qc = useQueryClient();
   const t = useTranslations();
   const anonymous = t("common__anonymous");
 
@@ -42,26 +40,22 @@ export const useExportAllMessages = () => {
       const summaries = await fetchAllSummaries(eventId);
       if (summaries.length === 0) return;
 
-      const inputs: DownloadInputs[] = await Promise.all(
-        summaries.map(async (summary) => {
-          const detailKey = queryKeys.messages.detail(eventId, summary.id);
-          const cached =
-            qc.getQueryData<{ message: MessageDetail }>(detailKey) ??
-            (await qc.fetchQuery<{ message: MessageDetail }>({
-              queryKey: detailKey,
-              queryFn: () => messagesClient.get(eventId, summary.id),
-            }));
-          const photo = cached.message.media.find((m) => m.type === "photo");
-          const video = cached.message.media.find((m) => m.type === "video");
-          return {
-            guestName: cached.message.guestNames || anonymous,
-            audioUrl: cached.message.audioUrl,
-            videoUrl: video?.url ?? null,
-            photoUrl: photo?.url ?? null,
-            writtenNote: cached.message.writtenNote,
-          };
-        }),
+      const { messages } = await messagesClient.bulkDetail(
+        eventId,
+        summaries.map((s) => s.id),
       );
+
+      const inputs: DownloadInputs[] = messages.map((message) => {
+        const photo = message.media.find((m) => m.type === "photo");
+        const video = message.media.find((m) => m.type === "video");
+        return {
+          guestName: message.guestNames || anonymous,
+          audioUrl: message.audioUrl,
+          videoUrl: video?.url ?? null,
+          photoUrl: photo?.url ?? null,
+          writtenNote: message.writtenNote,
+        };
+      });
 
       const folderName = `messages ${toIsoDate(new Date())}`;
       await downloadManyMessages(inputs, folderName, folderName);

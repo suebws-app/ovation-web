@@ -102,4 +102,13 @@ export const messagesClient = {
       method: "POST",
       body,
     }),
+
+  bulkDetail: (
+    eventId: string,
+    ids: string[],
+  ): Promise<{ messages: MessageDetail[] }> =>
+    clientFetch<{ messages: MessageDetail[] }>(
+      `${listPath(eventId)}/bulk-detail`,
+      { method: "POST", body: { ids } },
+    ),
 };
