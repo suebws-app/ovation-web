@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "이름을 입력해 주세요",
   "guest__record__schema__name_too_long": "이름이 너무 깁니다",
   "guest__record__schema__note_required": "공유하기 전에 내용을 작성해 주세요",
-  "guest__record__schema__note_too_long": "메모는 최대 200자까지 입력할 수 있습니다"
+  "guest__record__schema__note_too_long": "메모는 최대 200자까지 입력할 수 있습니다",
+  "guest_invitation__eyebrow": "초대합니다",
+  "guest_invitation__greeting": "친애하는 {name}님,",
+  "guest_invitation__intro": "{partnerA}과(와) {partnerB}이(가) 당신의 축복을 음성이나 영상으로 받아 영원히 간직하고 싶어 합니다.",
+  "guest_invitation__cta": "메시지 남기기",
+  "guest_invitation__cta_caption": "음성, 영상, 사진 또는 짧은 메모. 바로 부부에게 전달됩니다.",
+  "guest_invitation__closed_limit": "메시지가 가득 찼습니다 — 와주셔서 감사합니다.",
+  "guest_invitation__closed_not_open": "메시지가 아직 열리지 않았습니다. 곧 다시 확인해 주세요.",
+  "guest_invitation__closed_other": "메시지가 현재 제출을 받지 않습니다."
 }

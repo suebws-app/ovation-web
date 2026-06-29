@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Відкрити сторінку QR",
   "dashboard__qr__copy": "Скопіювати посилання",
   "dashboard__qr__copied": "Скопійовано",
+  "dashboard__widget__invitation__eyebrow": "Запрошення",
+  "dashboard__widget__invitation__edit_cta": "Редагувати запрошення",
   "dashboard__widget__messages__unit": "повідомлень",
   "dashboard__widget__messages__new_pill": "{count} нових",
   "dashboard__widget__messages__since": "{count} нових з твого останнього візиту.",

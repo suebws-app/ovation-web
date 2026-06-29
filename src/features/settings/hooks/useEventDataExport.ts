@@ -71,18 +71,9 @@ const fetchDetails = async (
   eventId: string,
   ids: string[],
 ): Promise<MessageDetail[]> => {
-  const results: MessageDetail[] = [];
-  const concurrency = 6;
-  let i = 0;
-  while (i < ids.length) {
-    const slice = ids.slice(i, i + concurrency);
-    const detailed = await Promise.all(
-      slice.map((id) => messagesClient.get(eventId, id).then((r) => r.message)),
-    );
-    results.push(...detailed);
-    i += concurrency;
-  }
-  return results;
+  if (ids.length === 0) return [];
+  const { messages } = await messagesClient.bulkDetail(eventId, ids);
+  return messages;
 };
 
 const fetchBlob = async (url: string): Promise<Blob | null> => {

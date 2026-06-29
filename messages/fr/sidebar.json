@@ -8,6 +8,8 @@
   "sidebar__pro__all": "Tous les événements",
   "sidebar__nav__guests": "Invités",
   "sidebar__nav__settings": "Paramètres",
+  "sidebar__nav__invitation": "Invitation",
+  "sidebar__nav__invitees": "Liste des invités",
   "sidebar__quick__title": "Liens rapides",
   "sidebar__quick__link": "Paramètres du lien",
   "sidebar__quick__qr": "Code QR",

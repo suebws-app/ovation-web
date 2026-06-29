@@ -3,6 +3,30 @@ import type { Currency } from "@/i18n/currency-config";
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
+export type InvitationTemplate = {
+  id: string;
+  name: string;
+  description: string;
+  pageBg: string;
+  cardBg: string;
+  cardBorder: string;
+  textColor: string;
+  mutedColor: string;
+  accentColor: string;
+  buttonText: string;
+  displayFontKey: string;
+  bodyFontKey: string;
+  monogramAmp: string;
+  ornamentSymbol: string | null;
+  divider: string;
+  cornerOrnament: string | null;
+};
+
+export type InvitationTemplatesResponse = {
+  templates: InvitationTemplate[];
+  defaultTemplateId: string;
+};
+
 export type PlanTier =
   | "premium"
   | "bundle"
@@ -82,6 +106,7 @@ export type Event = {
   expectedGuests: number | null;
   welcomeMessage: string | null;
   themeColor: string;
+  invitationTemplateId: string;
   couplePhotoUrl: string | null;
   status: EventStatus | string;
   defaultLanguage: Locale;
@@ -97,6 +122,40 @@ export type EventStats = {
   writtenMessages: number;
   favorites: number;
   unreadMessages: number;
+};
+
+export type AnalyticsRange = "30d" | "90d" | "all";
+
+export type AnalyticsMonthlyPoint = {
+  month: string;
+  count: number;
+};
+
+export type AccountAnalytics = {
+  range: AnalyticsRange;
+  events: {
+    total: number;
+    active: number;
+    draft: number;
+    paused: number;
+    archived: number;
+  };
+  engagement: {
+    guests: number;
+    messages: number;
+    audio: number;
+    written: number;
+    favorites: number;
+    photos: number;
+    videos: number;
+  };
+  orders: {
+    count: number;
+  };
+  series: {
+    eventsByMonth: AnalyticsMonthlyPoint[];
+    messagesByMonth: AnalyticsMonthlyPoint[];
+  };
 };
 
 export type MessageSummary = {
@@ -149,6 +208,7 @@ export type CreateEventInput = {
 export type UpdateEventInput = Partial<CreateEventInput> & {
   welcomeMessage?: string;
   themeColor?: string;
+  invitationTemplateId?: string;
   couplePhotoUrl?: string | null;
   defaultLanguage?: Locale;
   slug?: string;
@@ -247,6 +307,26 @@ export type PublicEvent = {
   submissionOpen: boolean;
   limitReached: boolean;
   kiosk: PublicKioskSettings;
+};
+
+export type PublicInvitation = {
+  event: {
+    slug: string;
+    partnerAName: string;
+    partnerBName: string;
+    weddingDate: string | null;
+    venueName: string | null;
+    venueCity: string | null;
+    welcomeMessage: string | null;
+    themeColor: string;
+    couplePhotoUrl: string | null;
+    invitationTemplateId: string;
+    submissionOpen: boolean;
+    limitReached: boolean;
+  };
+  invitee: {
+    firstName: string;
+  };
 };
 
 export type AudioUploadTarget = {
@@ -494,6 +574,62 @@ export type GuestCount = {
   count: number;
 };
 
+export type Invitee = {
+  id: string;
+  eventId: string;
+  firstName: string;
+  lastName: string | null;
+  email: string | null;
+  phone: string | null;
+  seats: number;
+  inviteToken: string;
+  lastSentAt: string | null;
+  lastOpenedAt: string | null;
+  lastRespondedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type InvitationSendResult = {
+  invitation: {
+    id: string;
+    eventId: string;
+    inviteeId: string | null;
+    channel: string;
+    recipient: string | null;
+    status: string;
+    failureReason: string | null;
+    openedAt: string | null;
+    submittedAt: string | null;
+    createdAt: string;
+  };
+};
+
+export type InvitationBulkResult = {
+  queued: number;
+  skipped: number;
+};
+
+export type InvitationCopyLinkResult = {
+  url: string;
+};
+
+export type InviteeInput = {
+  firstName: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  seats: number;
+};
+
+export type UpdateInviteeInput = Partial<InviteeInput>;
+
+export type BulkReplaceInviteeItem = InviteeInput & { id?: string };
+
+export type BulkReplaceInviteesInput = {
+  items: BulkReplaceInviteeItem[];
+};
+
 export type CheckoutItem = {
   productType: string;
   productVariantId?: string;
@@ -698,13 +834,20 @@ export type LinkSettings = {
   captureVideo: boolean;
   maxVideoDurationSeconds: number;
   maxAudioDurationSeconds: number;
+  galleryPublic: boolean;
+  galleryCode: string | null;
   createdAt: string;
   updatedAt: string;
 };
 
 export type UpdateLinkSettingsInput = Partial<
-  Omit<LinkSettings, "id" | "eventId" | "createdAt" | "updatedAt">
->;
+  Omit<
+    LinkSettings,
+    "id" | "eventId" | "galleryCode" | "createdAt" | "updatedAt"
+  >
+> & {
+  regenerateGalleryCode?: boolean;
+};
 
 export type KioskSettings = {
   id: string;

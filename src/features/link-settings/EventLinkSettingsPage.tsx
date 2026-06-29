@@ -27,6 +27,7 @@ export const EventLinkSettingsPage = async ({
     <div className={containerClassName}>
       <LinkSettingsClient
         eventId={event.id}
+        slug={event.slug}
         submissionsEnabled={event.status === "active"}
         couplePhotoUrl={event.couplePhotoUrl}
         initialSettings={settingsRes.settings}

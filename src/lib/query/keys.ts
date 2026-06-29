@@ -1,6 +1,10 @@
-import type { ListMessagesQuery } from "@/lib/api/types";
+import type { AnalyticsRange, ListMessagesQuery } from "@/lib/api/types";
 
 export const queryKeys = {
+  analytics: {
+    all: () => ["analytics"] as const,
+    me: (range: AnalyticsRange) => ["analytics", "me", range] as const,
+  },
   events: {
     all: () => ["events"] as const,
     list: (input?: { limit?: number; cursor?: string }) =>
@@ -47,12 +51,32 @@ export const queryKeys = {
       } = {},
     ) => ["gallery", eventId, "count", input] as const,
   },
+  publicGallery: {
+    all: (slug: string) => ["public-gallery", slug] as const,
+    infiniteList: (
+      slug: string,
+      code: string,
+      input: {
+        type?: "photo" | "video" | "all";
+        sort?: "newest" | "oldest";
+        limit?: number;
+      } = {},
+    ) => ["public-gallery", slug, code, "infinite", input] as const,
+  },
   guests: {
     all: (eventId: string) => ["guests", eventId] as const,
     count: (
       eventId: string,
       input: { filter?: string; search?: string } = {},
     ) => ["guests", eventId, "count", input] as const,
+  },
+  invitees: {
+    all: (eventId: string) => ["invitees", eventId] as const,
+    list: (eventId: string) => ["invitees", eventId, "list"] as const,
+  },
+  invitationTemplates: {
+    all: () => ["invitation-templates"] as const,
+    list: () => ["invitation-templates", "list"] as const,
   },
   user: {
     me: () => ["user", "me"] as const,

@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Lūdzu, ievadi savu vārdu",
   "guest__record__schema__name_too_long": "Vārds ir pārāk garš",
   "guest__record__schema__note_required": "Pirms kopīgošanas uzraksti kaut ko",
-  "guest__record__schema__note_too_long": "Piezīmes ir ierobežotas līdz 200 rakstzīmēm"
+  "guest__record__schema__note_too_long": "Piezīmes ir ierobežotas līdz 200 rakstzīmēm",
+  "guest_invitation__eyebrow": "Tu esi uzaicināts(-a)",
+  "guest_invitation__greeting": "Mīļais/Mīļā {name},",
+  "guest_invitation__intro": "{partnerA} un {partnerB} ar prieku saņemtu tavu svētību balsī vai video — lai saglabātu uz mūžu.",
+  "guest_invitation__cta": "Atstāt ziņu",
+  "guest_invitation__cta_caption": "Balss, video, foto vai īsa piezīme. Iet tieši pārim.",
+  "guest_invitation__closed_limit": "Ziņas ir sasniegušas ietilpību — bet paldies, ka atnāci.",
+  "guest_invitation__closed_not_open": "Ziņas vēl nav atvērtas. Atgriezies drīz.",
+  "guest_invitation__closed_other": "Ziņas pašlaik nepieņem iesniegumus."
 }

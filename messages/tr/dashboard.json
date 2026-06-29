@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "QR sayfasını aç",
   "dashboard__qr__copy": "Linki kopyala",
   "dashboard__qr__copied": "Kopyalandı",
+  "dashboard__widget__invitation__eyebrow": "Davetiye",
+  "dashboard__widget__invitation__edit_cta": "Davetiyeyi düzenle",
   "dashboard__widget__messages__unit": "mesaj",
   "dashboard__widget__messages__new_pill": "{count} yeni",
   "dashboard__widget__messages__since": "Son ziyaretinden bu yana {count} yeni.",

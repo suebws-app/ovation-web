@@ -14,8 +14,10 @@ import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
 import { MonitorIcon } from "@ovation/icons/MonitorIcon";
 import { HelpCircleIcon } from "@ovation/icons/HelpCircleIcon";
 import { UsersIcon } from "@ovation/icons/UsersIcon";
+import { UserPlusIcon } from "@ovation/icons/UserPlusIcon";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { BoxIcon } from "@ovation/icons/BoxIcon";
+import { GridIcon } from "@ovation/icons/GridIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
 import { usePathname } from "next/navigation";
@@ -164,6 +166,11 @@ const buildCoupleGroups = (
         badge: counts.guests > 0 ? counts.guests : undefined,
       },
       {
+        label: t("sidebar__nav__invitees"),
+        href: appRoutes.app.invitees,
+        icon: UserPlusIcon,
+      },
+      {
         label: t("sidebar__nav__settings"),
         href: appRoutes.app.settings,
         icon: SettingsIcon,
@@ -197,10 +204,22 @@ const buildCoupleGroups = (
   },
 ];
 
-const buildProGlobalGroups = (t: Translator): SidebarNavGroup[] => [
+const buildProGlobalGroups = (
+  t: Translator,
+  showAnalytics: boolean,
+): SidebarNavGroup[] => [
   {
     label: t("sidebar__pro__all"),
     items: [
+      ...(showAnalytics
+        ? [
+            {
+              label: t("analytics__nav"),
+              href: appRoutes.app.analytics,
+              icon: GridIcon,
+            },
+          ]
+        : []),
       {
         label: t("sidebar__nav__all_orders"),
         href: appRoutes.app.orders,
@@ -277,14 +296,18 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   const t = useTranslations();
   const eventId = useProEventId(events);
   const isPro = user.accountType === "pro";
+  const isStudioPro = user.planTier === "pro_studio";
   const coupleEventId = !isPro ? (events[0]?.id ?? null) : null;
   const counts = useSidebarCounts(isPro ? eventId : coupleEventId);
 
   let groups: SidebarNavGroup[];
   if (isPro) {
     groups = eventId
-      ? [...buildProEventGroups(t, eventId, counts), ...buildProGlobalGroups(t)]
-      : buildProGlobalGroups(t);
+      ? [
+          ...buildProEventGroups(t, eventId, counts),
+          ...buildProGlobalGroups(t, isStudioPro),
+        ]
+      : buildProGlobalGroups(t, isStudioPro);
   } else {
     groups = buildCoupleGroups(t, counts);
   }

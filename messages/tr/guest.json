@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Lütfen adını gir",
   "guest__record__schema__name_too_long": "İsim çok uzun",
   "guest__record__schema__note_required": "Paylaşmadan önce bir şeyler yaz",
-  "guest__record__schema__note_too_long": "Notlar 200 karakterle sınırlı"
+  "guest__record__schema__note_too_long": "Notlar 200 karakterle sınırlı",
+  "guest_invitation__eyebrow": "Davetlisin",
+  "guest_invitation__greeting": "Sevgili {name},",
+  "guest_invitation__intro": "{partnerA} ve {partnerB} sesli ya da görüntülü kutlamanı sonsuza dek saklamayı çok ister.",
+  "guest_invitation__cta": "Mesaj bırak",
+  "guest_invitation__cta_caption": "Ses, video, fotoğraf veya kısa bir not. Doğrudan çifte gider.",
+  "guest_invitation__closed_limit": "Mesajlar kapasiteye ulaştı — ama geldiğin için teşekkürler.",
+  "guest_invitation__closed_not_open": "Mesajlar henüz açık değil. Yakında tekrar uğra.",
+  "guest_invitation__closed_other": "Mesajlar şu anda gönderim kabul etmiyor."
 }

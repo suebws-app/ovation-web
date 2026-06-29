@@ -3,21 +3,32 @@
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { publicClient } from "@/lib/api/public-client";
+import { useGuestSubmissionStore } from "./store/useGuestSubmissionStore";
 
 type InvitationOpenTrackerProps = {
   slug: string;
+  token?: string;
 };
 
-export const InvitationOpenTracker = ({ slug }: InvitationOpenTrackerProps) => {
+export const InvitationOpenTracker = ({
+  slug,
+  token: tokenProp,
+}: InvitationOpenTrackerProps) => {
   const searchParams = useSearchParams();
   const channel = searchParams.get("via");
+  const token = tokenProp ?? searchParams.get("t");
+  const setInviteToken = useGuestSubmissionStore((s) => s.setInviteToken);
 
   useEffect(() => {
-    if (!channel) return;
-    publicClient.recordInvitationOpen(slug, channel).catch(() => {
+    if (token) setInviteToken(token);
+  }, [token, setInviteToken]);
+
+  useEffect(() => {
+    if (!channel && !token) return;
+    publicClient.recordInvitationOpen(slug, channel, token).catch(() => {
       // analytics is fire-and-forget
     });
-  }, [slug, channel]);
+  }, [slug, channel, token]);
 
   return null;
 };

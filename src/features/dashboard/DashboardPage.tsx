@@ -27,6 +27,7 @@ import { QRcodeWidget } from "./components/widgets/QRcodeWidget";
 import { Messages } from "./components/widgets/Messages";
 import { Photos } from "./components/widgets/Photos";
 import { Orders } from "./components/widgets/Orders";
+import { InvitationWidget } from "./components/widgets/InvitationWidget";
 
 export const DashboardPage = async () => {
   const t = await getTranslations();
@@ -134,6 +135,7 @@ export const DashboardPage = async () => {
             )}
           >
             <QRcodeWidget shortUrl={qr?.shortUrl ?? `/g/${event.slug}`} />
+            <InvitationWidget event={event} />
             <div className="min-[1300px]:hidden">
               <Orders orders={ordersPage?.items ?? []} />
             </div>

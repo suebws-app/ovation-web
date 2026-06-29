@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Atidaryti QR puslapį",
   "dashboard__qr__copy": "Kopijuoti nuorodą",
   "dashboard__qr__copied": "Nukopijuota",
+  "dashboard__widget__invitation__eyebrow": "Kvietimas",
+  "dashboard__widget__invitation__edit_cta": "Redaguoti kvietimą",
   "dashboard__widget__messages__unit": "žinutės",
   "dashboard__widget__messages__new_pill": "{count} naujos",
   "dashboard__widget__messages__since": "{count} naujos nuo paskutinio apsilankymo.",

@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Syötä nimesi",
   "guest__record__schema__name_too_long": "Nimi on liian pitkä",
   "guest__record__schema__note_required": "Kirjoita jotain ennen jakamista",
-  "guest__record__schema__note_too_long": "Viestit on rajattu 200 merkkiin"
+  "guest__record__schema__note_too_long": "Viestit on rajattu 200 merkkiin",
+  "guest_invitation__eyebrow": "Sinut on kutsuttu",
+  "guest_invitation__greeting": "Hyvä {name},",
+  "guest_invitation__intro": "{partnerA} ja {partnerB} haluaisivat siunauksesi äänenä tai videona — säilyttääkseen sen ikuisesti.",
+  "guest_invitation__cta": "Jätä viesti",
+  "guest_invitation__cta_caption": "Ääni, video, kuva tai pikamuistio. Menee suoraan parille.",
+  "guest_invitation__closed_limit": "Viestit ovat täynnä — mutta kiitos kun tulit.",
+  "guest_invitation__closed_not_open": "Viestit eivät ole vielä avoinna. Tule pian takaisin.",
+  "guest_invitation__closed_other": "Viestit eivät hyväksy lähetyksiä juuri nyt."
 }

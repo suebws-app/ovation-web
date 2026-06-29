@@ -1,0 +1,9 @@
+{
+  "account__title": "Llogaria",
+  "account__profile": "Profili",
+  "account__preferences": "Preferencat",
+  "account__email_settings": "Cilësimet e email-it",
+  "account__payment_methods": "Mënyrat e pagesës",
+  "account__delete_account": "Fshi llogarinë",
+  "account__delete_confirm": "Ky veprim nuk mund të zhbëhet. Jeni i sigurt?"
+}

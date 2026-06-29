@@ -1,0 +1,23 @@
+{
+  "errors__unauthorized": "Ju lutemi identifikohuni për të vazhduar.",
+  "errors__forbidden": "Ju nuk keni qasje në këtë.",
+  "errors__not_found": "Nuk u gjet.",
+  "errors__message_limit_reached": "Ky libër mysafirësh është plot — kontrolloni më vonë!",
+  "errors__event_not_active": "Ky libër mysafirësh është mbyllur.",
+  "errors__rate_limited": "Ngadalësoni pak, pastaj provoni përsëri.",
+  "errors__generic": "Diçka shkoi keq. Referenca: {traceId}",
+  "errors__pro_required": "Kërkohet një llogari profesionale.",
+  "errors__pro_event_limit_reached": "Keni arritur kufirin prej 12 eventeve në planin Starter. Përmirësoni në Studio për evente të pakufizuara.",
+  "errors__pro_subscription_required": "Kërkohet një abonim aktiv Pro për të krijuar evente.",
+  "errors__kiosk_pin_invalid": "Ky PIN nuk përputhet. Provoni përsëri.",
+  "errors__not_found__kicker": "404 — Faqja nuk u gjet",
+  "errors__not_found__headline_line1": "Kjo faqe mori",
+  "errors__not_found__headline_line2": "një rrugë tjetër.",
+  "errors__not_found__description": "Faqja që po kërkoni nuk ekziston, është zhvendosur, ose nuk e kaloi kurrë provën. Le t'ju kthejmë te vendi ku po ndodhin momentet.",
+  "errors__not_found__back_home": "Kthehu në shtëpi",
+  "errors__server__kicker": "Diçka u prish",
+  "errors__server__headline_line1": "Një pengesë e vogël",
+  "errors__server__headline_line2": "pas skenës.",
+  "errors__server__description": "Diçka shkoi keq nga ana jonë. Provoni përsëri — dhe nëse vazhdon të ndodhë, kthehuni në shtëpi dhe ne do t'i mbajmë gjërat në ecje.",
+  "errors__server__back_home": "Kthehu në shtëpi"
+}

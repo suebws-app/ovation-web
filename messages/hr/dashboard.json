@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Otvori QR stranicu",
   "dashboard__qr__copy": "Kopiraj poveznicu",
   "dashboard__qr__copied": "Kopirano",
+  "dashboard__widget__invitation__eyebrow": "Pozivnica",
+  "dashboard__widget__invitation__edit_cta": "Uredi pozivnicu",
   "dashboard__widget__messages__unit": "poruke",
   "dashboard__widget__messages__new_pill": "{count} novih",
   "dashboard__widget__messages__since": "{count} novih od tvog posljednjeg posjeta.",

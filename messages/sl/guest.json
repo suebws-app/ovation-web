@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Vnesi svoje ime",
   "guest__record__schema__name_too_long": "Ime je predolgo",
   "guest__record__schema__note_required": "Napiši nekaj, preden deliš",
-  "guest__record__schema__note_too_long": "Zapisi so omejeni na 200 znakov"
+  "guest__record__schema__note_too_long": "Zapisi so omejeni na 200 znakov",
+  "guest_invitation__eyebrow": "Povabljen(a) si",
+  "guest_invitation__greeting": "Dragi/Draga {name},",
+  "guest_invitation__intro": "{partnerA} in {partnerB} bi z veseljem prejela tvoj blagoslov v glasu ali videu — da ga ohranita za vedno.",
+  "guest_invitation__cta": "Pusti sporočilo",
+  "guest_invitation__cta_caption": "Glas, video, foto ali kratka opomba. Gre naravnost paru.",
+  "guest_invitation__closed_limit": "Sporočila so dosegla kapaciteto — vendar hvala, da si prišel/prišla.",
+  "guest_invitation__closed_not_open": "Sporočila še niso odprta. Vrni se kmalu.",
+  "guest_invitation__closed_other": "Sporočila trenutno ne sprejemajo prispevkov."
 }

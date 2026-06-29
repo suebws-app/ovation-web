@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Πληκτρολόγησε το όνομά σου",
   "guest__record__schema__name_too_long": "Το όνομα είναι πολύ μεγάλο",
   "guest__record__schema__note_required": "Γράψε κάτι πριν μοιραστείς",
-  "guest__record__schema__note_too_long": "Τα σημειώματα περιορίζονται σε 200 χαρακτήρες"
+  "guest__record__schema__note_too_long": "Τα σημειώματα περιορίζονται σε 200 χαρακτήρες",
+  "guest_invitation__eyebrow": "Είσαι προσκεκλημένος/η",
+  "guest_invitation__greeting": "Αγαπητέ/ή {name},",
+  "guest_invitation__intro": "Οι {partnerA} και {partnerB} θα λάτρευαν την ευλογία σου σε φωνή ή βίντεο — για να την κρατήσουν για πάντα.",
+  "guest_invitation__cta": "Άφησε ένα μήνυμα",
+  "guest_invitation__cta_caption": "Φωνή, βίντεο, φωτογραφία ή γρήγορη σημείωση. Πάει κατευθείαν στο ζευγάρι.",
+  "guest_invitation__closed_limit": "Τα μηνύματα έχουν φτάσει στο όριο — αλλά ευχαριστούμε που ήρθες.",
+  "guest_invitation__closed_not_open": "Τα μηνύματα δεν είναι ακόμα ανοιχτά. Επανέλαβε σύντομα.",
+  "guest_invitation__closed_other": "Τα μηνύματα δεν δέχονται υποβολές αυτή τη στιγμή."
 }

@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Saisis ton prénom",
   "guest__record__schema__name_too_long": "Le prénom est trop long",
   "guest__record__schema__note_required": "Écris quelque chose avant de partager",
-  "guest__record__schema__note_too_long": "Les notes sont limitées à 200 caractères"
+  "guest__record__schema__note_too_long": "Les notes sont limitées à 200 caractères",
+  "guest_invitation__eyebrow": "Vous êtes invité(e)",
+  "guest_invitation__greeting": "Cher/Chère {name},",
+  "guest_invitation__intro": "{partnerA} et {partnerB} adoreraient recevoir vos vœux en voix ou en vidéo — à garder pour toujours.",
+  "guest_invitation__cta": "Laisser un message",
+  "guest_invitation__cta_caption": "Voix, vidéo, photo ou une note rapide. Va directement au couple.",
+  "guest_invitation__closed_limit": "Les messages ont atteint la capacité — mais merci d'être venu(e).",
+  "guest_invitation__closed_not_open": "Les messages ne sont pas encore ouverts. Revenez bientôt.",
+  "guest_invitation__closed_other": "Les messages n'acceptent pas d'envois pour le moment."
 }

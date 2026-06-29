@@ -8,9 +8,11 @@ import { LinkCouplePhotoCard } from "./components/LinkCouplePhotoCard";
 import { LinkSubmissionTypesCard } from "./components/LinkSubmissionTypesCard";
 import { LinkVideoDurationCard } from "./components/LinkVideoDurationCard";
 import { LinkAudioDurationCard } from "./components/LinkAudioDurationCard";
+import { LinkGalleryShareCard } from "./components/LinkGalleryShareCard";
 
 type LinkSettingsClientProps = {
   eventId: string;
+  slug: string;
   submissionsEnabled: boolean;
   couplePhotoUrl: string | null;
   initialSettings: LinkSettings;
@@ -18,17 +20,27 @@ type LinkSettingsClientProps = {
 
 export const LinkSettingsClient = ({
   eventId,
+  slug,
   submissionsEnabled,
   couplePhotoUrl,
   initialSettings,
 }: LinkSettingsClientProps) => {
-  const { settings, patch } = useLinkSettings(eventId, initialSettings);
+  const { settings, patch, isSaving } = useLinkSettings(
+    eventId,
+    initialSettings,
+  );
 
   return (
     <div className="flex flex-col gap-6">
       <LinkHeader />
       <LinkActiveCard eventId={eventId} enabled={submissionsEnabled} />
       <LinkCouplePhotoCard eventId={eventId} initialPhotoUrl={couplePhotoUrl} />
+      <LinkGalleryShareCard
+        slug={slug}
+        settings={settings}
+        onPatch={patch}
+        isSaving={isSaving}
+      />
       <LinkSubmissionTypesCard settings={settings} onPatch={patch} />
       {settings.captureVideo && (
         <LinkVideoDurationCard settings={settings} onPatch={patch} />

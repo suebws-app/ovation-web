@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Kérlek, add meg a neved",
   "guest__record__schema__name_too_long": "A név túl hosszú",
   "guest__record__schema__note_required": "Írj valamit a megosztás előtt",
-  "guest__record__schema__note_too_long": "A jegyzetek 200 karakterre korlátozottak"
+  "guest__record__schema__note_too_long": "A jegyzetek 200 karakterre korlátozottak",
+  "guest_invitation__eyebrow": "Meghívást kaptál",
+  "guest_invitation__greeting": "Kedves {name},",
+  "guest_invitation__intro": "{partnerA} és {partnerB} szívesen fogadná áldásodat hangban vagy videóban — örökre megőrizve.",
+  "guest_invitation__cta": "Hagyj üzenetet",
+  "guest_invitation__cta_caption": "Hang, videó, fotó vagy gyors üzenet. Egyenesen a párnak megy.",
+  "guest_invitation__closed_limit": "Az üzenetek elérték a kapacitást — de köszönjük, hogy eljöttél.",
+  "guest_invitation__closed_not_open": "Az üzenetek még nincsenek nyitva. Nézz vissza hamarosan.",
+  "guest_invitation__closed_other": "Az üzenetek jelenleg nem fogadnak beküldéseket."
 }

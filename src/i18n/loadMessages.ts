@@ -2,6 +2,7 @@ import type { AbstractIntlMessages } from "next-intl";
 
 const NAMESPACES = [
   "account",
+  "analytics",
   "app",
   "auth",
   "cart",
@@ -13,6 +14,8 @@ const NAMESPACES = [
   "guest",
   "guests",
   "help",
+  "invitation",
+  "invitees",
   "keepsakes",
   "kiosk",
   "link",

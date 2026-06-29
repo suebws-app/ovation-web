@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Bitte gib deinen Namen ein",
   "guest__record__schema__name_too_long": "Name ist zu lang",
   "guest__record__schema__note_required": "Schreib etwas, bevor du teilst",
-  "guest__record__schema__note_too_long": "Notizen sind auf 200 Zeichen begrenzt"
+  "guest__record__schema__note_too_long": "Notizen sind auf 200 Zeichen begrenzt",
+  "guest_invitation__eyebrow": "Du bist eingeladen",
+  "guest_invitation__greeting": "Liebe(r) {name},",
+  "guest_invitation__intro": "{partnerA} und {partnerB} würden sich über deinen Segen in Sprache oder Video freuen — für immer zu behalten.",
+  "guest_invitation__cta": "Nachricht hinterlassen",
+  "guest_invitation__cta_caption": "Sprache, Video, Foto oder eine kurze Notiz. Geht direkt an das Paar.",
+  "guest_invitation__closed_limit": "Die Nachrichten sind voll — aber danke, dass du da bist.",
+  "guest_invitation__closed_not_open": "Nachrichten sind noch nicht geöffnet. Schau bald wieder vorbei.",
+  "guest_invitation__closed_other": "Nachrichten nehmen derzeit keine Einreichungen entgegen."
 }

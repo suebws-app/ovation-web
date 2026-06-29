@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Introduce tu nombre",
   "guest__record__schema__name_too_long": "El nombre es demasiado largo",
   "guest__record__schema__note_required": "Escribe algo antes de compartir",
-  "guest__record__schema__note_too_long": "Las notas están limitadas a 200 caracteres"
+  "guest__record__schema__note_too_long": "Las notas están limitadas a 200 caracteres",
+  "guest_invitation__eyebrow": "Estás invitado/a",
+  "guest_invitation__greeting": "Querido/a {name},",
+  "guest_invitation__intro": "A {partnerA} y {partnerB} les encantaría tu bendición en voz o vídeo — para guardarla para siempre.",
+  "guest_invitation__cta": "Dejar un mensaje",
+  "guest_invitation__cta_caption": "Voz, vídeo, foto o una nota breve. Va directo a la pareja.",
+  "guest_invitation__closed_limit": "Los mensajes han alcanzado el límite — pero gracias por venir.",
+  "guest_invitation__closed_not_open": "Los mensajes aún no están abiertos. Vuelve pronto.",
+  "guest_invitation__closed_other": "Los mensajes no aceptan envíos en este momento."
 }

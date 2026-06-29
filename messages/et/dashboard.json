@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Ava QR-lehekülg",
   "dashboard__qr__copy": "Kopeeri link",
   "dashboard__qr__copied": "Kopeeritud",
+  "dashboard__widget__invitation__eyebrow": "Kutse",
+  "dashboard__widget__invitation__edit_cta": "Muuda kutset",
   "dashboard__widget__messages__unit": "sõnumeid",
   "dashboard__widget__messages__new_pill": "{count} uut",
   "dashboard__widget__messages__since": "{count} uut alates eelmisest külastusest.",

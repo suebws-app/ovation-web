@@ -28,12 +28,14 @@ type GuestSubmissionState = {
   slug: string | null;
   sessionStartAt: number | null;
   guestName: string;
+  inviteToken: string | null;
   audio: AudioCapture | null;
   video: VideoCapture | null;
   note: string;
   photos: PhotoCapture[];
   setSlug: (slug: string) => void;
   setGuestName: (name: string) => void;
+  setInviteToken: (token: string | null) => void;
   setAudio: (audio: AudioCapture | null) => void;
   setVideo: (video: VideoCapture | null) => void;
   setNote: (note: string) => void;
@@ -48,6 +50,7 @@ const initial = {
   slug: null,
   sessionStartAt: null,
   guestName: "",
+  inviteToken: null,
   audio: null,
   video: null,
   note: "",
@@ -82,6 +85,7 @@ export const useGuestSubmissionStore = create<GuestSubmissionState>(
       }
     },
     setGuestName: (guestName) => set({ guestName }),
+    setInviteToken: (inviteToken) => set({ inviteToken }),
     setAudio: (audio) => {
       revoke(get().audio?.url);
       set({ audio });

@@ -41,6 +41,7 @@ export const appRoutes = {
 
   app: {
     root: "/home",
+    analytics: "/analytics",
     settings: "/settings",
     keepsakes: "/shop",
     cart: "/cart",
@@ -56,6 +57,8 @@ export const appRoutes = {
     link: "/link",
     help: "/help",
     account: "/account",
+    invitation: "/invitation",
+    invitees: "/invitees",
     events: "/events",
     event: (id: string) => `/events/${id}`,
     eventHome: (id: string) => `/events/${id}/home`,
@@ -88,6 +91,7 @@ export const appRoutes = {
     compose: (slug: string) => `/g/${slug}/compose`,
     review: (slug: string) => `/g/${slug}/review`,
     thankYou: (slug: string) => `/g/${slug}/thank-you`,
+    invitation: (slug: string, token: string) => `/i/${slug}/${token}`,
   },
 
   kiosk: {

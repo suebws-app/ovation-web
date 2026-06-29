@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maximum length for video submissions.",
   "link_settings__audio_duration__title": "Audio recording length",
   "link_settings__audio_duration__desc": "Maximum length for voice submissions.",
-  "link_settings__save_error": "Failed to save"
+  "link_settings__save_error": "Failed to save",
+  "link_settings__gallery__title": "Public gallery",
+  "link_settings__gallery__desc": "Share a view-only gallery of all event photos and videos with your guests.",
+  "link_settings__gallery__toggle_title": "Share gallery publicly",
+  "link_settings__gallery__toggle_desc": "Anyone with the link can view the gallery. Guests cannot upload or comment.",
+  "link_settings__gallery__copy": "Copy gallery link",
+  "link_settings__gallery__copied": "Copied",
+  "link_settings__gallery__regenerate": "Regenerate link",
+  "link_settings__gallery__regenerate_hint": "Regenerating creates a new link and disables the old one."
 }

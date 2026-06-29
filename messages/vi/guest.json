@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Vui lòng nhập tên của bạn",
   "guest__record__schema__name_too_long": "Tên quá dài",
   "guest__record__schema__note_required": "Hãy viết gì đó trước khi chia sẻ",
-  "guest__record__schema__note_too_long": "Ghi chú giới hạn 200 ký tự"
+  "guest__record__schema__note_too_long": "Ghi chú giới hạn 200 ký tự",
+  "guest_invitation__eyebrow": "Bạn được mời",
+  "guest_invitation__greeting": "{name} thân mến,",
+  "guest_invitation__intro": "{partnerA} và {partnerB} rất mong nhận được lời chúc của bạn bằng giọng nói hoặc video — để giữ lại mãi mãi.",
+  "guest_invitation__cta": "Để lại lời nhắn",
+  "guest_invitation__cta_caption": "Giọng nói, video, ảnh hoặc một ghi chú nhanh. Gửi trực tiếp đến cặp đôi.",
+  "guest_invitation__closed_limit": "Tin nhắn đã đầy — nhưng cảm ơn bạn đã đến.",
+  "guest_invitation__closed_not_open": "Tin nhắn chưa mở. Hãy quay lại sớm.",
+  "guest_invitation__closed_other": "Tin nhắn hiện không nhận bài gửi."
 }

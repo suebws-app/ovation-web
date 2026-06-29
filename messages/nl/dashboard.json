@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Open QR-pagina",
   "dashboard__qr__copy": "Kopieer link",
   "dashboard__qr__copied": "Gekopieerd",
+  "dashboard__widget__invitation__eyebrow": "Uitnodiging",
+  "dashboard__widget__invitation__edit_cta": "Uitnodiging bewerken",
   "dashboard__widget__messages__unit": "berichten",
   "dashboard__widget__messages__new_pill": "{count} nieuw",
   "dashboard__widget__messages__since": "{count} nieuw sinds je vorige bezoek.",

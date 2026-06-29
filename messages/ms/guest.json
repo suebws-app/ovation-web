@@ -159,5 +159,13 @@
   "guest__record__schema__name_required": "Sila masukkan nama anda",
   "guest__record__schema__name_too_long": "Nama terlalu panjang",
   "guest__record__schema__note_required": "Tulis sesuatu sebelum berkongsi",
-  "guest__record__schema__note_too_long": "Nota dihadkan kepada 200 aksara"
+  "guest__record__schema__note_too_long": "Nota dihadkan kepada 200 aksara",
+  "guest_invitation__eyebrow": "Anda dijemput",
+  "guest_invitation__greeting": "Kepada {name},",
+  "guest_invitation__intro": "{partnerA} dan {partnerB} ingin menerima restu anda dalam suara atau video — untuk disimpan selamanya.",
+  "guest_invitation__cta": "Tinggalkan mesej",
+  "guest_invitation__cta_caption": "Suara, video, foto atau nota ringkas. Terus kepada pasangan.",
+  "guest_invitation__closed_limit": "Mesej telah mencapai kapasiti — tetapi terima kasih kerana datang.",
+  "guest_invitation__closed_not_open": "Mesej belum dibuka. Sila kembali lagi.",
+  "guest_invitation__closed_other": "Mesej tidak menerima penyerahan buat masa ini."
 }

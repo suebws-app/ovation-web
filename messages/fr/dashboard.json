@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Ouvrir la page QR",
   "dashboard__qr__copy": "Copier le lien",
   "dashboard__qr__copied": "Copié",
+  "dashboard__widget__invitation__eyebrow": "Invitation",
+  "dashboard__widget__invitation__edit_cta": "Modifier l'invitation",
   "dashboard__widget__messages__unit": "messages",
   "dashboard__widget__messages__new_pill": "{count} nouveaux",
   "dashboard__widget__messages__since": "{count} nouveaux depuis ta dernière visite.",
