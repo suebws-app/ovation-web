@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "QR oldal megnyitása",
   "dashboard__qr__copy": "Link másolása",
   "dashboard__qr__copied": "Másolva",
+  "dashboard__widget__invitation__eyebrow": "Meghívó",
+  "dashboard__widget__invitation__edit_cta": "Meghívó szerkesztése",
   "dashboard__widget__messages__unit": "üzenet",
   "dashboard__widget__messages__new_pill": "{count} új",
   "dashboard__widget__messages__since": "{count} új a legutóbbi látogatásod óta.",

@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Deschide pagina QR",
   "dashboard__qr__copy": "Copiază linkul",
   "dashboard__qr__copied": "Copiat",
+  "dashboard__widget__invitation__eyebrow": "Invitație",
+  "dashboard__widget__invitation__edit_cta": "Editează invitația",
   "dashboard__widget__messages__unit": "mesaje",
   "dashboard__widget__messages__new_pill": "{count} noi",
   "dashboard__widget__messages__since": "{count} noi de la ultima ta vizită.",

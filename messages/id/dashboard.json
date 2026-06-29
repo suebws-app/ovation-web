@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Buka halaman QR",
   "dashboard__qr__copy": "Salin tautan",
   "dashboard__qr__copied": "Tersalin",
+  "dashboard__widget__invitation__eyebrow": "Undangan",
+  "dashboard__widget__invitation__edit_cta": "Ubah undangan",
   "dashboard__widget__messages__unit": "pesan",
   "dashboard__widget__messages__new_pill": "{count} baru",
   "dashboard__widget__messages__since": "{count} baru sejak terakhir Anda berkunjung.",

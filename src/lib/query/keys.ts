@@ -70,6 +70,14 @@ export const queryKeys = {
       input: { filter?: string; search?: string } = {},
     ) => ["guests", eventId, "count", input] as const,
   },
+  invitees: {
+    all: (eventId: string) => ["invitees", eventId] as const,
+    list: (eventId: string) => ["invitees", eventId, "list"] as const,
+  },
+  invitationTemplates: {
+    all: () => ["invitation-templates"] as const,
+    list: () => ["invitation-templates", "list"] as const,
+  },
   user: {
     me: () => ["user", "me"] as const,
   },

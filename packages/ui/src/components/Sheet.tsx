@@ -25,7 +25,7 @@ const SheetOverlay = forwardRef<
 SheetOverlay.displayName = "SheetOverlay";
 
 type SheetContentProps = React.ComponentProps<typeof Dialog.Content> & {
-  side?: "top" | "right" | "bottom" | "left";
+  side?: "top" | "right" | "bottom" | "left" | "center";
 };
 
 const SheetContent = forwardRef<
@@ -46,6 +46,8 @@ const SheetContent = forwardRef<
           "border-border inset-x-0 top-0 border-b transition-transform duration-300 ease-in-out data-[state=closed]:-translate-y-full data-[state=open]:translate-y-0",
         side === "bottom" &&
           "border-border inset-x-0 bottom-0 border-t transition-transform duration-300 ease-in-out data-[state=closed]:translate-y-full data-[state=open]:translate-y-0",
+        side === "center" &&
+          "border-border rounded-16 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 border",
         className,
       )}
       {...props}
@@ -58,6 +60,16 @@ SheetContent.displayName = "SheetContent";
 
 const SheetHeader = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div className={cn("flex flex-col gap-2 p-4", className)} {...props} />
+);
+
+const SheetFooter = ({ className, ...props }: React.ComponentProps<"div">) => (
+  <div
+    className={cn(
+      "flex flex-col-reverse gap-2 p-4 sm:flex-row sm:justify-end",
+      className,
+    )}
+    {...props}
+  />
 );
 
 const SheetTitle = forwardRef<
@@ -92,6 +104,7 @@ export {
   SheetOverlay,
   SheetContent,
   SheetHeader,
+  SheetFooter,
   SheetTitle,
   SheetDescription,
   VisuallyHidden,

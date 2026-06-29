@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "QR 페이지 열기",
   "dashboard__qr__copy": "링크 복사",
   "dashboard__qr__copied": "복사됨",
+  "dashboard__widget__invitation__eyebrow": "초대장",
+  "dashboard__widget__invitation__edit_cta": "초대장 수정",
   "dashboard__widget__messages__unit": "메시지",
   "dashboard__widget__messages__new_pill": "새 메시지 {count}개",
   "dashboard__widget__messages__since": "마지막 방문 이후 {count}개의 새 메시지가 있어요.",

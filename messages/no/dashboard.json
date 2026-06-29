@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Åpne QR-side",
   "dashboard__qr__copy": "Kopier lenke",
   "dashboard__qr__copied": "Kopiert",
+  "dashboard__widget__invitation__eyebrow": "Invitasjon",
+  "dashboard__widget__invitation__edit_cta": "Rediger invitasjon",
   "dashboard__widget__messages__unit": "meldinger",
   "dashboard__widget__messages__new_pill": "{count} nye",
   "dashboard__widget__messages__since": "{count} nye siden sist du var her.",

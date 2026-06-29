@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Hap faqen QR",
   "dashboard__qr__copy": "Kopjo lidhjen",
   "dashboard__qr__copied": "U kopjua",
+  "dashboard__widget__invitation__eyebrow": "Ftesa",
+  "dashboard__widget__invitation__edit_cta": "Modifiko ftesën",
   "dashboard__widget__messages__unit": "mesazhe",
   "dashboard__widget__messages__new_pill": "{count} të reja",
   "dashboard__widget__messages__since": "{count} të reja që nga vizita juaj e fundit.",

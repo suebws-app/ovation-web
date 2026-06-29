@@ -3,6 +3,30 @@ import type { Currency } from "@/i18n/currency-config";
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
+export type InvitationTemplate = {
+  id: string;
+  name: string;
+  description: string;
+  pageBg: string;
+  cardBg: string;
+  cardBorder: string;
+  textColor: string;
+  mutedColor: string;
+  accentColor: string;
+  buttonText: string;
+  displayFontKey: string;
+  bodyFontKey: string;
+  monogramAmp: string;
+  ornamentSymbol: string | null;
+  divider: string;
+  cornerOrnament: string | null;
+};
+
+export type InvitationTemplatesResponse = {
+  templates: InvitationTemplate[];
+  defaultTemplateId: string;
+};
+
 export type PlanTier =
   | "premium"
   | "bundle"
@@ -82,6 +106,7 @@ export type Event = {
   expectedGuests: number | null;
   welcomeMessage: string | null;
   themeColor: string;
+  invitationTemplateId: string;
   couplePhotoUrl: string | null;
   status: EventStatus | string;
   defaultLanguage: Locale;
@@ -183,6 +208,7 @@ export type CreateEventInput = {
 export type UpdateEventInput = Partial<CreateEventInput> & {
   welcomeMessage?: string;
   themeColor?: string;
+  invitationTemplateId?: string;
   couplePhotoUrl?: string | null;
   defaultLanguage?: Locale;
   slug?: string;
@@ -526,6 +552,60 @@ export type MessageCount = {
 
 export type GuestCount = {
   count: number;
+};
+
+export type Invitee = {
+  id: string;
+  eventId: string;
+  firstName: string;
+  lastName: string | null;
+  email: string | null;
+  phone: string | null;
+  seats: number;
+  inviteToken: string;
+  lastSentAt: string | null;
+  lastOpenedAt: string | null;
+  lastRespondedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type InvitationSendResult = {
+  invitation: {
+    id: string;
+    eventId: string;
+    inviteeId: string | null;
+    channel: string;
+    recipient: string | null;
+    status: string;
+    failureReason: string | null;
+    openedAt: string | null;
+    submittedAt: string | null;
+    createdAt: string;
+  };
+};
+
+export type InvitationBulkResult = {
+  queued: number;
+  skipped: number;
+};
+
+export type InvitationCopyLinkResult = InvitationSendResult & {
+  url: string;
+};
+
+export type InviteeInput = {
+  firstName: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  seats: number;
+};
+
+export type UpdateInviteeInput = Partial<InviteeInput>;
+
+export type BulkReplaceInviteesInput = {
+  items: InviteeInput[];
 };
 
 export type CheckoutItem = {

@@ -14,6 +14,7 @@ import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
 import { MonitorIcon } from "@ovation/icons/MonitorIcon";
 import { HelpCircleIcon } from "@ovation/icons/HelpCircleIcon";
 import { UsersIcon } from "@ovation/icons/UsersIcon";
+import { UserPlusIcon } from "@ovation/icons/UserPlusIcon";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { BoxIcon } from "@ovation/icons/BoxIcon";
 import { GridIcon } from "@ovation/icons/GridIcon";
@@ -163,6 +164,11 @@ const buildCoupleGroups = (
         href: appRoutes.app.guests,
         icon: UsersIcon,
         badge: counts.guests > 0 ? counts.guests : undefined,
+      },
+      {
+        label: t("sidebar__nav__invitees"),
+        href: appRoutes.app.invitees,
+        icon: UserPlusIcon,
       },
       {
         label: t("sidebar__nav__settings"),

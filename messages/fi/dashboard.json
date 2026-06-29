@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Avaa QR-sivu",
   "dashboard__qr__copy": "Kopioi linkki",
   "dashboard__qr__copied": "Kopioitu",
+  "dashboard__widget__invitation__eyebrow": "Kutsu",
+  "dashboard__widget__invitation__edit_cta": "Muokkaa kutsua",
   "dashboard__widget__messages__unit": "viestiä",
   "dashboard__widget__messages__new_pill": "{count} uutta",
   "dashboard__widget__messages__since": "{count} uutta viime käyntisi jälkeen.",

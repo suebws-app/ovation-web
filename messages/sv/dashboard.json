@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Öppna QR-sida",
   "dashboard__qr__copy": "Kopiera länk",
   "dashboard__qr__copied": "Kopierad",
+  "dashboard__widget__invitation__eyebrow": "Inbjudan",
+  "dashboard__widget__invitation__edit_cta": "Redigera inbjudan",
   "dashboard__widget__messages__unit": "meddelanden",
   "dashboard__widget__messages__new_pill": "{count} nya",
   "dashboard__widget__messages__since": "{count} nya sedan du senast besökte.",

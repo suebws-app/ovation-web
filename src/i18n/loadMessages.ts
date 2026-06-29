@@ -14,6 +14,8 @@ const NAMESPACES = [
   "guest",
   "guests",
   "help",
+  "invitation",
+  "invitees",
   "keepsakes",
   "kiosk",
   "link",

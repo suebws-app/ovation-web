@@ -98,6 +98,7 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
   const reset = useGuestSubmissionStore((s) => s.reset);
 
   const sessionStartAt = useGuestSubmissionStore((s) => s.sessionStartAt);
+  const inviteToken = useGuestSubmissionStore((s) => s.inviteToken);
   const [submitting, setSubmitting] = useState(false);
   const [tasks, setTasks] = useState<UploadTask[]>([]);
   const [phase, setPhase] = useState<SubmitPhase>("uploading");
@@ -257,6 +258,7 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
         submissionSource,
         submissionLanguage: locale,
         clientCreatedAt: new Date().toISOString(),
+        inviteToken: inviteToken ?? undefined,
         _honeypot: "",
         _t: sessionStartAt ?? Date.now() - 5000,
       });

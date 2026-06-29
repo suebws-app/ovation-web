@@ -31,6 +31,7 @@ export type CreateMessageInput = {
   submissionSource: SubmissionSource;
   submissionLanguage?: string | null;
   clientCreatedAt?: string | null;
+  inviteToken?: string;
   _honeypot?: string;
   _t?: number;
 };
@@ -89,10 +90,14 @@ export const publicClient = {
       { query: { code }, skipCsrf: true },
     ),
 
-  recordInvitationOpen: (slug: string, channel: string | null) =>
+  recordInvitationOpen: (
+    slug: string,
+    channel: string | null,
+    token?: string | null,
+  ) =>
     clientFetch<void>(`/public/events/${slug}/invitations/open`, {
       method: "POST",
-      body: { channel },
+      body: { channel, token: token ?? undefined },
       skipCsrf: true,
     }),
 

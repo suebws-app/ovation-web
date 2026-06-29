@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Atvērt QR lapu",
   "dashboard__qr__copy": "Kopēt saiti",
   "dashboard__qr__copied": "Nokopēts",
+  "dashboard__widget__invitation__eyebrow": "Ielūgums",
+  "dashboard__widget__invitation__edit_cta": "Rediģēt ielūgumu",
   "dashboard__widget__messages__unit": "ziņas",
   "dashboard__widget__messages__new_pill": "{count} jaunas",
   "dashboard__widget__messages__since": "{count} jaunas kopš tavas pēdējās apmeklēšanas.",

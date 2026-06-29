@@ -8,6 +8,8 @@
   "sidebar__pro__all": "Kõik üritused",
   "sidebar__nav__guests": "Külalised",
   "sidebar__nav__settings": "Seaded",
+  "sidebar__nav__invitation": "Kutse",
+  "sidebar__nav__invitees": "Külaliste nimekiri",
   "sidebar__quick__title": "Kiirlingid",
   "sidebar__quick__link": "Lingi seaded",
   "sidebar__quick__qr": "QR-kood",

@@ -20,6 +20,8 @@
   "dashboard__qr__open_page": "Otevřít stránku s QR",
   "dashboard__qr__copy": "Kopírovat odkaz",
   "dashboard__qr__copied": "Zkopírováno",
+  "dashboard__widget__invitation__eyebrow": "Pozvánka",
+  "dashboard__widget__invitation__edit_cta": "Upravit pozvánku",
   "dashboard__widget__messages__unit": "zpráv",
   "dashboard__widget__messages__new_pill": "{count} nových",
   "dashboard__widget__messages__since": "{count} nových od tvé poslední návštěvy.",

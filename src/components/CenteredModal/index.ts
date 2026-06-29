@@ -1,0 +1,1 @@
+export { CenteredModal } from "./CenteredModal";
