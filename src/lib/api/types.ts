@@ -309,6 +309,26 @@ export type PublicEvent = {
   kiosk: PublicKioskSettings;
 };
 
+export type PublicInvitation = {
+  event: {
+    slug: string;
+    partnerAName: string;
+    partnerBName: string;
+    weddingDate: string | null;
+    venueName: string | null;
+    venueCity: string | null;
+    welcomeMessage: string | null;
+    themeColor: string;
+    couplePhotoUrl: string | null;
+    invitationTemplateId: string;
+    submissionOpen: boolean;
+    limitReached: boolean;
+  };
+  invitee: {
+    firstName: string;
+  };
+};
+
 export type AudioUploadTarget = {
   kind: "audio";
   key: string;
@@ -590,7 +610,7 @@ export type InvitationBulkResult = {
   skipped: number;
 };
 
-export type InvitationCopyLinkResult = InvitationSendResult & {
+export type InvitationCopyLinkResult = {
   url: string;
 };
 
@@ -604,8 +624,10 @@ export type InviteeInput = {
 
 export type UpdateInviteeInput = Partial<InviteeInput>;
 
+export type BulkReplaceInviteeItem = InviteeInput & { id?: string };
+
 export type BulkReplaceInviteesInput = {
-  items: InviteeInput[];
+  items: BulkReplaceInviteeItem[];
 };
 
 export type CheckoutItem = {

@@ -78,15 +78,36 @@ export const useDeleteInvitee = (eventId: string) => {
   });
 };
 
+const markInviteesSent = (
+  queryClient: ReturnType<typeof useQueryClient>,
+  eventId: string,
+  predicate: (invitee: Invitee) => boolean,
+) => {
+  const stampedAt = new Date().toISOString();
+  queryClient.setQueryData<{ invitees: Invitee[] }>(
+    queryKeys.invitees.list(eventId),
+    (prev) => {
+      if (!prev) return prev;
+      return {
+        invitees: prev.invitees.map((invitee) =>
+          predicate(invitee) ? { ...invitee, lastSentAt: stampedAt } : invitee,
+        ),
+      };
+    },
+  );
+};
+
 export const useSendInvitationToInvitee = (eventId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (inviteeId: string) =>
       invitationsClient.sendToInvitee(eventId, inviteeId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: queryKeys.invitees.all(eventId),
-      });
+    onSuccess: (_data, inviteeId) => {
+      markInviteesSent(
+        queryClient,
+        eventId,
+        (invitee) => invitee.id === inviteeId,
+      );
     },
   });
 };
@@ -96,25 +117,20 @@ export const useSendInvitationsToAll = (eventId: string) => {
   return useMutation({
     mutationFn: () => invitationsClient.sendAll(eventId),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: queryKeys.invitees.all(eventId),
-      });
+      markInviteesSent(
+        queryClient,
+        eventId,
+        (invitee) => Boolean(invitee.email) && !invitee.lastSentAt,
+      );
     },
   });
 };
 
-export const useCopyInvitationLink = (eventId: string) => {
-  const queryClient = useQueryClient();
-  return useMutation({
+export const useCopyInvitationLink = (eventId: string) =>
+  useMutation({
     mutationFn: (inviteeId: string) =>
       invitationsClient.copyLink(eventId, inviteeId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: queryKeys.invitees.all(eventId),
-      });
-    },
   });
-};
 
 export const useBulkReplaceInvitees = (eventId: string) => {
   const queryClient = useQueryClient();

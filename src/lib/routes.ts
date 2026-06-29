@@ -91,6 +91,7 @@ export const appRoutes = {
     compose: (slug: string) => `/g/${slug}/compose`,
     review: (slug: string) => `/g/${slug}/review`,
     thankYou: (slug: string) => `/g/${slug}/thank-you`,
+    invitation: (slug: string, token: string) => `/i/${slug}/${token}`,
   },
 
   kiosk: {

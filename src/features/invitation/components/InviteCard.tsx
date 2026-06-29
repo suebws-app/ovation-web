@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@ovation/ui/utils/cn";
 import type { InvitationTemplate } from "@/lib/api/types";
 import { resolveFontStack } from "../invitationTemplates";
 
@@ -13,10 +14,65 @@ type InviteCardValues = {
   message?: string;
 };
 
+type InviteCardSize = "compact" | "large";
+
 type InviteCardProps = {
   template: InvitationTemplate;
   values: InviteCardValues;
   guestFirstName?: string;
+  size?: InviteCardSize;
+};
+
+type CSSSize = number | string;
+
+const SIZE_TOKENS: Record<
+  InviteCardSize,
+  {
+    ornament: CSSSize;
+    eyebrow: CSSSize;
+    eyebrowTracking: CSSSize;
+    name: CSSSize;
+    divider: CSSSize;
+    date: CSSSize;
+    dateTracking: CSSSize;
+    message: CSSSize;
+    messageMaxWidth: CSSSize;
+    venueLabel: CSSSize;
+    venueLabelTracking: CSSSize;
+    venueName: CSSSize;
+    padding: string;
+  }
+> = {
+  compact: {
+    ornament: 18,
+    eyebrow: 10,
+    eyebrowTracking: 3,
+    name: 26,
+    divider: 56,
+    date: 11,
+    dateTracking: 2,
+    message: 12,
+    messageMaxWidth: 220,
+    venueLabel: 10,
+    venueLabelTracking: 2,
+    venueName: 14,
+    padding: "p-6",
+  },
+  large: {
+    ornament: "clamp(20px, 4vw, 32px)",
+    eyebrow: "clamp(11px, 1.6vw, 14px)",
+    eyebrowTracking: "clamp(3px, 0.5vw, 5px)",
+    name: "clamp(30px, 7vw, 56px)",
+    divider: "clamp(56px, 12vw, 96px)",
+    date: "clamp(12px, 1.8vw, 16px)",
+    dateTracking: "clamp(2px, 0.35vw, 3px)",
+    message: "clamp(13px, 2vw, 18px)",
+    messageMaxWidth: "min(380px, 70vw)",
+    venueLabel: "clamp(11px, 1.6vw, 14px)",
+    venueLabelTracking: "clamp(2px, 0.35vw, 3px)",
+    venueName: "clamp(15px, 2.6vw, 24px)",
+    padding: "p-5 tablet:p-8 desktop:p-10",
+  },
 };
 
 const CornerOrnament = ({
@@ -103,6 +159,7 @@ export const InviteCard = ({
   template,
   values,
   guestFirstName,
+  size = "compact",
 }: InviteCardProps) => {
   const {
     pageBg,
@@ -117,14 +174,18 @@ export const InviteCard = ({
   } = template;
   const displayFont = resolveFontStack(template.displayFontKey);
   const bodyFont = resolveFontStack(template.bodyFontKey);
+  const s = SIZE_TOKENS[size];
 
   return (
     <div
-      className="relative flex h-full w-full flex-col items-center justify-center p-4"
+      className="relative flex h-full w-full flex-col items-center justify-center p-4 select-none"
       style={{ background: pageBg }}
     >
       <div
-        className="relative flex h-full w-full flex-col items-center justify-between p-6"
+        className={cn(
+          "relative flex h-full w-full flex-col items-center justify-between gap-4 overflow-hidden",
+          s.padding,
+        )}
         style={{
           background: cardBg,
           border: cardBorder !== "none" ? cardBorder : undefined,
@@ -153,7 +214,7 @@ export const InviteCard = ({
             <span
               style={{
                 color: accentColor,
-                fontSize: 18,
+                fontSize: s.ornament,
                 lineHeight: 1,
               }}
             >
@@ -161,15 +222,24 @@ export const InviteCard = ({
             </span>
           )}
           <span
-            className="text-[10px] tracking-[3px] uppercase"
-            style={{ color: mutedColor, fontFamily: bodyFont }}
+            className="uppercase"
+            style={{
+              color: mutedColor,
+              fontFamily: bodyFont,
+              fontSize: s.eyebrow,
+              letterSpacing: s.eyebrowTracking,
+            }}
           >
             {guestFirstName ? `Dear ${guestFirstName}` : "You are invited"}
           </span>
 
           <h2
-            className="px-2 text-[26px] leading-tight"
-            style={{ fontFamily: displayFont, color: textColor }}
+            className="px-2 leading-tight"
+            style={{
+              fontFamily: displayFont,
+              color: textColor,
+              fontSize: s.name,
+            }}
           >
             {values.partnerA || "Lila"}
             <span
@@ -182,14 +252,19 @@ export const InviteCard = ({
           </h2>
 
           <span
-            className="block h-px w-14"
-            style={{ background: accentColor }}
+            className="block h-px"
+            style={{ background: accentColor, width: s.divider }}
             aria-hidden
           />
 
           <p
-            className="text-[11px] tracking-[2px] uppercase"
-            style={{ color: mutedColor, fontFamily: bodyFont }}
+            className="uppercase"
+            style={{
+              color: mutedColor,
+              fontFamily: bodyFont,
+              fontSize: s.date,
+              letterSpacing: s.dateTracking,
+            }}
           >
             {values.dateLabel || "12 September 2026"}
             {values.time ? ` · ${values.time}` : ""}
@@ -197,8 +272,13 @@ export const InviteCard = ({
 
           {values.message && (
             <p
-              className="max-w-[220px] text-[12px] leading-relaxed italic"
-              style={{ color: mutedColor, fontFamily: bodyFont }}
+              className="leading-relaxed italic"
+              style={{
+                color: mutedColor,
+                fontFamily: bodyFont,
+                fontSize: s.message,
+                maxWidth: s.messageMaxWidth,
+              }}
             >
               {values.message}
             </p>
@@ -207,21 +287,33 @@ export const InviteCard = ({
           {values.venue && (
             <div>
               <p
-                className="text-[10px] tracking-[2px] uppercase"
-                style={{ color: mutedColor, fontFamily: bodyFont }}
+                className="uppercase"
+                style={{
+                  color: mutedColor,
+                  fontFamily: bodyFont,
+                  fontSize: s.venueLabel,
+                  letterSpacing: s.venueLabelTracking,
+                }}
               >
                 Venue
               </p>
               <p
-                className="mt-1 text-[14px] italic"
-                style={{ fontFamily: displayFont, color: textColor }}
+                className="mt-1 italic"
+                style={{
+                  fontFamily: displayFont,
+                  color: textColor,
+                  fontSize: s.venueName,
+                }}
               >
                 {values.venue}
               </p>
               {values.place && (
                 <p
-                  className="text-[10px]"
-                  style={{ color: mutedColor, fontFamily: bodyFont }}
+                  style={{
+                    color: mutedColor,
+                    fontFamily: bodyFont,
+                    fontSize: s.venueLabel,
+                  }}
                 >
                   {values.place}
                 </p>

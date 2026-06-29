@@ -32,6 +32,7 @@ export const getInvitationSchema = (t: T) =>
     message: z.string().max(INVITATION_MESSAGE_MAX),
     guests: z.array(
       z.object({
+        id: z.string().optional(),
         first: z.string(),
         email: z
           .string()

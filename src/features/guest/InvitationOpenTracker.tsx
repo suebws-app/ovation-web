@@ -7,12 +7,16 @@ import { useGuestSubmissionStore } from "./store/useGuestSubmissionStore";
 
 type InvitationOpenTrackerProps = {
   slug: string;
+  token?: string;
 };
 
-export const InvitationOpenTracker = ({ slug }: InvitationOpenTrackerProps) => {
+export const InvitationOpenTracker = ({
+  slug,
+  token: tokenProp,
+}: InvitationOpenTrackerProps) => {
   const searchParams = useSearchParams();
   const channel = searchParams.get("via");
-  const token = searchParams.get("t");
+  const token = tokenProp ?? searchParams.get("t");
   const setInviteToken = useGuestSubmissionStore((s) => s.setInviteToken);
 
   useEffect(() => {

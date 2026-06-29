@@ -30,6 +30,7 @@ const guestsPayload = (values: InvitationFields): BulkReplaceInviteesInput => ({
   items: values.guests
     .filter((guest) => guest.first.trim().length > 0)
     .map((guest) => ({
+      id: guest.id,
       firstName: guest.first.trim(),
       email: guest.email.trim() || undefined,
       phone: guest.phone.trim() || undefined,

@@ -183,5 +183,13 @@
   "guest_gallery__slideshow": "Play slideshow",
   "guest_gallery__lightbox__play": "Play slideshow",
   "guest_gallery__lightbox__pause": "Pause slideshow",
-  "guest_gallery__lightbox__fullscreen": "Toggle fullscreen"
+  "guest_gallery__lightbox__fullscreen": "Toggle fullscreen",
+  "guest_invitation__eyebrow": "You're invited",
+  "guest_invitation__greeting": "Dear {name},",
+  "guest_invitation__intro": "{partnerA} and {partnerB} would love your blessing in voice or video — to keep forever.",
+  "guest_invitation__cta": "Leave a message",
+  "guest_invitation__cta_caption": "Voice, video, photo or a quick note. Goes straight to the couple.",
+  "guest_invitation__closed_limit": "Messages are at capacity — but thank you for showing up.",
+  "guest_invitation__closed_not_open": "Messages aren't open yet. Check back soon.",
+  "guest_invitation__closed_other": "Messages aren't accepting submissions right now."
 }

@@ -26,6 +26,7 @@ const buildDefaults = ({
   place: event?.venueCity ?? "",
   message: event?.welcomeMessage ?? "",
   guests: invitees.map((invitee) => ({
+    id: invitee.id,
     first: invitee.firstName,
     email: invitee.email ?? "",
     phone: invitee.phone ?? "",
