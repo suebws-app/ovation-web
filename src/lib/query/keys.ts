@@ -1,6 +1,10 @@
-import type { ListMessagesQuery } from "@/lib/api/types";
+import type { AnalyticsRange, ListMessagesQuery } from "@/lib/api/types";
 
 export const queryKeys = {
+  analytics: {
+    all: () => ["analytics"] as const,
+    me: (range: AnalyticsRange) => ["analytics", "me", range] as const,
+  },
   events: {
     all: () => ["events"] as const,
     list: (input?: { limit?: number; cursor?: string }) =>

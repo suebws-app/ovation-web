@@ -41,6 +41,7 @@ export const appRoutes = {
 
   app: {
     root: "/home",
+    analytics: "/analytics",
     settings: "/settings",
     keepsakes: "/shop",
     cart: "/cart",

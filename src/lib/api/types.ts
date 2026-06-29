@@ -99,6 +99,40 @@ export type EventStats = {
   unreadMessages: number;
 };
 
+export type AnalyticsRange = "30d" | "90d" | "all";
+
+export type AnalyticsMonthlyPoint = {
+  month: string;
+  count: number;
+};
+
+export type AccountAnalytics = {
+  range: AnalyticsRange;
+  events: {
+    total: number;
+    active: number;
+    draft: number;
+    paused: number;
+    archived: number;
+  };
+  engagement: {
+    guests: number;
+    messages: number;
+    audio: number;
+    written: number;
+    favorites: number;
+    photos: number;
+    videos: number;
+  };
+  orders: {
+    count: number;
+  };
+  series: {
+    eventsByMonth: AnalyticsMonthlyPoint[];
+    messagesByMonth: AnalyticsMonthlyPoint[];
+  };
+};
+
 export type MessageSummary = {
   id: string;
   guestNames: string;

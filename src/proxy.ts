@@ -12,6 +12,7 @@ const PREVIEW_COOKIE = "preview_access";
 
 const PROTECTED_PREFIXES = [
   "/home",
+  "/analytics",
   "/messages",
   "/events",
   "/guests",
