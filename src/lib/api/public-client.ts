@@ -1,7 +1,7 @@
-import { clientFetch } from "./client";
+import { clientFetch, clientFetchPaginated, type Paginated } from "./client";
 import type {
   CreateMessageResult,
-  GalleryFeed,
+  GalleryItem,
   PublicEvent,
   UploadUrlsResult,
 } from "./types";
@@ -37,6 +37,7 @@ export type CreateMessageInput = {
 
 export type GalleryQuery = {
   type?: "photo" | "video" | "all";
+  sort?: "newest" | "oldest";
   cursor?: string;
   limit?: number;
 };
@@ -64,16 +65,22 @@ export const publicClient = {
       skipCsrf: true,
     }),
 
-  getGallery: (slug: string, query: GalleryQuery = {}) => {
-    const params = new URLSearchParams();
-    if (query.type) params.set("type", query.type);
-    if (query.cursor) params.set("cursor", query.cursor);
-    if (query.limit !== undefined) params.set("limit", String(query.limit));
-    const qs = params.toString();
-    return clientFetch<GalleryFeed>(
-      `/public/events/${slug}/gallery${qs ? `?${qs}` : ""}`,
-      { skipCsrf: true },
-    );
+  getGallery: (
+    slug: string,
+    code: string,
+    query: GalleryQuery = {},
+  ): Promise<Paginated<GalleryItem>> => {
+    const queryParams: Record<string, string | number | boolean | undefined> = {
+      code,
+    };
+    if (query.type) queryParams.type = query.type;
+    if (query.sort) queryParams.sort = query.sort;
+    if (query.cursor) queryParams.cursor = query.cursor;
+    if (query.limit !== undefined) queryParams.limit = query.limit;
+    return clientFetchPaginated<GalleryItem>(`/public/events/${slug}/gallery`, {
+      query: queryParams,
+      skipCsrf: true,
+    });
   },
 
   recordInvitationOpen: (slug: string, channel: string | null) =>

@@ -732,13 +732,20 @@ export type LinkSettings = {
   captureVideo: boolean;
   maxVideoDurationSeconds: number;
   maxAudioDurationSeconds: number;
+  galleryPublic: boolean;
+  galleryCode: string | null;
   createdAt: string;
   updatedAt: string;
 };
 
 export type UpdateLinkSettingsInput = Partial<
-  Omit<LinkSettings, "id" | "eventId" | "createdAt" | "updatedAt">
->;
+  Omit<
+    LinkSettings,
+    "id" | "eventId" | "galleryCode" | "createdAt" | "updatedAt"
+  >
+> & {
+  regenerateGalleryCode?: boolean;
+};
 
 export type KioskSettings = {
   id: string;

@@ -51,6 +51,18 @@ export const queryKeys = {
       } = {},
     ) => ["gallery", eventId, "count", input] as const,
   },
+  publicGallery: {
+    all: (slug: string) => ["public-gallery", slug] as const,
+    infiniteList: (
+      slug: string,
+      code: string,
+      input: {
+        type?: "photo" | "video" | "all";
+        sort?: "newest" | "oldest";
+        limit?: number;
+      } = {},
+    ) => ["public-gallery", slug, code, "infinite", input] as const,
+  },
   guests: {
     all: (eventId: string) => ["guests", eventId] as const,
     count: (
