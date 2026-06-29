@@ -12,12 +12,16 @@ import { downloadGalleryItem } from "../utils/download";
 type PublicGalleryTileProps = {
   item: GalleryItem;
   height: number;
+  slug: string;
+  code: string;
   onOpen: () => void;
 };
 
 export const PublicGalleryTile = ({
   item,
   height,
+  slug,
+  code,
   onOpen,
 }: PublicGalleryTileProps) => {
   const t = useTranslations();
@@ -32,7 +36,7 @@ export const PublicGalleryTile = ({
     e.stopPropagation();
     if (!downloadUrl) return;
     try {
-      await downloadGalleryItem(downloadUrl, caption, isVideo);
+      await downloadGalleryItem(slug, code, item.id);
     } catch (err) {
       console.error("[public-gallery] download failed", err);
     }

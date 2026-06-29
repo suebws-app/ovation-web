@@ -99,7 +99,12 @@ export const PublicGalleryClient = ({
   return (
     <div className="flex flex-col gap-8">
       {header}
-      <PublicGalleryGrid items={items} onOpen={openLightbox} />
+      <PublicGalleryGrid
+        items={items}
+        slug={slug}
+        code={code}
+        onOpen={openLightbox}
+      />
       <div ref={sentinelRef} className="h-px w-full" aria-hidden />
       {isFetchingNextPage && (
         <p className="type-body-small text-muted-foreground text-center">
@@ -110,6 +115,8 @@ export const PublicGalleryClient = ({
         <PublicGalleryLightbox
           items={items}
           index={lightboxIndex}
+          slug={slug}
+          code={code}
           hasNextPage={hasNextPage}
           isFetchingNextPage={isFetchingNextPage}
           slideshow={slideshow}

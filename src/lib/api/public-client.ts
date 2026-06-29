@@ -83,6 +83,12 @@ export const publicClient = {
     });
   },
 
+  galleryDownloadUrl: (slug: string, code: string, mediaId: string) =>
+    clientFetch<{ url: string }>(
+      `/public/events/${slug}/gallery/${mediaId}/download`,
+      { query: { code }, skipCsrf: true },
+    ),
+
   recordInvitationOpen: (slug: string, channel: string | null) =>
     clientFetch<void>(`/public/events/${slug}/invitations/open`, {
       method: "POST",

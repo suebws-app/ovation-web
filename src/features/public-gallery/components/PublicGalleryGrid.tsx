@@ -7,6 +7,8 @@ import { PublicGalleryColumn } from "./PublicGalleryColumn";
 
 type PublicGalleryGridProps = {
   items: GalleryItem[];
+  slug: string;
+  code: string;
   onOpen: (index: number) => void;
 };
 
@@ -37,6 +39,8 @@ const useColumnCount = (): number => {
 
 export const PublicGalleryGrid = ({
   items,
+  slug,
+  code,
   onOpen,
 }: PublicGalleryGridProps) => {
   const columnCount = useColumnCount();
@@ -61,7 +65,13 @@ export const PublicGalleryGrid = ({
   return (
     <div className="flex gap-3">
       {columns.map((col, colIdx) => (
-        <PublicGalleryColumn key={colIdx} cells={col} onOpen={onOpen} />
+        <PublicGalleryColumn
+          key={colIdx}
+          cells={col}
+          slug={slug}
+          code={code}
+          onOpen={onOpen}
+        />
       ))}
     </div>
   );

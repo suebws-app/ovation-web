@@ -7,8 +7,6 @@ import { ChevronRightIcon } from "@ovation/icons/ChevronRightIcon";
 import { XIcon } from "@ovation/icons/XIcon";
 import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
-import { PlayIcon } from "@ovation/icons/PlayIcon";
-import { PauseIcon } from "@ovation/icons/PauseIcon";
 import { MaximizeIcon } from "@ovation/icons/MaximizeIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
@@ -23,6 +21,8 @@ const SLIDESHOW_INTERVAL_MS = 4000;
 type PublicGalleryLightboxProps = {
   items: GalleryItem[];
   index: number;
+  slug: string;
+  code: string;
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
   slideshow?: boolean;
@@ -34,6 +34,8 @@ type PublicGalleryLightboxProps = {
 export const PublicGalleryLightbox = ({
   items,
   index,
+  slug,
+  code,
   hasNextPage,
   isFetchingNextPage,
   slideshow = false,
@@ -55,8 +57,8 @@ export const PublicGalleryLightbox = ({
   const [loadedUrl, setLoadedUrl] = useState<string | null>(null);
   const [displayUrl, setDisplayUrl] = useState<string | null>(fullUrl);
   const [baseUrl, setBaseUrl] = useState<string | null>(fullUrl);
-  const [isPlaying, setIsPlaying] = useState(slideshow);
   const [controlsVisible, setControlsVisible] = useState(false);
+  const isPlaying = slideshow;
 
   const revealControls = useCallback(() => {
     setControlsVisible(true);
@@ -209,9 +211,9 @@ export const PublicGalleryLightbox = ({
   const caption = item.uploaderName?.trim() || t("guest_gallery__anonymous");
 
   const handleDownload = async () => {
-    if (!fullUrl) return;
+    if (!item) return;
     try {
-      await downloadGalleryItem(fullUrl, caption, isVideo);
+      await downloadGalleryItem(slug, code, item.id);
     } catch (err) {
       console.error("[public-lightbox] download failed", err);
     }
@@ -271,22 +273,6 @@ export const PublicGalleryLightbox = ({
             })}
           </span>
           <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setIsPlaying((p) => !p)}
-              aria-label={
-                isPlaying
-                  ? t("guest_gallery__lightbox__pause")
-                  : t("guest_gallery__lightbox__play")
-              }
-              className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/10"
-            >
-              {isPlaying ? (
-                <PauseIcon width={16} height={16} />
-              ) : (
-                <PlayIcon width={16} height={16} />
-              )}
-            </button>
             <button
               type="button"
               onClick={toggleFullscreen}

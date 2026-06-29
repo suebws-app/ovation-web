@@ -1,3 +1,5 @@
+import { publicClient } from "@/lib/api/public-client";
+
 const extFromUrl = (url: string, fallback: string): string => {
   try {
     const path = new URL(url).pathname;
@@ -11,24 +13,18 @@ const extFromUrl = (url: string, fallback: string): string => {
 export const videoMimeFromUrl = (url: string): "video/mp4" | "video/webm" =>
   extFromUrl(url, "mp4") === "webm" ? "video/webm" : "video/mp4";
 
-const sanitizeFilename = (s: string): string =>
-  s.replace(/[^\p{L}\p{N}\-_ ]+/gu, "").trim() || "photo";
-
+// The API returns a presigned URL with Content-Disposition: attachment, so a
+// plain anchor navigation downloads cross-origin without a CORS fetch.
 export const downloadGalleryItem = async (
-  url: string,
-  name: string,
-  isVideo: boolean,
+  slug: string,
+  code: string,
+  mediaId: string,
 ): Promise<void> => {
-  const res = await fetch(url, { credentials: "omit" });
-  if (!res.ok) throw new Error(`Download failed (${res.status})`);
-  const blob = await res.blob();
-  const objectUrl = URL.createObjectURL(blob);
-  const ext = extFromUrl(url, isVideo ? "mp4" : "jpg");
+  const { url } = await publicClient.galleryDownloadUrl(slug, code, mediaId);
   const a = document.createElement("a");
-  a.href = objectUrl;
-  a.download = `${sanitizeFilename(name)}.${ext}`;
+  a.href = url;
+  a.rel = "noopener";
   document.body.appendChild(a);
   a.click();
   a.remove();
-  setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
 };
