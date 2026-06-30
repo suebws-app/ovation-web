@@ -7,7 +7,7 @@ import { TruckIcon } from "@ovation/icons/TruckIcon";
 import type { Order } from "@/lib/api/types";
 import { translateKey } from "@/lib/utils/translateKey";
 import { formatVariantName } from "@/lib/utils/formatVariantName";
-import { progressFor } from "@/features/checkout/orderHelpers";
+import { progressFor, statusKey } from "@/features/checkout/orderHelpers";
 import { OrderItem } from "./OrderItem";
 import { OrderDetailModal } from "./OrderDetailModal";
 
@@ -57,7 +57,7 @@ export const OrdersRail = ({ orders }: OrdersRailProps) => {
             <OrderItem
               key={order.id}
               title={productNameOf(order)}
-              status={t(`order__status__${order.status}`)}
+              status={t(statusKey(order.status))}
               pct={progressFor(order.status)}
               color={colorFor(order.status)}
               onClick={() =>

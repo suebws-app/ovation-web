@@ -8,6 +8,7 @@ import { useOrderDetail } from "@/lib/query/ordersQueries";
 import { safeHttpUrl } from "@/lib/utils/safe-url";
 import { translateKey } from "@/lib/utils/translateKey";
 import { formatVariantName } from "@/lib/utils/formatVariantName";
+import { statusKey } from "@/features/checkout/orderHelpers";
 import { formatPrice } from "../designTokens";
 import { OrderDetailRow } from "./OrderDetailRow";
 import { OrderDetailSkeleton } from "./OrderDetailSkeleton";
@@ -55,7 +56,7 @@ export const OrderDetailModal = ({
           <div className="mt-4 flex flex-col gap-3">
             <OrderDetailRow
               label={t("orders__detail__status")}
-              value={t(`order__status__${order.status}`)}
+              value={t(statusKey(order.status))}
             />
             {showPrintApproval && order.printApprovalStatus && (
               <OrderDetailRow
