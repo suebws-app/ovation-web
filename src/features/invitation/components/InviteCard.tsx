@@ -21,6 +21,7 @@ type InviteCardProps = {
   values: InviteCardValues;
   guestFirstName?: string;
   size?: InviteCardSize;
+  animate?: boolean;
 };
 
 type CSSSize = number | string;
@@ -160,6 +161,7 @@ export const InviteCard = ({
   values,
   guestFirstName,
   size = "compact",
+  animate = false,
 }: InviteCardProps) => {
   const {
     pageBg,
@@ -185,6 +187,7 @@ export const InviteCard = ({
         className={cn(
           "relative flex h-full w-full flex-col items-center justify-between gap-4 overflow-hidden",
           s.padding,
+          animate && "animate-invite-card-in",
         )}
         style={{
           background: cardBg,
@@ -209,7 +212,12 @@ export const InviteCard = ({
           </>
         )}
 
-        <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
+        <div
+          className={cn(
+            "flex flex-1 flex-col items-center justify-center gap-4 text-center",
+            animate && "invite-stagger",
+          )}
+        >
           {ornamentSymbol && (
             <span
               style={{

@@ -25,8 +25,19 @@ const STATUS_TONE: Record<
   cancelled: "muted",
 };
 
+const STATUS_LABEL_KEYS: Record<string, string> = {
+  pending: "order__status__pending",
+  paid: "order__status__paid",
+  failed: "order__status__failed",
+  refunded: "order__status__refunded",
+  cancelled: "order__status__cancelled",
+  in_production: "order__status__in_production",
+  shipped: "order__status__shipped",
+  delivered: "order__status__delivered",
+};
+
 export const statusKey = (status: OrderStatus): string =>
-  `order__status__${status}`;
+  STATUS_LABEL_KEYS[status] ?? "order__status__pending";
 
 export const labelFor = (status: OrderStatus): string => statusKey(status);
 

@@ -26,6 +26,8 @@ const laxScriptSrc = [
   "https://*.paddle.dev",
   "https://*.i.posthog.com",
   "https://*.posthog.com",
+  "https://browser.sentry-cdn.com",
+  "https://*.sentry-cdn.com",
   "'unsafe-inline'",
   isDev ? "'unsafe-eval'" : "",
 ]

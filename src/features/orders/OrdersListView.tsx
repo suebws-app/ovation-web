@@ -8,6 +8,7 @@ import { PageHeading } from "@/components/PageHeading";
 import { useOrdersList } from "@/lib/query/ordersQueries";
 import { OrderDetailModal } from "@/features/keepsakes/components/OrderDetailModal";
 import type { Order } from "@/lib/api/types";
+import { statusKey } from "@/features/checkout/orderHelpers";
 import { OrderCard } from "./OrderCard";
 import { OrdersEmptyState } from "./OrdersEmptyState";
 import { OrdersListSkeleton } from "./OrdersListSkeleton";
@@ -63,7 +64,7 @@ export const OrdersListView = ({ title, eventId }: OrdersListViewProps) => {
                 <OrderCard
                   key={order.id}
                   order={order}
-                  statusLabel={t(`order__status__${order.status}`)}
+                  statusLabel={t(statusKey(order.status))}
                   photoCountLabel={null}
                   onClick={() =>
                     setOpenOrder({ id: order.id, currency: order.currency })

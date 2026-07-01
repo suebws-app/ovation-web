@@ -1,9 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
-import { Button } from "@ovation/ui/components/Button";
-import { Link } from "@/i18n/navigation";
 import type { InvitationTemplate, PublicInvitation } from "@/lib/api/types";
 import { InviteCard } from "@/features/invitation/components/InviteCard";
 import { InvitationOpenTracker } from "@/features/guest/InvitationOpenTracker";
@@ -35,7 +32,6 @@ export const GuestInvitationView = ({
   invitee,
   template,
 }: GuestInvitationViewProps) => {
-  const t = useTranslations();
   const setGuestName = useGuestSubmissionStore((s) => s.setGuestName);
   const currentGuestName = useGuestSubmissionStore((s) => s.guestName);
 
@@ -44,13 +40,6 @@ export const GuestInvitationView = ({
       setGuestName(invitee.firstName);
     }
   }, [currentGuestName, invitee.firstName, setGuestName]);
-
-  const canSubmit = event.submissionOpen && !event.limitReached;
-  const closedMessage = event.limitReached
-    ? t("guest_invitation__closed_limit")
-    : !event.submissionOpen
-      ? t("guest_invitation__closed_not_open")
-      : t("guest_invitation__closed_other");
 
   return (
     <>
@@ -68,6 +57,7 @@ export const GuestInvitationView = ({
               <InviteCard
                 template={template}
                 size="large"
+                animate
                 values={{
                   partnerA: event.partnerAName,
                   partnerB: event.partnerBName,
@@ -79,43 +69,6 @@ export const GuestInvitationView = ({
                 guestFirstName={invitee.firstName}
               />
             </div>
-          </div>
-
-          <div className="tablet:max-w-xl desktop:max-w-2xl flex w-full max-w-lg flex-col items-center gap-3">
-            {canSubmit ? (
-              <>
-                <Button
-                  asChild
-                  className="w-full rounded-full shadow-lg"
-                  style={{
-                    background: template.accentColor,
-                    color: template.buttonText,
-                  }}
-                >
-                  <Link href={`/g/${slug}/compose`}>
-                    {t("guest_invitation__cta")}
-                  </Link>
-                </Button>
-                <p
-                  className="type-caption text-center"
-                  style={{ color: template.mutedColor }}
-                >
-                  {t("guest_invitation__cta_caption")}
-                </p>
-              </>
-            ) : (
-              <div
-                className="rounded-16 border p-4.5"
-                style={{ borderColor: template.accentColor }}
-              >
-                <p
-                  className="type-body-small text-center"
-                  style={{ color: template.textColor }}
-                >
-                  {closedMessage}
-                </p>
-              </div>
-            )}
           </div>
         </div>
       </div>
