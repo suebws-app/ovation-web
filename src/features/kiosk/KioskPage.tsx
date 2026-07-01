@@ -3,7 +3,6 @@ import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { getServerSession } from "@/lib/auth/server-session";
 import { KioskLiveFrame } from "@/features/kiosk-setup/components/KioskLiveFrame";
-import { KioskPinGate } from "./components/KioskPinGate";
 
 type KioskPageProps = {
   params: Promise<{ slug: string }>;
@@ -26,14 +25,12 @@ export const KioskPage = async ({ params }: KioskPageProps) => {
 
   return (
     <div className="fixed inset-0">
-      <KioskPinGate slug={slug}>
-        <KioskLiveFrame
-          slug={slug}
-          event={event}
-          exitHref={exitHref}
-          enableWakeLock
-        />
-      </KioskPinGate>
+      <KioskLiveFrame
+        slug={slug}
+        event={event}
+        exitHref={exitHref}
+        enableWakeLock
+      />
     </div>
   );
 };

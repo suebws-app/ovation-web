@@ -30,12 +30,11 @@ const statsFallback = (
       return stats.totalMessages;
     case "favorites":
       return stats.favorites;
-    case "with_photo":
-      return stats.photoCount;
-    case "with_video":
-      return stats.videoCount;
     case "audio_only":
       return stats.audioMessages;
+    // with_photo / with_video have no message-level stat (photoCount/videoCount
+    // are media totals, not messages-with-photo counts) — rely on the count
+    // query so we never flash a wrong number.
     default:
       return undefined;
   }
@@ -67,6 +66,7 @@ const MessageFilterChip = ({
     <Chip
       label={t(labelKey)}
       count={count}
+      loading={count == null && countQuery.isPending}
       active={active}
       onClick={() => onSelect(filter)}
     />

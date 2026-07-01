@@ -51,7 +51,6 @@ export const KioskLiveFrame = ({
   const isClosed = !event.submissionOpen || event.limitReached;
   const showThanks = searchParams.get("submitted") === "1";
   const [exitOpen, setExitOpen] = useState(false);
-  const leaveOnConfirmRef = useRef(false);
   const skipNextGuardRef = useRef(false);
   const showLanguagePicker =
     event.kiosk.welcomeShowLanguagePicker &&
@@ -78,43 +77,30 @@ export const KioskLiveFrame = ({
     }
   };
 
+  const leaveKiosk = async () => {
+    if (isFullscreen) {
+      skipNextGuardRef.current = true;
+      try {
+        await exitFullscreen();
+      } catch {
+        // ignore
+      }
+    }
+    clearKioskSession();
+    router.push(exitHref);
+  };
+
   const handleExitClick = async () => {
-    const shouldLeave = !isFullscreen;
     if (event.kiosk.requiresPin) {
-      leaveOnConfirmRef.current = shouldLeave;
       setExitOpen(true);
       return;
     }
-    if (isFullscreen) {
-      skipNextGuardRef.current = true;
-    }
-    try {
-      await exitFullscreen();
-    } catch {
-      // ignore
-    }
-    if (shouldLeave) {
-      clearKioskSession();
-      router.push(exitHref);
-    }
+    await leaveKiosk();
   };
 
   const handleManualExitConfirm = async () => {
     setExitOpen(false);
-    const shouldLeave = leaveOnConfirmRef.current;
-    leaveOnConfirmRef.current = false;
-    if (isFullscreen) {
-      skipNextGuardRef.current = true;
-    }
-    try {
-      await exitFullscreen();
-    } catch {
-      // ignore
-    }
-    if (shouldLeave) {
-      clearKioskSession();
-      router.push(exitHref);
-    }
+    await leaveKiosk();
   };
 
   useWakeLock(enableWakeLock);
