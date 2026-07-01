@@ -68,7 +68,12 @@ export const EventDashboardPage = async ({
         throw error;
       }),
       mediaApi
-        .gallery(event.id, { type: "photo", sort: "newest", limit: 100 })
+        .gallery(event.id, {
+          type: "photo",
+          sort: "newest",
+          limit: 100,
+          includeOwnerUploads: true,
+        })
         .catch((error) => {
           if (ApiError.isApiError(error) && error.status === 404) return null;
           throw error;

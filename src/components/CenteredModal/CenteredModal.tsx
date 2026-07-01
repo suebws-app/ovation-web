@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
+import { cn } from "@ovation/ui/utils/cn";
 import { XIcon } from "@ovation/icons/XIcon";
 import {
   Sheet,
@@ -20,6 +21,7 @@ type CenteredModalProps = {
   description?: string;
   footer?: ReactNode;
   children: ReactNode;
+  contentClassName?: string;
 };
 
 export const CenteredModal = ({
@@ -29,12 +31,16 @@ export const CenteredModal = ({
   description,
   footer,
   children,
+  contentClassName,
 }: CenteredModalProps) => {
   const t = useTranslations();
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="center" className="h-115 p-6">
+      <SheetContent
+        side="center"
+        className={cn("p-6", contentClassName ?? "h-115")}
+      >
         <SheetHeader className="shrink-0 flex-row items-start justify-between gap-3 p-0">
           <div className="flex flex-col gap-2">
             <SheetTitle>{title}</SheetTitle>

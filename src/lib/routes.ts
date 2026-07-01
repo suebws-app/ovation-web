@@ -58,7 +58,7 @@ export const appRoutes = {
     help: "/help",
     account: "/account",
     invitation: "/invitation",
-    invitees: "/invitees",
+    invitees: "/invitations",
     events: "/events",
     event: (id: string) => `/events/${id}`,
     eventHome: (id: string) => `/events/${id}/home`,

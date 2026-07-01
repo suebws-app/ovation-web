@@ -24,7 +24,7 @@ export const InviteesPage = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <InviteesPageClient eventId={event.id} />
+      <InviteesPageClient event={event} />
     </HydrationBoundary>
   );
 };
