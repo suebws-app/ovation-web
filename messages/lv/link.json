@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maksimālais video iesniegumu garums.",
   "link_settings__audio_duration__title": "Audio ieraksta garums",
   "link_settings__audio_duration__desc": "Maksimālais balss iesniegumu garums.",
-  "link_settings__save_error": "Neizdevās saglabāt"
+  "link_settings__save_error": "Neizdevās saglabāt",
+  "link_settings__gallery__title": "Publiskā galerija",
+  "link_settings__gallery__desc": "Kopīgojiet ar viesiem tikai skatīšanai paredzētu galeriju ar visām pasākuma fotogrāfijām un video.",
+  "link_settings__gallery__toggle_title": "Kopīgot galeriju publiski",
+  "link_settings__gallery__toggle_desc": "Ikviens ar saiti var apskatīt galeriju. Viesi nevar neko augšupielādēt vai komentēt.",
+  "link_settings__gallery__copy": "Kopēt galerijas saiti",
+  "link_settings__gallery__copied": "Nokopēts",
+  "link_settings__gallery__regenerate": "Ģenerēt jaunu saiti",
+  "link_settings__gallery__regenerate_hint": "Ģenerējot tiek izveidota jauna saite un vecā tiek atspējota."
 }

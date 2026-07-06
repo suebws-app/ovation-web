@@ -9,12 +9,19 @@ import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { PlanOptionCard } from "@/features/plans/components/PlanOptionCard";
 import { PRO_TIERS } from "@/features/marketing/PricingSection/constants";
+import { usePlans } from "@/lib/query/plansQueries";
 
 export const ProPlan = () => {
   const t = useTranslations();
   const { formData, updateFormData } = useSignUpStore();
   const router = useRouter();
   const [showError, setShowError] = useState(false);
+  const { data } = usePlans();
+
+  const priceFor = (planCode: string | null, fallback: string) => {
+    const plan = data?.plans.find((p) => p.code === planCode);
+    return plan?.productVariables.regularPriceFormatted ?? fallback;
+  };
 
   const handleSelect = (key: string) => {
     updateFormData({ selectedPlan: key });
@@ -43,19 +50,28 @@ export const ProPlan = () => {
           </span>
         </h1>
         <p className="text-muted-foreground type-body-small mt-3 leading-relaxed">
-          {t("signup__pro_plan__subtitle")}
+          {t("signup__pro_plan__subtitle_v2")}
         </p>
 
         <div className="tablet:grid-cols-2 mt-10 grid grid-cols-1 gap-5">
           {PRO_TIERS.map(
-            ({ key, tagKey, nameKey, price, perKey, descKey, featKeys }) => (
+            ({
+              key,
+              planCode,
+              tagKey,
+              nameKey,
+              price,
+              perKey,
+              descKey,
+              featKeys,
+            }) => (
               <PlanOptionCard
                 key={key}
                 planKey={key}
                 isSelected={formData.selectedPlan === key}
                 tagLabel={t(tagKey)}
                 name={t(nameKey)}
-                price={price}
+                price={priceFor(planCode, price)}
                 per={t(perKey)}
                 desc={t(descKey)}
                 features={featKeys.map((k) => t(k))}

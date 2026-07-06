@@ -1,6 +1,6 @@
 {
   "invitees__title": "Lista invitati",
-  "invitees__subtitle": "{count, plural, one {# invitato} other {# invitati}}",
+  "invitees__subtitle": "{count} {count, plural, one {invitato} other {invitati}}",
   "invitees__empty__title": "Nessuna lista invitati",
   "invitees__empty__body": "Inizia il tuo invito per creare la lista invitati.",
   "invitees__empty__cta": "Apri assistente invito",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Link invito copiato negli appunti",
   "invitees__row__copy_error": "Impossibile copiare il link. Riprova.",
   "invitees__row__no_email": "Senza email",
-  "invitees__row__seats_inline": "{count, plural, one {# posto} other {# posti}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {posto} other {posti}}",
   "invitees__send_all__cta": "Invia a {count} non inviati",
   "invitees__send_all__sending": "Invio…",
   "invitees__send_all__confirm": "Inviare gli inviti a {count, plural, one {# invitato} other {# invitati}} ora?",
   "invitees__send_all__success": "{queued} in coda, {skipped} saltati (senza email).",
-  "invitees__send_all__error": "Impossibile mettere in coda gli inviti. Riprova."
+  "invitees__send_all__error": "Impossibile mettere in coda gli inviti. Riprova.",
+  "invitees__preview__cta": "Anteprima",
+  "invitees__preview__title": "Anteprima dell'invito",
+  "invitees__edit_card__cta": "Modifica biglietto d'invito"
 }

@@ -1,6 +1,6 @@
 {
   "invitees__title": "Gæsteliste",
-  "invitees__subtitle": "{count, plural, one {# inviteret} other {# inviterede}}",
+  "invitees__subtitle": "{count} {count, plural, one {inviteret} other {inviterede}}",
   "invitees__empty__title": "Ingen gæsteliste endnu",
   "invitees__empty__body": "Start din invitation for at opbygge din gæsteliste.",
   "invitees__empty__cta": "Åbn invitationsguiden",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Invitationslink kopieret til udklipsholderen",
   "invitees__row__copy_error": "Kunne ikke kopiere linket. Prøv igen.",
   "invitees__row__no_email": "Ingen e-mail",
-  "invitees__row__seats_inline": "{count, plural, one {# plads} other {# pladser}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {plads} other {pladser}}",
   "invitees__send_all__cta": "Send til {count} usendte",
   "invitees__send_all__sending": "Sender…",
   "invitees__send_all__confirm": "Send invitationer til {count, plural, one {# gæst} other {# gæster}} nu?",
   "invitees__send_all__success": "{queued} i kø, {skipped} sprunget over (ingen e-mail).",
-  "invitees__send_all__error": "Kunne ikke sætte invitationerne i kø. Prøv igen."
+  "invitees__send_all__error": "Kunne ikke sætte invitationerne i kø. Prøv igen.",
+  "invitees__preview__cta": "Forhåndsvisning",
+  "invitees__preview__title": "Forhåndsvisning af invitation",
+  "invitees__edit_card__cta": "Rediger invitationskort"
 }

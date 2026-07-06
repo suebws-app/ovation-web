@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maksimalno trajanje videoporuka.",
   "link_settings__audio_duration__title": "Trajanje audiozapisa",
   "link_settings__audio_duration__desc": "Maksimalno trajanje glasovnih poruka.",
-  "link_settings__save_error": "Spremanje nije uspjelo"
+  "link_settings__save_error": "Spremanje nije uspjelo",
+  "link_settings__gallery__title": "Javna galerija",
+  "link_settings__gallery__desc": "Podijelite s gostima galeriju svih fotografija i videozapisa događaja samo za pregled.",
+  "link_settings__gallery__toggle_title": "Dijeli galeriju javno",
+  "link_settings__gallery__toggle_desc": "Svatko s poveznicom može vidjeti galeriju. Gosti ne mogu ništa prenositi ni komentirati.",
+  "link_settings__gallery__copy": "Kopiraj poveznicu galerije",
+  "link_settings__gallery__copied": "Kopirano",
+  "link_settings__gallery__regenerate": "Generiraj novu poveznicu",
+  "link_settings__gallery__regenerate_hint": "Generiranjem nastaje nova poveznica, a stara se deaktivira."
 }

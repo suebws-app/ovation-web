@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Ospiti",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {messaggio} other {messaggi}} ricevuti finora.",
+  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {messaggio ricevuto} other {messaggi ricevuti}} finora.",
   "guests__hero__subtitle": "Traccia i contributi e condividi il tuo link di invito. Una directory completa degli ospiti sta arrivando — per ora, ogni voce ricevuta è riflessa nella lista dei messaggi.",
   "guests__hero__add": "Aggiungi un ospite",
   "guests__hero__import": "Importa .csv",

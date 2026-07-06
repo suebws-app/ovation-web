@@ -3,11 +3,14 @@ import { useTranslations } from "next-intl";
 import { createZipBlob } from "@/lib/media/createZip";
 import { createXlsxBlob, type XlsxSheet } from "@/lib/spreadsheet/createXlsx";
 import { messagesClient } from "@/lib/api/messages-client";
+import { profileClient } from "@/lib/api/profile-client";
+import { ordersClient } from "@/lib/api/orders-client";
 import type {
   Event,
   MessageDetail,
   MessageSummary,
   GalleryItem,
+  Order,
 } from "@/lib/api/types";
 import { aggregateGuests, type GuestRow } from "@/features/guests/adapters";
 import { saveBlob } from "@/lib/utils/download-blob";
@@ -175,6 +178,45 @@ const buildTranscriptsText = (details: MessageDetail[]): string => {
   return blocks.join("\n\n---\n\n");
 };
 
+const buildOrdersCsv = (orders: Order[]): string => {
+  const header = [
+    "Order ID",
+    "Type",
+    "Product",
+    "Variant",
+    "Quantity",
+    "Status",
+    "Total (cents)",
+    "Currency",
+    "Created",
+  ];
+  const rows = orders.map((o) => [
+    o.id,
+    o.orderType,
+    o.productName,
+    o.variantName ?? "",
+    String(o.quantity),
+    o.status,
+    String(o.totalCents),
+    o.currency,
+    o.createdAt,
+  ]);
+  return [header, ...rows]
+    .map((cols) => cols.map(escapeCsv).join(","))
+    .join("\n");
+};
+
+const fetchAllOrders = async (eventId: string): Promise<Order[]> => {
+  const all: Order[] = [];
+  let cursor: string | undefined;
+  do {
+    const page = await ordersClient.list({ eventId, limit: 100, cursor });
+    all.push(...page.items);
+    cursor = page.nextCursor ?? undefined;
+  } while (cursor);
+  return all;
+};
+
 const buildGuestSheet = (event: Event, guests: GuestRow[]): XlsxSheet => {
   const coupleName = [event.partnerAName, event.partnerBName]
     .filter(Boolean)
@@ -302,15 +344,33 @@ export const useEventDataExport = (
       }
 
       if (kind === "everything") {
-        const [audio, photos, videos] = await Promise.all([
+        const [audio, photos, videos, profile, orders] = await Promise.all([
           buildAudioFiles(details),
           buildPhotoFiles(details),
           buildVideoFiles(details),
+          profileClient.getMe().catch(() => null),
+          fetchAllOrders(eventId).catch(() => []),
         ]);
         const transcripts = buildTranscriptsText(details);
         const guests = aggregateGuests(summaries, anonymous);
         const csv = buildGuestsCsv(guests);
         const files: { name: string; blob: Blob }[] = [];
+        if (profile) {
+          files.push({
+            name: "account.json",
+            blob: new Blob([JSON.stringify(profile.user, null, 2)], {
+              type: "application/json",
+            }),
+          });
+        }
+        if (orders.length > 0) {
+          files.push({
+            name: "orders.csv",
+            blob: new Blob([buildOrdersCsv(orders)], {
+              type: "text/csv;charset=utf-8",
+            }),
+          });
+        }
         for (const f of audio)
           files.push({ name: `audio/${f.name}`, blob: f.blob });
         for (const f of photos)

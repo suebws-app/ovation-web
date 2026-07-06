@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Nous recommandons d’activer les deux avant de commencer.",
   "kiosk__start_warning__cancel": "Annuler",
   "kiosk__start_warning__confirm": "Démarrer quand même",
-  "kiosk_setup__pin__set": "Définir le code PIN",
   "kiosk_setup__language__set_main": "Définir comme langue principale",
   "kiosk_setup__language__remove": "Supprimer la langue",
   "kiosk_setup__select__placeholder": "Sélectionner une option",

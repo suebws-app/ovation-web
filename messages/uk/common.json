@@ -61,5 +61,6 @@
   "common__theme__label": "Тема",
   "common__theme__light": "Світла",
   "common__theme__dark": "Темна",
-  "common__theme__system": "Системна"
+  "common__theme__system": "Системна",
+  "common__footer__legal_links__terms": "Умови"
 }

@@ -67,5 +67,7 @@
   "cart__confirm__body": "Dziękujemy za zamówienie. Wysłaliśmy e-mail z potwierdzeniem i szczegółami.",
   "cart__confirm__reference": "Numer referencyjny: {id}",
   "cart__confirm__view_order": "Zobacz zamówienie",
-  "cart__confirm__continue": "Kontynuuj zakupy"
+  "cart__confirm__continue": "Kontynuuj zakupy",
+  "cart__line__shipping": "+ {price} dostawa",
+  "cart__addresses__shipping_price": "Dostawa {price}"
 }

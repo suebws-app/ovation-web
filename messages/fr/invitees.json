@@ -1,6 +1,6 @@
 {
   "invitees__title": "Liste des invités",
-  "invitees__subtitle": "{count, plural, one {# invité} other {# invités}}",
+  "invitees__subtitle": "{count} {count, plural, one {invité} other {invités}}",
   "invitees__empty__title": "Pas encore de liste d'invités",
   "invitees__empty__body": "Commence ton invitation pour créer ta liste d'invités.",
   "invitees__empty__cta": "Ouvrir l'assistant d'invitation",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Lien d'invitation copié dans le presse-papiers",
   "invitees__row__copy_error": "Impossible de copier le lien. Réessaie.",
   "invitees__row__no_email": "Pas d'e-mail",
-  "invitees__row__seats_inline": "{count, plural, one {# place} other {# places}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {place} other {places}}",
   "invitees__send_all__cta": "Envoyer à {count} non envoyés",
   "invitees__send_all__sending": "Envoi…",
   "invitees__send_all__confirm": "Envoyer les invitations à {count, plural, one {# invité} other {# invités}} maintenant ?",
   "invitees__send_all__success": "{queued} en file d'attente, {skipped} ignorés (pas d'e-mail).",
-  "invitees__send_all__error": "Impossible de mettre les invitations en file d'attente. Réessaie."
+  "invitees__send_all__error": "Impossible de mettre les invitations en file d'attente. Réessaie.",
+  "invitees__preview__cta": "Aperçu",
+  "invitees__preview__title": "Aperçu de l'invitation",
+  "invitees__edit_card__cta": "Modifier la carte d'invitation"
 }

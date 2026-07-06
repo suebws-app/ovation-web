@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maksimali vaizdo pateikimų trukmė.",
   "link_settings__audio_duration__title": "Garso įrašo trukmė",
   "link_settings__audio_duration__desc": "Maksimali balso pateikimų trukmė.",
-  "link_settings__save_error": "Nepavyko išsaugoti"
+  "link_settings__save_error": "Nepavyko išsaugoti",
+  "link_settings__gallery__title": "Vieša galerija",
+  "link_settings__gallery__desc": "Pasidalykite su svečiais tik peržiūrai skirta visų renginio nuotraukų ir vaizdo įrašų galerija.",
+  "link_settings__gallery__toggle_title": "Bendrinti galeriją viešai",
+  "link_settings__gallery__toggle_desc": "Kiekvienas, turintis nuorodą, gali peržiūrėti galeriją. Svečiai negali nieko įkelti ar komentuoti.",
+  "link_settings__gallery__copy": "Kopijuoti galerijos nuorodą",
+  "link_settings__gallery__copied": "Nukopijuota",
+  "link_settings__gallery__regenerate": "Sugeneruoti naują nuorodą",
+  "link_settings__gallery__regenerate_hint": "Sugeneravus sukuriama nauja nuoroda, o senoji išjungiama."
 }

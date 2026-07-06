@@ -61,5 +61,6 @@
   "common__theme__label": "Tema",
   "common__theme__light": "Terang",
   "common__theme__dark": "Gelap",
-  "common__theme__system": "Sistem"
+  "common__theme__system": "Sistem",
+  "common__footer__legal_links__terms": "Ketentuan"
 }

@@ -49,7 +49,7 @@ export const ComingSoonPage = async () => {
         <div className="mb-10 flex flex-col gap-2.5">
           <FeaturePill text={t("coming_soon__feature_1")} />
           <FeaturePill text={t("coming_soon__feature_2")} />
-          <FeaturePill text={t("coming_soon__feature_3")} />
+          <FeaturePill text={t("coming_soon__feature_3_v2")} />
         </div>
 
         <div className="rounded-24 border-border bg-card border p-6 shadow">

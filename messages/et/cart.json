@@ -67,5 +67,7 @@
   "cart__confirm__body": "Aitäh tellimuse eest. Saatsime kinnituse koos üksikasjadega e-posti aadressile.",
   "cart__confirm__reference": "Viide: {id}",
   "cart__confirm__view_order": "Vaata tellimust",
-  "cart__confirm__continue": "Jätka ostlemist"
+  "cart__confirm__continue": "Jätka ostlemist",
+  "cart__line__shipping": "+ {price} tarne",
+  "cart__addresses__shipping_price": "Tarne {price}"
 }

@@ -61,5 +61,6 @@
   "common__theme__label": "Design",
   "common__theme__light": "Hell",
   "common__theme__dark": "Dunkel",
-  "common__theme__system": "System"
+  "common__theme__system": "System",
+  "common__footer__legal_links__terms": "Nutzungsbedingungen"
 }

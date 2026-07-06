@@ -18,7 +18,10 @@ export const PrivacyPage = () => {
   const sections = [
     {
       heading: t("marketing__privacy__intro_heading"),
-      body: t("marketing__privacy__intro_body"),
+      body: t("marketing__privacy__intro_body", {
+        legalEntityName: clientEnv.LEGAL_ENTITY_NAME,
+        legalEntityAddress: clientEnv.LEGAL_ENTITY_ADDRESS,
+      }),
     },
     {
       heading: t("marketing__privacy__collect_heading"),
@@ -33,11 +36,27 @@ export const PrivacyPage = () => {
       body: t("marketing__privacy__share_body"),
     },
     {
+      heading: t("marketing__privacy__transfers_heading"),
+      body: t("marketing__privacy__transfers_body"),
+    },
+    {
+      heading: t("marketing__privacy__retention_heading"),
+      body: t("marketing__privacy__retention_body"),
+    },
+    {
       heading: t("marketing__privacy__rights_heading"),
       body: t.rich("marketing__privacy__rights_body", {
         email: supportEmail,
         link: emailLink,
       }),
+    },
+    {
+      heading: t("marketing__privacy__guests_heading"),
+      body: t("marketing__privacy__guests_body"),
+    },
+    {
+      heading: t("marketing__privacy__changes_heading"),
+      body: t("marketing__privacy__changes_body"),
     },
   ];
 

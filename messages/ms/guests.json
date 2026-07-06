@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Tetamu",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {mesej} other {mesej}} diterima setakat ini.",
+  "guests__hero__title": "<emph>{count}</emph> {count, plural, other {mesej}} diterima setakat ini.",
   "guests__hero__subtitle": "Jejaki sumbangan dan kongsi pautan jemputan anda. Direktori tetamu penuh akan datang tidak lama lagi — buat masa ini, setiap suara yang masuk dicerminkan dalam senarai mesej.",
   "guests__hero__add": "Tambah tetamu",
   "guests__hero__import": "Import .csv",

@@ -1,7 +1,8 @@
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/features/marketing/HeroSection";
-import { LogoBar } from "@/features/marketing/LogoBar";
+import { PricingTeaser } from "./PricingTeaser";
 import { keepsakesApi } from "@/lib/api/keepsakes";
+import { plansApi } from "@/lib/api/plans";
 import { formatPrice } from "@/features/checkout/orderHelpers";
 
 const HowItWorks = dynamic(() =>
@@ -19,11 +20,6 @@ const FeaturesGrid = dynamic(() =>
     default: m.FeaturesGrid,
   })),
 );
-const TestimonialSection = dynamic(() =>
-  import("./TestimonialSection").then((m) => ({
-    default: m.TestimonialSection,
-  })),
-);
 const FAQSection = dynamic(() =>
   import("./FAQSection").then((m) => ({
     default: m.FAQSection,
@@ -37,6 +33,8 @@ const FinalCTA = dynamic(() =>
 
 const GOLD_BOOK_PRODUCT_TYPE = "hardcover";
 const GOLD_BOOK_FALLBACK_PRICE = "€59";
+const COUPLE_PLAN_FALLBACK_PRICE = "€189";
+const PRO_PLAN_FALLBACK_PRICE = "€49";
 
 const fetchGoldBookPrice = async (): Promise<string> => {
   try {
@@ -49,17 +47,32 @@ const fetchGoldBookPrice = async (): Promise<string> => {
   }
 };
 
+const fetchPlanPrice = async (
+  code: string,
+  fallback: string,
+): Promise<string> => {
+  try {
+    const plan = await plansApi.findByCode(code);
+    return plan.productVariables.regularPriceFormatted ?? fallback;
+  } catch {
+    return fallback;
+  }
+};
+
 export const LandingPage = async () => {
-  const goldBookPrice = await fetchGoldBookPrice();
+  const [goldBookPrice, couplePrice, proPrice] = await Promise.all([
+    fetchGoldBookPrice(),
+    fetchPlanPrice("premium", COUPLE_PLAN_FALLBACK_PRICE),
+    fetchPlanPrice("pro_starter", PRO_PLAN_FALLBACK_PRICE),
+  ]);
 
   return (
     <>
       <HeroSection />
-      <LogoBar />
       <HowItWorks />
       <SampleSpread />
       <FeaturesGrid goldBookPrice={goldBookPrice} />
-      <TestimonialSection />
+      <PricingTeaser couplePrice={couplePrice} proPrice={proPrice} />
       <FAQSection />
       <FinalCTA />
     </>

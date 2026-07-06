@@ -1,23 +1,18 @@
 {
   "invitation__page__title": "Pozvánka",
   "invitation__page__breadcrumb": "Pozvánka",
-
   "invitation__step__design__label": "Vyberte design",
   "invitation__step__details__label": "Detaily akce",
   "invitation__step__guests__label": "Seznam hostů",
-
   "invitation__step__design__title_a": "Vyberte svůj",
   "invitation__step__design__title_b": "design pozvánky.",
   "invitation__step__design__subtitle": "Vyberte šablonu a dolaďte barvy a písmo. Náhled se aktualizuje živě.",
-
   "invitation__step__details__title_a": "Přidejte detaily",
   "invitation__step__details__title_b": "akce.",
   "invitation__step__details__subtitle": "Vyplňte jména páru, datum a místo — každá pozvánka je použije.",
-
   "invitation__step__guests__title_a": "Sestavte si",
   "invitation__step__guests__title_b": "seznam hostů.",
   "invitation__step__guests__subtitle": "Přidejte každého hosta; automaticky vygenerujeme personalizovanou pozvánku a odkaz pro každého z nich.",
-
   "invitation__section__templates": "Design karty",
   "invitation__section__templates_sub": "Vyberte design — vaši hosté ho uvidí v e-mailu s pozvánkou, v náhledech odkazů a na stránce hosta.",
   "invitation__templates__load_error": "Designy se nepodařilo načíst. Obnovte prosím stránku.",
@@ -31,7 +26,6 @@
   "invitation__section__photo_sub": "Volitelný tón hlavního obrázku",
   "invitation__section__guests": "Hosté",
   "invitation__section__guests_sub": "Personalizované pozvánky a odkazy",
-
   "invitation__field__partner_a": "Partner A",
   "invitation__field__partner_b": "Partner B",
   "invitation__field__date": "Datum",
@@ -42,7 +36,6 @@
   "invitation__field__colour_scheme": "Barevné schéma",
   "invitation__field__typeface": "Typografie",
   "invitation__field__preset_tones": "Přednastavené tóny",
-
   "invitation__placeholder__partner_a": "např. Lila",
   "invitation__placeholder__partner_b": "např. Theo",
   "invitation__placeholder__date": "12. září 2026",
@@ -57,14 +50,11 @@
   "invitation__placeholder__guest_name": "Jméno hosta",
   "invitation__placeholder__guest_email": "guest@email.com",
   "invitation__placeholder__guest_phone": "+420 123 456 789",
-
   "invitation__schedule__add": "+ Přidat okamžik",
   "invitation__schedule__time_placeholder": "16:00",
   "invitation__schedule__label_placeholder": "Obřad",
-
   "invitation__photo__dropzone_title": "Sem přetáhněte fotografii",
   "invitation__photo__dropzone_hint": "JPG nebo PNG · až 10 MB",
-
   "invitation__guests__add": "+ Přidat hosta",
   "invitation__guests__import": "Importovat",
   "invitation__guests__import__title": "Import hostů",
@@ -72,15 +62,13 @@
   "invitation__guests__empty": "Zatím žádní hosté. Přidej prvního hosta a uvidíš personalizovanou pozvánku.",
   "invitation__guests__count": "{count, plural, one {# host} few {# hosté} other {# hostů}} · {seats, plural, one {# místo} few {# místa} other {# míst}}",
   "invitation__guests__remove": "Odstranit",
-  "invitation__guests__locked__title": "Seznam hostů je připraven — {count, plural, one {# host} few {# hosté} other {# hostů}}",
+  "invitation__guests__locked__title": "Seznam hostů je připraven — {count} {count, plural, one {host} few {hosté} other {hostů}}",
   "invitation__guests__locked__body": "Od této chvíle spravuj seznam hostů (přidávání, úpravy, mazání, odesílání pozvánek) v sekci Seznam hostů. Průvodce slouží jen k počátečnímu nastavení.",
   "invitation__guests__locked__cta": "Otevřít seznam hostů",
-
   "invitation__preview__mode_invite": "Pozvánka",
   "invitation__preview__mode_guest": "Pohled hosta",
   "invitation__preview__live": "Živý náhled",
   "invitation__preview__personalized": "Personalizováno pro {name}",
-
   "invitation__nav__back": "Zpět",
   "invitation__nav__next": "Další",
   "invitation__nav__complete": "Dokončit",

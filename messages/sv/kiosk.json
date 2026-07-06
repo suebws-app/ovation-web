@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Vi rekommenderar att slå på båda innan du går live.",
   "kiosk__start_warning__cancel": "Avbryt",
   "kiosk__start_warning__confirm": "Starta ändå",
-  "kiosk_setup__pin__set": "Ange PIN",
   "kiosk_setup__language__set_main": "Ange som huvudspråk",
   "kiosk_setup__language__remove": "Ta bort språk",
   "kiosk_setup__select__placeholder": "Välj alternativ",

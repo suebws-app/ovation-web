@@ -1,6 +1,6 @@
 {
   "invitees__title": "Lista gości",
-  "invitees__subtitle": "{count, plural, one {# zaproszony} few {# zaproszonych} many {# zaproszonych} other {# zaproszonych}}",
+  "invitees__subtitle": "{count} {count, plural, one {zaproszony} few {zaproszonych} many {zaproszonych} other {zaproszonego}}",
   "invitees__empty__title": "Brak listy gości",
   "invitees__empty__body": "Rozpocznij zaproszenie, aby zbudować listę gości.",
   "invitees__empty__cta": "Otwórz kreator zaproszenia",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Link zaproszenia skopiowany do schowka",
   "invitees__row__copy_error": "Nie udało się skopiować linku. Spróbuj ponownie.",
   "invitees__row__no_email": "Brak e-maila",
-  "invitees__row__seats_inline": "{count, plural, one {# miejsce} few {# miejsca} many {# miejsc} other {# miejsc}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {miejsce} few {miejsca} many {miejsc} other {miejsca}}",
   "invitees__send_all__cta": "Wyślij do {count} niewysłanych",
   "invitees__send_all__sending": "Wysyłanie…",
   "invitees__send_all__confirm": "Wysłać zaproszenia do {count, plural, one {# gościa} few {# gości} many {# gości} other {# gości}} teraz?",
   "invitees__send_all__success": "{queued} w kolejce, {skipped} pominięto (bez e-maila).",
-  "invitees__send_all__error": "Nie udało się umieścić zaproszeń w kolejce. Spróbuj ponownie."
+  "invitees__send_all__error": "Nie udało się umieścić zaproszeń w kolejce. Spróbuj ponownie.",
+  "invitees__preview__cta": "Podgląd",
+  "invitees__preview__title": "Podgląd zaproszenia",
+  "invitees__edit_card__cta": "Edytuj kartę zaproszenia"
 }

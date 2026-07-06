@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktyvus — kitas atsiskaitymas {date}, €20/mėn.",
   "settings__billing__dre_cancel_btn": "Atšaukti DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Atšaukimas suplanuotas. Prieiga baigsis {date}.",
-  "settings__billing__dre_resume_btn": "Atnaujinti DRE"
+  "settings__billing__dre_resume_btn": "Atnaujinti DRE",
+  "settings__data__rights__report__email_subject": "Duomenų ataskaitos užklausa"
 }

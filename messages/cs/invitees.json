@@ -1,6 +1,6 @@
 {
   "invitees__title": "Seznam hostů",
-  "invitees__subtitle": "{count, plural, one {# pozvaný} few {# pozvaní} other {# pozvaných}}",
+  "invitees__subtitle": "{count} {count, plural, one {pozvaný} few {pozvaní} other {pozvaných}}",
   "invitees__empty__title": "Zatím žádný seznam hostů",
   "invitees__empty__body": "Začni s pozvánkou a sestav si seznam hostů.",
   "invitees__empty__cta": "Otevřít průvodce pozvánkou",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Odkaz na pozvánku zkopírován do schránky",
   "invitees__row__copy_error": "Odkaz se nepodařilo zkopírovat. Zkus to znovu.",
   "invitees__row__no_email": "Bez e-mailu",
-  "invitees__row__seats_inline": "{count, plural, one {# místo} few {# místa} other {# míst}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {místo} few {místa} other {míst}}",
   "invitees__send_all__cta": "Odeslat {count, plural, one {# neodeslanému} few {# neodeslaným} other {# neodeslaným}}",
   "invitees__send_all__sending": "Odesílání…",
   "invitees__send_all__confirm": "Odeslat pozvánky {count, plural, one {# hostu} few {# hostům} other {# hostům}} nyní?",
   "invitees__send_all__success": "{queued} ve frontě, {skipped} přeskočeno (bez e-mailu).",
-  "invitees__send_all__error": "Pozvánky se nepodařilo zařadit do fronty. Zkus to znovu."
+  "invitees__send_all__error": "Pozvánky se nepodařilo zařadit do fronty. Zkus to znovu.",
+  "invitees__preview__cta": "Náhled",
+  "invitees__preview__title": "Náhled pozvánky",
+  "invitees__edit_card__cta": "Upravit kartu pozvánky"
 }

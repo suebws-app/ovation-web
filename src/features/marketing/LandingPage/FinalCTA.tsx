@@ -31,7 +31,7 @@ export const FinalCTA = () => {
                 </span>
               </SectionTitle>
               <p className="text-muted-foreground type-body mt-5 max-w-115 leading-relaxed">
-                {t("marketing__cta__description")}
+                {t("marketing__cta__description_v2")}
               </p>
             </div>
 

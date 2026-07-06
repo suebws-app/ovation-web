@@ -67,5 +67,7 @@
   "cart__confirm__body": "Tak for din ordre. Vi har sendt en bekræftelsesmail med detaljerne.",
   "cart__confirm__reference": "Reference: {id}",
   "cart__confirm__view_order": "Se ordre",
-  "cart__confirm__continue": "Fortsæt med at handle"
+  "cart__confirm__continue": "Fortsæt med at handle",
+  "cart__line__shipping": "+ {price} fragt",
+  "cart__addresses__shipping_price": "Fragt {price}"
 }

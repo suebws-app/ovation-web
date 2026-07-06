@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Gosti",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {poruka} few {poruke} other {poruka}} dosad primljeno.",
+  "guests__hero__title": "Dosad {count, plural, one {primljena <emph>{count}</emph> poruka} few {primljene <emph>{count}</emph> poruke} other {primljeno <emph>{count}</emph> poruka}}.",
   "guests__hero__subtitle": "Prati doprinose i podijeli svoju poveznicu za pozivnice. Cjelovit imenik gostiju stiže uskoro — zasad je svaki glas koji je stigao prikazan na popisu poruka.",
   "guests__hero__add": "Dodaj gosta",
   "guests__hero__import": "Uvezi .csv",

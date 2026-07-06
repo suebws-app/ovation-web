@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktywne — następne rozliczenie {date}, 20 €/mies.",
   "settings__billing__dre_cancel_btn": "Anuluj DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Anulowanie zaplanowane. Dostęp kończy się {date}.",
-  "settings__billing__dre_resume_btn": "Wznów DRE"
+  "settings__billing__dre_resume_btn": "Wznów DRE",
+  "settings__data__rights__report__email_subject": "Prośba o raport danych"
 }

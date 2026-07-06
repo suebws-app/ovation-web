@@ -1,6 +1,6 @@
 {
   "invitees__title": "Gjesteliste",
-  "invitees__subtitle": "{count, plural, one {# inviterte} other {# inviterte}}",
+  "invitees__subtitle": "{count} {count, plural, one {invitert} other {inviterte}}",
   "invitees__empty__title": "Ingen gjesteliste ennå",
   "invitees__empty__body": "Start invitasjonen for å bygge gjestelisten.",
   "invitees__empty__cta": "Åpne invitasjonsveiviser",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Invitasjonslenke kopiert til utklippstavlen",
   "invitees__row__copy_error": "Kunne ikke kopiere lenken. Prøv igjen.",
   "invitees__row__no_email": "Ingen e-post",
-  "invitees__row__seats_inline": "{count, plural, one {# plass} other {# plasser}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {plass} other {plasser}}",
   "invitees__send_all__cta": "Send til {count} usendte",
   "invitees__send_all__sending": "Sender…",
   "invitees__send_all__confirm": "Sende invitasjoner til {count, plural, one {# gjest} other {# gjester}} nå?",
   "invitees__send_all__success": "{queued} i kø, {skipped} hoppet over (ingen e-post).",
-  "invitees__send_all__error": "Kunne ikke legge invitasjoner i kø. Prøv igjen."
+  "invitees__send_all__error": "Kunne ikke legge invitasjoner i kø. Prøv igjen.",
+  "invitees__preview__cta": "Forhåndsvis",
+  "invitees__preview__title": "Forhåndsvisning av invitasjon",
+  "invitees__edit_card__cta": "Rediger invitasjonskort"
 }

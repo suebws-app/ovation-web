@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktiivinen — seuraava laskutus {date}, 20 €/kk.",
   "settings__billing__dre_cancel_btn": "Peruuta DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Peruutus aikataulutettu. Pääsy päättyy {date}.",
-  "settings__billing__dre_resume_btn": "Jatka DRE:tä"
+  "settings__billing__dre_resume_btn": "Jatka DRE:tä",
+  "settings__data__rights__report__email_subject": "Tietoraporttipyyntö"
 }

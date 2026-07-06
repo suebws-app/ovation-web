@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Invitați",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {mesaj primit} other {mesaje primite}} până acum.",
+  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {mesaj primit} few {mesaje primite} other {de mesaje primite}} până acum.",
   "guests__hero__subtitle": "Urmărește contribuțiile și distribuie linkul tău de invitație. Un director complet al invitaților vine în curând — deocamdată, fiecare voce care a venit este reflectată în lista de mesaje.",
   "guests__hero__add": "Adaugă un invitat",
   "guests__hero__import": "Importă .csv",

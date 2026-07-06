@@ -1,6 +1,6 @@
 {
   "invitees__title": "Svečių sąrašas",
-  "invitees__subtitle": "{count, plural, one {# pakviestasis} few {# pakviestieji} many {# pakviestojo} other {# pakviestųjų}}",
+  "invitees__subtitle": "{count} {count, plural, one {pakviestasis} few {pakviestieji} other {pakviestųjų}}",
   "invitees__empty__title": "Dar nėra svečių sąrašo",
   "invitees__empty__body": "Pradėk kvietimą, kad sukurtum svečių sąrašą.",
   "invitees__empty__cta": "Atverti kvietimo vedlį",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Kvietimo nuoroda nukopijuota į iškarpinę",
   "invitees__row__copy_error": "Nepavyko nukopijuoti nuorodos. Pabandyk dar kartą.",
   "invitees__row__no_email": "Be el. pašto",
-  "invitees__row__seats_inline": "{count, plural, one {# vieta} few {# vietos} many {# vietos} other {# vietų}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {vieta} few {vietos} other {vietų}}",
   "invitees__send_all__cta": "Siųsti {count} neišsiųstiems",
   "invitees__send_all__sending": "Siunčiama…",
   "invitees__send_all__confirm": "Siųsti kvietimus {count, plural, one {# svečiui} few {# svečiams} many {# svečio} other {# svečių}} dabar?",
   "invitees__send_all__success": "{queued} eilėje, {skipped} praleista (be el. pašto).",
-  "invitees__send_all__error": "Nepavyko įdėti kvietimų į eilę. Pabandyk dar kartą."
+  "invitees__send_all__error": "Nepavyko įdėti kvietimų į eilę. Pabandyk dar kartą.",
+  "invitees__preview__cta": "Peržiūra",
+  "invitees__preview__title": "Kvietimo peržiūra",
+  "invitees__edit_card__cta": "Redaguoti kvietimo kortelę"
 }

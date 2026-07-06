@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Durée maximale pour les soumissions vidéo.",
   "link_settings__audio_duration__title": "Durée d'enregistrement audio",
   "link_settings__audio_duration__desc": "Durée maximale pour les soumissions vocales.",
-  "link_settings__save_error": "Échec de l'enregistrement"
+  "link_settings__save_error": "Échec de l'enregistrement",
+  "link_settings__gallery__title": "Galerie publique",
+  "link_settings__gallery__desc": "Partagez avec vos invités une galerie en lecture seule de toutes les photos et vidéos de l'événement.",
+  "link_settings__gallery__toggle_title": "Partager la galerie publiquement",
+  "link_settings__gallery__toggle_desc": "Toute personne disposant du lien peut voir la galerie. Les invités ne peuvent ni téléverser ni commenter.",
+  "link_settings__gallery__copy": "Copier le lien de la galerie",
+  "link_settings__gallery__copied": "Copié",
+  "link_settings__gallery__regenerate": "Régénérer le lien",
+  "link_settings__gallery__regenerate_hint": "La régénération crée un nouveau lien et désactive l'ancien."
 }

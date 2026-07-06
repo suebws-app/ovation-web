@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Actief — volgende facturatie {date}, €20/mnd.",
   "settings__billing__dre_cancel_btn": "DRE annuleren",
   "settings__billing__dre_cancellation_scheduled_body": "Annulering gepland. Toegang eindigt op {date}.",
-  "settings__billing__dre_resume_btn": "DRE hervatten"
+  "settings__billing__dre_resume_btn": "DRE hervatten",
+  "settings__data__rights__report__email_subject": "Verzoek om gegevensrapport"
 }

@@ -61,5 +61,6 @@
   "common__theme__label": "Thema",
   "common__theme__light": "Licht",
   "common__theme__dark": "Donker",
-  "common__theme__system": "Systeem"
+  "common__theme__system": "Systeem",
+  "common__footer__legal_links__terms": "Voorwaarden"
 }

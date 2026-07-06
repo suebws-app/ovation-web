@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maximale Länge für Video-Einreichungen.",
   "link_settings__audio_duration__title": "Audio-Aufnahmelänge",
   "link_settings__audio_duration__desc": "Maximale Länge für Sprach-Einreichungen.",
-  "link_settings__save_error": "Speichern fehlgeschlagen"
+  "link_settings__save_error": "Speichern fehlgeschlagen",
+  "link_settings__gallery__title": "Öffentliche Galerie",
+  "link_settings__gallery__desc": "Teile eine reine Ansichts-Galerie aller Event-Fotos und -Videos mit deinen Gästen.",
+  "link_settings__gallery__toggle_title": "Galerie öffentlich teilen",
+  "link_settings__gallery__toggle_desc": "Jeder mit dem Link kann die Galerie ansehen. Gäste können nichts hochladen oder kommentieren.",
+  "link_settings__gallery__copy": "Galerie-Link kopieren",
+  "link_settings__gallery__copied": "Kopiert",
+  "link_settings__gallery__regenerate": "Link neu erstellen",
+  "link_settings__gallery__regenerate_hint": "Beim Neuerstellen entsteht ein neuer Link und der alte wird deaktiviert."
 }

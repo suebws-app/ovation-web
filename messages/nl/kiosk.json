@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "We raden aan om beide aan te zetten voordat je begint.",
   "kiosk__start_warning__cancel": "Annuleren",
   "kiosk__start_warning__confirm": "Toch starten",
-  "kiosk_setup__pin__set": "Pincode instellen",
   "kiosk_setup__language__set_main": "Instellen als hoofdtaal",
   "kiosk_setup__language__remove": "Taal verwijderen",
   "kiosk_setup__select__placeholder": "Kies een optie",

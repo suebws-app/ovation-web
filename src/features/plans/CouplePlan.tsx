@@ -6,31 +6,51 @@ import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { PlanCard } from "@/features/plans/components/PlanCard";
+import { usePlans } from "@/lib/query/plansQueries";
+
+const PLAN_CODE_BY_ID: Record<string, string> = {
+  keepsake: "premium",
+  gold: "bundle",
+};
+
+const FALLBACK_PRICE_BY_ID: Record<string, string> = {
+  keepsake: "€189",
+  gold: "€399",
+};
 
 export const CouplePlan = () => {
   const t = useTranslations();
   const { updateFormData } = useSignUpStore();
   const router = useRouter();
+  const { data } = usePlans();
+
+  const priceFor = (planId: string) => {
+    const plan = data?.plans.find((p) => p.code === PLAN_CODE_BY_ID[planId]);
+    return (
+      plan?.productVariables.regularPriceFormatted ??
+      FALLBACK_PRICE_BY_ID[planId]
+    );
+  };
 
   const PLANS = [
     {
       id: "keepsake",
       name: t("signup__plan__keepsake__name"),
-      price: t("signup__plan__keepsake__price"),
+      price: priceFor("keepsake"),
       per: t("signup__plan__keepsake__per"),
-      description: t("signup__plan__keepsake__description"),
+      description: t("signup__plan__keepsake__description_v2"),
       features: [
-        t("signup__plan__keepsake__feature_1"),
-        t("signup__plan__keepsake__feature_2"),
+        t("signup__plan__keepsake__feature_1_v2"),
+        t("signup__plan__keepsake__feature_2_v2"),
         t("signup__plan__keepsake__feature_3"),
-        t("signup__plan__keepsake__feature_4"),
+        t("signup__plan__keepsake__feature_4_v2"),
       ],
       highlighted: true,
     },
     {
       id: "gold",
       name: t("signup__plan__gold__name"),
-      price: t("signup__plan__gold__price"),
+      price: priceFor("gold"),
       per: t("signup__plan__gold__per"),
       description: t("signup__plan__gold__description"),
       features: [

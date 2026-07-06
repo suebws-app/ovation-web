@@ -67,5 +67,7 @@
   "cart__confirm__body": "Gracias por tu pedido. Te hemos enviado un correo de confirmación con los detalles.",
   "cart__confirm__reference": "Referencia: {id}",
   "cart__confirm__view_order": "Ver pedido",
-  "cart__confirm__continue": "Seguir comprando"
+  "cart__confirm__continue": "Seguir comprando",
+  "cart__line__shipping": "+ {price} de envío",
+  "cart__addresses__shipping_price": "Envío {price}"
 }

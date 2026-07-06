@@ -67,5 +67,7 @@
   "cart__confirm__body": "Bedankt voor je bestelling. We hebben je een bevestigingsmail met de details gestuurd.",
   "cart__confirm__reference": "Referentie: {id}",
   "cart__confirm__view_order": "Bestelling bekijken",
-  "cart__confirm__continue": "Verder winkelen"
+  "cart__confirm__continue": "Verder winkelen",
+  "cart__line__shipping": "+ {price} verzending",
+  "cart__addresses__shipping_price": "Verzending {price}"
 }

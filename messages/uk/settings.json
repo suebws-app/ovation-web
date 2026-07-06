@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Активно — наступне списання {date}, €20/міс.",
   "settings__billing__dre_cancel_btn": "Скасувати DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Скасування заплановано. Доступ завершується {date}.",
-  "settings__billing__dre_resume_btn": "Відновити DRE"
+  "settings__billing__dre_resume_btn": "Відновити DRE",
+  "settings__data__rights__report__email_subject": "Запит на звіт про дані"
 }

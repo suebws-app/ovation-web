@@ -6,7 +6,6 @@ export const appRoutes = {
     goldBook: "/gold-book",
     keepsakes: "/keepsakes",
     pricing: "/pricing",
-    stories: "/stories",
     forPlanners: "/for-planners",
     sample: "/sample",
     changelog: "/changelog",
@@ -19,6 +18,7 @@ export const appRoutes = {
   legal: {
     privacy: "/legal/privacy",
     cookies: "/legal/cookies",
+    terms: "/legal/terms",
   },
 
   auth: {
@@ -47,7 +47,6 @@ export const appRoutes = {
     cart: "/cart",
     orders: "/orders",
     qrCode: "/qr-code",
-    qrCodeOrder: "/qr-code/order",
     plans: "/plans",
     messages: "/messages",
     message: (messageId: string) => `/messages/${messageId}`,

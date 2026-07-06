@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "영상 제출의 최대 길이.",
   "link_settings__audio_duration__title": "오디오 녹음 길이",
   "link_settings__audio_duration__desc": "음성 제출의 최대 길이.",
-  "link_settings__save_error": "저장 실패"
+  "link_settings__save_error": "저장 실패",
+  "link_settings__gallery__title": "공개 갤러리",
+  "link_settings__gallery__desc": "이벤트의 모든 사진과 영상을 보기 전용 갤러리로 하객과 공유하세요.",
+  "link_settings__gallery__toggle_title": "갤러리 공개 공유",
+  "link_settings__gallery__toggle_desc": "링크가 있는 누구나 갤러리를 볼 수 있습니다. 하객은 업로드하거나 댓글을 남길 수 없습니다.",
+  "link_settings__gallery__copy": "갤러리 링크 복사",
+  "link_settings__gallery__copied": "복사됨",
+  "link_settings__gallery__regenerate": "링크 재생성",
+  "link_settings__gallery__regenerate_hint": "재생성하면 새 링크가 만들어지고 기존 링크는 비활성화됩니다."
 }

@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Suosittelemme kytkemään molemmat päälle ennen aloittamista.",
   "kiosk__start_warning__cancel": "Peruuta",
   "kiosk__start_warning__confirm": "Käynnistä silti",
-  "kiosk_setup__pin__set": "Aseta PIN-koodi",
   "kiosk_setup__language__set_main": "Aseta pääkieleksi",
   "kiosk_setup__language__remove": "Poista kieli",
   "kiosk_setup__select__placeholder": "Valitse vaihtoehto",

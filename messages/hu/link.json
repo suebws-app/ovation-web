@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maximális hossz a videós beküldésekhez.",
   "link_settings__audio_duration__title": "Hangfelvétel hossza",
   "link_settings__audio_duration__desc": "Maximális hossz a hangos beküldésekhez.",
-  "link_settings__save_error": "A mentés nem sikerült"
+  "link_settings__save_error": "A mentés nem sikerült",
+  "link_settings__gallery__title": "Nyilvános galéria",
+  "link_settings__gallery__desc": "Ossz meg vendégeiddel egy csak megtekinthető galériát az esemény összes fotójával és videójával.",
+  "link_settings__gallery__toggle_title": "Galéria nyilvános megosztása",
+  "link_settings__gallery__toggle_desc": "Bárki megtekintheti a galériát, akinek megvan a link. A vendégek nem tölthetnek fel és nem kommentelhetnek.",
+  "link_settings__gallery__copy": "Galérialink másolása",
+  "link_settings__gallery__copied": "Másolva",
+  "link_settings__gallery__regenerate": "Link újragenerálása",
+  "link_settings__gallery__regenerate_hint": "Az újragenerálás új linket hoz létre, és letiltja a régit."
 }

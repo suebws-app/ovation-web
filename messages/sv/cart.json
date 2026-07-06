@@ -67,5 +67,7 @@
   "cart__confirm__body": "Tack för din beställning. Vi har skickat ett bekräftelsemejl med detaljerna.",
   "cart__confirm__reference": "Referens: {id}",
   "cart__confirm__view_order": "Visa beställning",
-  "cart__confirm__continue": "Fortsätt handla"
+  "cart__confirm__continue": "Fortsätt handla",
+  "cart__line__shipping": "+ {price} frakt",
+  "cart__addresses__shipping_price": "Frakt {price}"
 }

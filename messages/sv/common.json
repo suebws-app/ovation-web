@@ -61,5 +61,6 @@
   "common__theme__label": "Tema",
   "common__theme__light": "Ljust",
   "common__theme__dark": "Mörkt",
-  "common__theme__system": "System"
+  "common__theme__system": "System",
+  "common__footer__legal_links__terms": "Villkor"
 }

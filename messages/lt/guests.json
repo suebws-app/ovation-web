@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Svečiai",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {žinutė} few {žinutės} other {žinučių}} gauta iki šiol.",
+  "guests__hero__title": "Iki šiol {count, plural, one {gauta <emph>{count}</emph> žinutė} few {gautos <emph>{count}</emph> žinutės} other {gauta <emph>{count}</emph> žinučių}}.",
   "guests__hero__subtitle": "Stebėk įnašus ir dalinkis kvietimo nuoroda. Pilnas svečių sąrašas netrukus — kol kas kiekvienas atėjęs balsas atsispindi žinučių sąraše.",
   "guests__hero__add": "Pridėti svečią",
   "guests__hero__import": "Importuoti .csv",

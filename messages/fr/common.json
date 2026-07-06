@@ -61,5 +61,6 @@
   "common__theme__label": "Thème",
   "common__theme__light": "Clair",
   "common__theme__dark": "Sombre",
-  "common__theme__system": "Système"
+  "common__theme__system": "Système",
+  "common__footer__legal_links__terms": "Conditions"
 }

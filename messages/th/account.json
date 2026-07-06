@@ -1,9 +1,0 @@
-{
-  "account__title": "บัญชี",
-  "account__profile": "โปรไฟล์",
-  "account__preferences": "การตั้งค่าส่วนตัว",
-  "account__email_settings": "การตั้งค่าอีเมล",
-  "account__payment_methods": "วิธีการชำระเงิน",
-  "account__delete_account": "ลบบัญชี",
-  "account__delete_confirm": "การดำเนินการนี้ไม่สามารถย้อนกลับได้ คุณแน่ใจหรือไม่?"
-}

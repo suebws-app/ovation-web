@@ -67,5 +67,7 @@
   "cart__confirm__body": "Köszönjük a rendelést. A részletekről visszaigazoló e-mailt küldtünk.",
   "cart__confirm__reference": "Hivatkozás: {id}",
   "cart__confirm__view_order": "Rendelés megtekintése",
-  "cart__confirm__continue": "Vásárlás folytatása"
+  "cart__confirm__continue": "Vásárlás folytatása",
+  "cart__line__shipping": "+ {price} szállítás",
+  "cart__addresses__shipping_price": "Szállítás {price}"
 }

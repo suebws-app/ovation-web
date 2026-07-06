@@ -1,6 +1,6 @@
 {
   "invitees__title": "초대 손님 목록",
-  "invitees__subtitle": "초대 손님 {count}명",
+  "invitees__subtitle": "{count, plural, other {초대 대상 #명}}",
   "invitees__empty__title": "아직 손님 목록이 없습니다",
   "invitees__empty__body": "초대장을 시작하여 손님 목록을 만드세요.",
   "invitees__empty__cta": "초대 마법사 열기",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "초대 링크가 클립보드에 복사되었습니다",
   "invitees__row__copy_error": "링크를 복사할 수 없습니다. 다시 시도해 주세요.",
   "invitees__row__no_email": "이메일 없음",
-  "invitees__row__seats_inline": "좌석 {count}석",
+  "invitees__row__seats_inline": "{count, plural, other {좌석 #석}}",
   "invitees__send_all__cta": "미발송 {count}명에게 보내기",
   "invitees__send_all__sending": "전송 중…",
   "invitees__send_all__confirm": "지금 손님 {count}명에게 초대장을 보내시겠습니까?",
   "invitees__send_all__success": "{queued}개 대기열에 추가, {skipped}개 건너뜀(이메일 없음).",
-  "invitees__send_all__error": "초대장을 대기열에 추가할 수 없습니다. 다시 시도해 주세요."
+  "invitees__send_all__error": "초대장을 대기열에 추가할 수 없습니다. 다시 시도해 주세요.",
+  "invitees__preview__cta": "미리보기",
+  "invitees__preview__title": "초대장 미리보기",
+  "invitees__edit_card__cta": "초대 카드 편집"
 }

@@ -55,7 +55,7 @@
   "keepsakes__book_customizer__page_range_max": "Maks. {max} puslapių",
   "keepsakes__book_customizer__not_ready_pick_size": "Pasirinkite knygos dydį, kad galėtumėte tęsti.",
   "keepsakes__book_customizer__not_ready_no_photos": "Pridėkite bent vieną nuotrauką į savo knygą.",
-  "keepsakes__book_customizer__not_ready_add_more": "{count, plural, one {Pridėkite dar # nuotrauką iki minimumo ({min}).} few {Pridėkite dar # nuotraukas iki minimumo ({min}).} other {Pridėkite dar # nuotraukų iki minimumo ({min}).}}",
+  "keepsakes__book_customizer__not_ready_add_more": "{count, plural, one {Pridėkite dar # nuotrauką, kad pasiektumėte minimumą ({min}).} few {Pridėkite dar # nuotraukas, kad pasiektumėte minimumą ({min}).} other {Pridėkite dar # nuotraukų, kad pasiektumėte minimumą ({min}).}}",
   "keepsakes__book_customizer__not_ready_remove_some": "{count, plural, one {Pašalinkite # nuotrauką — ši knyga talpina iki {max}.} few {Pašalinkite # nuotraukas — ši knyga talpina iki {max}.} other {Pašalinkite # nuotraukų — ši knyga talpina iki {max}.}}",
   "keepsakes__book_customizer__photos_badge_range": "{count} iš {min}–{max}",
   "keepsakes__book_customizer__photos_badge_selected": "{count} pasirinkta",

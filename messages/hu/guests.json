@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Vendégek",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {üzenet} other {üzenet}} érkezett eddig.",
+  "guests__hero__title": "Eddig <emph>{count}</emph> {count, plural, one {üzenet} other {üzenet}} érkezett.",
   "guests__hero__subtitle": "Kövesd a hozzájárulásokat és oszd meg a meghívó linkedet. Egy teljes vendég-címjegyzék hamarosan érkezik — egyelőre minden beérkezett hang megjelenik az üzenetek listájában.",
   "guests__hero__add": "Vendég hozzáadása",
   "guests__hero__import": ".csv importálása",

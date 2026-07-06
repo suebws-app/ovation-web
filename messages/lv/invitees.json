@@ -1,6 +1,6 @@
 {
   "invitees__title": "Viesu saraksts",
-  "invitees__subtitle": "{count, plural, zero {# uzaicināto} one {# uzaicinātais} other {# uzaicinātie}}",
+  "invitees__subtitle": "{count} {count, plural, zero {ielūgto} one {ielūgtais} other {ielūgtie}}",
   "invitees__empty__title": "Vēl nav viesu saraksta",
   "invitees__empty__body": "Sāc ielūgumu, lai izveidotu viesu sarakstu.",
   "invitees__empty__cta": "Atvērt ielūguma vedni",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Ielūguma saite nokopēta starpliktuvē",
   "invitees__row__copy_error": "Neizdevās nokopēt saiti. Mēģini vēlreiz.",
   "invitees__row__no_email": "Bez e-pasta",
-  "invitees__row__seats_inline": "{count, plural, zero {# vietu} one {# vieta} other {# vietas}}",
+  "invitees__row__seats_inline": "{count} {count, plural, zero {vietu} one {vieta} other {vietas}}",
   "invitees__send_all__cta": "Nosūtīt {count} nenosūtītajiem",
   "invitees__send_all__sending": "Sūta…",
   "invitees__send_all__confirm": "Nosūtīt ielūgumus {count, plural, zero {# viesiem} one {# viesim} other {# viesiem}} tagad?",
   "invitees__send_all__success": "{queued} rindā, {skipped} izlaisti (bez e-pasta).",
-  "invitees__send_all__error": "Neizdevās ievietot ielūgumus rindā. Mēģini vēlreiz."
+  "invitees__send_all__error": "Neizdevās ievietot ielūgumus rindā. Mēģini vēlreiz.",
+  "invitees__preview__cta": "Priekšskatīt",
+  "invitees__preview__title": "Ielūguma priekšskatījums",
+  "invitees__edit_card__cta": "Rediģēt ielūguma kartīti"
 }

@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Doporučujeme zapnout obojí před spuštěním.",
   "kiosk__start_warning__cancel": "Zrušit",
   "kiosk__start_warning__confirm": "Přesto spustit",
-  "kiosk_setup__pin__set": "Nastavit PIN",
   "kiosk_setup__language__set_main": "Nastavit jako hlavní jazyk",
   "kiosk_setup__language__remove": "Odebrat jazyk",
   "kiosk_setup__select__placeholder": "Vyberte možnost",

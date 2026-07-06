@@ -1,6 +1,6 @@
 {
   "invitees__title": "Senarai tetamu",
-  "invitees__subtitle": "{count} tetamu",
+  "invitees__subtitle": "{count} {count, plural, other {jemputan}}",
   "invitees__empty__title": "Belum ada senarai tetamu",
   "invitees__empty__body": "Mulakan jemputan untuk membina senarai tetamu anda.",
   "invitees__empty__cta": "Buka wizard jemputan",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Pautan jemputan disalin ke papan keratan",
   "invitees__row__copy_error": "Gagal menyalin pautan. Cuba lagi.",
   "invitees__row__no_email": "Tiada e-mel",
-  "invitees__row__seats_inline": "{count} kerusi",
+  "invitees__row__seats_inline": "{count} {count, plural, other {tempat duduk}}",
   "invitees__send_all__cta": "Hantar kepada {count} yang belum dihantar",
   "invitees__send_all__sending": "Menghantar…",
   "invitees__send_all__confirm": "Hantar jemputan kepada {count} tetamu sekarang?",
   "invitees__send_all__success": "{queued} dalam giliran, {skipped} dilangkau (tiada e-mel).",
-  "invitees__send_all__error": "Gagal beratur jemputan. Cuba lagi."
+  "invitees__send_all__error": "Gagal beratur jemputan. Cuba lagi.",
+  "invitees__preview__cta": "Pratonton",
+  "invitees__preview__title": "Pratonton jemputan",
+  "invitees__edit_card__cta": "Edit kad jemputan"
 }

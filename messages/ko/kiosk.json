@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "시작 전에 둘 다 켜는 것을 권장합니다.",
   "kiosk__start_warning__cancel": "취소",
   "kiosk__start_warning__confirm": "그대로 시작",
-  "kiosk_setup__pin__set": "PIN 설정",
   "kiosk_setup__language__set_main": "기본 언어로 설정",
   "kiosk_setup__language__remove": "언어 제거",
   "kiosk_setup__select__placeholder": "옵션 선택",

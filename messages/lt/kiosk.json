@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Rekomenduojame įjungti abu prieš pradėdami.",
   "kiosk__start_warning__cancel": "Atšaukti",
   "kiosk__start_warning__confirm": "Paleisti vis tiek",
-  "kiosk_setup__pin__set": "Nustatyti PIN",
   "kiosk_setup__language__set_main": "Nustatyti kaip pagrindinę kalbą",
   "kiosk_setup__language__remove": "Pašalinti kalbą",
   "kiosk_setup__select__placeholder": "Pasirinkite parinktį",

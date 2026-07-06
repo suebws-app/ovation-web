@@ -24,7 +24,11 @@ export const clientEnv = {
 
   POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY ?? "",
   POSTHOG_HOST:
-    process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
+    process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com",
+
+  LEGAL_ENTITY_NAME: process.env.NEXT_PUBLIC_LEGAL_ENTITY_NAME ?? "Ovation",
+  LEGAL_ENTITY_ADDRESS:
+    process.env.NEXT_PUBLIC_LEGAL_ENTITY_ADDRESS ?? "Peja, Kosovo",
 
   IS_PRODUCTION: process.env.NODE_ENV === "production",
 } as const;

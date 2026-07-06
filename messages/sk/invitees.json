@@ -1,6 +1,6 @@
 {
   "invitees__title": "Zoznam hostí",
-  "invitees__subtitle": "{count, plural, one {# pozvaný} few {# pozvaní} other {# pozvaných}}",
+  "invitees__subtitle": "{count} {count, plural, one {pozvaný} few {pozvaní} other {pozvaných}}",
   "invitees__empty__title": "Zatiaľ žiadny zoznam hostí",
   "invitees__empty__body": "Začni s pozvánkou a vytvor si zoznam hostí.",
   "invitees__empty__cta": "Otvoriť sprievodcu pozvánkou",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Odkaz pozvánky skopírovaný do schránky",
   "invitees__row__copy_error": "Odkaz sa nepodarilo skopírovať. Skús znova.",
   "invitees__row__no_email": "Bez e-mailu",
-  "invitees__row__seats_inline": "{count, plural, one {# miesto} few {# miesta} other {# miest}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {miesto} few {miesta} other {miest}}",
   "invitees__send_all__cta": "Odoslať {count} neodoslaným",
   "invitees__send_all__sending": "Odosiela sa…",
   "invitees__send_all__confirm": "Odoslať pozvánky {count, plural, one {# hosťovi} few {# hosťom} other {# hosťom}} teraz?",
   "invitees__send_all__success": "{queued} v rade, {skipped} preskočených (bez e-mailu).",
-  "invitees__send_all__error": "Pozvánky sa nepodarilo zaradiť. Skús znova."
+  "invitees__send_all__error": "Pozvánky sa nepodarilo zaradiť. Skús znova.",
+  "invitees__preview__cta": "Náhľad",
+  "invitees__preview__title": "Náhľad pozvánky",
+  "invitees__edit_card__cta": "Upraviť kartu pozvánky"
 }

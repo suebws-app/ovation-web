@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Iesakām pirms sākšanas ieslēgt abus.",
   "kiosk__start_warning__cancel": "Atcelt",
   "kiosk__start_warning__confirm": "Tomēr sākt",
-  "kiosk_setup__pin__set": "Iestatīt PIN",
   "kiosk_setup__language__set_main": "Iestatīt kā galveno valodu",
   "kiosk_setup__language__remove": "Noņemt valodu",
   "kiosk_setup__select__placeholder": "Izvēlieties opciju",

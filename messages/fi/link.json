@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Videolähetysten enimmäispituus.",
   "link_settings__audio_duration__title": "Äänen tallennuksen pituus",
   "link_settings__audio_duration__desc": "Ääniviestien enimmäispituus.",
-  "link_settings__save_error": "Tallennus epäonnistui"
+  "link_settings__save_error": "Tallennus epäonnistui",
+  "link_settings__gallery__title": "Julkinen galleria",
+  "link_settings__gallery__desc": "Jaa vieraillesi vain katseluun tarkoitettu galleria kaikista tapahtuman kuvista ja videoista.",
+  "link_settings__gallery__toggle_title": "Jaa galleria julkisesti",
+  "link_settings__gallery__toggle_desc": "Kuka tahansa linkin saanut voi katsella galleriaa. Vieraat eivät voi ladata sisältöä tai kommentoida.",
+  "link_settings__gallery__copy": "Kopioi gallerialinkki",
+  "link_settings__gallery__copied": "Kopioitu",
+  "link_settings__gallery__regenerate": "Luo linkki uudelleen",
+  "link_settings__gallery__regenerate_hint": "Uudelleenluonti luo uuden linkin ja poistaa vanhan käytöstä."
 }

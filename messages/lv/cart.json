@@ -67,5 +67,7 @@
   "cart__confirm__body": "Paldies par pasūtījumu. Esam nosūtījuši apstiprinājuma e-pastu ar detaļām.",
   "cart__confirm__reference": "Atsauce: {id}",
   "cart__confirm__view_order": "Skatīt pasūtījumu",
-  "cart__confirm__continue": "Turpināt iepirkties"
+  "cart__confirm__continue": "Turpināt iepirkties",
+  "cart__line__shipping": "+ {price} piegāde",
+  "cart__addresses__shipping_price": "Piegāde {price}"
 }

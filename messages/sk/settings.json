@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktívne — nasledujúca platba {date}, €20/mes.",
   "settings__billing__dre_cancel_btn": "Zrušiť DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Zrušenie naplánované. Prístup končí {date}.",
-  "settings__billing__dre_resume_btn": "Obnoviť DRE"
+  "settings__billing__dre_resume_btn": "Obnoviť DRE",
+  "settings__data__rights__report__email_subject": "Žiadosť o dátový report"
 }

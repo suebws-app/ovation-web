@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maksymalna długość zgłoszeń wideo.",
   "link_settings__audio_duration__title": "Długość nagrania audio",
   "link_settings__audio_duration__desc": "Maksymalna długość zgłoszeń głosowych.",
-  "link_settings__save_error": "Nie udało się zapisać"
+  "link_settings__save_error": "Nie udało się zapisać",
+  "link_settings__gallery__title": "Galeria publiczna",
+  "link_settings__gallery__desc": "Udostępnij gościom galerię tylko do przeglądania ze wszystkimi zdjęciami i filmami z wydarzenia.",
+  "link_settings__gallery__toggle_title": "Udostępnij galerię publicznie",
+  "link_settings__gallery__toggle_desc": "Każdy z linkiem może zobaczyć galerię. Goście nie mogą niczego przesyłać ani komentować.",
+  "link_settings__gallery__copy": "Kopiuj link do galerii",
+  "link_settings__gallery__copied": "Skopiowano",
+  "link_settings__gallery__regenerate": "Wygeneruj nowy link",
+  "link_settings__gallery__regenerate_hint": "Wygenerowanie tworzy nowy link i dezaktywuje stary."
 }

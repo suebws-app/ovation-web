@@ -14,7 +14,7 @@ export const HowItWorks = () => {
       number: "01",
       tag: t("marketing__how__step1_tag"),
       title: t("marketing__how__step1_title"),
-      body: t("marketing__how__step1_body"),
+      body: t("marketing__how__step1_body_v2"),
       illustration: <HowItWorksStep1 />,
     },
     {

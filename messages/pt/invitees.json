@@ -1,6 +1,6 @@
 {
   "invitees__title": "Lista de convidados",
-  "invitees__subtitle": "{count, plural, one {# convidado} other {# convidados}}",
+  "invitees__subtitle": "{count} {count, plural, one {convidado} other {convidados}}",
   "invitees__empty__title": "Ainda sem lista de convidados",
   "invitees__empty__body": "Começa o teu convite para criar a tua lista de convidados.",
   "invitees__empty__cta": "Abrir assistente de convite",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Link do convite copiado para a área de transferência",
   "invitees__row__copy_error": "Não foi possível copiar o link. Tenta novamente.",
   "invitees__row__no_email": "Sem e-mail",
-  "invitees__row__seats_inline": "{count, plural, one {# lugar} other {# lugares}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {lugar} other {lugares}}",
   "invitees__send_all__cta": "Enviar a {count} por enviar",
   "invitees__send_all__sending": "A enviar…",
   "invitees__send_all__confirm": "Enviar convites a {count, plural, one {# convidado} other {# convidados}} agora?",
   "invitees__send_all__success": "{queued} na fila, {skipped} ignorados (sem e-mail).",
-  "invitees__send_all__error": "Não foi possível colocar os convites na fila. Tenta novamente."
+  "invitees__send_all__error": "Não foi possível colocar os convites na fila. Tenta novamente.",
+  "invitees__preview__cta": "Pré-visualizar",
+  "invitees__preview__title": "Pré-visualização do convite",
+  "invitees__edit_card__cta": "Editar cartão de convite"
 }

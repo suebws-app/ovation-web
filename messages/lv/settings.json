@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktīvs — nākamie norēķini {date}, €20/mēn.",
   "settings__billing__dre_cancel_btn": "Atcelt DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Atcelšana ieplānota. Piekļuve beidzas {date}.",
-  "settings__billing__dre_resume_btn": "Atsākt DRE"
+  "settings__billing__dre_resume_btn": "Atsākt DRE",
+  "settings__data__rights__report__email_subject": "Datu pārskata pieprasījums"
 }

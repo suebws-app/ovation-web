@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { FAQ_ITEM_KEYS } from "./constants";
 
@@ -10,12 +10,28 @@ import {
 } from "@ovation/ui/components/Accordion";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { clientEnv } from "@/lib/utils/env.client";
+import { plansApi } from "@/lib/api/plans";
 
-export const FAQSection = () => {
-  const t = useTranslations();
+const DRE_FALLBACK_PRICE = "€20";
+
+const fetchDrePrice = async (): Promise<string> => {
+  try {
+    const plan = await plansApi.findByCode("storage_extension");
+    return plan.productVariables.regularPriceFormatted ?? DRE_FALLBACK_PRICE;
+  } catch {
+    return DRE_FALLBACK_PRICE;
+  }
+};
+
+export const FAQSection = async () => {
+  const t = await getTranslations();
   const supportEmail = clientEnv.SUPPORT_EMAIL;
+  const drePrice = await fetchDrePrice();
 
-  const items = FAQ_ITEM_KEYS.map((k) => ({ q: t(k.q), a: t(k.a) }));
+  const items = FAQ_ITEM_KEYS.map((k) => ({
+    q: t(k.q),
+    a: t(k.a, { drePrice }),
+  }));
 
   return (
     <section>

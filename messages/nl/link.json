@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maximale lengte voor video-inzendingen.",
   "link_settings__audio_duration__title": "Audio-opnameduur",
   "link_settings__audio_duration__desc": "Maximale lengte voor spraak-inzendingen.",
-  "link_settings__save_error": "Opslaan mislukt"
+  "link_settings__save_error": "Opslaan mislukt",
+  "link_settings__gallery__title": "Openbare galerij",
+  "link_settings__gallery__desc": "Deel een alleen-bekijken-galerij van alle foto's en video's van het evenement met je gasten.",
+  "link_settings__gallery__toggle_title": "Galerij openbaar delen",
+  "link_settings__gallery__toggle_desc": "Iedereen met de link kan de galerij bekijken. Gasten kunnen niets uploaden of reageren.",
+  "link_settings__gallery__copy": "Galerijlink kopiëren",
+  "link_settings__gallery__copied": "Gekopieerd",
+  "link_settings__gallery__regenerate": "Link opnieuw genereren",
+  "link_settings__gallery__regenerate_hint": "Opnieuw genereren maakt een nieuwe link aan en schakelt de oude uit."
 }

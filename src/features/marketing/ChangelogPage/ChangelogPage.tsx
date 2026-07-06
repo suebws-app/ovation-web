@@ -1,17 +1,9 @@
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { ChangelogEntry } from "./ChangelogEntry";
-import { CHANGELOG_ENTRY_KEYS } from "./constants";
 
 export const ChangelogPage = () => {
   const t = useTranslations();
-
-  const entries = CHANGELOG_ENTRY_KEYS.map((k) => ({
-    version: t(k.version),
-    date: t(k.date),
-    description: t(k.description),
-  }));
 
   return (
     <>
@@ -31,16 +23,9 @@ export const ChangelogPage = () => {
 
       <section>
         <div className="section-container-small">
-          <div className="max-w-prose">
-            {entries.map((entry) => (
-              <ChangelogEntry
-                key={entry.version}
-                version={entry.version}
-                date={entry.date}
-                description={entry.description}
-              />
-            ))}
-          </div>
+          <p className="text-muted-foreground type-body max-w-prose leading-relaxed">
+            {t("marketing__changelog__empty_state")}
+          </p>
         </div>
       </section>
     </>

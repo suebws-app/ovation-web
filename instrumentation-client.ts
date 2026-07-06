@@ -38,10 +38,10 @@ if (posthogKey && isProduction) {
   void import("posthog-js").then(({ default: posthog }) => {
     posthog.init(posthogKey, {
       api_host:
-        process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
+        process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com",
       capture_pageview: false,
       capture_pageleave: true,
-      persistence: "localStorage+cookie",
+      persistence: "memory",
       autocapture: false,
     });
   });

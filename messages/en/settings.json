@@ -237,6 +237,7 @@
   "settings__data__rights__report__title": "Request a human-readable data report",
   "settings__data__rights__report__desc": "A PDF summary of everything we know about you and your book. Takes up to 72 hours.",
   "settings__data__rights__report__action": "Request",
+  "settings__data__rights__report__email_subject": "Data report request",
   "settings__data__rights__optout__title": "Ask us to stop using your data for service improvement",
   "settings__data__rights__optout__desc": "We use anonymized patterns to tune transcription and layout. Opt out any time.",
   "settings__wedding__placeholder_partner_a": "Lena",
