@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Panjang maksimum untuk kiriman video.",
   "link_settings__audio_duration__title": "Panjang rekaman audio",
   "link_settings__audio_duration__desc": "Panjang maksimum untuk kiriman suara.",
-  "link_settings__save_error": "Gagal menyimpan"
+  "link_settings__save_error": "Gagal menyimpan",
+  "link_settings__gallery__title": "Galeri publik",
+  "link_settings__gallery__desc": "Bagikan galeri hanya-lihat berisi semua foto dan video acara dengan tamu Anda.",
+  "link_settings__gallery__toggle_title": "Bagikan galeri secara publik",
+  "link_settings__gallery__toggle_desc": "Siapa pun dengan tautan dapat melihat galeri. Tamu tidak dapat mengunggah atau berkomentar.",
+  "link_settings__gallery__copy": "Salin tautan galeri",
+  "link_settings__gallery__copied": "Disalin",
+  "link_settings__gallery__regenerate": "Buat ulang tautan",
+  "link_settings__gallery__regenerate_hint": "Membuat ulang menghasilkan tautan baru dan menonaktifkan yang lama."
 }

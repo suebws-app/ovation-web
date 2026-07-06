@@ -1,6 +1,6 @@
 {
   "invitees__title": "Daftar tamu",
-  "invitees__subtitle": "{count} tamu",
+  "invitees__subtitle": "{count} {count, plural, other {undangan}}",
   "invitees__empty__title": "Belum ada daftar tamu",
   "invitees__empty__body": "Mulai undanganmu untuk membuat daftar tamu.",
   "invitees__empty__cta": "Buka panduan undangan",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Tautan undangan disalin ke papan klip",
   "invitees__row__copy_error": "Gagal menyalin tautan. Coba lagi.",
   "invitees__row__no_email": "Tanpa email",
-  "invitees__row__seats_inline": "{count} kursi",
+  "invitees__row__seats_inline": "{count} {count, plural, other {kursi}}",
   "invitees__send_all__cta": "Kirim ke {count} yang belum",
   "invitees__send_all__sending": "Mengirim…",
   "invitees__send_all__confirm": "Kirim undangan ke {count} tamu sekarang?",
   "invitees__send_all__success": "{queued} masuk antrean, {skipped} dilewati (tanpa email).",
-  "invitees__send_all__error": "Gagal mengantrekan undangan. Coba lagi."
+  "invitees__send_all__error": "Gagal mengantrekan undangan. Coba lagi.",
+  "invitees__preview__cta": "Pratinjau",
+  "invitees__preview__title": "Pratinjau undangan",
+  "invitees__edit_card__cta": "Edit kartu undangan"
 }

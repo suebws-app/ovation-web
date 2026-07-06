@@ -56,7 +56,7 @@
   "keepsakes__book_customizer__not_ready_pick_size": "Виберіть розмір книги, щоб продовжити.",
   "keepsakes__book_customizer__not_ready_no_photos": "Додайте принаймні одне фото до своєї книги.",
   "keepsakes__book_customizer__not_ready_add_more": "{count, plural, one {Додайте ще # фото, щоб досягти мінімуму ({min}).} few {Додайте ще # фото, щоб досягти мінімуму ({min}).} many {Додайте ще # фото, щоб досягти мінімуму ({min}).} other {Додайте ще # фото, щоб досягти мінімуму ({min}).}}",
-  "keepsakes__book_customizer__not_ready_remove_some": "{count, plural, one {Видаліть # фото — ця книга вміщує до {max}.} few {Видаліть # фото — ця книга вміщує до {max}.} many {Видаліть # фото — ця книга вміщує до {max}.} other {Видаліть # фото — ця книга вміщує до {max}.}}",
+  "keepsakes__book_customizer__not_ready_remove_some": "{count, plural, one {Приберіть # фото — ця книга вміщує до {max}.} few {Приберіть # фото — ця книга вміщує до {max}.} many {Приберіть # фото — ця книга вміщує до {max}.} other {Приберіть # фото — ця книга вміщує до {max}.}}",
   "keepsakes__book_customizer__photos_badge_range": "{count} з {min}–{max}",
   "keepsakes__book_customizer__photos_badge_selected": "Вибрано: {count}",
   "keepsakes__book_customizer__size_title": "Розмір",

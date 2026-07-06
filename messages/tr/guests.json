@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Konuklar",
-  "guests__hero__title": "Şu ana kadar <emph>{count}</emph> {count, plural, one {mesaj} other {mesaj}} alındı.",
+  "guests__hero__title": "Şimdiye kadar <emph>{count}</emph> {count, plural, one {mesaj} other {mesaj}} alındı.",
   "guests__hero__subtitle": "Katkıları takip et ve davet linkini paylaş. Tam konuk dizini yakında — şimdilik gelen her ses mesajlar listesine yansıyor.",
   "guests__hero__add": "Konuk ekle",
   "guests__hero__import": ".csv içe aktar",

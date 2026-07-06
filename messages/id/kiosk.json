@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Sebaiknya aktifkan keduanya sebelum mulai.",
   "kiosk__start_warning__cancel": "Batal",
   "kiosk__start_warning__confirm": "Tetap mulai",
-  "kiosk_setup__pin__set": "Atur PIN",
   "kiosk_setup__language__set_main": "Atur sebagai bahasa utama",
   "kiosk_setup__language__remove": "Hapus bahasa",
   "kiosk_setup__select__placeholder": "Pilih opsi",

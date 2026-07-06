@@ -81,7 +81,7 @@
   "keepsakes__book_customizer__cover_text_placeholder": "Anna & Marc · 2025. június 14.",
   "keepsakes__book_customizer__dedication_label": "Ajánlás (opcionális)",
   "keepsakes__book_customizer__dedication_placeholder": "Mindenkinek, aki velünk ünnepelt…",
-  "keepsakes__book_customizer__price_base": "{count, plural, =0 {{name}} other {{name} (# oldallal)}}",
+  "keepsakes__book_customizer__price_base": "{count, plural, =0 {{name}} one {{name} (# oldallal)} other {{name} (# oldallal)}}",
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# extra oldal} other {# extra oldal}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Tartalmaz 1 üres oldalt a nyomtatáshoz.",
   "keepsakes__book_customizer__price_total": "Összesen",

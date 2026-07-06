@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Javasoljuk mindkettő bekapcsolását élesítés előtt.",
   "kiosk__start_warning__cancel": "Mégse",
   "kiosk__start_warning__confirm": "Indítás mégis",
-  "kiosk_setup__pin__set": "PIN beállítása",
   "kiosk_setup__language__set_main": "Beállítás fő nyelvként",
   "kiosk_setup__language__remove": "Nyelv eltávolítása",
   "kiosk_setup__select__placeholder": "Válassz egy lehetőséget",

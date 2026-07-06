@@ -1,6 +1,6 @@
 {
   "invitees__title": "Lista de invitați",
-  "invitees__subtitle": "{count, plural, one {# invitat} few {# invitați} other {# de invitați}}",
+  "invitees__subtitle": "{count} {count, plural, one {invitat} few {invitați} other {de invitați}}",
   "invitees__empty__title": "Niciun invitat încă",
   "invitees__empty__body": "Începe invitația ca să-ți construiești lista de invitați.",
   "invitees__empty__cta": "Deschide asistentul de invitație",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Linkul invitației a fost copiat în clipboard",
   "invitees__row__copy_error": "Nu am putut copia linkul. Încearcă din nou.",
   "invitees__row__no_email": "Fără e-mail",
-  "invitees__row__seats_inline": "{count, plural, one {# loc} few {# locuri} other {# de locuri}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {loc} few {locuri} other {de locuri}}",
   "invitees__send_all__cta": "Trimite către {count} netrimise",
   "invitees__send_all__sending": "Se trimite…",
   "invitees__send_all__confirm": "Trimiți invitațiile către {count, plural, one {# invitat} few {# invitați} other {# de invitați}} acum?",
   "invitees__send_all__success": "{queued} în coadă, {skipped} omise (fără e-mail).",
-  "invitees__send_all__error": "Nu am putut pune invitațiile în coadă. Încearcă din nou."
+  "invitees__send_all__error": "Nu am putut pune invitațiile în coadă. Încearcă din nou.",
+  "invitees__preview__cta": "Previzualizare",
+  "invitees__preview__title": "Previzualizarea invitației",
+  "invitees__edit_card__cta": "Editează cardul de invitație"
 }

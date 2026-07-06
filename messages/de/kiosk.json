@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Wir empfehlen, beides vor dem Live-Gang zu aktivieren.",
   "kiosk__start_warning__cancel": "Abbrechen",
   "kiosk__start_warning__confirm": "Trotzdem starten",
-  "kiosk_setup__pin__set": "PIN festlegen",
   "kiosk_setup__language__set_main": "Als Hauptsprache festlegen",
   "kiosk_setup__language__remove": "Sprache entfernen",
   "kiosk_setup__select__placeholder": "Option auswählen",

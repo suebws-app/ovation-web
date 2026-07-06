@@ -1,6 +1,6 @@
 {
   "invitees__title": "Lista e të ftuarve",
-  "invitees__subtitle": "{count, plural, one {# i ftuar} other {# të ftuar}}",
+  "invitees__subtitle": "{count} {count, plural, one {i ftuar} other {të ftuar}}",
   "invitees__empty__title": "Ende pa listë të ftuarish",
   "invitees__empty__body": "Fillo ftesën tënde për të ndërtuar listën e të ftuarve.",
   "invitees__empty__cta": "Hap asistentin e ftesës",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Linku i ftesës u kopjua në kujtesë",
   "invitees__row__copy_error": "Linku nuk u kopjua. Provo përsëri.",
   "invitees__row__no_email": "Pa email",
-  "invitees__row__seats_inline": "{count, plural, one {# vend} other {# vende}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {vend} other {vende}}",
   "invitees__send_all__cta": "Dërgo te {count} të padërguar",
   "invitees__send_all__sending": "Duke dërguar…",
   "invitees__send_all__confirm": "Dërgo ftesat tani te {count, plural, one {# i ftuar} other {# të ftuar}}?",
   "invitees__send_all__success": "{queued} në radhë, {skipped} të anashkaluara (pa email).",
-  "invitees__send_all__error": "Ftesat nuk u vendosën në radhë. Provo përsëri."
+  "invitees__send_all__error": "Ftesat nuk u vendosën në radhë. Provo përsëri.",
+  "invitees__preview__cta": "Pamje paraprake",
+  "invitees__preview__title": "Pamja paraprake e ftesës",
+  "invitees__edit_card__cta": "Redakto kartën e ftesës"
 }

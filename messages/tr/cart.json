@@ -67,5 +67,7 @@
   "cart__confirm__body": "Siparişiniz için teşekkürler. Detayları içeren bir onay e-postası gönderdik.",
   "cart__confirm__reference": "Referans: {id}",
   "cart__confirm__view_order": "Siparişi görüntüle",
-  "cart__confirm__continue": "Alışverişe devam et"
+  "cart__confirm__continue": "Alışverişe devam et",
+  "cart__line__shipping": "+ {price} kargo",
+  "cart__addresses__shipping_price": "Kargo {price}"
 }

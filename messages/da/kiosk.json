@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Vi anbefaler at slå begge til, før du går i gang.",
   "kiosk__start_warning__cancel": "Annuller",
   "kiosk__start_warning__confirm": "Start alligevel",
-  "kiosk_setup__pin__set": "Indstil PIN-kode",
   "kiosk_setup__language__set_main": "Indstil som hovedsprog",
   "kiosk_setup__language__remove": "Fjern sprog",
   "kiosk_setup__select__placeholder": "Vælg mulighed",

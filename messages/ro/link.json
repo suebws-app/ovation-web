@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Durata maximă pentru trimiteri video.",
   "link_settings__audio_duration__title": "Durata înregistrării audio",
   "link_settings__audio_duration__desc": "Durata maximă pentru trimiteri vocale.",
-  "link_settings__save_error": "Salvarea a eșuat"
+  "link_settings__save_error": "Salvarea a eșuat",
+  "link_settings__gallery__title": "Galerie publică",
+  "link_settings__gallery__desc": "Partajează cu invitații tăi o galerie doar pentru vizualizare cu toate fotografiile și videoclipurile evenimentului.",
+  "link_settings__gallery__toggle_title": "Partajează galeria public",
+  "link_settings__gallery__toggle_desc": "Oricine are linkul poate vedea galeria. Invitații nu pot încărca și nu pot comenta.",
+  "link_settings__gallery__copy": "Copiază linkul galeriei",
+  "link_settings__gallery__copied": "Copiat",
+  "link_settings__gallery__regenerate": "Regenerează linkul",
+  "link_settings__gallery__regenerate_hint": "Regenerarea creează un link nou și îl dezactivează pe cel vechi."
 }

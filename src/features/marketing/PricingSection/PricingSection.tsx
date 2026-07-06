@@ -94,6 +94,9 @@ export const PricingSection = async () => {
                 <PricingCard key={key} {...tier} />
               ))}
             </div>
+            <p className="text-muted-foreground type-body-small mx-auto mt-6 max-w-3xl text-center">
+              {t("marketing__pricing__pro_trial_note")}
+            </p>
           </TabsContent>
         </Tabs>
       </div>

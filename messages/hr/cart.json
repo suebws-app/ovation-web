@@ -67,5 +67,7 @@
   "cart__confirm__body": "Hvala na narudžbi. Poslali smo potvrdu s detaljima e-poštom.",
   "cart__confirm__reference": "Referenca: {id}",
   "cart__confirm__view_order": "Pogledaj narudžbu",
-  "cart__confirm__continue": "Nastavi kupovinu"
+  "cart__confirm__continue": "Nastavi kupovinu",
+  "cart__line__shipping": "+ {price} dostava",
+  "cart__addresses__shipping_price": "Dostava {price}"
 }

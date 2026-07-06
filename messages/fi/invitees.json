@@ -1,6 +1,6 @@
 {
   "invitees__title": "Vieraslista",
-  "invitees__subtitle": "{count, plural, one {# kutsuttu} other {# kutsuttua}}",
+  "invitees__subtitle": "{count} {count, plural, one {kutsuttu} other {kutsuttua}}",
   "invitees__empty__title": "Ei vieraslistaa vielä",
   "invitees__empty__body": "Aloita kutsusi rakentaaksesi vieraslistasi.",
   "invitees__empty__cta": "Avaa kutsuvelho",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Kutsulinkki kopioitu leikepöydälle",
   "invitees__row__copy_error": "Linkkiä ei voitu kopioida. Yritä uudelleen.",
   "invitees__row__no_email": "Ei sähköpostia",
-  "invitees__row__seats_inline": "{count, plural, one {# paikka} other {# paikkaa}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {paikka} other {paikkaa}}",
   "invitees__send_all__cta": "Lähetä {count} lähettämättömälle",
   "invitees__send_all__sending": "Lähetetään…",
   "invitees__send_all__confirm": "Lähetetäänkö kutsut {count, plural, one {# vieraalle} other {# vieraalle}} nyt?",
   "invitees__send_all__success": "{queued} jonossa, {skipped} ohitettu (ei sähköpostia).",
-  "invitees__send_all__error": "Kutsuja ei voitu jonottaa. Yritä uudelleen."
+  "invitees__send_all__error": "Kutsuja ei voitu jonottaa. Yritä uudelleen.",
+  "invitees__preview__cta": "Esikatsele",
+  "invitees__preview__title": "Kutsun esikatselu",
+  "invitees__edit_card__cta": "Muokkaa kutsukorttia"
 }

@@ -67,5 +67,7 @@
   "cart__confirm__body": "Hvala za naročilo. Poslali smo potrditveno e-pošto s podrobnostmi.",
   "cart__confirm__reference": "Sklic: {id}",
   "cart__confirm__view_order": "Ogled naročila",
-  "cart__confirm__continue": "Nadaljuj nakupovanje"
+  "cart__confirm__continue": "Nadaljuj nakupovanje",
+  "cart__line__shipping": "+ {price} dostava",
+  "cart__addresses__shipping_price": "Dostava {price}"
 }

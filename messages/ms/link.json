@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Panjang maksimum untuk penyerahan video.",
   "link_settings__audio_duration__title": "Panjang rakaman audio",
   "link_settings__audio_duration__desc": "Panjang maksimum untuk penyerahan suara.",
-  "link_settings__save_error": "Gagal menyimpan"
+  "link_settings__save_error": "Gagal menyimpan",
+  "link_settings__gallery__title": "Galeri awam",
+  "link_settings__gallery__desc": "Kongsi galeri paparan sahaja dengan semua foto dan video acara bersama tetamu anda.",
+  "link_settings__gallery__toggle_title": "Kongsi galeri secara awam",
+  "link_settings__gallery__toggle_desc": "Sesiapa yang mempunyai pautan boleh melihat galeri. Tetamu tidak boleh memuat naik atau mengulas.",
+  "link_settings__gallery__copy": "Salin pautan galeri",
+  "link_settings__gallery__copied": "Disalin",
+  "link_settings__gallery__regenerate": "Jana semula pautan",
+  "link_settings__gallery__regenerate_hint": "Menjana semula mencipta pautan baharu dan menyahaktifkan yang lama."
 }

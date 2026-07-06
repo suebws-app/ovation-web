@@ -1,23 +1,18 @@
 {
   "invitation__page__title": "Kvietimas",
   "invitation__page__breadcrumb": "Kvietimas",
-
   "invitation__step__design__label": "Pasirinkti dizainą",
   "invitation__step__details__label": "Renginio informacija",
   "invitation__step__guests__label": "Svečių sąrašas",
-
   "invitation__step__design__title_a": "Pasirink savo",
   "invitation__step__design__title_b": "kvietimo dizainą.",
   "invitation__step__design__subtitle": "Pasirink šabloną ir suderink jo spalvas bei tipografiją. Peržiūra atnaujinama tiesiogiai.",
-
   "invitation__step__details__title_a": "Pridėk renginio",
   "invitation__step__details__title_b": "informaciją.",
   "invitation__step__details__subtitle": "Užpildyk poros vardus, datą ir vietą — kiekvienas kvietimas juos naudoja.",
-
   "invitation__step__guests__title_a": "Sukurk savo",
   "invitation__step__guests__title_b": "svečių sąrašą.",
   "invitation__step__guests__subtitle": "Pridėk kiekvieną svečią; automatiškai sukuriame asmeninį kvietimą ir nuorodą kiekvienam.",
-
   "invitation__section__templates": "Kortelės dizainas",
   "invitation__section__templates_sub": "Pasirink dizainą — svečiai jį pamatys kvietimo el. laiške, nuorodų peržiūrose ir svečio puslapyje.",
   "invitation__templates__load_error": "Nepavyko įkelti dizainų. Atnaujink puslapį.",
@@ -31,7 +26,6 @@
   "invitation__section__photo_sub": "Pasirinktinis pagrindinės nuotraukos atspalvis",
   "invitation__section__guests": "Svečiai",
   "invitation__section__guests_sub": "Asmeniniai kvietimai ir nuorodos",
-
   "invitation__field__partner_a": "Partneris A",
   "invitation__field__partner_b": "Partneris B",
   "invitation__field__date": "Data",
@@ -42,7 +36,6 @@
   "invitation__field__colour_scheme": "Spalvų schema",
   "invitation__field__typeface": "Tipografija",
   "invitation__field__preset_tones": "Iš anksto nustatyti atspalviai",
-
   "invitation__placeholder__partner_a": "pvz., Lila",
   "invitation__placeholder__partner_b": "pvz., Theo",
   "invitation__placeholder__date": "2026 m. rugsėjo 12 d.",
@@ -57,14 +50,11 @@
   "invitation__placeholder__guest_name": "Svečio vardas",
   "invitation__placeholder__guest_email": "guest@email.com",
   "invitation__placeholder__guest_phone": "+370 612 34567",
-
   "invitation__schedule__add": "+ Pridėti momentą",
   "invitation__schedule__time_placeholder": "16:00",
   "invitation__schedule__label_placeholder": "Ceremonija",
-
   "invitation__photo__dropzone_title": "Numesk nuotrauką čia",
   "invitation__photo__dropzone_hint": "JPG arba PNG · iki 10 MB",
-
   "invitation__guests__add": "+ Pridėti svečią",
   "invitation__guests__import": "Importuoti",
   "invitation__guests__import__title": "Importuoti svečius",
@@ -72,15 +62,13 @@
   "invitation__guests__empty": "Dar nėra svečių. Pridėk pirmąjį svečią, kad pamatytum asmeninį kvietimą.",
   "invitation__guests__count": "{count, plural, one {# svečias} few {# svečiai} many {# svečio} other {# svečių}} · {seats, plural, one {# vieta} few {# vietos} many {# vietos} other {# vietų}}",
   "invitation__guests__remove": "Pašalinti",
-  "invitation__guests__locked__title": "Tavo svečių sąrašas paruoštas — {count, plural, one {# svečias} few {# svečiai} many {# svečio} other {# svečių}}",
+  "invitation__guests__locked__title": "Jūsų svečių sąrašas paruoštas — {count} {count, plural, one {svečias} few {svečiai} other {svečių}}",
   "invitation__guests__locked__body": "Nuo dabar tvarkyk svečių sąrašą (pridėk, redaguok, šalink, siųsk kvietimus) Svečių sąrašo skiltyje. Vedlys atsakingas tik už pradinį nustatymą.",
   "invitation__guests__locked__cta": "Atverti svečių sąrašą",
-
   "invitation__preview__mode_invite": "Kvietimas",
   "invitation__preview__mode_guest": "Svečio rodinys",
   "invitation__preview__live": "Tiesioginė peržiūra",
   "invitation__preview__personalized": "Pritaikyta {name}",
-
   "invitation__nav__back": "Atgal",
   "invitation__nav__next": "Toliau",
   "invitation__nav__complete": "Užbaigti",

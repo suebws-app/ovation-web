@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { cn } from "@ovation/ui/utils/cn";
 import { appRoutes } from "@/lib/routes";
-import { SocialIcon } from "./SocialIcon";
 import { FooterColumn } from "./FooterColumn";
 import { Link } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -75,6 +74,10 @@ export const RootFooter = ({ className }: RootFooterProps) => {
       title: t("common__footer__legal"),
       links: [
         {
+          label: t("common__footer__legal_links__terms"),
+          href: appRoutes.legal.terms,
+        },
+        {
           label: t("common__footer__legal_links__privacy"),
           href: appRoutes.legal.privacy,
         },
@@ -97,11 +100,6 @@ export const RootFooter = ({ className }: RootFooterProps) => {
             <p className="text-muted-foreground max-w-70 text-sm leading-relaxed">
               {t("common__footer__tagline")}
             </p>
-            <div className="mt-5 flex gap-2.5">
-              {(["IG", "TT"] as const).map((platform) => (
-                <SocialIcon key={platform} platform={platform} />
-              ))}
-            </div>
           </div>
 
           {columns.map((col) => (

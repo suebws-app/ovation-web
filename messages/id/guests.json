@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Tamu",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {pesan} other {pesan}} diterima sejauh ini.",
+  "guests__hero__title": "<emph>{count}</emph> {count, plural, other {pesan}} diterima sejauh ini.",
   "guests__hero__subtitle": "Lacak kontribusi dan bagikan tautan undangan Anda. Direktori tamu lengkap akan segera hadir — untuk saat ini, setiap suara yang masuk tercermin di daftar pesan.",
   "guests__hero__add": "Tambahkan tamu",
   "guests__hero__import": "Impor .csv",

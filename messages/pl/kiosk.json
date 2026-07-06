@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Zalecamy włączenie obu przed startem.",
   "kiosk__start_warning__cancel": "Anuluj",
   "kiosk__start_warning__confirm": "Uruchom mimo to",
-  "kiosk_setup__pin__set": "Ustaw PIN",
   "kiosk_setup__language__set_main": "Ustaw jako język główny",
   "kiosk_setup__language__remove": "Usuń język",
   "kiosk_setup__select__placeholder": "Wybierz opcję",

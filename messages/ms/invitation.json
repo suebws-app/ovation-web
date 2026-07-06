@@ -1,23 +1,18 @@
 {
   "invitation__page__title": "Jemputan",
   "invitation__page__breadcrumb": "Jemputan",
-
   "invitation__step__design__label": "Pilih reka bentuk",
   "invitation__step__details__label": "Butiran acara",
   "invitation__step__guests__label": "Senarai tetamu",
-
   "invitation__step__design__title_a": "Pilih reka bentuk",
   "invitation__step__design__title_b": "jemputan anda.",
   "invitation__step__design__subtitle": "Pilih templat dan laraskan warna serta tipografinya. Pratonton dikemas kini secara langsung.",
-
   "invitation__step__details__title_a": "Tambah butiran",
   "invitation__step__details__title_b": "acara anda.",
   "invitation__step__details__subtitle": "Isikan nama pasangan, tarikh dan lokasi — setiap jemputan akan menggunakannya.",
-
   "invitation__step__guests__title_a": "Bina",
   "invitation__step__guests__title_b": "senarai tetamu anda.",
   "invitation__step__guests__subtitle": "Tambahkan setiap tetamu; kami menjana jemputan dan pautan peribadi secara automatik untuk setiap orang.",
-
   "invitation__section__templates": "Reka bentuk kad",
   "invitation__section__templates_sub": "Pilih reka bentuk — tetamu akan melihatnya dalam e-mel jemputan, pratonton pautan dan halaman tetamu.",
   "invitation__templates__load_error": "Gagal memuatkan reka bentuk. Sila muat semula halaman.",
@@ -31,7 +26,6 @@
   "invitation__section__photo_sub": "Ton pilihan untuk gambar utama",
   "invitation__section__guests": "Tetamu",
   "invitation__section__guests_sub": "Jemputan dan pautan peribadi",
-
   "invitation__field__partner_a": "Pasangan A",
   "invitation__field__partner_b": "Pasangan B",
   "invitation__field__date": "Tarikh",
@@ -42,7 +36,6 @@
   "invitation__field__colour_scheme": "Skim warna",
   "invitation__field__typeface": "Tipografi",
   "invitation__field__preset_tones": "Ton pratetap",
-
   "invitation__placeholder__partner_a": "cth. Lila",
   "invitation__placeholder__partner_b": "cth. Theo",
   "invitation__placeholder__date": "12 September 2026",
@@ -57,14 +50,11 @@
   "invitation__placeholder__guest_name": "Nama tetamu",
   "invitation__placeholder__guest_email": "guest@email.com",
   "invitation__placeholder__guest_phone": "+60 12-345 6789",
-
   "invitation__schedule__add": "+ Tambah detik",
   "invitation__schedule__time_placeholder": "16:00",
   "invitation__schedule__label_placeholder": "Majlis",
-
   "invitation__photo__dropzone_title": "Lepaskan foto di sini",
   "invitation__photo__dropzone_hint": "JPG atau PNG · sehingga 10 MB",
-
   "invitation__guests__add": "+ Tambah tetamu",
   "invitation__guests__import": "Import",
   "invitation__guests__import__title": "Import tetamu",
@@ -72,15 +62,13 @@
   "invitation__guests__empty": "Belum ada tetamu. Tambah tetamu pertama untuk melihat jemputan peribadi.",
   "invitation__guests__count": "{count} tetamu · {seats} kerusi",
   "invitation__guests__remove": "Buang",
-  "invitation__guests__locked__title": "Senarai tetamu anda sudah sedia — {count} tetamu",
+  "invitation__guests__locked__title": "Senarai tetamu anda sudah sedia — {count} {count, plural, other {tetamu}}",
   "invitation__guests__locked__body": "Mulai sekarang, urus senarai tetamu (tambah, sunting, buang, hantar jemputan) dalam bahagian Senarai tetamu. Wizard hanya mengendalikan penyediaan awal.",
   "invitation__guests__locked__cta": "Buka senarai tetamu",
-
   "invitation__preview__mode_invite": "Jemputan",
   "invitation__preview__mode_guest": "Paparan tetamu",
   "invitation__preview__live": "Pratonton langsung",
   "invitation__preview__personalized": "Diperibadikan untuk {name}",
-
   "invitation__nav__back": "Kembali",
   "invitation__nav__next": "Seterusnya",
   "invitation__nav__complete": "Selesaikan",

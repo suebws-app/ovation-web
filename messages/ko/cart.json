@@ -67,5 +67,7 @@
   "cart__confirm__body": "주문해 주셔서 감사합니다. 세부 정보가 포함된 확인 이메일을 보냈습니다.",
   "cart__confirm__reference": "참조: {id}",
   "cart__confirm__view_order": "주문 보기",
-  "cart__confirm__continue": "쇼핑 계속하기"
+  "cart__confirm__continue": "쇼핑 계속하기",
+  "cart__line__shipping": "+ 배송비 {price}",
+  "cart__addresses__shipping_price": "배송비 {price}"
 }

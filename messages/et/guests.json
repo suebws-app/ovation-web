@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Külalised",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {sõnum} other {sõnumit}} senini vastu võetud.",
+  "guests__hero__title": "Seni on saabunud <emph>{count}</emph> {count, plural, one {sõnum} other {sõnumit}}.",
   "guests__hero__subtitle": "Jälgi panuseid ja jaga oma kutselinki. Täielik külaliste kataloog on varsti tulemas — praegu kajastub iga saabunud hääl sõnumite nimekirjas.",
   "guests__hero__add": "Lisa külaline",
   "guests__hero__import": "Impordi .csv",
@@ -98,7 +98,7 @@
   "guests__chips__sort_recent": "Hiljutisemad esimesena",
   "guests__thankyou__eyebrow": "Tänumärkused",
   "guests__thankyou__title_a": "{count} külalist ootab",
-  "guests__thankyou__title_b": "",
+  "guests__thankyou__title_b": "unustamatut",
   "guests__thankyou__title_c": "tänusõna",
   "guests__thankyou__title_d": ".",
   "guests__thankyou__body": "Eelnevalt adresseeritud postkaardid iga külalise oma foto ja tema öeldud tsitaadiga. Me trükime, margistame ja saadame.",

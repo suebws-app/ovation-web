@@ -1,6 +1,6 @@
 {
   "invitees__title": "Popis gostiju",
-  "invitees__subtitle": "{count, plural, one {# pozvan} few {# pozvana} other {# pozvanih}}",
+  "invitees__subtitle": "{count} {count, plural, one {uzvanik} few {uzvanika} other {uzvanika}}",
   "invitees__empty__title": "Još nema popisa gostiju",
   "invitees__empty__body": "Započni pozivnicu kako bi izgradio popis gostiju.",
   "invitees__empty__cta": "Otvori čarobnjaka za pozivnicu",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Poveznica pozivnice kopirana u međuspremnik",
   "invitees__row__copy_error": "Poveznicu nije bilo moguće kopirati. Pokušaj ponovno.",
   "invitees__row__no_email": "Bez e-pošte",
-  "invitees__row__seats_inline": "{count, plural, one {# mjesto} few {# mjesta} other {# mjesta}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {mjesto} few {mjesta} other {mjesta}}",
   "invitees__send_all__cta": "Pošalji {count} neposlanih",
   "invitees__send_all__sending": "Slanje…",
   "invitees__send_all__confirm": "Poslati pozivnice za {count, plural, one {# gosta} few {# gosta} other {# gostiju}} sada?",
   "invitees__send_all__success": "{queued} u redu, {skipped} preskočeno (bez e-pošte).",
-  "invitees__send_all__error": "Pozivnice nije bilo moguće staviti u red. Pokušaj ponovno."
+  "invitees__send_all__error": "Pozivnice nije bilo moguće staviti u red. Pokušaj ponovno.",
+  "invitees__preview__cta": "Pretpregled",
+  "invitees__preview__title": "Pretpregled pozivnice",
+  "invitees__edit_card__cta": "Uredi karticu pozivnice"
 }

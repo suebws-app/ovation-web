@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import { Button } from "@ovation/ui/components/Button";
 import { Kicker } from "@ovation/ui/components/Kicker";
 
-import { InfoIcon } from "@ovation/icons/InfoIcon";
 import { AuthSplitLayout } from "@/features/auth/components/AuthSplitLayout";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
@@ -296,23 +295,6 @@ export const CoverPage = () => {
             onChange={handleSlugChange}
             onSuggestionClick={handleSuggestionClick}
           />
-        </div>
-
-        <div className="rounded-12 bg-primary/10 tablet:mt-5 tablet:p-3 tablet:gap-2.5 mt-2 flex items-start gap-2 p-2.5">
-          <InfoIcon
-            width={14}
-            height={14}
-            className="text-primary mt-0.5 shrink-0"
-            strokeWidth={1.8}
-          />
-          <p className="type-caption text-muted-foreground leading-snug">
-            {t.rich("signup__claim__notice", {
-              strong: (chunks) => (
-                <strong className="text-foreground">{chunks}</strong>
-              ),
-              mono: (chunks) => <span className="font-mono">{chunks}</span>,
-            })}
-          </p>
         </div>
 
         <Button

@@ -1,6 +1,6 @@
 {
   "invitees__title": "Seznam gostov",
-  "invitees__subtitle": "{count, plural, one {# povabljenec} two {# povabljenca} few {# povabljenci} other {# povabljencev}}",
+  "invitees__subtitle": "{count} {count, plural, one {povabljenec} two {povabljenca} few {povabljenci} other {povabljencev}}",
   "invitees__empty__title": "Še ni seznama gostov",
   "invitees__empty__body": "Začni z vabilom, da zgradiš svoj seznam gostov.",
   "invitees__empty__cta": "Odpri čarovnika za vabila",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Povezava vabila kopirana v odložišče",
   "invitees__row__copy_error": "Povezave ni bilo mogoče kopirati. Poskusi znova.",
   "invitees__row__no_email": "Brez e-pošte",
-  "invitees__row__seats_inline": "{count, plural, one {# sedež} two {# sedeža} few {# sedeži} other {# sedežev}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {mesto} two {mesti} few {mesta} other {mest}}",
   "invitees__send_all__cta": "Pošlji {count} neposlanim",
   "invitees__send_all__sending": "Pošiljanje…",
   "invitees__send_all__confirm": "Pošljemo zdaj vabila {count, plural, one {# gostu} two {# gostoma} few {# gostom} other {# gostom}}?",
   "invitees__send_all__success": "{queued} v vrsti, {skipped} preskočenih (brez e-pošte).",
-  "invitees__send_all__error": "Vabil ni bilo mogoče dati v vrsto. Poskusi znova."
+  "invitees__send_all__error": "Vabil ni bilo mogoče dati v vrsto. Poskusi znova.",
+  "invitees__preview__cta": "Predogled",
+  "invitees__preview__title": "Predogled povabila",
+  "invitees__edit_card__cta": "Uredi kartico povabila"
 }

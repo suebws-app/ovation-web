@@ -106,4 +106,8 @@ export const queryKeys = {
   currencies: {
     supported: () => ["currencies", "supported"] as const,
   },
+  plans: {
+    all: () => ["plans"] as const,
+    list: () => ["plans", "list"] as const,
+  },
 } as const;

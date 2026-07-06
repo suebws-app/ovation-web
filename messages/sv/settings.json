@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktiv — nästa fakturering {date}, 20 €/mån.",
   "settings__billing__dre_cancel_btn": "Avsluta DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Avslut schemalagt. Åtkomsten upphör den {date}.",
-  "settings__billing__dre_resume_btn": "Återuppta DRE"
+  "settings__billing__dre_resume_btn": "Återuppta DRE",
+  "settings__data__rights__report__email_subject": "Begäran om datarapport"
 }

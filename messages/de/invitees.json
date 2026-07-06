@@ -1,6 +1,6 @@
 {
   "invitees__title": "Gästeliste",
-  "invitees__subtitle": "{count, plural, one {# Gast} other {# Gäste}}",
+  "invitees__subtitle": "{count} {count, plural, one {Eingeladener} other {Eingeladene}}",
   "invitees__empty__title": "Noch keine Gästeliste",
   "invitees__empty__body": "Starte deine Einladung, um deine Gästeliste anzulegen.",
   "invitees__empty__cta": "Einladungsassistent öffnen",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Einladungslink in die Zwischenablage kopiert",
   "invitees__row__copy_error": "Link konnte nicht kopiert werden. Erneut versuchen.",
   "invitees__row__no_email": "Keine E-Mail",
-  "invitees__row__seats_inline": "{count, plural, one {# Platz} other {# Plätze}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {Platz} other {Plätze}}",
   "invitees__send_all__cta": "An {count} ungesendete senden",
   "invitees__send_all__sending": "Senden…",
   "invitees__send_all__confirm": "Einladungen jetzt an {count, plural, one {# Gast} other {# Gäste}} senden?",
   "invitees__send_all__success": "{queued} in der Warteschlange, {skipped} übersprungen (keine E-Mail).",
-  "invitees__send_all__error": "Einladungen konnten nicht in die Warteschlange gestellt werden. Erneut versuchen."
+  "invitees__send_all__error": "Einladungen konnten nicht in die Warteschlange gestellt werden. Erneut versuchen.",
+  "invitees__preview__cta": "Vorschau",
+  "invitees__preview__title": "Einladungsvorschau",
+  "invitees__edit_card__cta": "Einladungskarte bearbeiten"
 }

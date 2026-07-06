@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktif — penagihan berikutnya {date}, €20/bulan.",
   "settings__billing__dre_cancel_btn": "Batalkan DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Pembatalan dijadwalkan. Akses berakhir pada {date}.",
-  "settings__billing__dre_resume_btn": "Lanjutkan DRE"
+  "settings__billing__dre_resume_btn": "Lanjutkan DRE",
+  "settings__data__rights__report__email_subject": "Permintaan laporan data"
 }

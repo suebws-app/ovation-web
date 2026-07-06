@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Video gönderimleri için maksimum süre.",
   "link_settings__audio_duration__title": "Ses kayıt süresi",
   "link_settings__audio_duration__desc": "Sesli gönderimler için maksimum süre.",
-  "link_settings__save_error": "Kaydedilemedi"
+  "link_settings__save_error": "Kaydedilemedi",
+  "link_settings__gallery__title": "Herkese açık galeri",
+  "link_settings__gallery__desc": "Etkinliğin tüm fotoğraf ve videolarını içeren, yalnızca görüntülenebilir bir galeriyi misafirlerinle paylaş.",
+  "link_settings__gallery__toggle_title": "Galeriyi herkese açık paylaş",
+  "link_settings__gallery__toggle_desc": "Bağlantıya sahip olan herkes galeriyi görüntüleyebilir. Misafirler yükleme yapamaz veya yorum bırakamaz.",
+  "link_settings__gallery__copy": "Galeri bağlantısını kopyala",
+  "link_settings__gallery__copied": "Kopyalandı",
+  "link_settings__gallery__regenerate": "Bağlantıyı yenile",
+  "link_settings__gallery__regenerate_hint": "Yenileme yeni bir bağlantı oluşturur ve eskisini devre dışı bırakır."
 }

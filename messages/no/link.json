@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maksimal lengde for videoinnsendinger.",
   "link_settings__audio_duration__title": "Lengde på lydopptak",
   "link_settings__audio_duration__desc": "Maksimal lengde for taleinnsendinger.",
-  "link_settings__save_error": "Kunne ikke lagre"
+  "link_settings__save_error": "Kunne ikke lagre",
+  "link_settings__gallery__title": "Offentlig galleri",
+  "link_settings__gallery__desc": "Del et kun-visning-galleri med alle arrangementets bilder og videoer med gjestene dine.",
+  "link_settings__gallery__toggle_title": "Del galleriet offentlig",
+  "link_settings__gallery__toggle_desc": "Alle med lenken kan se galleriet. Gjester kan ikke laste opp eller kommentere.",
+  "link_settings__gallery__copy": "Kopier gallerilenke",
+  "link_settings__gallery__copied": "Kopiert",
+  "link_settings__gallery__regenerate": "Generer lenken på nytt",
+  "link_settings__gallery__regenerate_hint": "En ny lenke opprettes og den gamle deaktiveres."
 }

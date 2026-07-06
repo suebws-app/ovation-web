@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Priporočamo, da pred začetkom vklopite oba.",
   "kiosk__start_warning__cancel": "Prekliči",
   "kiosk__start_warning__confirm": "Vseeno začni",
-  "kiosk_setup__pin__set": "Nastavi PIN",
   "kiosk_setup__language__set_main": "Nastavi kot glavni jezik",
   "kiosk_setup__language__remove": "Odstrani jezik",
   "kiosk_setup__select__placeholder": "Izberite možnost",

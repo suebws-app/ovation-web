@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Activ — următoarea facturare {date}, 20 €/lună.",
   "settings__billing__dre_cancel_btn": "Anulează DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Anulare programată. Accesul se încheie pe {date}.",
-  "settings__billing__dre_resume_btn": "Reia DRE"
+  "settings__billing__dre_resume_btn": "Reia DRE",
+  "settings__data__rights__report__email_subject": "Cerere de raport de date"
 }

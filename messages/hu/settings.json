@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktív — következő számlázás {date}, 20 €/hó.",
   "settings__billing__dre_cancel_btn": "DRE lemondása",
   "settings__billing__dre_cancellation_scheduled_body": "Lemondás ütemezve. Hozzáférés véget ér {date}-én.",
-  "settings__billing__dre_resume_btn": "DRE folytatása"
+  "settings__billing__dre_resume_btn": "DRE folytatása",
+  "settings__data__rights__report__email_subject": "Adatjelentés kérése"
 }

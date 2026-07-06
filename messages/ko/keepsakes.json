@@ -81,7 +81,7 @@
   "keepsakes__book_customizer__cover_text_placeholder": "Anna & Marc · 2025년 6월 14일",
   "keepsakes__book_customizer__dedication_label": "헌사 (선택)",
   "keepsakes__book_customizer__dedication_placeholder": "함께 축하해 준 모든 분들께…",
-  "keepsakes__book_customizer__price_base": "{count, plural, =0 {{name}} other {{name} (# 페이지 포함)}}",
+  "keepsakes__book_customizer__price_base": "{count, plural, =0 {{name}} other {{name} (#페이지 포함)}}",
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {추가 #페이지} other {추가 #페이지}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "인쇄용 빈 페이지 1장이 포함됩니다.",
   "keepsakes__book_customizer__price_total": "합계",

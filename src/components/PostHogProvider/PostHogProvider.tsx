@@ -25,16 +25,15 @@ const PageView = () => {
 const Identify = () => {
   const { data: session } = useSession();
   const userId = session?.user?.id;
-  const email = session?.user?.email;
 
   useEffect(() => {
     if (!isEnabled) return;
     if (userId) {
-      posthog.identify(userId, email ? { email } : undefined);
+      posthog.identify(userId);
     } else {
       posthog.reset();
     }
-  }, [userId, email]);
+  }, [userId]);
 
   return null;
 };

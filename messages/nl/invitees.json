@@ -1,6 +1,6 @@
 {
   "invitees__title": "Gastenlijst",
-  "invitees__subtitle": "{count, plural, one {# genodigde} other {# genodigden}}",
+  "invitees__subtitle": "{count} {count, plural, one {genodigde} other {genodigden}}",
   "invitees__empty__title": "Nog geen gastenlijst",
   "invitees__empty__body": "Start je uitnodiging om je gastenlijst aan te leggen.",
   "invitees__empty__cta": "Uitnodigingswizard openen",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Uitnodigingslink naar klembord gekopieerd",
   "invitees__row__copy_error": "Kan link niet kopiëren. Probeer opnieuw.",
   "invitees__row__no_email": "Geen e-mail",
-  "invitees__row__seats_inline": "{count, plural, one {# plaats} other {# plaatsen}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {plaats} other {plaatsen}}",
   "invitees__send_all__cta": "Verstuur naar {count} niet-verzonden",
   "invitees__send_all__sending": "Versturen…",
   "invitees__send_all__confirm": "Nu uitnodigingen versturen naar {count, plural, one {# gast} other {# gasten}}?",
   "invitees__send_all__success": "{queued} in wachtrij, {skipped} overgeslagen (geen e-mail).",
-  "invitees__send_all__error": "Kan uitnodigingen niet in wachtrij plaatsen. Probeer opnieuw."
+  "invitees__send_all__error": "Kan uitnodigingen niet in wachtrij plaatsen. Probeer opnieuw.",
+  "invitees__preview__cta": "Voorbeeld",
+  "invitees__preview__title": "Uitnodigingsvoorbeeld",
+  "invitees__edit_card__cta": "Uitnodigingskaart bewerken"
 }

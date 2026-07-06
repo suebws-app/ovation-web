@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktivno — naslednje obračunavanje {date}, €20/mes.",
   "settings__billing__dre_cancel_btn": "Prekliči DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Preklic načrtovan. Dostop se konča {date}.",
-  "settings__billing__dre_resume_btn": "Nadaljuj DRE"
+  "settings__billing__dre_resume_btn": "Nadaljuj DRE",
+  "settings__data__rights__report__email_subject": "Zahteva za poročilo o podatkih"
 }

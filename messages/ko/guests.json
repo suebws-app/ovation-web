@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "게스트",
-  "guests__hero__title": "지금까지 <emph>{count}</emph>개의 {count, plural, one {메시지} other {메시지}}가 도착했어요.",
+  "guests__hero__title": "지금까지 <emph>{count}</emph>{count, plural, other {개의 메시지}}를 받았습니다.",
   "guests__hero__subtitle": "기여 내역을 추적하고 초대 링크를 공유하세요. 전체 게스트 디렉토리는 곧 출시됩니다 — 지금은 도착한 모든 목소리가 메시지 목록에 반영되어 있어요.",
   "guests__hero__add": "게스트 추가",
   "guests__hero__import": ".csv 가져오기",

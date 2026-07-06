@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Invitados",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {mensaje} other {mensajes}} recibidos hasta ahora.",
+  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {mensaje recibido} other {mensajes recibidos}} hasta ahora.",
   "guests__hero__subtitle": "Haz seguimiento de las contribuciones y comparte tu enlace de invitación. Un directorio completo de invitados llegará muy pronto — por ahora, todas las voces que han llegado se reflejan en la lista de mensajes.",
   "guests__hero__add": "Añadir un invitado",
   "guests__hero__import": "Importar .csv",

@@ -1,6 +1,6 @@
 {
   "invitees__title": "Gästlista",
-  "invitees__subtitle": "{count, plural, one {# inbjuden} other {# inbjudna}}",
+  "invitees__subtitle": "{count} {count, plural, one {inbjuden} other {inbjudna}}",
   "invitees__empty__title": "Ingen gästlista ännu",
   "invitees__empty__body": "Starta din inbjudan för att bygga din gästlista.",
   "invitees__empty__cta": "Öppna inbjudningsguiden",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Inbjudningslänk kopierad till urklipp",
   "invitees__row__copy_error": "Kunde inte kopiera länken. Försök igen.",
   "invitees__row__no_email": "Ingen e-post",
-  "invitees__row__seats_inline": "{count, plural, one {# plats} other {# platser}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {plats} other {platser}}",
   "invitees__send_all__cta": "Skicka till {count} oskickade",
   "invitees__send_all__sending": "Skickar…",
   "invitees__send_all__confirm": "Skicka inbjudningar till {count, plural, one {# gäst} other {# gäster}} nu?",
   "invitees__send_all__success": "{queued} i kö, {skipped} hoppade över (ingen e-post).",
-  "invitees__send_all__error": "Kunde inte köa inbjudningarna. Försök igen."
+  "invitees__send_all__error": "Kunde inte köa inbjudningarna. Försök igen.",
+  "invitees__preview__cta": "Förhandsvisa",
+  "invitees__preview__title": "Förhandsvisning av inbjudan",
+  "invitees__edit_card__cta": "Redigera inbjudningskort"
 }

@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "활성 — 다음 결제 {date}, 월 €20.",
   "settings__billing__dre_cancel_btn": "DRE 취소",
   "settings__billing__dre_cancellation_scheduled_body": "취소 예약됨. {date}에 액세스가 종료됩니다.",
-  "settings__billing__dre_resume_btn": "DRE 재개"
+  "settings__billing__dre_resume_btn": "DRE 재개",
+  "settings__data__rights__report__email_subject": "데이터 보고서 요청"
 }

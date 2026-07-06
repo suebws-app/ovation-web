@@ -1,16 +1,10 @@
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Button } from "@ovation/ui/components/Button";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarGroup,
-} from "@ovation/ui/components/Avatar";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { HeroShowpiece } from "../HeroShowpiece";
 import { Badge } from "@ovation/ui/components/Badge";
-import { AVATARS } from "./constants";
 
 export const HeroSection = () => {
   const t = useTranslations();
@@ -36,7 +30,7 @@ export const HeroSection = () => {
               className="bg-secondary h-2 w-2 shrink-0 rounded-full"
               aria-hidden="true"
             />
-            {t("marketing__hero__badge", { count: "2,840", countries: "34" })}
+            {t("marketing__hero__badge_beta")}
           </Badge>
 
           <SectionTitle as="h1" className="leading-none tracking-tighter">
@@ -63,24 +57,6 @@ export const HeroSection = () => {
                 {t("marketing__hero__cta_secondary")}
               </Link>
             </Button>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <AvatarGroup>
-              {AVATARS.map((avatar) => (
-                <Avatar key={avatar.initials}>
-                  <AvatarFallback
-                    className="text-primary-foreground type-body-small font-semibold"
-                    style={{ background: avatar.tint }}
-                  >
-                    {avatar.initials}
-                  </AvatarFallback>
-                </Avatar>
-              ))}
-            </AvatarGroup>
-            <p className="text-muted-foreground type-body-small">
-              {t("marketing__hero__social_proof", { rating: "4.9" })}
-            </p>
           </div>
         </div>
 

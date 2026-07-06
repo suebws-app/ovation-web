@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Goście",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {wiadomość} few {wiadomości} many {wiadomości} other {wiadomości}} otrzymanych do tej pory.",
+  "guests__hero__title": "Dotychczas {count, plural, one {otrzymano <emph>{count}</emph> wiadomość} few {otrzymano <emph>{count}</emph> wiadomości} many {otrzymano <emph>{count}</emph> wiadomości} other {otrzymano <emph>{count}</emph> wiadomości}}.",
   "guests__hero__subtitle": "Śledź wkład i udostępnij link z zaproszeniem. Pełny katalog gości jest w drodze — na razie każdy głos, który wpłynął, jest odzwierciedlony na liście wiadomości.",
   "guests__hero__add": "Dodaj gościa",
   "guests__hero__import": "Importuj .csv",

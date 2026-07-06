@@ -116,7 +116,6 @@
   "kiosk__start_warning__hint": "Yayına almadan önce ikisini de açmanızı öneririz.",
   "kiosk__start_warning__cancel": "İptal",
   "kiosk__start_warning__confirm": "Yine de başlat",
-  "kiosk_setup__pin__set": "PIN ayarla",
   "kiosk_setup__language__set_main": "Ana dil olarak ayarla",
   "kiosk_setup__language__remove": "Dili kaldır",
   "kiosk_setup__select__placeholder": "Seçenek seç",

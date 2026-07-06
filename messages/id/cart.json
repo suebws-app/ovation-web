@@ -67,5 +67,7 @@
   "cart__confirm__body": "Terima kasih atas pesanan Anda. Kami telah mengirim email konfirmasi beserta detailnya.",
   "cart__confirm__reference": "Referensi: {id}",
   "cart__confirm__view_order": "Lihat pesanan",
-  "cart__confirm__continue": "Lanjutkan belanja"
+  "cart__confirm__continue": "Lanjutkan belanja",
+  "cart__line__shipping": "+ {price} ongkos kirim",
+  "cart__addresses__shipping_price": "Ongkos kirim {price}"
 }

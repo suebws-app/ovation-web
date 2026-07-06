@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Kohëzgjatja maksimale për dorëzimet me video.",
   "link_settings__audio_duration__title": "Kohëzgjatja e regjistrimit të audios",
   "link_settings__audio_duration__desc": "Kohëzgjatja maksimale për dorëzimet me zë.",
-  "link_settings__save_error": "Dështoi ruajtja"
+  "link_settings__save_error": "Dështoi ruajtja",
+  "link_settings__gallery__title": "Galeri publike",
+  "link_settings__gallery__desc": "Ndani me mysafirët tuaj një galeri vetëm për shikim me të gjitha fotot dhe videot e eventit.",
+  "link_settings__gallery__toggle_title": "Ndaje galerinë publikisht",
+  "link_settings__gallery__toggle_desc": "Kushdo me lidhjen mund ta shohë galerinë. Mysafirët nuk mund të ngarkojnë ose komentojnë.",
+  "link_settings__gallery__copy": "Kopjo lidhjen e galerisë",
+  "link_settings__gallery__copied": "U kopjua",
+  "link_settings__gallery__regenerate": "Rigjenero lidhjen",
+  "link_settings__gallery__regenerate_hint": "Rigjenerimi krijon një lidhje të re dhe çaktivizon të vjetrën."
 }

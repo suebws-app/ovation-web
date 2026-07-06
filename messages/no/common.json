@@ -61,5 +61,6 @@
   "common__theme__label": "Tema",
   "common__theme__light": "Lyst",
   "common__theme__dark": "Mørkt",
-  "common__theme__system": "System"
+  "common__theme__system": "System",
+  "common__footer__legal_links__terms": "Vilkår"
 }

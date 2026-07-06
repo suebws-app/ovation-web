@@ -17,6 +17,7 @@ import type { Event } from "@/lib/api/types";
 import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsRow } from "./SettingsRow";
 import { ExportHeroCard } from "./ExportHeroCard";
+import { DataRightsSection } from "./DataRightsSection";
 import {
   useEventDataExport,
   type ExportKind,
@@ -218,6 +219,8 @@ export const SettingsDataSection = ({
           </CardContent>
         </Card>
       </section>
+
+      <DataRightsSection />
     </div>
   );
 };

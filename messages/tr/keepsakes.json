@@ -81,7 +81,7 @@
   "keepsakes__book_customizer__cover_text_placeholder": "Anna & Marc · 14 Haziran 2025",
   "keepsakes__book_customizer__dedication_label": "İthaf (isteğe bağlı)",
   "keepsakes__book_customizer__dedication_placeholder": "Kutlamamıza katılan herkes için…",
-  "keepsakes__book_customizer__price_base": "{count, plural, =0 {{name}} other {{name} (# sayfa dahil)}}",
+  "keepsakes__book_customizer__price_base": "{count, plural, =0 {{name}} one {{name} (# sayfa dâhil)} other {{name} (# sayfa dâhil)}}",
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# ekstra sayfa} other {# ekstra sayfa}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Baskı için eklenen 1 boş sayfa dahildir.",
   "keepsakes__book_customizer__price_total": "Toplam",

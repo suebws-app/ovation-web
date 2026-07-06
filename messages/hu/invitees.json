@@ -1,6 +1,6 @@
 {
   "invitees__title": "Vendéglista",
-  "invitees__subtitle": "{count} meghívott",
+  "invitees__subtitle": "{count} {count, plural, one {meghívott} other {meghívott}}",
   "invitees__empty__title": "Még nincs vendéglistád",
   "invitees__empty__body": "Indítsd el a meghívót, hogy felépítsd a vendéglistát.",
   "invitees__empty__cta": "Meghívó varázsló megnyitása",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "A meghívó link a vágólapra másolva",
   "invitees__row__copy_error": "Nem sikerült a link másolása. Próbáld újra.",
   "invitees__row__no_email": "Nincs e-mail",
-  "invitees__row__seats_inline": "{count} hely",
+  "invitees__row__seats_inline": "{count} {count, plural, one {hely} other {hely}}",
   "invitees__send_all__cta": "Küldés {count} elküldetlennek",
   "invitees__send_all__sending": "Küldés…",
   "invitees__send_all__confirm": "Most kiküldöd a meghívókat {count} vendégnek?",
   "invitees__send_all__success": "{queued} sorba állítva, {skipped} kihagyva (nincs e-mail).",
-  "invitees__send_all__error": "Nem sikerült sorba állítani a meghívókat. Próbáld újra."
+  "invitees__send_all__error": "Nem sikerült sorba állítani a meghívókat. Próbáld újra.",
+  "invitees__preview__cta": "Előnézet",
+  "invitees__preview__title": "Meghívó előnézete",
+  "invitees__edit_card__cta": "Meghívókártya szerkesztése"
 }

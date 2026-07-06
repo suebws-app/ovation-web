@@ -22,8 +22,8 @@
   "settings__billing__resume_confirm_body": "Aboneliğin mevcut dönemin sonunda yenilenir.",
   "settings__billing__resume_confirm_action": "Sürdür",
   "settings__profile__eyebrow": "Ayarlar",
-  "settings__profile__title_a": "Profilin",
-  "settings__profile__title_b": "",
+  "settings__profile__title_a": "Senin",
+  "settings__profile__title_b": "profilin",
   "settings__profile__subtitle": "Kitabın arkasındaki çift. Misafirlerin karşılama ekranında ve Ovation üzerinden gönderdiğin teşekkür notlarında gördüğü şey budur.",
   "settings__profile__your_account": "Hesabın",
   "settings__profile__your_account_description": "Sadece sana ait alanlar.",
@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktif — sonraki fatura {date}, 20 €/ay.",
   "settings__billing__dre_cancel_btn": "DRE'yi iptal et",
   "settings__billing__dre_cancellation_scheduled_body": "İptal planlandı. Erişim {date} tarihinde sona erer.",
-  "settings__billing__dre_resume_btn": "DRE'yi sürdür"
+  "settings__billing__dre_resume_btn": "DRE'yi sürdür",
+  "settings__data__rights__report__email_subject": "Veri raporu talebi"
 }

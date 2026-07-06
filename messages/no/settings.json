@@ -92,8 +92,8 @@
   "settings__notif__saved": "Lagret.",
   "settings__notif__error": "Kunne ikke lagre preferanser.",
   "settings__danger__eyebrow": "Innstillinger",
-  "settings__danger__title_a": "Faresone",
-  "settings__danger__title_b": "",
+  "settings__danger__title_a": "Fare",
+  "settings__danger__title_b": "sone",
   "settings__danger__subtitle": "Endringer her kan ikke angres. Vi vil be deg bekrefte før enhver sletting.",
   "settings__danger__archive_section": "Arkiver eller slett",
   "settings__danger__final_warning": "Disse handlingene er endelige",
@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktiv — neste fakturering {date}, 20 €/mnd.",
   "settings__billing__dre_cancel_btn": "Avbryt DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Kansellering planlagt. Tilgang slutter {date}.",
-  "settings__billing__dre_resume_btn": "Gjenoppta DRE"
+  "settings__billing__dre_resume_btn": "Gjenoppta DRE",
+  "settings__data__rights__report__email_subject": "Forespørsel om datarapport"
 }

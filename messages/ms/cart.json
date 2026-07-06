@@ -67,5 +67,7 @@
   "cart__confirm__body": "Terima kasih atas pesanan anda. Kami telah menghantar e-mel pengesahan dengan butirannya.",
   "cart__confirm__reference": "Rujukan: {id}",
   "cart__confirm__view_order": "Lihat pesanan",
-  "cart__confirm__continue": "Teruskan membeli-belah"
+  "cart__confirm__continue": "Teruskan membeli-belah",
+  "cart__line__shipping": "+ {price} penghantaran",
+  "cart__addresses__shipping_price": "Penghantaran {price}"
 }

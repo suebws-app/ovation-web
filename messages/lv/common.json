@@ -61,5 +61,6 @@
   "common__theme__label": "Tēma",
   "common__theme__light": "Gaiša",
   "common__theme__dark": "Tumša",
-  "common__theme__system": "Sistēmas"
+  "common__theme__system": "Sistēmas",
+  "common__footer__legal_links__terms": "Noteikumi"
 }

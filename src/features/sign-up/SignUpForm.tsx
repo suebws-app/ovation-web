@@ -131,6 +131,14 @@ export const SignUpForm = () => {
                 label={
                   <span>
                     {t.rich("auth__signup__create_account__terms_label", {
+                      terms: (chunks) => (
+                        <Link
+                          href={appRoutes.legal.terms}
+                          className="text-primary font-semibold"
+                        >
+                          {chunks}
+                        </Link>
+                      ),
                       privacy: (chunks) => (
                         <Link
                           href={appRoutes.legal.privacy}

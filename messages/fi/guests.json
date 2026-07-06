@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Vieraat",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {viesti} other {viestiä}} vastaanotettu tähän mennessä.",
+  "guests__hero__title": "Tähän mennessä saatu <emph>{count}</emph> {count, plural, one {viesti} other {viestiä}}.",
   "guests__hero__subtitle": "Seuraa osallistumisia ja jaa kutsulinkkisi. Täydellinen vieraslista tulee pian — toistaiseksi jokainen saapunut ääni näkyy viestiluettelossa.",
   "guests__hero__add": "Lisää vieras",
   "guests__hero__import": "Tuo .csv",

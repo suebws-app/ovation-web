@@ -1,6 +1,6 @@
 {
   "invitees__title": "Davetli listesi",
-  "invitees__subtitle": "{count} davetli",
+  "invitees__subtitle": "{count} {count, plural, one {davetli} other {davetli}}",
   "invitees__empty__title": "Henüz davetli listesi yok",
   "invitees__empty__body": "Davetli listeni oluşturmak için davetiyeye başla.",
   "invitees__empty__cta": "Davetiye sihirbazını aç",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Davetiye bağlantısı panoya kopyalandı",
   "invitees__row__copy_error": "Bağlantı kopyalanamadı. Tekrar dene.",
   "invitees__row__no_email": "E-posta yok",
-  "invitees__row__seats_inline": "{count} kişi",
+  "invitees__row__seats_inline": "{count} {count, plural, one {koltuk} other {koltuk}}",
   "invitees__send_all__cta": "{count} gönderilmemişe gönder",
   "invitees__send_all__sending": "Gönderiliyor…",
   "invitees__send_all__confirm": "{count} davetliye şimdi davetiye gönderilsin mi?",
   "invitees__send_all__success": "{queued} sıraya alındı, {skipped} atlandı (e-posta yok).",
-  "invitees__send_all__error": "Davetiyeler sıraya alınamadı. Tekrar dene."
+  "invitees__send_all__error": "Davetiyeler sıraya alınamadı. Tekrar dene.",
+  "invitees__preview__cta": "Önizle",
+  "invitees__preview__title": "Davetiye önizlemesi",
+  "invitees__edit_card__cta": "Davet kartını düzenle"
 }

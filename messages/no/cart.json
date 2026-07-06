@@ -67,5 +67,7 @@
   "cart__confirm__body": "Takk for bestillingen. Vi har sendt en bekreftelses-e-post med detaljene.",
   "cart__confirm__reference": "Referanse: {id}",
   "cart__confirm__view_order": "Vis bestilling",
-  "cart__confirm__continue": "Fortsett å handle"
+  "cart__confirm__continue": "Fortsett å handle",
+  "cart__line__shipping": "+ {price} frakt",
+  "cart__addresses__shipping_price": "Frakt {price}"
 }

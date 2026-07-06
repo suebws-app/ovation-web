@@ -92,8 +92,8 @@
   "settings__notif__saved": "Salvestatud.",
   "settings__notif__error": "Eelistusi ei saanud salvestada.",
   "settings__danger__eyebrow": "Seaded",
-  "settings__danger__title_a": "Ohutsoon",
-  "settings__danger__title_b": "",
+  "settings__danger__title_a": "Ohtlik",
+  "settings__danger__title_b": "tsoon",
   "settings__danger__subtitle": "Muudatusi siin ei saa tagasi võtta. Enne mis tahes kustutamist palume teilt kinnitust.",
   "settings__danger__archive_section": "Arhiveeri või kustuta",
   "settings__danger__final_warning": "Need toimingud on lõplikud",
@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktiivne — järgmine arve {date}, €20/kuu.",
   "settings__billing__dre_cancel_btn": "Tühista DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Tühistamine ajastatud. Juurdepääs lõpeb {date}.",
-  "settings__billing__dre_resume_btn": "Jätka DRE-d"
+  "settings__billing__dre_resume_btn": "Jätka DRE-d",
+  "settings__data__rights__report__email_subject": "Andmearuande taotlus"
 }

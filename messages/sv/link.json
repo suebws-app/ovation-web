@@ -33,5 +33,13 @@
   "link_settings__video_duration__desc": "Maximal längd för videoinlämningar.",
   "link_settings__audio_duration__title": "Ljudinspelningslängd",
   "link_settings__audio_duration__desc": "Maximal längd för röstinlämningar.",
-  "link_settings__save_error": "Det gick inte att spara"
+  "link_settings__save_error": "Det gick inte att spara",
+  "link_settings__gallery__title": "Offentligt galleri",
+  "link_settings__gallery__desc": "Dela ett visningsgalleri med alla evenemangets foton och videor med dina gäster.",
+  "link_settings__gallery__toggle_title": "Dela galleriet offentligt",
+  "link_settings__gallery__toggle_desc": "Alla med länken kan se galleriet. Gäster kan inte ladda upp eller kommentera.",
+  "link_settings__gallery__copy": "Kopiera gallerilänk",
+  "link_settings__gallery__copied": "Kopierad",
+  "link_settings__gallery__regenerate": "Generera om länken",
+  "link_settings__gallery__regenerate_hint": "En ny länk skapas och den gamla inaktiveras."
 }

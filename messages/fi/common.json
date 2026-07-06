@@ -61,5 +61,6 @@
   "common__theme__label": "Teema",
   "common__theme__light": "Vaalea",
   "common__theme__dark": "Tumma",
-  "common__theme__system": "Järjestelmä"
+  "common__theme__system": "Järjestelmä",
+  "common__footer__legal_links__terms": "Ehdot"
 }

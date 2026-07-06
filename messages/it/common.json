@@ -61,5 +61,6 @@
   "common__theme__label": "Tema",
   "common__theme__light": "Chiaro",
   "common__theme__dark": "Scuro",
-  "common__theme__system": "Sistema"
+  "common__theme__system": "Sistema",
+  "common__footer__legal_links__terms": "Termini"
 }

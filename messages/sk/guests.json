@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Hostia",
-  "guests__hero__title": "<emph>{count}</emph> {count, plural, one {správa} few {správy} other {správ}} doteraz prijatých.",
+  "guests__hero__title": "Zatiaľ {count, plural, one {prijatá <emph>{count}</emph> správa} few {prijaté <emph>{count}</emph> správy} other {prijatých <emph>{count}</emph> správ}}.",
   "guests__hero__subtitle": "Sleduj príspevky a zdieľaj svoj pozývací odkaz. Kompletný zoznam hostí pribudne čoskoro — zatiaľ je každý hlas, ktorý dorazil, zachytený v zozname správ.",
   "guests__hero__add": "Pridať hosťa",
   "guests__hero__import": "Importovať .csv",

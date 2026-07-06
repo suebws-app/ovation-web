@@ -1,6 +1,6 @@
 {
   "invitees__title": "Lista de invitados",
-  "invitees__subtitle": "{count, plural, one {# invitado} other {# invitados}}",
+  "invitees__subtitle": "{count} {count, plural, one {invitado} other {invitados}}",
   "invitees__empty__title": "Aún no hay lista de invitados",
   "invitees__empty__body": "Empieza tu invitación para crear tu lista de invitados.",
   "invitees__empty__cta": "Abrir asistente de invitación",
@@ -69,10 +69,13 @@
   "invitees__row__copy_success": "Enlace de invitación copiado al portapapeles",
   "invitees__row__copy_error": "No se pudo copiar el enlace. Inténtalo de nuevo.",
   "invitees__row__no_email": "Sin email",
-  "invitees__row__seats_inline": "{count, plural, one {# asiento} other {# asientos}}",
+  "invitees__row__seats_inline": "{count} {count, plural, one {asiento} other {asientos}}",
   "invitees__send_all__cta": "Enviar a {count} pendientes",
   "invitees__send_all__sending": "Enviando…",
   "invitees__send_all__confirm": "¿Enviar invitaciones a {count, plural, one {# invitado} other {# invitados}} ahora?",
   "invitees__send_all__success": "{queued} en cola, {skipped} omitidas (sin email).",
-  "invitees__send_all__error": "No se pudieron poner las invitaciones en cola. Inténtalo de nuevo."
+  "invitees__send_all__error": "No se pudieron poner las invitaciones en cola. Inténtalo de nuevo.",
+  "invitees__preview__cta": "Vista previa",
+  "invitees__preview__title": "Vista previa de la invitación",
+  "invitees__edit_card__cta": "Editar tarjeta de invitación"
 }

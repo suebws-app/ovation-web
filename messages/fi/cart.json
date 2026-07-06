@@ -67,5 +67,7 @@
   "cart__confirm__body": "Kiitos tilauksestasi. Lähetimme vahvistussähköpostin tilauksen tiedoilla.",
   "cart__confirm__reference": "Viite: {id}",
   "cart__confirm__view_order": "Näytä tilaus",
-  "cart__confirm__continue": "Jatka ostoksia"
+  "cart__confirm__continue": "Jatka ostoksia",
+  "cart__line__shipping": "+ {price} toimitus",
+  "cart__addresses__shipping_price": "Toimitus {price}"
 }

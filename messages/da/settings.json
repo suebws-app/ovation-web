@@ -258,5 +258,6 @@
   "settings__billing__dre_active_body": "Aktiv — næste fakturering {date}, 20 €/md.",
   "settings__billing__dre_cancel_btn": "Annuller DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Annullering planlagt. Adgang slutter {date}.",
-  "settings__billing__dre_resume_btn": "Genoptag DRE"
+  "settings__billing__dre_resume_btn": "Genoptag DRE",
+  "settings__data__rights__report__email_subject": "Anmodning om datarapport"
 }

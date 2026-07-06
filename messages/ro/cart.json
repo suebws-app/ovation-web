@@ -67,5 +67,7 @@
   "cart__confirm__body": "Mulțumim pentru comandă. Ți-am trimis un e-mail de confirmare cu detaliile.",
   "cart__confirm__reference": "Referință: {id}",
   "cart__confirm__view_order": "Vezi comanda",
-  "cart__confirm__continue": "Continuă cumpărăturile"
+  "cart__confirm__continue": "Continuă cumpărăturile",
+  "cart__line__shipping": "+ {price} livrare",
+  "cart__addresses__shipping_price": "Livrare {price}"
 }

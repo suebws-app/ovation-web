@@ -1,6 +1,6 @@
 {
   "guests__hero__eyebrow": "Viesi",
-  "guests__hero__title": "Līdz šim saņemtas <emph>{count}</emph> {count, plural, one {ziņa} other {ziņas}}.",
+  "guests__hero__title": "Līdz šim {count, plural, zero {saņemts <emph>{count}</emph> ziņu} one {saņemta <emph>{count}</emph> ziņa} other {saņemtas <emph>{count}</emph> ziņas}}.",
   "guests__hero__subtitle": "Seko līdzi ieguldījumiem un kopīgo savu uzaicinājuma saiti. Pilns viesu saraksts drīzumā — pagaidām katra saņemtā balss ir atspoguļota ziņu sarakstā.",
   "guests__hero__add": "Pievienot viesi",
   "guests__hero__import": "Importēt .csv",

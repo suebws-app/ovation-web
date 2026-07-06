@@ -1,23 +1,18 @@
 {
   "invitation__page__title": "Invitație",
   "invitation__page__breadcrumb": "Invitație",
-
   "invitation__step__design__label": "Alege designul",
   "invitation__step__details__label": "Detaliile evenimentului",
   "invitation__step__guests__label": "Lista de invitați",
-
   "invitation__step__design__title_a": "Alege designul",
   "invitation__step__design__title_b": "invitației tale.",
   "invitation__step__design__subtitle": "Alege un șablon și reglează culorile și tipografia. Previzualizarea se actualizează în timp real.",
-
   "invitation__step__details__title_a": "Adaugă detaliile",
   "invitation__step__details__title_b": "evenimentului.",
   "invitation__step__details__subtitle": "Completează numele cuplului, data și locația — fiecare invitație le folosește.",
-
   "invitation__step__guests__title_a": "Construiește",
   "invitation__step__guests__title_b": "lista ta de invitați.",
   "invitation__step__guests__subtitle": "Adaugă fiecare invitat; generăm automat o invitație și un link personalizat pentru fiecare.",
-
   "invitation__section__templates": "Designul cardului",
   "invitation__section__templates_sub": "Alege un design — invitații tăi îl vor vedea în e-mailul de invitație, în previzualizările linkului și pe pagina invitatului.",
   "invitation__templates__load_error": "Nu am putut încărca designurile. Reîncarcă pagina.",
@@ -31,7 +26,6 @@
   "invitation__section__photo_sub": "Ton opțional pentru imaginea principală",
   "invitation__section__guests": "Invitați",
   "invitation__section__guests_sub": "Invitații și linkuri personalizate",
-
   "invitation__field__partner_a": "Partener A",
   "invitation__field__partner_b": "Partener B",
   "invitation__field__date": "Data",
@@ -42,7 +36,6 @@
   "invitation__field__colour_scheme": "Schema de culori",
   "invitation__field__typeface": "Tipografie",
   "invitation__field__preset_tones": "Tonuri presetate",
-
   "invitation__placeholder__partner_a": "ex. Lila",
   "invitation__placeholder__partner_b": "ex. Theo",
   "invitation__placeholder__date": "12 septembrie 2026",
@@ -57,14 +50,11 @@
   "invitation__placeholder__guest_name": "Numele invitatului",
   "invitation__placeholder__guest_email": "guest@email.com",
   "invitation__placeholder__guest_phone": "+40 712 345 678",
-
   "invitation__schedule__add": "+ Adaugă moment",
   "invitation__schedule__time_placeholder": "16:00",
   "invitation__schedule__label_placeholder": "Ceremonie",
-
   "invitation__photo__dropzone_title": "Lasă o fotografie aici",
   "invitation__photo__dropzone_hint": "JPG sau PNG · până la 10 MB",
-
   "invitation__guests__add": "+ Adaugă invitat",
   "invitation__guests__import": "Importă",
   "invitation__guests__import__title": "Importă invitați",
@@ -72,15 +62,13 @@
   "invitation__guests__empty": "Niciun invitat încă. Adaugă primul invitat pentru a vedea o invitație personalizată.",
   "invitation__guests__count": "{count, plural, one {# invitat} few {# invitați} other {# de invitați}} · {seats, plural, one {# loc} few {# locuri} other {# de locuri}}",
   "invitation__guests__remove": "Elimină",
-  "invitation__guests__locked__title": "Lista ta de invitați e gata — {count, plural, one {# invitat} few {# invitați} other {# de invitați}}",
+  "invitation__guests__locked__title": "Lista ta de invitați este gata — {count} {count, plural, one {invitat} few {invitați} other {de invitați}}",
   "invitation__guests__locked__body": "De acum încolo, gestionează lista de invitați (adaugă, editează, elimină, trimite invitații) din secțiunea Lista de invitați. Asistentul se ocupă doar de configurarea inițială.",
   "invitation__guests__locked__cta": "Deschide lista de invitați",
-
   "invitation__preview__mode_invite": "Invitație",
   "invitation__preview__mode_guest": "Vedere invitat",
   "invitation__preview__live": "Previzualizare live",
   "invitation__preview__personalized": "Personalizată pentru {name}",
-
   "invitation__nav__back": "Înapoi",
   "invitation__nav__next": "Următor",
   "invitation__nav__complete": "Finalizează",

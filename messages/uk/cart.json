@@ -67,5 +67,7 @@
   "cart__confirm__body": "Дякуємо за замовлення. Ми надіслали електронний лист з підтвердженням і деталями.",
   "cart__confirm__reference": "Посилання: {id}",
   "cart__confirm__view_order": "Переглянути замовлення",
-  "cart__confirm__continue": "Продовжити покупки"
+  "cart__confirm__continue": "Продовжити покупки",
+  "cart__line__shipping": "+ {price} доставка",
+  "cart__addresses__shipping_price": "Доставка {price}"
 }

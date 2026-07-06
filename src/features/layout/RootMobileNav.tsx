@@ -84,14 +84,6 @@ export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
           </SheetClose>
           <SheetClose asChild>
             <Link
-              href={appRoutes.marketing.stories}
-              className="text-foreground type-body-large rounded-12 hover:bg-muted px-3 py-3.5 font-medium transition"
-            >
-              {t("marketing__nav__stories")}
-            </Link>
-          </SheetClose>
-          <SheetClose asChild>
-            <Link
               href={appRoutes.marketing.forPlanners}
               className="text-foreground type-body-large rounded-12 hover:bg-muted px-3 py-3.5 font-medium transition"
             >

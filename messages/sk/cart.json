@@ -67,5 +67,7 @@
   "cart__confirm__body": "Ďakujeme za objednávku. Poslali sme potvrdzovací e-mail s podrobnosťami.",
   "cart__confirm__reference": "Referencia: {id}",
   "cart__confirm__view_order": "Zobraziť objednávku",
-  "cart__confirm__continue": "Pokračovať v nákupe"
+  "cart__confirm__continue": "Pokračovať v nákupe",
+  "cart__line__shipping": "+ {price} doprava",
+  "cart__addresses__shipping_price": "Doprava {price}"
 }

@@ -55,7 +55,7 @@
   "keepsakes__book_customizer__page_range_max": "Največ {max} strani",
   "keepsakes__book_customizer__not_ready_pick_size": "Izberi velikost knjige za nadaljevanje.",
   "keepsakes__book_customizer__not_ready_no_photos": "Dodaj vsaj eno fotografijo v svojo knjigo.",
-  "keepsakes__book_customizer__not_ready_add_more": "{count, plural, one {Dodaj # fotografijo, da dosežeš minimum ({min}).} two {Dodaj # fotografiji, da dosežeš minimum ({min}).} few {Dodaj # fotografije, da dosežeš minimum ({min}).} other {Dodaj # fotografij, da dosežeš minimum ({min}).}}",
+  "keepsakes__book_customizer__not_ready_add_more": "{count, plural, one {Dodaj še # fotografijo, da dosežeš minimum ({min}).} two {Dodaj še # fotografiji, da dosežeš minimum ({min}).} few {Dodaj še # fotografije, da dosežeš minimum ({min}).} other {Dodaj še # fotografij, da dosežeš minimum ({min}).}}",
   "keepsakes__book_customizer__not_ready_remove_some": "{count, plural, one {Odstrani # fotografijo — ta knjiga sprejme do {max}.} two {Odstrani # fotografiji — ta knjiga sprejme do {max}.} few {Odstrani # fotografije — ta knjiga sprejme do {max}.} other {Odstrani # fotografij — ta knjiga sprejme do {max}.}}",
   "keepsakes__book_customizer__photos_badge_range": "{count} od {min}–{max}",
   "keepsakes__book_customizer__photos_badge_selected": "{count} izbranih",
