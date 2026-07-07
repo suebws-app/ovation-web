@@ -19,9 +19,6 @@
   "signup__pro_plan__select_required": "Kies een abonnement om door te gaan.",
   "signup__pro_done__eyebrow": "Je bent erbij",
   "signup__pro_done__title": "Account aangemaakt.",
-  "signup__pro_done__subtitle": "Je professionele account is klaar. Start je 14 dagen gratis proefperiode en maak je eerste evenement aan.",
-  "signup__pro_done__cta": "Start gratis proefperiode",
-  "signup__pro_done__checkout_error": "Er ging iets mis bij het starten van je proefperiode. Probeer opnieuw.",
   "signup__book_details__step_label": "Jouw boek",
   "signup__book_details__title_a": "Namen, datum",
   "signup__book_details__title_b": "& locatie.",
@@ -129,5 +126,5 @@
   "signup__plan__keepsake__feature_1_v2": "Onbeperkte berichten",
   "signup__plan__keepsake__feature_2_v2": "Printklare QR-kaarten (PDF, PNG & SVG)",
   "signup__plan__keepsake__feature_4_v2": "Download alles wanneer je wilt (.zip)",
-  "signup__pro_plan__subtitle_v2": "14 dagen gratis uitproberen op beide abonnementen. Je betaalt pas als de proefperiode afloopt — opzeggen kan altijd."
+  "signup__pro_plan__subtitle_v2": "Maandelijks abonnement — opzeggen kan altijd."
 }

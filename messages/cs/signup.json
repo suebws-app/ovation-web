@@ -19,9 +19,6 @@
   "signup__pro_plan__select_required": "Pro pokračování vyber plán.",
   "signup__pro_done__eyebrow": "Jsi v",
   "signup__pro_done__title": "Účet vytvořen.",
-  "signup__pro_done__subtitle": "Tvůj profesionální účet je připraven. Začni 14denní zkušební verzi zdarma a vytvoř svou první událost.",
-  "signup__pro_done__cta": "Začít zkušební verzi zdarma",
-  "signup__pro_done__checkout_error": "Při spuštění tvé zkušební verze něco selhalo. Zkus to znovu.",
   "signup__book_details__step_label": "Tvá kniha",
   "signup__book_details__title_a": "Jména, datum",
   "signup__book_details__title_b": "a místo.",
@@ -129,5 +126,5 @@
   "signup__plan__keepsake__feature_1_v2": "Neomezené zprávy",
   "signup__plan__keepsake__feature_2_v2": "QR karty připravené k tisku (PDF, PNG a SVG)",
   "signup__plan__keepsake__feature_4_v2": "Stažení všeho kdykoli (.zip)",
-  "signup__pro_plan__subtitle_v2": "14denní zkušební období zdarma u obou plánů. Platba proběhne až po skončení zkušebního období — zrušit můžeš kdykoli."
+  "signup__pro_plan__subtitle_v2": "Měsíční předplatné — zrušit můžeš kdykoli."
 }

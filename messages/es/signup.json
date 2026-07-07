@@ -19,9 +19,6 @@
   "signup__pro_plan__select_required": "Selecciona un plan para continuar.",
   "signup__pro_done__eyebrow": "Ya está",
   "signup__pro_done__title": "Cuenta creada.",
-  "signup__pro_done__subtitle": "Tu cuenta profesional está lista. Empieza tu prueba gratis de 14 días y crea tu primer evento.",
-  "signup__pro_done__cta": "Empezar prueba gratis",
-  "signup__pro_done__checkout_error": "Algo salió mal al iniciar tu prueba. Por favor, inténtalo de nuevo.",
   "signup__book_details__step_label": "Tu libro",
   "signup__book_details__title_a": "Nombres, fecha",
   "signup__book_details__title_b": "y lugar.",
@@ -129,5 +126,5 @@
   "signup__plan__keepsake__feature_1_v2": "Mensajes ilimitados",
   "signup__plan__keepsake__feature_2_v2": "Tarjetas QR listas para imprimir (PDF, PNG y SVG)",
   "signup__plan__keepsake__feature_4_v2": "Descárgalo todo cuando quieras (.zip)",
-  "signup__pro_plan__subtitle_v2": "Prueba gratuita de 14 días en ambos planes. No se te cobrará hasta que termine la prueba — cancela cuando quieras."
+  "signup__pro_plan__subtitle_v2": "Suscripción mensual — cancela cuando quieras."
 }

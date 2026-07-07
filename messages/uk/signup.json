@@ -19,9 +19,6 @@
   "signup__pro_plan__select_required": "Будь ласка, оберіть тариф, щоб продовжити.",
   "signup__pro_done__eyebrow": "Ви в команді",
   "signup__pro_done__title": "Обліковий запис створено.",
-  "signup__pro_done__subtitle": "Ваш професійний обліковий запис готовий. Розпочніть 14-денний безкоштовний пробний період і створіть свою першу подію.",
-  "signup__pro_done__cta": "Розпочати безкоштовний пробний період",
-  "signup__pro_done__checkout_error": "Щось пішло не так під час старту пробного періоду. Будь ласка, спробуйте ще раз.",
   "signup__book_details__step_label": "Ваша книга",
   "signup__book_details__title_a": "Імена, дата",
   "signup__book_details__title_b": "та місце.",
@@ -129,5 +126,5 @@
   "signup__plan__keepsake__feature_1_v2": "Необмежена кількість повідомлень",
   "signup__plan__keepsake__feature_2_v2": "Готові до друку QR-картки (PDF, PNG і SVG)",
   "signup__plan__keepsake__feature_4_v2": "Завантажуйте все будь-коли (.zip)",
-  "signup__pro_plan__subtitle_v2": "14 днів безкоштовного пробного періоду на обох тарифах. Кошти не списуються до завершення пробного періоду — скасувати можна будь-коли."
+  "signup__pro_plan__subtitle_v2": "Щомісячна підписка — скасувати можна будь-коли."
 }

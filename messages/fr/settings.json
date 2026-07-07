@@ -2,7 +2,6 @@
   "settings__billing__pro_plan": "Forfait",
   "settings__billing__pro_status": "Statut",
   "settings__billing__pro_renews": "Prochain renouvellement",
-  "settings__billing__pro_trial_ends": "Fin de l'essai",
   "settings__billing__pro_cancelled": "Annulé",
   "settings__billing__no_sub": "Aucun abonnement actif.",
   "settings__billing__history_title": "Historique de facturation",

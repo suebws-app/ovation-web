@@ -19,9 +19,6 @@
   "signup__pro_plan__select_required": "Te rugăm să selectezi un plan pentru a continua.",
   "signup__pro_done__eyebrow": "Ești înăuntru",
   "signup__pro_done__title": "Cont creat.",
-  "signup__pro_done__subtitle": "Contul tău profesional este gata. Începe proba ta gratuită de 14 zile și creează primul tău eveniment.",
-  "signup__pro_done__cta": "Începe proba gratuită",
-  "signup__pro_done__checkout_error": "Ceva a mers greșit la pornirea probei. Te rog încearcă din nou.",
   "signup__book_details__step_label": "Cartea ta",
   "signup__book_details__title_a": "Nume, dată",
   "signup__book_details__title_b": "și loc.",
@@ -129,5 +126,5 @@
   "signup__plan__keepsake__feature_1_v2": "Mesaje nelimitate",
   "signup__plan__keepsake__feature_2_v2": "Carduri QR gata de tipar (PDF, PNG și SVG)",
   "signup__plan__keepsake__feature_4_v2": "Descarcă totul oricând (.zip)",
-  "signup__pro_plan__subtitle_v2": "Probă gratuită de 14 zile pe ambele planuri. Nu vei fi taxat până la finalul probei — anulează oricând."
+  "signup__pro_plan__subtitle_v2": "Abonament lunar — anulează oricând."
 }
