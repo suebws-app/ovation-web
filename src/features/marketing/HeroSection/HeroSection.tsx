@@ -4,7 +4,6 @@ import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { HeroShowpiece } from "../HeroShowpiece";
-import { Badge } from "@ovation/ui/components/Badge";
 
 export const HeroSection = () => {
   const t = useTranslations();
@@ -22,17 +21,6 @@ export const HeroSection = () => {
 
       <div className="section-container relative grid grid-cols-1 items-center gap-15 lg:grid-cols-[1.15fr_1fr]">
         <div className="flex flex-col gap-8">
-          <Badge
-            variant="outline"
-            className="type-body-small w-fit gap-2 px-4 py-2 font-medium normal-case shadow-sm"
-          >
-            <span
-              className="bg-secondary h-2 w-2 shrink-0 rounded-full"
-              aria-hidden="true"
-            />
-            {t("marketing__hero__badge_beta")}
-          </Badge>
-
           <SectionTitle as="h1" className="leading-none tracking-tighter">
             <span className="text-foreground block">
               {t("marketing__hero__title_line1")}
