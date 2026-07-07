@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Propiedad intelectual de Ovation",
   "marketing__terms__ip_body": "Ovation en sí — el software, el diseño, el logotipo y la marca — pertenece a {legalEntityName} y sus licenciantes. Estos términos no te otorgan ningún derecho sobre nuestro código o marca más allá de usar el servicio. Si nos envías comentarios o sugerencias, podemos usarlos para mejorar Ovation sin deberte nada.",
   "marketing__terms__copyright_heading": "Reclamaciones de derechos de autor",
-  "marketing__terms__copyright_body": "Si crees que algún contenido en Ovation infringe tus derechos de autor, escribe a <link>{email}</link> con un enlace al contenido, una descripción de la obra afectada y una prueba de que te pertenece. Lo revisaremos con rapidez, retiraremos el contenido infractor cuando proceda y daremos a quien lo subió la oportunidad de responder. Las cuentas que infrinjan repetidamente pueden ser canceladas."
+  "marketing__terms__copyright_body": "Si crees que algún contenido en Ovation infringe tus derechos de autor, escribe a <link>{email}</link> con un enlace al contenido, una descripción de la obra afectada y una prueba de que te pertenece. Lo revisaremos con rapidez, retiraremos el contenido infractor cuando proceda y daremos a quien lo subió la oportunidad de responder. Las cuentas que infrinjan repetidamente pueden ser canceladas.",
+  "marketing__refunds__title": "Política de reembolsos",
+  "marketing__refunds__last_updated": "Última actualización: 7 de julio de 2026",
+  "marketing__refunds__intro_heading": "La versión corta",
+  "marketing__refunds__intro_body": "Todos los pagos de Ovation los procesa nuestro partner Paddle, el comerciante registrado (merchant of record) de cada compra. Si algo salió mal con un pedido, contáctanos y lo arreglaremos. Nada en esta política limita los derechos legales de reembolso que te otorga la ley de consumo de tu país.",
+  "marketing__refunds__subscriptions_heading": "Planes y suscripciones",
+  "marketing__refunds__subscriptions_body": "Los planes para parejas son compras únicas. Los planes profesionales y la extensión de almacenamiento son suscripciones mensuales: se renuevan automáticamente hasta que canceles, puedes cancelar en cualquier momento desde Ajustes y mantienes el acceso hasta el final del período pagado. Si se te cobró por error — por ejemplo una renovación no deseada o un pago duplicado — contáctanos en un plazo de 14 días y te lo reembolsaremos.",
+  "marketing__refunds__keepsakes_heading": "Recuerdos impresos",
+  "marketing__refunds__keepsakes_body": "Los libros impresos a medida y otros recuerdos físicos se fabrican bajo pedido, por lo que el derecho de desistimiento por cambio de opinión no se les aplica. Si un recuerdo llega dañado o con un defecto de producción, contáctanos con fotos y lo reimprimiremos o reembolsaremos — los defectos de producción siempre corren de nuestra cuenta.",
+  "marketing__refunds__how_heading": "Cómo solicitar un reembolso",
+  "marketing__refunds__how_body": "Escribe a <link>{email}</link> desde la dirección de tu cuenta e incluye tu recibo de Paddle o número de pedido. Solemos responder en un día laborable. Los reembolsos aprobados se devuelven a tu método de pago original a través de Paddle, normalmente en 5–10 días laborables."
 }

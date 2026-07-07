@@ -335,5 +335,15 @@
   "marketing__changelog__empty_state": "Ovation on yksityisessä betassa ensimmäisten pariemme kanssa. Julkaisupäivästä alkaen jokainen päivityksemme julkaistaan täällä.",
   "marketing__for_planners__benefit1_title_v2": "Hoida jokainen asiakastapahtuma alusta loppuun",
   "marketing__for_planners__benefit1_body_v2": "Luo kunkin parin tapahtuma ja hallitse vieraita, kutsuja, QR-koodeja, viestejä ja tilauksia — kaikki ammattilaistililläsi.",
-  "coming_soon__feature_3_v2": "Automaattinen litterointi puhutulla kielellä"
+  "coming_soon__feature_3_v2": "Automaattinen litterointi puhutulla kielellä",
+  "marketing__refunds__title": "Hyvityskäytäntö",
+  "marketing__refunds__last_updated": "Viimeksi päivitetty: 7. heinäkuuta 2026",
+  "marketing__refunds__intro_heading": "Lyhyt versio",
+  "marketing__refunds__intro_body": "Kaikki Ovationin maksut käsittelee kumppanimme Paddle, joka on jokaisen ostoksen virallinen myyjä (merchant of record). Jos tilauksessa meni jotain pieleen, ota yhteyttä, niin korjaamme asian. Mikään tässä käytännössä ei rajoita maasi kuluttajalainsäädännön mukaisia lakisääteisiä hyvitysoikeuksiasi.",
+  "marketing__refunds__subscriptions_heading": "Paketit ja tilaukset",
+  "marketing__refunds__subscriptions_body": "Pariskuntapaketit ovat kertaostoksia. Ammattilaispaketit ja tallennustilan jatko ovat kuukausitilauksia: ne uusiutuvat automaattisesti, kunnes perut, voit perua milloin tahansa Asetuksista, ja käyttöoikeus säilyy maksetun jakson loppuun. Jos sinua veloitettiin virheellisesti — esimerkiksi tahaton uusinta tai tuplamaksu — ota yhteyttä 14 päivän kuluessa, niin hyvitämme sen.",
+  "marketing__refunds__keepsakes_heading": "Painetut muistoesineet",
+  "marketing__refunds__keepsakes_body": "Mittatilaustyönä painetut kirjat ja muut fyysiset muistoesineet valmistetaan tilauksesta, joten mielenmuutokseen perustuva peruuttamisoikeus ei koske niitä. Jos muistoesine saapuu vaurioituneena tai tuotantovirheellisenä, ota yhteyttä kuvien kera, niin painamme sen uudelleen tai hyvitämme sen — tuotantovirheet ovat aina meidän vastuullamme.",
+  "marketing__refunds__how_heading": "Näin pyydät hyvitystä",
+  "marketing__refunds__how_body": "Lähetä sähköpostia osoitteeseen <link>{email}</link> tilisi osoitteesta ja liitä mukaan Paddle-kuitti tai tilausnumero. Vastaamme yleensä yhden arkipäivän kuluessa. Hyväksytyt hyvitykset palautuvat alkuperäiselle maksutavalle Paddlen kautta, tyypillisesti 5–10 arkipäivässä."
 }

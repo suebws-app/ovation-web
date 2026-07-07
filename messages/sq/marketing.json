@@ -335,5 +335,15 @@
   "marketing__terms__changes_heading": "Ndryshimet e këtyre kushteve",
   "marketing__terms__changes_body": "Ovation do të vazhdojë të zhvillohet — mund të shtojmë, ndryshojmë ose heqim funksione. Nëse një ndryshim zvogëlon ndjeshëm diçka për të cilën keni paguar, do t'ju njoftojmë paraprakisht dhe do të ofrojmë një zgjidhje të drejtë. Nëse i ndryshojmë këto kushte, do ta përditësojmë datën në krye dhe do t'u dërgojmë email mbajtësve të llogarive para se ndryshimet e rëndësishme të hyjnë në fuqi. Vazhdimi i përdorimit të Ovation pas kësaj do të thotë se i pranoni kushtet e përditësuara.",
   "marketing__terms__contact_heading": "Kontakti",
-  "marketing__terms__contact_body": "Pyetje rreth këtyre kushteve? Shkruani në <link>{email}</link> dhe do t'ju përgjigjet një njeri."
+  "marketing__terms__contact_body": "Pyetje rreth këtyre kushteve? Shkruani në <link>{email}</link> dhe do t'ju përgjigjet një njeri.",
+  "marketing__refunds__title": "Politika e rimbursimit",
+  "marketing__refunds__last_updated": "Përditësuar së fundi: 7 korrik 2026",
+  "marketing__refunds__intro_heading": "Versioni i shkurtër",
+  "marketing__refunds__intro_body": "Të gjitha pagesat për Ovation përpunohen nga partneri ynë Paddle, shitësi i regjistruar (merchant of record) i çdo blerjeje. Nëse diçka shkoi keq me një porosi, na kontaktoni dhe do ta rregullojmë. Asgjë në këtë politikë nuk kufizon të drejtat tuaja ligjore të rimbursimit sipas ligjit të konsumatorit të vendit tuaj.",
+  "marketing__refunds__subscriptions_heading": "Planet dhe abonimet",
+  "marketing__refunds__subscriptions_body": "Planet për çifte janë blerje të njëhershme. Planet profesionale dhe zgjatja e ruajtjes janë abonime mujore: rinovohen automatikisht derisa të anuloni, mund të anuloni në çdo kohë nga Cilësimet dhe e mbani aksesin deri në fund të periudhës së paguar. Nëse jeni tarifuar gabimisht — për shembull një rinovim i padëshiruar ose një pagesë e dyfishtë — na kontaktoni brenda 14 ditësh dhe do ta rimbursojmë.",
+  "marketing__refunds__keepsakes_heading": "Kujtimet e printuara",
+  "marketing__refunds__keepsakes_body": "Librat e printuar me porosi dhe kujtimet e tjera fizike prodhohen sipas porosisë, kështu që e drejta e tërheqjes për ndryshim mendimi nuk zbatohet për to. Nëse një kujtim mbërrin i dëmtuar ose me defekt prodhimi, na kontaktoni me foto dhe do ta riprintojmë ose rimbursojmë — defektet e prodhimit janë gjithmonë përgjegjësia jonë.",
+  "marketing__refunds__how_heading": "Si të kërkoni një rimbursim",
+  "marketing__refunds__how_body": "Shkruani te <link>{email}</link> nga adresa e llogarisë suaj dhe përfshini faturën e Paddle ose numrin e porosisë. Zakonisht përgjigjemi brenda një dite pune. Rimbursimet e miratuara kthehen në mënyrën origjinale të pagesës përmes Paddle, zakonisht brenda 5–10 ditësh pune."
 }

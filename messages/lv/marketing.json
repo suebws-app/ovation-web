@@ -335,5 +335,15 @@
   "marketing__changelog__empty_state": "Ovation ir privātajā beta versijā ar mūsu pirmajiem pāriem. No palaišanas dienas katrs mūsu atjauninājums tiks publicēts šeit.",
   "marketing__for_planners__benefit1_title_v2": "Vadiet katru klienta pasākumu no sākuma līdz beigām",
   "marketing__for_planners__benefit1_body_v2": "Izveidojiet katra pāra pasākumu un pārvaldiet viesus, ielūgumus, QR kodus, ziņas un pasūtījumus — visu savā profesionālajā kontā.",
-  "coming_soon__feature_3_v2": "Automātiska transkripcija runātajā valodā"
+  "coming_soon__feature_3_v2": "Automātiska transkripcija runātajā valodā",
+  "marketing__refunds__title": "Atmaksas politika",
+  "marketing__refunds__last_updated": "Pēdējoreiz atjaunināts: 2026. gada 7. jūlijā",
+  "marketing__refunds__intro_heading": "Īsā versija",
+  "marketing__refunds__intro_body": "Visus Ovation maksājumus apstrādā mūsu partneris Paddle — katra pirkuma reģistrētais pārdevējs (merchant of record). Ja ar pasūtījumu kaut kas nogāja greizi, sazinieties ar mums, un mēs to sakārtosim. Nekas šajā politikā neierobežo jūsu likumiskās atmaksas tiesības saskaņā ar jūsu valsts patērētāju tiesību aktiem.",
+  "marketing__refunds__subscriptions_heading": "Plāni un abonementi",
+  "marketing__refunds__subscriptions_body": "Pāru plāni ir vienreizēji pirkumi. Profesionāļu plāni un krātuves pagarinājums ir ikmēneša abonementi: tie atjaunojas automātiski, līdz atceļat, atcelt var jebkurā laikā Iestatījumos, un piekļuve saglabājas līdz apmaksātā perioda beigām. Ja maksa ieturēta kļūdaini — piemēram, nevēlama atjaunošana vai dubults maksājums — sazinieties ar mums 14 dienu laikā, un mēs to atmaksāsim.",
+  "marketing__refunds__keepsakes_heading": "Drukātās piemiņas lietas",
+  "marketing__refunds__keepsakes_body": "Pēc pasūtījuma drukātās grāmatas un citas fiziskās piemiņas lietas tiek izgatavotas individuāli, tāpēc atteikuma tiesības pārdomu dēļ uz tām neattiecas. Ja piemiņas lieta pienāk bojāta vai ar ražošanas defektu, sazinieties ar mums, pievienojot fotogrāfijas, un mēs to izdrukāsim no jauna vai atmaksāsim — ražošanas defekti vienmēr ir mūsu atbildība.",
+  "marketing__refunds__how_heading": "Kā pieprasīt atmaksu",
+  "marketing__refunds__how_body": "Rakstiet uz <link>{email}</link> no sava konta e-pasta adreses un pievienojiet Paddle čeku vai pasūtījuma numuru. Parasti atbildam vienas darba dienas laikā. Apstiprinātās atmaksas caur Paddle atgriežas sākotnējā maksājuma veidā, parasti 5–10 darba dienu laikā."
 }

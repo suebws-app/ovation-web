@@ -335,5 +335,15 @@
   "marketing__changelog__empty_state": "Ovation je u privatnoj beti s našim prvim parovima. Od dana lansiranja svako ažuriranje koje objavimo bit će objavljeno ovdje.",
   "marketing__for_planners__benefit1_title_v2": "Vodite svaki događaj klijenta od početka do kraja",
   "marketing__for_planners__benefit1_body_v2": "Kreirajte događaj svakog para i upravljajte gostima, pozivnicama, QR kodovima, porukama i narudžbama — sve pod vašim profesionalnim računom.",
-  "coming_soon__feature_3_v2": "Automatska transkripcija na jeziku na kojem je izgovoreno"
+  "coming_soon__feature_3_v2": "Automatska transkripcija na jeziku na kojem je izgovoreno",
+  "marketing__refunds__title": "Pravila povrata novca",
+  "marketing__refunds__last_updated": "Zadnje ažuriranje: 7. srpnja 2026.",
+  "marketing__refunds__intro_heading": "Ukratko",
+  "marketing__refunds__intro_body": "Sva plaćanja za Ovation obrađuje naš partner Paddle, registrirani prodavatelj (merchant of record) svake kupnje. Ako je s narudžbom nešto pošlo po zlu, javite nam se i ispravit ćemo to. Ništa u ovim pravilima ne ograničava vaša zakonska prava na povrat novca prema potrošačkom pravu vaše zemlje.",
+  "marketing__refunds__subscriptions_heading": "Paketi i pretplate",
+  "marketing__refunds__subscriptions_body": "Paketi za parove jednokratne su kupnje. Profesionalni paketi i produljenje pohrane mjesečne su pretplate: obnavljaju se automatski dok ih ne otkažete, otkazati možete bilo kada u Postavkama, a pristup zadržavate do kraja plaćenog razdoblja. Ako ste terećeni greškom — primjerice neželjenom obnovom ili dvostrukom uplatom — javite nam se u roku od 14 dana i vratit ćemo novac.",
+  "marketing__refunds__keepsakes_heading": "Tiskane uspomene",
+  "marketing__refunds__keepsakes_body": "Knjige tiskane po mjeri i druge fizičke uspomene izrađuju se po narudžbi, pa se pravo odustajanja zbog predomišljanja na njih ne primjenjuje. Ako uspomena stigne oštećena ili s proizvodnom greškom, javite nam se s fotografijama i ponovno ćemo je tiskati ili vratiti novac — proizvodne greške uvijek su naša odgovornost.",
+  "marketing__refunds__how_heading": "Kako zatražiti povrat novca",
+  "marketing__refunds__how_body": "Pišite na <link>{email}</link> s adrese povezane s vašim računom i priložite Paddle račun ili broj narudžbe. Obično odgovaramo unutar jednog radnog dana. Odobreni povrati vraćaju se na izvorni način plaćanja putem Paddlea, obično unutar 5–10 radnih dana."
 }

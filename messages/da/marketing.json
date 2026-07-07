@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Ovations immaterielle rettigheder",
   "marketing__terms__ip_body": "Selve Ovation — softwaren, designet, logoet og brandet — tilhører {legalEntityName} og dets licensgivere. Disse vilkår giver dig ingen rettigheder til vores kode eller brand ud over at bruge tjenesten. Sender du os feedback eller forslag, må vi bruge dem til at forbedre Ovation uden at skylde dig noget.",
   "marketing__terms__copyright_heading": "Ophavsretsklager",
-  "marketing__terms__copyright_body": "Mener du, at indhold på Ovation krænker din ophavsret, så skriv til <link>{email}</link> med et link til indholdet, en beskrivelse af det pågældende værk og bevis for, at det er dit. Vi gennemgår det hurtigt, fjerner krænkende indhold, hvor det er berettiget, og giver uploaderen mulighed for at svare. Konti, der gentagne gange krænker, kan blive lukket."
+  "marketing__terms__copyright_body": "Mener du, at indhold på Ovation krænker din ophavsret, så skriv til <link>{email}</link> med et link til indholdet, en beskrivelse af det pågældende værk og bevis for, at det er dit. Vi gennemgår det hurtigt, fjerner krænkende indhold, hvor det er berettiget, og giver uploaderen mulighed for at svare. Konti, der gentagne gange krænker, kan blive lukket.",
+  "marketing__refunds__title": "Refusionspolitik",
+  "marketing__refunds__last_updated": "Sidst opdateret: 7. juli 2026",
+  "marketing__refunds__intro_heading": "Den korte version",
+  "marketing__refunds__intro_body": "Alle betalinger for Ovation behandles af vores partner Paddle, den registrerede sælger (merchant of record) for hvert køb. Hvis noget gik galt med en ordre, så kontakt os, og vi retter op på det. Intet i denne politik begrænser dine lovbestemte refusionsrettigheder efter forbrugerlovgivningen i dit land.",
+  "marketing__refunds__subscriptions_heading": "Planer og abonnementer",
+  "marketing__refunds__subscriptions_body": "Par-planer er engangskøb. Professionelle planer og lagringsudvidelsen er månedlige abonnementer: de fornyes automatisk, indtil du opsiger, du kan opsige når som helst under Indstillinger, og du beholder adgang til slutningen af den betalte periode. Hvis du er blevet opkrævet ved en fejl — for eksempel en utilsigtet fornyelse eller en dobbeltbetaling — så kontakt os inden for 14 dage, og vi refunderer beløbet.",
+  "marketing__refunds__keepsakes_heading": "Trykte minder",
+  "marketing__refunds__keepsakes_body": "Specialtrykte bøger og andre fysiske minder fremstilles på bestilling, så fortrydelsesretten ved ombestemmelse gælder ikke for dem. Hvis et minde ankommer beskadiget eller med en produktionsfejl, så kontakt os med billeder, og vi gentrykker eller refunderer det — produktionsfejl er altid på os.",
+  "marketing__refunds__how_heading": "Sådan anmoder du om refusion",
+  "marketing__refunds__how_body": "Skriv til <link>{email}</link> fra adressen på din konto, og vedhæft din Paddle-kvittering eller dit ordrenummer. Vi svarer normalt inden for én hverdag. Godkendte refusioner går tilbage til din oprindelige betalingsmetode via Paddle, typisk inden for 5–10 hverdage."
 }

@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Własność intelektualna Ovation",
   "marketing__terms__ip_body": "Sam Ovation — oprogramowanie, projekt, logo i marka — należy do {legalEntityName} i jego licencjodawców. Te warunki nie dają ci żadnych praw do naszego kodu ani marki poza korzystaniem z usługi. Jeśli prześlesz nam opinie lub sugestie, możemy je wykorzystać do ulepszania Ovation bez żadnych zobowiązań wobec ciebie.",
   "marketing__terms__copyright_heading": "Zgłoszenia naruszeń praw autorskich",
-  "marketing__terms__copyright_body": "Jeśli uważasz, że treści w Ovation naruszają twoje prawa autorskie, napisz na <link>{email}</link>, załączając link do treści, opis utworu i dowód, że należy do ciebie. Szybko to sprawdzimy, usuniemy treści naruszające prawa tam, gdzie to zasadne, i damy osobie przesyłającej możliwość odpowiedzi. Konta wielokrotnie naruszające prawa mogą zostać zamknięte."
+  "marketing__terms__copyright_body": "Jeśli uważasz, że treści w Ovation naruszają twoje prawa autorskie, napisz na <link>{email}</link>, załączając link do treści, opis utworu i dowód, że należy do ciebie. Szybko to sprawdzimy, usuniemy treści naruszające prawa tam, gdzie to zasadne, i damy osobie przesyłającej możliwość odpowiedzi. Konta wielokrotnie naruszające prawa mogą zostać zamknięte.",
+  "marketing__refunds__title": "Polityka zwrotów",
+  "marketing__refunds__last_updated": "Ostatnia aktualizacja: 7 lipca 2026",
+  "marketing__refunds__intro_heading": "Krótka wersja",
+  "marketing__refunds__intro_body": "Wszystkie płatności za Ovation obsługuje nasz partner Paddle, zarejestrowany sprzedawca (merchant of record) każdego zakupu. Jeśli coś poszło nie tak z zamówieniem, skontaktuj się z nami, a to naprawimy. Nic w tej polityce nie ogranicza ustawowych praw do zwrotu wynikających z prawa konsumenckiego Twojego kraju.",
+  "marketing__refunds__subscriptions_heading": "Plany i subskrypcje",
+  "marketing__refunds__subscriptions_body": "Plany dla par to zakupy jednorazowe. Plany profesjonalne i rozszerzenie przechowywania to subskrypcje miesięczne: odnawiają się automatycznie do momentu anulowania, możesz anulować w dowolnej chwili w Ustawieniach i zachowujesz dostęp do końca opłaconego okresu. Jeśli obciążono Cię omyłkowo — np. niezamierzonym odnowieniem lub podwójną płatnością — skontaktuj się z nami w ciągu 14 dni, a zwrócimy pieniądze.",
+  "marketing__refunds__keepsakes_heading": "Drukowane pamiątki",
+  "marketing__refunds__keepsakes_body": "Książki drukowane na zamówienie i inne fizyczne pamiątki powstają na indywidualne zamówienie, więc prawo odstąpienia z powodu zmiany zdania ich nie obejmuje. Jeśli pamiątka dotrze uszkodzona lub z wadą produkcyjną, napisz do nas ze zdjęciami, a wydrukujemy ją ponownie lub zwrócimy pieniądze — wady produkcyjne zawsze są po naszej stronie.",
+  "marketing__refunds__how_heading": "Jak poprosić o zwrot",
+  "marketing__refunds__how_body": "Napisz na <link>{email}</link> z adresu przypisanego do konta i dołącz paragon Paddle lub numer zamówienia. Zwykle odpowiadamy w ciągu jednego dnia roboczego. Zatwierdzone zwroty wracają na pierwotną metodę płatności przez Paddle, zazwyczaj w ciągu 5–10 dni roboczych."
 }

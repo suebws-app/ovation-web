@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Ovation'ın fikri mülkiyeti",
   "marketing__terms__ip_body": "Ovation'ın kendisi — yazılım, tasarım, logo ve marka — {legalEntityName} ve lisans verenlerine aittir. Bu şartlar, hizmeti kullanmanın ötesinde kodumuz veya markamız üzerinde sana herhangi bir hak vermez. Bize geri bildirim veya öneri gönderirsen, bunları sana bir borcumuz olmaksızın Ovation'ı geliştirmek için kullanabiliriz.",
   "marketing__terms__copyright_heading": "Telif hakkı şikâyetleri",
-  "marketing__terms__copyright_body": "Ovation'daki bir içeriğin telif hakkını ihlal ettiğini düşünüyorsan, içeriğin bağlantısı, ilgili eserin açıklaması ve sana ait olduğunun kanıtıyla birlikte <link>{email}</link> adresine yaz. Hızla inceleriz, uygun olduğunda ihlal eden içeriği kaldırırız ve yükleyene yanıt verme fırsatı tanırız. Tekrar tekrar ihlal eden hesaplar kapatılabilir."
+  "marketing__terms__copyright_body": "Ovation'daki bir içeriğin telif hakkını ihlal ettiğini düşünüyorsan, içeriğin bağlantısı, ilgili eserin açıklaması ve sana ait olduğunun kanıtıyla birlikte <link>{email}</link> adresine yaz. Hızla inceleriz, uygun olduğunda ihlal eden içeriği kaldırırız ve yükleyene yanıt verme fırsatı tanırız. Tekrar tekrar ihlal eden hesaplar kapatılabilir.",
+  "marketing__refunds__title": "İade Politikası",
+  "marketing__refunds__last_updated": "Son güncelleme: 7 Temmuz 2026",
+  "marketing__refunds__intro_heading": "Kısa versiyon",
+  "marketing__refunds__intro_body": "Ovation'daki tüm ödemeler, her satın almanın kayıtlı satıcısı (merchant of record) olan iş ortağımız Paddle tarafından işlenir. Bir siparişte bir şeyler ters gittiyse bize ulaş, düzeltelim. Bu politikadaki hiçbir şey, ülkendeki tüketici hukukundan doğan yasal iade haklarını sınırlamaz.",
+  "marketing__refunds__subscriptions_heading": "Planlar ve abonelikler",
+  "marketing__refunds__subscriptions_body": "Çift planları tek seferlik satın almalardır. Profesyonel planlar ve depolama uzatması aylık aboneliklerdir: iptal edene kadar otomatik yenilenir, Ayarlar'dan istediğin zaman iptal edebilirsin ve ödediğin dönemin sonuna kadar erişimin devam eder. Yanlışlıkla ücret alındıysa — örneğin istemediğin bir yenileme veya mükerrer ödeme — 14 gün içinde bize ulaş, iade edelim.",
+  "marketing__refunds__keepsakes_heading": "Baskılı hatıralar",
+  "marketing__refunds__keepsakes_body": "Kişiye özel basılan kitaplar ve diğer fiziksel hatıralar sipariş üzerine üretilir; bu yüzden fikir değişikliğine bağlı cayma hakkı bunlar için geçerli değildir. Bir hatıra hasarlı veya üretim kusuruyla ulaşırsa fotoğraflarla bize ulaş; yeniden basar veya iade ederiz — üretim kusurları her zaman bizden.",
+  "marketing__refunds__how_heading": "İade nasıl talep edilir",
+  "marketing__refunds__how_body": "Hesabındaki e-posta adresinden <link>{email}</link> adresine yaz ve Paddle makbuzunu veya sipariş numaranı ekle. Genellikle bir iş günü içinde yanıtlarız. Onaylanan iadeler Paddle aracılığıyla orijinal ödeme yöntemine, genellikle 5–10 iş günü içinde geri döner."
 }

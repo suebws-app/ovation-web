@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Ovations immateriella rättigheter",
   "marketing__terms__ip_body": "Själva Ovation — mjukvaran, designen, logotypen och varumärket — tillhör {legalEntityName} och dess licensgivare. Dessa villkor ger dig inga rättigheter till vår kod eller vårt varumärke utöver att använda tjänsten. Om du skickar feedback eller förslag får vi använda dem för att förbättra Ovation utan att vara skyldiga dig något.",
   "marketing__terms__copyright_heading": "Upphovsrättsklagomål",
-  "marketing__terms__copyright_body": "Om du anser att innehåll på Ovation gör intrång i din upphovsrätt, mejla <link>{email}</link> med en länk till innehållet, en beskrivning av verket i fråga och bevis på att det är ditt. Vi granskar snabbt, tar bort intrångsgörande innehåll där det är motiverat och ger uppladdaren möjlighet att svara. Konton som upprepat gör intrång kan avslutas."
+  "marketing__terms__copyright_body": "Om du anser att innehåll på Ovation gör intrång i din upphovsrätt, mejla <link>{email}</link> med en länk till innehållet, en beskrivning av verket i fråga och bevis på att det är ditt. Vi granskar snabbt, tar bort intrångsgörande innehåll där det är motiverat och ger uppladdaren möjlighet att svara. Konton som upprepat gör intrång kan avslutas.",
+  "marketing__refunds__title": "Återbetalningspolicy",
+  "marketing__refunds__last_updated": "Senast uppdaterad: 7 juli 2026",
+  "marketing__refunds__intro_heading": "Den korta versionen",
+  "marketing__refunds__intro_body": "Alla betalningar för Ovation hanteras av vår partner Paddle, den registrerade säljaren (merchant of record) för varje köp. Om något gick fel med en beställning, kontakta oss så löser vi det. Inget i denna policy begränsar dina lagstadgade återbetalningsrättigheter enligt konsumentlagstiftningen i ditt land.",
+  "marketing__refunds__subscriptions_heading": "Planer och abonnemang",
+  "marketing__refunds__subscriptions_body": "Par-planer är engångsköp. Proffsplaner och lagringsförlängningen är månadsabonnemang: de förnyas automatiskt tills du säger upp, du kan säga upp när som helst under Inställningar och du behåller åtkomsten till slutet av den betalda perioden. Om du debiterats av misstag — till exempel en oavsiktlig förnyelse eller en dubbelbetalning — kontakta oss inom 14 dagar så återbetalar vi beloppet.",
+  "marketing__refunds__keepsakes_heading": "Tryckta minnessaker",
+  "marketing__refunds__keepsakes_body": "Specialtryckta böcker och andra fysiska minnessaker tillverkas på beställning, så ångerrätt vid ändrade planer gäller inte för dem. Om en minnessak anländer skadad eller med ett produktionsfel, kontakta oss med bilder så trycker vi om den eller återbetalar — produktionsfel står alltid vi för.",
+  "marketing__refunds__how_heading": "Så begär du en återbetalning",
+  "marketing__refunds__how_body": "Mejla <link>{email}</link> från adressen på ditt konto och bifoga ditt Paddle-kvitto eller ordernummer. Vi svarar oftast inom en arbetsdag. Godkända återbetalningar går tillbaka till din ursprungliga betalningsmetod via Paddle, vanligtvis inom 5–10 arbetsdagar."
 }

@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Duševní vlastnictví Ovation",
   "marketing__terms__ip_body": "Samotný Ovation — software, design, logo a značka — patří společnosti {legalEntityName} a jejím poskytovatelům licencí. Tyto podmínky vám nedávají žádná práva k našemu kódu ani značce nad rámec používání služby. Pokud nám pošlete zpětnou vazbu nebo návrhy, můžeme je použít ke zlepšení Ovation, aniž bychom vám cokoli dlužili.",
   "marketing__terms__copyright_heading": "Stížnosti na porušení autorských práv",
-  "marketing__terms__copyright_body": "Pokud se domníváte, že obsah na Ovation porušuje vaše autorská práva, napište na <link>{email}</link> s odkazem na obsah, popisem dotčeného díla a dokladem, že vám patří. Rychle to posoudíme, obsah porušující práva v odůvodněných případech odstraníme a nahrávajícímu dáme možnost reagovat. Účty, které práva porušují opakovaně, mohou být zrušeny."
+  "marketing__terms__copyright_body": "Pokud se domníváte, že obsah na Ovation porušuje vaše autorská práva, napište na <link>{email}</link> s odkazem na obsah, popisem dotčeného díla a dokladem, že vám patří. Rychle to posoudíme, obsah porušující práva v odůvodněných případech odstraníme a nahrávajícímu dáme možnost reagovat. Účty, které práva porušují opakovaně, mohou být zrušeny.",
+  "marketing__refunds__title": "Zásady vracení peněz",
+  "marketing__refunds__last_updated": "Poslední aktualizace: 7. července 2026",
+  "marketing__refunds__intro_heading": "Krátká verze",
+  "marketing__refunds__intro_body": "Všechny platby za Ovation zpracovává náš partner Paddle, registrovaný prodejce (merchant of record) každého nákupu. Pokud se s objednávkou něco pokazilo, ozvi se nám a dáme to do pořádku. Nic v těchto zásadách neomezuje tvá zákonná práva na vrácení peněz podle spotřebitelského práva tvé země.",
+  "marketing__refunds__subscriptions_heading": "Tarify a předplatná",
+  "marketing__refunds__subscriptions_body": "Tarify pro páry jsou jednorázové nákupy. Profesionální tarify a prodloužení úložiště jsou měsíční předplatná: obnovují se automaticky, dokud je nezrušíš, zrušit je můžeš kdykoli v Nastavení a přístup ti zůstává do konce zaplaceného období. Pokud ti byla platba stržena omylem — třeba nechtěné obnovení nebo duplicitní platba — ozvi se do 14 dnů a peníze vrátíme.",
+  "marketing__refunds__keepsakes_heading": "Tištěné památky",
+  "marketing__refunds__keepsakes_body": "Knihy tištěné na míru a další fyzické památky se vyrábějí na objednávku, takže se na ně nevztahuje právo na odstoupení kvůli změně názoru. Pokud památka dorazí poškozená nebo s výrobní vadou, ozvi se nám s fotkami a vytiskneme ji znovu nebo vrátíme peníze — výrobní vady jdou vždy za námi.",
+  "marketing__refunds__how_heading": "Jak požádat o vrácení peněz",
+  "marketing__refunds__how_body": "Napiš na <link>{email}</link> z adresy uvedené u tvého účtu a přilož účtenku Paddle nebo číslo objednávky. Obvykle odpovídáme do jednoho pracovního dne. Schválené vratky se vracejí na původní platební metodu přes Paddle, obvykle do 5–10 pracovních dnů."
 }

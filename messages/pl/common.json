@@ -62,5 +62,6 @@
   "common__theme__light": "Jasny",
   "common__theme__dark": "Ciemny",
   "common__theme__system": "Systemowy",
-  "common__footer__legal_links__terms": "Regulamin"
+  "common__footer__legal_links__terms": "Regulamin",
+  "common__footer__legal_links__refunds": "Zwroty"
 }

@@ -62,5 +62,6 @@
   "common__theme__light": "Vaalea",
   "common__theme__dark": "Tumma",
   "common__theme__system": "Järjestelmä",
-  "common__footer__legal_links__terms": "Ehdot"
+  "common__footer__legal_links__terms": "Ehdot",
+  "common__footer__legal_links__refunds": "Hyvitykset"
 }

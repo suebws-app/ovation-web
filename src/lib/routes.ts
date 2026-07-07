@@ -19,6 +19,7 @@ export const appRoutes = {
     privacy: "/legal/privacy",
     cookies: "/legal/cookies",
     terms: "/legal/terms",
+    refunds: "/legal/refunds",
   },
 
   auth: {

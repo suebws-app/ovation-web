@@ -335,5 +335,15 @@
   "marketing__changelog__empty_state": "Ovation è in beta privata con le nostre prime coppie. Dal giorno del lancio, ogni aggiornamento verrà pubblicato qui.",
   "marketing__for_planners__benefit1_title_v2": "Gestisci ogni evento dei clienti dall'inizio alla fine",
   "marketing__for_planners__benefit1_body_v2": "Crea l'evento di ogni coppia e gestisci ospiti, inviti, codici QR, messaggi e ordini — tutto dal tuo account professionale.",
-  "coming_soon__feature_3_v2": "Trascrizione automatica nella lingua parlata"
+  "coming_soon__feature_3_v2": "Trascrizione automatica nella lingua parlata",
+  "marketing__refunds__title": "Politica di rimborso",
+  "marketing__refunds__last_updated": "Ultimo aggiornamento: 7 luglio 2026",
+  "marketing__refunds__intro_heading": "La versione breve",
+  "marketing__refunds__intro_body": "Tutti i pagamenti di Ovation sono gestiti dal nostro partner Paddle, il venditore registrato (merchant of record) di ogni acquisto. Se qualcosa è andato storto con un ordine, contattaci e sistemeremo le cose. Nulla in questa politica limita i diritti legali di rimborso previsti dalla legge sui consumatori del tuo paese.",
+  "marketing__refunds__subscriptions_heading": "Piani e abbonamenti",
+  "marketing__refunds__subscriptions_body": "I piani per coppie sono acquisti una tantum. I piani professionali e l'estensione di archiviazione sono abbonamenti mensili: si rinnovano automaticamente finché non annulli, puoi annullare in qualsiasi momento dalle Impostazioni e mantieni l'accesso fino alla fine del periodo pagato. Se ti è stato addebitato un importo per errore — ad esempio un rinnovo non voluto o un pagamento duplicato — contattaci entro 14 giorni e ti rimborseremo.",
+  "marketing__refunds__keepsakes_heading": "Ricordi stampati",
+  "marketing__refunds__keepsakes_body": "I libri stampati su misura e gli altri ricordi fisici sono realizzati su ordinazione, quindi il diritto di recesso per ripensamento non si applica. Se un ricordo arriva danneggiato o con un difetto di produzione, contattaci con delle foto e lo ristamperemo o rimborseremo — i difetti di produzione sono sempre a carico nostro.",
+  "marketing__refunds__how_heading": "Come richiedere un rimborso",
+  "marketing__refunds__how_body": "Scrivi a <link>{email}</link> dall'indirizzo del tuo account includendo la ricevuta Paddle o il numero d'ordine. Di solito rispondiamo entro un giorno lavorativo. I rimborsi approvati tornano sul metodo di pagamento originale tramite Paddle, in genere entro 5–10 giorni lavorativi."
 }

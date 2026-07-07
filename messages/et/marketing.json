@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Ovationi intellektuaalomand",
   "marketing__terms__ip_body": "Ovation ise — tarkvara, disain, logo ja bränd — kuulub ettevõttele {legalEntityName} ja tema litsentsiandjatele. Need tingimused ei anna teile meie koodile ega brändile mingeid õigusi peale teenuse kasutamise. Kui saadate meile tagasisidet või ettepanekuid, võime neid Ovationi täiustamiseks kasutada, ilma et oleksime teile midagi võlgu.",
   "marketing__terms__copyright_heading": "Autoriõiguse kaebused",
-  "marketing__terms__copyright_body": "Kui arvate, et Ovationis olev sisu rikub teie autoriõigusi, kirjutage aadressile <link>{email}</link>, lisades lingi sisule, asjaomase teose kirjelduse ja tõendi, et see kuulub teile. Vaatame asja kiiresti läbi, eemaldame õigusi rikkuva sisu, kui see on põhjendatud, ja anname üleslaadijale võimaluse vastata. Korduvalt õigusi rikkuvad kontod võidakse sulgeda."
+  "marketing__terms__copyright_body": "Kui arvate, et Ovationis olev sisu rikub teie autoriõigusi, kirjutage aadressile <link>{email}</link>, lisades lingi sisule, asjaomase teose kirjelduse ja tõendi, et see kuulub teile. Vaatame asja kiiresti läbi, eemaldame õigusi rikkuva sisu, kui see on põhjendatud, ja anname üleslaadijale võimaluse vastata. Korduvalt õigusi rikkuvad kontod võidakse sulgeda.",
+  "marketing__refunds__title": "Tagasimaksepoliitika",
+  "marketing__refunds__last_updated": "Viimati uuendatud: 7. juuli 2026",
+  "marketing__refunds__intro_heading": "Lühiversioon",
+  "marketing__refunds__intro_body": "Kõik Ovationi maksed töötleb meie partner Paddle, iga ostu ametlik müüja (merchant of record). Kui tellimusega läks midagi valesti, võtke meiega ühendust ja teeme asja korda. Miski selles poliitikas ei piira teie seadusest tulenevaid tagasimakseõigusi teie riigi tarbijakaitseseaduse alusel.",
+  "marketing__refunds__subscriptions_heading": "Paketid ja tellimused",
+  "marketing__refunds__subscriptions_body": "Paaride paketid on ühekordsed ostud. Propaketid ja salvestusruumi pikendus on igakuised tellimused: need uuenevad automaatselt, kuni tühistate, tühistada saab igal ajal Seadetes ning ligipääs säilib makstud perioodi lõpuni. Kui teilt võeti tasu ekslikult — näiteks soovimatu uuendus või topeltmakse — võtke meiega 14 päeva jooksul ühendust ja maksame raha tagasi.",
+  "marketing__refunds__keepsakes_heading": "Trükitud mälestusesemed",
+  "marketing__refunds__keepsakes_body": "Eritellimusel trükitud raamatud ja muud füüsilised mälestusesemed valmistatakse tellimuse peale, mistõttu meelemuutusest tingitud taganemisõigus neile ei kehti. Kui mälestusese saabub kahjustatuna või tootmisdefektiga, saatke meile fotod ning trükime selle uuesti või maksame raha tagasi — tootmisdefektid on alati meie vastutus.",
+  "marketing__refunds__how_heading": "Kuidas tagasimakset taotleda",
+  "marketing__refunds__how_body": "Kirjutage aadressile <link>{email}</link> oma konto e-posti aadressilt ning lisage Paddle'i kviitung või tellimuse number. Vastame tavaliselt ühe tööpäeva jooksul. Heakskiidetud tagasimaksed laekuvad Paddle'i kaudu algsele makseviisile, tavaliselt 5–10 tööpäeva jooksul."
 }

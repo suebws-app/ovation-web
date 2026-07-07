@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Kekayaan intelektual Ovation",
   "marketing__terms__ip_body": "Ovation itu sendiri — perangkat lunak, desain, logo, dan mereknya — adalah milik {legalEntityName} dan pemberi lisensinya. Ketentuan ini tidak memberi Anda hak apa pun atas kode atau merek kami di luar penggunaan layanan. Jika Anda mengirimkan masukan atau saran, kami boleh menggunakannya untuk menyempurnakan Ovation tanpa kewajiban apa pun kepada Anda.",
   "marketing__terms__copyright_heading": "Keluhan hak cipta",
-  "marketing__terms__copyright_body": "Jika Anda yakin ada konten di Ovation yang melanggar hak cipta Anda, kirim email ke <link>{email}</link> disertai tautan ke konten tersebut, deskripsi karya yang bersangkutan, dan bukti kepemilikan Anda. Kami akan segera meninjaunya, menghapus konten yang melanggar bila memang tepat, dan memberi pengunggah kesempatan untuk menanggapi. Akun yang berulang kali melanggar dapat dihentikan."
+  "marketing__terms__copyright_body": "Jika Anda yakin ada konten di Ovation yang melanggar hak cipta Anda, kirim email ke <link>{email}</link> disertai tautan ke konten tersebut, deskripsi karya yang bersangkutan, dan bukti kepemilikan Anda. Kami akan segera meninjaunya, menghapus konten yang melanggar bila memang tepat, dan memberi pengunggah kesempatan untuk menanggapi. Akun yang berulang kali melanggar dapat dihentikan.",
+  "marketing__refunds__title": "Kebijakan Pengembalian Dana",
+  "marketing__refunds__last_updated": "Terakhir diperbarui: 7 Juli 2026",
+  "marketing__refunds__intro_heading": "Versi singkat",
+  "marketing__refunds__intro_body": "Semua pembayaran Ovation diproses oleh mitra kami Paddle, penjual resmi (merchant of record) untuk setiap pembelian. Jika ada yang salah dengan pesanan, hubungi kami dan kami akan memperbaikinya. Tidak ada bagian dari kebijakan ini yang membatasi hak pengembalian dana menurut hukum konsumen di negara Anda.",
+  "marketing__refunds__subscriptions_heading": "Paket dan langganan",
+  "marketing__refunds__subscriptions_body": "Paket pasangan adalah pembelian sekali bayar. Paket profesional dan perpanjangan penyimpanan adalah langganan bulanan: diperpanjang otomatis sampai Anda membatalkan, Anda dapat membatalkan kapan saja dari Pengaturan, dan akses tetap berlaku hingga akhir periode yang sudah dibayar. Jika Anda tertagih karena kesalahan — misalnya perpanjangan yang tidak diinginkan atau pembayaran ganda — hubungi kami dalam 14 hari dan kami akan mengembalikannya.",
+  "marketing__refunds__keepsakes_heading": "Kenang-kenangan cetak",
+  "marketing__refunds__keepsakes_body": "Buku cetak kustom dan kenang-kenangan fisik lainnya dibuat berdasarkan pesanan, sehingga hak pembatalan karena berubah pikiran tidak berlaku. Jika kenang-kenangan tiba dalam keadaan rusak atau dengan cacat produksi, hubungi kami dengan foto dan kami akan mencetak ulang atau mengembalikan dananya — cacat produksi selalu tanggung jawab kami.",
+  "marketing__refunds__how_heading": "Cara mengajukan pengembalian dana",
+  "marketing__refunds__how_body": "Kirim email ke <link>{email}</link> dari alamat yang terdaftar di akun Anda dan sertakan tanda terima Paddle atau nomor pesanan. Kami biasanya membalas dalam satu hari kerja. Pengembalian dana yang disetujui dikembalikan ke metode pembayaran asli melalui Paddle, biasanya dalam 5–10 hari kerja."
 }

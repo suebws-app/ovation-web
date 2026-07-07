@@ -335,5 +335,15 @@
   "marketing__changelog__empty_state": "Az Ovation zárt bétában fut első párjainkkal. Az indulás napjától minden kiadott frissítést itt teszünk közzé.",
   "marketing__for_planners__benefit1_title_v2": "Vidd végig minden ügyfelesemény teljes folyamatát",
   "marketing__for_planners__benefit1_body_v2": "Hozd létre minden pár eseményét, és kezeld a vendégeket, meghívókat, QR-kódokat, üzeneteket és rendeléseket — mindezt professzionális fiókod alatt.",
-  "coming_soon__feature_3_v2": "Automatikus átirat az elhangzott nyelven"
+  "coming_soon__feature_3_v2": "Automatikus átirat az elhangzott nyelven",
+  "marketing__refunds__title": "Visszatérítési szabályzat",
+  "marketing__refunds__last_updated": "Utolsó frissítés: 2026. július 7.",
+  "marketing__refunds__intro_heading": "A rövid verzió",
+  "marketing__refunds__intro_body": "Az Ovation összes fizetését partnerünk, a Paddle dolgozza fel, amely minden vásárlás hivatalos eladója (merchant of record). Ha valami félrement egy rendelésnél, írj nekünk, és rendbe hozzuk. Ebben a szabályzatban semmi sem korlátozza az országod fogyasztóvédelmi joga szerinti törvényes visszatérítési jogaidat.",
+  "marketing__refunds__subscriptions_heading": "Csomagok és előfizetések",
+  "marketing__refunds__subscriptions_body": "A pároknak szóló csomagok egyszeri vásárlások. A professzionális csomagok és a tárhely-hosszabbítás havi előfizetések: automatikusan megújulnak, amíg le nem mondod, bármikor lemondhatod a Beállításokban, és a kifizetett időszak végéig megmarad a hozzáférésed. Ha tévedésből terheltünk meg — például nem szándékolt megújítás vagy dupla fizetés történt — jelezd 14 napon belül, és visszatérítjük.",
+  "marketing__refunds__keepsakes_heading": "Nyomtatott emlékek",
+  "marketing__refunds__keepsakes_body": "Az egyedileg nyomtatott könyvek és más fizikai emlékek rendelésre készülnek, ezért a meggondolás miatti elállási jog nem vonatkozik rájuk. Ha egy emlék sérülten vagy gyártási hibával érkezik, írj nekünk fotókkal, és újranyomtatjuk vagy visszatérítjük — a gyártási hibák mindig minket terhelnek.",
+  "marketing__refunds__how_heading": "Hogyan kérhetsz visszatérítést",
+  "marketing__refunds__how_body": "Írj a <link>{email}</link> címre a fiókodhoz tartozó e-mail-címről, és mellékeld a Paddle-nyugtát vagy a rendelési számot. Általában egy munkanapon belül válaszolunk. A jóváhagyott visszatérítések a Paddle-ön keresztül az eredeti fizetési módra érkeznek vissza, jellemzően 5–10 munkanapon belül."
 }

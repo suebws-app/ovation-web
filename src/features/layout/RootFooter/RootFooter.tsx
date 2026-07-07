@@ -78,6 +78,10 @@ export const RootFooter = ({ className }: RootFooterProps) => {
           href: appRoutes.legal.terms,
         },
         {
+          label: t("common__footer__legal_links__refunds"),
+          href: appRoutes.legal.refunds,
+        },
+        {
           label: t("common__footer__legal_links__privacy"),
           href: appRoutes.legal.privacy,
         },

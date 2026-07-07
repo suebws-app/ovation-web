@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Intellectueel eigendom van Ovation",
   "marketing__terms__ip_body": "Ovation zelf — de software, het ontwerp, het logo en het merk — is eigendom van {legalEntityName} en zijn licentiegevers. Deze voorwaarden geven je geen rechten op onze code of ons merk, behalve het gebruik van de dienst. Als je ons feedback of suggesties stuurt, mogen we die gebruiken om Ovation te verbeteren zonder je iets verschuldigd te zijn.",
   "marketing__terms__copyright_heading": "Auteursrechtklachten",
-  "marketing__terms__copyright_body": "Denk je dat content op Ovation inbreuk maakt op je auteursrecht, mail dan naar <link>{email}</link> met een link naar de content, een beschrijving van het betreffende werk en bewijs dat het van jou is. We beoordelen het snel, verwijderen inbreukmakende content waar dat passend is en geven de uploader de kans om te reageren. Accounts die herhaaldelijk inbreuk maken, kunnen worden beëindigd."
+  "marketing__terms__copyright_body": "Denk je dat content op Ovation inbreuk maakt op je auteursrecht, mail dan naar <link>{email}</link> met een link naar de content, een beschrijving van het betreffende werk en bewijs dat het van jou is. We beoordelen het snel, verwijderen inbreukmakende content waar dat passend is en geven de uploader de kans om te reageren. Accounts die herhaaldelijk inbreuk maken, kunnen worden beëindigd.",
+  "marketing__refunds__title": "Terugbetalingsbeleid",
+  "marketing__refunds__last_updated": "Laatst bijgewerkt: 7 juli 2026",
+  "marketing__refunds__intro_heading": "De korte versie",
+  "marketing__refunds__intro_body": "Alle betalingen voor Ovation worden verwerkt door onze partner Paddle, de officiële verkoper (merchant of record) van elke aankoop. Is er iets misgegaan met een bestelling, neem dan contact op en we lossen het op. Niets in dit beleid beperkt de wettelijke terugbetalingsrechten die je hebt onder het consumentenrecht van jouw land.",
+  "marketing__refunds__subscriptions_heading": "Abonnementen en plannen",
+  "marketing__refunds__subscriptions_body": "Plannen voor stellen zijn eenmalige aankopen. Professionele plannen en de opslagverlenging zijn maandabonnementen: ze verlengen automatisch tot je opzegt, je kunt op elk moment opzeggen via Instellingen en je houdt toegang tot het einde van de betaalde periode. Ben je per ongeluk belast — bijvoorbeeld door een onbedoelde verlenging of een dubbele betaling — neem dan binnen 14 dagen contact op en we betalen het terug.",
+  "marketing__refunds__keepsakes_heading": "Gedrukte aandenkens",
+  "marketing__refunds__keepsakes_body": "Op maat gedrukte boeken en andere fysieke aandenkens worden op bestelling gemaakt; het herroepingsrecht bij bedenken geldt daarom niet. Komt een aandenken beschadigd of met een productiefout aan, stuur ons dan foto's en we drukken het opnieuw of betalen terug — productiefouten zijn altijd voor onze rekening.",
+  "marketing__refunds__how_heading": "Zo vraag je een terugbetaling aan",
+  "marketing__refunds__how_body": "Mail naar <link>{email}</link> vanaf het adres van je account en voeg je Paddle-bon of bestelnummer toe. We reageren meestal binnen één werkdag. Goedgekeurde terugbetalingen gaan via Paddle terug naar je oorspronkelijke betaalmethode, doorgaans binnen 5–10 werkdagen."
 }

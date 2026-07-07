@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Ovation's intellectual property",
   "marketing__terms__ip_body": "Ovation itself — the software, design, logo and brand — belongs to {legalEntityName} and its licensors. These terms don't give you any rights to our code or branding beyond using the service. If you send us feedback or suggestions, we may use them to improve Ovation without owing you anything.",
   "marketing__terms__copyright_heading": "Copyright complaints",
-  "marketing__terms__copyright_body": "If you believe content on Ovation infringes your copyright, email <link>{email}</link> with a link to the content, a description of the work concerned, and evidence that you own it. We'll review promptly, remove infringing content where appropriate, and give the uploader a chance to respond. Accounts that repeatedly infringe may be terminated."
+  "marketing__terms__copyright_body": "If you believe content on Ovation infringes your copyright, email <link>{email}</link> with a link to the content, a description of the work concerned, and evidence that you own it. We'll review promptly, remove infringing content where appropriate, and give the uploader a chance to respond. Accounts that repeatedly infringe may be terminated.",
+  "marketing__refunds__title": "Refund Policy",
+  "marketing__refunds__last_updated": "Last updated: 7 July 2026",
+  "marketing__refunds__intro_heading": "The short version",
+  "marketing__refunds__intro_body": "All payments for Ovation are processed by our partner Paddle, the merchant of record for every purchase. If something went wrong with an order, contact us and we'll make it right. Nothing in this policy limits the statutory refund rights you have under the consumer law of your country.",
+  "marketing__refunds__subscriptions_heading": "Plans and subscriptions",
+  "marketing__refunds__subscriptions_body": "Couple plans are one-time purchases. Professional plans and the storage extension are monthly subscriptions: they renew automatically until you cancel, you can cancel anytime from Settings, and you keep access until the end of the period you've paid for. If you were charged in error — for example a renewal you didn't intend or a duplicate payment — contact us within 14 days and we'll refund it.",
+  "marketing__refunds__keepsakes_heading": "Printed keepsakes",
+  "marketing__refunds__keepsakes_body": "Custom-printed books and other physical keepsakes are made to order, so change-of-mind withdrawal rights don't apply to them. If a keepsake arrives damaged or with a production defect, contact us with photos and we'll reprint or refund it — production defects are always on us.",
+  "marketing__refunds__how_heading": "How to request a refund",
+  "marketing__refunds__how_body": "Email <link>{email}</link> from the address on your account and include your Paddle receipt or order number. We usually reply within one business day. Approved refunds go back to your original payment method via Paddle, typically within 5–10 business days."
 }

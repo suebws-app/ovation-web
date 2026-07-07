@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Proprietatea intelectuală Ovation",
   "marketing__terms__ip_body": "Ovation în sine — software-ul, designul, logo-ul și marca — aparține {legalEntityName} și licențiatorilor săi. Acești termeni nu îți oferă niciun drept asupra codului sau mărcii noastre dincolo de utilizarea serviciului. Dacă ne trimiți feedback sau sugestii, le putem folosi pentru a îmbunătăți Ovation fără nicio obligație față de tine.",
   "marketing__terms__copyright_heading": "Reclamații privind drepturile de autor",
-  "marketing__terms__copyright_body": "Dacă crezi că un conținut de pe Ovation îți încalcă drepturile de autor, scrie la <link>{email}</link> cu un link către conținut, o descriere a operei vizate și dovada că îți aparține. Analizăm rapid, eliminăm conținutul care încalcă drepturile atunci când e justificat și îi dăm celui care l-a încărcat ocazia să răspundă. Conturile care încalcă în mod repetat pot fi închise."
+  "marketing__terms__copyright_body": "Dacă crezi că un conținut de pe Ovation îți încalcă drepturile de autor, scrie la <link>{email}</link> cu un link către conținut, o descriere a operei vizate și dovada că îți aparține. Analizăm rapid, eliminăm conținutul care încalcă drepturile atunci când e justificat și îi dăm celui care l-a încărcat ocazia să răspundă. Conturile care încalcă în mod repetat pot fi închise.",
+  "marketing__refunds__title": "Politica de rambursare",
+  "marketing__refunds__last_updated": "Ultima actualizare: 7 iulie 2026",
+  "marketing__refunds__intro_heading": "Versiunea scurtă",
+  "marketing__refunds__intro_body": "Toate plățile pentru Ovation sunt procesate de partenerul nostru Paddle, vânzătorul înregistrat (merchant of record) al fiecărei achiziții. Dacă ceva nu a mers bine cu o comandă, contactează-ne și vom rezolva. Nimic din această politică nu limitează drepturile legale de rambursare pe care le ai conform legislației de protecție a consumatorilor din țara ta.",
+  "marketing__refunds__subscriptions_heading": "Planuri și abonamente",
+  "marketing__refunds__subscriptions_body": "Planurile pentru cupluri sunt achiziții unice. Planurile profesionale și extinderea stocării sunt abonamente lunare: se reînnoiesc automat până când anulezi, poți anula oricând din Setări și păstrezi accesul până la finalul perioadei plătite. Dacă ai fost taxat din greșeală — de exemplu o reînnoire nedorită sau o plată dublă — contactează-ne în termen de 14 zile și îți vom rambursa suma.",
+  "marketing__refunds__keepsakes_heading": "Amintiri tipărite",
+  "marketing__refunds__keepsakes_body": "Cărțile tipărite personalizat și celelalte amintiri fizice sunt realizate la comandă, așa că dreptul de retragere din răzgândire nu li se aplică. Dacă o amintire sosește deteriorată sau cu un defect de producție, contactează-ne cu fotografii și o vom retipări sau rambursa — defectele de producție sunt întotdeauna responsabilitatea noastră.",
+  "marketing__refunds__how_heading": "Cum soliciți o rambursare",
+  "marketing__refunds__how_body": "Scrie la <link>{email}</link> de pe adresa contului tău și include chitanța Paddle sau numărul comenzii. De obicei răspundem în cel mult o zi lucrătoare. Rambursările aprobate se întorc pe metoda de plată inițială prin Paddle, de regulă în 5–10 zile lucrătoare."
 }

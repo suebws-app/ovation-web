@@ -335,5 +335,15 @@
   "marketing__terms__ip_heading": "Harta intelek Ovation",
   "marketing__terms__ip_body": "Ovation itu sendiri — perisian, reka bentuk, logo dan jenamanya — adalah milik {legalEntityName} dan pemberi lesennya. Terma ini tidak memberi anda sebarang hak ke atas kod atau penjenamaan kami selain daripada menggunakan perkhidmatan. Jika anda menghantar maklum balas atau cadangan, kami boleh menggunakannya untuk menambah baik Ovation tanpa sebarang kewajipan kepada anda.",
   "marketing__terms__copyright_heading": "Aduan hak cipta",
-  "marketing__terms__copyright_body": "Jika anda percaya kandungan di Ovation melanggar hak cipta anda, e-mel <link>{email}</link> dengan pautan ke kandungan tersebut, penerangan karya berkenaan, dan bukti bahawa anda memilikinya. Kami akan menyemak dengan segera, mengalih keluar kandungan yang melanggar jika wajar, dan memberi peluang kepada pemuat naik untuk menjawab. Akaun yang berulang kali melanggar boleh ditamatkan."
+  "marketing__terms__copyright_body": "Jika anda percaya kandungan di Ovation melanggar hak cipta anda, e-mel <link>{email}</link> dengan pautan ke kandungan tersebut, penerangan karya berkenaan, dan bukti bahawa anda memilikinya. Kami akan menyemak dengan segera, mengalih keluar kandungan yang melanggar jika wajar, dan memberi peluang kepada pemuat naik untuk menjawab. Akaun yang berulang kali melanggar boleh ditamatkan.",
+  "marketing__refunds__title": "Dasar Bayaran Balik",
+  "marketing__refunds__last_updated": "Kemas kini terakhir: 7 Julai 2026",
+  "marketing__refunds__intro_heading": "Versi ringkas",
+  "marketing__refunds__intro_body": "Semua pembayaran Ovation diproses oleh rakan kongsi kami Paddle, penjual berdaftar (merchant of record) bagi setiap pembelian. Jika sesuatu tidak kena dengan pesanan anda, hubungi kami dan kami akan membetulkannya. Tiada apa-apa dalam dasar ini yang mengehadkan hak bayaran balik statutori anda di bawah undang-undang pengguna negara anda.",
+  "marketing__refunds__subscriptions_heading": "Pelan dan langganan",
+  "marketing__refunds__subscriptions_body": "Pelan pasangan ialah pembelian sekali sahaja. Pelan profesional dan sambungan storan ialah langganan bulanan: ia diperbaharui secara automatik sehingga anda membatalkan, anda boleh membatalkan pada bila-bila masa dari Tetapan, dan akses kekal sehingga akhir tempoh yang telah dibayar. Jika anda dicaj secara tersilap — contohnya pembaharuan yang tidak diingini atau bayaran berganda — hubungi kami dalam 14 hari dan kami akan memulangkannya.",
+  "marketing__refunds__keepsakes_heading": "Cenderamata bercetak",
+  "marketing__refunds__keepsakes_body": "Buku cetakan khas dan cenderamata fizikal lain dibuat mengikut pesanan, jadi hak penarikan diri kerana berubah fikiran tidak terpakai. Jika cenderamata tiba dalam keadaan rosak atau dengan kecacatan pengeluaran, hubungi kami dengan gambar dan kami akan mencetak semula atau memulangkan wang — kecacatan pengeluaran sentiasa tanggungan kami.",
+  "marketing__refunds__how_heading": "Cara memohon bayaran balik",
+  "marketing__refunds__how_body": "E-mel ke <link>{email}</link> daripada alamat pada akaun anda dan sertakan resit Paddle atau nombor pesanan. Kami biasanya membalas dalam satu hari bekerja. Bayaran balik yang diluluskan dikembalikan ke kaedah pembayaran asal melalui Paddle, biasanya dalam 5–10 hari bekerja."
 }

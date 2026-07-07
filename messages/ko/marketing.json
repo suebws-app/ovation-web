@@ -335,5 +335,15 @@
   "marketing__changelog__empty_state": "Ovation은 첫 커플들과 함께 비공개 베타를 진행 중입니다. 정식 출시일부터 모든 업데이트가 여기에 게시됩니다.",
   "marketing__for_planners__benefit1_title_v2": "모든 고객 이벤트를 처음부터 끝까지 운영",
   "marketing__for_planners__benefit1_body_v2": "각 커플의 이벤트를 만들고 하객, 초대장, QR 코드, 메시지, 주문을 관리하세요 — 모두 프로페셔널 계정 하나로.",
-  "coming_soon__feature_3_v2": "말한 언어 그대로 자동 전사"
+  "coming_soon__feature_3_v2": "말한 언어 그대로 자동 전사",
+  "marketing__refunds__title": "환불 정책",
+  "marketing__refunds__last_updated": "최종 업데이트: 2026년 7월 7일",
+  "marketing__refunds__intro_heading": "요약",
+  "marketing__refunds__intro_body": "Ovation의 모든 결제는 파트너인 Paddle이 처리하며, Paddle은 모든 구매의 공식 판매자(merchant of record)입니다. 주문에 문제가 있었다면 문의해 주세요. 바로잡아 드리겠습니다. 이 정책의 어떤 내용도 거주 국가 소비자법에 따른 법정 환불 권리를 제한하지 않습니다.",
+  "marketing__refunds__subscriptions_heading": "플랜 및 구독",
+  "marketing__refunds__subscriptions_body": "커플 플랜은 일회성 구매입니다. 프로페셔널 플랜과 저장 기간 연장은 월간 구독으로, 해지할 때까지 자동 갱신되며 설정에서 언제든 해지할 수 있고 결제한 기간이 끝날 때까지 이용할 수 있습니다. 잘못 청구된 경우 — 예를 들어 의도하지 않은 갱신이나 중복 결제 — 14일 이내에 문의해 주시면 환불해 드립니다.",
+  "marketing__refunds__keepsakes_heading": "인쇄 기념품",
+  "marketing__refunds__keepsakes_body": "맞춤 인쇄 도서와 기타 실물 기념품은 주문 제작되므로 단순 변심에 의한 청약 철회는 적용되지 않습니다. 기념품이 파손되었거나 제작 결함이 있는 상태로 도착하면 사진과 함께 문의해 주세요. 다시 인쇄하거나 환불해 드립니다 — 제작 결함은 항상 저희 책임입니다.",
+  "marketing__refunds__how_heading": "환불 요청 방법",
+  "marketing__refunds__how_body": "계정에 등록된 이메일 주소로 <link>{email}</link>에 메일을 보내고 Paddle 영수증이나 주문 번호를 함께 알려주세요. 보통 영업일 기준 1일 이내에 답변합니다. 승인된 환불은 Paddle을 통해 원래 결제 수단으로 환급되며, 일반적으로 영업일 기준 5–10일이 소요됩니다."
 }
