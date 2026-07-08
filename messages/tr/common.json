@@ -62,5 +62,6 @@
   "common__theme__light": "Açık",
   "common__theme__dark": "Koyu",
   "common__theme__system": "Sistem",
-  "common__footer__legal_links__terms": "Şartlar"
+  "common__footer__legal_links__terms": "Şartlar",
+  "common__footer__legal_links__refunds": "İadeler"
 }

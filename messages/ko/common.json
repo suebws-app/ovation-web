@@ -62,5 +62,6 @@
   "common__theme__light": "라이트",
   "common__theme__dark": "다크",
   "common__theme__system": "시스템",
-  "common__footer__legal_links__terms": "이용약관"
+  "common__footer__legal_links__terms": "이용약관",
+  "common__footer__legal_links__refunds": "환불"
 }

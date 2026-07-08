@@ -62,5 +62,6 @@
   "common__theme__dark": "Dark",
   "common__theme__system": "System",
   "nav__open_menu": "Open menu",
-  "nav__close_menu": "Close menu"
+  "nav__close_menu": "Close menu",
+  "common__footer__legal_links__refunds": "Refunds"
 }

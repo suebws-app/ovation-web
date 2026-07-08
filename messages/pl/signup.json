@@ -19,9 +19,6 @@
   "signup__pro_plan__select_required": "Wybierz plan, aby kontynuować.",
   "signup__pro_done__eyebrow": "Jesteś w środku",
   "signup__pro_done__title": "Konto utworzone.",
-  "signup__pro_done__subtitle": "Twoje konto profesjonalne jest gotowe. Rozpocznij 14-dniową darmową wersję próbną i stwórz swoje pierwsze wydarzenie.",
-  "signup__pro_done__cta": "Rozpocznij darmową wersję próbną",
-  "signup__pro_done__checkout_error": "Coś poszło nie tak podczas uruchamiania twojej wersji próbnej. Spróbuj ponownie.",
   "signup__book_details__step_label": "Twoja księga",
   "signup__book_details__title_a": "Imiona, data",
   "signup__book_details__title_b": "i miejsce.",
@@ -129,5 +126,5 @@
   "signup__plan__keepsake__feature_1_v2": "Nieograniczone wiadomości",
   "signup__plan__keepsake__feature_2_v2": "Gotowe do druku karty QR (PDF, PNG i SVG)",
   "signup__plan__keepsake__feature_4_v2": "Pobierz wszystko w dowolnym momencie (.zip)",
-  "signup__pro_plan__subtitle_v2": "14-dniowa darmowa wersja próbna na obu planach. Nie zostaniesz obciążony, dopóki wersja próbna się nie skończy — anuluj w dowolnym momencie."
+  "signup__pro_plan__subtitle_v2": "Subskrypcja miesięczna — anuluj w dowolnym momencie."
 }

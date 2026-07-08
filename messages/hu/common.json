@@ -62,5 +62,6 @@
   "common__theme__light": "Világos",
   "common__theme__dark": "Sötét",
   "common__theme__system": "Rendszer",
-  "common__footer__legal_links__terms": "Feltételek"
+  "common__footer__legal_links__terms": "Feltételek",
+  "common__footer__legal_links__refunds": "Visszatérítés"
 }

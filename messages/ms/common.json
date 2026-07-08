@@ -62,5 +62,6 @@
   "common__theme__light": "Cerah",
   "common__theme__dark": "Gelap",
   "common__theme__system": "Sistem",
-  "common__footer__legal_links__terms": "Terma"
+  "common__footer__legal_links__terms": "Terma",
+  "common__footer__legal_links__refunds": "Bayaran balik"
 }

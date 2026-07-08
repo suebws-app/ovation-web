@@ -19,9 +19,6 @@
   "signup__pro_plan__select_required": "Veuillez sélectionner une formule pour continuer.",
   "signup__pro_done__eyebrow": "C'est parti",
   "signup__pro_done__title": "Compte créé.",
-  "signup__pro_done__subtitle": "Votre compte professionnel est prêt. Lancez votre essai gratuit de 14 jours et créez votre premier événement.",
-  "signup__pro_done__cta": "Démarrer l'essai gratuit",
-  "signup__pro_done__checkout_error": "Une erreur est survenue lors du démarrage de votre essai. Veuillez réessayer.",
   "signup__book_details__step_label": "Votre livre",
   "signup__book_details__title_a": "Prénoms, date",
   "signup__book_details__title_b": "et lieu.",
@@ -129,5 +126,5 @@
   "signup__plan__keepsake__feature_1_v2": "Messages illimités",
   "signup__plan__keepsake__feature_2_v2": "Cartes QR prêtes à imprimer (PDF, PNG et SVG)",
   "signup__plan__keepsake__feature_4_v2": "Téléchargez tout à tout moment (.zip)",
-  "signup__pro_plan__subtitle_v2": "Essai gratuit de 14 jours sur les deux forfaits. Vous ne serez débité qu'à la fin de l'essai — annulez à tout moment."
+  "signup__pro_plan__subtitle_v2": "Abonnement mensuel — annulez à tout moment."
 }

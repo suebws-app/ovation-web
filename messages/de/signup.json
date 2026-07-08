@@ -19,9 +19,6 @@
   "signup__pro_plan__select_required": "Bitte wähle einen Tarif, um fortzufahren.",
   "signup__pro_done__eyebrow": "Du bist dabei",
   "signup__pro_done__title": "Konto erstellt.",
-  "signup__pro_done__subtitle": "Dein Profi-Konto ist bereit. Starte deine 14-tägige kostenlose Testphase und erstelle dein erstes Event.",
-  "signup__pro_done__cta": "Kostenlose Testphase starten",
-  "signup__pro_done__checkout_error": "Beim Start deiner Testphase ist etwas schiefgegangen. Versuche es erneut.",
   "signup__book_details__step_label": "Dein Buch",
   "signup__book_details__title_a": "Namen, Datum",
   "signup__book_details__title_b": "& Ort.",
@@ -129,5 +126,5 @@
   "signup__plan__keepsake__feature_1_v2": "Unbegrenzte Nachrichten",
   "signup__plan__keepsake__feature_2_v2": "Druckfertige QR-Karten (PDF, PNG & SVG)",
   "signup__plan__keepsake__feature_4_v2": "Jederzeit alles herunterladen (.zip)",
-  "signup__pro_plan__subtitle_v2": "14 Tage kostenlos testen bei beiden Tarifen. Du wirst erst nach Ablauf der Testphase belastet — jederzeit kündbar."
+  "signup__pro_plan__subtitle_v2": "Monatliches Abo — jederzeit kündbar."
 }
