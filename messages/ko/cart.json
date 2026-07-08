@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "주문 보기",
   "cart__confirm__continue": "쇼핑 계속하기",
   "cart__line__shipping": "+ 배송비 {price}",
-  "cart__addresses__shipping_price": "배송비 {price}"
+  "cart__addresses__shipping_price": "배송비 {price}",
+  "cart__peecho_notice": "인쇄 파트너 Peecho가 인쇄, 판매 및 배송합니다. 배송비와 세금은 결제 시 계산됩니다.",
+  "cart__summary__shipping_at_checkout": "결제 시 계산",
+  "cart__summary__excl_shipping": "배송비 및 세금 별도",
+  "cart__error__single_item_only": "기념품은 한 번에 하나씩 주문해 주세요.",
+  "cart__error__payment_unavailable": "현재 결제를 이용할 수 없습니다. 다시 시도해 주세요.",
+  "cart__payment__redirect_title": "보안 결제에서 계속하세요",
+  "cart__payment__redirect_body": "인쇄 파트너 Peecho의 보안 결제 페이지를 열었습니다. 배송 주소를 입력하고 결제를 완료하세요.",
+  "cart__payment__redirect_open": "결제 열기"
 }

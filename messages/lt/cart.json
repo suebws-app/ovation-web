@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Peržiūrėti užsakymą",
   "cart__confirm__continue": "Tęsti apsipirkimą",
   "cart__line__shipping": "+ {price} pristatymas",
-  "cart__addresses__shipping_price": "Pristatymas {price}"
+  "cart__addresses__shipping_price": "Pristatymas {price}",
+  "cart__peecho_notice": "Spausdina, parduoda ir siunčia mūsų spaudos partneris „Peecho“. Pristatymas ir mokesčiai apskaičiuojami atsiskaitant.",
+  "cart__summary__shipping_at_checkout": "Apskaičiuojama atsiskaitant",
+  "cart__summary__excl_shipping": "be pristatymo ir mokesčių",
+  "cart__error__single_item_only": "Užsakykite po vieną atminimą.",
+  "cart__error__payment_unavailable": "Atsiskaitymas šiuo metu negalimas. Bandykite dar kartą.",
+  "cart__payment__redirect_title": "Tęskite saugiame atsiskaityme",
+  "cart__payment__redirect_body": "Atidarėme mūsų spaudos partnerio „Peecho“ saugų atsiskaitymą, kuriame įvesite pristatymo adresą ir užbaigsite mokėjimą.",
+  "cart__payment__redirect_open": "Atidaryti atsiskaitymą"
 }

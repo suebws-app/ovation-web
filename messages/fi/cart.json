@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Näytä tilaus",
   "cart__confirm__continue": "Jatka ostoksia",
   "cart__line__shipping": "+ {price} toimitus",
-  "cart__addresses__shipping_price": "Toimitus {price}"
+  "cart__addresses__shipping_price": "Toimitus {price}",
+  "cart__peecho_notice": "Painaa, myy ja toimittaa painokumppanimme Peecho. Toimituskulut ja verot lasketaan kassalla.",
+  "cart__summary__shipping_at_checkout": "Lasketaan kassalla",
+  "cart__summary__excl_shipping": "ilman toimitusta ja veroja",
+  "cart__error__single_item_only": "Tilaa yksi muisto kerrallaan.",
+  "cart__error__payment_unavailable": "Kassa ei ole juuri nyt käytettävissä. Yritä uudelleen.",
+  "cart__payment__redirect_title": "Jatka turvalliselle kassalle",
+  "cart__payment__redirect_body": "Avasimme painokumppanimme Peechon turvallisen kassan, jossa voit syöttää toimitusosoitteesi ja viimeistellä maksun.",
+  "cart__payment__redirect_open": "Avaa kassa"
 }

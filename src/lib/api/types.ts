@@ -691,10 +691,23 @@ export type CartTotalsResult = {
   detectedCountry?: string;
 };
 
+export type PeechoCheckoutParams = {
+  reference: string;
+  pages: number;
+  widthMm: number;
+  heightMm: number;
+  thumbnailUrl: string | null;
+  currency: string;
+  locale: string;
+  successUrl: string;
+};
+
 export type CheckoutSessionResult = {
   orderId: string;
-  checkoutUrl: string;
-  providerSessionId: string;
+  provider?: string;
+  checkoutUrl?: string;
+  providerSessionId?: string;
+  checkout?: PeechoCheckoutParams;
 };
 
 export type PlanAudience = "couple" | "pro" | "addon";

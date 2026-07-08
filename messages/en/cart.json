@@ -69,5 +69,13 @@
   "cart__confirm__body": "Thanks for your order. We’ve sent a confirmation email with the details.",
   "cart__confirm__reference": "Reference: {id}",
   "cart__confirm__view_order": "View order",
-  "cart__confirm__continue": "Continue shopping"
+  "cart__confirm__continue": "Continue shopping",
+  "cart__peecho_notice": "Printed, sold and shipped by our print partner Peecho. Shipping and taxes are calculated at checkout.",
+  "cart__summary__shipping_at_checkout": "Calculated at checkout",
+  "cart__summary__excl_shipping": "excl. shipping & taxes",
+  "cart__error__single_item_only": "Please order one keepsake at a time.",
+  "cart__error__payment_unavailable": "Checkout is currently unavailable. Please try again.",
+  "cart__payment__redirect_title": "Continue in the secure checkout",
+  "cart__payment__redirect_body": "We've opened our print partner Peecho's secure checkout, where you can enter your shipping address and complete payment.",
+  "cart__payment__redirect_open": "Open checkout"
 }

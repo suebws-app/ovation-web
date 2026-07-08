@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Visa beställning",
   "cart__confirm__continue": "Fortsätt handla",
   "cart__line__shipping": "+ {price} frakt",
-  "cart__addresses__shipping_price": "Frakt {price}"
+  "cart__addresses__shipping_price": "Frakt {price}",
+  "cart__peecho_notice": "Trycks, säljs och skickas av vår tryckpartner Peecho. Frakt och skatter beräknas i kassan.",
+  "cart__summary__shipping_at_checkout": "Beräknas i kassan",
+  "cart__summary__excl_shipping": "exkl. frakt och skatter",
+  "cart__error__single_item_only": "Beställ ett minne i taget.",
+  "cart__error__payment_unavailable": "Kassan är inte tillgänglig just nu. Försök igen.",
+  "cart__payment__redirect_title": "Fortsätt i den säkra kassan",
+  "cart__payment__redirect_body": "Vi har öppnat vår tryckpartner Peechos säkra kassa, där du anger din leveransadress och slutför betalningen.",
+  "cart__payment__redirect_open": "Öppna kassan"
 }

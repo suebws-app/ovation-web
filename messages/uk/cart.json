@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Переглянути замовлення",
   "cart__confirm__continue": "Продовжити покупки",
   "cart__line__shipping": "+ {price} доставка",
-  "cart__addresses__shipping_price": "Доставка {price}"
+  "cart__addresses__shipping_price": "Доставка {price}",
+  "cart__peecho_notice": "Друкує, продає та доставляє наш друкарський партнер Peecho. Доставка й податки розраховуються під час оформлення.",
+  "cart__summary__shipping_at_checkout": "Розраховується під час оформлення",
+  "cart__summary__excl_shipping": "без доставки та податків",
+  "cart__error__single_item_only": "Будь ласка, замовляйте по одному сувеніру за раз.",
+  "cart__error__payment_unavailable": "Оформлення наразі недоступне. Спробуйте ще раз.",
+  "cart__payment__redirect_title": "Продовжте в захищеному оформленні",
+  "cart__payment__redirect_body": "Ми відкрили захищене оформлення нашого друкарського партнера Peecho, де ви зможете вказати адресу доставки та завершити оплату.",
+  "cart__payment__redirect_open": "Відкрити оформлення"
 }

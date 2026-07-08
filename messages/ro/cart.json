@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Vezi comanda",
   "cart__confirm__continue": "Continuă cumpărăturile",
   "cart__line__shipping": "+ {price} livrare",
-  "cart__addresses__shipping_price": "Livrare {price}"
+  "cart__addresses__shipping_price": "Livrare {price}",
+  "cart__peecho_notice": "Tipărit, vândut și expediat de partenerul nostru de tipar Peecho. Livrarea și taxele se calculează la finalizarea comenzii.",
+  "cart__summary__shipping_at_checkout": "Se calculează la finalizare",
+  "cart__summary__excl_shipping": "fără livrare și taxe",
+  "cart__error__single_item_only": "Vă rugăm să comandați câte o amintire pe rând.",
+  "cart__error__payment_unavailable": "Finalizarea comenzii nu este disponibilă momentan. Încercați din nou.",
+  "cart__payment__redirect_title": "Continuați în plata securizată",
+  "cart__payment__redirect_body": "Am deschis plata securizată a partenerului nostru de tipar Peecho, unde puteți introduce adresa de livrare și finaliza plata.",
+  "cart__payment__redirect_open": "Deschide plata"
 }

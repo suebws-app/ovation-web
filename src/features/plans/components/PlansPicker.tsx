@@ -108,6 +108,9 @@ export const PlansPicker = (props: PlansPickerProps) => {
               successUrl,
               cancelUrl,
             });
+      if (!checkout.checkoutUrl) {
+        throw new Error("Checkout session missing redirect URL");
+      }
       router.push(checkout.checkoutUrl);
     } catch (err) {
       setRedirecting(false);

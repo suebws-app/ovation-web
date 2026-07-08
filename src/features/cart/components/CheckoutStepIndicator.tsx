@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { CheckoutStepDot } from "./CheckoutStepDot";
 
-type CheckoutStep = "cart" | "address" | "payment" | "confirm";
+type CheckoutStep = "cart" | "payment" | "confirm";
 
 type CheckoutStepIndicatorProps = {
   active: CheckoutStep;
@@ -12,7 +12,6 @@ type CheckoutStepIndicatorProps = {
 
 const ALL_STEPS: Array<{ key: CheckoutStep; labelKey: string }> = [
   { key: "cart", labelKey: "cart__step__cart" },
-  { key: "address", labelKey: "cart__step__address" },
   { key: "payment", labelKey: "cart__step__payment" },
   { key: "confirm", labelKey: "cart__step__confirm" },
 ];

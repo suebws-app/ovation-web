@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Lihat pesanan",
   "cart__confirm__continue": "Teruskan membeli-belah",
   "cart__line__shipping": "+ {price} penghantaran",
-  "cart__addresses__shipping_price": "Penghantaran {price}"
+  "cart__addresses__shipping_price": "Penghantaran {price}",
+  "cart__peecho_notice": "Dicetak, dijual dan dihantar oleh rakan cetak kami Peecho. Penghantaran dan cukai dikira semasa pembayaran.",
+  "cart__summary__shipping_at_checkout": "Dikira semasa pembayaran",
+  "cart__summary__excl_shipping": "tidak termasuk penghantaran & cukai",
+  "cart__error__single_item_only": "Sila pesan satu kenangan pada satu masa.",
+  "cart__error__payment_unavailable": "Pembayaran tidak tersedia buat masa ini. Sila cuba lagi.",
+  "cart__payment__redirect_title": "Teruskan di pembayaran selamat",
+  "cart__payment__redirect_body": "Kami telah membuka pembayaran selamat rakan cetak kami Peecho, tempat anda boleh memasukkan alamat penghantaran dan melengkapkan pembayaran.",
+  "cart__payment__redirect_open": "Buka pembayaran"
 }

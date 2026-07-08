@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Voir la commande",
   "cart__confirm__continue": "Continuer mes achats",
   "cart__line__shipping": "+ {price} de livraison",
-  "cart__addresses__shipping_price": "Livraison {price}"
+  "cart__addresses__shipping_price": "Livraison {price}",
+  "cart__peecho_notice": "Imprimé, vendu et expédié par notre partenaire d'impression Peecho. Les frais de livraison et les taxes sont calculés lors du paiement.",
+  "cart__summary__shipping_at_checkout": "Calculés lors du paiement",
+  "cart__summary__excl_shipping": "hors livraison et taxes",
+  "cart__error__single_item_only": "Veuillez commander un souvenir à la fois.",
+  "cart__error__payment_unavailable": "Le paiement est momentanément indisponible. Veuillez réessayer.",
+  "cart__payment__redirect_title": "Continuez dans le paiement sécurisé",
+  "cart__payment__redirect_body": "Nous avons ouvert le paiement sécurisé de notre partenaire d'impression Peecho, où vous pourrez saisir votre adresse de livraison et finaliser le paiement.",
+  "cart__payment__redirect_open": "Ouvrir le paiement"
 }

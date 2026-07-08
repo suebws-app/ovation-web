@@ -69,5 +69,13 @@
   "cart__confirm__body": "Faleminderit për porosinë tuaj. Ju kemi dërguar një email konfirmimi me detajet.",
   "cart__confirm__reference": "Referenca: {id}",
   "cart__confirm__view_order": "Shiko porosinë",
-  "cart__confirm__continue": "Vazhdo blerjet"
+  "cart__confirm__continue": "Vazhdo blerjet",
+  "cart__peecho_notice": "Printohet, shitet dhe dërgohet nga partneri ynë i printimit Peecho. Transporti dhe taksat llogariten në arkë.",
+  "cart__summary__shipping_at_checkout": "Llogaritet në arkë",
+  "cart__summary__excl_shipping": "pa transport dhe taksa",
+  "cart__error__single_item_only": "Ju lutemi porosisni një kujtim në herë.",
+  "cart__error__payment_unavailable": "Arka nuk është e disponueshme për momentin. Provoni përsëri.",
+  "cart__payment__redirect_title": "Vazhdoni në arkën e sigurt",
+  "cart__payment__redirect_body": "Kemi hapur arkën e sigurt të partnerit tonë të printimit Peecho, ku mund të vendosni adresën e dërgesës dhe të përfundoni pagesën.",
+  "cart__payment__redirect_open": "Hap arkën"
 }

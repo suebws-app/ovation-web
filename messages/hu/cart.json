@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Rendelés megtekintése",
   "cart__confirm__continue": "Vásárlás folytatása",
   "cart__line__shipping": "+ {price} szállítás",
-  "cart__addresses__shipping_price": "Szállítás {price}"
+  "cart__addresses__shipping_price": "Szállítás {price}",
+  "cart__peecho_notice": "Nyomtatja, értékesíti és szállítja nyomdai partnerünk, a Peecho. A szállítás és az adók a fizetésnél kerülnek kiszámításra.",
+  "cart__summary__shipping_at_checkout": "A fizetésnél kerül kiszámításra",
+  "cart__summary__excl_shipping": "szállítás és adók nélkül",
+  "cart__error__single_item_only": "Kérjük, egyszerre egy emléket rendelj.",
+  "cart__error__payment_unavailable": "A fizetés jelenleg nem érhető el. Próbáld újra.",
+  "cart__payment__redirect_title": "Folytasd a biztonságos fizetésben",
+  "cart__payment__redirect_body": "Megnyitottuk nyomdai partnerünk, a Peecho biztonságos fizetőoldalát, ahol megadhatod a szállítási címed és befejezheted a fizetést.",
+  "cart__payment__redirect_open": "Fizetés megnyitása"
 }

@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Se ordre",
   "cart__confirm__continue": "Fortsæt med at handle",
   "cart__line__shipping": "+ {price} fragt",
-  "cart__addresses__shipping_price": "Fragt {price}"
+  "cart__addresses__shipping_price": "Fragt {price}",
+  "cart__peecho_notice": "Trykt, solgt og sendt af vores printpartner Peecho. Fragt og skatter beregnes ved betaling.",
+  "cart__summary__shipping_at_checkout": "Beregnes ved betaling",
+  "cart__summary__excl_shipping": "ekskl. fragt og skatter",
+  "cart__error__single_item_only": "Bestil venligst ét minde ad gangen.",
+  "cart__error__payment_unavailable": "Betaling er ikke tilgængelig i øjeblikket. Prøv igen.",
+  "cart__payment__redirect_title": "Fortsæt i den sikre betaling",
+  "cart__payment__redirect_body": "Vi har åbnet vores printpartner Peechos sikre betaling, hvor du kan indtaste din leveringsadresse og gennemføre betalingen.",
+  "cart__payment__redirect_open": "Åbn betaling"
 }

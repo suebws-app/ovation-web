@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Ogled naročila",
   "cart__confirm__continue": "Nadaljuj nakupovanje",
   "cart__line__shipping": "+ {price} dostava",
-  "cart__addresses__shipping_price": "Dostava {price}"
+  "cart__addresses__shipping_price": "Dostava {price}",
+  "cart__peecho_notice": "Tiska, prodaja in pošilja naš tiskarski partner Peecho. Poštnina in davki se obračunajo ob plačilu.",
+  "cart__summary__shipping_at_checkout": "Obračuna se ob plačilu",
+  "cart__summary__excl_shipping": "brez poštnine in davkov",
+  "cart__error__single_item_only": "Naročite en spominek naenkrat.",
+  "cart__error__payment_unavailable": "Plačilo trenutno ni na voljo. Poskusite znova.",
+  "cart__payment__redirect_title": "Nadaljujte v varnem plačilu",
+  "cart__payment__redirect_body": "Odprli smo varno plačilo našega tiskarskega partnerja Peecho, kjer vnesete naslov za dostavo in zaključite plačilo.",
+  "cart__payment__redirect_open": "Odpri plačilo"
 }
