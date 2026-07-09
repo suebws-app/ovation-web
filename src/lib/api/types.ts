@@ -693,6 +693,8 @@ export type CartTotalsResult = {
 
 export type PeechoCheckoutParams = {
   reference: string;
+  offeringId: string | null;
+  title: string;
   pages: number;
   widthMm: number;
   heightMm: number;

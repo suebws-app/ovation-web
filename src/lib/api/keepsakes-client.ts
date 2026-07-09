@@ -42,6 +42,7 @@ export type RenderStatus = {
   status: "queued" | "rendering" | "completed" | "failed";
   bindType?: string | null;
   publicUrl?: string;
+  contentUrl?: string | null;
   errorMessage?: string | null;
   pageCount?: number | null;
   createdAt: string;

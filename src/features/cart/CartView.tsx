@@ -136,7 +136,6 @@ export const CartView = () => {
         return;
       }
       const opened = await peecho.open(result.checkout);
-      console.log(opened);
       if (!opened.opened) {
         setError(t("cart__error__payment_unavailable"));
         setIsCheckingOut(false);

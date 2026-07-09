@@ -49,15 +49,23 @@ const buildAnchor = (params: PeechoCheckoutParams): HTMLAnchorElement => {
   anchor.className = BUTTON_CLASS;
   anchor.rel = "noopener";
   anchor.style.display = "none";
-  anchor.dataset.filetype = "pdf";
+  // Async print button (per Peecho async docs): NO data-src / data-publication /
+  // data-filetype / data-secure. Any data-src gets ingested as the real source
+  // and moves the order to WAITING_TO_DISPATCH, after which set_source_url is
+  // rejected ("incorrect state"). Without a source the order stays in
+  // PENDING_COMPLETION until we deliver the rendered PDF via set_source_url.
+  anchor.dataset.noprice = "true";
   anchor.dataset.reference = params.reference;
+  anchor.dataset.title = params.title;
+  // data-offering pins the exact Peecho product so the checkout skips the
+  // "choose your product type" step (book is already configured in our UI).
+  if (params.offeringId) anchor.dataset.offering = params.offeringId;
+  // Exact printed page count computed server-side (mirrors the PDF planner).
   anchor.dataset.pages = String(params.pages);
   anchor.dataset.width = String(params.widthMm);
   anchor.dataset.height = String(params.heightMm);
   anchor.dataset.currency = params.currency;
   anchor.dataset.locale = params.locale;
-  anchor.dataset.secure = "true";
-  anchor.dataset.src = `${window.location.origin}/peecho-print-source/${params.reference}.pdf`;
   anchor.dataset.redirectThankyou = params.successUrl;
   anchor.dataset.redirectCancel = window.location.href;
   anchor.dataset.redirectError = window.location.href;
