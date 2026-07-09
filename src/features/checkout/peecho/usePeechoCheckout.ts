@@ -49,11 +49,14 @@ const buildAnchor = (params: PeechoCheckoutParams): HTMLAnchorElement => {
   anchor.className = BUTTON_CLASS;
   anchor.rel = "noopener";
   anchor.style.display = "none";
-  // Async print button (per Peecho async docs): NO data-src / data-publication /
-  // data-filetype / data-secure. Any data-src gets ingested as the real source
-  // and moves the order to WAITING_TO_DISPATCH, after which set_source_url is
-  // rejected ("incorrect state"). Without a source the order stays in
-  // PENDING_COMPLETION until we deliver the rendered PDF via set_source_url.
+  // Async print button: NO data-src / data-publication / data-filetype. Any
+  // data-src gets ingested as the real source and moves the order to
+  // WAITING_TO_DISPATCH, after which set_source_url is rejected ("incorrect
+  // state"). Without a source the order stays in PENDING_COMPLETION until we
+  // deliver the rendered PDF via set_source_url. data-secure routes the
+  // checkout to the secure host matching our test account — without it the
+  // order is created on a host we can't see and the pingback never fires.
+  anchor.dataset.secure = "true";
   anchor.dataset.noprice = "true";
   anchor.dataset.reference = params.reference;
   anchor.dataset.title = params.title;
