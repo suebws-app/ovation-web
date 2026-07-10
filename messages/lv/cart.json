@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Skatīt pasūtījumu",
   "cart__confirm__continue": "Turpināt iepirkties",
   "cart__line__shipping": "+ {price} piegāde",
-  "cart__addresses__shipping_price": "Piegāde {price}"
+  "cart__addresses__shipping_price": "Piegāde {price}",
+  "cart__peecho_notice": "Drukā, pārdod un piegādā mūsu drukas partneris Peecho. Piegāde un nodokļi tiek aprēķināti norēķinos.",
+  "cart__summary__shipping_at_checkout": "Aprēķina norēķinos",
+  "cart__summary__excl_shipping": "bez piegādes un nodokļiem",
+  "cart__error__single_item_only": "Lūdzu, pasūtiet vienu piemiņu vienlaikus.",
+  "cart__error__payment_unavailable": "Norēķini pašlaik nav pieejami. Mēģiniet vēlreiz.",
+  "cart__payment__redirect_title": "Turpiniet drošajos norēķinos",
+  "cart__payment__redirect_body": "Mēs atvērām mūsu drukas partnera Peecho drošos norēķinus, kur varēsiet ievadīt piegādes adresi un pabeigt maksājumu.",
+  "cart__payment__redirect_open": "Atvērt norēķinus"
 }

@@ -1,15 +1,13 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 
 import { PageHeading } from "@/components/PageHeading";
-import { appRoutes } from "@/lib/routes";
 import { CheckoutStepIndicator } from "./CheckoutStepIndicator";
 
 type CartHeroProps = {
   itemCount: number;
-  step?: "cart" | "address" | "payment" | "confirm";
+  step?: "cart" | "payment" | "confirm";
   hideCart?: boolean;
 };
 

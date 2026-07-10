@@ -2,8 +2,15 @@
 
 import { useTranslations } from "next-intl";
 import { LockIcon } from "@ovation/icons/LockIcon";
+import { Button } from "@ovation/ui/components/Button";
 
-export const CartPaymentPending = () => {
+type CartPaymentPendingProps = {
+  onOpenCheckout?: () => void;
+};
+
+export const CartPaymentPending = ({
+  onOpenCheckout,
+}: CartPaymentPendingProps) => {
   const t = useTranslations();
   return (
     <div
@@ -16,12 +23,22 @@ export const CartPaymentPending = () => {
       </span>
       <div className="flex flex-col gap-2">
         <h2 className="type-h3 font-serif font-semibold tracking-tight">
-          {t("cart__payment__pending_title")}
+          {t("cart__payment__redirect_title")}
         </h2>
         <p className="type-body-small text-muted-foreground max-w-100 leading-relaxed">
-          {t("cart__payment__pending_body")}
+          {t("cart__payment__redirect_body")}
         </p>
       </div>
+      {onOpenCheckout && (
+        <Button
+          type="button"
+          variant="outline"
+          className="rounded-full"
+          onClick={onOpenCheckout}
+        >
+          {t("cart__payment__redirect_open")}
+        </Button>
+      )}
     </div>
   );
 };

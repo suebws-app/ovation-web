@@ -38,8 +38,8 @@ export const BookCheckoutPanel = ({
     chosenVariant,
     pageCount,
     billablePages,
+    blankPageAdded,
     chargeablePages,
-    includedPages,
     minPages,
     maxPages,
     pricePerPageCents,
@@ -48,7 +48,7 @@ export const BookCheckoutPanel = ({
     noVariantMatch,
     supportsCoverText,
     supportsDedication,
-  } = usePeechoVariantResolver(variants, eventId);
+  } = usePeechoVariantResolver(variants, eventId, binding);
 
   const [paperType, sizeKey, photoIds, photoSelectAll, coverText, dedication] =
     useWatch<
@@ -150,11 +150,10 @@ export const BookCheckoutPanel = ({
         baseCents: basePriceCents,
         pageCount: billablePages,
         chargeablePages,
-        includedPages,
         pricePerPageCents,
         pagesSurchargeCents,
         totalCents: totalPriceCents,
-        blankPageAdded: billablePages > pageCount,
+        blankPageAdded,
       }}
     />
   );

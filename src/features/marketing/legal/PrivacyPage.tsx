@@ -25,7 +25,7 @@ export const PrivacyPage = () => {
     },
     {
       heading: t("marketing__privacy__collect_heading"),
-      body: t("marketing__privacy__collect_body"),
+      body: t("marketing__privacy__collect_body_v2"),
     },
     {
       heading: t("marketing__privacy__use_heading"),
@@ -33,7 +33,7 @@ export const PrivacyPage = () => {
     },
     {
       heading: t("marketing__privacy__share_heading"),
-      body: t("marketing__privacy__share_body"),
+      body: t("marketing__privacy__share_body_v2"),
     },
     {
       heading: t("marketing__privacy__transfers_heading"),

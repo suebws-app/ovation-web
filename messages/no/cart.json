@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Vis bestilling",
   "cart__confirm__continue": "Fortsett å handle",
   "cart__line__shipping": "+ {price} frakt",
-  "cart__addresses__shipping_price": "Frakt {price}"
+  "cart__addresses__shipping_price": "Frakt {price}",
+  "cart__peecho_notice": "Trykkes, selges og sendes av vår trykkpartner Peecho. Frakt og avgifter beregnes i kassen.",
+  "cart__summary__shipping_at_checkout": "Beregnes i kassen",
+  "cart__summary__excl_shipping": "ekskl. frakt og avgifter",
+  "cart__error__single_item_only": "Bestill ett minne om gangen.",
+  "cart__error__payment_unavailable": "Kassen er ikke tilgjengelig akkurat nå. Prøv igjen.",
+  "cart__payment__redirect_title": "Fortsett i den sikre kassen",
+  "cart__payment__redirect_body": "Vi har åpnet den sikre kassen til trykkpartneren vår Peecho, der du oppgir leveringsadressen og fullfører betalingen.",
+  "cart__payment__redirect_open": "Åpne kassen"
 }

@@ -209,6 +209,9 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
               successUrl,
               cancelUrl,
             });
+            if (!checkout.checkoutUrl) {
+              throw new Error("Checkout session missing redirect URL");
+            }
             window.location.assign(checkout.checkoutUrl);
             return { kind: "redirecting" };
           } catch (error) {

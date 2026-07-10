@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Bestelling bekijken",
   "cart__confirm__continue": "Verder winkelen",
   "cart__line__shipping": "+ {price} verzending",
-  "cart__addresses__shipping_price": "Verzending {price}"
+  "cart__addresses__shipping_price": "Verzending {price}",
+  "cart__peecho_notice": "Gedrukt, verkocht en verzonden door onze printpartner Peecho. Verzendkosten en belastingen worden bij het afrekenen berekend.",
+  "cart__summary__shipping_at_checkout": "Berekend bij het afrekenen",
+  "cart__summary__excl_shipping": "excl. verzending & belastingen",
+  "cart__error__single_item_only": "Bestel één aandenken per keer.",
+  "cart__error__payment_unavailable": "Afrekenen is momenteel niet beschikbaar. Probeer het opnieuw.",
+  "cart__payment__redirect_title": "Ga verder in de beveiligde checkout",
+  "cart__payment__redirect_body": "We hebben de beveiligde checkout van onze printpartner Peecho geopend. Daar vul je je verzendadres in en rond je de betaling af.",
+  "cart__payment__redirect_open": "Checkout openen"
 }

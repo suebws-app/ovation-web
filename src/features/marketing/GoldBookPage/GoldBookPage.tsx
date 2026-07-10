@@ -55,7 +55,7 @@ export const GoldBookPage = () => {
             </Link>
           </Button>
           <p className="text-muted-foreground type-body-small mt-4">
-            {t("marketing__gold_book__ships")}
+            {t("marketing__gold_book__ships_v2")}
           </p>
         </div>
       </section>

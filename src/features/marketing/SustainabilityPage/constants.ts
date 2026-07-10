@@ -1,7 +1,7 @@
 export const SUSTAINABILITY_COMMITMENT_KEYS = [
   {
     title: "marketing__sustainability__commitment1_title",
-    body: "marketing__sustainability__commitment1_body",
+    body: "marketing__sustainability__commitment1_body_v2",
   },
   {
     title: "marketing__sustainability__commitment2_title",

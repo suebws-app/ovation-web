@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Pogledaj narudžbu",
   "cart__confirm__continue": "Nastavi kupovinu",
   "cart__line__shipping": "+ {price} dostava",
-  "cart__addresses__shipping_price": "Dostava {price}"
+  "cart__addresses__shipping_price": "Dostava {price}",
+  "cart__peecho_notice": "Tiska, prodaje i šalje naš tiskarski partner Peecho. Dostava i porezi obračunavaju se pri plaćanju.",
+  "cart__summary__shipping_at_checkout": "Obračunava se pri plaćanju",
+  "cart__summary__excl_shipping": "bez dostave i poreza",
+  "cart__error__single_item_only": "Naručite jednu uspomenu odjednom.",
+  "cart__error__payment_unavailable": "Plaćanje trenutno nije dostupno. Pokušajte ponovno.",
+  "cart__payment__redirect_title": "Nastavite u sigurnoj naplati",
+  "cart__payment__redirect_body": "Otvorili smo sigurnu naplatu našeg tiskarskog partnera Peecho, gdje možete unijeti adresu dostave i dovršiti plaćanje.",
+  "cart__payment__redirect_open": "Otvori naplatu"
 }

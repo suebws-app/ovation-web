@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Vaata tellimust",
   "cart__confirm__continue": "Jätka ostlemist",
   "cart__line__shipping": "+ {price} tarne",
-  "cart__addresses__shipping_price": "Tarne {price}"
+  "cart__addresses__shipping_price": "Tarne {price}",
+  "cart__peecho_notice": "Trükib, müüb ja saadab meie trükipartner Peecho. Saatmiskulud ja maksud arvutatakse kassas.",
+  "cart__summary__shipping_at_checkout": "Arvutatakse kassas",
+  "cart__summary__excl_shipping": "ilma saatmise ja maksudeta",
+  "cart__error__single_item_only": "Palun telli üks mälestus korraga.",
+  "cart__error__payment_unavailable": "Kassa pole hetkel saadaval. Proovi uuesti.",
+  "cart__payment__redirect_title": "Jätka turvalises kassas",
+  "cart__payment__redirect_body": "Avasime meie trükipartneri Peecho turvalise kassa, kus saad sisestada tarneaadressi ja makse lõpule viia.",
+  "cart__payment__redirect_open": "Ava kassa"
 }

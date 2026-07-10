@@ -36,13 +36,10 @@ export const CartSummary = ({
   const t = useTranslations();
   const storeItemCount = useCartStore((s) => s.itemCount());
   const itemCount = itemCountProp ?? storeItemCount;
-  const appliedPromo = useCartStore((s) => s.promoCode);
 
   const loading = loadingProp ?? totals === null;
   const subtotalCents = totals?.subtotalCents ?? 0;
-  const shippingCents = totals?.shippingCents ?? 0;
   const totalCents = totals?.totalCents ?? 0;
-  const promoDiscount = totals?.promoDiscountCents ?? 0;
   const priceSkeleton = (
     <span
       aria-hidden="true"
@@ -63,22 +60,9 @@ export const CartSummary = ({
           label={t("cart__summary__subtotal")}
           value={loading ? priceSkeleton : formatPrice(subtotalCents, currency)}
         />
-        {(promoDiscount > 0 || (loading && appliedPromo)) && (
-          <CartSummaryRow
-            label={t("cart__summary__promo_applied", {
-              code: appliedPromo ?? "",
-            })}
-            value={
-              loading
-                ? priceSkeleton
-                : `−${formatPrice(promoDiscount, currency)}`
-            }
-            emphasis="positive"
-          />
-        )}
         <CartSummaryRow
           label={t("cart__summary__shipping")}
-          value={loading ? priceSkeleton : formatPrice(shippingCents, currency)}
+          value={t("cart__summary__shipping_at_checkout")}
         />
       </div>
 
@@ -102,7 +86,7 @@ export const CartSummary = ({
             )}
           </span>
           <span className="type-caption text-muted-foreground">
-            {t("cart__summary__incl_vat")}
+            {t("cart__summary__excl_shipping")}
           </span>
         </span>
       </div>

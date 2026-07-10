@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Siparişi görüntüle",
   "cart__confirm__continue": "Alışverişe devam et",
   "cart__line__shipping": "+ {price} kargo",
-  "cart__addresses__shipping_price": "Kargo {price}"
+  "cart__addresses__shipping_price": "Kargo {price}",
+  "cart__peecho_notice": "Baskı ortağımız Peecho tarafından basılır, satılır ve gönderilir. Kargo ve vergiler ödeme sırasında hesaplanır.",
+  "cart__summary__shipping_at_checkout": "Ödeme sırasında hesaplanır",
+  "cart__summary__excl_shipping": "kargo ve vergiler hariç",
+  "cart__error__single_item_only": "Lütfen her seferinde bir hatıra sipariş edin.",
+  "cart__error__payment_unavailable": "Ödeme şu anda kullanılamıyor. Lütfen tekrar deneyin.",
+  "cart__payment__redirect_title": "Güvenli ödemede devam edin",
+  "cart__payment__redirect_body": "Baskı ortağımız Peecho'nun güvenli ödeme sayfasını açtık; teslimat adresinizi girip ödemeyi tamamlayabilirsiniz.",
+  "cart__payment__redirect_open": "Ödemeyi aç"
 }

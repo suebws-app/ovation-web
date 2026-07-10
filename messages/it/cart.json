@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Visualizza ordine",
   "cart__confirm__continue": "Continua a fare acquisti",
   "cart__line__shipping": "+ {price} di spedizione",
-  "cart__addresses__shipping_price": "Spedizione {price}"
+  "cart__addresses__shipping_price": "Spedizione {price}",
+  "cart__peecho_notice": "Stampato, venduto e spedito dal nostro partner di stampa Peecho. Spedizione e tasse vengono calcolate al checkout.",
+  "cart__summary__shipping_at_checkout": "Calcolate al checkout",
+  "cart__summary__excl_shipping": "escl. spedizione e tasse",
+  "cart__error__single_item_only": "Ordina un ricordo alla volta, per favore.",
+  "cart__error__payment_unavailable": "Il checkout non è al momento disponibile. Riprova.",
+  "cart__payment__redirect_title": "Continua nel checkout sicuro",
+  "cart__payment__redirect_body": "Abbiamo aperto il checkout sicuro del nostro partner di stampa Peecho, dove potrai inserire l'indirizzo di spedizione e completare il pagamento.",
+  "cart__payment__redirect_open": "Apri il checkout"
 }

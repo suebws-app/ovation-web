@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Zobrazit objednávku",
   "cart__confirm__continue": "Pokračovat v nákupu",
   "cart__line__shipping": "+ {price} doprava",
-  "cart__addresses__shipping_price": "Doprava {price}"
+  "cart__addresses__shipping_price": "Doprava {price}",
+  "cart__peecho_notice": "Tiskne, prodává a odesílá náš tiskový partner Peecho. Doprava a daně se počítají při pokladně.",
+  "cart__summary__shipping_at_checkout": "Vypočítá se při pokladně",
+  "cart__summary__excl_shipping": "bez dopravy a daní",
+  "cart__error__single_item_only": "Objednávejte prosím jednu upomínku najednou.",
+  "cart__error__payment_unavailable": "Pokladna je momentálně nedostupná. Zkuste to znovu.",
+  "cart__payment__redirect_title": "Pokračujte v zabezpečené pokladně",
+  "cart__payment__redirect_body": "Otevřeli jsme zabezpečenou pokladnu našeho tiskového partnera Peecho, kde zadáte doručovací adresu a dokončíte platbu.",
+  "cart__payment__redirect_open": "Otevřít pokladnu"
 }

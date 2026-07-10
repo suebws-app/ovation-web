@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Ver pedido",
   "cart__confirm__continue": "Continuar a comprar",
   "cart__line__shipping": "+ {price} de envio",
-  "cart__addresses__shipping_price": "Envio {price}"
+  "cart__addresses__shipping_price": "Envio {price}",
+  "cart__peecho_notice": "Impresso, vendido e enviado pelo nosso parceiro de impressão Peecho. O envio e os impostos são calculados no checkout.",
+  "cart__summary__shipping_at_checkout": "Calculado no checkout",
+  "cart__summary__excl_shipping": "excl. envio e impostos",
+  "cart__error__single_item_only": "Encomende uma lembrança de cada vez, por favor.",
+  "cart__error__payment_unavailable": "O checkout está temporariamente indisponível. Tente novamente.",
+  "cart__payment__redirect_title": "Continue no checkout seguro",
+  "cart__payment__redirect_body": "Abrimos o checkout seguro do nosso parceiro de impressão Peecho, onde pode inserir a morada de envio e concluir o pagamento.",
+  "cart__payment__redirect_open": "Abrir checkout"
 }

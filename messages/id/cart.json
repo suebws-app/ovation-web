@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Lihat pesanan",
   "cart__confirm__continue": "Lanjutkan belanja",
   "cart__line__shipping": "+ {price} ongkos kirim",
-  "cart__addresses__shipping_price": "Ongkos kirim {price}"
+  "cart__addresses__shipping_price": "Ongkos kirim {price}",
+  "cart__peecho_notice": "Dicetak, dijual, dan dikirim oleh mitra cetak kami Peecho. Ongkos kirim dan pajak dihitung saat pembayaran.",
+  "cart__summary__shipping_at_checkout": "Dihitung saat pembayaran",
+  "cart__summary__excl_shipping": "belum termasuk ongkir & pajak",
+  "cart__error__single_item_only": "Silakan pesan satu kenang-kenangan setiap kali.",
+  "cart__error__payment_unavailable": "Pembayaran sedang tidak tersedia. Silakan coba lagi.",
+  "cart__payment__redirect_title": "Lanjutkan di pembayaran aman",
+  "cart__payment__redirect_body": "Kami telah membuka pembayaran aman mitra cetak kami Peecho, tempat Anda dapat memasukkan alamat pengiriman dan menyelesaikan pembayaran.",
+  "cart__payment__redirect_open": "Buka pembayaran"
 }

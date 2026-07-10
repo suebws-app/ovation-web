@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Ver pedido",
   "cart__confirm__continue": "Seguir comprando",
   "cart__line__shipping": "+ {price} de envío",
-  "cart__addresses__shipping_price": "Envío {price}"
+  "cart__addresses__shipping_price": "Envío {price}",
+  "cart__peecho_notice": "Impreso, vendido y enviado por nuestro socio de impresión Peecho. El envío y los impuestos se calculan al pagar.",
+  "cart__summary__shipping_at_checkout": "Se calcula al pagar",
+  "cart__summary__excl_shipping": "sin envío ni impuestos",
+  "cart__error__single_item_only": "Pide un recuerdo a la vez, por favor.",
+  "cart__error__payment_unavailable": "El pago no está disponible en este momento. Inténtalo de nuevo.",
+  "cart__payment__redirect_title": "Continúa en el pago seguro",
+  "cart__payment__redirect_body": "Hemos abierto el pago seguro de nuestro socio de impresión Peecho, donde podrás introducir tu dirección de envío y completar el pago.",
+  "cart__payment__redirect_open": "Abrir el pago"
 }

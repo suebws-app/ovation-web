@@ -14,8 +14,8 @@ const PLAN_CODE_BY_ID: Record<string, string> = {
 };
 
 const FALLBACK_PRICE_BY_ID: Record<string, string> = {
-  keepsake: "€189",
-  gold: "€399",
+  keepsake: "€49",
+  gold: "€99",
 };
 
 export const CouplePlan = () => {
@@ -49,13 +49,13 @@ export const CouplePlan = () => {
     },
     {
       id: "gold",
-      name: t("signup__plan__gold__name"),
+      name: t("signup__plan__gold__name_v2"),
       price: priceFor("gold"),
       per: t("signup__plan__gold__per"),
-      description: t("signup__plan__gold__description"),
+      description: t("signup__plan__gold__description_v2"),
       features: [
         t("signup__plan__gold__feature_1"),
-        t("signup__plan__gold__feature_2"),
+        t("signup__plan__gold__feature_2_v2"),
         t("signup__plan__gold__feature_3"),
         t("signup__plan__gold__feature_4"),
       ],

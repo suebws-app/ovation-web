@@ -18,7 +18,7 @@ export const RefundsPage = () => {
   const sections = [
     {
       heading: t("marketing__refunds__intro_heading"),
-      body: t("marketing__refunds__intro_body"),
+      body: t("marketing__refunds__intro_body_v2"),
     },
     {
       heading: t("marketing__refunds__subscriptions_heading"),
@@ -26,11 +26,11 @@ export const RefundsPage = () => {
     },
     {
       heading: t("marketing__refunds__keepsakes_heading"),
-      body: t("marketing__refunds__keepsakes_body"),
+      body: t("marketing__refunds__keepsakes_body_v2"),
     },
     {
       heading: t("marketing__refunds__how_heading"),
-      body: t.rich("marketing__refunds__how_body", {
+      body: t.rich("marketing__refunds__how_body_v2", {
         email: supportEmail,
         link: emailLink,
       }),

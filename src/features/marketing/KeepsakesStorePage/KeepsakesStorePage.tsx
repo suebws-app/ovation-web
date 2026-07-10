@@ -61,7 +61,7 @@ export const KeepsakesStorePage = async () => {
             ))}
           </div>
           <p className="text-muted-foreground type-body-small mt-10">
-            {t("marketing__keepsakes__shipping_note")}
+            {t("marketing__keepsakes__shipping_note_v2")}
           </p>
         </div>
       </section>

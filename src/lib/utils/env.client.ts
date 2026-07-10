@@ -18,6 +18,8 @@ export const clientEnv = {
     | "sandbox"
     | "production",
 
+  PEECHO_BUTTON_URL: process.env.NEXT_PUBLIC_PEECHO_BUTTON_URL ?? "",
+
   TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "",
 
   SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN ?? "",

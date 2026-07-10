@@ -10,15 +10,16 @@ import {
 } from "../bookFacets";
 import { useGalleryCount } from "@/lib/query/galleryQueries";
 import type { BookFormValues } from "./BookFormContext";
-import { getBillablePages } from "@/lib/utils/billablePages";
+import { computeRenderedBookPages } from "@/lib/utils/billablePages";
 import type { KeepsakeProductVariant } from "@/lib/api/types";
+import type { BookBinding } from "./BookFormContext";
 
 export type PeechoVariantResolution = {
   chosenVariant: KeepsakeProductVariant | null;
   matchingVariants: KeepsakeProductVariant[];
   pageCount: number;
   billablePages: number;
-  includedPages: number;
+  blankPageAdded: boolean;
   chargeablePages: number;
   minPages: number | null;
   maxPages: number | null;
@@ -38,6 +39,7 @@ export type PeechoVariantResolution = {
 export const usePeechoVariantResolver = (
   variants: KeepsakeProductVariant[],
   eventId: string | null = null,
+  binding: BookBinding = "hardcover",
 ): PeechoVariantResolution => {
   const [paperType, sizeKey, photoIds, photoSelectAll] = useWatch<
     BookFormValues,
@@ -77,7 +79,6 @@ export const usePeechoVariantResolver = (
       readStringAttr(attributes, "paperType");
     const pricePerPageCents =
       readNumberAttr(attributes, "pricePerPageCents") ?? 0;
-    const includedPages = readNumberAttr(attributes, "includedPages") ?? 0;
     const supportsCoverText =
       readBoolAttr(attributes, "supportsCoverText") ?? true;
     const supportsDedication =
@@ -89,8 +90,12 @@ export const usePeechoVariantResolver = (
       (minPages === null || pageCount >= minPages) &&
       (maxPages === null || pageCount <= maxPages);
 
-    const billablePages = getBillablePages(pageCount);
-    const chargeablePages = Math.max(0, billablePages - includedPages);
+    const isLayflat = binding === "layflat";
+    const photoPages = isLayflat ? pageCount * 2 : pageCount;
+    const blankPageAdded = pageCount > 0 && (2 + photoPages) % 2 !== 0;
+    const billablePages =
+      pageCount > 0 ? computeRenderedBookPages(pageCount, isLayflat) : 0;
+    const chargeablePages = billablePages;
     const basePriceCents = chosenVariant?.priceCents ?? null;
     const pagesSurchargeCents = chargeablePages * pricePerPageCents;
     const totalPriceCents =
@@ -101,7 +106,7 @@ export const usePeechoVariantResolver = (
       matchingVariants,
       pageCount,
       billablePages,
-      includedPages,
+      blankPageAdded,
       chargeablePages,
       minPages,
       maxPages,
@@ -117,5 +122,5 @@ export const usePeechoVariantResolver = (
       supportsCoverText,
       supportsDedication,
     };
-  }, [variants, paperType, sizeKey, pageCount]);
+  }, [variants, paperType, sizeKey, pageCount, binding]);
 };

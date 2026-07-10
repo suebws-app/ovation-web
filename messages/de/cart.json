@@ -69,5 +69,13 @@
   "cart__confirm__view_order": "Bestellung ansehen",
   "cart__confirm__continue": "Weiter einkaufen",
   "cart__line__shipping": "+ {price} Versand",
-  "cart__addresses__shipping_price": "Versand {price}"
+  "cart__addresses__shipping_price": "Versand {price}",
+  "cart__peecho_notice": "Gedruckt, verkauft und versandt von unserem Druckpartner Peecho. Versand und Steuern werden im Checkout berechnet.",
+  "cart__summary__shipping_at_checkout": "Wird im Checkout berechnet",
+  "cart__summary__excl_shipping": "zzgl. Versand & Steuern",
+  "cart__error__single_item_only": "Bitte bestelle jeweils nur ein Erinnerungsstück.",
+  "cart__error__payment_unavailable": "Der Checkout ist derzeit nicht verfügbar. Bitte versuche es erneut.",
+  "cart__payment__redirect_title": "Weiter im sicheren Checkout",
+  "cart__payment__redirect_body": "Wir haben den sicheren Checkout unseres Druckpartners Peecho geöffnet. Dort gibst du deine Lieferadresse ein und schließt die Zahlung ab.",
+  "cart__payment__redirect_open": "Checkout öffnen"
 }
