@@ -13,6 +13,7 @@ import { ApiError } from "@/lib/api/client";
 import { formatPrice } from "../designTokens";
 import { useCreateKeepsakePreview } from "@/lib/query/pdfQueries";
 import { PreviewPdfModal } from "./PreviewPdfModal";
+import { InfoHint } from "./InfoHint";
 import type { BindType } from "@/lib/api/keepsakes-client";
 import type {
   Event,
@@ -25,7 +26,6 @@ type PriceBreakdown = {
   baseCents: number;
   pageCount: number;
   chargeablePages: number;
-  includedPages: number;
   pricePerPageCents: number;
   pagesSurchargeCents: number;
   totalCents: number;
@@ -239,10 +239,7 @@ export const CustomizerCheckoutForm = ({
             <span>
               {t("keepsakes__book_customizer__price_base", {
                 name: t(product.name),
-                count:
-                  priceBreakdown.chargeablePages > 0
-                    ? priceBreakdown.includedPages
-                    : 0,
+                count: 0,
               })}
             </span>
             <span>
@@ -251,7 +248,7 @@ export const CustomizerCheckoutForm = ({
           </div>
           {priceBreakdown.chargeablePages > 0 && (
             <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
-              <span>
+              <span className="inline-flex items-center gap-1">
                 {t("keepsakes__book_customizer__price_pages_line", {
                   count: priceBreakdown.chargeablePages,
                   perPage: formatPricePrecise(
@@ -259,6 +256,9 @@ export const CustomizerCheckoutForm = ({
                     productCurrency,
                   ),
                 })}
+                <InfoHint
+                  label={t("keepsakes__book_customizer__reserved_pages_hint")}
+                />
               </span>
               <span>
                 {formatPricePrecise(
@@ -282,6 +282,9 @@ export const CustomizerCheckoutForm = ({
               {formatPricePrecise(priceBreakdown.totalCents, productCurrency)}
             </span>
           </div>
+          <p className="type-caption text-muted-foreground">
+            {t("keepsakes__book_customizer__price_vat_note")}
+          </p>
         </div>
       )}
       <div className="flex flex-col gap-2.5">
