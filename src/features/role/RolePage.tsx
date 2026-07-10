@@ -8,7 +8,7 @@ const ROLES = [
   {
     id: 1,
     title: "signup__role__couple_card__title",
-    description: "signup__role__couple_card__desc",
+    description: "signup__role__couple_card__desc_v2",
     href: `${appRoutes.create.root}?as=couple`,
   },
   {

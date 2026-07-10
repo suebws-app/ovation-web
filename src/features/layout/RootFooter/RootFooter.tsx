@@ -112,7 +112,10 @@ export const RootFooter = ({ className }: RootFooterProps) => {
         </div>
 
         <div className="border-border text-muted-foreground flex flex-col items-center justify-between gap-4 border-t pt-6 text-xs md:flex-row">
-          <div>{t("common__footer__copyright")}</div>
+          <div className="flex flex-col gap-1.5">
+            <div>{t("common__footer__seller_disclosure")}</div>
+            <div>{t("common__footer__copyright")}</div>
+          </div>
           <ThemeToggle />
         </div>
       </div>

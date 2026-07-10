@@ -38,11 +38,11 @@ export const TermsPage = () => {
     },
     {
       heading: t("marketing__terms__payments_heading"),
-      body: t("marketing__terms__payments_body"),
+      body: t("marketing__terms__payments_body_v2"),
     },
     {
       heading: t("marketing__terms__keepsakes_heading"),
-      body: t("marketing__terms__keepsakes_body"),
+      body: t("marketing__terms__keepsakes_body_v2"),
     },
     {
       heading: t("marketing__terms__storage_heading"),

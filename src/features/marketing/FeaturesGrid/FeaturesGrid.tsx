@@ -73,7 +73,7 @@ export const FeaturesGrid = ({ goldBookPrice }: FeaturesGridProps) => {
                   })}
                 </p>
                 <p className="text-muted-foreground type-caption">
-                  {t("marketing__features__book_shipping")}
+                  {t("marketing__features__book_shipping_v2")}
                 </p>
               </div>
             </div>
