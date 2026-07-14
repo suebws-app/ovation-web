@@ -9,6 +9,8 @@ import { containerClassName } from "@/lib/utils/layoutClassNames";
 import { HelpFaqItem } from "./components/HelpFaqItem";
 import { HelpResourceCard } from "./components/HelpResourceCard";
 
+const SHOW_RESOURCES = false;
+
 const FAQ_KEYS = [
   "getting_started",
   "kiosk_mode",
@@ -75,16 +77,18 @@ export const HelpCenterPage = () => {
         </div>
       </div>
 
-      <div>
-        <h2 className="type-h2 tracking-tight">
-          {t("help__resources__title")}
-        </h2>
-        <div className="tablet:grid-cols-2 mt-3.5 grid gap-3.5">
-          {resources.map((r) => (
-            <HelpResourceCard key={r.title} {...r} />
-          ))}
+      {SHOW_RESOURCES && (
+        <div>
+          <h2 className="type-h2 tracking-tight">
+            {t("help__resources__title")}
+          </h2>
+          <div className="tablet:grid-cols-2 mt-3.5 grid gap-3.5">
+            {resources.map((r) => (
+              <HelpResourceCard key={r.title} {...r} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div>
         <h2 className="type-h2 tracking-tight">{t("help__faq__title")}</h2>
