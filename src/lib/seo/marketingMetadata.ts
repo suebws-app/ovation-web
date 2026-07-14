@@ -33,6 +33,7 @@ const buildMetadataGenerator =
         title,
         description,
         url: localizePath(locale, path),
+        images: [{ url: "/opengraph-image.png", width: 1600, height: 840 }],
       },
       twitter: {
         card: "summary_large_image",
