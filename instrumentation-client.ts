@@ -4,6 +4,7 @@ import {
   captureRouterTransitionStart,
   lazyLoadIntegration,
 } from "@sentry/nextjs";
+import posthog from "posthog-js";
 
 const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
 const isProduction = process.env.NODE_ENV === "production";
@@ -34,16 +35,16 @@ if (dsn) {
 
 const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
 
-if (posthogKey && isProduction) {
-  void import("posthog-js").then(({ default: posthog }) => {
-    posthog.init(posthogKey, {
-      api_host:
-        process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com",
-      capture_pageview: false,
-      capture_pageleave: true,
-      persistence: "memory",
-      autocapture: false,
-    });
+if (posthogKey) {
+  posthog.init(posthogKey, {
+    api_host:
+      process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com",
+    defaults: "2025-05-24",
+    capture_pageleave: true,
+    autocapture: false,
+    persistence: "memory",
+    person_profiles: "identified_only",
+    debug: !isProduction,
   });
 }
 
