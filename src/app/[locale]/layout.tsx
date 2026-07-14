@@ -8,6 +8,7 @@ import { AppProviders } from "@/features/layout/AppProviders";
 import { Toaster } from "@/components/Toaster";
 import { NavigationProgress } from "@/components/NavigationProgress";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
+import { GoogleTagManagerNoscript } from "@/components/GoogleTagManagerNoscript";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -51,6 +52,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
+        <GoogleTagManagerNoscript />
         <ThemeInitScript />
         <NextIntlClientProvider messages={publicShellMessages}>
           <NavigationProgress />

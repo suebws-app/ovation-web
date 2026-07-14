@@ -1,0 +1,1 @@
+export { GoogleTagManagerNoscript } from "./GoogleTagManagerNoscript";
