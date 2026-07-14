@@ -1,9 +1,9 @@
 import { Rubik, Noto_Sans } from "next/font/google";
 import { cookies } from "next/headers";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { loadPublicShellMessages } from "@/i18n/loadMessages";
 import { AppProviders } from "@/features/layout/AppProviders";
 import { Toaster } from "@/components/Toaster";
 import { NavigationProgress } from "@/components/NavigationProgress";
@@ -39,7 +39,7 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  const publicShellMessages = await loadPublicShellMessages(locale);
   const cookieStore = await cookies();
   const themeCookie = cookieStore.get("ovation_theme")?.value;
   const initialDarkClass = themeCookie === "dark" ? " dark" : "";
@@ -52,7 +52,7 @@ export default async function LocaleLayout({
     >
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
         <ThemeInitScript />
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={publicShellMessages}>
           <NavigationProgress />
           <AppProviders>{children}</AppProviders>
           <Toaster />

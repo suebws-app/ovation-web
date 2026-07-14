@@ -11,6 +11,8 @@ import {
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { clientEnv } from "@/lib/utils/env.client";
 import { plansApi } from "@/lib/api/plans";
+import { JsonLd } from "@/components/JsonLd";
+import { faqPageSchema } from "@/lib/seo/schemas";
 
 const DRE_FALLBACK_PRICE = "€20";
 
@@ -35,6 +37,7 @@ export const FAQSection = async () => {
 
   return (
     <section>
+      <JsonLd data={faqPageSchema(items)} />
       <div className="section-container">
         <div className="tablet:gap-20 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.5fr]">
           <div>

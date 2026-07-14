@@ -60,12 +60,14 @@ const allowedDevOrigins = (process.env.ALLOWED_DEV_ORIGINS ?? "")
   .filter(Boolean);
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   transpilePackages: ["@ovation/ui", "@ovation/icons"],
   allowedDevOrigins,
   experimental: {
     viewTransition: true,
   },
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns,
   },
   async headers() {
