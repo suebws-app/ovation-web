@@ -26,6 +26,7 @@ const NAMESPACES = [
   "plans",
   "product",
   "qr",
+  "seo",
   "settings",
   "sidebar",
   "signup",
@@ -51,6 +52,27 @@ export const loadMessages = async (
 ): Promise<AbstractIntlMessages> => {
   const files = await Promise.all(
     NAMESPACES.map((namespace) => loadNamespace(locale, namespace)),
+  );
+
+  return Object.assign({}, ...files);
+};
+
+const PUBLIC_SHELL_NAMESPACES = [
+  "common",
+  "errors",
+  "marketing",
+  "sidebar",
+] as const;
+
+export const loadPublicShellMessages = async (
+  locale: string,
+): Promise<AbstractIntlMessages> => {
+  const files = await Promise.all(
+    PUBLIC_SHELL_NAMESPACES.flatMap((namespace) =>
+      locale === "en"
+        ? [loadNamespace("en", namespace)]
+        : [loadNamespace("en", namespace), loadNamespace(locale, namespace)],
+    ),
   );
 
   return Object.assign({}, ...files);
