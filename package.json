@@ -11,7 +11,8 @@
     "format:check": "prettier --check \"{src,packages}/**/*.{ts,tsx,js,jsx,css,md,json}\"",
     "ts-check": "tsc --noEmit",
     "prepare": "husky",
-    "i18n:check": "node scripts/check-translations.mjs messages"
+    "i18n:check": "node scripts/check-translations.mjs messages",
+    "indexnow:submit": "node scripts/submit-indexnow.mjs"
   },
   "browserslist": [
     "chrome >= 111",
