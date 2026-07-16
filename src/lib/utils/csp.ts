@@ -1,5 +1,7 @@
 import "server-only";
 
+import { themeInitScriptHash } from "./themeInitScript";
+
 const isDev = process.env.NODE_ENV === "development";
 const mediaDomain = process.env.NEXT_PUBLIC_MEDIA_DOMAIN ?? "";
 const objectStorageDomain = process.env.OBJECT_STORAGE_PUBLIC_DOMAIN ?? "";
@@ -48,6 +50,7 @@ const laxScriptSrc = [
 const strictScriptSrc = (nonce: string): string =>
   [
     `'nonce-${nonce}'`,
+    `'${themeInitScriptHash}'`,
     "'strict-dynamic'",
     "'unsafe-inline'",
     "https:",

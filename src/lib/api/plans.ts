@@ -1,4 +1,4 @@
-import { apiFetch } from "./server";
+import { apiFetch, publicApiFetch } from "./server";
 import type { Plan, PlanAudience } from "./types";
 
 import type { ApiFetchOptions } from "./client";
@@ -16,4 +16,6 @@ export const plansApi = {
     ),
   findByCode: (code: string) =>
     apiFetch<Plan>(`/plans/${code}`, planCacheOptions),
+  publicFindByCode: (code: string) =>
+    publicApiFetch<Plan>(`/plans/${code}`, planCacheOptions),
 };
