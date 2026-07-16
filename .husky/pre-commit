@@ -20,6 +20,13 @@ if [ $FAILED -eq 0 ]; then
   pnpm lint || FAILED=1
 fi
 
+STAGED_MESSAGES=$(git diff --cached --name-only --diff-filter=ACMRD -- 'messages/**/*.json')
+
+if [ $FAILED -eq 0 ] && [ -n "$STAGED_MESSAGES" ]; then
+  echo "▶ i18n check..."
+  pnpm i18n:check --strict || FAILED=1
+fi
+
 if [ $FAILED -ne 0 ]; then
   echo ""
   echo "✗ Commit blocked: fix format, type errors or lint errors above."
