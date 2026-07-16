@@ -4,10 +4,13 @@ import { useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { CustomizerCheckoutForm } from "../CustomizerCheckoutForm";
+import { CoverDesignSelector } from "./CoverDesignSelector";
 import {
   buildCustomization,
+  DEFAULT_COVER_TEMPLATE_ID,
   type BookBinding,
   type BookFormValues,
+  type CoverSlot,
 } from "./BookFormContext";
 import { usePeechoVariantResolver } from "./usePeechoVariantResolver";
 import type {
@@ -50,27 +53,45 @@ export const BookCheckoutPanel = ({
     supportsDedication,
   } = usePeechoVariantResolver(variants, eventId, binding);
 
-  const [paperType, sizeKey, photoIds, photoSelectAll, coverText, dedication] =
-    useWatch<
-      BookFormValues,
-      [
-        "paperType",
-        "sizeKey",
-        "photoIds",
-        "photoSelectAll",
-        "coverText",
-        "dedication",
-      ]
-    >({
-      name: [
-        "paperType",
-        "sizeKey",
-        "photoIds",
-        "photoSelectAll",
-        "coverText",
-        "dedication",
-      ],
-    });
+  const [
+    paperType,
+    sizeKey,
+    photoIds,
+    photoSelectAll,
+    coverText,
+    dedication,
+    coverTemplateId,
+    coverSlots,
+    coverBgColor,
+    coverTextColors,
+  ] = useWatch<
+    BookFormValues,
+    [
+      "paperType",
+      "sizeKey",
+      "photoIds",
+      "photoSelectAll",
+      "coverText",
+      "dedication",
+      "coverTemplateId",
+      "coverSlots",
+      "coverBgColor",
+      "coverTextColors",
+    ]
+  >({
+    name: [
+      "paperType",
+      "sizeKey",
+      "photoIds",
+      "photoSelectAll",
+      "coverText",
+      "dedication",
+      "coverTemplateId",
+      "coverSlots",
+      "coverBgColor",
+      "coverTextColors",
+    ],
+  });
 
   const basePriceCents = chosenVariant?.priceCents ?? 0;
   const totalPriceCents = basePriceCents + pagesSurchargeCents;
@@ -86,6 +107,10 @@ export const BookCheckoutPanel = ({
           photoSelectAll: photoSelectAll ?? null,
           coverText: coverText ?? "",
           dedication: dedication ?? "",
+          coverTemplateId: coverTemplateId ?? DEFAULT_COVER_TEMPLATE_ID,
+          coverSlots: (coverSlots ?? []) as CoverSlot[],
+          coverBgColor: coverBgColor ?? "",
+          coverTextColors: coverTextColors ?? {},
         },
         chosenVariant,
         binding,
@@ -98,6 +123,10 @@ export const BookCheckoutPanel = ({
       photoSelectAll,
       coverText,
       dedication,
+      coverTemplateId,
+      coverSlots,
+      coverBgColor,
+      coverTextColors,
       chosenVariant,
       binding,
       supportsCoverText,
@@ -155,6 +184,8 @@ export const BookCheckoutPanel = ({
         totalCents: totalPriceCents,
         blankPageAdded,
       }}
-    />
+    >
+      <CoverDesignSelector eventId={eventId} event={event} />
+    </CustomizerCheckoutForm>
   );
 };

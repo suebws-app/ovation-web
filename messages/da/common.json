@@ -64,5 +64,6 @@
   "common__theme__dark": "Mørkt",
   "common__theme__system": "System",
   "common__footer__legal_links__terms": "Vilkår",
-  "common__footer__legal_links__refunds": "Refusion"
+  "common__footer__legal_links__refunds": "Refusion",
+  "common__load_more": "Load more"
 }

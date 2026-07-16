@@ -13,6 +13,7 @@ import { cheapestVariant } from "../../designTokens";
 import {
   bindingFromProductType,
   bookFormSchema,
+  DEFAULT_COVER_TEMPLATE_ID,
   type BookFormValues,
 } from "./BookFormContext";
 import { BookCheckoutPanel } from "./BookCheckoutPanel";
@@ -65,6 +66,10 @@ export const BookCustomizer = ({
       photoSelectAll: null,
       coverText: "",
       dedication: "",
+      coverTemplateId: DEFAULT_COVER_TEMPLATE_ID,
+      coverSlots: [],
+      coverBgColor: "",
+      coverTextColors: {},
     };
   }, [variants]);
 

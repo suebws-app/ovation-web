@@ -64,5 +64,6 @@
   "common__theme__dark": "Gelap",
   "common__theme__system": "Sistem",
   "common__footer__legal_links__terms": "Ketentuan",
-  "common__footer__legal_links__refunds": "Pengembalian dana"
+  "common__footer__legal_links__refunds": "Pengembalian dana",
+  "common__load_more": "Load more"
 }

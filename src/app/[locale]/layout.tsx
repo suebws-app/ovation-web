@@ -1,5 +1,6 @@
 import { Rubik, Noto_Sans } from "next/font/google";
-import { cookies } from "next/headers";
+import localFont from "next/font/local";
+import { cookies, headers } from "next/headers";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
@@ -7,19 +8,24 @@ import { loadPublicShellMessages } from "@/i18n/loadMessages";
 import { AppProviders } from "@/features/layout/AppProviders";
 import { Toaster } from "@/components/Toaster";
 import { NavigationProgress } from "@/components/NavigationProgress";
-import { ThemeInitScript } from "@/components/ThemeInitScript";
+import { THEME_INIT_SNIPPET } from "@/components/ThemeInitScript";
 
 const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-rubik",
-  display: "optional",
+  display: "swap",
   adjustFontFallback: true,
 });
 const notoSans = Noto_Sans({
   subsets: ["latin"],
   variable: "--font-noto-sans",
-  display: "optional",
+  display: "swap",
   adjustFontFallback: true,
+});
+const snellRoundhand = localFont({
+  src: "./fonts/snell-roundhand-regular.woff2",
+  variable: "--font-snell",
+  display: "swap",
 });
 
 export const generateStaticParams = () => {
@@ -43,15 +49,21 @@ export default async function LocaleLayout({
   const cookieStore = await cookies();
   const themeCookie = cookieStore.get("ovation_theme")?.value;
   const initialDarkClass = themeCookie === "dark" ? " dark" : "";
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
     <html
       lang={locale}
-      className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased${initialDarkClass}`}
+      className={`${rubik.variable} ${notoSans.variable} ${snellRoundhand.variable} h-dvh antialiased${initialDarkClass}`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          nonce={nonce}
+          dangerouslySetInnerHTML={{ __html: THEME_INIT_SNIPPET }}
+        />
+      </head>
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
-        <ThemeInitScript />
         <NextIntlClientProvider messages={publicShellMessages}>
           <NavigationProgress />
           <AppProviders>{children}</AppProviders>

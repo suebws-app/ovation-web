@@ -110,6 +110,14 @@ export const CustomizerCheckoutForm = ({
     priceBreakdown.pageCount > 0,
   );
 
+  const coverSlotMediaIds = (
+    (customization as { coverSlots?: Array<{ mediaId: string }> }).coverSlots ??
+    []
+  ).map((slot) => slot.mediaId);
+
+  const withCoverSlots = (ids: string[]) =>
+    Array.from(new Set([...ids, ...coverSlotMediaIds]));
+
   const buildItem = (id: string) => ({
     eventId: id,
     productType: product.productType,
@@ -126,7 +134,7 @@ export const CustomizerCheckoutForm = ({
         ? { pageCount: priceBreakdown.pageCount }
         : {}),
     },
-    photoIds: photoSelectAll ? [] : (photoIds ?? []),
+    photoIds: withCoverSlots(photoSelectAll ? [] : (photoIds ?? [])),
     photoSelectAll: photoSelectAll ?? null,
     timelineDays: null,
     requiresShipping,
@@ -147,17 +155,25 @@ export const CustomizerCheckoutForm = ({
         dedication?: string;
         binding?: string;
         variantId?: string | null;
+        coverTemplateId?: string;
+        coverSlots?: Array<{ slotId: string; mediaId: string }>;
+        coverBgColor?: string;
+        coverTextColors?: Record<string, string>;
         pages?: Array<{ mediaId: string; order: number }>;
       };
       const { renderId } = await previewMutation.mutateAsync({
         eventId,
         productType: product.productType as BindType,
         productVariantId: selectedVariant?.id,
-        photoIds: photoSelectAll ? [] : (photoIds ?? []),
+        photoIds: withCoverSlots(photoSelectAll ? [] : (photoIds ?? [])),
         photoSelectAll: photoSelectAll ?? undefined,
         customization: {
           coverTitle: bookCustomization.coverText,
           dedication: bookCustomization.dedication,
+          coverTemplateId: bookCustomization.coverTemplateId,
+          coverSlots: bookCustomization.coverSlots,
+          coverBgColor: bookCustomization.coverBgColor,
+          coverTextColors: bookCustomization.coverTextColors,
         },
       });
       setPreviewRenderId(renderId);

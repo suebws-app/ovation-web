@@ -64,5 +64,6 @@
   "common__theme__dark": "Tamna",
   "common__theme__system": "Sustav",
   "common__footer__legal_links__terms": "Uvjeti",
-  "common__footer__legal_links__refunds": "Povrat novca"
+  "common__footer__legal_links__refunds": "Povrat novca",
+  "common__load_more": "Load more"
 }

@@ -64,5 +64,6 @@
   "common__theme__dark": "Tumša",
   "common__theme__system": "Sistēmas",
   "common__footer__legal_links__terms": "Noteikumi",
-  "common__footer__legal_links__refunds": "Atmaksas"
+  "common__footer__legal_links__refunds": "Atmaksas",
+  "common__load_more": "Load more"
 }

@@ -64,5 +64,6 @@
   "common__theme__dark": "Sombre",
   "common__theme__system": "Système",
   "common__footer__legal_links__terms": "Conditions",
-  "common__footer__legal_links__refunds": "Remboursements"
+  "common__footer__legal_links__refunds": "Remboursements",
+  "common__load_more": "Load more"
 }

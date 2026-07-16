@@ -4,6 +4,15 @@ import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 export type BookBinding = "hardcover" | "softcover" | "layflat";
 
+export const DEFAULT_COVER_TEMPLATE_ID = "ivory_classic";
+
+export const coverSlotSchema = z.object({
+  slotId: z.string(),
+  mediaId: z.string(),
+});
+
+export type CoverSlot = z.infer<typeof coverSlotSchema>;
+
 export const photoSelectAllSchema = z
   .object({
     filter: z.enum(["all", "favorites", "gold_book"]),
@@ -18,6 +27,10 @@ export const bookFormSchema = z.object({
   photoSelectAll: photoSelectAllSchema,
   coverText: z.string(),
   dedication: z.string(),
+  coverTemplateId: z.string().min(1),
+  coverSlots: z.array(coverSlotSchema),
+  coverBgColor: z.string(),
+  coverTextColors: z.record(z.string(), z.string()),
 });
 
 export type BookFormValues = z.infer<typeof bookFormSchema>;
@@ -28,6 +41,10 @@ export type BookCustomization = {
   pages: Array<{ mediaId: string; order: number }>;
   coverText?: string;
   dedication?: string;
+  coverTemplateId: string;
+  coverSlots: CoverSlot[];
+  coverBgColor?: string;
+  coverTextColors?: Record<string, string>;
 };
 
 export type BuildCustomizationOptions = {
@@ -46,10 +63,16 @@ export const buildCustomization = (
   return {
     binding,
     variantId: chosenVariant?.id ?? null,
+    coverTemplateId: values.coverTemplateId,
+    coverSlots: values.coverSlots,
     pages: values.photoIds.map((mediaId, index) => ({
       mediaId,
       order: index,
     })),
+    ...(values.coverBgColor ? { coverBgColor: values.coverBgColor } : {}),
+    ...(values.coverTextColors && Object.keys(values.coverTextColors).length > 0
+      ? { coverTextColors: values.coverTextColors }
+      : {}),
     ...(options.supportsCoverText && trimmedCoverText
       ? { coverText: trimmedCoverText }
       : {}),

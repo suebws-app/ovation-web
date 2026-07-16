@@ -64,5 +64,6 @@
   "common__theme__dark": "Темна",
   "common__theme__system": "Системна",
   "common__footer__legal_links__terms": "Умови",
-  "common__footer__legal_links__refunds": "Повернення коштів"
+  "common__footer__legal_links__refunds": "Повернення коштів",
+  "common__load_more": "Load more"
 }

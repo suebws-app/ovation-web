@@ -64,5 +64,6 @@
   "common__theme__dark": "Temna",
   "common__theme__system": "Sistemska",
   "common__footer__legal_links__terms": "Pogoji",
-  "common__footer__legal_links__refunds": "Vračila"
+  "common__footer__legal_links__refunds": "Vračila",
+  "common__load_more": "Load more"
 }

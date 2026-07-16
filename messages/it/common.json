@@ -64,5 +64,6 @@
   "common__theme__dark": "Scuro",
   "common__theme__system": "Sistema",
   "common__footer__legal_links__terms": "Termini",
-  "common__footer__legal_links__refunds": "Rimborsi"
+  "common__footer__legal_links__refunds": "Rimborsi",
+  "common__load_more": "Load more"
 }

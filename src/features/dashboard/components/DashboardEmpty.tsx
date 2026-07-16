@@ -5,13 +5,17 @@ import { PageHeading } from "@/components/PageHeading";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 
-export const DashboardEmpty = () => {
+type DashboardEmptyProps = {
+  name: string;
+};
+
+export const DashboardEmpty = ({ name }: DashboardEmptyProps) => {
   const t = useTranslations();
   return (
     <Card>
       <CardContent className="flex flex-col items-start gap-5">
         <PageHeading kicker={t("dashboard__empty__eyebrow")}>
-          {t("dashboard__empty__title")}
+          {t("dashboard__empty__title", { name })}
         </PageHeading>
         <p className="type-body-small text-muted-foreground max-w-180 leading-relaxed">
           {t("dashboard__empty__body")}

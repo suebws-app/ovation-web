@@ -64,5 +64,6 @@
   "common__theme__dark": "Tumma",
   "common__theme__system": "Järjestelmä",
   "common__footer__legal_links__terms": "Ehdot",
-  "common__footer__legal_links__refunds": "Hyvitykset"
+  "common__footer__legal_links__refunds": "Hyvitykset",
+  "common__load_more": "Load more"
 }

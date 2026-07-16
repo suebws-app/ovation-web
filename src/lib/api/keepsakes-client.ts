@@ -31,6 +31,10 @@ export type KeepsakePreviewInput = {
     coverSubtitle?: string;
     dedication?: string;
     coverImageMediaId?: string;
+    coverTemplateId?: string;
+    coverSlots?: { slotId: string; mediaId: string }[];
+    coverBgColor?: string;
+    coverTextColors?: Record<string, string>;
     showMessages?: boolean;
   };
 };

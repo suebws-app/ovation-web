@@ -64,5 +64,6 @@
   "common__theme__dark": "Donker",
   "common__theme__system": "Systeem",
   "common__footer__legal_links__terms": "Voorwaarden",
-  "common__footer__legal_links__refunds": "Terugbetalingen"
+  "common__footer__legal_links__refunds": "Terugbetalingen",
+  "common__load_more": "Load more"
 }

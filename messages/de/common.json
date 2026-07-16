@@ -64,5 +64,6 @@
   "common__theme__dark": "Dunkel",
   "common__theme__system": "System",
   "common__footer__legal_links__terms": "Nutzungsbedingungen",
-  "common__footer__legal_links__refunds": "Rückerstattung"
+  "common__footer__legal_links__refunds": "Rückerstattung",
+  "common__load_more": "Load more"
 }
