@@ -1,5 +1,6 @@
 import {
   init,
+  addIntegration,
   browserTracingIntegration,
   captureRouterTransitionStart,
   lazyLoadIntegration,
@@ -25,11 +26,16 @@ if (dsn) {
       "ResizeObserver loop limit exceeded",
       "Network Error",
       "AbortError",
+      /reading 'parentNode'/,
+      /evaluating 'b\.parentNode'/,
+      "Error when loading integration: replayIntegration",
     ],
   });
 
   if (isProduction) {
-    void lazyLoadIntegration("replayIntegration");
+    lazyLoadIntegration("replayIntegration")
+      .then((replayIntegration) => addIntegration(replayIntegration()))
+      .catch(() => {});
   }
 }
 

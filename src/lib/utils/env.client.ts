@@ -27,6 +27,8 @@ export const clientEnv = {
   POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY ?? "",
   POSTHOG_HOST:
     process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com",
+  POSTHOG_EXCLUDED_EMAILS:
+    process.env.NEXT_PUBLIC_POSTHOG_EXCLUDED_EMAILS ?? "",
 
   LEGAL_ENTITY_NAME: process.env.NEXT_PUBLIC_LEGAL_ENTITY_NAME ?? "Ovation",
   LEGAL_ENTITY_ADDRESS:
