@@ -7,6 +7,8 @@ import { CreateHeader } from "@/features/layout/CreateHeader/CreateHeader";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 import { eventsApi } from "@/lib/api/events";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = { robots: { index: false } };
 
 export default async function CreateLayout({

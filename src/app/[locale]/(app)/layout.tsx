@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = { robots: { index: false } };
 
 const AppGroupLayout = ({ children }: { children: React.ReactNode }) => {

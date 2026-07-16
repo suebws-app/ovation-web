@@ -1,10 +1,16 @@
+import { use } from "react";
+import type { LocalePageProps } from "@/i18n/types";
 import { useTranslations } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { CareerValue } from "./CareerValue";
 import { CAREER_VALUE_KEYS } from "./constants";
 
-export const CareersPage = () => {
+export const CareersPage = ({ params }: LocalePageProps) => {
+  const { locale } = use(params);
+  setRequestLocale(locale);
+
   const t = useTranslations();
 
   const values = CAREER_VALUE_KEYS.map((k) => ({

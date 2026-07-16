@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { apiFetch } from "./server";
+import { apiFetch, publicApiFetch } from "./server";
 import type { KeepsakeCatalog, KeepsakeProductDetailResult } from "./types";
 import { CURRENCY_COOKIE, isSupportedCurrency } from "@/i18n/currency-config";
 
@@ -18,6 +18,12 @@ export const keepsakesApi = {
       next: { revalidate: 60, tags: ["keepsakes-catalog"] },
     });
   },
+
+  publicCatalog: () =>
+    publicApiFetch<KeepsakeCatalog>("/keepsakes/catalog", {
+      cache: "force-cache",
+      next: { revalidate: 300, tags: ["keepsakes-catalog"] },
+    }),
 
   productByType: async (productType: string) => {
     const currency = await readVisitorCurrency();

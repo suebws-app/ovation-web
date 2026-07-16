@@ -4,6 +4,7 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { SectionTitle } from "../../../components/SectionTitle";
+import { PricingTeaserBody } from "./PricingTeaserBody";
 
 type PricingTeaserProps = {
   couplePrice: string;
@@ -28,9 +29,10 @@ export const PricingTeaser = async ({
             {t("marketing__pricing_teaser__title_line2")}
           </span>
         </SectionTitle>
-        <p className="text-muted-foreground type-body-large mt-5 max-w-140 leading-relaxed">
-          {t("marketing__pricing_teaser__body", { couplePrice, proPrice })}
-        </p>
+        <PricingTeaserBody
+          coupleFallbackPrice={couplePrice}
+          proFallbackPrice={proPrice}
+        />
         <Button size="lg" className="mt-8" asChild>
           <Link href={appRoutes.marketing.pricing}>
             {t("marketing__pricing_teaser__cta")}
