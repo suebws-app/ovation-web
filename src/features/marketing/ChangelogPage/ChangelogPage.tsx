@@ -1,14 +1,8 @@
-import { use } from "react";
-import type { LocalePageProps } from "@/i18n/types";
 import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 
-export const ChangelogPage = ({ params }: LocalePageProps) => {
-  const { locale } = use(params);
-  setRequestLocale(locale);
-
+export const ChangelogPage = () => {
   const t = useTranslations();
 
   return (

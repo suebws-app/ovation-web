@@ -1,7 +1,6 @@
-import { Suspense } from "react";
 import { Rubik, Noto_Sans } from "next/font/google";
+import { cookies } from "next/headers";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { loadPublicShellMessages } from "@/i18n/loadMessages";
@@ -41,23 +40,22 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  setRequestLocale(locale);
-
   const publicShellMessages = await loadPublicShellMessages(locale);
+  const cookieStore = await cookies();
+  const themeCookie = cookieStore.get("ovation_theme")?.value;
+  const initialDarkClass = themeCookie === "dark" ? " dark" : "";
 
   return (
     <html
       lang={locale}
-      className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased`}
+      className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased${initialDarkClass}`}
       suppressHydrationWarning
     >
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
         <GoogleTagManagerNoscript />
         <ThemeInitScript />
-        <NextIntlClientProvider locale={locale} messages={publicShellMessages}>
-          <Suspense fallback={null}>
-            <NavigationProgress />
-          </Suspense>
+        <NextIntlClientProvider messages={publicShellMessages}>
+          <NavigationProgress />
           <AppProviders>{children}</AppProviders>
           <Toaster />
         </NextIntlClientProvider>

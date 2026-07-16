@@ -1,7 +1,4 @@
-import { use } from "react";
-import type { LocalePageProps } from "@/i18n/types";
 import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Button } from "@ovation/ui/components/Button";
@@ -10,10 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { ForPlannersBenefit } from "./ForPlannersBenefit";
 import { FOR_PLANNERS_BENEFIT_KEYS } from "./constants";
 
-export const ForPlannersPage = ({ params }: LocalePageProps) => {
-  const { locale } = use(params);
-  setRequestLocale(locale);
-
+export const ForPlannersPage = () => {
   const t = useTranslations();
 
   const benefits = FOR_PLANNERS_BENEFIT_KEYS.map((k) => ({

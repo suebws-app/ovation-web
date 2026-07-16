@@ -32,22 +32,11 @@ const withSessionHeaders = async (init: RequestInit): Promise<RequestInit> => {
   return { ...init, headers };
 };
 
-const withPublicHeaders = async (init: RequestInit): Promise<RequestInit> => {
-  const headers = new Headers(init.headers);
-  headers.set("accept-language", await getLocale());
-  if (env.CF_ORIGIN_TOKEN) {
-    headers.set("x-origin-token", env.CF_ORIGIN_TOKEN);
-  }
-
-  return { ...init, headers };
-};
-
 const runApiFetch = async (
   path: string,
   options: ApiFetchOptions,
-  buildHeaders: (init: RequestInit) => Promise<RequestInit>,
 ): Promise<Response> => {
-  const init = await buildHeaders(buildRequestInit(options));
+  const init = await withSessionHeaders(buildRequestInit(options));
   try {
     return await fetch(buildBackendUrl(path, options.query), init);
   } catch (err) {
@@ -63,17 +52,7 @@ export const apiFetch = async <T>(
   path: string,
   options: ApiFetchOptions = {},
 ): Promise<T> => {
-  const res = await runApiFetch(path, options, withSessionHeaders);
-  if (!res.ok) throw await parseError(res);
-  const json = await readJson<{ data: T }>(res);
-  return (json?.data ?? (undefined as T)) as T;
-};
-
-export const publicApiFetch = async <T>(
-  path: string,
-  options: ApiFetchOptions = {},
-): Promise<T> => {
-  const res = await runApiFetch(path, options, withPublicHeaders);
+  const res = await runApiFetch(path, options);
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T }>(res);
   return (json?.data ?? (undefined as T)) as T;
@@ -83,7 +62,7 @@ export const apiFetchPaginated = async <T>(
   path: string,
   options: ApiFetchOptions = {},
 ): Promise<Paginated<T>> => {
-  const res = await runApiFetch(path, options, withSessionHeaders);
+  const res = await runApiFetch(path, options);
   if (!res.ok) throw await parseError(res);
   const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
   return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };

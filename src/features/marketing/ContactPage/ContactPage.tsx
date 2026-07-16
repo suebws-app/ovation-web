@@ -1,16 +1,10 @@
-import { use } from "react";
-import type { LocalePageProps } from "@/i18n/types";
 import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { ContactRow } from "./ContactRow";
 import { CONTACT_ROW_KEYS } from "./constants";
 
-export const ContactPage = ({ params }: LocalePageProps) => {
-  const { locale } = use(params);
-  setRequestLocale(locale);
-
+export const ContactPage = () => {
   const t = useTranslations();
 
   const rows = CONTACT_ROW_KEYS.map((k) => ({

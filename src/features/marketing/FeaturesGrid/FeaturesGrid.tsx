@@ -4,7 +4,6 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 import { LockIcon } from "@ovation/icons/LockIcon";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { FeatureCard } from "./FeatureCard";
-import { GoldBookPrice } from "./GoldBookPrice";
 import {
   REMAINING_LANGUAGE_COUNT,
   TOTAL_LANGUAGE_COUNT,
@@ -68,7 +67,11 @@ export const FeaturesGrid = ({ goldBookPrice }: FeaturesGridProps) => {
                 </span>
               </div>
               <div>
-                <GoldBookPrice fallbackPrice={goldBookPrice} />
+                <p className="text-foreground type-body-small font-semibold">
+                  {t("marketing__features__book_price", {
+                    price: goldBookPrice,
+                  })}
+                </p>
                 <p className="text-muted-foreground type-caption">
                   {t("marketing__features__book_shipping_v2")}
                 </p>

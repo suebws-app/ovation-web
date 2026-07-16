@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { LogoHeader } from "@/components/LogoHeader";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = { robots: { index: false } };
 
 const CheckoutLayout = ({ children }: { children: React.ReactNode }) => {

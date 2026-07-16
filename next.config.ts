@@ -65,7 +65,6 @@ const nextConfig: NextConfig = {
   allowedDevOrigins,
   experimental: {
     viewTransition: true,
-    inlineCss: true,
   },
   images: {
     formats: ["image/avif", "image/webp"],

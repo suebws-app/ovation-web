@@ -33,17 +33,9 @@ if (dsn) {
   });
 
   if (isProduction) {
-    const loadReplay = () => {
-      lazyLoadIntegration("replayIntegration")
-        .then((replayIntegration) => addIntegration(replayIntegration()))
-        .catch(() => {});
-    };
-
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(loadReplay, { timeout: 10_000 });
-    } else {
-      setTimeout(loadReplay, 5_000);
-    }
+    lazyLoadIntegration("replayIntegration")
+      .then((replayIntegration) => addIntegration(replayIntegration()))
+      .catch(() => {});
   }
 }
 
@@ -56,10 +48,6 @@ if (posthogKey) {
     defaults: "2025-05-24",
     capture_pageleave: true,
     autocapture: false,
-    disable_session_recording: true,
-    disable_surveys: true,
-    capture_dead_clicks: false,
-    capture_performance: false,
     persistence: "memory",
     person_profiles: "identified_only",
     debug: !isProduction,

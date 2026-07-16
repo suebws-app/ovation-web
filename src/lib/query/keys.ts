@@ -110,8 +110,4 @@ export const queryKeys = {
     all: () => ["plans"] as const,
     list: () => ["plans", "list"] as const,
   },
-  keepsakes: {
-    all: () => ["keepsakes"] as const,
-    catalog: () => ["keepsakes", "catalog"] as const,
-  },
 } as const;

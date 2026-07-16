@@ -1,7 +1,4 @@
-import { use } from "react";
-import type { LocalePageProps } from "@/i18n/types";
 import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Button } from "@ovation/ui/components/Button";
@@ -11,10 +8,7 @@ import { locales } from "@/i18n/config";
 import { GoldBookFeature } from "./GoldBookFeature";
 import { GOLD_BOOK_FEATURE_KEYS } from "./constants";
 
-export const GoldBookPage = ({ params }: LocalePageProps) => {
-  const { locale } = use(params);
-  setRequestLocale(locale);
-
+export const GoldBookPage = () => {
   const t = useTranslations();
 
   const features = GOLD_BOOK_FEATURE_KEYS.map((k) => ({

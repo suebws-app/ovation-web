@@ -13,14 +13,12 @@ import { clientEnv } from "@/lib/utils/env.client";
 import { plansApi } from "@/lib/api/plans";
 import { JsonLd } from "@/components/JsonLd";
 import { faqPageSchema } from "@/lib/seo/schemas";
-import { STORAGE_EXTENSION_PLAN_CODE } from "../pricingIds";
-import { FAQAnswer } from "./FAQAnswer";
 
 const DRE_FALLBACK_PRICE = "€20";
 
 const fetchDrePrice = async (): Promise<string> => {
   try {
-    const plan = await plansApi.publicFindByCode(STORAGE_EXTENSION_PLAN_CODE);
+    const plan = await plansApi.findByCode("storage_extension");
     return plan.productVariables.regularPriceFormatted ?? DRE_FALLBACK_PRICE;
   } catch {
     return DRE_FALLBACK_PRICE;
@@ -33,7 +31,6 @@ export const FAQSection = async () => {
   const drePrice = await fetchDrePrice();
 
   const items = FAQ_ITEM_KEYS.map((k) => ({
-    answerKey: k.a,
     q: t(k.q),
     a: t(k.a, { drePrice }),
   }));
@@ -71,10 +68,7 @@ export const FAQSection = async () => {
                   {item.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground type-body max-w-160 leading-relaxed">
-                  <FAQAnswer
-                    answerKey={item.answerKey}
-                    dreFallbackPrice={drePrice}
-                  />
+                  {item.a}
                 </AccordionContent>
               </AccordionItem>
             ))}

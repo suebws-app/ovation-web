@@ -1,8 +1,6 @@
-import { themeInitScript } from "@/lib/utils/themeInitScript";
+import Script from "next/script";
 
 export const ThemeInitScript = () => (
-  <script
-    id="theme-init"
-    dangerouslySetInnerHTML={{ __html: themeInitScript }}
-  />
+  // eslint-disable-next-line @next/next/no-before-interactive-script-outside-document
+  <Script id="theme-init" src="/theme-init.js" strategy="beforeInteractive" />
 );
