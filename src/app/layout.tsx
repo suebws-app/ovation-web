@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { DeferredGoogleTagManager } from "@/components/DeferredGoogleTagManager";
 import { appUrl } from "@/lib/seo/urls";
 import { clientEnv } from "@/lib/utils/env.client";
 
@@ -39,7 +39,9 @@ const RootLayout = ({
     <>
       <SpeedInsights />
       <Analytics />
-      {clientEnv.GTM_ID && <GoogleTagManager gtmId={clientEnv.GTM_ID} />}
+      {clientEnv.GTM_ID && (
+        <DeferredGoogleTagManager gtmId={clientEnv.GTM_ID} />
+      )}
       {children}
     </>
   );
