@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, zero {# papildu lappušu} one {# papildu lappuse} other {# papildu lappuses}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Iekļauj 1 tukšu lappusi, kas pievienota drukāšanai.",
   "keepsakes__book_customizer__price_total": "Kopā",
+  "keepsakes__book_customizer__reserved_pages_hint": "Ietver 4 lappuses, kas rezervētas jūsu pasākuma datiem un zīmolam (vāki, ievads un noslēgums).",
+  "keepsakes__book_customizer__price_vat_note": "+ PVN un piegāde tiek aprēķināti norēķinu brīdī",
   "keepsakes__book_customizer__paper_section_title": "Papīrs",
   "keepsakes__book_customizer__paper_section_description": "Izvēlieties papīra apdari savai grāmatai.",
   "keepsakes__book_customizer__paper_placeholder": "Izvēlieties papīru",

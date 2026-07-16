@@ -35,6 +35,7 @@
   "plan_status__active_plan": "Forfait actif",
   "plan_status__free_description": "Votre lien est en ligne. Passez à un forfait supérieur pour plus de stockage et d'invités.",
   "plan_name__premium": "Keepsake",
+  "plan_name__bundle": "Gold",
   "plan_status__current_plan_eyebrow": "Forfait actuel",
   "upgrade_modal__storage__title": "Limite de stockage atteinte",
   "upgrade_modal__storage__body": "Vous avez utilisé l'intégralité de votre 1 Go de stockage gratuit. Passez à un forfait supérieur pour continuer à téléverser photos, vidéos et messages audio.",

@@ -35,6 +35,7 @@
   "plan_status__active_plan": "Aktivan plan",
   "plan_status__free_description": "Vaša poveznica je aktivna. Nadogradite za dužu pohranu i više gostiju.",
   "plan_name__premium": "Keepsake",
+  "plan_name__bundle": "Gold",
   "plan_status__current_plan_eyebrow": "Trenutni plan",
   "upgrade_modal__storage__title": "Dosegnut limit pohrane",
   "upgrade_modal__storage__body": "Iskoristili ste besplatnih 1 GB pohrane. Nadogradite svoj plan kako biste nastavili učitavati fotografije, videozapise i audio poruke.",

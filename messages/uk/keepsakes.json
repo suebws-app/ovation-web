@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# додаткова сторінка} few {# додаткові сторінки} many {# додаткових сторінок} other {# додаткові сторінки}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Включно з 1 порожньою сторінкою, доданою для друку.",
   "keepsakes__book_customizer__price_total": "Разом",
+  "keepsakes__book_customizer__reserved_pages_hint": "Містить 4 сторінки, зарезервовані для даних і брендингу вашої події (обкладинки, вступ і завершення).",
+  "keepsakes__book_customizer__price_vat_note": "+ ПДВ і доставка розраховуються під час оплати",
   "keepsakes__book_customizer__paper_section_title": "Папір",
   "keepsakes__book_customizer__paper_section_description": "Виберіть тип паперу для вашої книги.",
   "keepsakes__book_customizer__paper_placeholder": "Виберіть папір",

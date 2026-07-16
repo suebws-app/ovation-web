@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# zusätzliche Seite} other {# zusätzliche Seiten}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Enthält 1 leere Seite, die für den Druck hinzugefügt wurde.",
   "keepsakes__book_customizer__price_total": "Gesamt",
+  "keepsakes__book_customizer__reserved_pages_hint": "Enthält 4 Seiten, die für deine Event-Daten & dein Branding reserviert sind (Umschlag, Intro & Abschluss).",
+  "keepsakes__book_customizer__price_vat_note": "+ MwSt. & Versand werden beim Checkout berechnet",
   "keepsakes__book_customizer__paper_section_title": "Papier",
   "keepsakes__book_customizer__paper_section_description": "Wähle das Papierfinish für dein Buch.",
   "keepsakes__book_customizer__paper_placeholder": "Papier wählen",

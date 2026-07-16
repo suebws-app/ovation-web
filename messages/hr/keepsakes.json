@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# dodatna stranica} few {# dodatne stranice} other {# dodatnih stranica}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Uključuje 1 praznu stranicu dodanu za potrebe tiska.",
   "keepsakes__book_customizer__price_total": "Ukupno",
+  "keepsakes__book_customizer__reserved_pages_hint": "Uključuje 4 stranice rezervirane za podatke i branding vašeg događaja (naslovnice, uvod i završetak).",
+  "keepsakes__book_customizer__price_vat_note": "+ PDV i dostava obračunavaju se pri plaćanju",
   "keepsakes__book_customizer__paper_section_title": "Papir",
   "keepsakes__book_customizer__paper_section_description": "Odaberite završnu obradu papira za svoju knjigu.",
   "keepsakes__book_customizer__paper_placeholder": "Odaberite papir",

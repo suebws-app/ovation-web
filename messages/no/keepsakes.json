@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# ekstra side} other {# ekstra sider}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Inkluderer 1 blank side lagt til for trykking.",
   "keepsakes__book_customizer__price_total": "Totalt",
+  "keepsakes__book_customizer__reserved_pages_hint": "Inkluderer 4 sider reservert til eventinformasjonen og brandingen din (omslag, intro og avslutning).",
+  "keepsakes__book_customizer__price_vat_note": "+ mva. og frakt beregnes i kassen",
   "keepsakes__book_customizer__paper_section_title": "Papir",
   "keepsakes__book_customizer__paper_section_description": "Velg papirfinish for boken din.",
   "keepsakes__book_customizer__paper_placeholder": "Velg papir",

@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# extra pagina} other {# extra pagina's}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Inclusief 1 blanco pagina toegevoegd voor druk.",
   "keepsakes__book_customizer__price_total": "Totaal",
+  "keepsakes__book_customizer__reserved_pages_hint": "Bevat 4 pagina's gereserveerd voor je evenementgegevens en branding (omslagen, intro en afsluiting).",
+  "keepsakes__book_customizer__price_vat_note": "+ btw en verzendkosten worden berekend bij het afrekenen",
   "keepsakes__book_customizer__paper_section_title": "Papier",
   "keepsakes__book_customizer__paper_section_description": "Kies de papierafwerking voor je boek.",
   "keepsakes__book_customizer__paper_placeholder": "Kies papier",

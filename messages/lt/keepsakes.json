@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# papildomas puslapis} few {# papildomi puslapiai} other {# papildomų puslapių}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Įtraukia 1 tuščią puslapį, pridėtą spausdinimui.",
   "keepsakes__book_customizer__price_total": "Iš viso",
+  "keepsakes__book_customizer__reserved_pages_hint": "Įtraukti 4 puslapiai, skirti jūsų renginio duomenims ir prekės ženklui (viršeliai, įžanga ir pabaiga).",
+  "keepsakes__book_customizer__price_vat_note": "+ PVM ir pristatymas apskaičiuojami atsiskaitymo metu",
   "keepsakes__book_customizer__paper_section_title": "Popierius",
   "keepsakes__book_customizer__paper_section_description": "Pasirinkite popieriaus apdailą knygai.",
   "keepsakes__book_customizer__paper_placeholder": "Pasirinkite popierių",

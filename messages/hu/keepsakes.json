@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# extra oldal} other {# extra oldal}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Tartalmaz 1 üres oldalt a nyomtatáshoz.",
   "keepsakes__book_customizer__price_total": "Összesen",
+  "keepsakes__book_customizer__reserved_pages_hint": "Tartalmaz 4 oldalt, amelyek az eseményed adatainak és arculatának vannak fenntartva (borítók, bevezető és záró oldal).",
+  "keepsakes__book_customizer__price_vat_note": "+ az ÁFA és a szállítás a fizetéskor kerül kiszámításra",
   "keepsakes__book_customizer__paper_section_title": "Papír",
   "keepsakes__book_customizer__paper_section_description": "Válaszd ki a papír kivitelezést a könyvedhez.",
   "keepsakes__book_customizer__paper_placeholder": "Papír választása",
