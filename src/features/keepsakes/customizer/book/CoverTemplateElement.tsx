@@ -11,6 +11,16 @@ const resolveText = (source: CoverTextSource, texts: CoverTexts): string => {
   return texts[source] ?? "";
 };
 
+// MUST match the backend (ovation-api media-preprocessor `fitFontSize`) exactly
+// so the live preview and the rendered PDF size cover text identically.
+const FIT_REF_CHARS = 24;
+const FIT_MIN_SCALE = 0.5;
+const fitFontSize = (baseSize: number, text: string): number => {
+  const len = text.trim().length;
+  if (len <= FIT_REF_CHARS) return baseSize;
+  return baseSize * Math.max(FIT_MIN_SCALE, FIT_REF_CHARS / len);
+};
+
 type CoverTemplateElementProps = {
   element: CoverElement;
   texts: CoverTexts;
@@ -56,10 +66,13 @@ export const CoverTemplateElement = ({
     );
   }
 
+  const textValue = resolveText(element.source, texts);
+
   return (
     <div
       style={{
         ...box,
+        overflow: "visible",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -68,7 +81,7 @@ export const CoverTemplateElement = ({
         fontFamily: element.font === "script" ? SCRIPT_FONT : COVER_FONT,
         fontWeight: element.weight ?? 400,
         fontStyle: element.italic ? "italic" : "normal",
-        fontSize: `${element.size}cqh`,
+        fontSize: `${fitFontSize(element.size, textValue)}cqh`,
         letterSpacing: element.letterSpacing
           ? `${element.letterSpacing}em`
           : undefined,
@@ -76,7 +89,7 @@ export const CoverTemplateElement = ({
         lineHeight: 1.15,
       }}
     >
-      {resolveText(element.source, texts)}
+      {textValue}
     </div>
   );
 };

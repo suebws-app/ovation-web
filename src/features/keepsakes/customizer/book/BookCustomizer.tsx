@@ -20,6 +20,7 @@ import { BookCheckoutPanel } from "./BookCheckoutPanel";
 import { BookHeaderBadge } from "./BookHeaderBadge";
 import { PaperSelect } from "./PaperSelect";
 import { SizeSelect } from "./SizeSelect";
+import { DensitySelect } from "./DensitySelect";
 import { PageCountSection } from "./PageCountSection";
 import { PersonalizeSection } from "./PersonalizeSection";
 import { SpineNote } from "./SpineNote";
@@ -70,6 +71,7 @@ export const BookCustomizer = ({
       coverSlots: [],
       coverBgColor: "",
       coverTextColors: {},
+      interiorDensity: "spacious",
     };
   }, [variants]);
 
@@ -96,6 +98,7 @@ export const BookCustomizer = ({
             event={event}
             isPro={isPro}
           />
+          <DensitySelect binding={binding} />
           <PersonalizeSection variants={variants} eventId={eventId} />
           <SpineNote binding={binding} />
         </div>

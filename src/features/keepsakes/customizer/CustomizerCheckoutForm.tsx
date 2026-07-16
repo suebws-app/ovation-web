@@ -159,6 +159,7 @@ export const CustomizerCheckoutForm = ({
         coverSlots?: Array<{ slotId: string; mediaId: string }>;
         coverBgColor?: string;
         coverTextColors?: Record<string, string>;
+        interiorDensity?: "spacious" | "balanced" | "compact";
         pages?: Array<{ mediaId: string; order: number }>;
       };
       const { renderId } = await previewMutation.mutateAsync({
@@ -174,6 +175,7 @@ export const CustomizerCheckoutForm = ({
           coverSlots: bookCustomization.coverSlots,
           coverBgColor: bookCustomization.coverBgColor,
           coverTextColors: bookCustomization.coverTextColors,
+          interiorDensity: bookCustomization.interiorDensity,
         },
       });
       setPreviewRenderId(renderId);

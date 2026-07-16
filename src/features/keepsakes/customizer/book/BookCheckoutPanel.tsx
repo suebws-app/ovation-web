@@ -64,6 +64,7 @@ export const BookCheckoutPanel = ({
     coverSlots,
     coverBgColor,
     coverTextColors,
+    interiorDensity,
   ] = useWatch<
     BookFormValues,
     [
@@ -77,6 +78,7 @@ export const BookCheckoutPanel = ({
       "coverSlots",
       "coverBgColor",
       "coverTextColors",
+      "interiorDensity",
     ]
   >({
     name: [
@@ -90,6 +92,7 @@ export const BookCheckoutPanel = ({
       "coverSlots",
       "coverBgColor",
       "coverTextColors",
+      "interiorDensity",
     ],
   });
 
@@ -111,6 +114,7 @@ export const BookCheckoutPanel = ({
           coverSlots: (coverSlots ?? []) as CoverSlot[],
           coverBgColor: coverBgColor ?? "",
           coverTextColors: coverTextColors ?? {},
+          interiorDensity: interiorDensity ?? "spacious",
         },
         chosenVariant,
         binding,
@@ -127,6 +131,7 @@ export const BookCheckoutPanel = ({
       coverSlots,
       coverBgColor,
       coverTextColors,
+      interiorDensity,
       chosenVariant,
       binding,
       supportsCoverText,
@@ -147,15 +152,15 @@ export const BookCheckoutPanel = ({
       return t("keepsakes__book_customizer__not_ready_pick_size");
     if (pageCount === 0)
       return t("keepsakes__book_customizer__not_ready_no_photos");
-    if (minPages !== null && pageCount < minPages) {
+    if (minPages !== null && billablePages < minPages) {
       return t("keepsakes__book_customizer__below_min_label", {
-        needed: minPages - pageCount,
+        needed: minPages - billablePages,
         min: minPages,
       });
     }
-    if (maxPages !== null && pageCount > maxPages) {
+    if (maxPages !== null && billablePages > maxPages) {
       return t("keepsakes__book_customizer__above_max_label", {
-        extra: pageCount - maxPages,
+        extra: billablePages - maxPages,
         max: maxPages,
       });
     }

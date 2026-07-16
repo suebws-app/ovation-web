@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { ApiError } from "@/lib/api/client";
@@ -43,7 +43,7 @@ const itemMatchesFilter = (
   }
 };
 
-export const MediaPicker = ({
+const MediaPicker = ({
   eventId,
   type,
   selectedIds,
@@ -323,3 +323,5 @@ export const MediaPicker = ({
     </div>
   );
 };
+
+export default memo(MediaPicker);
