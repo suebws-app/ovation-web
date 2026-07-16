@@ -35,6 +35,7 @@
   "plan_status__active_plan": "Paket aktif",
   "plan_status__free_description": "Tautan Anda aktif. Tingkatkan untuk penyimpanan lebih lama dan lebih banyak tamu.",
   "plan_name__premium": "Keepsake",
+  "plan_name__bundle": "Gold",
   "plan_status__current_plan_eyebrow": "Paket Saat Ini",
   "upgrade_modal__storage__title": "Batas penyimpanan tercapai",
   "upgrade_modal__storage__body": "Anda telah menggunakan 1GB penyimpanan gratis. Tingkatkan paket Anda untuk terus mengunggah foto, video, dan pesan audio.",

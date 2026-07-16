@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# faqe shtesë} other {# faqe shtesë}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Përfshin 1 faqe bosh të shtuar për shtyp.",
   "keepsakes__book_customizer__price_total": "Totali",
+  "keepsakes__book_customizer__reserved_pages_hint": "Përfshin 4 faqe të rezervuara për të dhënat dhe brendimin e eventit tuaj (kopertinat, hyrja dhe mbyllja).",
+  "keepsakes__book_customizer__price_vat_note": "+ TVSH-ja dhe transporti llogariten gjatë pagesës",
   "keepsakes__book_customizer__paper_section_title": "Letra",
   "keepsakes__book_customizer__paper_section_description": "Zgjidhni përfundimin e letrës për librin tuaj.",
   "keepsakes__book_customizer__paper_placeholder": "Zgjidhni letrën",

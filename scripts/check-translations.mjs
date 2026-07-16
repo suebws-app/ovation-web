@@ -20,12 +20,25 @@ import { join, relative, sep } from "node:path";
 const root = process.argv[2];
 const strict = process.argv.includes("--strict");
 if (!root || !existsSync(root)) {
-  console.error("Usage: node scripts/check-translations.mjs <translations-root> [--strict]");
+  console.error(
+    "Usage: node scripts/check-translations.mjs <translations-root> [--strict]",
+  );
   process.exit(2);
 }
 
 const REFERENCE = "en";
 const UNTRANSLATED_MIN_LENGTH = 30;
+
+// Keys whose values are legitimately identical to English in some locales:
+// technical formats with no prose, or words that several languages share
+// verbatim ("page", "message", "contribution", "audio", "note" in French).
+const UNTRANSLATED_IGNORE_KEYS = new Set([
+  "guest__record__photo__dimensions",
+  "guests__stats__messages_sub",
+  "guests__row__contributions",
+  "keepsakes__book_customizer__pages_label",
+  "messages__toolbar__count",
+]);
 
 const jsonFilesUnder = (dir) => {
   const out = [];
@@ -44,7 +57,8 @@ const flatten = (obj, prefix = "") => {
   const out = {};
   for (const [k, v] of Object.entries(obj)) {
     const key = prefix ? `${prefix}.${k}` : k;
-    if (v !== null && typeof v === "object") Object.assign(out, flatten(v, key));
+    if (v !== null && typeof v === "object")
+      Object.assign(out, flatten(v, key));
     else out[key] = String(v ?? "");
   }
   return out;
@@ -89,7 +103,9 @@ const extractIcuArgs = (str, args = new Set()) => {
 
 const signature = (value) => {
   const icu = [...extractIcuArgs(value)].sort();
-  const tags = [...new Set([...value.matchAll(/<(\w+)>/g)].map((m) => m[1]))].sort();
+  const tags = [
+    ...new Set([...value.matchAll(/<(\w+)>/g)].map((m) => m[1])),
+  ].sort();
   return JSON.stringify([icu, tags]);
 };
 
@@ -142,7 +158,11 @@ for (const locale of locales) {
         errors.push(`empty value ${file} → ${key}`);
       else if (signature(value) !== signature(refValue))
         errors.push(`placeholder mismatch ${file} → ${key}`);
-      else if (value === refValue && refValue.length >= UNTRANSLATED_MIN_LENGTH)
+      else if (
+        value === refValue &&
+        refValue.length >= UNTRANSLATED_MIN_LENGTH &&
+        !UNTRANSLATED_IGNORE_KEYS.has(key)
+      )
         warnings.push(`untranslated ${file} → ${key}`);
     }
     for (const key of Object.keys(keys)) {
@@ -171,6 +191,8 @@ console.log(
     `${totalErrors} errors, ${totalWarnings} warnings`,
 );
 if (totalWarnings > 0 && !strict && !process.env.I18N_CHECK_VERBOSE) {
-  console.log("(re-run with --strict or I18N_CHECK_VERBOSE=1 to list warnings)");
+  console.log(
+    "(re-run with --strict or I18N_CHECK_VERBOSE=1 to list warnings)",
+  );
 }
 process.exit(totalErrors > 0 || (strict && totalWarnings > 0) ? 1 : 0);

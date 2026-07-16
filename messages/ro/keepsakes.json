@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# pagină suplimentară} other {# pagini suplimentare}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Include 1 pagină goală adăugată pentru tipărire.",
   "keepsakes__book_customizer__price_total": "Total",
+  "keepsakes__book_customizer__reserved_pages_hint": "Include 4 pagini rezervate pentru datele și brandingul evenimentului tău (coperți, introducere și încheiere).",
+  "keepsakes__book_customizer__price_vat_note": "+ TVA și livrarea se calculează la plată",
   "keepsakes__book_customizer__paper_section_title": "Hârtie",
   "keepsakes__book_customizer__paper_section_description": "Alege finisajul hârtiei pentru cartea ta.",
   "keepsakes__book_customizer__paper_placeholder": "Alege hârtia",

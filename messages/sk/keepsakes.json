@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# strana navyše} few {# strany navyše} other {# strán navyše}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Zahŕňa 1 prázdnu stranu pridanú na tlač.",
   "keepsakes__book_customizer__price_total": "Spolu",
+  "keepsakes__book_customizer__reserved_pages_hint": "Zahŕňa 4 strany vyhradené pre údaje a branding tvojej udalosti (obálky, úvod a záver).",
+  "keepsakes__book_customizer__price_vat_note": "+ DPH a doprava sa vypočítajú pri platbe",
   "keepsakes__book_customizer__paper_section_title": "Papier",
   "keepsakes__book_customizer__paper_section_description": "Vyber povrch papiera pre svoju knihu.",
   "keepsakes__book_customizer__paper_placeholder": "Vyber papier",

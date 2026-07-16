@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# página extra} other {# páginas extras}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Incluye 1 página en blanco añadida para la impresión.",
   "keepsakes__book_customizer__price_total": "Total",
+  "keepsakes__book_customizer__reserved_pages_hint": "Incluye 4 páginas reservadas para los datos y la imagen de tu evento (portadas, introducción y cierre).",
+  "keepsakes__book_customizer__price_vat_note": "+ IVA y envío calculados al finalizar la compra",
   "keepsakes__book_customizer__paper_section_title": "Papel",
   "keepsakes__book_customizer__paper_section_description": "Elige el acabado del papel de tu libro.",
   "keepsakes__book_customizer__paper_placeholder": "Elegir papel",

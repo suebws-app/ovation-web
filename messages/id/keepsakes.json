@@ -85,6 +85,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# halaman tambahan} other {# halaman tambahan}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Termasuk 1 halaman kosong yang ditambahkan untuk pencetakan.",
   "keepsakes__book_customizer__price_total": "Total",
+  "keepsakes__book_customizer__reserved_pages_hint": "Termasuk 4 halaman yang dicadangkan untuk data acara dan branding Anda (sampul, pembuka & penutup).",
+  "keepsakes__book_customizer__price_vat_note": "+ PPN & ongkos kirim dihitung saat pembayaran",
   "keepsakes__book_customizer__paper_section_title": "Kertas",
   "keepsakes__book_customizer__paper_section_description": "Pilih hasil akhir kertas untuk buku Anda.",
   "keepsakes__book_customizer__paper_placeholder": "Pilih kertas",

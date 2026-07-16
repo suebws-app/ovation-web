@@ -35,6 +35,7 @@
   "plan_status__active_plan": "Aktivní plán",
   "plan_status__free_description": "Tvůj odkaz je aktivní. Upgraduj pro více úložiště a více hostů.",
   "plan_name__premium": "Keepsake",
+  "plan_name__bundle": "Gold",
   "plan_status__current_plan_eyebrow": "Aktuální plán",
   "upgrade_modal__storage__title": "Dosáhl jsi limitu úložiště",
   "upgrade_modal__storage__body": "Vyčerpal jsi 1 GB úložiště zdarma. Upgraduj svůj plán a pokračuj v nahrávání fotografií, videí a hlasových zpráv.",
