@@ -1,0 +1,1 @@
+export { DeferredGoogleTagManager } from "./DeferredGoogleTagManager";

@@ -22,7 +22,6 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@marsidev/react-turnstile": "^1.5.2",
-    "@next/third-parties": "^16.2.10",
     "@ovation/icons": "workspace:*",
     "@ovation/illustrations": "workspace:*",
     "@ovation/ui": "workspace:*",
