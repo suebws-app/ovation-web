@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import { Cormorant_Garamond } from "next/font/google";
+import localFont from "next/font/local";
 import { keepsakesApi } from "@/lib/api/keepsakes";
 import { eventsApi } from "@/lib/api/events";
 import { ApiError } from "@/lib/api/client";
@@ -13,6 +15,21 @@ import type {
   KeepsakeProductDetail,
   KeepsakeProductVariant,
 } from "@/lib/api/types";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const snell = localFont({
+  src: "../../../app/[locale]/fonts/snell-roundhand-regular.woff2",
+  variable: "--font-snell",
+  display: "swap",
+});
+
+const coverFontClasses = `${cormorant.variable} ${snell.variable}`;
 
 const BOOK_PRODUCT_TYPES = new Set(["hardcover", "softcover", "layflat"]);
 
@@ -71,13 +88,15 @@ const KeepsakeCustomizerSwitch = ({
 }: SwitchProps) => {
   if (BOOK_PRODUCT_TYPES.has(product.productType)) {
     return (
-      <BookCustomizer
-        product={product}
-        variants={variants}
-        eventId={event.id}
-        event={event}
-        isPro={isPro}
-      />
+      <div className={`${coverFontClasses} contents`}>
+        <BookCustomizer
+          product={product}
+          variants={variants}
+          eventId={event.id}
+          event={event}
+          isPro={isPro}
+        />
+      </div>
     );
   }
   return <UnsupportedProductCard />;
