@@ -1,14 +1,20 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import type { LocalePageProps } from "@/i18n/types";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { KeepsakeCard } from "./KeepsakeCard";
 import { keepsakesApi } from "@/lib/api/keepsakes";
 import { formatPrice } from "@/features/checkout/orderHelpers";
-import { CurrencySelect } from "@/components/CurrencySelect";
+import { CurrencySelectStatic } from "@/components/CurrencySelect/CurrencySelectStatic";
 
-export const KeepsakesStorePage = async () => {
+export const KeepsakesStorePage = async ({ params }: LocalePageProps) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const t = await getTranslations();
-  const catalog = await keepsakesApi.catalog().catch(() => ({ products: [] }));
+  const catalog = await keepsakesApi
+    .publicCatalog()
+    .catch(() => ({ products: [] }));
 
   const comingSoonLabel = t("marketing__keepsakes__coming_soon");
   const fromLabel = t("marketing__keepsakes__price_from");
@@ -18,7 +24,8 @@ export const KeepsakesStorePage = async () => {
     description: t(product.description),
     price: product.comingSoon
       ? ""
-      : `${fromLabel} ${formatPrice(product.priceCents, product.currency)}`,
+      : formatPrice(product.priceCents, product.currency),
+    productType: product.productType,
     comingSoon: product.comingSoon,
   }));
 
@@ -30,7 +37,7 @@ export const KeepsakesStorePage = async () => {
             <Kicker className="text-primary">
               {t("marketing__keepsakes__eyebrow")}
             </Kicker>
-            <CurrencySelect />
+            <CurrencySelectStatic />
           </div>
           <SectionTitle as="h1" className="mt-4 leading-none tracking-tighter">
             <span className="text-foreground block">
@@ -55,6 +62,8 @@ export const KeepsakesStorePage = async () => {
                 name={product.name}
                 description={product.description}
                 price={product.price}
+                fromLabel={fromLabel}
+                productType={product.productType}
                 comingSoon={product.comingSoon}
                 comingSoonLabel={comingSoonLabel}
               />

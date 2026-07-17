@@ -1,9 +1,12 @@
 import { Badge } from "@ovation/ui/components/Badge";
+import { KeepsakePrice } from "./KeepsakePrice";
 
 type KeepsakeCardProps = {
   name: string;
   description: string;
   price: string;
+  fromLabel: string;
+  productType: string;
   comingSoon?: boolean;
   comingSoonLabel: string;
 };
@@ -12,6 +15,8 @@ export const KeepsakeCard = ({
   name,
   description,
   price,
+  fromLabel,
+  productType,
   comingSoon,
   comingSoonLabel,
 }: KeepsakeCardProps) => (
@@ -25,7 +30,7 @@ export const KeepsakeCard = ({
         {comingSoonLabel}
       </Badge>
     )}
-    <p className="type-body font-semibold">{name}</p>
+    <h3 className="type-body font-semibold">{name}</h3>
     <p className="text-muted-foreground type-body-small mt-2 flex-1 leading-relaxed">
       {description}
     </p>
@@ -34,7 +39,12 @@ export const KeepsakeCard = ({
         comingSoon ? "text-muted-foreground" : "text-primary"
       }`}
     >
-      {price}
+      {!comingSoon && (
+        <>
+          {fromLabel}{" "}
+          <KeepsakePrice productType={productType} fallbackPrice={price} />
+        </>
+      )}
     </p>
   </div>
 );

@@ -1,0 +1,1 @@
+export { CookieYesBanner } from "./CookieYesBanner";

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Rubik, Noto_Sans } from "next/font/google";
+import { Rubik } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -17,13 +17,6 @@ const rubik = Rubik({
   display: "optional",
   adjustFontFallback: true,
 });
-const notoSans = Noto_Sans({
-  subsets: ["latin"],
-  variable: "--font-noto-sans",
-  display: "optional",
-  adjustFontFallback: true,
-});
-
 export const generateStaticParams = () => {
   return routing.locales.map((locale) => ({ locale }));
 };
@@ -48,7 +41,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${rubik.variable} ${notoSans.variable} h-dvh antialiased`}
+      className={`${rubik.variable} h-dvh antialiased`}
       suppressHydrationWarning
     >
       <body className="flex max-h-dvh flex-1 flex-col font-sans">

@@ -10,7 +10,7 @@ export const HowItWorksPage = ({ params }: LocalePageProps) => {
 
   return (
     <>
-      <HowItWorks />
+      <HowItWorks titleAs="h1" />
       <FinalCTA />
     </>
   );

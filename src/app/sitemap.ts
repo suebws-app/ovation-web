@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { locales } from "@/i18n/config";
-import { absoluteUrl, localizePath } from "@/lib/seo/urls";
+import { defaultLocale, locales } from "@/i18n/config";
+import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 
 type MarketingRoute = {
   path: string;
@@ -30,12 +30,15 @@ const buildRouteEntries = ({
   path,
   priority,
 }: MarketingRoute): MetadataRoute.Sitemap => {
-  const languages = Object.fromEntries(
-    locales.map((locale) => [locale, absoluteUrl(localizePath(locale, path))]),
-  );
+  const languages = {
+    ...Object.fromEntries(
+      locales.map((locale) => [locale, localizedAbsoluteUrl(locale, path)]),
+    ),
+    "x-default": localizedAbsoluteUrl(defaultLocale, path),
+  };
 
   return locales.map((locale) => ({
-    url: absoluteUrl(localizePath(locale, path)),
+    url: localizedAbsoluteUrl(locale, path),
     changeFrequency: "weekly",
     priority,
     alternates: { languages },

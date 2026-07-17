@@ -66,6 +66,14 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
     inlineCss: true,
+    optimizePackageImports: [
+      "@ovation/ui",
+      "@ovation/icons",
+      "@ovation/illustrations",
+      "@vidstack/react",
+      "posthog-js",
+      "@tanstack/react-query",
+    ],
   },
   images: {
     formats: ["image/avif", "image/webp"],
