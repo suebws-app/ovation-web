@@ -105,7 +105,6 @@ export default hasSentryProject
       sourcemaps: canUploadSourceMaps
         ? { deleteSourcemapsAfterUpload: true }
         : { disable: true },
-      disableLogger: true,
       telemetry: false,
       widenClientFileUpload: true,
       tunnelRoute: "/monitoring",

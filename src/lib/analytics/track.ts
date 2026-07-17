@@ -1,5 +1,5 @@
-import posthog from "posthog-js";
 import { clientEnv } from "@/lib/utils/env.client";
+import { loadPostHog } from "./posthogLoader";
 import type { AnalyticsEventMap, AnalyticsEventName } from "./events";
 
 type TrackArgs<E extends AnalyticsEventName> =
@@ -12,5 +12,5 @@ export const trackEvent = <E extends AnalyticsEventName>(
   ...[properties]: TrackArgs<E>
 ): void => {
   if (!clientEnv.POSTHOG_KEY || typeof window === "undefined") return;
-  posthog.capture(event, properties);
+  void loadPostHog().then((posthog) => posthog?.capture(event, properties));
 };
