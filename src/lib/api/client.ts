@@ -1,4 +1,4 @@
-import { captureException } from "@sentry/nextjs";
+import { captureMonitoredException } from "@/lib/observability/sentry";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import type { ApiErrorBody } from "./types";
 import { getCsrfToken, invalidateCsrfToken } from "./csrf-token";
@@ -58,7 +58,7 @@ export const parseError = async (res: Response): Promise<ApiError> => {
   const message = body?.error?.message ?? res.statusText ?? "Request failed";
   const err = new ApiError(res.status, code, message, body?.error?.details);
   if (err.status >= 500) {
-    captureException(err, {
+    captureMonitoredException(err, {
       tags: { source: "apiFetch", status: String(err.status), code },
     });
   }
@@ -66,7 +66,7 @@ export const parseError = async (res: Response): Promise<ApiError> => {
 };
 
 const captureNetworkError = (err: unknown, path: string) => {
-  captureException(err, {
+  captureMonitoredException(err, {
     tags: { source: "apiFetch", kind: "network" },
     extra: { path },
   });

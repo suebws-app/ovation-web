@@ -8,7 +8,7 @@ export const CookieYesBanner = () => {
     <Script
       id="cookieyes"
       src={`https://cdn-cookieyes.com/client_data/${clientEnv.COOKIEYES_ID}/script.js`}
-      strategy="afterInteractive"
+      strategy="lazyOnload"
     />
   );
 };
