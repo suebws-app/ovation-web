@@ -9,21 +9,16 @@ import {
 } from "@ovation/ui/components/Tabs";
 import { PricingCard } from "./PricingCard";
 import { COUPLES_TIERS, PRO_TIERS, type Tier } from "./constants";
-import { CurrencySelect } from "@/components/CurrencySelect";
+import { CurrencySelectStatic } from "@/components/CurrencySelect/CurrencySelectStatic";
 import { plansApi } from "@/lib/api/plans";
 import type { Plan } from "@/lib/api/types";
 
-type CardTier = Omit<Tier, "key" | "planCode"> & { key: string };
+type CardTier = Omit<Tier, "key"> & { key: string };
 
 const toCardTier = (tier: Tier, plansByCode: Map<string, Plan>): CardTier => {
   const plan = tier.planCode ? plansByCode.get(tier.planCode) : undefined;
   const formatted = plan?.productVariables?.regularPriceFormatted;
-  const {
-    key,
-    planCode: _planCode,
-    ...rest
-  } = formatted ? { ...tier, price: formatted } : tier;
-  void _planCode;
+  const { key, ...rest } = formatted ? { ...tier, price: formatted } : tier;
   return { key, ...rest };
 };
 
@@ -31,14 +26,20 @@ const fetchPlansSafely = async (
   audience: "couple" | "pro",
 ): Promise<Plan[]> => {
   try {
-    const { plans } = await plansApi.list(audience);
+    const { plans } = await plansApi.publicList(audience);
     return plans;
   } catch {
     return [];
   }
 };
 
-export const PricingSection = async () => {
+type PricingSectionProps = {
+  titleAs?: "h1" | "h2";
+};
+
+export const PricingSection = async ({
+  titleAs = "h2",
+}: PricingSectionProps) => {
   const t = await getTranslations();
 
   const [couplePlans, proPlans] = await Promise.all([
@@ -61,7 +62,9 @@ export const PricingSection = async () => {
           <Kicker className="text-muted-foreground mb-4">
             {t("marketing__pricing__eyebrow")}
           </Kicker>
-          <SectionTitle>{t("marketing__pricing__title")}</SectionTitle>
+          <SectionTitle as={titleAs}>
+            {t("marketing__pricing__title")}
+          </SectionTitle>
           <p className="text-muted-foreground mx-auto mt-4 max-w-xl">
             {t("marketing__pricing__subtitle")}
           </p>
@@ -77,7 +80,7 @@ export const PricingSection = async () => {
                 {t("marketing__pricing__tab_professionals")}
               </TabsTrigger>
             </TabsList>
-            <CurrencySelect />
+            <CurrencySelectStatic />
           </div>
 
           <TabsContent value="couples">

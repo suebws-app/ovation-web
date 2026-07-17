@@ -1,9 +1,17 @@
 import dynamic from "next/dynamic";
+import { setRequestLocale } from "next-intl/server";
+import { AudioPlayerProvider } from "@ovation/ui/providers/AudioPlayerProvider";
 import { HeroSection } from "@/features/marketing/HeroSection";
 import { PricingTeaser } from "./PricingTeaser";
 import { keepsakesApi } from "@/lib/api/keepsakes";
 import { plansApi } from "@/lib/api/plans";
 import { formatPrice } from "@/features/checkout/orderHelpers";
+import type { LocalePageProps } from "@/i18n/types";
+import {
+  COUPLE_PLAN_CODE,
+  GOLD_BOOK_PRODUCT_TYPE,
+  PRO_PLAN_CODE,
+} from "../pricingIds";
 
 const HowItWorks = dynamic(() =>
   import("./HowItWorks").then((m) => ({
@@ -31,14 +39,13 @@ const FinalCTA = dynamic(() =>
   })),
 );
 
-const GOLD_BOOK_PRODUCT_TYPE = "hardcover";
 const GOLD_BOOK_FALLBACK_PRICE = "€59";
 const COUPLE_PLAN_FALLBACK_PRICE = "€189";
 const PRO_PLAN_FALLBACK_PRICE = "€49";
 
 const fetchGoldBookPrice = async (): Promise<string> => {
   try {
-    const { products } = await keepsakesApi.catalog();
+    const { products } = await keepsakesApi.publicCatalog();
     const book = products.find((p) => p.productType === GOLD_BOOK_PRODUCT_TYPE);
     if (!book) return GOLD_BOOK_FALLBACK_PRICE;
     return formatPrice(book.priceCents, book.currency);
@@ -52,22 +59,25 @@ const fetchPlanPrice = async (
   fallback: string,
 ): Promise<string> => {
   try {
-    const plan = await plansApi.findByCode(code);
+    const plan = await plansApi.publicFindByCode(code);
     return plan.productVariables.regularPriceFormatted ?? fallback;
   } catch {
     return fallback;
   }
 };
 
-export const LandingPage = async () => {
+export const LandingPage = async ({ params }: LocalePageProps) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const [goldBookPrice, couplePrice, proPrice] = await Promise.all([
     fetchGoldBookPrice(),
-    fetchPlanPrice("premium", COUPLE_PLAN_FALLBACK_PRICE),
-    fetchPlanPrice("pro_starter", PRO_PLAN_FALLBACK_PRICE),
+    fetchPlanPrice(COUPLE_PLAN_CODE, COUPLE_PLAN_FALLBACK_PRICE),
+    fetchPlanPrice(PRO_PLAN_CODE, PRO_PLAN_FALLBACK_PRICE),
   ]);
 
   return (
-    <>
+    <AudioPlayerProvider>
       <HeroSection />
       <HowItWorks />
       <SampleSpread />
@@ -75,6 +85,6 @@ export const LandingPage = async () => {
       <PricingTeaser couplePrice={couplePrice} proPrice={proPrice} />
       <FAQSection />
       <FinalCTA />
-    </>
+    </AudioPlayerProvider>
   );
 };

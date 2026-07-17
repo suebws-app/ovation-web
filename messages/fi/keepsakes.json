@@ -108,6 +108,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# lisäsivu} other {# lisäsivua}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Sisältää 1 tyhjän sivun, joka lisätään tulostusta varten.",
   "keepsakes__book_customizer__price_total": "Yhteensä",
+  "keepsakes__book_customizer__reserved_pages_hint": "Sisältää 4 sivua, jotka on varattu tapahtumasi tiedoille ja brändäykselle (kannet, aloitus ja lopetus).",
+  "keepsakes__book_customizer__price_vat_note": "+ ALV ja toimitus lasketaan kassalla",
   "keepsakes__book_customizer__paper_section_title": "Paperi",
   "keepsakes__book_customizer__paper_section_description": "Valitse kirjasi paperin pintakäsittely.",
   "keepsakes__book_customizer__paper_placeholder": "Valitse paperi",

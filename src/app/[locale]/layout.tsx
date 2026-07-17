@@ -1,33 +1,22 @@
-import { Rubik, Noto_Sans } from "next/font/google";
-import localFont from "next/font/local";
-import { cookies, headers } from "next/headers";
+import { Suspense } from "react";
+import { Rubik } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { loadPublicShellMessages } from "@/i18n/loadMessages";
 import { AppProviders } from "@/features/layout/AppProviders";
 import { Toaster } from "@/components/Toaster";
 import { NavigationProgress } from "@/components/NavigationProgress";
-import { THEME_INIT_SNIPPET } from "@/components/ThemeInitScript";
+import { ThemeInitScript } from "@/components/ThemeInitScript";
+import { GoogleTagManagerNoscript } from "@/components/GoogleTagManagerNoscript";
 
 const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-rubik",
-  display: "swap",
+  display: "optional",
   adjustFontFallback: true,
 });
-const notoSans = Noto_Sans({
-  subsets: ["latin"],
-  variable: "--font-noto-sans",
-  display: "swap",
-  adjustFontFallback: true,
-});
-const snellRoundhand = localFont({
-  src: "./fonts/snell-roundhand-regular.woff2",
-  variable: "--font-snell",
-  display: "swap",
-});
-
 export const generateStaticParams = () => {
   return routing.locales.map((locale) => ({ locale }));
 };
@@ -45,27 +34,23 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  setRequestLocale(locale);
+
   const publicShellMessages = await loadPublicShellMessages(locale);
-  const cookieStore = await cookies();
-  const themeCookie = cookieStore.get("ovation_theme")?.value;
-  const initialDarkClass = themeCookie === "dark" ? " dark" : "";
-  const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
     <html
       lang={locale}
-      className={`${rubik.variable} ${notoSans.variable} ${snellRoundhand.variable} h-dvh antialiased${initialDarkClass}`}
+      className={`${rubik.variable} h-dvh antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          nonce={nonce}
-          dangerouslySetInnerHTML={{ __html: THEME_INIT_SNIPPET }}
-        />
-      </head>
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
-        <NextIntlClientProvider messages={publicShellMessages}>
-          <NavigationProgress />
+        <GoogleTagManagerNoscript />
+        <ThemeInitScript />
+        <NextIntlClientProvider locale={locale} messages={publicShellMessages}>
+          <Suspense fallback={null}>
+            <NavigationProgress />
+          </Suspense>
           <AppProviders>{children}</AppProviders>
           <Toaster />
         </NextIntlClientProvider>

@@ -108,6 +108,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# ekstra sayfa} other {# ekstra sayfa}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Baskı için eklenen 1 boş sayfa dahildir.",
   "keepsakes__book_customizer__price_total": "Toplam",
+  "keepsakes__book_customizer__reserved_pages_hint": "Etkinlik bilgilerin ve markan için ayrılmış 4 sayfa içerir (kapaklar, giriş ve kapanış).",
+  "keepsakes__book_customizer__price_vat_note": "+ KDV ve kargo ödeme sırasında hesaplanır",
   "keepsakes__book_customizer__paper_section_title": "Kâğıt",
   "keepsakes__book_customizer__paper_section_description": "Kitabın için kâğıt yüzeyini seç.",
   "keepsakes__book_customizer__paper_placeholder": "Kâğıt seç",

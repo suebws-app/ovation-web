@@ -108,6 +108,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {추가 #페이지} other {추가 #페이지}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "인쇄용 빈 페이지 1장이 포함됩니다.",
   "keepsakes__book_customizer__price_total": "합계",
+  "keepsakes__book_customizer__reserved_pages_hint": "이벤트 정보와 브랜딩을 위해 예약된 4페이지가 포함됩니다 (표지, 소개 및 마무리).",
+  "keepsakes__book_customizer__price_vat_note": "+ 부가세 및 배송비는 결제 시 계산됩니다",
   "keepsakes__book_customizer__paper_section_title": "종이",
   "keepsakes__book_customizer__paper_section_description": "북의 종이 마감을 선택하세요.",
   "keepsakes__book_customizer__paper_placeholder": "종이 선택",

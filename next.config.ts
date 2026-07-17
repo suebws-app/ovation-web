@@ -65,6 +65,15 @@ const nextConfig: NextConfig = {
   allowedDevOrigins,
   experimental: {
     viewTransition: true,
+    inlineCss: true,
+    optimizePackageImports: [
+      "@ovation/ui",
+      "@ovation/icons",
+      "@ovation/illustrations",
+      "@vidstack/react",
+      "posthog-js",
+      "@tanstack/react-query",
+    ],
   },
   images: {
     formats: ["image/avif", "image/webp"],
@@ -96,9 +105,11 @@ export default hasSentryProject
       sourcemaps: canUploadSourceMaps
         ? { deleteSourcemapsAfterUpload: true }
         : { disable: true },
-      disableLogger: true,
       telemetry: false,
       widenClientFileUpload: true,
       tunnelRoute: "/monitoring",
+      bundleSizeOptimizations: {
+        excludeDebugStatements: true,
+      },
     })
   : baseConfig;

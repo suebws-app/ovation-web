@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { cn } from "@ovation/ui/utils/cn";
 import { RootMobileNav } from "./RootMobileNav";
+import { RootDesktopNav } from "./RootDesktopNav";
 import { LanguageSelect } from "@/components/LanguageSelect";
 
 export const RootHeader = ({ className }: { className?: string }) => {
@@ -18,9 +19,12 @@ export const RootHeader = ({ className }: { className?: string }) => {
       )}
     >
       <div className="mx-auto flex h-19 items-center justify-between px-6 lg:px-20">
-        <Link href={appRoutes.home}>
-          <Logo />
-        </Link>
+        <div className="flex items-center gap-8">
+          <Link href={appRoutes.home}>
+            <Logo />
+          </Link>
+          <RootDesktopNav />
+        </div>
 
         <div className="flex items-center gap-3">
           <span className="tablet:flex hidden">

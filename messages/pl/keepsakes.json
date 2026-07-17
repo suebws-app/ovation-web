@@ -108,6 +108,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# dodatkowa strona} few {# dodatkowe strony} many {# dodatkowych stron} other {# dodatkowe strony}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Zawiera 1 pustą stronę dodaną do druku.",
   "keepsakes__book_customizer__price_total": "Łącznie",
+  "keepsakes__book_customizer__reserved_pages_hint": "Zawiera 4 strony zarezerwowane na dane i branding Twojego wydarzenia (okładki, wstęp i zakończenie).",
+  "keepsakes__book_customizer__price_vat_note": "+ VAT i wysyłka naliczane przy płatności",
   "keepsakes__book_customizer__paper_section_title": "Papier",
   "keepsakes__book_customizer__paper_section_description": "Wybierz wykończenie papieru dla swojej księgi.",
   "keepsakes__book_customizer__paper_placeholder": "Wybierz papier",

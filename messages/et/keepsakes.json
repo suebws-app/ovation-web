@@ -108,6 +108,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# lisalehekülg} other {# lisalehekülge}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Sisaldab 1 tühja lehekülge, mis lisatud trükkimiseks.",
   "keepsakes__book_customizer__price_total": "Kokku",
+  "keepsakes__book_customizer__reserved_pages_hint": "Sisaldab 4 lehekülge, mis on reserveeritud teie sündmuse andmete ja brändingu jaoks (kaaned, sissejuhatus ja lõpetus).",
+  "keepsakes__book_customizer__price_vat_note": "+ käibemaks ja tarne arvutatakse kassas",
   "keepsakes__book_customizer__paper_section_title": "Paber",
   "keepsakes__book_customizer__paper_section_description": "Valige paberi viimistlus oma raamatule.",
   "keepsakes__book_customizer__paper_placeholder": "Valige paber",

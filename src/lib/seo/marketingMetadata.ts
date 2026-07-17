@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { buildLanguageAlternates, localizePath } from "./urls";
+import {
+  buildLanguageAlternates,
+  localizedAbsoluteUrl,
+  openGraphAlternateLocales,
+  openGraphLocale,
+} from "./urls";
 
 type PageMetadataProps = {
   params: Promise<{ locale: string }>;
@@ -19,12 +24,13 @@ const buildMetadataGenerator =
     const t = await getTranslations({ locale });
     const title = t(`seo__${page}__title`);
     const description = t(`seo__${page}__description`);
+    const canonicalUrl = localizedAbsoluteUrl(locale, path);
 
     return {
       title: absoluteTitle ? { absolute: title } : title,
       description,
       alternates: {
-        canonical: localizePath(locale, path),
+        canonical: canonicalUrl,
         languages: buildLanguageAlternates(path),
       },
       openGraph: {
@@ -32,7 +38,9 @@ const buildMetadataGenerator =
         siteName: "Ovation",
         title,
         description,
-        url: localizePath(locale, path),
+        url: canonicalUrl,
+        locale: openGraphLocale(locale),
+        alternateLocale: openGraphAlternateLocales(locale),
         images: [{ url: "/opengraph-image.png", width: 1600, height: 840 }],
       },
       twitter: {

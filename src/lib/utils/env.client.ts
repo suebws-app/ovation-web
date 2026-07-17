@@ -30,6 +30,10 @@ export const clientEnv = {
   POSTHOG_EXCLUDED_EMAILS:
     process.env.NEXT_PUBLIC_POSTHOG_EXCLUDED_EMAILS ?? "",
 
+  GTM_ID: process.env.NEXT_PUBLIC_GTM_ID ?? "",
+
+  COOKIEYES_ID: process.env.NEXT_PUBLIC_COOKIEYES_ID ?? "",
+
   LEGAL_ENTITY_NAME: process.env.NEXT_PUBLIC_LEGAL_ENTITY_NAME ?? "Ovation",
   LEGAL_ENTITY_ADDRESS:
     process.env.NEXT_PUBLIC_LEGAL_ENTITY_ADDRESS ?? "Peja, Kosovo",

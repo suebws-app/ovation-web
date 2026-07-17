@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { GoogleTagManagerNoscript } from "@/components/GoogleTagManagerNoscript";
 import "@/app/globals.css";
 
 export const metadata: Metadata = { robots: { index: false } };
@@ -23,6 +24,7 @@ const ComingSoonLayout = async ({
   return (
     <html lang="en" className={`${rubik.variable} antialiased`}>
       <body className="font-sans">
+        <GoogleTagManagerNoscript />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

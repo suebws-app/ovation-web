@@ -9,16 +9,19 @@ import {
   AccordionTrigger,
 } from "@ovation/ui/components/Accordion";
 import { Kicker } from "@ovation/ui/components/Kicker";
-import { clientEnv } from "@/lib/utils/env.client";
+import { Link } from "@/i18n/navigation";
+import { appRoutes } from "@/lib/routes";
 import { plansApi } from "@/lib/api/plans";
 import { JsonLd } from "@/components/JsonLd";
 import { faqPageSchema } from "@/lib/seo/schemas";
+import { STORAGE_EXTENSION_PLAN_CODE } from "../pricingIds";
+import { FAQAnswer } from "./FAQAnswer";
 
 const DRE_FALLBACK_PRICE = "€20";
 
 const fetchDrePrice = async (): Promise<string> => {
   try {
-    const plan = await plansApi.findByCode("storage_extension");
+    const plan = await plansApi.publicFindByCode(STORAGE_EXTENSION_PLAN_CODE);
     return plan.productVariables.regularPriceFormatted ?? DRE_FALLBACK_PRICE;
   } catch {
     return DRE_FALLBACK_PRICE;
@@ -27,10 +30,10 @@ const fetchDrePrice = async (): Promise<string> => {
 
 export const FAQSection = async () => {
   const t = await getTranslations();
-  const supportEmail = clientEnv.SUPPORT_EMAIL;
   const drePrice = await fetchDrePrice();
 
   const items = FAQ_ITEM_KEYS.map((k) => ({
+    answerKey: k.a,
     q: t(k.q),
     a: t(k.a, { drePrice }),
   }));
@@ -53,12 +56,12 @@ export const FAQSection = async () => {
             <p className="text-muted-foreground type-body-large mt-6 max-w-90 leading-relaxed">
               {t("marketing__faq__subtitle")}
             </p>
-            <a
-              href={`mailto:${supportEmail}`}
+            <Link
+              href={appRoutes.marketing.contact}
               className="text-foreground type-body-small mt-5 inline-flex items-center gap-2 font-semibold"
             >
-              {t("marketing__faq__email", { email: supportEmail })}
-            </a>
+              {t("marketing__faq__contact_cta")}
+            </Link>
           </div>
 
           <Accordion type="single" collapsible defaultValue="item-0">
@@ -68,7 +71,10 @@ export const FAQSection = async () => {
                   {item.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground type-body max-w-160 leading-relaxed">
-                  {item.a}
+                  <FAQAnswer
+                    answerKey={item.answerKey}
+                    dreFallbackPrice={drePrice}
+                  />
                 </AccordionContent>
               </AccordionItem>
             ))}

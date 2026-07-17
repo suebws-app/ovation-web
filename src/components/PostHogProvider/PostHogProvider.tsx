@@ -1,8 +1,7 @@
 "use client";
 
-import posthog from "posthog-js";
-import { PostHogProvider as PHProvider } from "posthog-js/react";
 import { clientEnv } from "@/lib/utils/env.client";
+import { DeferredPostHogLoader } from "./DeferredPostHogLoader";
 import { PostHogIdentify } from "./PostHogIdentify";
 
 export const PostHogProvider = ({
@@ -13,9 +12,10 @@ export const PostHogProvider = ({
   if (!clientEnv.POSTHOG_KEY) return <>{children}</>;
 
   return (
-    <PHProvider client={posthog}>
+    <>
+      <DeferredPostHogLoader />
       <PostHogIdentify />
       {children}
-    </PHProvider>
+    </>
   );
 };

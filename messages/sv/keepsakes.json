@@ -108,6 +108,8 @@
   "keepsakes__book_customizer__price_pages_line": "{count, plural, one {# extra sida} other {# extra sidor}} × {perPage}",
   "keepsakes__book_customizer__price_blank_page_note": "Inkluderar 1 tom sida som lagts till för tryck.",
   "keepsakes__book_customizer__price_total": "Totalt",
+  "keepsakes__book_customizer__reserved_pages_hint": "Innehåller 4 sidor reserverade för dina eventuppgifter och din branding (omslag, intro och avslutning).",
+  "keepsakes__book_customizer__price_vat_note": "+ moms och frakt beräknas i kassan",
   "keepsakes__book_customizer__paper_section_title": "Papper",
   "keepsakes__book_customizer__paper_section_description": "Välj pappersytan för din bok.",
   "keepsakes__book_customizer__paper_placeholder": "Välj papper",

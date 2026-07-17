@@ -1,4 +1,7 @@
+import { use } from "react";
+import type { LocalePageProps } from "@/i18n/types";
 import { useTranslations } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import { LegalSection } from "../LegalSection";
 import { clientEnv } from "@/lib/utils/env.client";
 
@@ -11,7 +14,10 @@ const emailLink = (chunks: React.ReactNode) => (
   </a>
 );
 
-export const TermsPage = () => {
+export const TermsPage = ({ params }: LocalePageProps) => {
+  const { locale } = use(params);
+  setRequestLocale(locale);
+
   const t = useTranslations();
   const supportEmail = clientEnv.SUPPORT_EMAIL;
   const legalEntity = {
