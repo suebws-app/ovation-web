@@ -108,5 +108,8 @@ export default hasSentryProject
       telemetry: false,
       widenClientFileUpload: true,
       tunnelRoute: "/monitoring",
+      bundleSizeOptimizations: {
+        excludeDebugStatements: true,
+      },
     })
   : baseConfig;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { captureException } from "@sentry/nextjs";
+import { captureMonitoredException } from "@/lib/observability/sentry";
 import { NextIntlClientProvider, useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Button } from "@ovation/ui/components/Button";
@@ -83,7 +83,7 @@ const GlobalError = ({
   reset: () => void;
 }) => {
   useEffect(() => {
-    captureException(error);
+    captureMonitoredException(error);
   }, [error]);
 
   return (
