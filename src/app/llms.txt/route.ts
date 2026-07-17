@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 const buildLlmsTxt = (): string => `# Ovation
 
-> Ovation is an audio guest book for weddings. Guests scan a QR code to leave voice messages, photos, and written notes from any phone — no app to download. Couples keep every voice from their wedding day and can print the collection as the Gold Book, a linen-bound keepsake with transcripts, photos, and QR codes that play back each message.
+> Ovation is a wedding guest book couples can print. Guests scan a QR code to leave voice messages, photos, and written notes from any phone — no app to download. Couples keep every voice from their wedding day and can print the collection as the Gold Book, a linen-bound keepsake with transcripts, photos, and QR codes that play back each message.
 
 Key facts:
 
@@ -32,7 +32,7 @@ Key facts:
 ## Legal
 
 - [Privacy notice](${absoluteUrl("/legal/privacy")}): How Ovation collects, uses, and protects data — EU-hosted, GDPR-compliant, never sold, never used to train AI.
-- [Terms of service](${absoluteUrl("/legal/terms")}): Terms governing use of the audio guest book and keepsakes.
+- [Terms of service](${absoluteUrl("/legal/terms")}): Terms governing use of the guest book and keepsakes.
 - [Refund policy](${absoluteUrl("/legal/refunds")}): Refunds for digital plans and printed keepsakes.
 
 ## Optional

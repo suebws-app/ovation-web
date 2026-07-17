@@ -1,5 +1,3 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 import { Logo } from "@ovation/ui/components/Logo";
 import { cn } from "@ovation/ui/utils/cn";

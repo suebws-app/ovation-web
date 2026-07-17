@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useQueryClient } from "@tanstack/react-query";
 import { useSupportedCurrencies } from "@/lib/query/currencyQueries";
+import { queryKeys } from "@/lib/query/keys";
 import { useCurrency } from "@/i18n/useCurrency";
 import { buildCurrencyLabel } from "@/lib/utils/currency";
 import {
@@ -26,13 +28,16 @@ import { CurrencyOption } from "./CurrencyOption";
 
 type CurrencySelectClientProps = {
   initialCurrency: Currency;
+  reloadOnChange?: boolean;
 };
 
 export const CurrencySelectClient = ({
   initialCurrency,
+  reloadOnChange = true,
 }: CurrencySelectClientProps) => {
   const t = useTranslations();
   const locale = useLocale();
+  const queryClient = useQueryClient();
   const { currency, setCurrency } = useCurrency(initialCurrency);
   const { data } = useSupportedCurrencies();
   const [open, setOpen] = useState(false);
@@ -47,9 +52,12 @@ export const CurrencySelectClient = ({
     setOpen(false);
     if (code === currency) return;
     setCurrency(code);
-    if (typeof window !== "undefined") {
+    if (reloadOnChange) {
       window.location.reload();
+      return;
     }
+    queryClient.invalidateQueries({ queryKey: queryKeys.plans.all() });
+    queryClient.invalidateQueries({ queryKey: queryKeys.keepsakes.all() });
   };
 
   return (

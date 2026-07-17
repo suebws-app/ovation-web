@@ -5,14 +5,16 @@ import { Button } from "@ovation/ui/components/Button";
 import { FeatureListItem } from "@ovation/ui/components/FeatureListItem";
 import { Link } from "@/i18n/navigation";
 import type { Tier } from "./constants";
+import { PlanPrice } from "./PlanPrice";
 
-type PricingCardProps = Omit<Tier, "key" | "planCode">;
+type PricingCardProps = Omit<Tier, "key">;
 
 export const PricingCard = ({
   highlighted,
   tagKey,
   nameKey,
   price,
+  planCode,
   perKey,
   descKey,
   ctaKey,
@@ -42,7 +44,11 @@ export const PricingCard = ({
 
       <div className="mt-3 flex items-end gap-1.5">
         <span className="type-h0 leading-none font-semibold tracking-tight">
-          {price}
+          {planCode ? (
+            <PlanPrice planCode={planCode} fallbackPrice={price} />
+          ) : (
+            price
+          )}
         </span>
         <span className="text-muted-foreground type-body-small mb-2.5">
           {t(perKey)}

@@ -17,7 +17,11 @@ const StatItem = ({ value, label }: Stat) => (
   </div>
 );
 
-export const SampleSpread = () => {
+type SampleSpreadProps = {
+  titleAs?: "h1" | "h2";
+};
+
+export const SampleSpread = ({ titleAs = "h2" }: SampleSpreadProps) => {
   const t = useTranslations();
 
   const stats: Stat[] = [
@@ -43,7 +47,7 @@ export const SampleSpread = () => {
             <Kicker className="text-primary mb-4">
               {t("marketing__sample__eyebrow")}
             </Kicker>
-            <SectionTitle>
+            <SectionTitle as={titleAs}>
               {t("marketing__sample__title_start")}{" "}
               <span className="italic">
                 {t("marketing__sample__title_end")}

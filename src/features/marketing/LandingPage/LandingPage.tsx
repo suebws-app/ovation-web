@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { setRequestLocale } from "next-intl/server";
+import { AudioPlayerProvider } from "@ovation/ui/providers/AudioPlayerProvider";
 import { HeroSection } from "@/features/marketing/HeroSection";
 import { PricingTeaser } from "./PricingTeaser";
 import { keepsakesApi } from "@/lib/api/keepsakes";
@@ -76,7 +77,7 @@ export const LandingPage = async ({ params }: LocalePageProps) => {
   ]);
 
   return (
-    <>
+    <AudioPlayerProvider>
       <HeroSection />
       <HowItWorks />
       <SampleSpread />
@@ -84,6 +85,6 @@ export const LandingPage = async ({ params }: LocalePageProps) => {
       <PricingTeaser couplePrice={couplePrice} proPrice={proPrice} />
       <FAQSection />
       <FinalCTA />
-    </>
+    </AudioPlayerProvider>
   );
 };

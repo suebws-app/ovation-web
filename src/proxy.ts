@@ -53,6 +53,17 @@ const stripLocalePrefix = (pathname: string): string => {
   return pathname;
 };
 
+const getLocalePrefix = (pathname: string): string => {
+  const possibleLocale = pathname.split("/")[1];
+  if (
+    possibleLocale &&
+    (locales as readonly string[]).includes(possibleLocale)
+  ) {
+    return `/${possibleLocale}`;
+  }
+  return "";
+};
+
 const matchesPrefix = (pathname: string, prefixes: string[]): boolean =>
   prefixes.some(
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
@@ -132,6 +143,7 @@ export const proxy = async (request: NextRequest) => {
   }
 
   const pathnameWithoutLocale = stripLocalePrefix(pathname);
+  const localePrefix = getLocalePrefix(pathname);
 
   const isAuthenticated = Boolean(
     getSessionCookie(request, { cookiePrefix: "ovation" }),
@@ -148,13 +160,15 @@ export const proxy = async (request: NextRequest) => {
       isLegacyKeepsakeCustomizer) &&
     !isAuthenticated
   ) {
-    const loginUrl = new URL("/sign-in", request.url);
+    const loginUrl = new URL(`${localePrefix}/sign-in`, request.url);
     loginUrl.searchParams.set("redirect", pathname);
-    return Response.redirect(loginUrl);
+    return NextResponse.redirect(loginUrl, { status: 307 });
   }
 
   if (isAuthenticated && pathnameWithoutLocale === "/keepsakes") {
-    return Response.redirect(new URL("/shop", request.url));
+    return NextResponse.redirect(new URL(`${localePrefix}/shop`, request.url), {
+      status: 307,
+    });
   }
 
   if (pathnameWithoutLocale === "/settings") {
@@ -162,7 +176,7 @@ export const proxy = async (request: NextRequest) => {
     target.pathname = pathname.endsWith("/")
       ? `${pathname}profile`
       : `${pathname}/profile`;
-    return Response.redirect(target);
+    return NextResponse.redirect(target, { status: 308 });
   }
 
   const POST_AUTH_SIGNUP_STEPS = ["/verify", "/plans", "/checkout"];
@@ -177,7 +191,9 @@ export const proxy = async (request: NextRequest) => {
     !isPostAuthSignUpStep;
 
   if (isAuthenticated && (isHomepage || isMarketing || isAuthPage)) {
-    return Response.redirect(new URL("/home", request.url));
+    return NextResponse.redirect(new URL(`${localePrefix}/home`, request.url), {
+      status: 307,
+    });
   }
 
   const useStrictCsp =

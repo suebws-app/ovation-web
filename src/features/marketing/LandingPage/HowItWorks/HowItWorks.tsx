@@ -6,7 +6,11 @@ import { HowItWorksStep2 } from "./HowItWorksStep2";
 import { HowItWorksStep3 } from "./HowItWorksStep3";
 import { HowItWorksStep } from "./HowItWorksStep";
 
-export const HowItWorks = () => {
+type HowItWorksProps = {
+  titleAs?: "h1" | "h2";
+};
+
+export const HowItWorks = ({ titleAs = "h2" }: HowItWorksProps) => {
   const t = useTranslations();
 
   const steps = [
@@ -46,7 +50,7 @@ export const HowItWorks = () => {
             <Kicker className="text-primary mb-3">
               {t("marketing__how__eyebrow")}
             </Kicker>
-            <SectionTitle className="leading-tight">
+            <SectionTitle as={titleAs} className="leading-tight">
               {t("marketing__how__title_line1")}
               <br />
               <em className="text-primary">
