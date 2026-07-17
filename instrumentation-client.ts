@@ -5,10 +5,71 @@ import {
   captureRouterTransitionStart,
   lazyLoadIntegration,
 } from "@sentry/nextjs";
-import posthog from "posthog-js";
+import { locales } from "@/i18n/config";
 
 const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
 const isProduction = process.env.NODE_ENV === "production";
+
+const REPLAY_BLOCKED_EXACT = new Set([
+  "/",
+  "/about",
+  "/careers",
+  "/changelog",
+  "/contact",
+  "/for-planners",
+  "/gold-book",
+  "/how-it-works",
+  "/keepsakes",
+  "/pricing",
+  "/sample",
+  "/sustainability",
+  "/coming-soon",
+]);
+const REPLAY_BLOCKED_PREFIXES = [
+  "/legal",
+  "/sign-in",
+  "/sign-up",
+  "/forgot-password",
+  "/reset-password",
+];
+
+const stripLocalePrefix = (pathname: string): string => {
+  const [, first, ...rest] = pathname.split("/");
+  if (first && (locales as readonly string[]).includes(first)) {
+    return `/${rest.join("/")}`;
+  }
+  return pathname;
+};
+
+const shouldLoadReplay = (pathname: string): boolean => {
+  const path = stripLocalePrefix(pathname);
+  const normalized =
+    path !== "/" && path.endsWith("/") ? path.slice(0, -1) : path;
+  if (REPLAY_BLOCKED_EXACT.has(normalized)) return false;
+  return !REPLAY_BLOCKED_PREFIXES.some(
+    (prefix) => normalized === prefix || normalized.startsWith(`${prefix}/`),
+  );
+};
+
+let replayRequested = false;
+
+const maybeLoadReplay = (pathname: string) => {
+  if (!dsn || !isProduction || replayRequested) return;
+  if (!shouldLoadReplay(pathname)) return;
+  replayRequested = true;
+
+  const loadReplay = () => {
+    lazyLoadIntegration("replayIntegration")
+      .then((replayIntegration) => addIntegration(replayIntegration()))
+      .catch(() => {});
+  };
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(loadReplay, { timeout: 10_000 });
+  } else {
+    setTimeout(loadReplay, 5_000);
+  }
+};
 
 if (dsn) {
   init({
@@ -32,38 +93,13 @@ if (dsn) {
     ],
   });
 
-  if (isProduction) {
-    const loadReplay = () => {
-      lazyLoadIntegration("replayIntegration")
-        .then((replayIntegration) => addIntegration(replayIntegration()))
-        .catch(() => {});
-    };
-
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(loadReplay, { timeout: 10_000 });
-    } else {
-      setTimeout(loadReplay, 5_000);
-    }
-  }
+  maybeLoadReplay(window.location.pathname);
 }
 
-const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-
-if (posthogKey) {
-  posthog.init(posthogKey, {
-    api_host:
-      process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com",
-    defaults: "2025-05-24",
-    capture_pageleave: true,
-    autocapture: false,
-    disable_session_recording: true,
-    disable_surveys: true,
-    capture_dead_clicks: false,
-    capture_performance: false,
-    persistence: "memory",
-    person_profiles: "identified_only",
-    debug: !isProduction,
-  });
-}
-
-export const onRouterTransitionStart = captureRouterTransitionStart;
+export const onRouterTransitionStart: typeof captureRouterTransitionStart = (
+  href,
+  navigationType,
+) => {
+  maybeLoadReplay(new URL(href, window.location.origin).pathname);
+  return captureRouterTransitionStart(href, navigationType);
+};
