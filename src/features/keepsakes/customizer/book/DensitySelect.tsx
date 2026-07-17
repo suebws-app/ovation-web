@@ -10,7 +10,7 @@ import {
   type BookFormValues,
 } from "./BookFormContext";
 
-type Density = "spacious" | "balanced" | "compact";
+type Density = "spacious" | "balanced" | "asymmetrical";
 
 // Mini box previews (percent) hinting at each density's packing.
 const THUMBS: Record<
@@ -23,14 +23,14 @@ const THUMBS: Record<
     { x: 8, y: 52, w: 40, h: 40 },
     { x: 52, y: 52, w: 40, h: 40 },
   ],
-  compact: [
-    { x: 8, y: 8, w: 52, h: 84 },
-    { x: 64, y: 8, w: 28, h: 40 },
-    { x: 64, y: 52, w: 28, h: 40 },
+  asymmetrical: [
+    { x: 8, y: 8, w: 46, h: 50 },
+    { x: 60, y: 8, w: 32, h: 34 },
+    { x: 8, y: 64, w: 84, h: 28 },
   ],
 };
 
-const OPTIONS: Density[] = ["spacious", "balanced", "compact"];
+const OPTIONS: Density[] = ["spacious", "balanced", "asymmetrical"];
 
 type DensityTileProps = {
   value: Density;
@@ -89,10 +89,10 @@ export const DensitySelect = ({ binding }: DensitySelectProps) => {
     name: "interiorDensity",
   });
 
-  // Layflat only offers Spacious (full-bleed spreads); denser packing is hidden.
-  const options: Density[] = binding === "layflat" ? ["spacious"] : OPTIONS;
-
-  if (options.length <= 1) return null;
+  // Layflat offers Spacious (full-bleed spreads) and Asymmetrical (2-5 photos
+  // spread unevenly across the double-page canvas); Balanced is single-page only.
+  const options: Density[] =
+    binding === "layflat" ? ["spacious", "asymmetrical"] : OPTIONS;
 
   const selectDensity = (value: Density) =>
     setValue("interiorDensity", value, { shouldDirty: true });
@@ -102,7 +102,11 @@ export const DensitySelect = ({ binding }: DensitySelectProps) => {
       title={t("keepsakes__book_customizer__density_section_title")}
       description={t("keepsakes__book_customizer__density_section_description")}
     >
-      <div className="grid grid-cols-3 gap-2">
+      <div
+        className={`grid gap-2 ${
+          options.length === 2 ? "grid-cols-2" : "grid-cols-3"
+        }`}
+      >
         {options.map((value) => (
           <DensityTile
             key={value}

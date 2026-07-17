@@ -31,7 +31,7 @@ export const bookFormSchema = z.object({
   coverSlots: z.array(coverSlotSchema),
   coverBgColor: z.string(),
   coverTextColors: z.record(z.string(), z.string()),
-  interiorDensity: z.enum(["spacious", "balanced", "compact"]),
+  interiorDensity: z.enum(["spacious", "balanced", "asymmetrical"]),
 });
 
 export type BookFormValues = z.infer<typeof bookFormSchema>;
@@ -46,7 +46,7 @@ export type BookCustomization = {
   coverSlots: CoverSlot[];
   coverBgColor?: string;
   coverTextColors?: Record<string, string>;
-  interiorDensity?: "spacious" | "balanced" | "compact";
+  interiorDensity?: "spacious" | "balanced" | "asymmetrical";
 };
 
 export type BuildCustomizationOptions = {

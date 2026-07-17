@@ -1,15 +1,23 @@
 export const getBillablePages = (totalPages: number): number =>
   totalPages % 2 === 0 ? totalPages : totalPages + 1;
 
-export type InteriorDensity = "spacious" | "balanced" | "compact";
+export type InteriorDensity = "spacious" | "balanced" | "asymmetrical";
 
 // How many photos each layout unit consumes per density. MUST match the backend
-// (ovation-api photo-layouts.ts `PATTERNS`).
+// (ovation-api photo-layouts.ts `PATTERNS` / `patternFor`). Asymmetrical uses a
+// different pattern on layflat, where a unit is the double-page spread canvas.
 const DENSITY_PATTERNS: Record<InteriorDensity, number[]> = {
   spacious: [1],
   balanced: [1, 2],
-  compact: [3, 4, 2, 3],
+  asymmetrical: [4, 3, 5, 2],
 };
+
+const ASYM_SPREAD_PATTERN = [3, 2, 4, 5];
+
+const patternFor = (density: InteriorDensity, isLayflat: boolean): number[] =>
+  density === "asymmetrical" && isLayflat
+    ? ASYM_SPREAD_PATTERN
+    : DENSITY_PATTERNS[density];
 
 /**
  * Interior page count for a photo count at a density. Non-layflat = one page per
@@ -21,7 +29,7 @@ export const countInteriorPages = (
   density: InteriorDensity,
   isLayflat: boolean,
 ): number => {
-  const pattern = DENSITY_PATTERNS[density];
+  const pattern = patternFor(density, isLayflat);
   let units = 0;
   let i = 0;
   while (i < photoCount) {

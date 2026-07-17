@@ -159,7 +159,7 @@ export const CustomizerCheckoutForm = ({
         coverSlots?: Array<{ slotId: string; mediaId: string }>;
         coverBgColor?: string;
         coverTextColors?: Record<string, string>;
-        interiorDensity?: "spacious" | "balanced" | "compact";
+        interiorDensity?: "spacious" | "balanced" | "asymmetrical";
         pages?: Array<{ mediaId: string; order: number }>;
       };
       const { renderId } = await previewMutation.mutateAsync({

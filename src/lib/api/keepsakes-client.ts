@@ -35,7 +35,7 @@ export type KeepsakePreviewInput = {
     coverSlots?: { slotId: string; mediaId: string }[];
     coverBgColor?: string;
     coverTextColors?: Record<string, string>;
-    interiorDensity?: "spacious" | "balanced" | "compact";
+    interiorDensity?: "spacious" | "balanced" | "asymmetrical";
     showMessages?: boolean;
   };
 };
