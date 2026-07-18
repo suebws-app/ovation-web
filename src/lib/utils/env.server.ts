@@ -43,5 +43,9 @@ export const serverEnv = {
 
   REQUIRE_EMAIL_VERIFICATION: process.env.REQUIRE_EMAIL_VERIFICATION === "true",
 
+  // Shared secret for the /api/revalidate-blog route the API calls after
+  // publishing a blog article. Empty string disables the check (dev only).
+  BLOG_REVALIDATE_SECRET: process.env.BLOG_REVALIDATE_SECRET ?? "",
+
   IS_PRODUCTION: process.env.NODE_ENV === "production",
 } as const;

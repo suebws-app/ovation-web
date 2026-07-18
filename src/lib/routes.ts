@@ -9,6 +9,8 @@ export const appRoutes = {
     forPlanners: "/for-planners",
     sample: "/sample",
     changelog: "/changelog",
+    blog: "/blog",
+    blogArticle: (slug: string) => `/blog/${slug}`,
     about: "/about",
     careers: "/careers",
     sustainability: "/sustainability",

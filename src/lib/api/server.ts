@@ -88,3 +88,13 @@ export const apiFetchPaginated = async <T>(
   const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
   return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };
 };
+
+export const publicApiFetchPaginated = async <T>(
+  path: string,
+  options: ApiFetchOptions = {},
+): Promise<Paginated<T>> => {
+  const res = await runApiFetch(path, options, withPublicHeaders);
+  if (!res.ok) throw await parseError(res);
+  const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
+  return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };
+};

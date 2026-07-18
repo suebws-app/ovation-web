@@ -55,6 +55,10 @@ export const RootFooter = ({ className }: RootFooterProps) => {
           href: appRoutes.marketing.about,
         },
         {
+          label: t("common__footer__company_links__blog"),
+          href: appRoutes.marketing.blog,
+        },
+        {
           label: t("common__footer__company_links__careers"),
           href: appRoutes.marketing.careers,
         },
