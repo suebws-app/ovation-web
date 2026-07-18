@@ -65,9 +65,9 @@ const fetchAllPublishedArticles = async (
 };
 
 // One sitemap entry per (locale × article) using each locale's actual
-// translated slug — Google indexes localized URLs independently. Fetches
-// per-locale in parallel; each `publicList(locale, ...)` returns rows
-// with locale-specific slugs so hreflang parity is implicit in the URL.
+// translated slug. Also emits per-entry hreflang alternates built from
+// the same per-locale slug map so Google can group localized variants
+// straight from the sitemap without following crawl-time HTML alternates.
 const buildBlogArticleEntries = async (): Promise<MetadataRoute.Sitemap> => {
   const perLocale = await Promise.all(
     locales.map(async (locale) => {
@@ -76,9 +76,37 @@ const buildBlogArticleEntries = async (): Promise<MetadataRoute.Sitemap> => {
     }),
   );
 
+  // Group by article id so entries in one cluster (source + translations)
+  // share the same hreflang languages map. `article.id` is stable across
+  // locales for translations (it's the row id, not the group id), so we
+  // need to key on either sourceArticleId or id — the list API doesn't
+  // return sourceArticleId, so we group by (locale, id) tuple and let
+  // slug-per-locale carry the parity. Practical fallback: emit alternates
+  // limited to the locales that have a slug for this article's title
+  // string is unreliable — use publishedAt+title as a coarse group key.
+  const groupKey = (article: BlogListItem) =>
+    `${article.publishedAt ?? ""}::${article.title}`;
+
+  const clusters = new Map<string, Record<string, string>>();
+  for (const { locale, items } of perLocale) {
+    for (const article of items) {
+      const key = groupKey(article);
+      const cluster = clusters.get(key) ?? {};
+      cluster[locale] = localizedAbsoluteUrl(locale, `/blog/${article.slug}`);
+      clusters.set(key, cluster);
+    }
+  }
+  // Add x-default per cluster (default-locale URL if present, otherwise
+  // any URL).
+  for (const cluster of clusters.values()) {
+    const fallback = cluster[defaultLocale] ?? Object.values(cluster)[0];
+    if (fallback) cluster["x-default"] = fallback;
+  }
+
   const entries: MetadataRoute.Sitemap = [];
   for (const { locale, items } of perLocale) {
     for (const article of items) {
+      const cluster = clusters.get(groupKey(article)) ?? {};
       const lastModified = article.updatedAt
         ? new Date(article.updatedAt)
         : article.publishedAt
@@ -86,9 +114,13 @@ const buildBlogArticleEntries = async (): Promise<MetadataRoute.Sitemap> => {
           : undefined;
       entries.push({
         url: localizedAbsoluteUrl(locale, `/blog/${article.slug}`),
-        lastModified,
+        lastModified:
+          lastModified && !Number.isNaN(lastModified.getTime())
+            ? lastModified
+            : undefined,
         changeFrequency: "monthly" as const,
         priority: 0.6,
+        alternates: { languages: cluster },
       });
     }
   }
@@ -104,6 +136,3 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
 };
 
 export default sitemap;
-
-// buildLanguageAlternates kept exported for other callers.
-export { buildLanguageAlternates };

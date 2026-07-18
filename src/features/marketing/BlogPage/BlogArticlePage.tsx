@@ -62,10 +62,25 @@ const buildFaqJsonLd = (article: BlogArticle) => {
   };
 };
 
-// Word count off the source markdown — good enough for structured data and
-// cheap. Skipping code fences / markdown noise here is diminishing returns.
+// Word count off the source markdown, stripped of syntax so table pipes,
+// code fences, list markers, and image tags don't inflate the count that
+// lands in BlogPosting.wordCount.
+const stripMarkdown = (md: string): string =>
+  md
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`[^`]*`/g, " ")
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^\s*[-*+]\s+/gm, " ")
+    .replace(/^\s*\d+\.\s+/gm, " ")
+    .replace(/^\s*#+\s+/gm, " ")
+    .replace(/^\s*>+\s*/gm, " ")
+    .replace(/^\s*[-*_]{3,}\s*$/gm, " ")
+    .replace(/\|/g, " ")
+    .replace(/[*_~]/g, " ");
+
 const countWords = (markdown: string): number =>
-  markdown.split(/\s+/).filter(Boolean).length;
+  stripMarkdown(markdown).split(/\s+/).filter(Boolean).length;
 
 export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
   const { locale, slug } = await params;
