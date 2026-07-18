@@ -64,18 +64,35 @@ const fetchAllPublishedArticles = async (
   return all;
 };
 
+// One sitemap entry per (locale × article) using each locale's actual
+// translated slug — Google indexes localized URLs independently. Fetches
+// per-locale in parallel; each `publicList(locale, ...)` returns rows
+// with locale-specific slugs so hreflang parity is implicit in the URL.
 const buildBlogArticleEntries = async (): Promise<MetadataRoute.Sitemap> => {
-  const articles = await fetchAllPublishedArticles(defaultLocale);
-  return articles.map((article) => {
-    const path = `/blog/${article.slug}`;
-    return {
-      url: localizedAbsoluteUrl(defaultLocale, path),
-      lastModified: article.publishedAt ?? undefined,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-      alternates: { languages: buildLanguageAlternates(path) },
-    };
-  });
+  const perLocale = await Promise.all(
+    locales.map(async (locale) => {
+      const items = await fetchAllPublishedArticles(locale);
+      return { locale, items };
+    }),
+  );
+
+  const entries: MetadataRoute.Sitemap = [];
+  for (const { locale, items } of perLocale) {
+    for (const article of items) {
+      const lastModified = article.updatedAt
+        ? new Date(article.updatedAt)
+        : article.publishedAt
+          ? new Date(article.publishedAt)
+          : undefined;
+      entries.push({
+        url: localizedAbsoluteUrl(locale, `/blog/${article.slug}`),
+        lastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      });
+    }
+  }
+  return entries;
 };
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
@@ -87,3 +104,6 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
 };
 
 export default sitemap;
+
+// buildLanguageAlternates kept exported for other callers.
+export { buildLanguageAlternates };

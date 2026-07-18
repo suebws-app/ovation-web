@@ -42,6 +42,7 @@ export interface BlogListItem {
   metaTitle: string | null;
   metaDescription: string | null;
   publishedAt: string | null;
+  updatedAt: string;
 }
 
 const listCacheOptions: ApiFetchOptions = {

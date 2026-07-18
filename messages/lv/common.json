@@ -8,6 +8,7 @@
   "common__next": "Tālāk",
   "common__pagination__prev": "Previous page",
   "common__pagination__next": "Next page",
+  "common__pagination__page_of": "Page {current}",
   "common__done": "Pabeigts",
   "common__retry": "Mēģināt vēlreiz",
   "common__close": "Aizvērt",

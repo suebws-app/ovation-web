@@ -6,6 +6,25 @@ type FaqItem = {
   a: string;
 };
 
+type BlogPostingInput = {
+  url: string;
+  headline: string;
+  description: string | undefined;
+  imageUrl: string | null;
+  imageAlt: string;
+  datePublished: string | undefined;
+  dateModified: string;
+  locale: string;
+  wordCount: number;
+  readingMinutes: number;
+  keywords: string[];
+};
+
+type BreadcrumbCrumb = {
+  name: string;
+  url: string;
+};
+
 export const organizationSchema = () => ({
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -31,6 +50,16 @@ export const webSiteSchema = () => ({
   name: "Ovation",
   url: appUrl,
   publisher: { "@id": `${appUrl}/#organization` },
+  // Sitelinks searchbox eligibility. `search_term_string` is a schema.org
+  // convention Google reads to wire the SERP searchbox.
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${appUrl}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 });
 
 export const faqPageSchema = (items: FaqItem[]) => ({
@@ -43,5 +72,56 @@ export const faqPageSchema = (items: FaqItem[]) => ({
       "@type": "Answer",
       text: item.a,
     },
+  })),
+});
+
+// Minutes → ISO 8601 duration (PT5M). Google Rich Results validates this.
+const isoDuration = (minutes: number): string =>
+  `PT${Math.max(1, Math.round(minutes))}M`;
+
+export const blogPostingSchema = (input: BlogPostingInput) => ({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: input.headline,
+  description: input.description,
+  url: input.url,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": input.url,
+  },
+  inLanguage: input.locale,
+  image: input.imageUrl
+    ? {
+        "@type": "ImageObject",
+        url: input.imageUrl,
+        width: 1024,
+        height: 1024,
+        caption: input.imageAlt,
+      }
+    : undefined,
+  datePublished: input.datePublished,
+  dateModified: input.dateModified,
+  wordCount: input.wordCount,
+  timeRequired: isoDuration(input.readingMinutes),
+  keywords: input.keywords.filter(Boolean).join(", ") || undefined,
+  author: {
+    "@type": "Organization",
+    "@id": `${appUrl}/#organization`,
+    name: "Ovation Editorial",
+    url: `${appUrl}/about`,
+  },
+  publisher: { "@id": `${appUrl}/#organization` },
+  isPartOf: { "@id": `${appUrl}/#website` },
+});
+
+// Home › Blog › Article — required for breadcrumb rich results.
+export const breadcrumbListSchema = (items: BreadcrumbCrumb[]) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: item.url,
   })),
 });

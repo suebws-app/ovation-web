@@ -3,45 +3,90 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { ApiError } from "@/lib/api/client";
 import { blogApi, type BlogArticleAlternate } from "@/lib/api/blog";
-import { buildLanguageAlternates, localizedAbsoluteUrl } from "@/lib/seo/urls";
+import {
+  buildLanguageAlternates,
+  localizedAbsoluteUrl,
+  openGraphAlternateLocales,
+  openGraphLocale,
+} from "@/lib/seo/urls";
 import { defaultLocale } from "@/i18n/config";
 import type { LocalePageProps } from "@/i18n/types";
 
+// Always emits self-reference + x-default per Google's guidance, even when
+// this article has no translations yet. If the current article isn't in the
+// alternates payload (typical for single-locale rows), it's added.
 const buildArticleLanguageAlternates = (
+  currentLocale: string,
+  currentSlug: string,
   alternates: BlogArticleAlternate[],
-): Record<string, string> | undefined => {
-  if (alternates.length < 2) return undefined;
-  const languages = Object.fromEntries(
-    alternates.map((alt) => [
-      alt.locale,
-      localizedAbsoluteUrl(alt.locale, `/blog/${alt.slug}`),
-    ]),
+): Record<string, string> => {
+  const map = new Map<string, string>();
+  map.set(
+    currentLocale,
+    localizedAbsoluteUrl(currentLocale, `/blog/${currentSlug}`),
   );
-  const defaultVersion = alternates.find((alt) => alt.locale === defaultLocale);
-  if (defaultVersion) {
-    languages["x-default"] = localizedAbsoluteUrl(
-      defaultVersion.locale,
-      `/blog/${defaultVersion.slug}`,
-    );
+  for (const alt of alternates) {
+    map.set(alt.locale, localizedAbsoluteUrl(alt.locale, `/blog/${alt.slug}`));
   }
-  return languages;
+  const defaultAlt = map.get(defaultLocale);
+  if (defaultAlt) {
+    map.set("x-default", defaultAlt);
+  } else {
+    // Source article isn't in the default locale — fall back to the
+    // current URL as the x-default so Google always has one.
+    map.set("x-default", map.get(currentLocale)!);
+  }
+  return Object.fromEntries(map);
+};
+
+type BlogListMetadataProps = LocalePageProps & {
+  searchParams?: Promise<{ page?: string }>;
+};
+
+const parsePage = (raw: string | undefined): number => {
+  const n = Number(raw);
+  return Number.isInteger(n) && n >= 1 ? n : 1;
 };
 
 export const generateBlogListMetadata = async ({
   params,
-}: LocalePageProps): Promise<Metadata> => {
+  searchParams,
+}: BlogListMetadataProps): Promise<Metadata> => {
   const { locale } = await params;
+  const pageParams = searchParams ? await searchParams : { page: undefined };
+  const page = parsePage(pageParams.page);
   const t = await getTranslations({ locale });
-  const title = t("marketing__blog__list__meta_title");
+  const baseTitle = t("marketing__blog__list__meta_title");
   const description = t("marketing__blog__list__subtitle");
+  // Pages 2+ get a unique title so Google doesn't fold them under the root.
+  const title =
+    page === 1
+      ? baseTitle
+      : `${baseTitle} — ${t("common__pagination__page_of", { current: page })}`;
+  const canonicalPath = page === 1 ? "/blog" : `/blog?page=${page}`;
   return {
     title,
     description,
     alternates: {
-      canonical: localizedAbsoluteUrl(locale, "/blog"),
+      canonical: localizedAbsoluteUrl(locale, canonicalPath),
       languages: buildLanguageAlternates("/blog"),
     },
-    openGraph: { title, description, type: "website" },
+    // Pages 2+ are duplicate content risk — noindex but let Google follow
+    // internal links to article pages. Follow remains true.
+    robots: page === 1 ? undefined : { index: false, follow: true },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: localizedAbsoluteUrl(locale, canonicalPath),
+      locale: openGraphLocale(locale),
+      alternateLocale: openGraphAlternateLocales(locale),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 };
 
@@ -55,22 +100,45 @@ export const generateBlogArticleMetadata = async ({
   const { locale, slug } = await params;
   try {
     const { article, alternates } = await blogApi.publicGet(slug, locale);
+    const title = article.metaTitle ?? article.title;
+    const description = article.metaDescription ?? article.excerpt ?? undefined;
+    const canonical = localizedAbsoluteUrl(locale, `/blog/${slug}`);
     return {
-      title: article.metaTitle ?? article.title,
-      description: article.metaDescription ?? article.excerpt ?? undefined,
+      title,
+      description,
       alternates: {
-        canonical: localizedAbsoluteUrl(locale, `/blog/${slug}`),
-        languages: buildArticleLanguageAlternates(alternates ?? []),
+        canonical,
+        languages: buildArticleLanguageAlternates(
+          locale,
+          slug,
+          alternates ?? [],
+        ),
       },
       openGraph: {
-        title: article.metaTitle ?? article.title,
-        description: article.metaDescription ?? article.excerpt ?? undefined,
+        title,
+        description,
         type: "article",
+        url: canonical,
+        locale: openGraphLocale(locale),
+        alternateLocale: openGraphAlternateLocales(locale),
         images: article.coverImageUrl
-          ? [{ url: article.coverImageUrl }]
+          ? [
+              {
+                url: article.coverImageUrl,
+                width: 1024,
+                height: 1024,
+                alt: article.title,
+              },
+            ]
           : undefined,
         publishedTime: article.publishedAt ?? undefined,
         modifiedTime: article.updatedAt,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: article.coverImageUrl ? [article.coverImageUrl] : undefined,
       },
     };
   } catch (err) {

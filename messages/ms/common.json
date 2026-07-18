@@ -8,6 +8,7 @@
   "common__next": "Seterusnya",
   "common__pagination__prev": "Previous page",
   "common__pagination__next": "Next page",
+  "common__pagination__page_of": "Page {current}",
   "common__done": "Selesai",
   "common__retry": "Cuba lagi",
   "common__close": "Tutup",

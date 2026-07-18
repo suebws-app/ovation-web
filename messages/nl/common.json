@@ -8,6 +8,7 @@
   "common__next": "Volgende",
   "common__pagination__prev": "Previous page",
   "common__pagination__next": "Next page",
+  "common__pagination__page_of": "Page {current}",
   "common__done": "Klaar",
   "common__retry": "Probeer opnieuw",
   "common__close": "Sluiten",
