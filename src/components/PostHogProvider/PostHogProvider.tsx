@@ -1,7 +1,7 @@
 "use client";
 
 import { clientEnv } from "@/lib/utils/env.client";
-import { DeferredPostHogLoader } from "./DeferredPostHogLoader";
+import { ConsentListener } from "./ConsentListener";
 import { PostHogIdentify } from "./PostHogIdentify";
 
 export const PostHogProvider = ({
@@ -13,7 +13,7 @@ export const PostHogProvider = ({
 
   return (
     <>
-      <DeferredPostHogLoader />
+      <ConsentListener />
       <PostHogIdentify />
       {children}
     </>
