@@ -6,6 +6,8 @@
   "common__error": "Nešto je pošlo po zlu",
   "common__back": "Natrag",
   "common__next": "Sljedeće",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Gotovo",
   "common__retry": "Pokušaj ponovno",
   "common__close": "Zatvori",

@@ -98,3 +98,33 @@ export const publicApiFetchPaginated = async <T>(
   const json = await readJson<{ data: T[]; nextCursor: string | null }>(res);
   return { items: json?.data ?? [], nextCursor: json?.nextCursor ?? null };
 };
+
+export type PagedList<T> = {
+  items: T[];
+  page: number;
+  pageSize: number;
+  total: number;
+  totalPages: number;
+};
+
+export const publicApiFetchPaged = async <T>(
+  path: string,
+  options: ApiFetchOptions = {},
+): Promise<PagedList<T>> => {
+  const res = await runApiFetch(path, options, withPublicHeaders);
+  if (!res.ok) throw await parseError(res);
+  const json = await readJson<{
+    data: T[];
+    page: number;
+    pageSize: number;
+    total: number;
+    totalPages: number;
+  }>(res);
+  return {
+    items: json?.data ?? [],
+    page: json?.page ?? 1,
+    pageSize: json?.pageSize ?? 0,
+    total: json?.total ?? 0,
+    totalPages: json?.totalPages ?? 1,
+  };
+};

@@ -6,6 +6,8 @@
   "common__error": "Algo correu mal",
   "common__back": "Voltar",
   "common__next": "Seguinte",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Concluído",
   "common__retry": "Tentar novamente",
   "common__close": "Fechar",

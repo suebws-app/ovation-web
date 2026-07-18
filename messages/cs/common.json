@@ -6,6 +6,8 @@
   "common__error": "Něco se pokazilo",
   "common__back": "Zpět",
   "common__next": "Další",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Hotovo",
   "common__retry": "Zkusit znovu",
   "common__close": "Zavřít",

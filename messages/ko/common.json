@@ -6,6 +6,8 @@
   "common__error": "문제가 발생했습니다",
   "common__back": "뒤로",
   "common__next": "다음",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "완료",
   "common__retry": "다시 시도",
   "common__close": "닫기",

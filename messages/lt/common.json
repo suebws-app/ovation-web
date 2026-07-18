@@ -6,6 +6,8 @@
   "common__error": "Kažkas nepavyko",
   "common__back": "Atgal",
   "common__next": "Toliau",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Atlikta",
   "common__retry": "Pabandyti dar kartą",
   "common__close": "Uždaryti",

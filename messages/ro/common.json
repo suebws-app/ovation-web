@@ -6,6 +6,8 @@
   "common__error": "Ceva nu a mers bine",
   "common__back": "Înapoi",
   "common__next": "Următor",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Gata",
   "common__retry": "Încearcă din nou",
   "common__close": "Închide",

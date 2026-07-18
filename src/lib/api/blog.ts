@@ -1,4 +1,4 @@
-import { publicApiFetch, publicApiFetchPaginated } from "./server";
+import { publicApiFetch, publicApiFetchPaged } from "./server";
 import type { ApiFetchOptions } from "./client";
 
 export interface BlogArticle {
@@ -55,9 +55,9 @@ const articleCacheOptions: ApiFetchOptions = {
 };
 
 export const blogApi = {
-  publicList: (locale: string, cursor?: string) =>
-    publicApiFetchPaginated<BlogListItem>("/public/blog/articles", {
-      query: { locale, cursor, limit: 20 },
+  publicList: (locale: string, page = 1, limit = 10) =>
+    publicApiFetchPaged<BlogListItem>("/public/blog/articles", {
+      query: { locale, page, limit },
       ...listCacheOptions,
     }),
 

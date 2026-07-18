@@ -51,13 +51,15 @@ const fetchAllPublishedArticles = async (
   locale: string,
 ): Promise<BlogListItem[]> => {
   const all: BlogListItem[] = [];
-  let cursor: string | undefined;
-  for (let page = 0; page < 25; page++) {
-    const res = await blogApi.publicList(locale, cursor).catch(() => null);
-    if (!res) break;
+  const PAGE_LIMIT = 50;
+  const MAX_PAGES = 25;
+  for (let page = 1; page <= MAX_PAGES; page++) {
+    const res = await blogApi
+      .publicList(locale, page, PAGE_LIMIT)
+      .catch(() => null);
+    if (!res || res.items.length === 0) break;
     all.push(...res.items);
-    if (!res.nextCursor) break;
-    cursor = res.nextCursor;
+    if (page >= res.totalPages) break;
   }
   return all;
 };

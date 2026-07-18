@@ -6,6 +6,8 @@
   "common__error": "Midagi läks valesti",
   "common__back": "Tagasi",
   "common__next": "Edasi",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Valmis",
   "common__retry": "Proovi uuesti",
   "common__close": "Sulge",

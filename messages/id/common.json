@@ -6,6 +6,8 @@
   "common__error": "Terjadi kesalahan",
   "common__back": "Kembali",
   "common__next": "Berikutnya",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Selesai",
   "common__retry": "Coba lagi",
   "common__close": "Tutup",

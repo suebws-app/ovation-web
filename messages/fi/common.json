@@ -6,6 +6,8 @@
   "common__error": "Jokin meni pieleen",
   "common__back": "Takaisin",
   "common__next": "Seuraava",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Valmis",
   "common__retry": "Yritä uudelleen",
   "common__close": "Sulje",

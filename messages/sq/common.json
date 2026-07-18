@@ -6,6 +6,8 @@
   "common__error": "Diçka shkoi keq",
   "common__back": "Mbrapa",
   "common__next": "Tjetër",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "U krye",
   "common__retry": "Provo përsëri",
   "common__close": "Mbyll",

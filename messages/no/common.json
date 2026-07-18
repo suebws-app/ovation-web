@@ -6,6 +6,8 @@
   "common__error": "Noe gikk galt",
   "common__back": "Tilbake",
   "common__next": "Neste",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Ferdig",
   "common__retry": "Prøv igjen",
   "common__close": "Lukk",

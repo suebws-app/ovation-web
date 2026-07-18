@@ -6,6 +6,8 @@
   "common__error": "Щось пішло не так",
   "common__back": "Назад",
   "common__next": "Далі",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Готово",
   "common__retry": "Спробувати ще раз",
   "common__close": "Закрити",

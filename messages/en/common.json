@@ -6,6 +6,8 @@
   "common__error": "Something went wrong",
   "common__back": "Back",
   "common__next": "Next",
+  "common__pagination__prev": "Previous page",
+  "common__pagination__next": "Next page",
   "common__done": "Done",
   "common__retry": "Try again",
   "common__close": "Close",
