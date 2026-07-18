@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter, usePathname } from "@/i18n/navigation";
+import { usePathname, getPathname } from "@/i18n/navigation";
 import { locales, type Locale } from "@/i18n/config";
 import { formatNativeLanguageName } from "@/lib/utils/localeFormatters";
 import { setCookie } from "@/lib/utils/cookies";
@@ -26,7 +26,6 @@ const NEXT_LOCALE_COOKIE_MAX_AGE = 31536000;
 export const LanguageSelect = () => {
   const t = useTranslations();
   const locale = useLocale() as Locale;
-  const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -34,7 +33,11 @@ export const LanguageSelect = () => {
     setOpen(false);
     if (code === locale) return;
     setCookie("NEXT_LOCALE", code, { maxAge: NEXT_LOCALE_COOKIE_MAX_AGE });
-    router.replace(pathname, { locale: code });
+    // Full navigation bypasses the Next.js router cache so the destination
+    // locale's RSC payload is always fetched fresh — soft-nav via router.replace
+    // was returning stale content for statically-rendered marketing routes.
+    const nextUrl = getPathname({ href: pathname, locale: code });
+    window.location.assign(nextUrl);
   };
 
   return (
