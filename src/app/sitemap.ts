@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { defaultLocale, locales } from "@/i18n/config";
-import { localizedAbsoluteUrl } from "@/lib/seo/urls";
+import { buildLanguageAlternates, localizedAbsoluteUrl } from "@/lib/seo/urls";
+import { blogApi, type BlogListItem } from "@/lib/api/blog";
 
 type MarketingRoute = {
   path: string;
@@ -15,6 +16,7 @@ const MARKETING_ROUTES: MarketingRoute[] = [
   { path: "/gold-book", priority: 0.8 },
   { path: "/for-planners", priority: 0.8 },
   { path: "/sample", priority: 0.7 },
+  { path: "/blog", priority: 0.7 },
   { path: "/about", priority: 0.5 },
   { path: "/contact", priority: 0.5 },
   { path: "/careers", priority: 0.4 },
@@ -45,7 +47,41 @@ const buildRouteEntries = ({
   }));
 };
 
-const sitemap = (): MetadataRoute.Sitemap =>
-  MARKETING_ROUTES.flatMap(buildRouteEntries);
+const fetchAllPublishedArticles = async (
+  locale: string,
+): Promise<BlogListItem[]> => {
+  const all: BlogListItem[] = [];
+  let cursor: string | undefined;
+  for (let page = 0; page < 25; page++) {
+    const res = await blogApi.publicList(locale, cursor).catch(() => null);
+    if (!res) break;
+    all.push(...res.items);
+    if (!res.nextCursor) break;
+    cursor = res.nextCursor;
+  }
+  return all;
+};
+
+const buildBlogArticleEntries = async (): Promise<MetadataRoute.Sitemap> => {
+  const articles = await fetchAllPublishedArticles(defaultLocale);
+  return articles.map((article) => {
+    const path = `/blog/${article.slug}`;
+    return {
+      url: localizedAbsoluteUrl(defaultLocale, path),
+      lastModified: article.publishedAt ?? undefined,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: { languages: buildLanguageAlternates(path) },
+    };
+  });
+};
+
+const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+  const [routeEntries, articleEntries] = await Promise.all([
+    Promise.resolve(MARKETING_ROUTES.flatMap(buildRouteEntries)),
+    buildBlogArticleEntries(),
+  ]);
+  return [...routeEntries, ...articleEntries];
+};
 
 export default sitemap;
