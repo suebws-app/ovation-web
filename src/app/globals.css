@@ -644,18 +644,20 @@
     color: var(--color-foreground);
   }
 
-  & blockquote::before {
-    content: "\201C";
-    display: block;
-    font-size: 3rem;
-    line-height: 0.5;
-    font-style: normal;
-    color: var(--color-primary);
-    margin-bottom: 0.75rem;
-  }
-
   & blockquote p {
     font-size: inherit;
+  }
+
+  & blockquote p:first-of-type::before {
+    content: "\201C";
+    font-size: 2rem;
+    color: var(--color-primary);
+  }
+
+  & blockquote p:last-of-type::after {
+    content: "\201C";
+    font-size: 2rem;
+    color: var(--color-primary);
   }
 
   & code {
