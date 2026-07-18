@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { defaultLocale, locales } from "@/i18n/config";
-import { buildLanguageAlternates, localizedAbsoluteUrl } from "@/lib/seo/urls";
+import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 import { blogApi, type BlogListItem } from "@/lib/api/blog";
 
 type MarketingRoute = {
