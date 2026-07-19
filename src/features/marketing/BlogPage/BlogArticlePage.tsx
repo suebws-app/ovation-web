@@ -1,9 +1,12 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ApiError } from "@/lib/api/client";
 import { blogApi, type BlogArticle, type BlogListItem } from "@/lib/api/blog";
 import { JsonLd } from "@/components/JsonLd";
+import { blogPostingSchema, breadcrumbListSchema } from "@/lib/seo/schemas";
+import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 import { BlogReferenceLink } from "./BlogReferenceLink";
 import { BlogArticleMeta } from "./BlogArticleMeta";
 import { BlogReadingProgress } from "./BlogReadingProgress";
@@ -59,17 +62,25 @@ const buildFaqJsonLd = (article: BlogArticle) => {
   };
 };
 
-const buildArticleJsonLd = (article: BlogArticle) => ({
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: article.title,
-  description: article.metaDescription ?? article.excerpt ?? undefined,
-  image: article.coverImageUrl ?? undefined,
-  datePublished: article.publishedAt ?? undefined,
-  dateModified: article.updatedAt,
-  inLanguage: article.locale,
-  keywords: [article.primaryKeyword, ...article.secondaryKeywords].join(", "),
-});
+// Word count off the source markdown, stripped of syntax so table pipes,
+// code fences, list markers, and image tags don't inflate the count that
+// lands in BlogPosting.wordCount.
+const stripMarkdown = (md: string): string =>
+  md
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`[^`]*`/g, " ")
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^\s*[-*+]\s+/gm, " ")
+    .replace(/^\s*\d+\.\s+/gm, " ")
+    .replace(/^\s*#+\s+/gm, " ")
+    .replace(/^\s*>+\s*/gm, " ")
+    .replace(/^\s*[-*_]{3,}\s*$/gm, " ")
+    .replace(/\|/g, " ")
+    .replace(/[*_~]/g, " ");
+
+const countWords = (markdown: string): number =>
+  stripMarkdown(markdown).split(/\s+/).filter(Boolean).length;
 
 export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
   const { locale, slug } = await params;
@@ -90,10 +101,36 @@ export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
       })
     : null;
   const readingMinutes = estimateReadingMinutes(article.contentMarkdown);
+  const canonicalUrl = localizedAbsoluteUrl(locale, `/blog/${slug}`);
+
+  const blogPostingJsonLd = blogPostingSchema({
+    url: canonicalUrl,
+    headline: article.metaTitle ?? article.title,
+    description: article.metaDescription ?? article.excerpt ?? undefined,
+    imageUrl: article.coverImageUrl,
+    imageAlt: article.title,
+    datePublished: article.publishedAt ?? undefined,
+    dateModified: article.updatedAt,
+    locale: article.locale,
+    wordCount: countWords(article.contentMarkdown),
+    readingMinutes,
+    keywords: [article.primaryKeyword, ...article.secondaryKeywords],
+  });
+
+  // Home › Blog › Article — powers breadcrumb rich results in SERPs.
+  const breadcrumbJsonLd = breadcrumbListSchema([
+    { name: "Ovation", url: localizedAbsoluteUrl(locale, "/") },
+    {
+      name: t("marketing__blog__list__kicker"),
+      url: localizedAbsoluteUrl(locale, "/blog"),
+    },
+    { name: article.title, url: canonicalUrl },
+  ]);
 
   return (
     <>
-      <JsonLd data={buildArticleJsonLd(article)} />
+      <JsonLd data={blogPostingJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       {faqJsonLd ? <JsonLd data={faqJsonLd} /> : null}
 
       <BlogReadingProgress />
@@ -129,11 +166,16 @@ export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
 
         {article.coverImageUrl ? (
           <figure className="mx-auto mb-16 max-w-4xl px-6">
-            <img
-              src={article.coverImageUrl}
-              alt={article.title}
-              className="rounded-16 w-full object-cover"
-            />
+            <div className="rounded-16 relative aspect-video w-full overflow-hidden">
+              <Image
+                src={article.coverImageUrl}
+                alt={article.title}
+                fill
+                sizes="(min-width: 1024px) 896px, 100vw"
+                priority
+                className="object-cover"
+              />
+            </div>
           </figure>
         ) : (
           <div className="border-border mx-auto mb-16 max-w-4xl border-t px-6" />

@@ -8,6 +8,7 @@
   "common__next": "Avanti",
   "common__pagination__prev": "Previous page",
   "common__pagination__next": "Next page",
+  "common__pagination__page_of": "Page {current}",
   "common__done": "Fatto",
   "common__retry": "Riprova",
   "common__close": "Chiudi",

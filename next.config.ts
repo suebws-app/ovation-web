@@ -14,6 +14,7 @@ type RemotePattern = NonNullable<
 const remotePatterns: RemotePattern[] = [
   { protocol: "https", hostname: "lh3.googleusercontent.com" },
   { protocol: "https", hostname: "**.r2.cloudflarestorage.com" },
+  { protocol: "https", hostname: "**.r2.dev" },
 ];
 
 if (isDev) {

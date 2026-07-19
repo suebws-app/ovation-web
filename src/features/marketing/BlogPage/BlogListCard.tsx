@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import type { BlogListItem } from "@/lib/api/blog";
 
@@ -21,11 +22,15 @@ export const BlogListCard = ({ article, locale }: BlogListCardProps) => {
       className="border-border rounded-16 hover:border-primary group flex h-full flex-col overflow-hidden border transition"
     >
       {article.coverImageUrl ? (
-        <img
-          src={article.coverImageUrl}
-          alt={article.title}
-          className="aspect-video w-full object-cover"
-        />
+        <div className="relative aspect-video w-full overflow-hidden">
+          <Image
+            src={article.coverImageUrl}
+            alt={article.title}
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </div>
       ) : null}
       <div className="flex flex-1 flex-col gap-3 p-6">
         {article.category ? (

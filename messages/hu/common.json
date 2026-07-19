@@ -8,6 +8,7 @@
   "common__next": "Következő",
   "common__pagination__prev": "Previous page",
   "common__pagination__next": "Next page",
+  "common__pagination__page_of": "Page {current}",
   "common__done": "Kész",
   "common__retry": "Próbáld újra",
   "common__close": "Bezárás",

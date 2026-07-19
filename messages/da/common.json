@@ -8,6 +8,7 @@
   "common__next": "Næste",
   "common__pagination__prev": "Previous page",
   "common__pagination__next": "Next page",
+  "common__pagination__page_of": "Page {current}",
   "common__done": "Færdig",
   "common__retry": "Prøv igen",
   "common__close": "Luk",
