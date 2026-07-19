@@ -13,7 +13,12 @@ type RemotePattern = NonNullable<
 
 const remotePatterns: RemotePattern[] = [
   { protocol: "https", hostname: "lh3.googleusercontent.com" },
+  // Cloudflare R2 origins. `.cloudflarestorage.com` is the private/API
+  // hostname; `.r2.dev` is the public bucket hostname (pub-<hash>.r2.dev)
+  // used when serving blog covers and other public assets directly from
+  // R2 without a custom domain.
   { protocol: "https", hostname: "**.r2.cloudflarestorage.com" },
+  { protocol: "https", hostname: "**.r2.dev" },
 ];
 
 if (isDev) {
