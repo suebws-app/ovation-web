@@ -6,7 +6,8 @@ import { useTranslations } from "next-intl";
 import { useCoverTemplatesQuery } from "@/lib/query/coverTemplatesQueries";
 import { useInfiniteGallery } from "@/lib/query/galleryQueries";
 import { CoverTemplateTile } from "./CoverTemplateTile";
-import { CoverTemplatePreview, pickLayout } from "./CoverTemplatePreview";
+import { pickLayout } from "./CoverTemplatePreview";
+import { coupleNamesOf, formatWeddingDate } from "./coverTextValues";
 import { CoverColorPicker } from "./CoverColorPicker";
 import { CoverTextColorControls } from "./CoverTextColorControls";
 import { CoverSlotButton } from "./CoverSlotButton";
@@ -21,25 +22,6 @@ import type { CoverTextElement, Event } from "@/lib/api/types";
 type CoverDesignSelectorProps = {
   eventId: string | null;
   event?: Event | null;
-};
-
-const coupleNamesOf = (event?: Event | null): string | undefined => {
-  const a = event?.partnerAName?.trim();
-  const b = event?.partnerBName?.trim();
-  if (a && b) return `${a} & ${b}`;
-  return a || b || undefined;
-};
-
-const formatWeddingDate = (date?: string | null): string | undefined => {
-  if (!date) return undefined;
-  const parsed = new Date(`${date}T00:00:00Z`);
-  if (Number.isNaN(parsed.getTime())) return undefined;
-  return new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(parsed);
 };
 
 export const CoverDesignSelector = ({
@@ -165,7 +147,7 @@ export const CoverDesignSelector = ({
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex w-full flex-col gap-3">
       <div>
         <h3 className="type-body-small font-semibold">
           {t("keepsakes__book_customizer__cover_template_title")}
@@ -175,7 +157,7 @@ export const CoverDesignSelector = ({
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="tablet:grid-cols-4 small-desktop:grid-cols-5 grid grid-cols-3 gap-2">
         {templates.map((template) => (
           <CoverTemplateTile
             key={template.id}
@@ -189,17 +171,6 @@ export const CoverDesignSelector = ({
 
       {selected && (
         <div className="flex flex-col gap-2.5">
-          <div className="mx-auto w-2/3">
-            <CoverTemplatePreview
-              template={selected}
-              pageAspect={pageAspect}
-              texts={texts}
-              slotThumbs={slotThumbs}
-              coverBgColor={coverBgColor}
-              textColorOverrides={textColors}
-            />
-          </div>
-
           <CoverColorPicker
             label={t("keepsakes__book_customizer__cover_color_title")}
             description={t(

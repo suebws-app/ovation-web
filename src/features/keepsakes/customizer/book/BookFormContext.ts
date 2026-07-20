@@ -39,6 +39,8 @@ export type BookFormValues = z.infer<typeof bookFormSchema>;
 export type BookCustomization = {
   binding: BookBinding;
   variantId: string | null;
+  paperType: string;
+  sizeKey: string;
   pages: Array<{ mediaId: string; order: number }>;
   coverText?: string;
   dedication?: string;
@@ -65,6 +67,8 @@ export const buildCustomization = (
   return {
     binding,
     variantId: chosenVariant?.id ?? null,
+    paperType: values.paperType,
+    sizeKey: values.sizeKey,
     coverTemplateId: values.coverTemplateId,
     coverSlots: values.coverSlots,
     pages: values.photoIds.map((mediaId, index) => ({

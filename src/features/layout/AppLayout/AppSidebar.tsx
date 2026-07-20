@@ -163,7 +163,6 @@ const buildCoupleGroups = (
         label: t("sidebar__nav__guests"),
         href: appRoutes.app.guests,
         icon: UsersIcon,
-        badge: counts.guests > 0 ? counts.guests : undefined,
       },
       {
         label: t("sidebar__nav__invitees"),

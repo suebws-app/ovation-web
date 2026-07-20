@@ -12,6 +12,10 @@ const TILE_TEXTS: CoverTexts = {
   weddingDate: "Date",
 };
 
+// Uniform portrait aspect so every tile preview has the same height regardless
+// of each template's own aspect ratio.
+const TILE_ASPECT = 0.78;
+
 const mergeTexts = (texts?: CoverTexts): CoverTexts => {
   const merged: CoverTexts = { ...TILE_TEXTS };
   for (const [key, value] of Object.entries(texts ?? {})) {
@@ -41,7 +45,11 @@ export const CoverTemplateTile = ({
       selected ? "border-primary" : "hover:border-border border-transparent"
     }`}
   >
-    <CoverTemplatePreview template={template} texts={mergeTexts(texts)} />
+    <CoverTemplatePreview
+      template={template}
+      pageAspect={TILE_ASPECT}
+      texts={mergeTexts(texts)}
+    />
     <span className="type-caption text-center font-medium">
       {template.name}
     </span>

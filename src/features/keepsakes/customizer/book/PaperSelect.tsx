@@ -10,6 +10,7 @@ import {
   paperTypeLabelKeyFor,
   paperTypeOf,
 } from "../bookFacets";
+import { cheapestVariant, formatPrice } from "../../designTokens";
 import { CustomizerSection } from "../CustomizerSection";
 import { useBookForm } from "./BookFormContext";
 import { BookOptionSelect } from "./BookOptionSelect";
@@ -31,12 +32,19 @@ export const PaperSelect = ({ variants }: PaperSelectProps) => {
     () =>
       paperFacets.map((paperType) => {
         const labelKey = paperTypeLabelKeyFor(paperType);
-        return {
-          value: paperType,
-          label: labelKey ? t(labelKey) : paperType,
-        };
+        const baseLabel = labelKey ? t(labelKey) : paperType;
+        const cheapest = cheapestVariant(
+          variants.filter((v) => paperTypeOf(v) === paperType),
+        );
+        const label =
+          cheapest && cheapest.priceCents !== null
+            ? `${baseLabel} · ${t("keepsakes__book_customizer__from_price", {
+                price: formatPrice(cheapest.priceCents, cheapest.currency),
+              })}`
+            : baseLabel;
+        return { value: paperType, label };
       }),
-    [paperFacets, t],
+    [paperFacets, variants, t],
   );
 
   if (paperFacets.length === 0) return null;

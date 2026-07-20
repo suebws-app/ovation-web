@@ -6,7 +6,6 @@ import { eventsApi } from "@/lib/api/events";
 import { ApiError } from "@/lib/api/client";
 import { getCurrentUser } from "@/lib/auth/session";
 import { containerClassName } from "@/lib/utils/layoutClassNames";
-import { designFor } from "../designTokens";
 import { CustomizerHeader } from "./CustomizerHeader";
 import { BookCustomizer } from "./book/BookCustomizer";
 import { UnsupportedProductCard } from "./UnsupportedProductCard";
@@ -57,12 +56,11 @@ export const KeepsakeCustomizerPage = async ({
   if (!detail || !eventResult) notFound();
 
   const event = eventResult.event;
-  const design = designFor(detail.product.productType);
   const isPro = user?.accountType === "pro";
 
   return (
     <div className={containerClassName}>
-      <CustomizerHeader product={detail.product} design={design} />
+      <CustomizerHeader product={detail.product} />
       <KeepsakeCustomizerSwitch
         product={detail.product}
         variants={detail.variants}

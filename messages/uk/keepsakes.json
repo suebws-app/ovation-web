@@ -212,5 +212,21 @@
   "keepsakes__audio_picker__select_all": "Вибрати всі ({count})",
   "keepsakes__media_preview__title": "Перегляд медіа",
   "keepsakes__media_preview__description": "Повнорозмірний перегляд вибраного медіаелемента.",
-  "keepsakes__media_preview__close": "Закрити перегляд"
+  "keepsakes__media_preview__close": "Закрити перегляд",
+  "keepsakes__book_customizer__step__photos__label": "Photos",
+  "keepsakes__book_customizer__step__format__label": "Format",
+  "keepsakes__book_customizer__step__cover__label": "Cover",
+  "keepsakes__book_customizer__nav__next": "Next",
+  "keepsakes__book_customizer__nav__back": "Back",
+  "keepsakes__book_customizer__photos_required": "Щоб продовжити, виберіть принаймні одне фото.",
+  "keepsakes__book_customizer__step__checkout__label": "Checkout",
+  "keepsakes__book_customizer__summary_title": "Your book",
+  "keepsakes__book_customizer__summary_paper": "Paper",
+  "keepsakes__book_customizer__summary_size": "Size",
+  "keepsakes__book_customizer__summary_layout": "Layout",
+  "keepsakes__book_customizer__summary_photos": "Photos",
+  "keepsakes__book_customizer__summary_cover": "Cover",
+  "keepsakes__book_customizer__from_price": "from {price}",
+  "keepsakes__book_customizer__back_to_editing": "Back to editing",
+  "keepsakes__book_customizer__go_to_checkout": "Go to checkout"
 }

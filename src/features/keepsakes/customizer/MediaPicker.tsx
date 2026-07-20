@@ -260,7 +260,7 @@ const MediaPicker = ({
             <div
               ref={gridRef}
               key={source}
-              className={`mobile:grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-5 grid grid-cols-2 gap-2 transition-opacity ${
+              className={`mobile:grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-6 grid grid-cols-2 gap-2 transition-opacity ${
                 showRefreshing ? "opacity-60" : "opacity-100"
               }`}
             >

@@ -41,11 +41,11 @@ const DensityTile = ({ value, selected, onSelect }: DensityTileProps) => {
       type="button"
       onClick={() => onSelect(value)}
       aria-pressed={selected}
-      className={`rounded-12 relative flex flex-col gap-2 border-2 p-2.5 text-left transition-[border-color] duration-200 ${
+      className={`rounded-12 relative flex w-40 shrink-0 flex-col gap-2 border-2 p-2.5 text-left transition-[border-color] duration-200 ${
         selected ? "border-primary" : "hover:border-border border-transparent"
       }`}
     >
-      <span className="bg-muted/40 rounded-8 relative block aspect-square w-full">
+      <span className="bg-muted/40 rounded-8 relative block h-28 w-full">
         {THUMBS[value].map((b, i) => (
           <span
             key={i}
@@ -94,11 +94,7 @@ export const DensitySelect = () => {
       title={t("keepsakes__book_customizer__density_section_title")}
       description={t("keepsakes__book_customizer__density_section_description")}
     >
-      <div
-        className={`grid gap-2 ${
-          options.length === 2 ? "grid-cols-2" : "grid-cols-3"
-        }`}
-      >
+      <div className="flex flex-wrap gap-2">
         {options.map((value) => (
           <DensityTile
             key={value}

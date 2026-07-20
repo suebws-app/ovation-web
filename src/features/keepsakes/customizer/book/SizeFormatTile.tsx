@@ -1,6 +1,8 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
+import { formatPrice } from "../../designTokens";
 import type { SizeFacet } from "../bookFacets";
 
 const MAX_PX = 72;
@@ -18,6 +20,7 @@ export const SizeFormatTile = ({
   selected,
   onSelect,
 }: SizeFormatTileProps) => {
+  const t = useTranslations();
   const scale = MAX_PX / Math.max(facet.widthMm, facet.heightMm);
 
   return (
@@ -46,6 +49,13 @@ export const SizeFormatTile = ({
       <span className="type-caption text-muted-foreground leading-tight">
         {facet.widthMm}×{facet.heightMm} mm
       </span>
+      {facet.fromPriceCents !== null && (
+        <span className="type-caption text-foreground leading-tight font-semibold">
+          {t("keepsakes__book_customizer__from_price", {
+            price: formatPrice(facet.fromPriceCents, facet.currency),
+          })}
+        </span>
+      )}
       {selected && (
         <span className="bg-primary text-primary-foreground absolute top-2.5 right-2.5 flex size-5 items-center justify-center rounded-full">
           <CheckIcon width={12} height={12} />
