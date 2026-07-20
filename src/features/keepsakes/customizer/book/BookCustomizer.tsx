@@ -98,7 +98,7 @@ export const BookCustomizer = ({
             event={event}
             isPro={isPro}
           />
-          <DensitySelect binding={binding} />
+          <DensitySelect />
           <PersonalizeSection variants={variants} eventId={eventId} />
           <SpineNote binding={binding} />
         </div>

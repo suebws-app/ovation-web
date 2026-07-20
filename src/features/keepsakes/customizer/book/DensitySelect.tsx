@@ -4,11 +4,7 @@ import { useTranslations } from "next-intl";
 import { useWatch } from "react-hook-form";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { CustomizerSection } from "../CustomizerSection";
-import {
-  useBookForm,
-  type BookBinding,
-  type BookFormValues,
-} from "./BookFormContext";
+import { useBookForm, type BookFormValues } from "./BookFormContext";
 
 type Density = "spacious" | "balanced" | "asymmetrical";
 
@@ -78,21 +74,17 @@ const DensityTile = ({ value, selected, onSelect }: DensityTileProps) => {
   );
 };
 
-type DensitySelectProps = {
-  binding: BookBinding;
-};
-
-export const DensitySelect = ({ binding }: DensitySelectProps) => {
+export const DensitySelect = () => {
   const t = useTranslations();
   const { setValue } = useBookForm();
   const density = useWatch<BookFormValues, "interiorDensity">({
     name: "interiorDensity",
   });
 
-  // Layflat offers Spacious (full-bleed spreads) and Asymmetrical (2-5 photos
-  // spread unevenly across the double-page canvas); Balanced is single-page only.
-  const options: Density[] =
-    binding === "layflat" ? ["spacious", "asymmetrical"] : OPTIONS;
+  // All bindings (including layflat) offer all three densities: Spacious
+  // (full-bleed), Balanced (an even 1-2 photos per page in a symmetric grid),
+  // and Asymmetrical (photos spread unevenly).
+  const options: Density[] = OPTIONS;
 
   const selectDensity = (value: Density) =>
     setValue("interiorDensity", value, { shouldDirty: true });

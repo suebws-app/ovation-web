@@ -14,10 +14,15 @@ const DENSITY_PATTERNS: Record<InteriorDensity, number[]> = {
 
 const ASYM_SPREAD_PATTERN = [3, 2, 4, 5];
 
-const patternFor = (density: InteriorDensity, isLayflat: boolean): number[] =>
-  density === "asymmetrical" && isLayflat
-    ? ASYM_SPREAD_PATTERN
-    : DENSITY_PATTERNS[density];
+// Layflat balanced packs an even 1-2 photos per page (2-4 per spread). MUST
+// match the backend (photo-layouts.ts `BALANCED_SPREAD_PATTERN`).
+const BALANCED_SPREAD_PATTERN = [4, 3, 2];
+
+const patternFor = (density: InteriorDensity, isLayflat: boolean): number[] => {
+  if (isLayflat && density === "asymmetrical") return ASYM_SPREAD_PATTERN;
+  if (isLayflat && density === "balanced") return BALANCED_SPREAD_PATTERN;
+  return DENSITY_PATTERNS[density];
+};
 
 /**
  * Interior page count for a photo count at a density. Non-layflat = one page per
