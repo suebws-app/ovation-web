@@ -55,6 +55,10 @@ export const RootFooter = ({ className }: RootFooterProps) => {
           href: appRoutes.marketing.about,
         },
         {
+          label: t("common__footer__company_links__blog"),
+          href: appRoutes.marketing.blog,
+        },
+        {
           label: t("common__footer__company_links__careers"),
           href: appRoutes.marketing.careers,
         },
@@ -111,7 +115,6 @@ export const RootFooter = ({ className }: RootFooterProps) => {
 
         <div className="border-border text-muted-foreground flex flex-col items-center justify-between gap-4 border-t pt-6 text-xs md:flex-row">
           <div className="flex flex-col gap-1.5">
-            <div>{t("common__footer__seller_disclosure")}</div>
             <div>{t("common__footer__copyright")}</div>
           </div>
           <ThemeToggle />

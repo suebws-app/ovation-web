@@ -5,6 +5,29 @@ import { routing } from "./i18n/routing";
 import { locales } from "./i18n/config";
 import { serverEnv as env } from "./lib/utils/env.server";
 import { buildCsp } from "./lib/utils/csp";
+import {
+  REGION_CONSENT_COOKIE,
+  regionConsentModeFor,
+} from "./lib/analytics/region";
+
+const REGION_CONSENT_MAX_AGE_SECONDS = 60 * 60 * 24;
+
+const setRegionConsentCookie = (
+  request: NextRequest,
+  response: NextResponse,
+): void => {
+  const country =
+    request.headers.get("x-vercel-ip-country") ??
+    request.headers.get("cf-ipcountry") ??
+    request.headers.get("x-forwarded-country");
+  const mode = regionConsentModeFor(country);
+  response.cookies.set(REGION_CONSENT_COOKIE, mode, {
+    path: "/",
+    sameSite: "lax",
+    secure: env.IS_PRODUCTION,
+    maxAge: REGION_CONSENT_MAX_AGE_SECONDS,
+  });
+};
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -131,6 +154,7 @@ export const proxy = async (request: NextRequest) => {
   if (isComingSoonPage) {
     const response = NextResponse.next();
     response.headers.set("Content-Security-Policy", buildCsp());
+    setRegionConsentCookie(request, response);
     return response;
   }
 
@@ -212,6 +236,7 @@ export const proxy = async (request: NextRequest) => {
 
   const response = intlMiddleware(request as never) as NextResponse;
   response.headers.set("Content-Security-Policy", csp);
+  setRegionConsentCookie(request, response);
 
   if (
     !isPublicKioskRoute &&
