@@ -33,8 +33,10 @@ export const useBookStepNavigation = ({
   const stepIdx = BOOK_STEPS.indexOf(step);
   const isLastStep = stepIdx === BOOK_STEPS.length - 1;
 
-  // Advancing from Cover enters Checkout — blocked until the book is ready.
-  const nextDisabled = step === "cover" && !canCheckout;
+  // Photos → Cover needs the photo count within the book's min/max; Cover →
+  // Checkout needs full readiness. Both are covered by `canCheckout`
+  // (variant matched + pages within range + at least one photo).
+  const nextDisabled = (step === "photos" || step === "cover") && !canCheckout;
 
   const handleNext = async () => {
     if (step === "photos") {
@@ -45,11 +47,13 @@ export const useBookStepNavigation = ({
         setPhotosError(true);
         return;
       }
+      // Enough photos chosen but count outside the allowed page range.
+      if (!canCheckout) return;
     } else {
       const fields = STEP_FIELDS[step];
       if (fields.length > 0 && !(await methods.trigger(fields))) return;
+      if (step === "cover" && !canCheckout) return;
     }
-    if (step === "cover" && !canCheckout) return;
     setPhotosError(false);
     if (!isLastStep) setStep(BOOK_STEPS[stepIdx + 1]);
   };
