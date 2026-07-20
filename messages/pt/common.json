@@ -67,5 +67,6 @@
   "common__theme__dark": "Escuro",
   "common__theme__system": "Sistema",
   "common__footer__legal_links__terms": "Termos",
-  "common__footer__legal_links__refunds": "Reembolsos"
+  "common__footer__legal_links__refunds": "Reembolsos",
+  "common__load_more": "Load more"
 }

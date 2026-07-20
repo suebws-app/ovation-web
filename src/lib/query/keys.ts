@@ -78,6 +78,10 @@ export const queryKeys = {
     all: () => ["invitation-templates"] as const,
     list: () => ["invitation-templates", "list"] as const,
   },
+  coverTemplates: {
+    all: () => ["cover-templates"] as const,
+    list: () => ["cover-templates", "list"] as const,
+  },
   user: {
     me: () => ["user", "me"] as const,
   },

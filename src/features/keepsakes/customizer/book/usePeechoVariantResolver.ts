@@ -10,7 +10,11 @@ import {
 } from "../bookFacets";
 import { useGalleryCount } from "@/lib/query/galleryQueries";
 import type { BookFormValues } from "./BookFormContext";
-import { computeRenderedBookPages } from "@/lib/utils/billablePages";
+import {
+  computeRenderedBookPages,
+  countInteriorPages,
+  type InteriorDensity,
+} from "@/lib/utils/billablePages";
 import type { KeepsakeProductVariant } from "@/lib/api/types";
 import type { BookBinding } from "./BookFormContext";
 
@@ -41,12 +45,22 @@ export const usePeechoVariantResolver = (
   eventId: string | null = null,
   binding: BookBinding = "hardcover",
 ): PeechoVariantResolution => {
-  const [paperType, sizeKey, photoIds, photoSelectAll] = useWatch<
-    BookFormValues,
-    ["paperType", "sizeKey", "photoIds", "photoSelectAll"]
-  >({
-    name: ["paperType", "sizeKey", "photoIds", "photoSelectAll"],
-  });
+  const [paperType, sizeKey, photoIds, photoSelectAll, interiorDensity] =
+    useWatch<
+      BookFormValues,
+      ["paperType", "sizeKey", "photoIds", "photoSelectAll", "interiorDensity"]
+    >({
+      name: [
+        "paperType",
+        "sizeKey",
+        "photoIds",
+        "photoSelectAll",
+        "interiorDensity",
+      ],
+    });
+
+  const density: InteriorDensity =
+    (interiorDensity as InteriorDensity | undefined) ?? "spacious";
 
   const countQuery = useGalleryCount(eventId ?? "", {
     type: "photo",
@@ -85,16 +99,21 @@ export const usePeechoVariantResolver = (
       readBoolAttr(attributes, "supportsDedication") ?? true;
 
     const noVariantMatch = matchingVariants.length === 0;
-    const pagesWithinRange =
-      !noVariantMatch &&
-      (minPages === null || pageCount >= minPages) &&
-      (maxPages === null || pageCount <= maxPages);
 
     const isLayflat = binding === "layflat";
-    const photoPages = isLayflat ? pageCount * 2 : pageCount;
+    const photoPages = countInteriorPages(pageCount, density, isLayflat);
     const blankPageAdded = pageCount > 0 && (2 + photoPages) % 2 !== 0;
     const billablePages =
-      pageCount > 0 ? computeRenderedBookPages(pageCount, isLayflat) : 0;
+      pageCount > 0
+        ? computeRenderedBookPages(pageCount, isLayflat, density)
+        : 0;
+
+    // Peecho min/max are limits on the printed page count, so compare against
+    // the billable page total (which density changes), not the photo count.
+    const pagesWithinRange =
+      !noVariantMatch &&
+      (minPages === null || billablePages >= minPages) &&
+      (maxPages === null || billablePages <= maxPages);
     const chargeablePages = billablePages;
     const basePriceCents = chosenVariant?.priceCents ?? null;
     const pagesSurchargeCents = chargeablePages * pricePerPageCents;
@@ -122,5 +141,5 @@ export const usePeechoVariantResolver = (
       supportsCoverText,
       supportsDedication,
     };
-  }, [variants, paperType, sizeKey, pageCount, binding]);
+  }, [variants, paperType, sizeKey, pageCount, binding, density]);
 };

@@ -4,7 +4,7 @@ import { useCallback, useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { CustomizerSection } from "../CustomizerSection";
-import { MediaPicker } from "../MediaPicker";
+import MediaPicker from "../MediaPicker";
 import { useBookForm, type BookFormValues } from "./BookFormContext";
 import { usePeechoVariantResolver } from "./usePeechoVariantResolver";
 import type {
@@ -50,6 +50,26 @@ export const PageCountSection = ({
     [photoIds, setValue],
   );
 
+  const handlePhotosChange = useCallback(
+    (next: string[]) => {
+      setValue("photoIds", next, {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
+    },
+    [setValue],
+  );
+
+  const handleSelectAllChange = useCallback(
+    (next: PhotoSelectAll | null) => {
+      setValue("photoSelectAll", next, {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
+    },
+    [setValue],
+  );
+
   const photosBadge =
     minPages !== null && maxPages !== null
       ? t("keepsakes__book_customizer__photos_badge_range", {
@@ -87,19 +107,9 @@ export const PageCountSection = ({
             type="photo"
             selectedIds={photoIds}
             onToggle={togglePhoto}
-            onChange={(next) =>
-              setValue("photoIds", next, {
-                shouldDirty: true,
-                shouldValidate: true,
-              })
-            }
+            onChange={handlePhotosChange}
             selectAll={photoSelectAll ?? null}
-            onSelectAllChange={(next: PhotoSelectAll | null) =>
-              setValue("photoSelectAll", next, {
-                shouldDirty: true,
-                shouldValidate: true,
-              })
-            }
+            onSelectAllChange={handleSelectAllChange}
             emptyHint={t("keepsakes__book_customizer__photos_empty_hint")}
           />
         )}

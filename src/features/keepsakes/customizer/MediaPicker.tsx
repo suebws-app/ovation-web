@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { ApiError } from "@/lib/api/client";
@@ -43,7 +43,7 @@ const itemMatchesFilter = (
   }
 };
 
-export const MediaPicker = ({
+const MediaPicker = ({
   eventId,
   type,
   selectedIds,
@@ -260,7 +260,7 @@ export const MediaPicker = ({
             <div
               ref={gridRef}
               key={source}
-              className={`mobile:grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-5 grid grid-cols-2 gap-2 transition-opacity ${
+              className={`mobile:grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-6 grid grid-cols-2 gap-2 transition-opacity ${
                 showRefreshing ? "opacity-60" : "opacity-100"
               }`}
             >
@@ -323,3 +323,5 @@ export const MediaPicker = ({
     </div>
   );
 };
+
+export default memo(MediaPicker);

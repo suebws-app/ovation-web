@@ -1,15 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
-import { useWatch } from "react-hook-form";
-import { useTranslations } from "next-intl";
 import { CustomizerCheckoutForm } from "../CustomizerCheckoutForm";
-import {
-  buildCustomization,
-  type BookBinding,
-  type BookFormValues,
-} from "./BookFormContext";
-import { usePeechoVariantResolver } from "./usePeechoVariantResolver";
+import { type BookBinding } from "./BookFormContext";
+import { useBookCheckoutData } from "./useBookCheckoutData";
 import type {
   Event,
   KeepsakeProductDetail,
@@ -23,6 +16,9 @@ type BookCheckoutPanelProps = {
   event?: Event | null;
   binding: BookBinding;
   isPro: boolean;
+  hidePriceBreakdown?: boolean;
+  bare?: boolean;
+  onRegisterBuyNow?: (fn: (() => void) | null) => void;
 };
 
 export const BookCheckoutPanel = ({
@@ -32,106 +28,20 @@ export const BookCheckoutPanel = ({
   event,
   binding,
   isPro,
+  hidePriceBreakdown = false,
+  bare = false,
+  onRegisterBuyNow,
 }: BookCheckoutPanelProps) => {
-  const t = useTranslations();
   const {
-    chosenVariant,
-    pageCount,
-    billablePages,
-    blankPageAdded,
-    chargeablePages,
-    minPages,
-    maxPages,
-    pricePerPageCents,
-    pagesSurchargeCents,
-    pagesWithinRange,
-    noVariantMatch,
-    supportsCoverText,
-    supportsDedication,
-  } = usePeechoVariantResolver(variants, eventId, binding);
-
-  const [paperType, sizeKey, photoIds, photoSelectAll, coverText, dedication] =
-    useWatch<
-      BookFormValues,
-      [
-        "paperType",
-        "sizeKey",
-        "photoIds",
-        "photoSelectAll",
-        "coverText",
-        "dedication",
-      ]
-    >({
-      name: [
-        "paperType",
-        "sizeKey",
-        "photoIds",
-        "photoSelectAll",
-        "coverText",
-        "dedication",
-      ],
-    });
-
-  const basePriceCents = chosenVariant?.priceCents ?? 0;
-  const totalPriceCents = basePriceCents + pagesSurchargeCents;
-  const safePhotoIds = useMemo(() => photoIds ?? [], [photoIds]);
-
-  const customization = useMemo(
-    () =>
-      buildCustomization(
-        {
-          paperType: paperType ?? "",
-          sizeKey: sizeKey ?? "",
-          photoIds: safePhotoIds,
-          photoSelectAll: photoSelectAll ?? null,
-          coverText: coverText ?? "",
-          dedication: dedication ?? "",
-        },
-        chosenVariant,
-        binding,
-        { supportsCoverText, supportsDedication },
-      ),
-    [
-      paperType,
-      sizeKey,
-      safePhotoIds,
-      photoSelectAll,
-      coverText,
-      dedication,
-      chosenVariant,
-      binding,
-      supportsCoverText,
-      supportsDedication,
-    ],
-  );
-
-  const isReady =
-    Boolean(chosenVariant) &&
-    !noVariantMatch &&
-    pagesWithinRange &&
-    pageCount > 0;
-
-  const notReadyMessage = (() => {
-    if (noVariantMatch)
-      return t("keepsakes__book_customizer__no_variant_label");
-    if (!chosenVariant)
-      return t("keepsakes__book_customizer__not_ready_pick_size");
-    if (pageCount === 0)
-      return t("keepsakes__book_customizer__not_ready_no_photos");
-    if (minPages !== null && pageCount < minPages) {
-      return t("keepsakes__book_customizer__below_min_label", {
-        needed: minPages - pageCount,
-        min: minPages,
-      });
-    }
-    if (maxPages !== null && pageCount > maxPages) {
-      return t("keepsakes__book_customizer__above_max_label", {
-        extra: pageCount - maxPages,
-        max: maxPages,
-      });
-    }
-    return undefined;
-  })();
+    selectedVariant,
+    priceBreakdown,
+    unitPriceCents,
+    customization,
+    photoIds,
+    photoSelectAll,
+    isReady,
+    notReadyMessage,
+  } = useBookCheckoutData(variants, eventId, binding);
 
   return (
     <CustomizerCheckoutForm
@@ -139,22 +49,17 @@ export const BookCheckoutPanel = ({
       eventId={eventId}
       event={event}
       customization={customization}
-      photoIds={safePhotoIds}
-      photoSelectAll={photoSelectAll ?? null}
-      selectedVariant={chosenVariant}
+      photoIds={photoIds}
+      photoSelectAll={photoSelectAll}
+      selectedVariant={selectedVariant}
       isReady={isReady}
       notReadyMessage={notReadyMessage}
       showEventBadge={isPro}
-      unitPriceCents={totalPriceCents}
-      priceBreakdown={{
-        baseCents: basePriceCents,
-        pageCount: billablePages,
-        chargeablePages,
-        pricePerPageCents,
-        pagesSurchargeCents,
-        totalCents: totalPriceCents,
-        blankPageAdded,
-      }}
+      unitPriceCents={unitPriceCents}
+      priceBreakdown={priceBreakdown}
+      hidePriceBreakdown={hidePriceBreakdown}
+      bare={bare}
+      onRegisterBuyNow={onRegisterBuyNow}
     />
   );
 };

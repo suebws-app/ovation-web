@@ -13,7 +13,7 @@ import { ApiError } from "@/lib/api/client";
 import { formatPrice } from "../designTokens";
 import { useCreateKeepsakePreview } from "@/lib/query/pdfQueries";
 import { PreviewPdfModal } from "./PreviewPdfModal";
-import { InfoHint } from "./InfoHint";
+import { BookPriceBreakdown } from "./book/BookPriceBreakdown";
 import type { BindType } from "@/lib/api/keepsakes-client";
 import type {
   Event,
@@ -47,17 +47,9 @@ type CustomizerCheckoutFormProps = {
   showEventBadge?: boolean;
   unitPriceCents?: number;
   priceBreakdown?: PriceBreakdown;
-};
-
-const formatPricePrecise = (priceCents: number, currency: string): string => {
-  try {
-    return new Intl.NumberFormat(undefined, {
-      style: "currency",
-      currency,
-    }).format(priceCents / 100);
-  } catch {
-    return `${(priceCents / 100).toFixed(2)} ${currency}`;
-  }
+  hidePriceBreakdown?: boolean;
+  bare?: boolean;
+  onRegisterBuyNow?: (fn: (() => void) | null) => void;
 };
 
 const eventDisplayName = (event: Event, fallback: string): string => {
@@ -82,6 +74,9 @@ export const CustomizerCheckoutForm = ({
   showEventBadge = true,
   unitPriceCents,
   priceBreakdown,
+  hidePriceBreakdown = false,
+  bare = false,
+  onRegisterBuyNow,
 }: CustomizerCheckoutFormProps) => {
   const t = useTranslations();
   const router = useRouter();
@@ -110,6 +105,14 @@ export const CustomizerCheckoutForm = ({
     priceBreakdown.pageCount > 0,
   );
 
+  const coverSlotMediaIds = (
+    (customization as { coverSlots?: Array<{ mediaId: string }> }).coverSlots ??
+    []
+  ).map((slot) => slot.mediaId);
+
+  const withCoverSlots = (ids: string[]) =>
+    Array.from(new Set([...ids, ...coverSlotMediaIds]));
+
   const buildItem = (id: string) => ({
     eventId: id,
     productType: product.productType,
@@ -126,7 +129,7 @@ export const CustomizerCheckoutForm = ({
         ? { pageCount: priceBreakdown.pageCount }
         : {}),
     },
-    photoIds: photoSelectAll ? [] : (photoIds ?? []),
+    photoIds: withCoverSlots(photoSelectAll ? [] : (photoIds ?? [])),
     photoSelectAll: photoSelectAll ?? null,
     timelineDays: null,
     requiresShipping,
@@ -147,17 +150,27 @@ export const CustomizerCheckoutForm = ({
         dedication?: string;
         binding?: string;
         variantId?: string | null;
+        coverTemplateId?: string;
+        coverSlots?: Array<{ slotId: string; mediaId: string }>;
+        coverBgColor?: string;
+        coverTextColors?: Record<string, string>;
+        interiorDensity?: "spacious" | "balanced" | "asymmetrical";
         pages?: Array<{ mediaId: string; order: number }>;
       };
       const { renderId } = await previewMutation.mutateAsync({
         eventId,
         productType: product.productType as BindType,
         productVariantId: selectedVariant?.id,
-        photoIds: photoSelectAll ? [] : (photoIds ?? []),
+        photoIds: withCoverSlots(photoSelectAll ? [] : (photoIds ?? [])),
         photoSelectAll: photoSelectAll ?? undefined,
         customization: {
           coverTitle: bookCustomization.coverText,
           dedication: bookCustomization.dedication,
+          coverTemplateId: bookCustomization.coverTemplateId,
+          coverSlots: bookCustomization.coverSlots,
+          coverBgColor: bookCustomization.coverBgColor,
+          coverTextColors: bookCustomization.coverTextColors,
+          interiorDensity: bookCustomization.interiorDensity,
         },
       });
       setPreviewRenderId(renderId);
@@ -178,8 +191,19 @@ export const CustomizerCheckoutForm = ({
     router.push(`${appRoutes.app.cart}?buyNow=1`);
   };
 
+  useEffect(() => {
+    onRegisterBuyNow?.(handleBuyNow);
+    return () => onRegisterBuyNow?.(null);
+  });
+
   return (
-    <div className="rounded-20 border-border bg-card desktop:sticky desktop:top-6 flex flex-col gap-5 self-start border p-6">
+    <div
+      className={
+        bare
+          ? "flex flex-col gap-5"
+          : "rounded-20 border-border bg-card desktop:sticky desktop:top-6 flex flex-col gap-5 self-start border p-6"
+      }
+    >
       {event && showEventBadge && (
         <div className="rounded-12 border-border bg-muted/30 flex items-center justify-between gap-3 border px-3 py-2.5">
           <div className="flex min-w-0 flex-col gap-0.5">
@@ -233,59 +257,12 @@ export const CustomizerCheckoutForm = ({
           </Link>
         </div>
       )}
-      {showBreakdown && priceBreakdown && (
-        <div className="rounded-12 border-border bg-muted/30 flex flex-col gap-1.5 border px-3 py-2.5">
-          <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
-            <span>
-              {t("keepsakes__book_customizer__price_base", {
-                name: t(product.name),
-                count: 0,
-              })}
-            </span>
-            <span>
-              {formatPricePrecise(priceBreakdown.baseCents, productCurrency)}
-            </span>
-          </div>
-          {priceBreakdown.chargeablePages > 0 && (
-            <div className="type-body-small text-muted-foreground flex items-center justify-between gap-2">
-              <span className="inline-flex items-center gap-1">
-                {t("keepsakes__book_customizer__price_pages_line", {
-                  count: priceBreakdown.chargeablePages,
-                  perPage: formatPricePrecise(
-                    priceBreakdown.pricePerPageCents,
-                    productCurrency,
-                  ),
-                })}
-                <InfoHint
-                  label={t("keepsakes__book_customizer__reserved_pages_hint")}
-                />
-              </span>
-              <span>
-                {formatPricePrecise(
-                  priceBreakdown.pagesSurchargeCents,
-                  productCurrency,
-                )}
-              </span>
-            </div>
-          )}
-          <p
-            aria-hidden={!priceBreakdown.blankPageAdded}
-            className={`type-caption text-muted-foreground ${
-              priceBreakdown.blankPageAdded ? "" : "invisible"
-            }`}
-          >
-            {t("keepsakes__book_customizer__price_blank_page_note")}
-          </p>
-          <div className="border-border type-body-small mt-1 flex items-center justify-between gap-2 border-t pt-1.5 font-semibold">
-            <span>{t("keepsakes__book_customizer__price_total")}</span>
-            <span>
-              {formatPricePrecise(priceBreakdown.totalCents, productCurrency)}
-            </span>
-          </div>
-          <p className="type-caption text-muted-foreground">
-            {t("keepsakes__book_customizer__price_vat_note")}
-          </p>
-        </div>
+      {!hidePriceBreakdown && showBreakdown && priceBreakdown && (
+        <BookPriceBreakdown
+          priceBreakdown={priceBreakdown}
+          currency={productCurrency}
+          productName={t(product.name)}
+        />
       )}
       <div className="flex flex-col gap-2.5">
         <Button

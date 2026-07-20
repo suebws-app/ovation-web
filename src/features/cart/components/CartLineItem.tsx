@@ -10,6 +10,7 @@ import { formatVariantName } from "@/lib/utils/formatVariantName";
 import { useCartStore, type CartItem } from "../store/useCartStore";
 import { QuantityStepper } from "./QuantityStepper";
 import { CartLineItemArt } from "./CartLineItemArt";
+import { CartLineItemBookDetails } from "./CartLineItemBookDetails";
 
 type CartLineItemProps = {
   item: CartItem;
@@ -57,6 +58,14 @@ export const CartLineItem = ({
               .join(" · ")}
           </div>
         )}
+        <CartLineItemBookDetails
+          productType={item.productType}
+          customization={item.customization}
+          photoCount={
+            (item.customization as { pages?: unknown[] }).pages?.length ??
+            item.photoIds.length
+          }
+        />
         <div className="mt-3.5 flex flex-wrap items-center gap-4">
           {shipsLabel && (
             <span className="type-caption text-muted-foreground inline-flex items-center gap-1.5">

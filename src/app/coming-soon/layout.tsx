@@ -10,7 +10,7 @@ export const metadata: Metadata = { robots: { index: false } };
 const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-rubik",
-  display: "optional",
+  display: "swap",
   adjustFontFallback: true,
 });
 

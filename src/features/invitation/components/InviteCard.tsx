@@ -3,6 +3,14 @@
 import { cn } from "@ovation/ui/utils/cn";
 import type { InvitationTemplate } from "@/lib/api/types";
 import { resolveFontStack } from "../invitationTemplates";
+import { useFitText } from "./useFitText";
+
+// Largest / smallest name font size (px) per card size. The name shrinks from
+// the max down toward the min so long couple names never exceed the card width.
+const NAME_FIT: Record<InviteCardSize, { max: number; min: number }> = {
+  compact: { max: 26, min: 12 },
+  large: { max: 56, min: 16 },
+};
 
 type InviteCardValues = {
   partnerA: string;
@@ -178,12 +186,23 @@ export const InviteCard = ({
   const bodyFont = resolveFontStack(template.bodyFontKey);
   const s = SIZE_TOKENS[size];
 
+  const {
+    containerRef,
+    textRef: nameRef,
+    fontSize: nameFontSize,
+  } = useFitText<HTMLHeadingElement>({
+    maxPx: NAME_FIT[size].max,
+    minPx: NAME_FIT[size].min,
+    deps: [values.partnerA, values.partnerB, monogramAmp, size],
+  });
+
   return (
     <div
       className="relative flex h-full w-full flex-col items-center justify-center p-4 select-none"
       style={{ background: pageBg }}
     >
       <div
+        ref={containerRef}
         className={cn(
           "relative flex h-full w-full flex-col items-center justify-between gap-4 overflow-hidden",
           s.padding,
@@ -242,11 +261,12 @@ export const InviteCard = ({
           </span>
 
           <h2
-            className="px-2 leading-tight"
+            ref={nameRef}
+            className="px-2 leading-tight whitespace-nowrap"
             style={{
               fontFamily: displayFont,
               color: textColor,
-              fontSize: s.name,
+              fontSize: nameFontSize,
             }}
           >
             {values.partnerA || "Lila"}

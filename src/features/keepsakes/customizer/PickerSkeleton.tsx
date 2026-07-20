@@ -7,7 +7,7 @@ export const PickerSkeleton = ({ variant, count = 8 }: PickerSkeletonProps) => {
   const items = Array.from({ length: count }, (_, i) => i);
   if (variant === "tiles") {
     return (
-      <div className="mobile:grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-5 grid grid-cols-2 gap-2">
+      <div className="mobile:grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-6 grid grid-cols-2 gap-2">
         {items.map((i) => (
           <div
             key={i}

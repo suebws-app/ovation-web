@@ -47,6 +47,7 @@ export const DashboardPage = async () => {
     redirect(appRoutes.app.events);
   }
   const event = await getCurrentEvent();
+  const firstName = user.fullName?.trim().split(/\s+/)[0] ?? anonymous;
 
   const expiredModal = (
     <StorageExpiredModal
@@ -62,14 +63,13 @@ export const DashboardPage = async () => {
         {expiredModal}
         {dreReturnHandler}
         <div className={containerClassName}>
-          <DashboardEmpty />
+          <DashboardEmpty name={firstName} />
         </div>
       </DashboardBackGuard>
     );
   }
 
   if (!user.onboardingComplete) {
-    const firstName = user.fullName?.trim().split(/\s+/)[0] ?? anonymous;
     return (
       <DashboardBackGuard>
         {expiredModal}

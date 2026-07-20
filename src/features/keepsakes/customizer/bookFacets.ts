@@ -99,6 +99,8 @@ export type SizeFacet = {
   heightMm: number;
   orientation: Orientation;
   labelKey: string | null;
+  fromPriceCents: number | null;
+  currency: string;
 };
 
 export const buildSizeFacets = (
@@ -110,13 +112,27 @@ export const buildSizeFacets = (
     const h = readNumberAttr(variant.attributes, "pageHeightMm") ?? 0;
     if (w === 0 || h === 0) continue;
     const sizeKey = `${w}x${h}`;
-    if (map.has(sizeKey)) continue;
+    const price = variant.priceCents;
+    const existing = map.get(sizeKey);
+    if (existing) {
+      // Keep the cheapest variant's base price for this size.
+      if (
+        price !== null &&
+        (existing.fromPriceCents === null || price < existing.fromPriceCents)
+      ) {
+        existing.fromPriceCents = price;
+        existing.currency = variant.currency;
+      }
+      continue;
+    }
     map.set(sizeKey, {
       sizeKey,
       widthMm: w,
       heightMm: h,
       orientation: orientationOf(variant),
       labelKey: sizeLabelKeyFor(sizeKey),
+      fromPriceCents: price,
+      currency: variant.currency,
     });
   }
   return Array.from(map.values());

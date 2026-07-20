@@ -27,6 +27,64 @@ export type InvitationTemplatesResponse = {
   defaultTemplateId: string;
 };
 
+export type CoverTextSource =
+  | "coverTitle"
+  | "coverSubtitle"
+  | "dedication"
+  | "coupleNames"
+  | "weddingDate"
+  | { static: string };
+
+export type CoverImageElement = {
+  type: "image";
+  id: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  fit?: "cover" | "contain";
+  radius?: number;
+};
+
+export type CoverTextElement = {
+  type: "text";
+  id: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  source: CoverTextSource;
+  size: number;
+  color: string;
+  align?: "left" | "center" | "right";
+  weight?: number;
+  italic?: boolean;
+  letterSpacing?: number;
+  transform?: "none" | "uppercase";
+  font?: "serif" | "script";
+};
+
+export type CoverElement = CoverImageElement | CoverTextElement;
+
+export type CoverLayout = {
+  aspect: number;
+  art?: string;
+  color?: string;
+  pageColor?: string;
+  elements: CoverElement[];
+};
+
+export type CoverTemplate = {
+  id: string;
+  name: string;
+  layouts: CoverLayout[];
+};
+
+export type CoverTemplatesResponse = {
+  templates: CoverTemplate[];
+  defaultTemplateId: string;
+};
+
 export type PlanTier =
   | "premium"
   | "bundle"

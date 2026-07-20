@@ -27,7 +27,7 @@ export const AppLayout = ({
   return (
     <SidebarProvider>
       <AppSideBar user={user} events={events} />
-      <div className="flex w-full flex-1 flex-col overflow-hidden">
+      <div className="flex w-full flex-1 flex-col overflow-x-clip">
         <AppHeaderMobile />
         <AppHeader />
         <AppHeaderDesktop isPro={user.accountType === "pro"} />

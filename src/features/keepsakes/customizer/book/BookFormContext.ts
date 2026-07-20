@@ -4,6 +4,15 @@ import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 export type BookBinding = "hardcover" | "softcover" | "layflat";
 
+export const DEFAULT_COVER_TEMPLATE_ID = "ivory_classic";
+
+export const coverSlotSchema = z.object({
+  slotId: z.string(),
+  mediaId: z.string(),
+});
+
+export type CoverSlot = z.infer<typeof coverSlotSchema>;
+
 export const photoSelectAllSchema = z
   .object({
     filter: z.enum(["all", "favorites", "gold_book"]),
@@ -18,6 +27,11 @@ export const bookFormSchema = z.object({
   photoSelectAll: photoSelectAllSchema,
   coverText: z.string(),
   dedication: z.string(),
+  coverTemplateId: z.string().min(1),
+  coverSlots: z.array(coverSlotSchema),
+  coverBgColor: z.string(),
+  coverTextColors: z.record(z.string(), z.string()),
+  interiorDensity: z.enum(["spacious", "balanced", "asymmetrical"]),
 });
 
 export type BookFormValues = z.infer<typeof bookFormSchema>;
@@ -25,9 +39,16 @@ export type BookFormValues = z.infer<typeof bookFormSchema>;
 export type BookCustomization = {
   binding: BookBinding;
   variantId: string | null;
+  paperType: string;
+  sizeKey: string;
   pages: Array<{ mediaId: string; order: number }>;
   coverText?: string;
   dedication?: string;
+  coverTemplateId: string;
+  coverSlots: CoverSlot[];
+  coverBgColor?: string;
+  coverTextColors?: Record<string, string>;
+  interiorDensity?: "spacious" | "balanced" | "asymmetrical";
 };
 
 export type BuildCustomizationOptions = {
@@ -46,10 +67,19 @@ export const buildCustomization = (
   return {
     binding,
     variantId: chosenVariant?.id ?? null,
+    paperType: values.paperType,
+    sizeKey: values.sizeKey,
+    coverTemplateId: values.coverTemplateId,
+    coverSlots: values.coverSlots,
     pages: values.photoIds.map((mediaId, index) => ({
       mediaId,
       order: index,
     })),
+    ...(values.coverBgColor ? { coverBgColor: values.coverBgColor } : {}),
+    ...(values.coverTextColors && Object.keys(values.coverTextColors).length > 0
+      ? { coverTextColors: values.coverTextColors }
+      : {}),
+    interiorDensity: values.interiorDensity,
     ...(options.supportsCoverText && trimmedCoverText
       ? { coverText: trimmedCoverText }
       : {}),

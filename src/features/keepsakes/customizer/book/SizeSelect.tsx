@@ -1,31 +1,25 @@
 "use client";
 
-import { useMemo } from "react";
-import { Controller, useWatch } from "react-hook-form";
+import { useEffect, useMemo } from "react";
+import { useWatch } from "react-hook-form";
 import { useTranslations } from "next-intl";
-import { Label } from "@ovation/ui/components/Label";
-import {
-  buildSizeFacets,
-  ORIENTATION_LABEL_KEY,
-  paperTypeOf,
-} from "../bookFacets";
+import { buildSizeFacets, paperTypeOf, type SizeFacet } from "../bookFacets";
 import { CustomizerSection } from "../CustomizerSection";
 import { useBookForm, type BookFormValues } from "./BookFormContext";
-import { BookOptionSelect } from "./BookOptionSelect";
+import { SizeFormatTile } from "./SizeFormatTile";
 import type { KeepsakeProductVariant } from "@/lib/api/types";
 
 type SizeSelectProps = {
   variants: KeepsakeProductVariant[];
 };
 
-const SIZE_SELECT_ID = "book-size-select";
-
 export const SizeSelect = ({ variants }: SizeSelectProps) => {
   const t = useTranslations();
-  const { control } = useBookForm();
-  const paperType = useWatch<BookFormValues, "paperType">({
-    name: "paperType",
-  });
+  const { setValue } = useBookForm();
+  const [paperType, sizeKey] = useWatch<
+    BookFormValues,
+    ["paperType", "sizeKey"]
+  >({ name: ["paperType", "sizeKey"] });
 
   const sizeFacets = useMemo(() => {
     if (!paperType) return [];
@@ -34,52 +28,47 @@ export const SizeSelect = ({ variants }: SizeSelectProps) => {
     );
   }, [variants, paperType]);
 
-  const sizeOptions = useMemo(
-    () =>
-      sizeFacets.map((facet) => {
-        const sizeLabel = facet.labelKey
-          ? t(facet.labelKey)
-          : t("keepsakes__book_customizer__size_custom", {
-              width: facet.widthMm,
-              height: facet.heightMm,
-            });
-        const orientationLabel = t(ORIENTATION_LABEL_KEY[facet.orientation]);
-        return {
-          value: facet.sizeKey,
-          label: `${sizeLabel} · ${orientationLabel} (${facet.widthMm}×${facet.heightMm} mm)`,
-        };
-      }),
-    [sizeFacets, t],
-  );
+  const labelFor = (facet: SizeFacet): string =>
+    facet.labelKey
+      ? t(facet.labelKey)
+      : t("keepsakes__book_customizer__size_custom", {
+          width: facet.widthMm,
+          height: facet.heightMm,
+        });
 
-  const hasOptions = sizeOptions.length > 0;
-  const isDisabled = !paperType || sizeOptions.length <= 1;
+  const hasValidSelection = sizeFacets.some((f) => f.sizeKey === sizeKey);
+
+  useEffect(() => {
+    if (sizeFacets.length > 0 && !hasValidSelection) {
+      setValue("sizeKey", sizeFacets[0].sizeKey, { shouldDirty: true });
+    }
+  }, [sizeFacets, hasValidSelection, setValue]);
+
+  const selectSize = (nextSizeKey: string) =>
+    setValue("sizeKey", nextSizeKey, { shouldDirty: true });
 
   return (
     <CustomizerSection
       title={t("keepsakes__book_customizer__size_section_title")}
       description={t("keepsakes__book_customizer__size_section_description")}
     >
-      <div className="flex flex-col gap-2">
-        <Label htmlFor={SIZE_SELECT_ID}>
-          {t("keepsakes__book_customizer__size_section_title")}
-        </Label>
-        <Controller
-          control={control}
-          name="sizeKey"
-          render={({ field }) => (
-            <BookOptionSelect
-              id={SIZE_SELECT_ID}
-              value={field.value || undefined}
-              onValueChange={field.onChange}
-              options={sizeOptions}
-              placeholder={t("keepsakes__book_customizer__size_placeholder")}
-              disabled={isDisabled || !hasOptions}
-              emptyLabel={t("keepsakes__book_customizer__size_no_options")}
+      {sizeFacets.length === 0 ? (
+        <p className="type-caption text-muted-foreground">
+          {t("keepsakes__book_customizer__size_no_options")}
+        </p>
+      ) : (
+        <div className="flex flex-wrap gap-2">
+          {sizeFacets.map((facet) => (
+            <SizeFormatTile
+              key={facet.sizeKey}
+              facet={facet}
+              label={labelFor(facet)}
+              selected={facet.sizeKey === sizeKey}
+              onSelect={selectSize}
             />
-          )}
-        />
-      </div>
+          ))}
+        </div>
+      )}
     </CustomizerSection>
   );
 };
