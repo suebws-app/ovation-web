@@ -40,7 +40,7 @@ export const FeaturesGrid = ({ goldBookPrice }: FeaturesGridProps) => {
             title={t("marketing__features__lang_title", {
               count: TOTAL_LANGUAGE_COUNT,
             })}
-            titleClassName="type-h2 tablet:type-h1"
+            titleClassName="landing-h2 tablet:landing-h1"
             className="bg-destructive/10 md:col-span-2"
           >
             <div className="mt-2 mb-3 flex flex-wrap gap-2">
@@ -125,7 +125,7 @@ export const FeaturesGrid = ({ goldBookPrice }: FeaturesGridProps) => {
             kicker={t("marketing__features__planner_eyebrow")}
             kickerClassName="text-primary"
             title={t("marketing__features__planner_title_v2")}
-            titleClassName="type-h2 mb-3"
+            titleClassName="landing-h2 mb-3"
             className="bg-primary/10 md:col-span-4"
           >
             <p className="text-muted-foreground type-body-small">

@@ -40,10 +40,10 @@ export const PricingCard = ({
         {t(tagKey)}
       </span>
 
-      <p className="type-h1 mt-1.5 font-semibold">{t(nameKey)}</p>
+      <p className="landing-h2 mt-1.5">{t(nameKey)}</p>
 
       <div className="mt-3 flex items-end gap-1.5">
-        <span className="type-h0 leading-none font-semibold tracking-tight">
+        <span className="landing-h1 leading-none tracking-tight">
           {planCode ? (
             <PlanPrice planCode={planCode} fallbackPrice={price} />
           ) : (

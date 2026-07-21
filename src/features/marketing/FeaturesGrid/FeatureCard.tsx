@@ -26,9 +26,7 @@ export const FeatureCard = ({
     )}
   >
     <Kicker className={kickerClassName}>{kicker}</Kicker>
-    <h3 className={cn("type-h3 leading-tight font-semibold", titleClassName)}>
-      {title}
-    </h3>
+    <h3 className={cn("landing-h3 leading-tight", titleClassName)}>{title}</h3>
     {children}
   </Card>
 );

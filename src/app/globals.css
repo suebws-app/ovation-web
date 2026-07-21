@@ -7,6 +7,7 @@
   /* ── Fonts ──────────────────────────────────────────────── */
   --font-sans: var(--font-rubik), "Noto Sans", sans-serif;
   --font-serif: var(--font-rubik), "Noto Sans", sans-serif;
+  --font-cormorant: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
 
   /* ── Colors (semantic, via CSS vars) ────────────────────── */
   --color-background: var(--background);
@@ -408,6 +409,7 @@
     box-sizing: border-box;
     overflow-y: scroll;
     overflow-x: clip;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -523,6 +525,82 @@
   font-size: 1.125rem;
   line-height: 1.625rem;
   font-weight: 600;
+}
+
+/* ── Landing B typography (Cormorant Garamond) ─────────────── */
+
+@utility landing-hero {
+  font-family: var(--font-cormorant);
+  font-size: 4.5rem;
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+@utility landing-display {
+  font-family: var(--font-cormorant);
+  font-size: 3rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+@utility landing-h1 {
+  font-family: var(--font-cormorant);
+  font-size: 2.5rem;
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+}
+
+@utility landing-h2 {
+  font-family: var(--font-cormorant);
+  font-size: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+
+@utility landing-h3 {
+  font-family: var(--font-cormorant);
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  font-weight: 600;
+}
+
+@utility landing-h4 {
+  font-family: var(--font-cormorant);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+@utility landing-body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+@utility landing-body-large {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+@utility landing-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+@utility font-cormorant {
+  font-family: var(--font-cormorant);
 }
 
 /* ── Blog article prose ────────────────────────────────────── */

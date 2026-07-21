@@ -4,6 +4,9 @@
   "invitees__empty__title": "Zatím žádný seznam hostů",
   "invitees__empty__body": "Začni s pozvánkou a sestav si seznam hostů.",
   "invitees__empty__cta": "Otevřít průvodce pozvánkou",
+  "invitees__preview__cta": "Náhled",
+  "invitees__preview__title": "Náhled pozvánky",
+  "invitees__edit_card__cta": "Upravit kartu pozvánky",
   "invitees__import__cta": "Importovat",
   "invitees__import__title": "Import hostů",
   "invitees__import__description": "Vlož data z tabulky nebo nahraj CSV. Přiřaď sloupce k polím a před přidáním si je prohlédni.",
@@ -26,7 +29,7 @@
   "invitees__import__confirm": "Přidat {count, plural, one {# hosta} few {# hosty} other {# hostů}}",
   "invitees__import__submitting": "Přidávání…",
   "invitees__form__name_label": "Jméno",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "Marie",
   "invitees__form__email_label": "E-mail",
   "invitees__form__email_placeholder": "maria@example.com",
   "invitees__form__phone_label": "Telefon",
@@ -74,8 +77,5 @@
   "invitees__send_all__sending": "Odesílání…",
   "invitees__send_all__confirm": "Odeslat pozvánky {count, plural, one {# hostu} few {# hostům} other {# hostům}} nyní?",
   "invitees__send_all__success": "{queued} ve frontě, {skipped} přeskočeno (bez e-mailu).",
-  "invitees__send_all__error": "Pozvánky se nepodařilo zařadit do fronty. Zkus to znovu.",
-  "invitees__preview__cta": "Náhled",
-  "invitees__preview__title": "Náhled pozvánky",
-  "invitees__edit_card__cta": "Upravit kartu pozvánky"
+  "invitees__send_all__error": "Pozvánky se nepodařilo zařadit do fronty. Zkus to znovu."
 }

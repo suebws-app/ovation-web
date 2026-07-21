@@ -13,7 +13,7 @@ export const SectionTitle = ({
 }: SectionTitleProps) => (
   <Tag
     className={cn(
-      "type-h0 tablet:type-h0 leading-tight font-semibold tracking-tight",
+      "landing-h1 tablet:landing-display leading-tight tracking-tight",
       className,
     )}
   >

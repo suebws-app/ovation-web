@@ -73,7 +73,7 @@ export const SampleSpread = ({ titleAs = "h2" }: SampleSpreadProps) => {
               {t("marketing__sample__entry_label")}
             </p>
 
-            <blockquote className="type-h3 tablet:type-h2 leading-snug font-medium italic">
+            <blockquote className="landing-h3 tablet:landing-h2 leading-snug italic">
               {t("marketing__sample__quote")}
             </blockquote>
 

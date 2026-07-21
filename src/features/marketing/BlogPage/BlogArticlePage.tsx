@@ -151,7 +151,9 @@ export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
               {article.category}
             </span>
           ) : null}
-          <h1 className="type-h0 text-foreground">{article.title}</h1>
+          <h1 className="landing-h1 tablet:landing-display text-foreground">
+            {article.title}
+          </h1>
           {article.excerpt ? (
             <p className="text-muted-foreground type-body-large">
               {article.excerpt}
@@ -193,7 +195,7 @@ export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
 
           {article.externalReferences.length > 0 ? (
             <section className="border-border mt-16 border-t pt-12">
-              <h2 className="type-h3 text-foreground">
+              <h2 className="landing-h3 text-foreground">
                 {t("marketing__blog__article__further_reading")}
               </h2>
               <ul className="text-muted-foreground type-body mt-4 list-disc space-y-2 pl-6">
