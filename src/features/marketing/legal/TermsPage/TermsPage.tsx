@@ -94,7 +94,7 @@ export const TermsPage = ({ params }: LocalePageProps) => {
     <section>
       <div className="section-container-small">
         <div className="max-w-prose">
-          <h1 className="tablet:type-h0 text-foreground type-h1 font-semibold">
+          <h1 className="landing-h1 tablet:landing-display text-foreground">
             {t("marketing__terms__title")}
           </h1>
           <p className="text-muted-foreground type-body-small mt-2">

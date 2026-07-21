@@ -16,7 +16,7 @@ export const BlogRelatedArticles = ({
 
   return (
     <section className="mx-auto mt-24 max-w-5xl px-6">
-      <h2 className="type-h2 text-foreground">
+      <h2 className="landing-h2 text-foreground">
         {t("marketing__blog__article__related")}
       </h2>
       <ul className="tablet:grid-cols-2 desktop:grid-cols-3 mt-8 grid gap-8">

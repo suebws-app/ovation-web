@@ -17,12 +17,17 @@ const buttonVariants = cva(
         destructive: "bg-danger text-primary-foreground hover:bg-danger/90",
         outline:
           "ring-primary bg-card text-primary hover:bg-primary hover:text-primary-foreground ring-2 ring-inset",
+        pillPrimary:
+          "bg-primary text-primary-foreground shadow-primary/30 hover:bg-primary/95 shadow-lg hover:-translate-y-0.5",
+        pillGhost:
+          "text-foreground border-border hover:bg-warm-panel/40 border bg-transparent hover:-translate-y-0.5",
       },
       size: {
         default: "h-10 gap-2 px-4 text-sm",
         lg: "h-12 gap-2 px-6 text-base",
         sm: "h-8 gap-1 px-3 text-xs",
         icon: "size-10",
+        pill: "h-14 gap-2.5 rounded-full px-7.5 text-base",
       },
     },
     defaultVariants: {

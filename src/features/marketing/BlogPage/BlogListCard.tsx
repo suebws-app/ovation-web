@@ -36,7 +36,7 @@ export const BlogListCard = ({ article, locale }: BlogListCardProps) => {
         {article.category ? (
           <span className="type-overline text-primary">{article.category}</span>
         ) : null}
-        <h2 className="type-h3 text-foreground group-hover:text-primary transition">
+        <h2 className="landing-h3 text-foreground group-hover:text-primary transition">
           {article.title}
         </h2>
         {article.excerpt ? (

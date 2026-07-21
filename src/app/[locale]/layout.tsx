@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Rubik } from "next/font/google";
+import { Rubik, Cormorant_Garamond } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -16,6 +16,13 @@ const rubik = Rubik({
   variable: "--font-rubik",
   display: "optional",
   adjustFontFallback: true,
+});
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
 });
 export const generateStaticParams = () => {
   return routing.locales.map((locale) => ({ locale }));
@@ -41,7 +48,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${rubik.variable} h-dvh antialiased`}
+      className={`${rubik.variable} ${cormorant.variable} h-dvh antialiased`}
       suppressHydrationWarning
     >
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
