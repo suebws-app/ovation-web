@@ -7,13 +7,13 @@ export const PhoneShowcase = () => {
 
   return (
     <div className="tablet:grid-cols-2 grid grid-cols-1 items-center gap-14">
-      <div className="from-secondary/30 to-warm-cream rounded-24 tablet:order-1 tablet:p-11 bg-linear-to-br p-8">
+      <div className="from-secondary/30 to-warm-cream rounded-24 tablet:p-11 order-2 bg-linear-to-br p-8">
         <PhoneFrame
           imageSrc="/images/02-record.webp"
           imageAlt={t("marketing__landing_b__phone_label")}
         />
       </div>
-      <div className="tablet:order-0">
+      <div className="order-1">
         <p className="landing-eyebrow text-primary">
           {t("marketing__landing_b__phone_eyebrow")}
         </p>
