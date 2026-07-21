@@ -36,7 +36,7 @@ export const DashboardShowcase = () => {
       <div className="from-primary/20 to-warm-cream rounded-24 tablet:p-11 bg-linear-to-br p-8">
         <BrowserFrame
           url="🔒 ovationday.com"
-          imageSrc="/images/dashboard.png"
+          imageSrc="/images/dashboard.webp"
           imageAlt={t("marketing__landing_b__dashboard_screenshot_label")}
         />
       </div>
