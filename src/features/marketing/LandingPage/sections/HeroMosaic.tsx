@@ -7,7 +7,10 @@ type Cell = {
   className: string;
   sizes: string;
   priority?: boolean;
+  quality?: number;
 };
+
+const SECONDARY_QUALITY = 65;
 
 const CELLS: Cell[] = [
   {
@@ -61,6 +64,7 @@ export const HeroMosaic = () => (
           fill
           sizes={cell.sizes}
           priority={cell.priority}
+          quality={cell.priority ? undefined : SECONDARY_QUALITY}
           className="object-cover"
         />
       </div>

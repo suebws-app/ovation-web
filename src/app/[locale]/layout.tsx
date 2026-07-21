@@ -22,7 +22,8 @@ const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
-  display: "swap",
+  display: "optional",
+  adjustFontFallback: true,
 });
 export const generateStaticParams = () => {
   return routing.locales.map((locale) => ({ locale }));
