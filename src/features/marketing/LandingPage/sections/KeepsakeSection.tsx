@@ -11,7 +11,7 @@ export const KeepsakeSection = () => {
     <section id="keepsake" className="bg-warm-panel/40">
       <div className="section-container">
         <div className="tablet:grid-cols-2 grid grid-cols-1 items-center gap-14">
-          <div className="rounded-24 relative min-h-130 overflow-hidden">
+          <div className="rounded-24 tablet:order-1 relative order-2 min-h-130 overflow-hidden">
             <Image
               src="/images/layflat-photo-book.webp"
               alt={t("marketing__landing_b__keepsake_title_line2")}
@@ -20,7 +20,7 @@ export const KeepsakeSection = () => {
               className="object-contain"
             />
           </div>
-          <div>
+          <div className="tablet:order-2 order-1">
             <p className="landing-eyebrow text-primary">
               {t("marketing__landing_b__keepsake_eyebrow")}
             </p>
