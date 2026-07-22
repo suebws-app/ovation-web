@@ -7,7 +7,7 @@ export const FinalDarkCTA = () => {
   const t = useTranslations();
 
   return (
-    <section className="bg-foreground">
+    <section className="theme-locked-light bg-foreground">
       <div className="section-container flex flex-col items-center text-center">
         <p className="landing-eyebrow text-primary">
           {t("marketing__landing_b__final_cta_eyebrow")}

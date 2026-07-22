@@ -90,6 +90,14 @@ export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
               {t("marketing__nav__for_planners")}
             </Link>
           </SheetClose>
+          <SheetClose asChild>
+            <Link
+              href={appRoutes.marketing.blog}
+              className="text-foreground type-body-large rounded-12 hover:bg-muted px-3 py-3.5 font-medium transition"
+            >
+              {t("marketing__nav__blog")}
+            </Link>
+          </SheetClose>
         </nav>
 
         <div className="border-border shrink-0 border-t px-6 py-6">

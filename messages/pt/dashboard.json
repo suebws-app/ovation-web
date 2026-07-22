@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Madrinha",
   "dashboard__message__play": "Reproduzir mensagem",
   "dashboard__message__pause": "Pausar mensagem",
-  "dashboard__photos__preview": "Pré-visualizar fotografia"
+  "dashboard__photos__preview": "Pré-visualizar fotografia",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Conhece um casal a planear o casamento?",
+  "dashboard__widget__referral__description": "Envie o seu link de convite. Ganhará {reward} de crédito para a sua lembrança quando eles comprarem o primeiro plano.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — um livro de honra de voz para o vosso casamento",
+  "dashboard__widget__referral__share_body": "{name} achou que poderias adorar o Ovation — foi assim que capturámos mensagens de voz dos nossos convidados em vez de um livro de honra em papel.",
+  "dashboard__widget__referral__email_subject": "Acho que vais adorar o Ovation para o teu casamento",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# amigo convidado} other {# amigos convidados}} · {converted, plural, one {# entrou} other {# entraram}}"
 }

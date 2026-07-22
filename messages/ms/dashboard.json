@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Ketua pengapit",
   "dashboard__message__play": "Mainkan pesanan",
   "dashboard__message__pause": "Jeda pesanan",
-  "dashboard__photos__preview": "Pratonton gambar"
+  "dashboard__photos__preview": "Pratonton gambar",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Kenal pasangan yang sedang merancang majlis kahwin?",
+  "dashboard__widget__referral__description": "Hantar pautan jemputan anda. Anda akan memperoleh kredit {reward} untuk kenang-kenangan anda apabila mereka membeli pelan pertama.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — buku tetamu suara untuk majlis kahwin anda",
+  "dashboard__widget__referral__share_body": "{name} rasa anda mungkin akan menyukai Ovation — begitulah cara kami mengumpul mesej suara daripada tetamu, bukan buku tetamu kertas.",
+  "dashboard__widget__referral__email_subject": "Saya rasa anda akan suka Ovation untuk majlis kahwin anda",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, other {# rakan dijemput}} · {converted, plural, other {# menyertai}}"
 }

@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Kuma",
   "dashboard__message__play": "Pusti poruku",
   "dashboard__message__pause": "Pauziraj poruku",
-  "dashboard__photos__preview": "Pregled fotografije"
+  "dashboard__photos__preview": "Pregled fotografije",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Poznaješ li par koji planira vjenčanje?",
+  "dashboard__widget__referral__description": "Pošalji im svoju pozivnicu. Kad kupe svoj prvi paket, dobit ćeš {reward} kredita za svoju uspomenu.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — glasovna knjiga gostiju za vaše vjenčanje",
+  "dashboard__widget__referral__share_body": "{name} je pomislio da bi ti se Ovation mogao svidjeti — tako smo umjesto papirnate knjige gostiju prikupili glasovne poruke od gostiju.",
+  "dashboard__widget__referral__email_subject": "Mislim da bi ti se Ovation svidio za vjenčanje",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# pozvani prijatelj} other {# pozvanih prijatelja}} · {converted, plural, one {# se pridružio} other {# se pridružilo}}"
 }

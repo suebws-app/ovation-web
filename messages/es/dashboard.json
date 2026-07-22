@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Dama de honor",
   "dashboard__message__play": "Reproducir mensaje",
   "dashboard__message__pause": "Pausar mensaje",
-  "dashboard__photos__preview": "Vista previa de la foto"
+  "dashboard__photos__preview": "Vista previa de la foto",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "¿Conoces a alguna pareja que esté planeando su boda?",
+  "dashboard__widget__referral__description": "Envíales tu enlace de invitación. Ganarás {reward} de crédito para tu recuerdo cuando compren su primer plan.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — un libro de invitados por voz para tu boda",
+  "dashboard__widget__referral__share_body": "{name} pensó que te encantaría Ovation — así fue como capturamos los mensajes de voz de nuestros invitados en lugar de un libro de firmas de papel.",
+  "dashboard__widget__referral__email_subject": "Creo que te encantaría Ovation para tu boda",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# amigo invitado} other {# amigos invitados}} · {converted, plural, one {# se unió} other {# se unieron}}"
 }

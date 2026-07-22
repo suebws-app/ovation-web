@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Pruutneitsi",
   "dashboard__message__play": "Esita sõnum",
   "dashboard__message__pause": "Peata sõnum",
-  "dashboard__photos__preview": "Foto eelvaade"
+  "dashboard__photos__preview": "Foto eelvaade",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Kas tunned paari, kes plaanib pulmi?",
+  "dashboard__widget__referral__description": "Saada neile oma kutse. Kui nad ostavad esimese paketi, saad {reward} krediiti oma mälestuseks.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — häälega külalisteraamat teie pulmadeks",
+  "dashboard__widget__referral__share_body": "{name} arvas, et sulle võiks Ovation meeldida — nii kogusime paberist külalisteraamatu asemel oma külalistelt häälsõnumeid.",
+  "dashboard__widget__referral__email_subject": "Arvan, et sulle meeldiks Ovation sinu pulmadeks",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# sõber kutsutud} other {# sõpra kutsutud}} · {converted, plural, one {# liitus} other {# liitunud}}"
 }

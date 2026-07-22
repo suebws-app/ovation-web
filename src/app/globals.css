@@ -849,6 +849,13 @@
 
 /* ── Custom Utilities ─────────────────────────────────────── */
 
+@utility theme-locked-light {
+  --foreground: oklch(0.297 0 89.9);
+  --primary: oklch(0.66 0.17 38);
+  --primary-foreground: oklch(1 0 0);
+  --ring: oklch(0.66 0.17 38);
+}
+
 @utility section-container {
   margin-inline: auto;
   max-width: 77.5rem;

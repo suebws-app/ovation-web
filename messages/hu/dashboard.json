@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Koszorúslány",
   "dashboard__message__play": "Üzenet lejátszása",
   "dashboard__message__pause": "Üzenet szüneteltetése",
-  "dashboard__photos__preview": "Fénykép előnézete"
+  "dashboard__photos__preview": "Fénykép előnézete",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Ismersz olyan párt, aki esküvőt tervez?",
+  "dashboard__widget__referral__description": "Küldd el nekik a meghívó linkedet. {reward} kreditet kapsz az emléktárgyad felé, amikor megveszik az első csomagjukat.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — hangos vendégkönyv az esküvőtökre",
+  "dashboard__widget__referral__share_body": "{name} úgy gondolta, hogy tetszene az Ovation — így gyűjtöttük össze a hangüzeneteket vendégeinktől papír vendégkönyv helyett.",
+  "dashboard__widget__referral__email_subject": "Szerintem imádnád az Ovationt az esküvődre",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# barát meghívva} other {# barát meghívva}} · {converted, plural, one {# csatlakozott} other {# csatlakozott}}"
 }

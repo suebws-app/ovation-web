@@ -118,4 +118,8 @@ export const queryKeys = {
     all: () => ["keepsakes"] as const,
     catalog: () => ["keepsakes", "catalog"] as const,
   },
+  referrals: {
+    all: () => ["referrals"] as const,
+    me: () => ["referrals", "me"] as const,
+  },
 } as const;

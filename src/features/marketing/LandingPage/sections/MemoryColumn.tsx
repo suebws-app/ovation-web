@@ -5,6 +5,7 @@ type MemoryColumnProps = {
   iconWrapClassName: string;
   title: string;
   description: string;
+  className?: string;
 };
 
 export const MemoryColumn = ({
@@ -12,8 +13,14 @@ export const MemoryColumn = ({
   iconWrapClassName,
   title,
   description,
+  className,
 }: MemoryColumnProps) => (
-  <div className="border-border tablet:border-r tablet:border-b-0 border-b px-10 py-11 last:border-r-0 last:border-b-0">
+  <div
+    className={cn(
+      "border-border tablet:border-r tablet:border-b-0 border-b py-11 last:border-r-0 last:border-b-0",
+      className,
+    )}
+  >
     <div
       className={cn(
         "rounded-12 mb-5 flex size-12 items-center justify-center",
