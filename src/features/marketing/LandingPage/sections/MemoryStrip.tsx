@@ -24,12 +24,14 @@ export const MemoryStrip = () => {
             description={t("marketing__landing_b__collect_photos_body")}
           />
           <MemoryColumn
+            className="tablet:pl-10"
             icon={<MicIcon className="text-secondary size-6" />}
             iconWrapClassName="bg-secondary/20"
             title={t("marketing__landing_b__collect_voice_title")}
             description={t("marketing__landing_b__collect_voice_body")}
           />
           <MemoryColumn
+            className="tablet:pl-10"
             icon={<PencilIcon className="text-accent size-6" />}
             iconWrapClassName="bg-accent/25"
             title={t("marketing__landing_b__collect_written_title")}

@@ -17,8 +17,10 @@ export const FlowStep = ({
 }: FlowStepProps) => (
   <div className="flex flex-col gap-3.5">
     <div className="rounded-14 bg-warm-panel/40 relative aspect-4/3 overflow-hidden shadow-md">
-      <div className="text-foreground bg-warm-cream/95 landing-h4 absolute top-3 left-3 z-10 flex size-7.5 items-center justify-center rounded-full tabular-nums backdrop-blur-sm">
-        <span className="leading-none">{index}</span>
+      <div className="text-foreground bg-warm-cream/95 absolute top-3 left-3 z-10 flex size-7.5 items-center justify-center rounded-full tabular-nums backdrop-blur-sm">
+        <span className="landing-h4 -translate-y-0.5 leading-none">
+          {index}
+        </span>
       </div>
       <Image
         src={imageSrc}
