@@ -9,7 +9,49 @@ import { locales, type Locale } from "@/i18n/config";
 import { sendResetPasswordEmail, sendVerificationEmail } from "./email-sender";
 
 const SIGNUP_LOCALE_COOKIE = "ovation_signup_locale";
+const REFERRAL_COOKIE = "ovation_ref";
 const LOCALE_PATH_PATTERN = new RegExp(`^/(${locales.join("|")})(?:/|$)`);
+const REFERRAL_CODE_PATTERN = /^[23456789ABCDEFGHJKMNPQRSTVWXYZ]{4,16}$/;
+
+const parseSignupReferralCode = (
+  request: Request | undefined,
+): string | null => {
+  if (!request) return null;
+  const cookieHeader = request.headers.get("cookie") ?? "";
+  const cookieMatch = cookieHeader
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(`${REFERRAL_COOKIE}=`));
+  if (!cookieMatch) return null;
+  const raw = decodeURIComponent(cookieMatch.split("=")[1] ?? "")
+    .trim()
+    .toUpperCase();
+  if (!REFERRAL_CODE_PATTERN.test(raw)) return null;
+  return raw;
+};
+
+const resolveReferrerIdByCode = async (
+  code: string,
+): Promise<string | null> => {
+  const { rows } = await pool.query<{ id: string }>(
+    `SELECT id FROM users WHERE referral_code = $1 AND deleted_at IS NULL LIMIT 1`,
+    [code],
+  );
+  return rows[0]?.id ?? null;
+};
+
+const recordReferralAttribution = async (
+  referrerUserId: string,
+  referredUserId: string,
+): Promise<void> => {
+  if (referrerUserId === referredUserId) return;
+  await pool.query(
+    `INSERT INTO referrals (referrer_user_id, referred_user_id)
+     VALUES ($1, $2)
+     ON CONFLICT (referred_user_id) DO NOTHING`,
+    [referrerUserId, referredUserId],
+  );
+};
 
 const isSupportedLocale = (value: string | undefined): value is Locale =>
   Boolean(value) && (locales as readonly string[]).includes(value as string);
@@ -373,10 +415,20 @@ export const auth = betterAuth({
             data: { ...userRecord, preferredLanguage: fromRequest },
           };
         },
-        after: async (userRecord) => {
+        after: async (userRecord, ctx) => {
           await recordAuthEvent("login_success", userRecord.id, null, null, {
             firstSignIn: true,
           });
+          const refCode = parseSignupReferralCode(ctx?.request);
+          if (!refCode) return;
+          try {
+            const referrerId = await resolveReferrerIdByCode(refCode);
+            if (referrerId && referrerId !== userRecord.id) {
+              await recordReferralAttribution(referrerId, userRecord.id);
+            }
+          } catch {
+            // Attribution is best-effort — never block signup on a failure.
+          }
         },
       },
     },

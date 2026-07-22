@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Druhna honorowa",
   "dashboard__message__play": "Odtwórz wiadomość",
   "dashboard__message__pause": "Wstrzymaj wiadomość",
-  "dashboard__photos__preview": "Podgląd zdjęcia"
+  "dashboard__photos__preview": "Podgląd zdjęcia",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Znasz parę, która planuje ślub?",
+  "dashboard__widget__referral__description": "Wyślij im swój link zaproszeniowy. Otrzymasz {reward} kredytu na swój pamiątkowy album, gdy kupią swój pierwszy plan.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — głosowa księga gości na Waszym ślubie",
+  "dashboard__widget__referral__share_body": "{name} pomyślał, że możesz pokochać Ovation — w ten sposób zamiast papierowej księgi gości zebraliśmy głosowe wiadomości od naszych gości.",
+  "dashboard__widget__referral__email_subject": "Myślę, że pokochasz Ovation na swój ślub",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# zaproszony znajomy} other {# zaproszonych znajomych}} · {converted, plural, one {# dołączył} other {# dołączyło}}"
 }

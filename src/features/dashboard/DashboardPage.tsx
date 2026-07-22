@@ -28,6 +28,7 @@ import { Messages } from "./components/widgets/Messages";
 import { Photos } from "./components/widgets/Photos";
 import { Orders } from "./components/widgets/Orders";
 import { InvitationWidget } from "./components/widgets/InvitationWidget";
+import { ReferralWidget } from "./components/widgets/ReferralWidget";
 
 export const DashboardPage = async () => {
   const t = await getTranslations();
@@ -126,6 +127,8 @@ export const DashboardPage = async () => {
   const totalPhotos = Math.max(stats?.photoCount ?? 0, galleryItems.length);
   const hasMorePhotos = Boolean(galleryPage?.nextCursor);
 
+  const referralSenderName = user.fullName?.trim().split(/\s+/)[0] ?? anonymous;
+
   return (
     <DashboardBackGuard>
       {expiredModal}
@@ -141,6 +144,7 @@ export const DashboardPage = async () => {
           >
             <QRcodeWidget shortUrl={qr?.shortUrl ?? `/g/${event.slug}`} />
             <InvitationWidget event={event} />
+            <ReferralWidget senderName={referralSenderName} />
             <div className="min-[1300px]:hidden">
               <Orders orders={ordersPage?.items ?? []} />
             </div>

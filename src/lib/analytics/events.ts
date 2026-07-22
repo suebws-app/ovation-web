@@ -7,6 +7,8 @@ export type AnalyticsEventMap = {
   invitation_sent: { channel?: string };
   content_created: { contentType: string; eventId?: string };
   checkout_started: { planTier: string; billingType?: string };
+  referral_shared: { channel: "copy" | "native" | "email" };
+  referral_visit_captured: { ref: string };
 };
 
 export type AnalyticsEventName = keyof AnalyticsEventMap;

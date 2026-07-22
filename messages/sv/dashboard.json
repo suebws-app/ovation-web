@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Tärna",
   "dashboard__message__play": "Spela upp meddelande",
   "dashboard__message__pause": "Pausa meddelande",
-  "dashboard__photos__preview": "Förhandsvisa foto"
+  "dashboard__photos__preview": "Förhandsvisa foto",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Känner du ett par som planerar sitt bröllop?",
+  "dashboard__widget__referral__description": "Skicka din inbjudningslänk. Du får {reward} i kredit till ditt minne när de köper sitt första paket.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — en röstgästbok till ert bröllop",
+  "dashboard__widget__referral__share_body": "{name} tänkte att du kanske skulle älska Ovation — det var så vi samlade in röstmeddelanden från våra gäster istället för en gästbok i papper.",
+  "dashboard__widget__referral__email_subject": "Jag tror du skulle älska Ovation till ert bröllop",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# vän inbjuden} other {# vänner inbjudna}} · {converted, plural, one {# gick med} other {# gick med}}"
 }

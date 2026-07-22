@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Demoiselle d'honneur",
   "dashboard__message__play": "Lire le message",
   "dashboard__message__pause": "Mettre le message en pause",
-  "dashboard__photos__preview": "Aperçu de la photo"
+  "dashboard__photos__preview": "Aperçu de la photo",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Vous connaissez un couple qui prépare son mariage ?",
+  "dashboard__widget__referral__description": "Envoyez-leur votre lien d'invitation. Vous gagnerez {reward} de crédit pour votre souvenir lorsqu'ils achèteront leur premier forfait.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — un livre d'or vocal pour votre mariage",
+  "dashboard__widget__referral__share_body": "{name} a pensé que vous pourriez adorer Ovation — c'est ainsi que nous avons recueilli des messages vocaux de nos invités au lieu d'un livre d'or en papier.",
+  "dashboard__widget__referral__email_subject": "Je pense que vous adorerez Ovation pour votre mariage",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# ami invité} other {# amis invités}} · {converted, plural, one {# inscrit} other {# inscrits}}"
 }

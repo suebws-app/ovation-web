@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Pamergių vadovė",
   "dashboard__message__play": "Leisti žinutę",
   "dashboard__message__pause": "Pristabdyti žinutę",
-  "dashboard__photos__preview": "Peržiūrėti nuotrauką"
+  "dashboard__photos__preview": "Peržiūrėti nuotrauką",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Ar pažįstate porą, planuojančią vestuves?",
+  "dashboard__widget__referral__description": "Nusiųsk jiems savo kvietimo nuorodą. Kai jie įsigys pirmą planą, gausi {reward} kredito savo prisiminimui.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — balso svečių knyga jūsų vestuvėms",
+  "dashboard__widget__referral__share_body": "{name} pagalvojo, kad tau galėtų patikti Ovation — taip vietoje popierinės svečių knygos surinkome balso žinutes iš mūsų svečių.",
+  "dashboard__widget__referral__email_subject": "Manau, kad tau patiktų Ovation tavo vestuvėms",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {pakviestas # draugas} other {pakviesta # draugų}} · {converted, plural, one {prisijungė # draugas} other {prisijungė # draugų}}"
 }

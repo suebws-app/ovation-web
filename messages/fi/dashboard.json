@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Kaason",
   "dashboard__message__play": "Toista viesti",
   "dashboard__message__pause": "Keskeytä viesti",
-  "dashboard__photos__preview": "Esikatsele valokuvaa"
+  "dashboard__photos__preview": "Esikatsele valokuvaa",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Tunnetko pariskuntaa, joka suunnittelee häitä?",
+  "dashboard__widget__referral__description": "Lähetä heille kutsulinkkisi. Saat {reward} hyvitystä muistoesi hankintaan, kun he ostavat ensimmäisen tilauksen.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — ääniviesteillä täytettävä vieraskirja häihinne",
+  "dashboard__widget__referral__share_body": "{name} ajatteli, että saattaisit rakastua Ovationiin — näin keräsimme paperisen vieraskirjan sijaan äänitervehdyksiä vierailtamme.",
+  "dashboard__widget__referral__email_subject": "Uskon, että rakastuisit Ovationiin häihisi",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# kutsuttu ystävä} other {# kutsuttua ystävää}} · {converted, plural, one {# liittynyt} other {# liittynyttä}}"
 }

@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Forlover",
   "dashboard__message__play": "Spill av melding",
   "dashboard__message__pause": "Sett melding på pause",
-  "dashboard__photos__preview": "Forhåndsvis bilde"
+  "dashboard__photos__preview": "Forhåndsvis bilde",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Kjenner du et par som planlegger et bryllup?",
+  "dashboard__widget__referral__description": "Send dem invitasjonslenken din. Du får {reward} i kreditt til minneboken din når de kjøper sin første plan.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — en stemme-gjestebok til bryllupet ditt",
+  "dashboard__widget__referral__share_body": "{name} tenkte du kanskje ville elske Ovation — det er sånn vi samlet stemmemeldinger fra gjestene våre i stedet for en papirgjestebok.",
+  "dashboard__widget__referral__email_subject": "Jeg tror du vil elske Ovation til bryllupet ditt",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# venn invitert} other {# venner invitert}} · {converted, plural, one {# meldt seg på} other {# meldt seg på}}"
 }

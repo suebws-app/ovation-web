@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Trauzeugin",
   "dashboard__message__play": "Nachricht abspielen",
   "dashboard__message__pause": "Nachricht pausieren",
-  "dashboard__photos__preview": "Foto anzeigen"
+  "dashboard__photos__preview": "Foto anzeigen",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Kennst du ein Paar, das eine Hochzeit plant?",
+  "dashboard__widget__referral__description": "Sende ihnen deinen Einladungslink. Du erhältst {reward} Guthaben für dein Andenken, sobald sie ihren ersten Plan kaufen.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — ein Sprach-Gästebuch für eure Hochzeit",
+  "dashboard__widget__referral__share_body": "{name} dachte, dass dir Ovation gefallen könnte — so haben wir statt eines Papier-Gästebuchs Sprachnachrichten von unseren Gästen gesammelt.",
+  "dashboard__widget__referral__email_subject": "Ich glaube, du wirst Ovation für deine Hochzeit lieben",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# Freund eingeladen} other {# Freunde eingeladen}} · {converted, plural, one {# beigetreten} other {# beigetreten}}"
 }

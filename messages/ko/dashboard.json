@@ -58,5 +58,17 @@
   "dashboard__resume__role": "신부 들러리",
   "dashboard__message__play": "메시지 재생",
   "dashboard__message__pause": "메시지 일시정지",
-  "dashboard__photos__preview": "사진 미리보기"
+  "dashboard__photos__preview": "사진 미리보기",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "결혼을 준비 중인 커플을 알고 계신가요?",
+  "dashboard__widget__referral__description": "초대 링크를 보내주세요. 그들이 첫 요금제를 구매하면 키프세이크에 사용할 수 있는 {reward} 크레딧을 받게 됩니다.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — 결혼식을 위한 음성 방명록",
+  "dashboard__widget__referral__share_body": "{name}님이 Ovation을 좋아하실 것 같다고 생각하셨어요 — 종이 방명록 대신 게스트들의 음성 메시지를 이렇게 남겼답니다.",
+  "dashboard__widget__referral__email_subject": "결혼식에 Ovation이 마음에 드실 것 같아요",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, other {친구 #명 초대}} · {converted, plural, other {#명 가입}}"
 }

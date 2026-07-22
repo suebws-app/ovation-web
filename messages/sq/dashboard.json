@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Nusja e nderit",
   "dashboard__message__play": "Luaj mesazhin",
   "dashboard__message__pause": "Pauzo mesazhin",
-  "dashboard__photos__preview": "Pamje paraprake e fotos"
+  "dashboard__photos__preview": "Pamje paraprake e fotos",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Njihni një çift që po planifikon një dasmë?",
+  "dashboard__widget__referral__description": "Dërgojuni lidhjen tuaj të ftesës. Do të fitoni {reward} kredit për kujtimin tuaj kur ata blejnë planin e tyre të parë.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — një libër i ftuarish me zë për dasmën tuaj",
+  "dashboard__widget__referral__share_body": "{name} mendoi që mund të dashuroni Ovation — kështu ne kapëm mesazhe zanore nga mysafirët tanë në vend të një libri të ftuarish në letër.",
+  "dashboard__widget__referral__email_subject": "Mendoj që do të dashuronit Ovation për dasmën tuaj",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# mik i ftuar} other {# miq të ftuar}} · {converted, plural, one {# u bashkua} other {# u bashkuan}}"
 }

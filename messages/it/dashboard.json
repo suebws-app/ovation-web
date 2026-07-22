@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Damigella d'onore",
   "dashboard__message__play": "Riproduci messaggio",
   "dashboard__message__pause": "Metti in pausa il messaggio",
-  "dashboard__photos__preview": "Anteprima foto"
+  "dashboard__photos__preview": "Anteprima foto",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Conosci una coppia che sta organizzando un matrimonio?",
+  "dashboard__widget__referral__description": "Invia loro il tuo link d'invito. Riceverai {reward} di credito per il tuo ricordo quando acquisteranno il primo piano.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — un guestbook vocale per il tuo matrimonio",
+  "dashboard__widget__referral__share_body": "{name} pensava che ti sarebbe piaciuto Ovation — è così che abbiamo raccolto i messaggi vocali dei nostri ospiti al posto di un guestbook cartaceo.",
+  "dashboard__widget__referral__email_subject": "Penso che adoreresti Ovation per il tuo matrimonio",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# amico invitato} other {# amici invitati}} · {converted, plural, one {# iscritto} other {# iscritti}}"
 }

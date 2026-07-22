@@ -58,5 +58,17 @@
   "dashboard__resume__role": "Družička",
   "dashboard__message__play": "Přehrát zprávu",
   "dashboard__message__pause": "Pozastavit zprávu",
-  "dashboard__photos__preview": "Náhled fotky"
+  "dashboard__photos__preview": "Náhled fotky",
+  "dashboard__widget__referral__eyebrow": "Share Ovation",
+  "dashboard__widget__referral__title": "Znáš pár, který plánuje svatbu?",
+  "dashboard__widget__referral__description": "Pošli jim svůj pozvánkový odkaz. Když si zakoupí první plán, získáš kredit {reward} na svůj památník.",
+  "dashboard__widget__referral__share_cta": "Share with a friend",
+  "dashboard__widget__referral__copy_link": "Copy link",
+  "dashboard__widget__referral__copied": "Copied",
+  "dashboard__widget__referral__email_share": "Share by email",
+  "dashboard__widget__referral__share_title": "Ovation — hlasová kniha hostů pro vaši svatbu",
+  "dashboard__widget__referral__share_body": "{name} si myslel, že by se ti Ovation mohl líbit — takhle jsme místo papírové knihy hostů zachytili hlasové vzkazy od svých hostů.",
+  "dashboard__widget__referral__email_subject": "Myslím, že by se ti Ovation na svatbu líbil",
+  "dashboard__widget__referral__balance_label": "Your credit balance",
+  "dashboard__widget__referral__stats": "{invited, plural, one {# pozvaný přítel} other {# pozvaných přátel}} · {converted, plural, one {# se přidal} other {# se přidalo}}"
 }
