@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Restitutiebeleid",
   "seo__legal_refunds__description": "Het restitutiebeleid van Ovation voor digitale plannen en gedrukte aandenkens.",
   "seo__legal_terms__title": "Algemene Voorwaarden",
-  "seo__legal_terms__description": "De voorwaarden die gelden voor je gebruik van het gastenboek en de aandenkens van Ovation."
+  "seo__legal_terms__description": "De voorwaarden die gelden voor je gebruik van het gastenboek en de aandenkens van Ovation.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Bruiloftsgastenboeken vergeleken",
+  "seo__competitor__alternatives_title": "Alternatief voor {competitor} — Ovation-gastenboek",
+  "seo__competitor__description": "Hoe Ovation zich verhoudt tot {competitor} voor stemmen, foto's en aandenkens van gasten. {tagline}",
+  "seo__for_photographers__title": "Partner voor trouwfotografen — Ovation-gastenboek",
+  "seo__for_photographers__description": "Beveel Ovation aan bij elk stel. Gasten laten spraakberichten, foto's en notities achter — jij blijft de visuele verteller van de dag.",
+  "seo__for_venues__title": "Partner voor trouwlocaties — gebrande aandenkens",
+  "seo__for_venues__description": "Bied Ovation aan als in-house partner. Stellen zijn er dol op, gasten gebruiken het, en elk gedrukt boek vermeldt jouw locatie op de binnenkant.",
+  "seo__for_family__title": "Trouwcadeau voor het bruidspaar — Ovation",
+  "seo__for_family__description": "Het trouwcadeau waar ze op terugkomen — stem, foto en notitie van elke gast in een gedrukt aandenkenboek. Klaar in 10 minuten.",
+  "seo__for_media__title": "Perskit — Ovation-bruiloftsgastenboek",
+  "seo__for_media__description": "Merkassets, productscreenshots, oprichtersbio's, quotes en factsheets voor journalisten en creators die over Ovation schrijven.",
+  "seo__templates__title": "Gratis sjablonen voor bruilofts-QR-kaarten en gastenboeken",
+  "seo__templates__description": "Kant-en-klare printsjablonen voor bruilofts-QR-kaarten, welkomstborden, bedankkaartjes en meer. Alles gratis, bewerkbaar en klaar om te downloaden.",
+  "seo__use_case__title": "{title} — Ovation-bruiloftsgastenboek",
+  "seo__use_case__description": "{subtitle}"
 }

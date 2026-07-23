@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Tagasimaksepoliitika",
   "seo__legal_refunds__description": "Ovationi tagasimaksepoliitika digitaalsete pakettide ja trükitud mälestuste kohta.",
   "seo__legal_terms__title": "Kasutustingimused",
-  "seo__legal_terms__description": "Tingimused, mis reguleerivad Ovationi külalisteraamatu ja mälestuste kasutamist."
+  "seo__legal_terms__description": "Tingimused, mis reguleerivad Ovationi külalisteraamatu ja mälestuste kasutamist.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Pulma külalisteraamatute võrdlus",
+  "seo__competitor__alternatives_title": "Alternatiiv {competitor}-ile — Ovation'i külalisteraamat",
+  "seo__competitor__description": "Kuidas Ovation võrdleb {competitor}-iga pulmakülaliste häälte, fotode ja mälestuste jaoks. {tagline}",
+  "seo__for_photographers__title": "Partner pulmafotograafidele — Ovation'i külalisteraamat",
+  "seo__for_photographers__description": "Soovitage Ovation'i igale paarile. Külalised jätavad häälsõnumeid, fotosid ja märkmeid — teie jääte päeva visuaalseks jutustajaks.",
+  "seo__for_venues__title": "Partner pulmakohtadele — brändiga mälestused",
+  "seo__for_venues__description": "Pakkuge Ovation'i sisemise partnerina. Paarid armastavad, külalised kasutavad, ja iga trükitud raamat mainib teie kohta sisekaanel.",
+  "seo__for_family__title": "Pulmakingitus paarile — Ovation",
+  "seo__for_family__description": "Pulmakingitus, mille juurde nad tagasi tulevad — iga külalise hääl, foto ja sõnum trükitud mälestusraamatus. Valmis 10 minutiga.",
+  "seo__for_media__title": "Pressikomplekt — Ovation'i pulmakülalisteraamat",
+  "seo__for_media__description": "Brändivarad, tootekuvatõmmised, asutajate biograafiad, tsitaadid ja teabelehed ajakirjanikele ja loojatele, kes kirjutavad Ovation'ist.",
+  "seo__templates__title": "Tasuta pulma-QR-kaartide ja külalisteraamatute mallid",
+  "seo__templates__description": "Trükkimiseks valmis mallid pulma-QR-kaartidele, tervitussiltidele, tänukaartidele ja rohkemale. Kõik tasuta, redigeeritav, valmis alla laadida.",
+  "seo__use_case__title": "{title} — Ovation'i pulmakülalisteraamat",
+  "seo__use_case__description": "{subtitle}"
 }

@@ -1,0 +1,20 @@
+audience,topic,keyword,intent,volume,difficulty,priority,target_page,status
+couples,guest_book_alternatives,wedding guest book alternatives,solution,3600,medium,high,/vs/traditional-guest-book,todo
+couples,guest_book_alternatives,digital wedding guest book,solution,2900,medium,high,/blog/digital-wedding-guest-book,todo
+couples,guest_book_alternatives,qr code wedding guest book,product,1300,low,high,/how-it-works,todo
+couples,guest_book_alternatives,voice wedding guest book,product,720,low,high,/,todo
+couples,guest_book_alternatives,video wedding guest book,solution,1900,medium,high,/vs/video-guest-book-apps,todo
+couples,timeline,wedding day timeline,problem,8100,medium,medium,/blog/wedding-day-timeline,todo
+couples,thank_you,wedding thank you cards wording,problem,2400,low,medium,/blog/wedding-thank-you-cards-wording,todo
+couples,stationery,wedding qr code cards,solution,590,low,high,/templates/qr-cards,todo
+planners,client_experience,guest book for wedding planners,product,110,low,high,/for-planners,in_progress
+planners,portfolio,wedding planner portfolio ideas,problem,320,medium,low,/blog/wedding-planner-portfolio-ideas,todo
+photographers,memory_keeping,wedding photographer guest book,solution,140,low,high,/for-photographers,todo
+venues,partnerships,wedding venue guest book,solution,90,low,medium,/for-venues,todo
+family,gifts,unique wedding gifts for couple,problem,2900,high,medium,/blog/unique-wedding-gifts-for-couple,todo
+family,gifts,wedding gift for daughter,problem,880,medium,medium,/blog/wedding-gift-for-daughter,todo
+couples,tech,best wedding apps,product,1900,medium,medium,/blog/best-wedding-apps,todo
+couples,vs,zola vs ovation,product,10,low,medium,/vs/zola,todo
+couples,vs,the knot vs ovation,product,10,low,medium,/vs/the-knot,todo
+couples,alternatives,pov app alternatives,solution,50,low,medium,/alternatives/pov,todo
+couples,alternatives,wedshoots alternative,solution,30,low,medium,/alternatives/wedshoots,todo

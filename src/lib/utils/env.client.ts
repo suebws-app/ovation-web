@@ -38,5 +38,12 @@ export const clientEnv = {
   LEGAL_ENTITY_ADDRESS:
     process.env.NEXT_PUBLIC_LEGAL_ENTITY_ADDRESS ?? "Peja, Kosovo",
 
+  SOCIAL_INSTAGRAM_URL: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM_URL ?? "",
+  SOCIAL_TIKTOK_URL: process.env.NEXT_PUBLIC_SOCIAL_TIKTOK_URL ?? "",
+  SOCIAL_LINKEDIN_URL: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN_URL ?? "",
+  SOCIAL_X_URL: process.env.NEXT_PUBLIC_SOCIAL_X_URL ?? "",
+  SOCIAL_FACEBOOK_URL: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK_URL ?? "",
+  SOCIAL_YOUTUBE_URL: process.env.NEXT_PUBLIC_SOCIAL_YOUTUBE_URL ?? "",
+
   IS_PRODUCTION: process.env.NODE_ENV === "production",
 } as const;

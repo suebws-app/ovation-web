@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "환불 정책",
   "seo__legal_refunds__description": "디지털 요금제와 인쇄 기념품에 대한 Ovation의 환불 정책입니다.",
   "seo__legal_terms__title": "서비스 이용약관",
-  "seo__legal_terms__description": "Ovation의 방명록과 기념품 이용에 적용되는 약관입니다."
+  "seo__legal_terms__description": "Ovation의 방명록과 기념품 이용에 적용되는 약관입니다.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — 결혼식 방명록 비교",
+  "seo__competitor__alternatives_title": "{competitor} 대안 — Ovation 결혼식 방명록",
+  "seo__competitor__description": "결혼식 하객의 목소리, 사진, 추억을 위해 Ovation과 {competitor}이 어떻게 비교되는지. {tagline}",
+  "seo__for_photographers__title": "웨딩 포토그래퍼 파트너 — Ovation 방명록",
+  "seo__for_photographers__description": "모든 커플에게 Ovation을 추천하세요. 하객이 음성 메시지, 사진, 메모를 남깁니다 — 당신은 그날의 시각적 이야기꾼으로 남습니다.",
+  "seo__for_venues__title": "웨딩 베뉴 파트너 — 브랜드 추억",
+  "seo__for_venues__description": "Ovation을 자체 파트너로 제공하세요. 커플이 좋아하고, 하객이 사용하며, 인쇄된 모든 책이 안쪽 표지에 당신의 베뉴를 언급합니다.",
+  "seo__for_family__title": "커플을 위한 결혼 선물 — Ovation",
+  "seo__for_family__description": "그들이 다시 돌아볼 결혼 선물 — 모든 하객의 목소리, 사진, 메시지가 담긴 인쇄된 추억의 책. 10분 만에 준비.",
+  "seo__for_media__title": "미디어 킷 — Ovation 결혼식 방명록",
+  "seo__for_media__description": "Ovation을 다루는 기자와 크리에이터를 위한 브랜드 자산, 제품 스크린샷, 창업자 약력, 인용문, 팩트시트.",
+  "seo__templates__title": "무료 웨딩 QR 카드 및 방명록 템플릿",
+  "seo__templates__description": "웨딩 QR 카드, 환영 사인, 감사 카드 등을 위한 인쇄 가능한 템플릿. 모두 무료, 편집 가능, 다운로드 준비 완료.",
+  "seo__use_case__title": "{title} — Ovation 결혼식 방명록",
+  "seo__use_case__description": "{subtitle}"
 }

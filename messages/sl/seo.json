@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Politika vračil",
   "seo__legal_refunds__description": "Ovationova politika vračil za digitalne pakete in tiskane spominke.",
   "seo__legal_terms__title": "Pogoji uporabe",
-  "seo__legal_terms__description": "Pogoji, ki urejajo tvojo uporabo Ovationove knjige gostov in spominkov."
+  "seo__legal_terms__description": "Pogoji, ki urejajo tvojo uporabo Ovationove knjige gostov in spominkov.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Poročne knjige gostov v primerjavi",
+  "seo__competitor__alternatives_title": "Alternativa za {competitor} — Knjiga gostov Ovation",
+  "seo__competitor__description": "Kako se Ovation primerja s {competitor} za glasove, fotografije in spomine poročnih gostov. {tagline}",
+  "seo__for_photographers__title": "Partner za poročne fotografe — Knjiga gostov Ovation",
+  "seo__for_photographers__description": "Priporočite Ovation vsakemu paru. Gosti pustijo glasovna sporočila, fotografije in zapiske — vi ostanete vizualni pripovedovalec dneva.",
+  "seo__for_venues__title": "Partner za poročne lokacije — brandované spomine",
+  "seo__for_venues__description": "Ponudite Ovation kot notranjega partnerja. Pari obožujejo, gosti uporabljajo, in vsaka natisnjena knjiga omenja vašo lokacijo na notranji strani platnice.",
+  "seo__for_family__title": "Poročno darilo za par — Ovation",
+  "seo__for_family__description": "Poročno darilo, h kateremu se bodo vračali — glas, fotografija in sporočilo vsakega gosta v natisnjeni spominski knjigi. Pripravljeno v 10 minutah.",
+  "seo__for_media__title": "Medijski paket — Poročna knjiga gostov Ovation",
+  "seo__for_media__description": "Elementi znamke, posnetki zaslona izdelka, biografije ustanoviteljev, citati in informacijski listi za novinarje in ustvarjalce, ki pišejo o Ovation.",
+  "seo__templates__title": "Brezplačne predloge poročnih QR kartic in knjig gostov",
+  "seo__templates__description": "Predloge pripravljene za tisk za poročne QR kartice, table dobrodošlice, zahvalne kartice in več. Vse brezplačno, mogoče urejati, pripravljeno za prenos.",
+  "seo__use_case__title": "{title} — Poročna knjiga gostov Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

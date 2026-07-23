@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Refusionspolitik",
   "seo__legal_refunds__description": "Ovations refusionspolitik for digitale planer og trykte minder.",
   "seo__legal_terms__title": "Servicevilkår",
-  "seo__legal_terms__description": "Vilkårene, der gælder for din brug af Ovations gæstebog og minder."
+  "seo__legal_terms__description": "Vilkårene, der gælder for din brug af Ovations gæstebog og minder.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Bryllupsgæstebøger sammenlignet",
+  "seo__competitor__alternatives_title": "Alternativ til {competitor} — Ovation-gæstebog",
+  "seo__competitor__description": "Sådan sammenlignes Ovation med {competitor} for bryllupsgæsters stemmer, fotos og minder. {tagline}",
+  "seo__for_photographers__title": "Partner for bryllupsfotografer — Ovation-gæstebog",
+  "seo__for_photographers__description": "Anbefal Ovation til hvert par. Gæster efterlader stemmebeskeder, fotos og noter — du forbliver dagens visuelle fortæller.",
+  "seo__for_venues__title": "Partner for bryllupssteder — brandede minder",
+  "seo__for_venues__description": "Tilbyd Ovation som intern partner. Par elsker det, gæster bruger det, og hver trykt bog krediterer jeres sted på indersiden af omslaget.",
+  "seo__for_family__title": "Bryllupsgave til brudeparret — Ovation",
+  "seo__for_family__description": "Bryllupsgaven, de vender tilbage til — hver gæsts stemme, foto og note i en trykt mindebog. Sat op på 10 minutter.",
+  "seo__for_media__title": "Pressekit — Ovation-bryllupsgæstebog",
+  "seo__for_media__description": "Brandassets, produktskærmbilleder, stifterbiografier, citater og faktaark til journalister og skabere, der dækker Ovation.",
+  "seo__templates__title": "Gratis bryllups-QR-kort- og gæstebogskabeloner",
+  "seo__templates__description": "Printklare skabeloner til bryllups-QR-kort, velkomstskilte, takkekort og mere. Alt gratis, redigerbart og klar til download.",
+  "seo__use_case__title": "{title} — Ovation-bryllupsgæstebog",
+  "seo__use_case__description": "{subtitle}"
 }

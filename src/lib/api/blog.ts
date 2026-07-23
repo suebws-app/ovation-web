@@ -1,6 +1,15 @@
 import { publicApiFetch, publicApiFetchPaged } from "./server";
 import type { ApiFetchOptions } from "./client";
 
+export interface BlogAuthor {
+  slug: string;
+  name: string;
+  bio: string | null;
+  imageUrl: string | null;
+  role: string | null;
+  sameAs: string[];
+}
+
 export interface BlogArticle {
   id: string;
   title: string;
@@ -18,8 +27,10 @@ export interface BlogArticle {
   faqSchema: Array<{ question: string; answer: string }>;
   imagePrompts: Array<{ position: string; prompt: string; alt: string }>;
   coverImageUrl: string | null;
+  coverImageAlt: string | null;
   internalLinks: Array<{ anchor: string; slug: string }>;
   externalReferences: Array<{ title: string; url: string }>;
+  author: BlogAuthor | null;
   sourceArticleId: string | null;
   publishedAt: string | null;
   createdAt: string;
@@ -39,6 +50,7 @@ export interface BlogListItem {
   category: string | null;
   excerpt: string | null;
   coverImageUrl: string | null;
+  coverImageAlt: string | null;
   metaTitle: string | null;
   metaDescription: string | null;
   publishedAt: string | null;
@@ -68,6 +80,20 @@ export const blogApi = {
       alternates: BlogArticleAlternate[];
     }>(`/public/blog/articles/${slug}`, {
       query: { locale },
+      ...articleCacheOptions,
+    }),
+
+  publicAuthor: (slug: string, locale: string) =>
+    publicApiFetch<{
+      author: BlogAuthor;
+      articles: BlogListItem[];
+    }>(`/public/blog/authors/${slug}`, {
+      query: { locale },
+      ...articleCacheOptions,
+    }),
+
+  publicAuthorList: () =>
+    publicApiFetch<{ authors: BlogAuthor[] }>("/public/blog/authors", {
       ...articleCacheOptions,
     }),
 };

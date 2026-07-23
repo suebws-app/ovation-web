@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { LegalSection } from "../LegalSection";
 import { clientEnv } from "@/lib/utils/env.client";
+import { PageBreadcrumbJsonLd } from "../../components/PageBreadcrumbJsonLd";
 
 const emailLink = (chunks: React.ReactNode) => (
   <a
@@ -44,22 +45,33 @@ export const CookiesPage = ({ params }: LocalePageProps) => {
   ];
 
   return (
-    <section>
-      <div className="section-container-small">
-        <div className="max-w-prose">
-          <h1 className="landing-h1 tablet:landing-display text-foreground">
-            {t("marketing__cookies__title")}
-          </h1>
-          <p className="text-muted-foreground type-body-small mt-2">
-            {t("marketing__cookies__last_updated")}
-          </p>
-          <div className="mt-10">
-            {sections.map((s) => (
-              <LegalSection key={s.heading} heading={s.heading} body={s.body} />
-            ))}
+    <>
+      <PageBreadcrumbJsonLd
+        locale={locale}
+        page="legal_cookies"
+        path="/legal/cookies"
+      />
+      <section>
+        <div className="section-container-small">
+          <div className="max-w-prose">
+            <h1 className="landing-h1 tablet:landing-display text-foreground">
+              {t("marketing__cookies__title")}
+            </h1>
+            <p className="text-muted-foreground type-body-small mt-2">
+              {t("marketing__cookies__last_updated")}
+            </p>
+            <div className="mt-10">
+              {sections.map((s) => (
+                <LegalSection
+                  key={s.heading}
+                  heading={s.heading}
+                  body={s.body}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };

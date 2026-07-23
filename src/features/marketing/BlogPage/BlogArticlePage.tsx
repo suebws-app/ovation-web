@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { blogPostingSchema, breadcrumbListSchema } from "@/lib/seo/schemas";
 import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 import { BlogReferenceLink } from "./BlogReferenceLink";
+import { BlogInternalLink } from "./BlogInternalLink";
 import { BlogArticleMeta } from "./BlogArticleMeta";
 import { BlogReadingProgress } from "./BlogReadingProgress";
 import { BlogArticleBody } from "./BlogArticleBody";
@@ -34,13 +35,30 @@ const fetchArticle = async (
   }
 };
 
+const RELATED_ARTICLE_COUNT = 3;
+const RELATED_CANDIDATE_POOL = 24;
+
 const fetchRelatedArticles = async (
   locale: string,
   currentSlug: string,
+  currentCategory: string | null,
 ): Promise<BlogListItem[]> => {
   try {
-    const { items } = await blogApi.publicList(locale);
-    return items.filter((item) => item.slug !== currentSlug).slice(0, 3);
+    const { items } = await blogApi.publicList(
+      locale,
+      1,
+      RELATED_CANDIDATE_POOL,
+    );
+    const candidates = items.filter((item) => item.slug !== currentSlug);
+    if (!currentCategory) return candidates.slice(0, RELATED_ARTICLE_COUNT);
+
+    const sameCategory = candidates.filter(
+      (item) => item.category === currentCategory,
+    );
+    const otherCategory = candidates.filter(
+      (item) => item.category !== currentCategory,
+    );
+    return [...sameCategory, ...otherCategory].slice(0, RELATED_ARTICLE_COUNT);
   } catch {
     return [];
   }
@@ -90,7 +108,11 @@ export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
   if (!article) notFound();
 
   const t = await getTranslations();
-  const relatedArticles = await fetchRelatedArticles(locale, slug);
+  const relatedArticles = await fetchRelatedArticles(
+    locale,
+    slug,
+    article.category,
+  );
   const headings = extractHeadings(article.contentMarkdown);
   const faqJsonLd = buildFaqJsonLd(article);
   const formattedDate = article.publishedAt
@@ -103,19 +125,32 @@ export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
   const readingMinutes = estimateReadingMinutes(article.contentMarkdown);
   const canonicalUrl = localizedAbsoluteUrl(locale, `/blog/${slug}`);
 
-  const blogPostingJsonLd = blogPostingSchema({
-    url: canonicalUrl,
-    headline: article.metaTitle ?? article.title,
-    description: article.metaDescription ?? article.excerpt ?? undefined,
-    imageUrl: article.coverImageUrl,
-    imageAlt: article.title,
-    datePublished: article.publishedAt ?? undefined,
-    dateModified: article.updatedAt,
-    locale: article.locale,
-    wordCount: countWords(article.contentMarkdown),
-    readingMinutes,
-    keywords: [article.primaryKeyword, ...article.secondaryKeywords],
-  });
+  const blogPostingJsonLd = blogPostingSchema(
+    {
+      url: canonicalUrl,
+      headline: article.metaTitle ?? article.title,
+      description: article.metaDescription ?? article.excerpt ?? undefined,
+      imageUrl: article.coverImageUrl,
+      imageAlt: article.coverImageAlt ?? article.title,
+      datePublished: article.publishedAt ?? undefined,
+      dateModified: article.updatedAt,
+      locale: article.locale,
+      wordCount: countWords(article.contentMarkdown),
+      readingMinutes,
+      keywords: [article.primaryKeyword, ...article.secondaryKeywords],
+    },
+    {
+      author: article.author
+        ? {
+            slug: article.author.slug,
+            name: article.author.name,
+            imageUrl: article.author.imageUrl,
+            bio: article.author.bio ?? undefined,
+            sameAs: article.author.sameAs,
+          }
+        : undefined,
+    },
+  );
 
   // Home › Blog › Article — powers breadcrumb rich results in SERPs.
   const breadcrumbJsonLd = breadcrumbListSchema([
@@ -171,7 +206,7 @@ export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
             <div className="rounded-16 relative aspect-video w-full overflow-hidden">
               <Image
                 src={article.coverImageUrl}
-                alt={article.title}
+                alt={article.coverImageAlt ?? article.title}
                 fill
                 sizes="(min-width: 1024px) 896px, 100vw"
                 priority
@@ -193,12 +228,20 @@ export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
             />
           </BlogArticleBody>
 
-          {article.externalReferences.length > 0 ? (
+          {article.internalLinks.length > 0 ||
+          article.externalReferences.length > 0 ? (
             <section className="border-border mt-16 border-t pt-12">
               <h2 className="landing-h3 text-foreground">
                 {t("marketing__blog__article__further_reading")}
               </h2>
               <ul className="text-muted-foreground type-body mt-4 list-disc space-y-2 pl-6">
+                {article.internalLinks.map((link) => (
+                  <BlogInternalLink
+                    key={link.slug}
+                    anchor={link.anchor}
+                    slug={link.slug}
+                  />
+                ))}
                 {article.externalReferences.map((ref) => (
                   <BlogReferenceLink
                     key={ref.url}
@@ -214,7 +257,7 @@ export const BlogArticlePage = async ({ params }: BlogArticlePageProps) => {
             title={article.title}
             coverImageUrl={article.coverImageUrl}
           />
-          <BlogByline />
+          <BlogByline author={article.author} />
         </div>
 
         <BlogRelatedArticles articles={relatedArticles} locale={locale} />

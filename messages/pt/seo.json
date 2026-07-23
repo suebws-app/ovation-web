@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Política de Reembolsos",
   "seo__legal_refunds__description": "A política de reembolsos da Ovation para planos digitais e keepsakes impressos.",
   "seo__legal_terms__title": "Termos de Serviço",
-  "seo__legal_terms__description": "Os termos que regem a utilização do livro de visitas e dos keepsakes da Ovation."
+  "seo__legal_terms__description": "Os termos que regem a utilização do livro de visitas e dos keepsakes da Ovation.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Livros de honra de casamento comparados",
+  "seo__competitor__alternatives_title": "Alternativa ao {competitor} — Livro de honra Ovation",
+  "seo__competitor__description": "Como a Ovation se compara ao {competitor} para vozes, fotos e recordações dos convidados. {tagline}",
+  "seo__for_photographers__title": "Parceiro para fotógrafos de casamento — Ovation",
+  "seo__for_photographers__description": "Recomende a Ovation a cada casal. Convidados deixam mensagens de voz, fotos e notas — você continua a ser o narrador visual do dia.",
+  "seo__for_venues__title": "Parceiro para Espaços de Casamento — Ovation",
+  "seo__for_venues__description": "Ofereça a Ovation como parceiro interno. Casais adoram, convidados usam, e cada livro impresso credita o seu espaço na capa interior.",
+  "seo__for_family__title": "Presente de casamento para os noivos — Ovation",
+  "seo__for_family__description": "O presente de casamento a que vão voltar — voz, foto e nota de cada convidado num livro-memória impresso. Pronto em 10 minutos.",
+  "seo__for_media__title": "Kit de imprensa — Livro de honra Ovation",
+  "seo__for_media__description": "Ativos de marca, capturas do produto, biografias dos fundadores, citações e fichas informativas para jornalistas e criadores.",
+  "seo__templates__title": "Modelos Gratuitos de Cartões QR para Casamentos",
+  "seo__templates__description": "Modelos prontos para imprimir para cartões QR, placas de boas-vindas, cartões de agradecimento e mais. Tudo gratuito, editável, pronto a descarregar.",
+  "seo__use_case__title": "{title} — Livro de honra de casamento Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

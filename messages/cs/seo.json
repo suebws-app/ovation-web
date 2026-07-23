@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Zásady vracení peněz",
   "seo__legal_refunds__description": "Zásady vracení peněz Ovation pro digitální plány a tištěné památky.",
   "seo__legal_terms__title": "Obchodní podmínky",
-  "seo__legal_terms__description": "Podmínky, kterými se řídí používání knihy hostů a památek Ovation."
+  "seo__legal_terms__description": "Podmínky, kterými se řídí používání knihy hostů a památek Ovation.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Svatební knihy hostů porovnané",
+  "seo__competitor__alternatives_title": "Alternativa k {competitor} — Kniha hostů Ovation",
+  "seo__competitor__description": "Jak Ovation obstojí ve srovnání s {competitor} pro hlasy, fotky a vzpomínky svatebních hostů. {tagline}",
+  "seo__for_photographers__title": "Partner pro svatební fotografy — Kniha hostů Ovation",
+  "seo__for_photographers__description": "Doporučte Ovation každému páru. Hosté zanechávají hlasové zprávy, fotky a poznámky — vy zůstáváte vizuálním vypravěčem dne.",
+  "seo__for_venues__title": "Partner pro svatební místa — brandované vzpomínky",
+  "seo__for_venues__description": "Nabídněte Ovation jako interního partnera. Páry milují, hosté používají a každá tištěná kniha zmiňuje vaše místo na vnitřní obálce.",
+  "seo__for_family__title": "Svatební dar pro páru — Ovation",
+  "seo__for_family__description": "Svatební dar, ke kterému se vrátí — hlas, fotka a vzkaz každého hosta v tištěné pamětní knize. Nastaveno za 10 minut.",
+  "seo__for_media__title": "Tiskový kit — Svatební kniha hostů Ovation",
+  "seo__for_media__description": "Prvky značky, snímky produktu, biografie zakladatelů, citáty a informační listy pro novináře a tvůrce píšící o Ovation.",
+  "seo__templates__title": "Bezplatné šablony svatebních QR karet a knih hostů",
+  "seo__templates__description": "Šablony připravené k tisku pro svatební QR karty, uvítací tabule, děkovné karty a další. Vše zdarma, upravitelné, připravené ke stažení.",
+  "seo__use_case__title": "{title} — Svatební kniha hostů Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

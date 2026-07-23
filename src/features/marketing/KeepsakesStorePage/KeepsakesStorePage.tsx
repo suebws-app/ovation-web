@@ -6,6 +6,10 @@ import { KeepsakeCard } from "./KeepsakeCard";
 import { keepsakesApi } from "@/lib/api/keepsakes";
 import { formatPrice } from "@/features/checkout/orderHelpers";
 import { CurrencySelectStatic } from "@/components/CurrencySelect/CurrencySelectStatic";
+import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
+import { JsonLd } from "@/components/JsonLd";
+import { itemListSchema } from "@/lib/seo/schemas";
+import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 
 export const KeepsakesStorePage = async ({ params }: LocalePageProps) => {
   const { locale } = await params;
@@ -27,10 +31,35 @@ export const KeepsakesStorePage = async ({ params }: LocalePageProps) => {
       : formatPrice(product.priceCents, product.currency),
     productType: product.productType,
     comingSoon: product.comingSoon,
+    priceCents: product.priceCents,
+    currency: product.currency,
+    imageUrl: product.imageUrl ?? null,
   }));
+
+  const keepsakesUrl = localizedAbsoluteUrl(locale, "/keepsakes");
+  const keepsakesListJsonLd = itemListSchema(
+    t("seo__keepsakes__title"),
+    products.map((product) => ({
+      name: product.name,
+      description: product.description,
+      url: `${keepsakesUrl}#${product.productType}`,
+      image: product.imageUrl,
+      priceCents: product.comingSoon ? undefined : product.priceCents,
+      currency: product.comingSoon ? undefined : product.currency,
+      availability: product.comingSoon
+        ? "https://schema.org/PreOrder"
+        : "https://schema.org/InStock",
+    })),
+  );
 
   return (
     <>
+      <PageBreadcrumbJsonLd
+        locale={locale}
+        page="keepsakes"
+        path="/keepsakes"
+      />
+      {products.length > 0 ? <JsonLd data={keepsakesListJsonLd} /> : null}
       <section>
         <div className="section-container-small">
           <div className="flex items-start justify-between gap-4">

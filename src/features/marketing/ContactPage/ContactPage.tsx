@@ -6,6 +6,7 @@ import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { ContactRow } from "./ContactRow";
 import { CONTACT_ROW_KEYS } from "./constants";
+import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
 
 export const ContactPage = ({ params }: LocalePageProps) => {
   const { locale } = use(params);
@@ -20,6 +21,7 @@ export const ContactPage = ({ params }: LocalePageProps) => {
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} page="contact" path="/contact" />
       <section>
         <div className="section-container-small">
           <Kicker className="text-primary">

@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { defaultLocale, locales } from "@/i18n/config";
 import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 import { blogApi, type BlogListItem } from "@/lib/api/blog";
+import { COMPETITORS } from "@/features/marketing/CompetitorPage";
+import { USE_CASES } from "@/features/marketing/UseCasePage";
 
 type MarketingRoute = {
   path: string;
@@ -15,6 +17,11 @@ const MARKETING_ROUTES: MarketingRoute[] = [
   { path: "/keepsakes", priority: 0.8 },
   { path: "/gold-book", priority: 0.8 },
   { path: "/for-planners", priority: 0.8 },
+  { path: "/for-photographers", priority: 0.7 },
+  { path: "/for-venues", priority: 0.7 },
+  { path: "/for-family", priority: 0.7 },
+  { path: "/for-media", priority: 0.4 },
+  { path: "/templates", priority: 0.6 },
   { path: "/sample", priority: 0.7 },
   { path: "/blog", priority: 0.7 },
   { path: "/about", priority: 0.5 },
@@ -127,12 +134,55 @@ const buildBlogArticleEntries = async (): Promise<MetadataRoute.Sitemap> => {
   return entries;
 };
 
+const fetchAuthorSlugs = async (): Promise<string[]> => {
+  try {
+    const { authors } = await blogApi.publicAuthorList();
+    return authors.map((author) => author.slug);
+  } catch {
+    return [];
+  }
+};
+
+const buildAuthorEntries = async (): Promise<MetadataRoute.Sitemap> => {
+  const slugs = await fetchAuthorSlugs();
+  return slugs.flatMap((slug) =>
+    buildRouteEntries({ path: `/authors/${slug}`, priority: 0.4 }),
+  );
+};
+
+const buildCompetitorEntries = (): MetadataRoute.Sitemap =>
+  COMPETITORS.flatMap((competitor) => [
+    ...buildRouteEntries({
+      path: `/vs/${competitor.slug}`,
+      priority: 0.7,
+    }),
+    ...buildRouteEntries({
+      path: `/alternatives/${competitor.slug}`,
+      priority: 0.7,
+    }),
+  ]);
+
+const buildUseCaseEntries = (): MetadataRoute.Sitemap =>
+  USE_CASES.flatMap((useCase) =>
+    buildRouteEntries({
+      path: `/use-cases/${useCase.slug}`,
+      priority: 0.6,
+    }),
+  );
+
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const [routeEntries, articleEntries] = await Promise.all([
+  const [routeEntries, articleEntries, authorEntries] = await Promise.all([
     Promise.resolve(MARKETING_ROUTES.flatMap(buildRouteEntries)),
     buildBlogArticleEntries(),
+    buildAuthorEntries(),
   ]);
-  return [...routeEntries, ...articleEntries];
+  return [
+    ...routeEntries,
+    ...buildCompetitorEntries(),
+    ...buildUseCaseEntries(),
+    ...articleEntries,
+    ...authorEntries,
+  ];
 };
 
 export default sitemap;

@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Politique de remboursement",
   "seo__legal_refunds__description": "La politique de remboursement d'Ovation pour les formules numériques et les souvenirs imprimés.",
   "seo__legal_terms__title": "Conditions d'utilisation",
-  "seo__legal_terms__description": "Les conditions qui régissent votre utilisation du livre d'or et des souvenirs Ovation."
+  "seo__legal_terms__description": "Les conditions qui régissent votre utilisation du livre d'or et des souvenirs Ovation.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Comparatif de livres d'or de mariage",
+  "seo__competitor__alternatives_title": "Alternative à {competitor} — Livre d'or de mariage Ovation",
+  "seo__competitor__description": "Comparatif Ovation vs {competitor} pour les voix, photos et souvenirs des invités de mariage. {tagline}",
+  "seo__for_photographers__title": "Partenaire photographes de mariage — Livre d'or Ovation",
+  "seo__for_photographers__description": "Recommandez Ovation à chaque couple. Les invités laissent voix, photos et notes — vous restez la conteuse visuelle du jour.",
+  "seo__for_venues__title": "Partenaire lieux de mariage — souvenirs à votre marque",
+  "seo__for_venues__description": "Proposez Ovation comme partenaire maison. Les couples adorent, les invités utilisent, et chaque livre imprimé crédite votre lieu.",
+  "seo__for_family__title": "Cadeau de mariage pour les mariés — Ovation",
+  "seo__for_family__description": "Le cadeau de mariage qu'ils rouvriront — voix, photos et notes de chaque invité dans un livre souvenir imprimé. Prêt en 10 minutes.",
+  "seo__for_media__title": "Kit presse — Livre d'or de mariage Ovation",
+  "seo__for_media__description": "Éléments de marque, captures produit, biographies fondateurs, citations et fiches info pour journalistes et créateurs.",
+  "seo__templates__title": "Modèles gratuits de cartes QR et livres d'or de mariage",
+  "seo__templates__description": "Modèles prêts à imprimer pour cartes QR de mariage, panneaux d'accueil, cartes de remerciement et plus. Tout gratuit, éditable, prêt à télécharger.",
+  "seo__use_case__title": "{title} — Livre d'or de mariage Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

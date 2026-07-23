@@ -63,22 +63,24 @@ export const generateBlogListMetadata = async ({
     page === 1
       ? baseTitle
       : `${baseTitle} — ${t("common__pagination__page_of", { current: page })}`;
-  const canonicalPath = page === 1 ? "/blog" : `/blog?page=${page}`;
+  const canonicalUrl = localizedAbsoluteUrl(locale, "/blog");
+  const pageUrl =
+    page === 1
+      ? canonicalUrl
+      : localizedAbsoluteUrl(locale, `/blog?page=${page}`);
   return {
     title,
     description,
     alternates: {
-      canonical: localizedAbsoluteUrl(locale, canonicalPath),
+      canonical: canonicalUrl,
       languages: buildLanguageAlternates("/blog"),
     },
-    // Pages 2+ are duplicate content risk — noindex but let Google follow
-    // internal links to article pages. Follow remains true.
     robots: page === 1 ? undefined : { index: false, follow: true },
     openGraph: {
       title,
       description,
       type: "website",
-      url: localizedAbsoluteUrl(locale, canonicalPath),
+      url: pageUrl,
       locale: openGraphLocale(locale),
       alternateLocale: openGraphAlternateLocales(locale),
     },
@@ -127,7 +129,7 @@ export const generateBlogArticleMetadata = async ({
                 url: article.coverImageUrl,
                 width: 1024,
                 height: 1024,
-                alt: article.title,
+                alt: article.coverImageAlt ?? article.title,
               },
             ]
           : undefined,
@@ -138,7 +140,14 @@ export const generateBlogArticleMetadata = async ({
         card: "summary_large_image",
         title,
         description,
-        images: article.coverImageUrl ? [article.coverImageUrl] : undefined,
+        images: article.coverImageUrl
+          ? [
+              {
+                url: article.coverImageUrl,
+                alt: article.coverImageAlt ?? article.title,
+              },
+            ]
+          : undefined,
       },
     };
   } catch (err) {

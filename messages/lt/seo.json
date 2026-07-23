@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Pinigų grąžinimo politika",
   "seo__legal_refunds__description": "Ovation pinigų grąžinimo politika skaitmeniniams planams ir spausdintiems atminimams.",
   "seo__legal_terms__title": "Paslaugų teikimo sąlygos",
-  "seo__legal_terms__description": "Sąlygos, reglamentuojančios naudojimąsi Ovation svečių knyga ir atminimais."
+  "seo__legal_terms__description": "Sąlygos, reglamentuojančios naudojimąsi Ovation svečių knyga ir atminimais.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Vestuvių svečių knygos palygintos",
+  "seo__competitor__alternatives_title": "Alternatyva {competitor} — Ovation svečių knyga",
+  "seo__competitor__description": "Kaip Ovation lyginama su {competitor} vestuvių svečių balsams, nuotraukoms ir atsiminimams. {tagline}",
+  "seo__for_photographers__title": "Partneris vestuvių fotografams — Ovation svečių knyga",
+  "seo__for_photographers__description": "Rekomenduokite Ovation kiekvienai porai. Svečiai palieka balso žinutes, nuotraukas ir žinutes — jūs išliekate dienos vizualiu pasakotoju.",
+  "seo__for_venues__title": "Partneris vestuvių vietoms — ženkliuoti atsiminimai",
+  "seo__for_venues__description": "Siūlykite Ovation kaip vidinį partnerį. Poroms patinka, svečiai naudoja, ir kiekviena atspausdinta knyga mini jūsų vietą ant vidinio viršelio.",
+  "seo__for_family__title": "Vestuvių dovana porai — Ovation",
+  "seo__for_family__description": "Vestuvių dovana, prie kurios jie grįš — kiekvieno svečio balsas, nuotrauka ir žinutė atspausdintoje atsiminimų knygoje. Parengta per 10 minučių.",
+  "seo__for_media__title": "Spaudos rinkinys — Ovation vestuvių svečių knyga",
+  "seo__for_media__description": "Prekės ženklo turtas, produkto ekrano vaizdai, steigėjų biografijos, citatos ir informaciniai lapai žurnalistams ir kūrėjams, kurie rašo apie Ovation.",
+  "seo__templates__title": "Nemokami vestuvių QR kortelių ir svečių knygų šablonai",
+  "seo__templates__description": "Spausdinti paruošti šablonai vestuvių QR kortelėms, sveikinimo lentoms, padėkos kortelėms ir daugiau. Viskas nemokama, redaguojama, paruošta atsisiųsti.",
+  "seo__use_case__title": "{title} — Ovation vestuvių svečių knyga",
+  "seo__use_case__description": "{subtitle}"
 }

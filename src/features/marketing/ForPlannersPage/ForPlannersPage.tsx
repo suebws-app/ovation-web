@@ -9,6 +9,7 @@ import { appRoutes } from "@/lib/routes";
 import { Link } from "@/i18n/navigation";
 import { ForPlannersBenefit } from "./ForPlannersBenefit";
 import { FOR_PLANNERS_BENEFIT_KEYS } from "./constants";
+import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
 
 export const ForPlannersPage = ({ params }: LocalePageProps) => {
   const { locale } = use(params);
@@ -23,6 +24,11 @@ export const ForPlannersPage = ({ params }: LocalePageProps) => {
 
   return (
     <>
+      <PageBreadcrumbJsonLd
+        locale={locale}
+        page="for_planners"
+        path="/for-planners"
+      />
       <section>
         <div className="section-container-small">
           <Kicker className="text-primary">
