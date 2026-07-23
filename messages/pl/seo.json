@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Polityka zwrotów",
   "seo__legal_refunds__description": "Polityka zwrotów Ovation dla planów cyfrowych i drukowanych pamiątek.",
   "seo__legal_terms__title": "Regulamin",
-  "seo__legal_terms__description": "Warunki korzystania z księgi gości i pamiątek Ovation."
+  "seo__legal_terms__description": "Warunki korzystania z księgi gości i pamiątek Ovation.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Porównanie ślubnych ksiąg gości",
+  "seo__competitor__alternatives_title": "Alternatywa dla {competitor} — Księga gości Ovation",
+  "seo__competitor__description": "Jak Ovation wypada w porównaniu z {competitor} dla głosów, zdjęć i wspomnień gości weselnych. {tagline}",
+  "seo__for_photographers__title": "Partner dla fotografów ślubnych — Księga gości Ovation",
+  "seo__for_photographers__description": "Polecaj Ovation każdej parze. Goście zostawiają wiadomości głosowe, zdjęcia i notatki — Ty pozostajesz wizualnym narratorem dnia.",
+  "seo__for_venues__title": "Partner dla miejsc ślubnych — brandowane pamiątki",
+  "seo__for_venues__description": "Zaoferuj Ovation jako wewnętrznego partnera. Pary uwielbiają, goście używają, a każda wydrukowana księga wspomina Waszą lokalizację na wewnętrznej okładce.",
+  "seo__for_family__title": "Prezent ślubny dla pary — Ovation",
+  "seo__for_family__description": "Prezent ślubny, do którego wrócą — głos, zdjęcie i notatka każdego gościa w drukowanej księdze pamiątkowej. Gotowe w 10 minut.",
+  "seo__for_media__title": "Zestaw prasowy — Ślubna księga gości Ovation",
+  "seo__for_media__description": "Zasoby marki, zrzuty ekranu produktu, biografie założycieli, cytaty i arkusze informacyjne dla dziennikarzy i twórców piszących o Ovation.",
+  "seo__templates__title": "Bezpłatne szablony ślubnych kart QR i ksiąg gości",
+  "seo__templates__description": "Szablony gotowe do druku dla ślubnych kart QR, tablic powitalnych, kart z podziękowaniami i więcej. Wszystko bezpłatne, edytowalne, gotowe do pobrania.",
+  "seo__use_case__title": "{title} — Ślubna księga gości Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

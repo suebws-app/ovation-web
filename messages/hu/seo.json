@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Visszatérítési szabályzat",
   "seo__legal_refunds__description": "Az Ovation visszatérítési szabályzata a digitális csomagokra és a nyomtatott emléktárgyakra.",
   "seo__legal_terms__title": "Felhasználási feltételek",
-  "seo__legal_terms__description": "Az Ovation vendégkönyvének és emléktárgyainak használatát szabályozó feltételek."
+  "seo__legal_terms__description": "Az Ovation vendégkönyvének és emléktárgyainak használatát szabályozó feltételek.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Esküvői vendégkönyvek összehasonlítva",
+  "seo__competitor__alternatives_title": "Alternatíva a {competitor}-hoz — Ovation vendégkönyv",
+  "seo__competitor__description": "Hogyan hasonlítható össze az Ovation a {competitor}-lal esküvői vendégek hangjaira, fotóira és emlékeire. {tagline}",
+  "seo__for_photographers__title": "Partner esküvői fotósoknak — Ovation vendégkönyv",
+  "seo__for_photographers__description": "Ajánlja az Ovationt minden párnak. A vendégek hangüzeneteket, fotókat és üzeneteket hagynak — Ön marad a nap vizuális elbeszélője.",
+  "seo__for_venues__title": "Partner esküvői helyszíneknek — márkás emlékek",
+  "seo__for_venues__description": "Kínálja az Ovationt házon belüli partnerként. A pároк imádják, a vendégek használják, és minden nyomtatott könyv megemlíti helyszínét a belső borítón.",
+  "seo__for_family__title": "Esküvői ajándék a párnak — Ovation",
+  "seo__for_family__description": "Az esküvői ajándék, amelyhez visszatérnek — minden vendég hangja, fotója és üzenete nyomtatott emlékkönyvben. 10 perc alatt beállítva.",
+  "seo__for_media__title": "Sajtócsomag — Ovation esküvői vendégkönyv",
+  "seo__for_media__description": "Márkaeszközök, termékképernyőképek, alapítói életrajzok, idézetek és adatlapok újságíróknak és alkotóknak, akik az Ovationról írnak.",
+  "seo__templates__title": "Ingyenes esküvői QR-kártya és vendégkönyv sablonok",
+  "seo__templates__description": "Nyomtatásra kész sablonok esküvői QR-kártyákhoz, üdvözlőtáblákhoz, köszönőkártyákhoz és többhöz. Minden ingyenes, szerkeszthető, letölthető.",
+  "seo__use_case__title": "{title} — Ovation esküvői vendégkönyv",
+  "seo__use_case__description": "{subtitle}"
 }

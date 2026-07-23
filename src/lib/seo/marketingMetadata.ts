@@ -15,10 +15,20 @@ type MarketingPageConfig = {
   page: string;
   path: string;
   absoluteTitle?: boolean;
+  ogImage?: string;
+  useRouteOgImage?: boolean;
 };
 
+const DEFAULT_OG_IMAGE = "/opengraph-image.png";
+
 const buildMetadataGenerator =
-  ({ page, path, absoluteTitle = false }: MarketingPageConfig) =>
+  ({
+    page,
+    path,
+    absoluteTitle = false,
+    ogImage = DEFAULT_OG_IMAGE,
+    useRouteOgImage = false,
+  }: MarketingPageConfig) =>
   async ({ params }: PageMetadataProps): Promise<Metadata> => {
     const { locale } = await params;
     const t = await getTranslations({ locale });
@@ -41,12 +51,15 @@ const buildMetadataGenerator =
         url: canonicalUrl,
         locale: openGraphLocale(locale),
         alternateLocale: openGraphAlternateLocales(locale),
-        images: [{ url: "/opengraph-image.png", width: 1600, height: 840 }],
+        images: useRouteOgImage
+          ? undefined
+          : [{ url: ogImage, width: 1600, height: 840 }],
       },
       twitter: {
         card: "summary_large_image",
         title,
         description,
+        images: useRouteOgImage ? undefined : [ogImage],
       },
     };
   };
@@ -82,9 +95,35 @@ export const generateForPlannersMetadata = buildMetadataGenerator({
   path: "/for-planners",
 });
 
+export const generateForPhotographersMetadata = buildMetadataGenerator({
+  page: "for_photographers",
+  path: "/for-photographers",
+});
+
+export const generateForVenuesMetadata = buildMetadataGenerator({
+  page: "for_venues",
+  path: "/for-venues",
+});
+
+export const generateForFamilyMetadata = buildMetadataGenerator({
+  page: "for_family",
+  path: "/for-family",
+});
+
+export const generateForMediaMetadata = buildMetadataGenerator({
+  page: "for_media",
+  path: "/for-media",
+});
+
+export const generateTemplatesMetadata = buildMetadataGenerator({
+  page: "templates",
+  path: "/templates",
+});
+
 export const generateGoldBookMetadata = buildMetadataGenerator({
   page: "gold_book",
   path: "/gold-book",
+  useRouteOgImage: true,
 });
 
 export const generateHowItWorksMetadata = buildMetadataGenerator({
@@ -100,6 +139,7 @@ export const generateKeepsakesMetadata = buildMetadataGenerator({
 export const generatePricingMetadata = buildMetadataGenerator({
   page: "pricing",
   path: "/pricing",
+  useRouteOgImage: true,
 });
 
 export const generateSampleMetadata = buildMetadataGenerator({

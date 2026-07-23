@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Erstattungsrichtlinie",
   "seo__legal_refunds__description": "Ovations Erstattungsrichtlinie für digitale Tarife und gedruckte Keepsakes.",
   "seo__legal_terms__title": "Nutzungsbedingungen",
-  "seo__legal_terms__description": "Die Bedingungen für die Nutzung von Ovations Gästebuch und Keepsakes."
+  "seo__legal_terms__description": "Die Bedingungen für die Nutzung von Ovations Gästebuch und Keepsakes.",
+  "seo__competitor__vs_title": "Ovation vs. {competitor} — Hochzeits-Gästebücher im Vergleich",
+  "seo__competitor__alternatives_title": "{competitor}-Alternative — Ovation Hochzeits-Gästebuch",
+  "seo__competitor__description": "Wie Ovation im Vergleich zu {competitor} bei Stimmen, Fotos und Erinnerungen der Gäste abschneidet. {tagline}",
+  "seo__for_photographers__title": "Partner für Hochzeitsfotografen — Ovation Gästebuch",
+  "seo__for_photographers__description": "Empfehlt Ovation jedem Paar. Gäste hinterlassen Sprachnachrichten, Fotos und Notizen — ihr bleibt die visuellen Erzähler des Tages.",
+  "seo__for_venues__title": "Hochzeitslocation-Partner — gebrandete Bücher",
+  "seo__for_venues__description": "Bietet Ovation als hauseigenen Partner an. Paare lieben es, Gäste nutzen es, und jedes Buch nennt eure Location auf dem inneren Umschlag.",
+  "seo__for_family__title": "Hochzeitsgeschenk für das Paar — Ovation Gästebuch",
+  "seo__for_family__description": "Das Hochzeitsgeschenk, zu dem sie zurückkehren — jede Stimme, jedes Foto, jede Notiz der Gäste als gedrucktes Erinnerungsbuch. In 10 Minuten eingerichtet.",
+  "seo__for_media__title": "Pressekit — Ovation Hochzeits-Gästebuch",
+  "seo__for_media__description": "Markenassets, Produktscreenshots, Gründerbios, Zitate und Factsheets für Journalist:innen und Creator, die über Ovation berichten.",
+  "seo__templates__title": "Kostenlose Vorlagen für Hochzeits-QR-Karten & Gästebücher",
+  "seo__templates__description": "Druckfertige Vorlagen für QR-Karten, Willkommensschilder, Dankeskarten und mehr. Alles kostenlos, editierbar und sofort herunterladbar.",
+  "seo__use_case__title": "{title} — Ovation Hochzeits-Gästebuch",
+  "seo__use_case__description": "{subtitle}"
 }

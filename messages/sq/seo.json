@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Politika e rimbursimit",
   "seo__legal_refunds__description": "Politika e rimbursimit e Ovation për planet dixhitale dhe kujtimet e shtypura.",
   "seo__legal_terms__title": "Kushtet e shërbimit",
-  "seo__legal_terms__description": "Kushtet që rregullojnë përdorimin tuaj të librit të mysafirëve dhe kujtimeve të Ovation."
+  "seo__legal_terms__description": "Kushtet që rregullojnë përdorimin tuaj të librit të mysafirëve dhe kujtimeve të Ovation.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Librat e të ftuarve të dasmës të krahasuar",
+  "seo__competitor__alternatives_title": "Alternativa ndaj {competitor} — Libri i të ftuarve Ovation",
+  "seo__competitor__description": "Si krahasohet Ovation me {competitor} për zërat, fotot dhe kujtimet e të ftuarve. {tagline}",
+  "seo__for_photographers__title": "Partner për fotografët e dasmës — Libri i të ftuarve Ovation",
+  "seo__for_photographers__description": "Rekomando Ovation çdo çifti. Të ftuarit lënë mesazhe zanore, foto dhe shënime — ti mbetesh tregimtari vizual i ditës.",
+  "seo__for_venues__title": "Partner për vendet e dasmës — kujtime të markës",
+  "seo__for_venues__description": "Ofro Ovation si partner të brendshëm. Çiftet e duan, të ftuarit e përdorin, dhe çdo libër i printuar përmend vendin tuaj në kapakun e brendshëm.",
+  "seo__for_family__title": "Dhuratë dasme për çiftin — Ovation",
+  "seo__for_family__description": "Dhurata e dasmës që do t'i kthehen — zëri, foto dhe mesazhi i çdo të ftuari në një libër kujtimesh të printuar. Gati në 10 minuta.",
+  "seo__for_media__title": "Kit i shtypit — Libri i të ftuarve të dasmës Ovation",
+  "seo__for_media__description": "Asetet e markës, pamje ekrani të produktit, biografi themeluesish, citate dhe fletë faktesh për gazetarët dhe krijuesit që shkruajnë për Ovation.",
+  "seo__templates__title": "Modele falas kartash QR dhe librash të ftuarish për dasmë",
+  "seo__templates__description": "Modele gati për printim për karta QR dasme, tabela mirëseardhjeje, karta falënderimi dhe më shumë. Të gjitha falas, të redaktueshme, gati për shkarkim.",
+  "seo__use_case__title": "{title} — Libri i të ftuarve të dasmës Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

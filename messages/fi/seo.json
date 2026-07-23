@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Hyvityskäytäntö",
   "seo__legal_refunds__description": "Ovationin hyvityskäytäntö digitaalisille paketeille ja painetuille muistoille.",
   "seo__legal_terms__title": "Käyttöehdot",
-  "seo__legal_terms__description": "Ehdot, jotka koskevat Ovationin vieraskirjan ja muistojen käyttöä."
+  "seo__legal_terms__description": "Ehdot, jotka koskevat Ovationin vieraskirjan ja muistojen käyttöä.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Häävieraskirjat vertailussa",
+  "seo__competitor__alternatives_title": "Vaihtoehto palvelulle {competitor} — Ovation-vieraskirja",
+  "seo__competitor__description": "Näin Ovation vertautuu palveluun {competitor} hääjuhlan äänille, kuville ja muistoille. {tagline}",
+  "seo__for_photographers__title": "Kumppani häävalokuvaajille — Ovation-vieraskirja",
+  "seo__for_photographers__description": "Suosittele Ovationia jokaiselle parille. Vieraat jättävät ääniviestejä, kuvia ja viestejä — sinä pysyt päivän visuaalisena tarinankertojana.",
+  "seo__for_venues__title": "Kumppani häätiloille — brändätyt muistot",
+  "seo__for_venues__description": "Tarjoa Ovation talon sisäisenä kumppanina. Parit rakastavat sitä, vieraat käyttävät sitä, ja jokainen painettu kirja mainitsee tilanne sisäkannessa.",
+  "seo__for_family__title": "Hääälahja hääparille — Ovation",
+  "seo__for_family__description": "Hääälahja, johon he palaavat — jokaisen vieraan ääni, kuva ja viesti painetussa muistikirjassa. Valmis 10 minuutissa.",
+  "seo__for_media__title": "Mediapaketti — Ovation-häävieraskirja",
+  "seo__for_media__description": "Brändimateriaalit, tuotekuvakaappaukset, perustajien biografiat, sitaatit ja tietolehdet toimittajille ja tekijöille, jotka kirjoittavat Ovationista.",
+  "seo__templates__title": "Ilmaiset hää-QR-korttien ja vieraskirjojen mallit",
+  "seo__templates__description": "Painovalmiit mallit hää-QR-korteille, tervetuloa-kylteille, kiitoskorteille ja muille. Kaikki ilmaista, muokattavissa, valmiina ladattavaksi.",
+  "seo__use_case__title": "{title} — Ovation-häävieraskirja",
+  "seo__use_case__description": "{subtitle}"
 }

@@ -12,6 +12,8 @@
     "ts-check": "tsc --noEmit",
     "prepare": "husky",
     "i18n:check": "node scripts/check-translations.mjs messages",
+    "seo:audit-meta": "node scripts/audit-seo-meta.mjs messages",
+    "seo:audit-h1": "node scripts/audit-h1-length.mjs messages",
     "indexnow:submit": "node scripts/submit-indexnow.mjs"
   },
   "browserslist": [

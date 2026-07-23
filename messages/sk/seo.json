@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Zásady vrátenia peňazí",
   "seo__legal_refunds__description": "Zásady vrátenia peňazí Ovation pre digitálne plány a tlačené pamiatky.",
   "seo__legal_terms__title": "Obchodné podmienky",
-  "seo__legal_terms__description": "Podmienky, ktorými sa riadi používanie knihy hostí a pamiatok Ovation."
+  "seo__legal_terms__description": "Podmienky, ktorými sa riadi používanie knihy hostí a pamiatok Ovation.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Svadobné knihy hostí porovnané",
+  "seo__competitor__alternatives_title": "Alternatíva k {competitor} — Kniha hostí Ovation",
+  "seo__competitor__description": "Ako Ovation obstojí v porovnaní s {competitor} pre hlasy, fotografie a spomienky svadobných hostí. {tagline}",
+  "seo__for_photographers__title": "Partner pre svadobných fotografov — Kniha hostí Ovation",
+  "seo__for_photographers__description": "Odporúčajte Ovation každému páru. Hostia zanechávajú hlasové správy, fotografie a poznámky — vy ostávate vizuálnym rozprávačom dňa.",
+  "seo__for_venues__title": "Partner pre svadobné miesta — brandované spomienky",
+  "seo__for_venues__description": "Ponúknite Ovation ako interného partnera. Páry milujú, hostia používajú a každá tlačená kniha spomína vaše miesto na vnútornej obálke.",
+  "seo__for_family__title": "Svadobný dar pre pár — Ovation",
+  "seo__for_family__description": "Svadobný dar, ku ktorému sa vrátia — hlas, fotografia a odkaz každého hosťa v tlačenej pamätnej knihe. Nastavené za 10 minút.",
+  "seo__for_media__title": "Tlačový kit — Svadobná kniha hostí Ovation",
+  "seo__for_media__description": "Prvky značky, snímky produktu, biografie zakladateľov, citáty a informačné listy pre novinárov a tvorcov píšucich o Ovation.",
+  "seo__templates__title": "Bezplatné šablóny svadobných QR kariet a kníh hostí",
+  "seo__templates__description": "Šablóny pripravené na tlač pre svadobné QR karty, uvítacie tabule, ďakovné karty a ďalšie. Všetko zadarmo, upraviteľné, pripravené na stiahnutie.",
+  "seo__use_case__title": "{title} — Svadobná kniha hostí Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

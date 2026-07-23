@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "İade Politikası",
   "seo__legal_refunds__description": "Ovation'ın dijital planlar ve basılı hatıralar için iade politikası.",
   "seo__legal_terms__title": "Hizmet Şartları",
-  "seo__legal_terms__description": "Ovation'ın misafir defteri ve hatıralarının kullanımını düzenleyen şartlar."
+  "seo__legal_terms__description": "Ovation'ın misafir defteri ve hatıralarının kullanımını düzenleyen şartlar.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Düğün misafir kitapları karşılaştırıldı",
+  "seo__competitor__alternatives_title": "{competitor} alternatifi — Ovation misafir kitabı",
+  "seo__competitor__description": "Ovation'ın düğün misafirlerinin sesleri, fotoğrafları ve anıları için {competitor} ile nasıl karşılaştırıldığı. {tagline}",
+  "seo__for_photographers__title": "Düğün fotoğrafçıları için ortak — Ovation misafir kitabı",
+  "seo__for_photographers__description": "Her çifte Ovation'ı önerin. Misafirler sesli mesajlar, fotoğraflar ve notlar bırakır — siz günün görsel anlatıcısı olarak kalırsınız.",
+  "seo__for_venues__title": "Düğün mekanları için ortak — markalı anılar",
+  "seo__for_venues__description": "Ovation'ı iç ortak olarak sunun. Çiftler seviyor, misafirler kullanıyor ve her basılı kitap mekanınızı iç kapakta belirtiyor.",
+  "seo__for_family__title": "Çift için düğün hediyesi — Ovation",
+  "seo__for_family__description": "Geri dönecekleri düğün hediyesi — her misafirin sesi, fotoğrafı ve notu basılı bir hatıra kitabında. 10 dakikada hazır.",
+  "seo__for_media__title": "Basın kiti — Ovation düğün misafir kitabı",
+  "seo__for_media__description": "Marka varlıkları, ürün ekran görüntüleri, kurucu biyografileri, alıntılar ve Ovation hakkında yazan gazeteci ve yaratıcılar için bilgi föyleri.",
+  "seo__templates__title": "Ücretsiz düğün QR kart ve misafir kitabı şablonları",
+  "seo__templates__description": "Düğün QR kartları, karşılama tabelaları, teşekkür kartları ve daha fazlası için basıma hazır şablonlar. Hepsi ücretsiz, düzenlenebilir, indirilmeye hazır.",
+  "seo__use_case__title": "{title} — Ovation düğün misafir kitabı",
+  "seo__use_case__description": "{subtitle}"
 }

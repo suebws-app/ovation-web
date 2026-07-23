@@ -6,6 +6,7 @@ import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { CareerValue } from "./CareerValue";
 import { CAREER_VALUE_KEYS } from "./constants";
+import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
 
 export const CareersPage = ({ params }: LocalePageProps) => {
   const { locale } = use(params);
@@ -20,6 +21,7 @@ export const CareersPage = ({ params }: LocalePageProps) => {
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} page="careers" path="/careers" />
       <section>
         <div className="section-container-small">
           <Kicker className="text-primary">

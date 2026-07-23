@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Atmaksas politika",
   "seo__legal_refunds__description": "Ovation atmaksas politika digitālajiem plāniem un drukātajām piemiņām.",
   "seo__legal_terms__title": "Pakalpojuma noteikumi",
-  "seo__legal_terms__description": "Noteikumi, kas regulē Ovation viesu grāmatas un piemiņu lietošanu."
+  "seo__legal_terms__description": "Noteikumi, kas regulē Ovation viesu grāmatas un piemiņu lietošanu.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Kāzu viesu grāmatas salīdzinātas",
+  "seo__competitor__alternatives_title": "Alternatīva {competitor}-am — Ovation viesu grāmata",
+  "seo__competitor__description": "Kā Ovation salīdzinās ar {competitor} kāzu viesu balsīm, foto un piemiņai. {tagline}",
+  "seo__for_photographers__title": "Partneris kāzu fotogrāfiem — Ovation viesu grāmata",
+  "seo__for_photographers__description": "Ieteikt Ovation katram pārim. Viesi atstāj balss ziņojumus, foto un piezīmes — jūs paliekat dienas vizuālais stāstnieks.",
+  "seo__for_venues__title": "Partneris kāzu vietām — zīmola piemiņa",
+  "seo__for_venues__description": "Piedāvājiet Ovation kā iekšējo partneri. Pāri to mīl, viesi to lieto, un katra iespiestā grāmata piemin jūsu vietu iekšpusē.",
+  "seo__for_family__title": "Kāzu dāvana pārim — Ovation",
+  "seo__for_family__description": "Kāzu dāvana, pie kuras viņi atgriezīsies — katra viesa balss, foto un vēstījums iespiestā piemiņas grāmatā. Gatavs 10 minūtēs.",
+  "seo__for_media__title": "Preses komplekts — Ovation kāzu viesu grāmata",
+  "seo__for_media__description": "Zīmola aktīvi, produkta ekrānuzņēmumi, dibinātāju biogrāfijas, citāti un informācijas lapas žurnālistiem un radītājiem, kas raksta par Ovation.",
+  "seo__templates__title": "Bezmaksas kāzu QR karšu un viesu grāmatu veidnes",
+  "seo__templates__description": "Drukāšanai gatavas veidnes kāzu QR kartēm, sagaidīšanas zīmēm, pateicības kartēm un vairāk. Viss bezmaksas, rediģējams, gatavs lejupielādei.",
+  "seo__use_case__title": "{title} — Ovation kāzu viesu grāmata",
+  "seo__use_case__description": "{subtitle}"
 }

@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Política de reembolsos",
   "seo__legal_refunds__description": "La política de reembolsos de Ovation para planes digitales y keepsakes impresos.",
   "seo__legal_terms__title": "Términos del servicio",
-  "seo__legal_terms__description": "Los términos que regulan tu uso del libro de firmas y los keepsakes de Ovation."
+  "seo__legal_terms__description": "Los términos que regulan tu uso del libro de firmas y los keepsakes de Ovation.",
+  "seo__competitor__vs_title": "Ovation frente a {competitor} — Libros de firmas de boda comparados",
+  "seo__competitor__alternatives_title": "Alternativa a {competitor} — Libro de firmas Ovation",
+  "seo__competitor__description": "Cómo se compara Ovation con {competitor} para voces, fotos y recuerdos de los invitados. {tagline}",
+  "seo__for_photographers__title": "Partner para fotógrafos de bodas — Libro Ovation",
+  "seo__for_photographers__description": "Recomienda Ovation a cada pareja. Los invitados dejan mensajes de voz, fotos y notas — tú sigues siendo la narradora visual del día.",
+  "seo__for_venues__title": "Partner para espacios de bodas — recuerdos con tu marca",
+  "seo__for_venues__description": "Ofrece Ovation como partner interno. A las parejas les encanta, los invitados lo usan, y cada libro impreso incluye tu espacio en la cubierta interior.",
+  "seo__for_family__title": "Regalo de boda para los novios — Ovation",
+  "seo__for_family__description": "El regalo de boda al que sí volverán — voz, foto y nota de cada invitado en un libro recuerdo impreso. Listo en 10 minutos.",
+  "seo__for_media__title": "Kit de prensa — Libro de firmas Ovation",
+  "seo__for_media__description": "Activos de marca, capturas del producto, biografías de los fundadores, citas y fichas para periodistas y creadores.",
+  "seo__templates__title": "Plantillas gratuitas de tarjetas QR y libros de firmas",
+  "seo__templates__description": "Plantillas listas para imprimir de tarjetas QR de boda, carteles de bienvenida, tarjetas de agradecimiento y más. Gratis y editables.",
+  "seo__use_case__title": "{title} — Libro de firmas de boda Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

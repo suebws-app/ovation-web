@@ -6,6 +6,7 @@ import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { SustainabilityCommitment } from "./SustainabilityCommitment";
 import { SUSTAINABILITY_COMMITMENT_KEYS } from "./constants";
+import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
 
 export const SustainabilityPage = ({ params }: LocalePageProps) => {
   const { locale } = use(params);
@@ -20,6 +21,11 @@ export const SustainabilityPage = ({ params }: LocalePageProps) => {
 
   return (
     <>
+      <PageBreadcrumbJsonLd
+        locale={locale}
+        page="sustainability"
+        path="/sustainability"
+      />
       <section>
         <div className="section-container-small">
           <Kicker className="text-primary">

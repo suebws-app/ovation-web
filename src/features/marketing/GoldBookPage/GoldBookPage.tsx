@@ -10,6 +10,10 @@ import { Link } from "@/i18n/navigation";
 import { locales } from "@/i18n/config";
 import { GoldBookFeature } from "./GoldBookFeature";
 import { GOLD_BOOK_FEATURE_KEYS } from "./constants";
+import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
+import { JsonLd } from "@/components/JsonLd";
+import { productSchema } from "@/lib/seo/schemas";
+import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 
 export const GoldBookPage = ({ params }: LocalePageProps) => {
   const { locale } = use(params);
@@ -22,8 +26,21 @@ export const GoldBookPage = ({ params }: LocalePageProps) => {
     body: t(k.body),
   }));
 
+  const goldBookUrl = localizedAbsoluteUrl(locale, "/gold-book");
+  const goldBookProductJsonLd = productSchema({
+    name: t("seo__gold_book__title"),
+    description: t("seo__gold_book__description"),
+    url: goldBookUrl,
+  });
+
   return (
     <>
+      <PageBreadcrumbJsonLd
+        locale={locale}
+        page="gold_book"
+        path="/gold-book"
+      />
+      <JsonLd data={goldBookProductJsonLd} />
       <section>
         <div className="section-container-small">
           <Kicker className="text-primary">

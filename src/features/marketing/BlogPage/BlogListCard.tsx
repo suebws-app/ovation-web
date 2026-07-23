@@ -25,7 +25,7 @@ export const BlogListCard = ({ article, locale }: BlogListCardProps) => {
         <div className="relative aspect-video w-full overflow-hidden">
           <Image
             src={article.coverImageUrl}
-            alt={article.title}
+            alt={article.coverImageAlt ?? article.title}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
             className="object-cover"

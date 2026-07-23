@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
 
 export const ChangelogPage = ({ params }: LocalePageProps) => {
   const { locale } = use(params);
@@ -13,6 +14,11 @@ export const ChangelogPage = ({ params }: LocalePageProps) => {
 
   return (
     <>
+      <PageBreadcrumbJsonLd
+        locale={locale}
+        page="changelog"
+        path="/changelog"
+      />
       <section>
         <div className="section-container-small">
           <Kicker className="text-primary">

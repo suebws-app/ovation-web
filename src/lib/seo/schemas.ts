@@ -25,23 +25,37 @@ type BreadcrumbCrumb = {
   url: string;
 };
 
-export const organizationSchema = () => ({
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": `${appUrl}/#organization`,
-  name: "Ovation",
-  legalName: clientEnv.LEGAL_ENTITY_NAME,
-  url: appUrl,
-  logo: `${appUrl}/apple-icon.png`,
-  foundingDate: "2026",
-  address: clientEnv.LEGAL_ENTITY_ADDRESS,
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "customer support",
-    email: clientEnv.SUPPORT_EMAIL,
-    availableLanguage: "en",
-  },
-});
+const organizationSameAs = (): string[] =>
+  [
+    clientEnv.SOCIAL_INSTAGRAM_URL,
+    clientEnv.SOCIAL_TIKTOK_URL,
+    clientEnv.SOCIAL_LINKEDIN_URL,
+    clientEnv.SOCIAL_X_URL,
+    clientEnv.SOCIAL_FACEBOOK_URL,
+    clientEnv.SOCIAL_YOUTUBE_URL,
+  ].filter((url): url is string => Boolean(url));
+
+export const organizationSchema = () => {
+  const sameAs = organizationSameAs();
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${appUrl}/#organization`,
+    name: "Ovation",
+    legalName: clientEnv.LEGAL_ENTITY_NAME,
+    url: appUrl,
+    logo: `${appUrl}/apple-icon.png`,
+    foundingDate: "2026",
+    address: clientEnv.LEGAL_ENTITY_ADDRESS,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: clientEnv.SUPPORT_EMAIL,
+      availableLanguage: "en",
+    },
+    sameAs: sameAs.length > 0 ? sameAs : undefined,
+  };
+};
 
 export const webSiteSchema = () => ({
   "@context": "https://schema.org",
@@ -73,7 +87,33 @@ export const faqPageSchema = (items: FaqItem[]) => ({
 const isoDuration = (minutes: number): string =>
   `PT${Math.max(1, Math.round(minutes))}M`;
 
-export const blogPostingSchema = (input: BlogPostingInput) => ({
+type PersonAuthor = {
+  slug: string;
+  name: string;
+  imageUrl?: string | null;
+  bio?: string;
+  sameAs?: string[];
+};
+
+export const personSchema = (person: PersonAuthor) => ({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${appUrl}/authors/${person.slug}#person`,
+  name: person.name,
+  url: `${appUrl}/authors/${person.slug}`,
+  image: person.imageUrl ?? undefined,
+  description: person.bio,
+  sameAs: person.sameAs && person.sameAs.length > 0 ? person.sameAs : undefined,
+});
+
+type BlogPostingSchemaExtras = {
+  author?: PersonAuthor;
+};
+
+export const blogPostingSchema = (
+  input: BlogPostingInput,
+  extras: BlogPostingSchemaExtras = {},
+) => ({
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: input.headline,
@@ -90,9 +130,6 @@ export const blogPostingSchema = (input: BlogPostingInput) => ({
         url: input.imageUrl,
         width: 1024,
         height: 1024,
-        // Article title as image "name" (not caption — caption is the
-        // spoken/written text under the image; name is the identifying
-        // label).
         name: input.imageAlt,
       }
     : undefined,
@@ -101,14 +138,26 @@ export const blogPostingSchema = (input: BlogPostingInput) => ({
   wordCount: input.wordCount,
   timeRequired: isoDuration(input.readingMinutes),
   keywords: input.keywords.filter(Boolean).join(", ") || undefined,
-  author: {
-    "@type": "Organization",
-    "@id": `${appUrl}/#organization`,
-    name: "Ovation Editorial",
-    url: `${appUrl}/about`,
-  },
+  author: extras.author
+    ? {
+        "@type": "Person",
+        "@id": `${appUrl}/authors/${extras.author.slug}#person`,
+        name: extras.author.name,
+        url: `${appUrl}/authors/${extras.author.slug}`,
+        image: extras.author.imageUrl ?? undefined,
+      }
+    : {
+        "@type": "Organization",
+        "@id": `${appUrl}/#organization`,
+        name: "Ovation Editorial",
+        url: `${appUrl}/about`,
+      },
   publisher: { "@id": `${appUrl}/#organization` },
   isPartOf: { "@id": `${appUrl}/#website` },
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: ["h1", "h2", ".blog-prose > p:first-of-type"],
+  },
 });
 
 // Home › Blog › Article — required for breadcrumb rich results.
@@ -120,5 +169,100 @@ export const breadcrumbListSchema = (items: BreadcrumbCrumb[]) => ({
     position: index + 1,
     name: item.name,
     item: item.url,
+  })),
+});
+
+type OfferInput = {
+  price: string;
+  priceCurrency: string;
+  url: string;
+  availability?: string;
+};
+
+type AggregateOfferInput = {
+  lowPrice: string;
+  highPrice: string;
+  priceCurrency: string;
+  offerCount: number;
+  url: string;
+};
+
+type ProductSchemaInput = {
+  name: string;
+  description: string;
+  url: string;
+  imageUrl?: string | null;
+  brand?: string;
+  offer?: OfferInput;
+  aggregateOffer?: AggregateOfferInput;
+};
+
+export const productSchema = (input: ProductSchemaInput) => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: input.name,
+  description: input.description,
+  url: input.url,
+  image: input.imageUrl ?? undefined,
+  brand: {
+    "@type": "Brand",
+    name: input.brand ?? "Ovation",
+  },
+  offers: input.aggregateOffer
+    ? {
+        "@type": "AggregateOffer",
+        lowPrice: input.aggregateOffer.lowPrice,
+        highPrice: input.aggregateOffer.highPrice,
+        priceCurrency: input.aggregateOffer.priceCurrency,
+        offerCount: input.aggregateOffer.offerCount,
+        url: input.aggregateOffer.url,
+      }
+    : input.offer
+      ? {
+          "@type": "Offer",
+          price: input.offer.price,
+          priceCurrency: input.offer.priceCurrency,
+          url: input.offer.url,
+          availability:
+            input.offer.availability ?? "https://schema.org/InStock",
+        }
+      : undefined,
+});
+
+type ItemListEntry = {
+  name: string;
+  url: string;
+  image?: string | null;
+  description?: string;
+  priceCents?: number;
+  currency?: string;
+  availability?: string;
+};
+
+export const itemListSchema = (name: string, items: ItemListEntry[]) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name,
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Product",
+      name: item.name,
+      url: item.url,
+      description: item.description,
+      image: item.image ?? undefined,
+      brand: { "@type": "Brand", name: "Ovation" },
+      offers:
+        typeof item.priceCents === "number" && item.currency
+          ? {
+              "@type": "Offer",
+              price: (item.priceCents / 100).toFixed(2),
+              priceCurrency: item.currency,
+              url: item.url,
+              availability: item.availability ?? "https://schema.org/InStock",
+            }
+          : undefined,
+    },
   })),
 });

@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Politica di rimborso",
   "seo__legal_refunds__description": "La politica di rimborso di Ovation per i piani digitali e i keepsake stampati.",
   "seo__legal_terms__title": "Termini di servizio",
-  "seo__legal_terms__description": "I termini che regolano l'uso del guestbook e dei keepsake di Ovation."
+  "seo__legal_terms__description": "I termini che regolano l'uso del guestbook e dei keepsake di Ovation.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Guest book di matrimonio a confronto",
+  "seo__competitor__alternatives_title": "Alternativa a {competitor} — Guest book Ovation",
+  "seo__competitor__description": "Come Ovation si confronta con {competitor} per voci, foto e ricordi degli invitati. {tagline}",
+  "seo__for_photographers__title": "Partner per fotografi di matrimonio — Guest book Ovation",
+  "seo__for_photographers__description": "Consiglia Ovation a ogni coppia. Gli ospiti lasciano messaggi vocali, foto e note — tu resti la narratrice visiva del giorno.",
+  "seo__for_venues__title": "Partner per location di matrimonio — ricordi brandizzati",
+  "seo__for_venues__description": "Offri Ovation come partner interno. Le coppie lo adorano, gli ospiti lo usano, e ogni libro stampato cita la tua location sul risvolto interno.",
+  "seo__for_family__title": "Regalo di matrimonio per gli sposi — Ovation",
+  "seo__for_family__description": "Il regalo di matrimonio a cui torneranno — voce, foto e nota di ogni ospite in un libro ricordo stampato. Pronto in 10 minuti.",
+  "seo__for_media__title": "Press kit — Guest book di matrimonio Ovation",
+  "seo__for_media__description": "Asset di brand, screenshot del prodotto, bio dei fondatori, citazioni e factsheet per giornalisti e creator.",
+  "seo__templates__title": "Template gratuiti per card QR e guest book di matrimonio",
+  "seo__templates__description": "Template pronti da stampare per card QR di matrimonio, cartelli di benvenuto, biglietti di ringraziamento e altro. Gratis e modificabili.",
+  "seo__use_case__title": "{title} — Guest book di matrimonio Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Refusjonspolicy",
   "seo__legal_refunds__description": "Ovations refusjonspolicy for digitale planer og trykte minner.",
   "seo__legal_terms__title": "Vilkår for bruk",
-  "seo__legal_terms__description": "Vilkårene som gjelder for din bruk av Ovations gjestebok og minner."
+  "seo__legal_terms__description": "Vilkårene som gjelder for din bruk av Ovations gjestebok og minner.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Bryllupsgjestebøker sammenlignet",
+  "seo__competitor__alternatives_title": "Alternativ til {competitor} — Ovation-gjestebok",
+  "seo__competitor__description": "Slik sammenlignes Ovation med {competitor} for bryllupsgjesters stemmer, bilder og minner. {tagline}",
+  "seo__for_photographers__title": "Partner for bryllupsfotografer — Ovation-gjestebok",
+  "seo__for_photographers__description": "Anbefal Ovation til hvert par. Gjester legger igjen talemeldinger, bilder og notater — du forblir dagens visuelle forteller.",
+  "seo__for_venues__title": "Partner for bryllupssteder — merkevaresminner",
+  "seo__for_venues__description": "Tilby Ovation som intern partner. Par elsker det, gjester bruker det, og hver trykte bok krediterer stedet deres på innsiden av omslaget.",
+  "seo__for_family__title": "Bryllupsgave til brudeparet — Ovation",
+  "seo__for_family__description": "Bryllupsgaven de vender tilbake til — hver gjests stemme, bilde og notat i en trykt minnebok. Klar på 10 minutter.",
+  "seo__for_media__title": "Pressekit — Ovation-bryllupsgjestebok",
+  "seo__for_media__description": "Merkevareressurser, produktskjermbilder, grunnleggerbiografier, sitater og faktaark for journalister og skapere som dekker Ovation.",
+  "seo__templates__title": "Gratis maler for bryllups-QR-kort og gjestebøker",
+  "seo__templates__description": "Utskriftsklare maler for bryllups-QR-kort, velkomstskilt, takkekort og mer. Alt gratis, redigerbart og klart til nedlasting.",
+  "seo__use_case__title": "{title} — Ovation-bryllupsgjestebok",
+  "seo__use_case__description": "{subtitle}"
 }

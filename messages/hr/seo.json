@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Politika povrata novca",
   "seo__legal_refunds__description": "Ovationova politika povrata novca za digitalne planove i tiskane uspomene.",
   "seo__legal_terms__title": "Uvjeti korištenja",
-  "seo__legal_terms__description": "Uvjeti koji uređuju vaše korištenje Ovationove knjige gostiju i uspomena."
+  "seo__legal_terms__description": "Uvjeti koji uređuju vaše korištenje Ovationove knjige gostiju i uspomena.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Vjenčane knjige gostiju uspoređene",
+  "seo__competitor__alternatives_title": "Alternativa za {competitor} — Knjiga gostiju Ovation",
+  "seo__competitor__description": "Kako se Ovation uspoređuje s {competitor} za glasove, fotografije i uspomene vjenčanih gostiju. {tagline}",
+  "seo__for_photographers__title": "Partner za vjenčane fotografe — Knjiga gostiju Ovation",
+  "seo__for_photographers__description": "Preporučite Ovation svakom paru. Gosti ostavljaju glasovne poruke, fotografije i bilješke — vi ostajete vizualni pripovjedač dana.",
+  "seo__for_venues__title": "Partner za mjesta vjenčanja — brandované uspomene",
+  "seo__for_venues__description": "Ponudite Ovation kao internog partnera. Parovi vole, gosti koriste, a svaka tiskana knjiga navodi vaše mjesto na unutrašnjoj strani korica.",
+  "seo__for_family__title": "Vjenčani dar za par — Ovation",
+  "seo__for_family__description": "Vjenčani dar kojemu će se vratiti — glas, fotografija i poruka svakog gosta u tiskanom spomenaru. Spremno za 10 minuta.",
+  "seo__for_media__title": "Medijski paket — Vjenčana knjiga gostiju Ovation",
+  "seo__for_media__description": "Elementi brenda, snimke zaslona proizvoda, biografije osnivača, citati i informativni listovi za novinare i kreatore koji pišu o Ovationu.",
+  "seo__templates__title": "Besplatni predlošci vjenčanih QR kartica i knjiga gostiju",
+  "seo__templates__description": "Predlošci spremni za ispis za vjenčane QR kartice, table dobrodošlice, kartice zahvale i više. Sve besplatno, podložno uređivanju, spremno za preuzimanje.",
+  "seo__use_case__title": "{title} — Vjenčana knjiga gostiju Ovation",
+  "seo__use_case__description": "{subtitle}"
 }

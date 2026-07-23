@@ -30,5 +30,20 @@
   "seo__legal_refunds__title": "Återbetalningspolicy",
   "seo__legal_refunds__description": "Ovations återbetalningspolicy för digitala planer och tryckta minnessaker.",
   "seo__legal_terms__title": "Användarvillkor",
-  "seo__legal_terms__description": "Villkoren som gäller för din användning av Ovations gästbok och minnessaker."
+  "seo__legal_terms__description": "Villkoren som gäller för din användning av Ovations gästbok och minnessaker.",
+  "seo__competitor__vs_title": "Ovation vs {competitor} — Bröllopsgästböcker jämförda",
+  "seo__competitor__alternatives_title": "Alternativ till {competitor} — Ovation-gästbok",
+  "seo__competitor__description": "Så jämförs Ovation med {competitor} för bröllopsgästers röster, foton och minnen. {tagline}",
+  "seo__for_photographers__title": "Partner för bröllopsfotografer — Ovation-gästbok",
+  "seo__for_photographers__description": "Rekommendera Ovation till varje par. Gäster lämnar röstmeddelanden, foton och anteckningar — du förblir dagens visuella berättare.",
+  "seo__for_venues__title": "Partner för bröllopslokaler — brandade minnen",
+  "seo__for_venues__description": "Erbjud Ovation som intern partner. Par älskar det, gäster använder det, och varje tryckt bok krediterar er lokal på insidan av omslaget.",
+  "seo__for_family__title": "Bröllopspresent till brudparet — Ovation",
+  "seo__for_family__description": "Bröllopspresenten de vänder tillbaka till — varje gästs röst, foto och anteckning i en tryckt minnesbok. Klart på 10 minuter.",
+  "seo__for_media__title": "Presskit — Ovation-bröllopsgästbok",
+  "seo__for_media__description": "Varumärkesresurser, produktskärmdumpar, grundarbiografier, citat och faktablad för journalister och kreatörer som skriver om Ovation.",
+  "seo__templates__title": "Gratis mallar för bröllops-QR-kort och gästböcker",
+  "seo__templates__description": "Utskriftsklara mallar för bröllops-QR-kort, välkomstskyltar, tackkort och mer. Allt gratis, redigerbart och klart att ladda ner.",
+  "seo__use_case__title": "{title} — Ovation-bröllopsgästbok",
+  "seo__use_case__description": "{subtitle}"
 }
