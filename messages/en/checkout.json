@@ -25,5 +25,14 @@
   "checkout__cancel__title": "No charge made.",
   "checkout__cancel__body": "You stepped away before completing payment, so nothing was billed. Your draft order <strong>#{id}</strong> stays available — pick it back up whenever you're ready.",
   "checkout__cancel__back_keepsakes": "Back to keepsakes",
-  "checkout__cancel__skip": "Skip for now"
+  "checkout__cancel__skip": "Skip for now",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Finish checkout in Safari or Chrome",
+  "checkout__in_app__body": "You're viewing this inside an app's built-in browser, where payment windows can close unexpectedly. Open the link below in your regular browser to complete your purchase safely.",
+  "checkout__in_app__instructions_ios": "Tap the ⋯ menu at the top or bottom of this window and choose \"Open in Safari\" — or copy the link and paste it into Safari.",
+  "checkout__in_app__instructions_android": "Tap the ⋮ menu at the top of this window and choose \"Open in Chrome\" — or copy the link and paste it into Chrome.",
+  "checkout__in_app__instructions_other": "Copy the link below and open it in your regular browser to complete checkout.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

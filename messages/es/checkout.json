@@ -25,5 +25,14 @@
   "checkout__cancel__title": "No se ha realizado ningún cargo.",
   "checkout__cancel__body": "Saliste antes de completar el pago, así que no se ha facturado nada. Tu pedido en borrador <strong>n.º {id}</strong> sigue disponible — retómalo cuando estés listo.",
   "checkout__cancel__back_keepsakes": "Volver a Keepsakes",
-  "checkout__cancel__skip": "Saltar por ahora"
+  "checkout__cancel__skip": "Saltar por ahora",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Termina el pago en Safari o Chrome",
+  "checkout__in_app__body": "Estás viendo esto dentro del navegador integrado de una app, donde las ventanas de pago pueden cerrarse inesperadamente. Abre el enlace de abajo en tu navegador habitual para completar tu compra de forma segura.",
+  "checkout__in_app__instructions_ios": "Toca el menú ⋯ en la parte superior o inferior de esta ventana y elige «Abrir en Safari» — o copia el enlace y pégalo en Safari.",
+  "checkout__in_app__instructions_android": "Toca el menú ⋮ en la parte superior de esta ventana y elige «Abrir en Chrome» — o copia el enlace y pégalo en Chrome.",
+  "checkout__in_app__instructions_other": "Copia el enlace de abajo y ábrelo en tu navegador habitual para completar el pago.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

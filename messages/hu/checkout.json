@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Nem történt terhelés.",
   "checkout__cancel__body": "A fizetés befejezése előtt elhagytad az oldalt, így nem terheltünk meg. A piszkozat rendelésed <strong>#{id}</strong> elérhető marad — folytasd, amikor készen állsz.",
   "checkout__cancel__back_keepsakes": "Vissza az emléktárgyakhoz",
-  "checkout__cancel__skip": "Kihagyás most"
+  "checkout__cancel__skip": "Kihagyás most",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Fizetés befejezése Safariban vagy Chrome-ban",
+  "checkout__in_app__body": "Ezt egy alkalmazás beépített böngészőjében nézed, ahol a fizetési ablakok váratlanul bezáródhatnak. Nyisd meg az alábbi linket a szokásos böngésződben, hogy biztonságosan befejezhesd a vásárlást.",
+  "checkout__in_app__instructions_ios": "Koppints az ablak tetején vagy alján lévő ⋯ menüre, és válaszd a „Megnyitás Safariban” lehetőséget — vagy másold ki a linket és illeszd be a Safariba.",
+  "checkout__in_app__instructions_android": "Koppints az ablak tetején lévő ⋮ menüre, és válaszd a „Megnyitás Chrome-ban” lehetőséget — vagy másold ki a linket és illeszd be a Chrome-ba.",
+  "checkout__in_app__instructions_other": "Másold ki az alábbi linket, és nyisd meg a szokásos böngésződben a fizetés befejezéséhez.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

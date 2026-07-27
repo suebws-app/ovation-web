@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Mokestis nenuskaitytas.",
   "checkout__cancel__body": "Atsitraukei prieš užbaigdamas mokėjimą, todėl nieko nenuskaitėme. Tavo užsakymo juodraštis <strong>#{id}</strong> lieka — gali grįžti prie jo bet kada.",
   "checkout__cancel__back_keepsakes": "Atgal į suvenyrus",
-  "checkout__cancel__skip": "Praleisti kol kas"
+  "checkout__cancel__skip": "Praleisti kol kas",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Užbaikite mokėjimą Safari arba Chrome",
+  "checkout__in_app__body": "Peržiūrite šį puslapį programėlės integruotoje naršyklėje, kurioje mokėjimo langai gali netikėtai užsidaryti. Atidarykite žemiau esančią nuorodą įprastoje naršyklėje, kad saugiai užbaigtumėte pirkimą.",
+  "checkout__in_app__instructions_ios": "Bakstelėkite ⋯ meniu lango viršuje arba apačioje ir pasirinkite „Atidaryti Safari“ — arba nukopijuokite nuorodą ir įklijuokite ją į Safari.",
+  "checkout__in_app__instructions_android": "Bakstelėkite ⋮ meniu lango viršuje ir pasirinkite „Atidaryti Chrome“ — arba nukopijuokite nuorodą ir įklijuokite ją į Chrome.",
+  "checkout__in_app__instructions_other": "Nukopijuokite žemiau esančią nuorodą ir atidarykite ją įprastoje naršyklėje, kad užbaigtumėte mokėjimą.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

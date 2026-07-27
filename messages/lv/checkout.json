@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Maksājums nav veikts.",
   "checkout__cancel__body": "Tu aizgāji, pirms tika pabeigta apmaksa, tāpēc nekas netika ieturēts. Tavs melnraksta pasūtījums <strong>#{id}</strong> joprojām ir pieejams — atgriezies pie tā, kad būsi gatavs.",
   "checkout__cancel__back_keepsakes": "Atpakaļ uz Keepsakes",
-  "checkout__cancel__skip": "Izlaist pagaidām"
+  "checkout__cancel__skip": "Izlaist pagaidām",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Pabeidziet apmaksu pārlūkā Safari vai Chrome",
+  "checkout__in_app__body": "Jūs skatāt šo lapu lietotnes iebūvētajā pārlūkā, kur maksājumu logi var negaidīti aizvērties. Atveriet zemāk esošo saiti savā parastajā pārlūkā, lai droši pabeigtu pirkumu.",
+  "checkout__in_app__instructions_ios": "Pieskarieties ⋯ izvēlnei loga augšpusē vai apakšpusē un izvēlieties „Atvērt pārlūkā Safari“ — vai nokopējiet saiti un ielīmējiet to Safari.",
+  "checkout__in_app__instructions_android": "Pieskarieties ⋮ izvēlnei loga augšpusē un izvēlieties „Atvērt pārlūkā Chrome“ — vai nokopējiet saiti un ielīmējiet to Chrome.",
+  "checkout__in_app__instructions_other": "Nokopējiet zemāk esošo saiti un atveriet to savā parastajā pārlūkā, lai pabeigtu apmaksu.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

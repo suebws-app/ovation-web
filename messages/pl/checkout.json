@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Nie pobrano opłaty.",
   "checkout__cancel__body": "Wyszedłeś przed zakończeniem płatności, więc nic nie zostało naliczone. Twoje wersja robocza zamówienia <strong>#{id}</strong> pozostaje dostępna — wróć, kiedy będziesz gotowy.",
   "checkout__cancel__back_keepsakes": "Powrót do pamiątek",
-  "checkout__cancel__skip": "Pomiń na razie"
+  "checkout__cancel__skip": "Pomiń na razie",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Zakończ płatność w Safari lub Chrome",
+  "checkout__in_app__body": "Oglądasz tę stronę w przeglądarce wbudowanej w aplikację, w której okna płatności mogą nieoczekiwanie się zamykać. Otwórz poniższy link w swojej zwykłej przeglądarce, aby bezpiecznie zakończyć zakup.",
+  "checkout__in_app__instructions_ios": "Dotknij menu ⋯ u góry lub u dołu tego okna i wybierz „Otwórz w Safari” — albo skopiuj link i wklej go w Safari.",
+  "checkout__in_app__instructions_android": "Dotknij menu ⋮ u góry tego okna i wybierz „Otwórz w Chrome” — albo skopiuj link i wklej go w Chrome.",
+  "checkout__in_app__instructions_other": "Skopiuj poniższy link i otwórz go w swojej zwykłej przeglądarce, aby zakończyć płatność.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

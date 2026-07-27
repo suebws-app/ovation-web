@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Tasusid ei võetud.",
   "checkout__cancel__body": "Lahkusid enne makse lõpetamist, seega midagi ei tasuta. Sinu mustand tellimus <strong>#{id}</strong> jääb saadavaks — saad selle kätte võtta, kui oled valmis.",
   "checkout__cancel__back_keepsakes": "Tagasi mälestustesse",
-  "checkout__cancel__skip": "Jäta praegu vahele"
+  "checkout__cancel__skip": "Jäta praegu vahele",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Lõpeta ostmine Safaris või Chrome'is",
+  "checkout__in_app__body": "Vaatad seda rakenduse sisemises brauseris, kus makseaknad võivad ootamatult sulguda. Turvaliseks ostu lõpetamiseks ava allolev link oma tavalises brauseris.",
+  "checkout__in_app__instructions_ios": "Puuduta ⋯ menüüd akna üla- või alaservas ja vali „Ava Safaris“ — või kopeeri link ja kleebi see Safarisse.",
+  "checkout__in_app__instructions_android": "Puuduta ⋮ menüüd akna ülaservas ja vali „Ava Chrome'is“ — või kopeeri link ja kleebi see Chrome'i.",
+  "checkout__in_app__instructions_other": "Kopeeri allolev link ja ava see oma tavalises brauseris ostu lõpetamiseks.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }
