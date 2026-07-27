@@ -22,6 +22,7 @@ export const PaddlePayClient = ({ userEmail }: PaddlePayClientProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const transactionId = searchParams.get("_ptxn");
+  const discountCode = searchParams.get("promo");
   const inAppBrowser = useSyncExternalStore(
     subscribeNoop,
     getInAppSnapshot,
@@ -48,8 +49,8 @@ export const PaddlePayClient = ({ userEmail }: PaddlePayClientProps) => {
       return;
     }
     if (blocked) return;
-    void open(transactionId);
-  }, [transactionId, router, blocked, open]);
+    void open(transactionId, { discountCode });
+  }, [transactionId, router, blocked, open, discountCode]);
 
   if (blocked) {
     return (

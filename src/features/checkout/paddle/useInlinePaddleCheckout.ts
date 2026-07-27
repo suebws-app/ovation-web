@@ -35,6 +35,12 @@ export const useInlinePaddleCheckout = ({
     const paddle = await initializePaddle({
       environment: env.PADDLE_ENV,
       token: env.PADDLE_CLIENT_TOKEN,
+      checkout: {
+        settings: {
+          showAddDiscounts: true,
+          allowDiscountRemoval: true,
+        },
+      },
       eventCallback(event) {
         if (event.name === "checkout.completed") {
           completedRef.current = true;
@@ -63,7 +69,10 @@ export const useInlinePaddleCheckout = ({
   }, []);
 
   const open = useCallback(
-    async (transactionId: string): Promise<boolean> => {
+    async (
+      transactionId: string,
+      options?: { discountCode?: string | null },
+    ): Promise<boolean> => {
       completedRef.current = false;
       try {
         const paddle = await ensurePaddle();
@@ -72,6 +81,9 @@ export const useInlinePaddleCheckout = ({
           transactionId,
           ...(emailRef.current
             ? { customer: { email: emailRef.current } }
+            : {}),
+          ...(options?.discountCode
+            ? { discountCode: options.discountCode }
             : {}),
         });
         return true;
