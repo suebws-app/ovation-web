@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { loadPublicShellMessages } from "@/i18n/loadMessages";
 import { AppProviders } from "@/features/layout/AppProviders";
+import { PromoCapture } from "@/features/promo/PromoCapture";
 import { Toaster } from "@/components/Toaster";
 import { NavigationProgress } from "@/components/NavigationProgress";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
@@ -58,6 +59,9 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={publicShellMessages}>
           <Suspense fallback={null}>
             <NavigationProgress />
+          </Suspense>
+          <Suspense fallback={null}>
+            <PromoCapture />
           </Suspense>
           <AppProviders>{children}</AppProviders>
           <Toaster />
