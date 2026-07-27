@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Žiadna platba nebola vykonaná.",
   "checkout__cancel__body": "Pred dokončením platby si odišiel, takže ti nič nebolo účtované. Tvoja koncept objednávka <strong>#{id}</strong> zostáva dostupná — kedykoľvek sa k nej môžeš vrátiť.",
   "checkout__cancel__back_keepsakes": "Späť na pamiatky",
-  "checkout__cancel__skip": "Preskočiť"
+  "checkout__cancel__skip": "Preskočiť",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Dokončite platbu v Safari alebo Chrome",
+  "checkout__in_app__body": "Prezeráte túto stránku vo vstavanom prehliadači aplikácie, kde sa platobné okná môžu neočakávane zavrieť. Otvorte odkaz nižšie vo svojom bežnom prehliadači a bezpečne dokončite nákup.",
+  "checkout__in_app__instructions_ios": "Klepnite na ponuku ⋯ v hornej alebo dolnej časti okna a zvoľte „Otvoriť v Safari“ — alebo skopírujte odkaz a vložte ho do Safari.",
+  "checkout__in_app__instructions_android": "Klepnite na ponuku ⋮ v hornej časti okna a zvoľte „Otvoriť v Chrome“ — alebo skopírujte odkaz a vložte ho do Chrome.",
+  "checkout__in_app__instructions_other": "Skopírujte odkaz nižšie a otvorte ho vo svojom bežnom prehliadači na dokončenie platby.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Nič ti nismo zaračunali.",
   "checkout__cancel__body": "Odšel/-la si pred dokončanjem plačila, zato ti ni bilo nič zaračunano. Tvoje osnutkno naročilo <strong>#{id}</strong> ostane na voljo — nadaljuj, ko si pripravljen/-a.",
   "checkout__cancel__back_keepsakes": "Nazaj na spominke",
-  "checkout__cancel__skip": "Preskoči za zdaj"
+  "checkout__cancel__skip": "Preskoči za zdaj",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Dokončajte plačilo v Safariju ali Chromu",
+  "checkout__in_app__body": "To si ogledujete v vgrajenem brskalniku aplikacije, kjer se plačilna okna lahko nepričakovano zaprejo. Odprite spodnjo povezavo v svojem običajnem brskalniku, da varno dokončate nakup.",
+  "checkout__in_app__instructions_ios": "Dotaknite se menija ⋯ na vrhu ali dnu tega okna in izberite »Odpri v Safariju« — ali kopirajte povezavo in jo prilepite v Safari.",
+  "checkout__in_app__instructions_android": "Dotaknite se menija ⋮ na vrhu tega okna in izberite »Odpri v Chromu« — ali kopirajte povezavo in jo prilepite v Chrome.",
+  "checkout__in_app__instructions_other": "Kopirajte spodnjo povezavo in jo odprite v svojem običajnem brskalniku, da dokončate plačilo.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

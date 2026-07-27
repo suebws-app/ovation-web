@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Ingen avgift togs.",
   "checkout__cancel__body": "Du gick därifrån innan betalningen slutfördes, så inget fakturerades. Din utkastorder <strong>#{id}</strong> finns kvar — fortsätt när du är redo.",
   "checkout__cancel__back_keepsakes": "Tillbaka till keepsakes",
-  "checkout__cancel__skip": "Hoppa över för nu"
+  "checkout__cancel__skip": "Hoppa över för nu",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Slutför betalningen i Safari eller Chrome",
+  "checkout__in_app__body": "Du ser den här sidan i en apps inbyggda webbläsare, där betalfönster kan stängas oväntat. Öppna länken nedan i din vanliga webbläsare för att slutföra köpet tryggt.",
+  "checkout__in_app__instructions_ios": "Tryck på ⋯-menyn högst upp eller längst ned i fönstret och välj ”Öppna i Safari” — eller kopiera länken och klistra in den i Safari.",
+  "checkout__in_app__instructions_android": "Tryck på ⋮-menyn högst upp i fönstret och välj ”Öppna i Chrome” — eller kopiera länken och klistra in den i Chrome.",
+  "checkout__in_app__instructions_other": "Kopiera länken nedan och öppna den i din vanliga webbläsare för att slutföra betalningen.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

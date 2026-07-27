@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Списання не відбулося.",
   "checkout__cancel__body": "Ти вийшов(ла) до завершення оплати, тому нічого не списано. Чернетка замовлення <strong>№{id}</strong> залишається доступною — повернись до нього, коли будеш готовий(а).",
   "checkout__cancel__back_keepsakes": "Назад до Keepsakes",
-  "checkout__cancel__skip": "Пропустити поки що"
+  "checkout__cancel__skip": "Пропустити поки що",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Завершіть оплату в Safari або Chrome",
+  "checkout__in_app__body": "Ви переглядаєте цю сторінку у вбудованому браузері застосунку, де вікна оплати можуть несподівано закритися. Відкрийте посилання нижче у своєму звичайному браузері, щоб безпечно завершити покупку.",
+  "checkout__in_app__instructions_ios": "Торкніться меню ⋯ вгорі або внизу цього вікна та виберіть «Відкрити в Safari» — або скопіюйте посилання й вставте його в Safari.",
+  "checkout__in_app__instructions_android": "Торкніться меню ⋮ вгорі цього вікна та виберіть «Відкрити в Chrome» — або скопіюйте посилання й вставте його в Chrome.",
+  "checkout__in_app__instructions_other": "Скопіюйте посилання нижче та відкрийте його у своєму звичайному браузері, щоб завершити оплату.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

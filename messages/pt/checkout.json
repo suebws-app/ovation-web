@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Sem cobrança efetuada.",
   "checkout__cancel__body": "Saiu antes de concluir o pagamento, por isso nada foi cobrado. A sua encomenda em rascunho <strong>#{id}</strong> permanece disponível — retome-a quando estiver pronto.",
   "checkout__cancel__back_keepsakes": "Voltar a keepsakes",
-  "checkout__cancel__skip": "Ignorar por agora"
+  "checkout__cancel__skip": "Ignorar por agora",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Conclua o pagamento no Safari ou Chrome",
+  "checkout__in_app__body": "Está a ver isto no navegador integrado de uma app, onde as janelas de pagamento podem fechar inesperadamente. Abra o link abaixo no seu navegador habitual para concluir a compra em segurança.",
+  "checkout__in_app__instructions_ios": "Toque no menu ⋯ na parte superior ou inferior desta janela e escolha «Abrir no Safari» — ou copie o link e cole-o no Safari.",
+  "checkout__in_app__instructions_android": "Toque no menu ⋮ na parte superior desta janela e escolha «Abrir no Chrome» — ou copie o link e cole-o no Chrome.",
+  "checkout__in_app__instructions_other": "Copie o link abaixo e abra-o no seu navegador habitual para concluir o pagamento.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }

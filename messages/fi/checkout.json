@@ -25,5 +25,14 @@
   "checkout__cancel__title": "Veloitusta ei tehty.",
   "checkout__cancel__body": "Poistuit ennen maksun viimeistelyä, joten mitään ei veloitettu. Luonnostilauksesi <strong>#{id}</strong> on edelleen saatavilla — palaa siihen, kun olet valmis.",
   "checkout__cancel__back_keepsakes": "Takaisin muistoesineisiin",
-  "checkout__cancel__skip": "Ohita toistaiseksi"
+  "checkout__cancel__skip": "Ohita toistaiseksi",
+  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__title": "Viimeistele maksu Safarissa tai Chromessa",
+  "checkout__in_app__body": "Katsot tätä sovelluksen sisäisessä selaimessa, jossa maksuikkunat voivat sulkeutua yllättäen. Avaa alla oleva linkki tavallisessa selaimessasi viimeistelläksesi ostoksen turvallisesti.",
+  "checkout__in_app__instructions_ios": "Napauta ⋯-valikkoa ikkunan ylä- tai alareunassa ja valitse ”Avaa Safarissa” — tai kopioi linkki ja liitä se Safariin.",
+  "checkout__in_app__instructions_android": "Napauta ⋮-valikkoa ikkunan yläreunassa ja valitse ”Avaa Chromessa” — tai kopioi linkki ja liitä se Chromeen.",
+  "checkout__in_app__instructions_other": "Kopioi alla oleva linkki ja avaa se tavallisessa selaimessasi viimeistelläksesi maksun.",
+  "checkout__in_app__copy_link": "Copy link",
+  "checkout__in_app__copied": "Copied",
+  "checkout__in_app__continue_anyway": "Continue here anyway"
 }
