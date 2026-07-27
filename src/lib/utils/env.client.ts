@@ -34,6 +34,8 @@ export const clientEnv = {
 
   COOKIEYES_ID: process.env.NEXT_PUBLIC_COOKIEYES_ID ?? "",
 
+  CRISP_WEBSITE_ID: process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID ?? "",
+
   LEGAL_ENTITY_NAME: process.env.NEXT_PUBLIC_LEGAL_ENTITY_NAME ?? "Ovation",
   LEGAL_ENTITY_ADDRESS:
     process.env.NEXT_PUBLIC_LEGAL_ENTITY_ADDRESS ?? "Peja, Kosovo",
