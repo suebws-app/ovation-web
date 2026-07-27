@@ -11,6 +11,8 @@ import { Toaster } from "@/components/Toaster";
 import { NavigationProgress } from "@/components/NavigationProgress";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
 import { GoogleTagManagerNoscript } from "@/components/GoogleTagManagerNoscript";
+import { CrispChat } from "@/components/CrispChat";
+import { clientEnv } from "@/lib/utils/env.client";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -64,6 +66,9 @@ export default async function LocaleLayout({
             <PromoCapture />
           </Suspense>
           <AppProviders>{children}</AppProviders>
+          {clientEnv.CRISP_WEBSITE_ID && (
+            <CrispChat websiteId={clientEnv.CRISP_WEBSITE_ID} />
+          )}
           <Toaster />
         </NextIntlClientProvider>
       </body>
