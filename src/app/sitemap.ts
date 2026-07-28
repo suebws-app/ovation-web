@@ -150,17 +150,16 @@ const buildAuthorEntries = async (): Promise<MetadataRoute.Sitemap> => {
   );
 };
 
+// /vs/{slug} canonicalizes to /alternatives/{slug} (same content, different
+// H1). Only list the canonical variant so crawl budget isn't spent on
+// duplicates that Google will fold anyway.
 const buildCompetitorEntries = (): MetadataRoute.Sitemap =>
-  COMPETITORS.flatMap((competitor) => [
-    ...buildRouteEntries({
-      path: `/vs/${competitor.slug}`,
-      priority: 0.7,
-    }),
-    ...buildRouteEntries({
+  COMPETITORS.flatMap((competitor) =>
+    buildRouteEntries({
       path: `/alternatives/${competitor.slug}`,
       priority: 0.7,
     }),
-  ]);
+  );
 
 const buildUseCaseEntries = (): MetadataRoute.Sitemap =>
   USE_CASES.flatMap((useCase) =>

@@ -24,9 +24,12 @@ export const generateCompetitorMetadata = async ({
   if (!competitor) notFound();
 
   const t = await getTranslations({ locale });
-  const basePath = variant === "vs" ? "/vs" : "/alternatives";
-  const path = `${basePath}/${slug}`;
-  const canonical = localizedAbsoluteUrl(locale, path);
+  // Content is identical between /vs and /alternatives (only H1 and
+  // breadcrumb differ). Both routes stay live for internal linking and
+  // to preserve any existing backlinks, but Google is told to consolidate
+  // signals on /alternatives (better match for "X alternative" queries).
+  const canonicalPath = `/alternatives/${slug}`;
+  const canonical = localizedAbsoluteUrl(locale, canonicalPath);
   const title =
     variant === "vs"
       ? t("seo__competitor__vs_title", { competitor: competitor.name })
@@ -44,7 +47,7 @@ export const generateCompetitorMetadata = async ({
     description,
     alternates: {
       canonical,
-      languages: buildLanguageAlternates(path),
+      languages: buildLanguageAlternates(canonicalPath),
     },
     openGraph: {
       title,
