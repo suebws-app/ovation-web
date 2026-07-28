@@ -48,13 +48,23 @@ export const CountdownHero = ({
         </p>
       ) : null}
       <div className="mt-6 flex flex-wrap gap-2.5">
-        <Button asChild size="sm" variant="secondary">
+        <Button
+          asChild
+          size="sm"
+          variant="secondary"
+          className="text-primary-foreground"
+        >
           <Link href={appRoutes.app.weddingPlanner.assistant}>
             <SparkleIcon width={15} height={15} />
             {askAiLabel}
           </Link>
         </Button>
-        <Button asChild size="sm" variant="pillGhost">
+        <Button
+          asChild
+          size="sm"
+          variant="pillGhost"
+          className="text-primary-foreground border-primary-foreground/35 hover:bg-primary-foreground/10 bg-transparent"
+        >
           <Link href={appRoutes.app.weddingPlanner.timeline}>
             {viewTimelineLabel}
           </Link>

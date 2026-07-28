@@ -7,9 +7,14 @@ import type { PlannerTodo } from "@/lib/api/types";
 type TaskCardContentProps = {
   todo: PlannerTodo;
   dragging?: boolean;
+  actionSlot?: React.ReactNode;
 };
 
-export const TaskCardContent = ({ todo, dragging }: TaskCardContentProps) => (
+export const TaskCardContent = ({
+  todo,
+  dragging,
+  actionSlot,
+}: TaskCardContentProps) => (
   <div
     className={cn(
       "rounded-12 border-border bg-card w-full border p-3.5 text-left transition-colors",
@@ -39,5 +44,6 @@ export const TaskCardContent = ({ todo, dragging }: TaskCardContentProps) => (
         </span>
       ) : null}
     </div>
+    {actionSlot ? <div className="mt-3">{actionSlot}</div> : null}
   </div>
 );

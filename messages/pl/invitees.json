@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Dodaj {count, plural, one {# gościa} few {# gości} many {# gości} other {# gości}}",
   "invitees__import__submitting": "Dodawanie…",
   "invitees__form__name_label": "Imię",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "np. John Doe",
   "invitees__form__email_label": "E-mail",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefon",
   "invitees__form__phone_placeholder": "+48 600 123 456",
   "invitees__form__seats_label": "Miejsca",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} w kolejce, {skipped} pominięto (bez e-maila).",
   "invitees__send_all__error": "Nie udało się umieścić zaproszeń w kolejce. Spróbuj ponownie.",
   "invitees__preview__cta": "Podgląd",
+  "invitees__preview__hide": "Ukryj podgląd",
+  "invitees__preview__show": "Pokaż podgląd",
   "invitees__preview__title": "Podgląd zaproszenia",
   "invitees__edit_card__cta": "Edytuj kartę zaproszenia"
 }

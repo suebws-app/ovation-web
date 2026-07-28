@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Tambah {count} tetamu",
   "invitees__import__submitting": "Menambah…",
   "invitees__form__name_label": "Nama",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "cth. John Doe",
   "invitees__form__email_label": "E-mel",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefon",
   "invitees__form__phone_placeholder": "+60 12-345 6789",
   "invitees__form__seats_label": "Kerusi",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} dalam giliran, {skipped} dilangkau (tiada e-mel).",
   "invitees__send_all__error": "Gagal beratur jemputan. Cuba lagi.",
   "invitees__preview__cta": "Pratonton",
+  "invitees__preview__hide": "Sembunyikan pratonton",
+  "invitees__preview__show": "Tunjukkan pratonton",
   "invitees__preview__title": "Pratonton jemputan",
   "invitees__edit_card__cta": "Edit kad jemputan"
 }

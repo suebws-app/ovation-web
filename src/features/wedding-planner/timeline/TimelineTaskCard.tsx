@@ -4,6 +4,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@ovation/ui/utils/cn";
 import { TaskCardContent } from "../tasks/TaskCardContent";
+import { TimelineTaskStatusControl } from "./TimelineTaskStatusControl";
 import type { PlannerTodo } from "@/lib/api/types";
 
 type TimelineTaskCardProps = {
@@ -39,7 +40,10 @@ export const TimelineTaskCard = ({ todo, onOpen }: TimelineTaskCardProps) => {
       onClick={() => onOpen(todo)}
       className={cn("cursor-pointer", isDragging && "opacity-40")}
     >
-      <TaskCardContent todo={todo} />
+      <TaskCardContent
+        todo={todo}
+        actionSlot={<TimelineTaskStatusControl todo={todo} />}
+      />
     </div>
   );
 };

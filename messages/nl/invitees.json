@@ -26,9 +26,9 @@
   "invitees__import__confirm": "{count, plural, one {# gast toevoegen} other {# gasten toevoegen}}",
   "invitees__import__submitting": "Toevoegen…",
   "invitees__form__name_label": "Naam",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "bijv. John Doe",
   "invitees__form__email_label": "E-mail",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefoon",
   "invitees__form__phone_placeholder": "+31 6 12345678",
   "invitees__form__seats_label": "Plaatsen",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} in wachtrij, {skipped} overgeslagen (geen e-mail).",
   "invitees__send_all__error": "Kan uitnodigingen niet in wachtrij plaatsen. Probeer opnieuw.",
   "invitees__preview__cta": "Voorbeeld",
+  "invitees__preview__hide": "Voorbeeld verbergen",
+  "invitees__preview__show": "Voorbeeld tonen",
   "invitees__preview__title": "Uitnodigingsvoorbeeld",
   "invitees__edit_card__cta": "Uitnodigingskaart bewerken"
 }

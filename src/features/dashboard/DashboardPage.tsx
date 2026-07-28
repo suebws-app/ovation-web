@@ -8,6 +8,8 @@ import { eventsApi } from "@/lib/api/events";
 import { messagesApi } from "@/lib/api/messages";
 import { ordersApi } from "@/lib/api/orders";
 import { mediaApi } from "@/lib/api/media";
+import { weddingPlannerApi } from "@/lib/api/wedding-planner";
+import { daysUntil } from "@/features/wedding-planner/utils";
 
 import { cn } from "@ovation/ui/utils/cn";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -29,6 +31,10 @@ import { Photos } from "./components/widgets/Photos";
 import { Orders } from "./components/widgets/Orders";
 import { InvitationWidget } from "./components/widgets/InvitationWidget";
 import { ReferralWidget } from "./components/widgets/ReferralWidget";
+import {
+  WeddingPlannerWidget,
+  type WeddingPlannerWidgetSummary,
+} from "./components/widgets/WeddingPlannerWidget";
 
 export const DashboardPage = async () => {
   const t = await getTranslations();
@@ -82,42 +88,47 @@ export const DashboardPage = async () => {
     );
   }
 
-  const [stats, recentMessages, qr, ordersPage, galleryPage] =
-    await Promise.all([
-      eventsApi
-        .stats(event.id, { includeOwnerUploads: true })
-        .catch((error) => {
-          if (ApiError.isApiError(error) && error.status === 404) return null;
-          throw error;
-        }),
-      messagesApi
-        .list(event.id, { limit: 5, sort: "newest" })
-        .catch((error) => {
-          if (ApiError.isApiError(error) && error.status === 404) return null;
-          throw error;
-        }),
-      eventsApi
-        .qrCode(event.id, { format: "svg", size: 512 })
-        .catch((error) => {
-          if (ApiError.isApiError(error) && error.status === 404) return null;
-          throw error;
-        }),
-      ordersApi.list({ eventId: event.id, limit: 3 }).catch((error) => {
+  const [
+    stats,
+    recentMessages,
+    qr,
+    ordersPage,
+    galleryPage,
+    plannerTodos,
+    plannerBudget,
+  ] = await Promise.all([
+    eventsApi.stats(event.id, { includeOwnerUploads: true }).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
+    messagesApi.list(event.id, { limit: 5, sort: "newest" }).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
+    eventsApi.qrCode(event.id, { format: "svg", size: 512 }).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
+    ordersApi.list({ eventId: event.id, limit: 3 }).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
+    mediaApi
+      .gallery(event.id, {
+        type: "photo",
+        sort: "newest",
+        limit: 100,
+        includeOwnerUploads: true,
+      })
+      .catch((error) => {
         if (ApiError.isApiError(error) && error.status === 404) return null;
         throw error;
       }),
-      mediaApi
-        .gallery(event.id, {
-          type: "photo",
-          sort: "newest",
-          limit: 100,
-          includeOwnerUploads: true,
-        })
-        .catch((error) => {
-          if (ApiError.isApiError(error) && error.status === 404) return null;
-          throw error;
-        }),
-    ]);
+    weddingPlannerApi.listTodos(event.id).catch(() => ({ todos: [] })),
+    weddingPlannerApi.getBudget(event.id).catch(() => ({
+      budget: { totalBudget: 0, categories: [], payments: [] },
+    })),
+  ]);
 
   const messageViews = (recentMessages?.items ?? []).map((m) =>
     toMessageRowView(m, anonymous),
@@ -128,6 +139,36 @@ export const DashboardPage = async () => {
   const hasMorePhotos = Boolean(galleryPage?.nextCursor);
 
   const referralSenderName = user.fullName?.trim().split(/\s+/)[0] ?? anonymous;
+
+  const todos = plannerTodos?.todos ?? [];
+  const totalTasks = todos.length;
+  const doneTasks = todos.filter((todo) => todo.status === "done").length;
+  const byDueDate = (
+    a: { dueDate: string | null },
+    b: { dueDate: string | null },
+  ) => (a.dueDate ?? "9999").localeCompare(b.dueDate ?? "9999");
+  const nextOpen = todos
+    .filter((todo) => todo.status !== "done")
+    .sort(byDueDate)
+    .slice(0, 3);
+  const categories = plannerBudget?.budget.categories ?? [];
+  const totalBudget = plannerBudget?.budget.totalBudget ?? 0;
+  const spent = categories.reduce((sum, category) => sum + category.actual, 0);
+
+  const plannerSummary: WeddingPlannerWidgetSummary = {
+    weddingDate: event.weddingDate,
+    daysToGo: event.weddingDate ? daysUntil(event.weddingDate) : null,
+    progressPct: totalTasks ? Math.round((doneTasks / totalTasks) * 100) : 0,
+    doneTasks,
+    totalTasks,
+    nextTasks: nextOpen.map((todo) => ({
+      title: todo.title,
+      dueDate: todo.dueDate,
+    })),
+    totalBudget,
+    spent,
+    remaining: totalBudget - spent,
+  };
 
   return (
     <DashboardBackGuard>
@@ -175,6 +216,7 @@ export const DashboardPage = async () => {
                 <Orders orders={ordersPage?.items ?? []} />
               </div>
             </div>
+            <WeddingPlannerWidget summary={plannerSummary} />
           </div>
         </div>
       </div>

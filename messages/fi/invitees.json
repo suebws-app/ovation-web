@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Lisää {count, plural, one {# vieras} other {# vierasta}}",
   "invitees__import__submitting": "Lisätään…",
   "invitees__form__name_label": "Nimi",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "esim. John Doe",
   "invitees__form__email_label": "Sähköposti",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Puhelin",
   "invitees__form__phone_placeholder": "+358 40 123 4567",
   "invitees__form__seats_label": "Paikat",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} jonossa, {skipped} ohitettu (ei sähköpostia).",
   "invitees__send_all__error": "Kutsuja ei voitu jonottaa. Yritä uudelleen.",
   "invitees__preview__cta": "Esikatsele",
+  "invitees__preview__hide": "Piilota esikatselu",
+  "invitees__preview__show": "Näytä esikatselu",
   "invitees__preview__title": "Kutsun esikatselu",
   "invitees__edit_card__cta": "Muokkaa kutsukorttia"
 }

@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Додати {count, plural, one {# гостя} few {# гостей} many {# гостей} other {# гостей}}",
   "invitees__import__submitting": "Додавання…",
   "invitees__form__name_label": "Ім'я",
-  "invitees__form__name_placeholder": "Марія",
+  "invitees__form__name_placeholder": "напр. John Doe",
   "invitees__form__email_label": "Email",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Телефон",
   "invitees__form__phone_placeholder": "+380 67 123 45 67",
   "invitees__form__seats_label": "Місця",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} у черзі, {skipped} пропущено (без email).",
   "invitees__send_all__error": "Не вдалося поставити запрошення в чергу. Спробуй ще раз.",
   "invitees__preview__cta": "Перегляд",
+  "invitees__preview__hide": "Сховати попередній перегляд",
+  "invitees__preview__show": "Показати попередній перегляд",
   "invitees__preview__title": "Попередній перегляд запрошення",
   "invitees__edit_card__cta": "Редагувати картку запрошення"
 }

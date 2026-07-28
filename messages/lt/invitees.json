@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Pridėti {count, plural, one {# svečią} few {# svečius} many {# svečio} other {# svečių}}",
   "invitees__import__submitting": "Pridedama…",
   "invitees__form__name_label": "Vardas",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "pvz. John Doe",
   "invitees__form__email_label": "El. paštas",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefonas",
   "invitees__form__phone_placeholder": "+370 612 34567",
   "invitees__form__seats_label": "Vietos",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} eilėje, {skipped} praleista (be el. pašto).",
   "invitees__send_all__error": "Nepavyko įdėti kvietimų į eilę. Pabandyk dar kartą.",
   "invitees__preview__cta": "Peržiūra",
+  "invitees__preview__hide": "Slėpti peržiūrą",
+  "invitees__preview__show": "Rodyti peržiūrą",
   "invitees__preview__title": "Kvietimo peržiūra",
   "invitees__edit_card__cta": "Redaguoti kvietimo kortelę"
 }

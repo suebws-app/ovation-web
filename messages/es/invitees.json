@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Añadir {count, plural, one {# invitado} other {# invitados}}",
   "invitees__import__submitting": "Añadiendo…",
   "invitees__form__name_label": "Nombre",
-  "invitees__form__name_placeholder": "María",
+  "invitees__form__name_placeholder": "p. ej. John Doe",
   "invitees__form__email_label": "Email",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Teléfono",
   "invitees__form__phone_placeholder": "+34 612 345 678",
   "invitees__form__seats_label": "Asientos",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} en cola, {skipped} omitidas (sin email).",
   "invitees__send_all__error": "No se pudieron poner las invitaciones en cola. Inténtalo de nuevo.",
   "invitees__preview__cta": "Vista previa",
+  "invitees__preview__hide": "Ocultar vista previa",
+  "invitees__preview__show": "Mostrar vista previa",
   "invitees__preview__title": "Vista previa de la invitación",
   "invitees__edit_card__cta": "Editar tarjeta de invitación"
 }

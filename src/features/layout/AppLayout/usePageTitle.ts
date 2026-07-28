@@ -15,7 +15,6 @@ const SEGMENT_KEY: Record<string, string> = {
   keepsakes: "sidebar__nav__keepsakes",
   orders: "sidebar__nav__orders",
   guests: "sidebar__nav__guests",
-  contributors: "sidebar__nav__contributors",
   settings: "sidebar__nav__settings",
   "qr-code": "sidebar__quick__qr",
   link: "sidebar__quick__link",
@@ -35,6 +34,8 @@ export const usePageTitle = (): string => {
     .filter(Boolean)
     .filter((s) => !isLocale(s))
     .filter((s) => !UUID_RE.test(s));
+
+  if (segments[0] === "planner") return "";
 
   for (let i = segments.length - 1; i >= 0; i--) {
     const key = SEGMENT_KEY[segments[i]];

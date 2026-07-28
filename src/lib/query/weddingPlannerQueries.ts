@@ -2,7 +2,10 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { weddingPlannerClient } from "@/lib/api/wedding-planner-client";
-import { getAssistantMessages } from "@/lib/api/wedding-planner-assistant-client";
+import {
+  clearAssistant,
+  getAssistantMessages,
+} from "@/lib/api/wedding-planner-assistant-client";
 import type {
   CreateCategoryInput,
   CreatePaymentInput,
@@ -448,3 +451,14 @@ export const useAssistantMessages = (eventId: string | null | undefined) =>
     queryFn: () => getAssistantMessages(eventId!),
     enabled: Boolean(eventId),
   });
+
+export const useClearAssistant = (eventId: string) => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, void>({
+    mutationFn: () => clearAssistant(eventId),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.weddingPlanner.assistant(eventId),
+      }),
+  });
+};

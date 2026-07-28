@@ -166,11 +166,6 @@ const buildCoupleGroups = (
         icon: BoxIcon,
       },
       {
-        label: t("sidebar__nav__contributors"),
-        href: appRoutes.app.contributors,
-        icon: UsersIcon,
-      },
-      {
         label: t("sidebar__nav__wedding_planner"),
         href: appRoutes.app.weddingPlanner.dashboard,
         icon: HeartIcon,

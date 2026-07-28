@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Pridať {count, plural, one {# hosťa} few {# hostí} other {# hostí}}",
   "invitees__import__submitting": "Pridáva sa…",
   "invitees__form__name_label": "Meno",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "napr. John Doe",
   "invitees__form__email_label": "E-mail",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefón",
   "invitees__form__phone_placeholder": "+421 902 123 456",
   "invitees__form__seats_label": "Miesta",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} v rade, {skipped} preskočených (bez e-mailu).",
   "invitees__send_all__error": "Pozvánky sa nepodarilo zaradiť. Skús znova.",
   "invitees__preview__cta": "Náhľad",
+  "invitees__preview__hide": "Skryť náhľad",
+  "invitees__preview__show": "Zobraziť náhľad",
   "invitees__preview__title": "Náhľad pozvánky",
   "invitees__edit_card__cta": "Upraviť kartu pozvánky"
 }

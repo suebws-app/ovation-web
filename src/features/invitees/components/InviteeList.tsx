@@ -2,11 +2,14 @@
 
 import { useMemo, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
+import { PlusIcon } from "@ovation/icons/PlusIcon";
+import { Button } from "@ovation/ui/components/Button";
 import { Table, TableBody, TableSkeleton } from "@ovation/ui/components/Table";
 import { DataDirectory } from "@/components/DataDirectory";
 import type { Invitee } from "@/lib/api/types";
 import { inviteesTableSkeletonColumns } from "../tableColumns";
 import { InviteeRow } from "./InviteeRow";
+import { InviteeDraftRow } from "./InviteeDraftRow";
 import { InviteeSearchInput } from "./InviteeSearchInput";
 import { InviteeTableHead } from "./InviteeTableHead";
 
@@ -15,7 +18,6 @@ type InviteeListProps = {
   invitees: Invitee[];
   isLoading: boolean;
   isError: boolean;
-  actions: ReactNode;
 };
 
 export const InviteeList = ({
@@ -23,10 +25,10 @@ export const InviteeList = ({
   invitees,
   isLoading,
   isError,
-  actions,
 }: InviteeListProps) => {
   const t = useTranslations();
   const [search, setSearch] = useState("");
+  const [adding, setAdding] = useState(false);
 
   const filtered = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -38,6 +40,25 @@ export const InviteeList = ({
       return name.includes(query) || email.includes(query);
     });
   }, [invitees, search]);
+
+  const renderTable = () => (
+    <Table className="table-fixed">
+      <InviteeTableHead />
+      <TableBody>
+        {adding ? (
+          <InviteeDraftRow eventId={eventId} onDone={() => setAdding(false)} />
+        ) : null}
+        {filtered.map((invitee, i) => (
+          <InviteeRow
+            key={invitee.id}
+            eventId={eventId}
+            invitee={invitee}
+            index={i}
+          />
+        ))}
+      </TableBody>
+    </Table>
+  );
 
   const renderBody = (): ReactNode => {
     if (isLoading) {
@@ -56,6 +77,9 @@ export const InviteeList = ({
         </p>
       );
     }
+    if (adding || filtered.length > 0) {
+      return renderTable();
+    }
     if (invitees.length === 0) {
       return (
         <p className="type-body-small text-muted-foreground p-8 text-center">
@@ -63,48 +87,28 @@ export const InviteeList = ({
         </p>
       );
     }
-    if (filtered.length === 0) {
-      return (
-        <p className="type-body-small text-muted-foreground p-8 text-center">
-          {t("invitees__directory__no_search_results", { query: search })}
-        </p>
-      );
-    }
     return (
-      <Table className="table-fixed">
-        <InviteeTableHead />
-        <TableBody>
-          {filtered.map((invitee, i) => (
-            <InviteeRow
-              key={invitee.id}
-              eventId={eventId}
-              invitee={invitee}
-              index={i}
-            />
-          ))}
-        </TableBody>
-      </Table>
+      <p className="type-body-small text-muted-foreground p-8 text-center">
+        {t("invitees__directory__no_search_results", { query: search })}
+      </p>
     );
   };
 
   return (
     <DataDirectory
       chips={null}
-      title={
-        <>
-          {t("invitees__directory__title")}{" "}
-          <span className="type-body-small text-muted-foreground font-medium">
-            {t("invitees__directory__showing_count", {
-              count: filtered.length,
-            })}
-          </span>
-        </>
-      }
+      title={<InviteeSearchInput value={search} onChange={setSearch} />}
       actions={
-        <>
-          <InviteeSearchInput value={search} onChange={setSearch} />
-          {actions}
-        </>
+        <Button
+          type="button"
+          size="sm"
+          onClick={() => setAdding(true)}
+          disabled={adding}
+          className="rounded-full"
+        >
+          <PlusIcon width={13} height={13} />
+          {t("invitees__form__add_cta")}
+        </Button>
       }
     >
       {renderBody()}

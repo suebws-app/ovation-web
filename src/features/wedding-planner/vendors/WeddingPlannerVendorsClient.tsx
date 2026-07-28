@@ -9,6 +9,7 @@ import { useWeddingPlannerVendors } from "@/lib/query/weddingPlannerQueries";
 import type { PlannerVendor } from "@/lib/api/types";
 import { VendorCard } from "./VendorCard";
 import { VendorModal } from "./VendorModal";
+import { VendorFilterChips, type VendorFilter } from "./VendorFilterChips";
 
 export const WeddingPlannerVendorsClient = ({
   eventId,
@@ -23,6 +24,7 @@ export const WeddingPlannerVendorsClient = ({
   } = useWeddingPlannerVendors(eventId);
   const [modalOpen, setModalOpen] = useState(false);
   const [activeVendor, setActiveVendor] = useState<PlannerVendor | null>(null);
+  const [filter, setFilter] = useState<VendorFilter>("all");
 
   const openCreate = () => {
     setActiveVendor(null);
@@ -63,11 +65,29 @@ export const WeddingPlannerVendorsClient = ({
         </div>
       );
     }
+    const filtered =
+      filter === "all"
+        ? vendors
+        : vendors.filter((vendor) => vendor.status === filter);
+
     return (
-      <div className="tablet:grid-cols-2 grid gap-4">
-        {vendors.map((vendor) => (
-          <VendorCard key={vendor.id} vendor={vendor} onOpen={openEdit} />
-        ))}
+      <div className="flex flex-col gap-4">
+        <VendorFilterChips
+          vendors={vendors}
+          active={filter}
+          onSelect={setFilter}
+        />
+        {filtered.length === 0 ? (
+          <p className="type-body-small text-muted-foreground p-8 text-center">
+            {t("wp__vendors__empty_title")}
+          </p>
+        ) : (
+          <div className="tablet:grid-cols-2 grid gap-4">
+            {filtered.map((vendor) => (
+              <VendorCard key={vendor.id} vendor={vendor} onOpen={openEdit} />
+            ))}
+          </div>
+        )}
       </div>
     );
   };

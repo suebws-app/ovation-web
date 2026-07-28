@@ -9,10 +9,14 @@ import { Button } from "@ovation/ui/components/Button";
 import { SendIcon } from "@ovation/icons/SendIcon";
 import { SparkleIcon } from "@ovation/icons/SparkleIcon";
 import { ChevronDownIcon } from "@ovation/icons/ChevronDownIcon";
+import { TrashIcon } from "@ovation/icons/TrashIcon";
 import { ViewHeader } from "../components/ViewHeader";
 import { FieldHint } from "../components/FieldHint";
 import { queryKeys } from "@/lib/query/keys";
-import { useAssistantMessages } from "@/lib/query/weddingPlannerQueries";
+import {
+  useAssistantMessages,
+  useClearAssistant,
+} from "@/lib/query/weddingPlannerQueries";
 import {
   applyAssistantActions,
   getAssistantMessages,
@@ -51,6 +55,7 @@ export const WeddingPlannerAssistantClient = ({
   const t = useTranslations();
   const queryClient = useQueryClient();
   const { data: history } = useAssistantMessages(eventId);
+  const clearChat = useClearAssistant(eventId);
 
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
     const mapped = (history?.messages ?? []).map(historyToChat);
@@ -65,8 +70,11 @@ export const WeddingPlannerAssistantClient = ({
   const [hasMore, setHasMore] = useState(history?.hasMore ?? false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const [planAskPending, setPlanAskPending] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const wasStreaming = useRef(false);
 
   const lastMessage = messages[messages.length - 1];
   const scrollSignature = `${lastMessage?.id ?? ""}:${lastMessage?.content.length ?? 0}`;
@@ -74,6 +82,11 @@ export const WeddingPlannerAssistantClient = ({
   useEffect(() => {
     endRef.current?.scrollIntoView({ block: "end" });
   }, [scrollSignature]);
+
+  useEffect(() => {
+    if (wasStreaming.current && !streaming) inputRef.current?.focus();
+    wasStreaming.current = streaming;
+  }, [streaming]);
 
   const loadEarlier = async () => {
     if (loadingMore || !hasMore) return;
@@ -100,6 +113,7 @@ export const WeddingPlannerAssistantClient = ({
   const send = async (text: string, overrideMode?: AssistantMode) => {
     const value = text.trim();
     if (!value || streaming) return;
+    setPlanAskPending(false);
     const aiId = crypto.randomUUID();
     const currentMode = overrideMode ?? mode;
     setMessages((prev) => [
@@ -198,10 +212,33 @@ export const WeddingPlannerAssistantClient = ({
     }
   };
 
+  const onClearChat = () => {
+    if (streaming || actionPending || clearChat.isPending) return;
+    clearChat.mutate(undefined, {
+      onSuccess: () => {
+        setMessages([
+          { id: "greeting", role: "assistant", content: t("wp__ai__hello") },
+        ]);
+        setHasMore(false);
+        setShowSuggestions(true);
+        setPlanAskPending(false);
+      },
+    });
+  };
+
+  const hasConversation = messages.length > 1 || messages[0]?.id !== "greeting";
+
   const generateFullPlan = () => {
     if (streaming || actionPending) return;
     setMode("action");
     void send(t("wp__ai__plan_prompt"), "action");
+    setPlanAskPending(true);
+  };
+
+  const decideForMe = () => {
+    if (streaming || actionPending) return;
+    setMode("action");
+    void send(t("wp__ai__decide_prompt"), "action");
   };
 
   const starters = [
@@ -212,7 +249,27 @@ export const WeddingPlannerAssistantClient = ({
 
   return (
     <div>
-      <ViewHeader title={t("wp__ai__title")} subtitle={t("wp__ai__sub")} />
+      <ViewHeader
+        title={t("wp__ai__title")}
+        subtitle={t("wp__ai__sub")}
+        action={
+          <Button
+            type="button"
+            variant="pillGhost"
+            size="sm"
+            onClick={onClearChat}
+            disabled={
+              !hasConversation ||
+              streaming ||
+              actionPending ||
+              clearChat.isPending
+            }
+          >
+            <TrashIcon width={15} height={15} />
+            {t("wp__ai__clear")}
+          </Button>
+        }
+      />
       <Card className="flex flex-col overflow-hidden p-0">
         <div
           ref={scrollRef}
@@ -324,8 +381,17 @@ export const WeddingPlannerAssistantClient = ({
               text={t("wp__ai__mode_hint")}
             />
           </div>
+          {planAskPending && !streaming ? (
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <AiSuggestionChip
+                label={t("wp__ai__decide_for_me")}
+                onClick={decideForMe}
+              />
+            </div>
+          ) : null}
           <div className="mt-2 flex items-end gap-2">
             <textarea
+              ref={inputRef}
               value={input}
               onChange={(event) => setInput(event.target.value)}
               onKeyDown={(event) => {
