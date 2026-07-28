@@ -13,6 +13,7 @@ import {
 } from "@ovation/ui/components/Sidebar";
 import { usePathname } from "@/i18n/navigation";
 import { SidebarItem } from "./SidebarItem";
+import { SidebarCollapsibleItem } from "./SidebarCollapsibleItem";
 import { itemKey, resolveActiveKey } from "./utils";
 import type { SidebarNavGroup } from "./types";
 
@@ -38,13 +39,21 @@ export const Sidebar = ({ header, groups, footer }: SidebarProps) => {
                 <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
               ) : null}
               <SidebarMenu>
-                {group.items.map((item) => (
-                  <SidebarItem
-                    key={itemKey(item)}
-                    item={item}
-                    active={activeKey === itemKey(item)}
-                  />
-                ))}
+                {group.items.map((item) =>
+                  item.children?.length ? (
+                    <SidebarCollapsibleItem
+                      key={itemKey(item)}
+                      item={item}
+                      activeKey={activeKey}
+                    />
+                  ) : (
+                    <SidebarItem
+                      key={itemKey(item)}
+                      item={item}
+                      active={activeKey === itemKey(item)}
+                    />
+                  ),
+                )}
               </SidebarMenu>
             </SidebarGroup>
           </Fragment>

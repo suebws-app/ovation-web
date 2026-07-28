@@ -1,0 +1,1 @@
+export { WeddingPlannerVendors } from "./WeddingPlannerVendors";

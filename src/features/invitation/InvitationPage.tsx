@@ -41,7 +41,7 @@ export const InvitationPage = ({
     useInvitationStepNavigation({
       methods,
       save,
-      onComplete: () => router.push(appRoutes.app.invitees),
+      onComplete: () => router.push(appRoutes.app.weddingPlanner.guests),
     });
 
   const values = useWatch({ control: methods.control }) as InvitationFields;

@@ -1,1 +1,1 @@
-export { EventGuestsPage as default } from "@/features/guests/EventGuestsPage";
+export { EventContributorsPage as default } from "@/features/contributors/EventContributorsPage";

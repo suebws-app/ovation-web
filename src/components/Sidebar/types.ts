@@ -8,6 +8,7 @@ export type SidebarNavItem = {
   badge?: number | string;
   variant?: "default" | "warn";
   matchPaths?: string[];
+  children?: SidebarNavItem[];
 };
 
 export type SidebarNavGroup = {

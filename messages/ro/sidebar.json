@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Evenimente",
   "sidebar__pro__event_back": "Toate evenimentele",
-  "sidebar__pro__subscription": "Abonament"
+  "sidebar__pro__subscription": "Abonament",
+  "sidebar__nav__wedding_planner": "Wedding Planner",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Timeline",
+  "sidebar__wp__tasks": "Tasks",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Guests",
+  "sidebar__wp__vendors": "Vendors",
+  "sidebar__wp__assistant": "AI Assistant",
+  "sidebar__nav__contributors": "Contributors"
 }

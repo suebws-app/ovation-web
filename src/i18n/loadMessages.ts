@@ -31,6 +31,7 @@ const NAMESPACES = [
   "sidebar",
   "signup",
   "validation",
+  "weddingPlanner",
 ] as const;
 
 const loadNamespace = async (

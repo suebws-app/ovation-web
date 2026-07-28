@@ -15,6 +15,7 @@ const SEGMENT_KEY: Record<string, string> = {
   keepsakes: "sidebar__nav__keepsakes",
   orders: "sidebar__nav__orders",
   guests: "sidebar__nav__guests",
+  contributors: "sidebar__nav__contributors",
   settings: "sidebar__nav__settings",
   "qr-code": "sidebar__quick__qr",
   link: "sidebar__quick__link",
