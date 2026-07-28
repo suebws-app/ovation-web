@@ -1,7 +1,5 @@
-import { use } from "react";
 import type { LocalePageProps } from "@/i18n/types";
-import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Button } from "@ovation/ui/components/Button";
@@ -14,12 +12,44 @@ import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
 import { JsonLd } from "@/components/JsonLd";
 import { productSchema } from "@/lib/seo/schemas";
 import { localizedAbsoluteUrl } from "@/lib/seo/urls";
+import { keepsakesApi } from "@/lib/api/keepsakes";
+import { GOLD_BOOK_PRODUCT_TYPE } from "../pricingIds";
 
-export const GoldBookPage = ({ params }: LocalePageProps) => {
-  const { locale } = use(params);
+const centsToDecimalString = (cents: number): string =>
+  (cents / 100).toFixed(2);
+
+type GoldBookProductData = {
+  offer: { price: string; priceCurrency: string; url: string };
+  imageUrl: string | null;
+};
+
+const fetchGoldBookProduct = async (
+  goldBookUrl: string,
+): Promise<GoldBookProductData | undefined> => {
+  try {
+    const catalog = await keepsakesApi.publicCatalog();
+    const product = catalog.products.find(
+      (p) => p.productType === GOLD_BOOK_PRODUCT_TYPE,
+    );
+    if (!product || product.comingSoon) return undefined;
+    return {
+      offer: {
+        price: centsToDecimalString(product.priceCents),
+        priceCurrency: product.currency,
+        url: goldBookUrl,
+      },
+      imageUrl: product.imageUrl ?? null,
+    };
+  } catch {
+    return undefined;
+  }
+};
+
+export const GoldBookPage = async ({ params }: LocalePageProps) => {
+  const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = useTranslations();
+  const t = await getTranslations();
 
   const features = GOLD_BOOK_FEATURE_KEYS.map((k) => ({
     title: t(k.title, { count: locales.length }),
@@ -27,11 +57,16 @@ export const GoldBookPage = ({ params }: LocalePageProps) => {
   }));
 
   const goldBookUrl = localizedAbsoluteUrl(locale, "/gold-book");
-  const goldBookProductJsonLd = productSchema({
-    name: t("seo__gold_book__title"),
-    description: t("seo__gold_book__description"),
-    url: goldBookUrl,
-  });
+  const productData = await fetchGoldBookProduct(goldBookUrl);
+  const goldBookProductJsonLd = productData
+    ? productSchema({
+        name: t("seo__gold_book__title"),
+        description: t("seo__gold_book__description"),
+        url: goldBookUrl,
+        imageUrl: productData.imageUrl,
+        offer: productData.offer,
+      })
+    : null;
 
   return (
     <>
@@ -40,7 +75,7 @@ export const GoldBookPage = ({ params }: LocalePageProps) => {
         page="gold_book"
         path="/gold-book"
       />
-      <JsonLd data={goldBookProductJsonLd} />
+      {goldBookProductJsonLd ? <JsonLd data={goldBookProductJsonLd} /> : null}
       <section>
         <div className="section-container-small">
           <Kicker className="text-primary">
