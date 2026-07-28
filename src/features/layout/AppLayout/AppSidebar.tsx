@@ -26,6 +26,8 @@ import { StoreIcon } from "@ovation/icons/StoreIcon";
 import { SparkleIcon } from "@ovation/icons/SparkleIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
+import { isPaidPlan } from "@/lib/utils/plan";
+import { useUpgradeModalStore } from "@/features/upgrade/useUpgradeModalStore";
 import { usePathname } from "next/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { User } from "@/lib/api/types";
@@ -135,6 +137,7 @@ const useSidebarCounts = (eventId: string | null): SidebarCounts => {
 const buildCoupleGroups = (
   t: Translator,
   counts: SidebarCounts,
+  assistantOnClick?: () => void,
 ): SidebarNavGroup[] => [
   {
     items: [
@@ -205,6 +208,7 @@ const buildCoupleGroups = (
             label: t("sidebar__wp__assistant"),
             href: appRoutes.app.weddingPlanner.assistant,
             icon: SparkleIcon,
+            onClick: assistantOnClick,
           },
         ],
       },
@@ -335,6 +339,10 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   const eventId = useProEventId(events);
   const isPro = user.accountType === "pro";
   const isStudioPro = user.planTier === "pro_studio";
+  const showUpgrade = useUpgradeModalStore((s) => s.show);
+  const assistantOnClick = !isPaidPlan(user.planTier)
+    ? () => showUpgrade("assistant")
+    : undefined;
   const coupleEventId = !isPro ? (events[0]?.id ?? null) : null;
   const counts = useSidebarCounts(isPro ? eventId : coupleEventId);
 
@@ -347,7 +355,7 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
         ]
       : buildProGlobalGroups(t, isStudioPro);
   } else {
-    groups = buildCoupleGroups(t, counts);
+    groups = buildCoupleGroups(t, counts, assistantOnClick);
   }
 
   const header = isPro ? (

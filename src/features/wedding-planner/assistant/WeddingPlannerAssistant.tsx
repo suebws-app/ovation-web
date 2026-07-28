@@ -3,9 +3,11 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { weddingPlannerApi } from "@/lib/api/wedding-planner";
 import { queryKeys } from "@/lib/query/keys";
+import { appRoutes } from "@/lib/routes";
 import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isPaidPlan } from "@/lib/utils/plan";
@@ -17,7 +19,9 @@ export const WeddingPlannerAssistant = async () => {
     requireFilledCoupleEvent(),
     getCurrentUser(),
   ]);
-  const locked = !isPaidPlan(user?.planTier);
+  if (!isPaidPlan(user?.planTier)) {
+    redirect(appRoutes.app.plans);
+  }
 
   if (!event) {
     const t = await getTranslations();
@@ -31,11 +35,9 @@ export const WeddingPlannerAssistant = async () => {
     );
   }
 
-  const initial = locked
-    ? { messages: [] }
-    : await weddingPlannerApi
-        .getAssistantMessages(event.id)
-        .catch(() => ({ messages: [] }));
+  const initial = await weddingPlannerApi
+    .getAssistantMessages(event.id)
+    .catch(() => ({ messages: [] }));
 
   const queryClient = new QueryClient();
   queryClient.setQueryData(
@@ -45,7 +47,7 @@ export const WeddingPlannerAssistant = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <WeddingPlannerAssistantClient eventId={event.id} locked={locked} />
+      <WeddingPlannerAssistantClient eventId={event.id} />
     </HydrationBoundary>
   );
 };

@@ -1,9 +1,12 @@
+"use client";
+
 import { Button } from "@ovation/ui/components/Button";
 import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { SparkleIcon } from "@ovation/icons/SparkleIcon";
 import { LockIcon } from "@ovation/icons/LockIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { useUpgradeModalStore } from "@/features/upgrade/useUpgradeModalStore";
 import { daysUntil, formatLongDate } from "../utils";
 
 type CountdownHeroProps = {
@@ -27,6 +30,7 @@ export const CountdownHero = ({
   viewTimelineLabel,
   askAiLocked = false,
 }: CountdownHeroProps) => {
+  const showUpgrade = useUpgradeModalStore((s) => s.show);
   const days = date ? daysUntil(date) : null;
   const heading = [partners, venue].filter(Boolean).join(" · ");
   const subline = [date ? formatLongDate(date) : null, city]
@@ -51,18 +55,31 @@ export const CountdownHero = ({
         </p>
       ) : null}
       <div className="mt-6 flex flex-wrap gap-2.5">
-        <Button
-          asChild
-          size="sm"
-          variant="secondary"
-          className="text-primary-foreground"
-        >
-          <Link href={appRoutes.app.weddingPlanner.assistant}>
+        {askAiLocked ? (
+          <Button
+            type="button"
+            size="sm"
+            variant="secondary"
+            className="text-primary-foreground"
+            onClick={() => showUpgrade("assistant")}
+          >
             <SparkleIcon width={15} height={15} />
             {askAiLabel}
-            {askAiLocked ? <LockIcon width={13} height={13} /> : null}
-          </Link>
-        </Button>
+            <LockIcon width={13} height={13} />
+          </Button>
+        ) : (
+          <Button
+            asChild
+            size="sm"
+            variant="secondary"
+            className="text-primary-foreground"
+          >
+            <Link href={appRoutes.app.weddingPlanner.assistant}>
+              <SparkleIcon width={15} height={15} />
+              {askAiLabel}
+            </Link>
+          </Button>
+        )}
         <Button
           asChild
           size="sm"

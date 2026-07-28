@@ -1,5 +1,6 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import { cn } from "@ovation/ui/utils/cn";
 import {
   SidebarMenuItem,
@@ -16,11 +17,15 @@ type SidebarItemProps = {
 };
 
 export const SidebarItem = ({ item, active }: SidebarItemProps) => {
-  const { label, href, icon: Icon, badge, variant = "default" } = item;
+  const { label, href, icon: Icon, badge, onClick, variant = "default" } = item;
   const warn = variant === "warn";
   const { isMobile, setOpenMobile } = useSidebar();
 
-  const handleClick = () => {
+  const handleClick = (event: MouseEvent) => {
+    if (onClick) {
+      event.preventDefault();
+      onClick();
+    }
     if (isMobile) setOpenMobile(false);
   };
 

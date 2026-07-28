@@ -24,7 +24,6 @@ import {
   undoAssistantActions,
 } from "@/lib/api/wedding-planner-assistant-client";
 import type { AssistantMessage, AssistantMode } from "@/lib/api/types";
-import { useUpgradeModalStore } from "@/features/upgrade/useUpgradeModalStore";
 import { AiSuggestionChip } from "./AiSuggestionChip";
 import { AssistantTurn, type ChatMessage } from "./AssistantTurn";
 
@@ -50,16 +49,13 @@ const updateById = (
 
 export const WeddingPlannerAssistantClient = ({
   eventId,
-  locked = false,
 }: {
   eventId: string;
-  locked?: boolean;
 }) => {
   const t = useTranslations();
   const queryClient = useQueryClient();
   const { data: history } = useAssistantMessages(eventId);
   const clearChat = useClearAssistant(eventId);
-  const showUpgrade = useUpgradeModalStore((s) => s.show);
 
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
     const mapped = (history?.messages ?? []).map(historyToChat);
@@ -92,10 +88,6 @@ export const WeddingPlannerAssistantClient = ({
     wasStreaming.current = streaming;
   }, [streaming]);
 
-  useEffect(() => {
-    if (locked) showUpgrade("assistant");
-  }, [locked, showUpgrade]);
-
   const loadEarlier = async () => {
     if (loadingMore || !hasMore) return;
     const oldest = messages.find((message) => message.createdAt)?.createdAt;
@@ -119,7 +111,6 @@ export const WeddingPlannerAssistantClient = ({
   };
 
   const send = async (text: string, overrideMode?: AssistantMode) => {
-    if (locked) return;
     const value = text.trim();
     if (!value || streaming) return;
     setPlanAskPending(false);
@@ -222,7 +213,7 @@ export const WeddingPlannerAssistantClient = ({
   };
 
   const onClearChat = () => {
-    if (locked || streaming || actionPending || clearChat.isPending) return;
+    if (streaming || actionPending || clearChat.isPending) return;
     clearChat.mutate(undefined, {
       onSuccess: () => {
         setMessages([
@@ -238,14 +229,14 @@ export const WeddingPlannerAssistantClient = ({
   const hasConversation = messages.length > 1 || messages[0]?.id !== "greeting";
 
   const generateFullPlan = () => {
-    if (locked || streaming || actionPending) return;
+    if (streaming || actionPending) return;
     setMode("action");
     void send(t("wp__ai__plan_prompt"), "action");
     setPlanAskPending(true);
   };
 
   const decideForMe = () => {
-    if (locked || streaming || actionPending) return;
+    if (streaming || actionPending) return;
     setMode("action");
     void send(t("wp__ai__decide_prompt"), "action");
   };
@@ -268,7 +259,6 @@ export const WeddingPlannerAssistantClient = ({
             size="sm"
             onClick={onClearChat}
             disabled={
-              locked ||
               !hasConversation ||
               streaming ||
               actionPending ||
@@ -345,7 +335,7 @@ export const WeddingPlannerAssistantClient = ({
                 size="sm"
                 className="mt-2 w-full"
                 onClick={generateFullPlan}
-                disabled={streaming || actionPending || locked}
+                disabled={streaming || actionPending}
               >
                 <SparkleIcon width={15} height={15} />
                 {t("wp__ai__generate_plan")}
@@ -404,9 +394,6 @@ export const WeddingPlannerAssistantClient = ({
               ref={inputRef}
               value={input}
               onChange={(event) => setInput(event.target.value)}
-              onMouseDown={() => {
-                if (locked) showUpgrade("assistant");
-              }}
               onKeyDown={(event) => {
                 if (event.key === "Enter" && !event.shiftKey) {
                   event.preventDefault();
@@ -416,18 +403,14 @@ export const WeddingPlannerAssistantClient = ({
               rows={1}
               placeholder={t("wp__ai__placeholder")}
               disabled={streaming}
-              readOnly={locked}
-              className={cn(
-                "border-border bg-card type-body-small max-h-32 flex-1 resize-none rounded-2xl border px-4 py-3 outline-none disabled:opacity-60",
-                locked && "cursor-pointer opacity-60",
-              )}
+              className="border-border bg-card type-body-small max-h-32 flex-1 resize-none rounded-2xl border px-4 py-3 outline-none"
             />
             <Button
               type="button"
               size="icon"
               className="rounded-full"
               onClick={() => send(input)}
-              disabled={streaming || !input.trim() || locked}
+              disabled={streaming || !input.trim()}
               aria-label={t("wp__ai__send")}
             >
               <SendIcon width={16} height={16} />
