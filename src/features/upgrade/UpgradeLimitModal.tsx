@@ -15,14 +15,20 @@ export const UpgradeLimitModal = () => {
 
   if (!open || !reason) return null;
 
-  const title =
+  const titleKey =
     reason === "storage"
-      ? t("upgrade_modal__storage__title")
-      : t("upgrade_modal__messages__title");
-  const body =
+      ? "upgrade_modal__storage__title"
+      : reason === "assistant"
+        ? "upgrade_modal__assistant__title"
+        : "upgrade_modal__messages__title";
+  const bodyKey =
     reason === "storage"
-      ? t("upgrade_modal__storage__body")
-      : t("upgrade_modal__messages__body");
+      ? "upgrade_modal__storage__body"
+      : reason === "assistant"
+        ? "upgrade_modal__assistant__body"
+        : "upgrade_modal__messages__body";
+  const title = t(titleKey);
+  const body = t(bodyKey);
 
   return (
     <div className="bg-foreground/45 animate-fade-in fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">

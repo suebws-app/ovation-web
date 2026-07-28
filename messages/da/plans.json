@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Du har brugt din gratis 1GB lagerplads. Opgrader dit abonnement for at fortsætte med at uploade billeder, videoer og lydbeskeder.",
   "upgrade_modal__messages__title": "Beskedgrænse nået",
   "upgrade_modal__messages__body": "Din begivenhed har nået den gratis grænse på 50 beskeder. Opgrader dit abonnement for at fortsætte med at indsamle beskeder fra dine gæster.",
+  "upgrade_modal__assistant__title": "AI-planlæggeren er en premium-funktion",
+  "upgrade_modal__assistant__body": "Opgrader dit abonnement for at chatte med din AI-bryllupsplanlægger — den kan besvare spørgsmål og bygge eller opdatere hele din plan for dig.",
   "upgrade_modal__cta": "Se abonnementer",
   "upgrade_modal__dismiss": "Ikke nu",
   "plans__price_free": "Gratis",

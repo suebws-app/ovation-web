@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Felhasználtad az ingyenes 1GB tárhelyet. Frissítsd a csomagodat, hogy továbbra is feltölthess fényképeket, videókat és hangüzeneteket.",
   "upgrade_modal__messages__title": "Elérted az üzenet limitet",
   "upgrade_modal__messages__body": "Az eseményed elérte az ingyenes 50 üzenet limitet. Frissítsd a csomagodat, hogy továbbra is gyűjthess üzeneteket a vendégektől.",
+  "upgrade_modal__assistant__title": "Az AI tervező prémium funkció",
+  "upgrade_modal__assistant__body": "Válts magasabb csomagra, hogy beszélgethess az AI esküvőterveződdel — válaszol a kérdéseidre, és akár a teljes tervedet is elkészíti vagy frissíti helyetted.",
   "upgrade_modal__cta": "Csomagok megtekintése",
   "upgrade_modal__dismiss": "Most nem",
   "plans__price_free": "Ingyenes",

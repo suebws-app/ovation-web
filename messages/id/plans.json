@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Anda telah menggunakan 1GB penyimpanan gratis. Tingkatkan paket Anda untuk terus mengunggah foto, video, dan pesan audio.",
   "upgrade_modal__messages__title": "Batas pesan tercapai",
   "upgrade_modal__messages__body": "Acara Anda telah mencapai batas gratis 50 pesan. Tingkatkan paket Anda untuk terus mengumpulkan pesan dari tamu Anda.",
+  "upgrade_modal__assistant__title": "Perencana AI adalah fitur premium",
+  "upgrade_modal__assistant__body": "Tingkatkan paket Anda untuk mengobrol dengan perencana pernikahan AI Anda — ia dapat menjawab pertanyaan serta menyusun atau memperbarui seluruh rencana Anda untuk Anda.",
   "upgrade_modal__cta": "Lihat paket",
   "upgrade_modal__dismiss": "Tidak sekarang",
   "plans__price_free": "Gratis",

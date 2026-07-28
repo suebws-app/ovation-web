@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "You've used up your free 1GB of storage. Upgrade your plan to keep uploading photos, videos, and audio messages.",
   "upgrade_modal__messages__title": "Message limit reached",
   "upgrade_modal__messages__body": "Your event has hit the 50-message free limit. Upgrade your plan to keep collecting messages from your guests.",
+  "upgrade_modal__assistant__title": "The AI planner is a premium feature",
+  "upgrade_modal__assistant__body": "Upgrade your plan to chat with your AI wedding planner — it can answer questions and build or update your whole plan for you.",
   "upgrade_modal__cta": "View plans",
   "upgrade_modal__dismiss": "Not now",
   "plans__price_free": "Free",

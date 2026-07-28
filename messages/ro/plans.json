@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Ai folosit 1GB gratuit de stocare. Upgradează planul pentru a continua să încarci fotografii, videoclipuri și mesaje audio.",
   "upgrade_modal__messages__title": "Limita de mesaje atinsă",
   "upgrade_modal__messages__body": "Evenimentul tău a atins limita gratuită de 50 de mesaje. Upgradează planul pentru a continua să colectezi mesaje de la invitați.",
+  "upgrade_modal__assistant__title": "Planificatorul AI este o funcție premium",
+  "upgrade_modal__assistant__body": "Fă upgrade la abonamentul tău pentru a discuta cu planificatorul tău AI de nuntă — poate răspunde la întrebări și îți poate construi sau actualiza întregul plan.",
   "upgrade_modal__cta": "Vezi planurile",
   "upgrade_modal__dismiss": "Nu acum",
   "plans__price_free": "Gratuit",

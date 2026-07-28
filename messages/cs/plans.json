@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Vyčerpal jsi 1 GB úložiště zdarma. Upgraduj svůj plán a pokračuj v nahrávání fotografií, videí a hlasových zpráv.",
   "upgrade_modal__messages__title": "Dosáhl jsi limitu zpráv",
   "upgrade_modal__messages__body": "Tvá událost dosáhla bezplatného limitu 50 zpráv. Upgraduj svůj plán a pokračuj ve sběru zpráv od hostů.",
+  "upgrade_modal__assistant__title": "AI plánovač je prémiová funkce",
+  "upgrade_modal__assistant__body": "Přejděte na vyšší tarif a začněte si povídat se svým AI svatebním plánovačem — odpoví na vaše otázky a sestaví nebo upraví celý váš plán za vás.",
   "upgrade_modal__cta": "Zobrazit plány",
   "upgrade_modal__dismiss": "Ne teď",
   "plans__price_free": "Zdarma",

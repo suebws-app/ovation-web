@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Wykorzystałeś darmowy 1 GB pamięci. Ulepsz swój plan, aby kontynuować przesyłanie zdjęć, filmów i wiadomości audio.",
   "upgrade_modal__messages__title": "Osiągnięto limit wiadomości",
   "upgrade_modal__messages__body": "Twoje wydarzenie osiągnęło darmowy limit 50 wiadomości. Ulepsz swój plan, aby dalej zbierać wiadomości od gości.",
+  "upgrade_modal__assistant__title": "Asystent SI to funkcja premium",
+  "upgrade_modal__assistant__body": "Rozszerz swój plan, aby rozmawiać ze swoim asystentem ślubnym opartym na SI — odpowie na Twoje pytania oraz przygotuje lub zaktualizuje cały plan za Ciebie.",
   "upgrade_modal__cta": "Zobacz plany",
   "upgrade_modal__dismiss": "Nie teraz",
   "plans__price_free": "Bezpłatnie",

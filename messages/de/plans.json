@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Du hast deine kostenlosen 1 GB Speicher aufgebraucht. Upgrade deinen Tarif, um weiter Fotos, Videos und Audionachrichten hochzuladen.",
   "upgrade_modal__messages__title": "Nachrichtenlimit erreicht",
   "upgrade_modal__messages__body": "Dein Event hat das kostenlose Limit von 50 Nachrichten erreicht. Upgrade deinen Tarif, um weiter Nachrichten von deinen Gästen zu sammeln.",
+  "upgrade_modal__assistant__title": "Der KI-Planer ist eine Premium-Funktion",
+  "upgrade_modal__assistant__body": "Aktualisiere deinen Tarif, um mit deinem KI-Hochzeitsplaner zu chatten — er beantwortet deine Fragen und erstellt oder aktualisiert deine komplette Planung ganz für dich.",
   "upgrade_modal__cta": "Tarife ansehen",
   "upgrade_modal__dismiss": "Jetzt nicht",
   "plans__price_free": "Kostenlos",

@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Iskoristili ste besplatnih 1 GB pohrane. Nadogradite svoj plan kako biste nastavili učitavati fotografije, videozapise i audio poruke.",
   "upgrade_modal__messages__title": "Dosegnut limit poruka",
   "upgrade_modal__messages__body": "Vaš događaj dosegnuo je besplatni limit od 50 poruka. Nadogradite svoj plan kako biste nastavili prikupljati poruke od svojih gostiju.",
+  "upgrade_modal__assistant__title": "AI planer je premium značajka",
+  "upgrade_modal__assistant__body": "Nadogradite svoj plan kako biste razgovarali sa svojim AI organizatorom vjenčanja — može odgovoriti na vaša pitanja te izraditi ili ažurirati cijeli vaš plan umjesto vas.",
   "upgrade_modal__cta": "Pogledaj planove",
   "upgrade_modal__dismiss": "Ne sada",
   "plans__price_free": "Besplatno",

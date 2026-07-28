@@ -1,6 +1,7 @@
 import { Button } from "@ovation/ui/components/Button";
 import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { SparkleIcon } from "@ovation/icons/SparkleIcon";
+import { LockIcon } from "@ovation/icons/LockIcon";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { daysUntil, formatLongDate } from "../utils";
@@ -13,6 +14,7 @@ type CountdownHeroProps = {
   daysLabel: string;
   askAiLabel: string;
   viewTimelineLabel: string;
+  askAiLocked?: boolean;
 };
 
 export const CountdownHero = ({
@@ -23,6 +25,7 @@ export const CountdownHero = ({
   daysLabel,
   askAiLabel,
   viewTimelineLabel,
+  askAiLocked = false,
 }: CountdownHeroProps) => {
   const days = date ? daysUntil(date) : null;
   const heading = [partners, venue].filter(Boolean).join(" · ");
@@ -57,6 +60,7 @@ export const CountdownHero = ({
           <Link href={appRoutes.app.weddingPlanner.assistant}>
             <SparkleIcon width={15} height={15} />
             {askAiLabel}
+            {askAiLocked ? <LockIcon width={13} height={13} /> : null}
           </Link>
         </Button>
         <Button

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type UpgradeReason = "messages" | "storage";
+export type UpgradeReason = "messages" | "storage" | "assistant";
 
 type UpgradeModalStore = {
   open: boolean;

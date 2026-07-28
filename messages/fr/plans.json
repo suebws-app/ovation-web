@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Vous avez utilisé l'intégralité de votre 1 Go de stockage gratuit. Passez à un forfait supérieur pour continuer à téléverser photos, vidéos et messages audio.",
   "upgrade_modal__messages__title": "Limite de messages atteinte",
   "upgrade_modal__messages__body": "Votre événement a atteint la limite gratuite de 50 messages. Passez à un forfait supérieur pour continuer à recueillir les messages de vos invités.",
+  "upgrade_modal__assistant__title": "L'organisateur IA est une fonctionnalité premium",
+  "upgrade_modal__assistant__body": "Passe à un forfait supérieur pour discuter avec ton organisateur de mariage IA — il peut répondre à tes questions et créer ou mettre à jour tout ton plan à ta place.",
   "upgrade_modal__cta": "Voir les forfaits",
   "upgrade_modal__dismiss": "Pas maintenant",
   "plans__price_free": "Gratuit",

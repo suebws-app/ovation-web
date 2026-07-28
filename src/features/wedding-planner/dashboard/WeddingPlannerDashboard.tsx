@@ -7,11 +7,17 @@ import { getTranslations } from "next-intl/server";
 import { weddingPlannerApi } from "@/lib/api/wedding-planner";
 import { queryKeys } from "@/lib/query/keys";
 import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
+import { getCurrentUser } from "@/lib/auth/session";
+import { isPaidPlan } from "@/lib/utils/plan";
 import { ViewHeader } from "../components/ViewHeader";
 import { WeddingPlannerDashboardClient } from "./WeddingPlannerDashboardClient";
 
 export const WeddingPlannerDashboard = async () => {
-  const event = await requireFilledCoupleEvent();
+  const [event, user] = await Promise.all([
+    requireFilledCoupleEvent(),
+    getCurrentUser(),
+  ]);
+  const assistantLocked = !isPaidPlan(user?.planTier);
 
   if (!event) {
     const t = await getTranslations();
@@ -51,6 +57,7 @@ export const WeddingPlannerDashboard = async () => {
         weddingDate={event.weddingDate}
         venue={event.venueName}
         city={event.venueCity}
+        assistantLocked={assistantLocked}
       />
     </HydrationBoundary>
   );

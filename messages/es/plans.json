@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Has agotado tu 1 GB gratuito de almacenamiento. Mejora tu plan para seguir subiendo fotos, vídeos y mensajes de audio.",
   "upgrade_modal__messages__title": "Has alcanzado el límite de mensajes",
   "upgrade_modal__messages__body": "Tu evento ha llegado al límite gratuito de 50 mensajes. Mejora tu plan para seguir recogiendo mensajes de tus invitados.",
+  "upgrade_modal__assistant__title": "El planificador con IA es una función premium",
+  "upgrade_modal__assistant__body": "Mejora tu plan para chatear con tu planificador de boda con IA — puede responder tus preguntas y crear o actualizar todo tu plan por ti.",
   "upgrade_modal__cta": "Ver planes",
   "upgrade_modal__dismiss": "Ahora no",
   "plans__price_free": "Gratis",

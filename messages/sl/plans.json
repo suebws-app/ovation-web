@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Porabil si brezplačnih 1 GB shrambe. Nadgradi svoj paket, da nadaljuješ z nalaganjem fotografij, videov in glasovnih sporočil.",
   "upgrade_modal__messages__title": "Dosegel si omejitev sporočil",
   "upgrade_modal__messages__body": "Tvoj dogodek je dosegel brezplačno omejitev 50 sporočil. Nadgradi svoj paket, da nadaljuješ z zbiranjem sporočil od gostov.",
+  "upgrade_modal__assistant__title": "Načrtovalnik z UI je premium funkcija",
+  "upgrade_modal__assistant__body": "Nadgradite svoj paket in klepetajte s svojim poročnim načrtovalnikom UI — odgovori vam na vprašanja ter za vas ustvari ali posodobi celoten načrt.",
   "upgrade_modal__cta": "Poglej pakete",
   "upgrade_modal__dismiss": "Ne zdaj",
   "plans__price_free": "Brezplačno",

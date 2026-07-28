@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Du har brukt opp den gratis 1GB lagringen din. Oppgrader planen din for å fortsette å laste opp bilder, videoer og lydmeldinger.",
   "upgrade_modal__messages__title": "Meldingsgrense nådd",
   "upgrade_modal__messages__body": "Arrangementet ditt har nådd den gratis grensen på 50 meldinger. Oppgrader planen din for å fortsette å samle meldinger fra gjestene.",
+  "upgrade_modal__assistant__title": "KI-planleggeren er en premiumfunksjon",
+  "upgrade_modal__assistant__body": "Oppgrader abonnementet ditt for å chatte med din KI-bryllupsplanlegger — den kan svare på spørsmål og bygge eller oppdatere hele planen din for deg.",
   "upgrade_modal__cta": "Se planer",
   "upgrade_modal__dismiss": "Ikke nå",
   "plans__price_free": "Gratis",

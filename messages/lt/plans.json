@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "Išnaudojote savo nemokamą 1GB saugyklą. Atnaujinkite planą, kad galėtumėte toliau įkelti nuotraukas, vaizdo įrašus ir garso žinutes.",
   "upgrade_modal__messages__title": "Pasiekta žinučių riba",
   "upgrade_modal__messages__body": "Jūsų renginys pasiekė nemokamą 50 žinučių ribą. Atnaujinkite planą, kad galėtumėte toliau rinkti žinutes iš svečių.",
+  "upgrade_modal__assistant__title": "DI planuotojas yra premium funkcija",
+  "upgrade_modal__assistant__body": "Atnaujinkite savo planą, kad galėtumėte kalbėtis su savo DI vestuvių planuotoju — jis gali atsakyti į klausimus ir sukurti ar atnaujinti visą jūsų planą už jus.",
   "upgrade_modal__cta": "Peržiūrėti planus",
   "upgrade_modal__dismiss": "Ne dabar",
   "plans__price_free": "Nemokamai",

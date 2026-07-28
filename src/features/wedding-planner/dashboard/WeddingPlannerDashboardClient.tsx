@@ -66,6 +66,7 @@ type WeddingPlannerDashboardClientProps = {
   weddingDate: string | null;
   venue: string | null;
   city: string | null;
+  assistantLocked: boolean;
 };
 
 export const WeddingPlannerDashboardClient = ({
@@ -74,6 +75,7 @@ export const WeddingPlannerDashboardClient = ({
   weddingDate,
   venue,
   city,
+  assistantLocked,
 }: WeddingPlannerDashboardClientProps) => {
   const t = useTranslations();
   const todos = useWeddingPlannerTasks(eventId).data ?? [];
@@ -127,6 +129,7 @@ export const WeddingPlannerDashboardClient = ({
             daysLabel={t("wp__days_to_go")}
             askAiLabel={t("wp__hero__ask_ai")}
             viewTimelineLabel={t("wp__hero__view_timeline")}
+            askAiLocked={assistantLocked}
           />
         </div>
         <Card className="flex items-center gap-5">

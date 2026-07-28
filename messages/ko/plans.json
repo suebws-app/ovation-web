@@ -41,6 +41,8 @@
   "upgrade_modal__storage__body": "1GB 무료 저장 공간을 모두 사용했습니다. 사진, 비디오 및 오디오 메시지를 계속 업로드하려면 요금제를 업그레이드하세요.",
   "upgrade_modal__messages__title": "메시지 한도에 도달했습니다",
   "upgrade_modal__messages__body": "이벤트가 무료 50개 메시지 한도에 도달했습니다. 하객으로부터 메시지를 계속 수집하려면 요금제를 업그레이드하세요.",
+  "upgrade_modal__assistant__title": "AI 플래너는 프리미엄 기능이에요",
+  "upgrade_modal__assistant__body": "플랜을 업그레이드하면 AI 웨딩 플래너와 대화할 수 있어요 — 궁금한 점에 답해 드리고, 전체 플랜을 대신 만들거나 업데이트해 드려요.",
   "upgrade_modal__cta": "요금제 보기",
   "upgrade_modal__dismiss": "지금 안 함",
   "plans__price_free": "무료",
