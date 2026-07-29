@@ -688,6 +688,197 @@ export type BulkReplaceInviteesInput = {
   items: BulkReplaceInviteeItem[];
 };
 
+export type PlannerTask = {
+  id: string;
+  eventId: string;
+  phaseId: string;
+  label: string;
+  done: boolean;
+  sortOrder: number;
+  completedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PlannerPhase = {
+  id: string;
+  eventId: string;
+  title: string;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+  tasks: PlannerTask[];
+};
+
+export type PlannerTimeline = {
+  phases: PlannerPhase[];
+};
+
+export type CreatePhaseInput = {
+  title: string;
+  sortOrder?: number;
+};
+
+export type UpdatePhaseInput = Partial<CreatePhaseInput>;
+
+export type CreateTaskInput = {
+  label: string;
+  sortOrder?: number;
+};
+
+export type UpdateTaskInput = {
+  label?: string;
+  done?: boolean;
+  sortOrder?: number;
+};
+
+export type TodoStatus = "todo" | "inprogress" | "done";
+export type TodoPriority = "High" | "Medium" | "Low";
+
+export type PlannerTodo = {
+  id: string;
+  eventId: string;
+  phaseId: string | null;
+  title: string;
+  status: TodoStatus;
+  priority: TodoPriority;
+  category: string | null;
+  dueDate: string | null;
+  owner: string | null;
+  cost: number | null;
+  vendor: string | null;
+  note: string | null;
+  blockedBy: string | null;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateTodoInput = {
+  title: string;
+  status?: TodoStatus;
+  priority?: TodoPriority;
+  category?: string | null;
+  dueDate?: string | null;
+  owner?: string | null;
+  cost?: number | null;
+  vendor?: string | null;
+  note?: string | null;
+  blockedBy?: string | null;
+  phaseId?: string | null;
+  sortOrder?: number;
+};
+
+export type UpdateTodoInput = Partial<CreateTodoInput>;
+
+export type PlannerBudgetCategory = {
+  id: string;
+  eventId: string;
+  name: string;
+  estimated: number;
+  actual: number;
+  paid: number;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PlannerPayment = {
+  id: string;
+  eventId: string;
+  vendor: string;
+  label: string | null;
+  amount: number;
+  dueDate: string | null;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PlannerBudget = {
+  totalBudget: number;
+  categories: PlannerBudgetCategory[];
+  payments: PlannerPayment[];
+};
+
+export type CreateCategoryInput = {
+  name: string;
+  estimated?: number;
+  actual?: number;
+  paid?: number;
+  sortOrder?: number;
+};
+
+export type UpdateCategoryInput = Partial<CreateCategoryInput>;
+
+export type CreatePaymentInput = {
+  vendor: string;
+  label?: string | null;
+  amount?: number;
+  dueDate?: string | null;
+  sortOrder?: number;
+};
+
+export type UpdatePaymentInput = Partial<CreatePaymentInput>;
+
+export type VendorStatus = "Booked" | "In talks" | "Shortlist";
+
+export type PlannerVendor = {
+  id: string;
+  eventId: string;
+  name: string;
+  category: string | null;
+  contact: string | null;
+  phone: string | null;
+  status: VendorStatus;
+  rating: number;
+  price: number;
+  deposit: number;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateVendorInput = {
+  name: string;
+  category?: string | null;
+  contact?: string | null;
+  phone?: string | null;
+  status?: VendorStatus;
+  rating?: number;
+  price?: number;
+  deposit?: number;
+  sortOrder?: number;
+};
+
+export type UpdateVendorInput = Partial<CreateVendorInput>;
+
+export type AssistantMode = "plan" | "action";
+
+export type AssistantProposedAction = {
+  tool: string;
+  args: Record<string, unknown>;
+  summary: string;
+};
+
+export type AssistantAppliedAction = {
+  tool: string;
+  entity: string;
+  entityId: string;
+  summary: string;
+};
+
+export type AssistantMessage = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  mode: AssistantMode | null;
+  proposedActions: AssistantProposedAction[] | null;
+  appliedActions: AssistantAppliedAction[] | null;
+  undone: boolean;
+  createdAt: string;
+};
+
 export type CheckoutItem = {
   productType: string;
   productVariantId?: string;

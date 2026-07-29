@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Acara",
   "sidebar__pro__event_back": "Semua acara",
-  "sidebar__pro__subscription": "Langganan"
+  "sidebar__pro__subscription": "Langganan",
+  "sidebar__nav__wedding_planner": "Perencana",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Lini masa",
+  "sidebar__wp__tasks": "Tugas",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Tamu",
+  "sidebar__wp__vendors": "Vendor",
+  "sidebar__wp__assistant": "Asisten AI",
+  "sidebar__nav__contributors": "Kontributor"
 }

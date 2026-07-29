@@ -20,6 +20,11 @@ const matchesPath = (href: string, pathname: string) => {
   return false;
 };
 
+const flattenItems = (items: SidebarNavItem[]): SidebarNavItem[] =>
+  items.flatMap((item) =>
+    item.children?.length ? [item, ...item.children] : [item],
+  );
+
 export const resolveActiveKey = (
   groups: SidebarNavGroup[],
   pathname: string,
@@ -27,7 +32,7 @@ export const resolveActiveKey = (
   let bestKey: string | null = null;
   let bestLength = -1;
   for (const group of groups) {
-    for (const item of group.items) {
+    for (const item of flattenItems(group.items)) {
       const targets = [item.href, ...(item.matchPaths ?? [])];
       for (const target of targets) {
         if (matchesPath(target, pathname) && target.length > bestLength) {

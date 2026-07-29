@@ -6,9 +6,9 @@
   "common__error": "Etwas ist schiefgegangen",
   "common__back": "Zurück",
   "common__next": "Weiter",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Vorherige Seite",
+  "common__pagination__next": "Nächste Seite",
+  "common__pagination__page_of": "Seite {current}",
   "common__done": "Fertig",
   "common__retry": "Erneut versuchen",
   "common__close": "Schließen",
@@ -18,6 +18,7 @@
   "common__footer__copyright": "© 2026 Ovation Keepsakes, S.L. · Alle Rechte vorbehalten.",
   "common__footer__product": "Produkt",
   "common__footer__product_links__how_it_works": "So funktioniert es",
+  "common__footer__product_links__wedding_planner": "Hochzeitsplaner",
   "common__footer__product_links__gold_book": "Gold Book",
   "common__footer__product_links__keepsakes_store": "Keepsakes-Shop",
   "common__footer__product_links__pricing": "Preise",
@@ -68,5 +69,5 @@
   "common__theme__system": "System",
   "common__footer__legal_links__terms": "Nutzungsbedingungen",
   "common__footer__legal_links__refunds": "Rückerstattung",
-  "common__load_more": "Load more"
+  "common__load_more": "Mehr laden"
 }

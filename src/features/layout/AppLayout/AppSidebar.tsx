@@ -18,8 +18,16 @@ import { UserPlusIcon } from "@ovation/icons/UserPlusIcon";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { BoxIcon } from "@ovation/icons/BoxIcon";
 import { GridIcon } from "@ovation/icons/GridIcon";
+import { HeartIcon } from "@ovation/icons/HeartIcon";
+import { RouteIcon } from "@ovation/icons/RouteIcon";
+import { ClipboardCheckIcon } from "@ovation/icons/ClipboardCheckIcon";
+import { WalletIcon } from "@ovation/icons/WalletIcon";
+import { StoreIcon } from "@ovation/icons/StoreIcon";
+import { SparkleIcon } from "@ovation/icons/SparkleIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
+import { isPaidPlan } from "@/lib/utils/plan";
+import { useUpgradeModalStore } from "@/features/upgrade/useUpgradeModalStore";
 import { usePathname } from "next/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { User } from "@/lib/api/types";
@@ -129,6 +137,7 @@ const useSidebarCounts = (eventId: string | null): SidebarCounts => {
 const buildCoupleGroups = (
   t: Translator,
   counts: SidebarCounts,
+  assistantOnClick?: () => void,
 ): SidebarNavGroup[] => [
   {
     items: [
@@ -160,14 +169,48 @@ const buildCoupleGroups = (
         icon: BoxIcon,
       },
       {
-        label: t("sidebar__nav__guests"),
-        href: appRoutes.app.guests,
-        icon: UsersIcon,
-      },
-      {
-        label: t("sidebar__nav__invitees"),
-        href: appRoutes.app.invitees,
-        icon: UserPlusIcon,
+        label: t("sidebar__nav__wedding_planner"),
+        href: appRoutes.app.weddingPlanner.dashboard,
+        icon: HeartIcon,
+        matchPaths: [appRoutes.app.weddingPlanner.root],
+        children: [
+          {
+            label: t("sidebar__wp__dashboard"),
+            href: appRoutes.app.weddingPlanner.dashboard,
+            icon: GridIcon,
+          },
+          {
+            label: t("sidebar__wp__timeline"),
+            href: appRoutes.app.weddingPlanner.timeline,
+            icon: RouteIcon,
+          },
+          {
+            label: t("sidebar__wp__tasks"),
+            href: appRoutes.app.weddingPlanner.tasks,
+            icon: ClipboardCheckIcon,
+          },
+          {
+            label: t("sidebar__wp__budget"),
+            href: appRoutes.app.weddingPlanner.budget,
+            icon: WalletIcon,
+          },
+          {
+            label: t("sidebar__wp__guests"),
+            href: appRoutes.app.weddingPlanner.guests,
+            icon: UserPlusIcon,
+          },
+          {
+            label: t("sidebar__wp__vendors"),
+            href: appRoutes.app.weddingPlanner.vendors,
+            icon: StoreIcon,
+          },
+          {
+            label: t("sidebar__wp__assistant"),
+            href: appRoutes.app.weddingPlanner.assistant,
+            icon: SparkleIcon,
+            onClick: assistantOnClick,
+          },
+        ],
       },
       {
         label: t("sidebar__nav__settings"),
@@ -296,6 +339,10 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   const eventId = useProEventId(events);
   const isPro = user.accountType === "pro";
   const isStudioPro = user.planTier === "pro_studio";
+  const showUpgrade = useUpgradeModalStore((s) => s.show);
+  const assistantOnClick = !isPaidPlan(user.planTier)
+    ? () => showUpgrade("assistant")
+    : undefined;
   const coupleEventId = !isPro ? (events[0]?.id ?? null) : null;
   const counts = useSidebarCounts(isPro ? eventId : coupleEventId);
 
@@ -308,7 +355,7 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
         ]
       : buildProGlobalGroups(t, isStudioPro);
   } else {
-    groups = buildCoupleGroups(t, counts);
+    groups = buildCoupleGroups(t, counts, assistantOnClick);
   }
 
   const header = isPro ? (

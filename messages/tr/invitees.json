@@ -26,9 +26,9 @@
   "invitees__import__confirm": "{count} davetli ekle",
   "invitees__import__submitting": "Ekleniyor…",
   "invitees__form__name_label": "Ad",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "örn. John Doe",
   "invitees__form__email_label": "E-posta",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefon",
   "invitees__form__phone_placeholder": "+90 532 123 45 67",
   "invitees__form__seats_label": "Kişi",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} sıraya alındı, {skipped} atlandı (e-posta yok).",
   "invitees__send_all__error": "Davetiyeler sıraya alınamadı. Tekrar dene.",
   "invitees__preview__cta": "Önizle",
+  "invitees__preview__hide": "Önizlemeyi gizle",
+  "invitees__preview__show": "Önizlemeyi göster",
   "invitees__preview__title": "Davetiye önizlemesi",
   "invitees__edit_card__cta": "Davet kartını düzenle"
 }

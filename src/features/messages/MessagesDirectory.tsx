@@ -188,10 +188,9 @@ export const MessagesDirectory = ({
           onSelect={setFilter}
         />
       }
-      title={t("messages__directory__title")}
+      title={<MessageSearchInput />}
       actions={
         <>
-          <MessageSearchInput />
           <MessageSortButton />
           <Button
             size="sm"

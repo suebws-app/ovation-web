@@ -6,9 +6,9 @@
   "common__error": "Bir şeyler ters gitti",
   "common__back": "Geri",
   "common__next": "İleri",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Önceki sayfa",
+  "common__pagination__next": "Sonraki sayfa",
+  "common__pagination__page_of": "Sayfa {current}",
   "common__done": "Tamam",
   "common__retry": "Tekrar dene",
   "common__close": "Kapat",
@@ -18,6 +18,7 @@
   "common__footer__copyright": "© 2026 Ovation Keepsakes, S.L. · Tüm hakları saklıdır.",
   "common__footer__product": "Ürün",
   "common__footer__product_links__how_it_works": "Nasıl çalışır",
+  "common__footer__product_links__wedding_planner": "Düğün planlayıcı",
   "common__footer__product_links__gold_book": "Gold Book",
   "common__footer__product_links__keepsakes_store": "Keepsake mağazası",
   "common__footer__product_links__pricing": "Fiyatlandırma",
@@ -68,5 +69,5 @@
   "common__theme__system": "Sistem",
   "common__footer__legal_links__terms": "Şartlar",
   "common__footer__legal_links__refunds": "İadeler",
-  "common__load_more": "Load more"
+  "common__load_more": "Daha fazla yükle"
 }

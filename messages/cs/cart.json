@@ -21,7 +21,7 @@
   "cart__summary__total": "Celkem",
   "cart__summary__promo_placeholder": "Slevový kód",
   "cart__summary__promo_apply": "Použít",
-  "cart__summary__promo_applied": "Promo · {code}",
+  "cart__summary__promo_applied": "Akce · {code}",
   "cart__summary__checkout": "Bezpečná platba · {total}",
   "cart__summary__checkout_pending": "Spouštění platby…",
   "cart__empty__title": "Tvůj košík je prázdný",

@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Ti sei allontanato prima di completare il pagamento, quindi non è stato addebitato nulla. Il tuo ordine in bozza <strong>#{id}</strong> resta disponibile — riprendilo quando vuoi.",
   "checkout__cancel__back_keepsakes": "Torna ai keepsake",
   "checkout__cancel__skip": "Salta per ora",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Apri nel tuo browser",
   "checkout__in_app__title": "Completa il pagamento in Safari o Chrome",
   "checkout__in_app__body": "Stai visualizzando questa pagina nel browser integrato di un'app, dove le finestre di pagamento possono chiudersi in modo imprevisto. Apri il link qui sotto nel tuo browser abituale per completare l'acquisto in sicurezza.",
   "checkout__in_app__instructions_ios": "Tocca il menu ⋯ in alto o in basso in questa finestra e scegli «Apri in Safari» — oppure copia il link e incollalo in Safari.",
   "checkout__in_app__instructions_android": "Tocca il menu ⋮ in alto in questa finestra e scegli «Apri in Chrome» — oppure copia il link e incollalo in Chrome.",
   "checkout__in_app__instructions_other": "Copia il link qui sotto e aprilo nel tuo browser abituale per completare il pagamento.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Copia link",
+  "checkout__in_app__copied": "Copiato",
+  "checkout__in_app__continue_anyway": "Continua comunque qui"
 }

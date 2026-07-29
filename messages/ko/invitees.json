@@ -26,9 +26,9 @@
   "invitees__import__confirm": "손님 {count}명 추가",
   "invitees__import__submitting": "추가 중…",
   "invitees__form__name_label": "이름",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "예: John Doe",
   "invitees__form__email_label": "이메일",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "전화번호",
   "invitees__form__phone_placeholder": "+82 10-1234-5678",
   "invitees__form__seats_label": "좌석",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued}개 대기열에 추가, {skipped}개 건너뜀(이메일 없음).",
   "invitees__send_all__error": "초대장을 대기열에 추가할 수 없습니다. 다시 시도해 주세요.",
   "invitees__preview__cta": "미리보기",
+  "invitees__preview__hide": "미리보기 숨기기",
+  "invitees__preview__show": "미리보기 표시",
   "invitees__preview__title": "초대장 미리보기",
   "invitees__edit_card__cta": "초대 카드 편집"
 }

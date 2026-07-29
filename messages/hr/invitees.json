@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Dodaj {count, plural, one {# gosta} few {# gosta} other {# gostiju}}",
   "invitees__import__submitting": "Dodavanje…",
   "invitees__form__name_label": "Ime",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "npr. John Doe",
   "invitees__form__email_label": "E-pošta",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefon",
   "invitees__form__phone_placeholder": "+385 91 234 5678",
   "invitees__form__seats_label": "Mjesta",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} u redu, {skipped} preskočeno (bez e-pošte).",
   "invitees__send_all__error": "Pozivnice nije bilo moguće staviti u red. Pokušaj ponovno.",
   "invitees__preview__cta": "Pretpregled",
+  "invitees__preview__hide": "Sakrij pregled",
+  "invitees__preview__show": "Prikaži pregled",
   "invitees__preview__title": "Pretpregled pozivnice",
   "invitees__edit_card__cta": "Uredi karticu pozivnice"
 }

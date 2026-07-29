@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "이벤트",
   "sidebar__pro__event_back": "모든 이벤트",
-  "sidebar__pro__subscription": "구독"
+  "sidebar__pro__subscription": "구독",
+  "sidebar__nav__wedding_planner": "플래너",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "타임라인",
+  "sidebar__wp__tasks": "작업",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "하객",
+  "sidebar__wp__vendors": "업체",
+  "sidebar__wp__assistant": "AI 어시스턴트",
+  "sidebar__nav__contributors": "기여자"
 }

@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Pasākumi",
   "sidebar__pro__event_back": "Visi pasākumi",
-  "sidebar__pro__subscription": "Abonements"
+  "sidebar__pro__subscription": "Abonements",
+  "sidebar__nav__wedding_planner": "Plānotājs",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Laika josla",
+  "sidebar__wp__tasks": "Uzdevumi",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Viesi",
+  "sidebar__wp__vendors": "Piegādātāji",
+  "sidebar__wp__assistant": "MI asistents",
+  "sidebar__nav__contributors": "Dalībnieki"
 }

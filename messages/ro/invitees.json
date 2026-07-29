@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Adaugă {count, plural, one {# invitat} few {# invitați} other {# de invitați}}",
   "invitees__import__submitting": "Se adaugă…",
   "invitees__form__name_label": "Nume",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "ex. John Doe",
   "invitees__form__email_label": "E-mail",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefon",
   "invitees__form__phone_placeholder": "+40 712 345 678",
   "invitees__form__seats_label": "Locuri",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} în coadă, {skipped} omise (fără e-mail).",
   "invitees__send_all__error": "Nu am putut pune invitațiile în coadă. Încearcă din nou.",
   "invitees__preview__cta": "Previzualizare",
+  "invitees__preview__hide": "Ascunde previzualizarea",
+  "invitees__preview__show": "Arată previzualizarea",
   "invitees__preview__title": "Previzualizarea invitației",
   "invitees__edit_card__cta": "Editează cardul de invitație"
 }

@@ -7,7 +7,7 @@
   "analytics__range__90d": "Posledních 90 dní",
   "analytics__range__all": "Vždy",
   "analytics__stats__total_events": "Všechny příhody",
-  "analytics__stats__active_events": "{count} active",
+  "analytics__stats__active_events": "{count} aktivních",
   "analytics__stats__guests": "Hosté",
   "analytics__stats__guests_sub": "Jedineční přispěvatelé",
   "analytics__stats__messages": "Zprávy",

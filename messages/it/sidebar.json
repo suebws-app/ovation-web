@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Eventi",
   "sidebar__pro__event_back": "Tutti gli eventi",
-  "sidebar__pro__subscription": "Abbonamento"
+  "sidebar__pro__subscription": "Abbonamento",
+  "sidebar__nav__wedding_planner": "Organizzatore",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Cronologia",
+  "sidebar__wp__tasks": "Attività",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Invitati",
+  "sidebar__wp__vendors": "Fornitori",
+  "sidebar__wp__assistant": "Assistente IA",
+  "sidebar__nav__contributors": "Contributori"
 }

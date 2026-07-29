@@ -20,7 +20,7 @@
   "cart__summary__total": "Spolu",
   "cart__summary__promo_placeholder": "Promo kód",
   "cart__summary__promo_apply": "Použiť",
-  "cart__summary__promo_applied": "Promo · {code}",
+  "cart__summary__promo_applied": "Akcia · {code}",
   "cart__summary__checkout": "Bezpečná pokladňa · {total}",
   "cart__summary__checkout_pending": "Spúšťame pokladňu…",
   "cart__empty__title": "Tvoj košík je prázdny",

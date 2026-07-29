@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Ödemeyi tamamlamadan ayrıldın, bu yüzden hiçbir şey faturalandırılmadı. Taslak siparişin <strong>#{id}</strong> hazır bekliyor — istediğin zaman devam edebilirsin.",
   "checkout__cancel__back_keepsakes": "Keepsake'lere dön",
   "checkout__cancel__skip": "Şimdilik atla",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Tarayıcınızda açın",
   "checkout__in_app__title": "Ödemeyi Safari veya Chrome'da tamamlayın",
   "checkout__in_app__body": "Bu sayfayı bir uygulamanın yerleşik tarayıcısında görüntülüyorsunuz; ödeme pencereleri beklenmedik şekilde kapanabilir. Alışverişi güvenli şekilde tamamlamak için aşağıdaki bağlantıyı normal tarayıcınızda açın.",
   "checkout__in_app__instructions_ios": "Bu pencerenin üstündeki veya altındaki ⋯ menüsüne dokunun ve “Safari'de Aç” seçeneğini seçin — ya da bağlantıyı kopyalayıp Safari'ye yapıştırın.",
   "checkout__in_app__instructions_android": "Bu pencerenin üstündeki ⋮ menüsüne dokunun ve “Chrome'da Aç” seçeneğini seçin — ya da bağlantıyı kopyalayıp Chrome'a yapıştırın.",
   "checkout__in_app__instructions_other": "Aşağıdaki bağlantıyı kopyalayın ve ödemeyi tamamlamak için normal tarayıcınızda açın.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Bağlantıyı kopyala",
+  "checkout__in_app__copied": "Kopyalandı",
+  "checkout__in_app__continue_anyway": "Yine de burada devam et"
 }

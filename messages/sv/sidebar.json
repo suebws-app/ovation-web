@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Evenemang",
   "sidebar__pro__event_back": "Alla evenemang",
-  "sidebar__pro__subscription": "Prenumeration"
+  "sidebar__pro__subscription": "Prenumeration",
+  "sidebar__nav__wedding_planner": "Planerare",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Tidslinje",
+  "sidebar__wp__tasks": "Uppgifter",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Gäster",
+  "sidebar__wp__vendors": "Leverantörer",
+  "sidebar__wp__assistant": "AI-assistent",
+  "sidebar__nav__contributors": "Bidragsgivare"
 }

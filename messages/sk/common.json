@@ -6,9 +6,9 @@
   "common__error": "Niečo sa pokazilo",
   "common__back": "Späť",
   "common__next": "Ďalej",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Predchádzajúca strana",
+  "common__pagination__next": "Nasledujúca strana",
+  "common__pagination__page_of": "Strana {current}",
   "common__done": "Hotovo",
   "common__retry": "Skúsiť znova",
   "common__close": "Zavrieť",
@@ -18,6 +18,7 @@
   "common__footer__copyright": "© 2026 Ovation Keepsakes, S.L. · Všetky práva vyhradené.",
   "common__footer__product": "Produkt",
   "common__footer__product_links__how_it_works": "Ako to funguje",
+  "common__footer__product_links__wedding_planner": "Svadobný plánovač",
   "common__footer__product_links__gold_book": "Gold Book",
   "common__footer__product_links__keepsakes_store": "Obchod s pamiatkami",
   "common__footer__product_links__pricing": "Cenník",
@@ -68,5 +69,5 @@
   "common__theme__system": "Systémový",
   "common__footer__legal_links__terms": "Podmienky",
   "common__footer__legal_links__refunds": "Vrátenie peňazí",
-  "common__load_more": "Load more"
+  "common__load_more": "Načítať viac"
 }

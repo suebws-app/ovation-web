@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Tambah {count} tamu",
   "invitees__import__submitting": "Menambahkan…",
   "invitees__form__name_label": "Nama",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "mis. John Doe",
   "invitees__form__email_label": "Email",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telepon",
   "invitees__form__phone_placeholder": "+62 812 3456 7890",
   "invitees__form__seats_label": "Kursi",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} masuk antrean, {skipped} dilewati (tanpa email).",
   "invitees__send_all__error": "Gagal mengantrekan undangan. Coba lagi.",
   "invitees__preview__cta": "Pratinjau",
+  "invitees__preview__hide": "Sembunyikan pratinjau",
+  "invitees__preview__show": "Tampilkan pratinjau",
   "invitees__preview__title": "Pratinjau undangan",
   "invitees__edit_card__cta": "Edit kartu undangan"
 }

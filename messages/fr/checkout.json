@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Tu as quitté avant d'avoir finalisé le paiement, donc rien n'a été facturé. Ta commande brouillon <strong>n° {id}</strong> reste disponible — reprends-la quand tu veux.",
   "checkout__cancel__back_keepsakes": "Retour aux keepsakes",
   "checkout__cancel__skip": "Passer pour l'instant",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Ouvrir dans votre navigateur",
   "checkout__in_app__title": "Terminez le paiement dans Safari ou Chrome",
   "checkout__in_app__body": "Vous consultez cette page dans le navigateur intégré d'une application, où les fenêtres de paiement peuvent se fermer de façon imprévue. Ouvrez le lien ci-dessous dans votre navigateur habituel pour finaliser votre achat en toute sécurité.",
   "checkout__in_app__instructions_ios": "Appuyez sur le menu ⋯ en haut ou en bas de cette fenêtre et choisissez « Ouvrir dans Safari » — ou copiez le lien et collez-le dans Safari.",
   "checkout__in_app__instructions_android": "Appuyez sur le menu ⋮ en haut de cette fenêtre et choisissez « Ouvrir dans Chrome » — ou copiez le lien et collez-le dans Chrome.",
   "checkout__in_app__instructions_other": "Copiez le lien ci-dessous et ouvrez-le dans votre navigateur habituel pour finaliser le paiement.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Copier le lien",
+  "checkout__in_app__copied": "Copié",
+  "checkout__in_app__continue_anyway": "Continuer ici quand même"
 }

@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Događaji",
   "sidebar__pro__event_back": "Svi događaji",
-  "sidebar__pro__subscription": "Pretplata"
+  "sidebar__pro__subscription": "Pretplata",
+  "sidebar__nav__wedding_planner": "Planer",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Vremenska crta",
+  "sidebar__wp__tasks": "Zadaci",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Gosti",
+  "sidebar__wp__vendors": "Dobavljači",
+  "sidebar__wp__assistant": "AI asistent",
+  "sidebar__nav__contributors": "Suradnici"
 }

@@ -26,9 +26,9 @@
   "invitees__import__confirm": "{count, plural, one {# Gast} other {# Gäste}} hinzufügen",
   "invitees__import__submitting": "Hinzufügen…",
   "invitees__form__name_label": "Name",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "z. B. John Doe",
   "invitees__form__email_label": "E-Mail",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefon",
   "invitees__form__phone_placeholder": "+49 30 12345678",
   "invitees__form__seats_label": "Plätze",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} in der Warteschlange, {skipped} übersprungen (keine E-Mail).",
   "invitees__send_all__error": "Einladungen konnten nicht in die Warteschlange gestellt werden. Erneut versuchen.",
   "invitees__preview__cta": "Vorschau",
+  "invitees__preview__hide": "Vorschau ausblenden",
+  "invitees__preview__show": "Vorschau einblenden",
   "invitees__preview__title": "Einladungsvorschau",
   "invitees__edit_card__cta": "Einladungskarte bearbeiten"
 }

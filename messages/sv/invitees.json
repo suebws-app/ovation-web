@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Lägg till {count, plural, one {# gäst} other {# gäster}}",
   "invitees__import__submitting": "Lägger till…",
   "invitees__form__name_label": "Namn",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "t.ex. John Doe",
   "invitees__form__email_label": "E-post",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefon",
   "invitees__form__phone_placeholder": "+46 70 123 45 67",
   "invitees__form__seats_label": "Platser",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} i kö, {skipped} hoppade över (ingen e-post).",
   "invitees__send_all__error": "Kunde inte köa inbjudningarna. Försök igen.",
   "invitees__preview__cta": "Förhandsvisa",
+  "invitees__preview__hide": "Dölj förhandsgranskning",
+  "invitees__preview__show": "Visa förhandsgranskning",
   "invitees__preview__title": "Förhandsvisning av inbjudan",
   "invitees__edit_card__cta": "Redigera inbjudningskort"
 }

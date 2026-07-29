@@ -26,13 +26,13 @@
   "checkout__cancel__body": "결제를 완료하기 전에 나가셨기 때문에 청구된 금액이 없어요. 임시 주문 <strong>#{id}</strong>은 계속 보관되어 있으니 — 준비가 되면 언제든 다시 이어가실 수 있어요.",
   "checkout__cancel__back_keepsakes": "Keepsake로 돌아가기",
   "checkout__cancel__skip": "나중에 하기",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "브라우저에서 열기",
   "checkout__in_app__title": "Safari 또는 Chrome에서 결제를 완료하세요",
   "checkout__in_app__body": "이 페이지는 앱의 내장 브라우저에서 열려 있으며, 결제 창이 예기치 않게 닫힐 수 있습니다. 아래 링크를 일반 브라우저에서 열어 안전하게 결제를 완료하세요.",
   "checkout__in_app__instructions_ios": "창 상단 또는 하단의 ⋯ 메뉴를 눌러 “Safari에서 열기”를 선택하거나, 링크를 복사하여 Safari에 붙여넣으세요.",
   "checkout__in_app__instructions_android": "창 상단의 ⋮ 메뉴를 눌러 “Chrome에서 열기”를 선택하거나, 링크를 복사하여 Chrome에 붙여넣으세요.",
   "checkout__in_app__instructions_other": "아래 링크를 복사한 뒤 일반 브라우저에서 열어 결제를 완료하세요.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "링크 복사",
+  "checkout__in_app__copied": "복사됨",
+  "checkout__in_app__continue_anyway": "그래도 여기서 계속"
 }

@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Etkinlikler",
   "sidebar__pro__event_back": "Tüm etkinlikler",
-  "sidebar__pro__subscription": "Abonelik"
+  "sidebar__pro__subscription": "Abonelik",
+  "sidebar__nav__wedding_planner": "Planlayıcı",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Zaman çizelgesi",
+  "sidebar__wp__tasks": "Görevler",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Konuklar",
+  "sidebar__wp__vendors": "Tedarikçiler",
+  "sidebar__wp__assistant": "Yapay zeka asistanı",
+  "sidebar__nav__contributors": "Katkıda bulunanlar"
 }

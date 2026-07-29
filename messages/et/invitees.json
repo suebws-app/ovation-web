@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Lisa {count, plural, one {# külaline} other {# külalist}}",
   "invitees__import__submitting": "Lisamine…",
   "invitees__form__name_label": "Nimi",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "nt John Doe",
   "invitees__form__email_label": "E-post",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefon",
   "invitees__form__phone_placeholder": "+372 5123 4567",
   "invitees__form__seats_label": "Kohad",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} järjekorras, {skipped} vahele jäetud (e-post puudub).",
   "invitees__send_all__error": "Kutsete järjekorda panemine ebaõnnestus. Proovi uuesti.",
   "invitees__preview__cta": "Eelvaade",
+  "invitees__preview__hide": "Peida eelvaade",
+  "invitees__preview__show": "Näita eelvaadet",
   "invitees__preview__title": "Kutse eelvaade",
   "invitees__edit_card__cta": "Muuda kutsekaarti"
 }

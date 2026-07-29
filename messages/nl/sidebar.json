@@ -1,5 +1,5 @@
 {
-  "sidebar__nav__home": "Home",
+  "sidebar__nav__home": "Start",
   "sidebar__nav__messages": "Berichten",
   "sidebar__nav__photos": "Galerij",
   "sidebar__nav__keepsakes": "Aandenkens",
@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Evenementen",
   "sidebar__pro__event_back": "Alle evenementen",
-  "sidebar__pro__subscription": "Abonnement"
+  "sidebar__pro__subscription": "Abonnement",
+  "sidebar__nav__wedding_planner": "Planner",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Tijdlijn",
+  "sidebar__wp__tasks": "Taken",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Gasten",
+  "sidebar__wp__vendors": "Leveranciers",
+  "sidebar__wp__assistant": "AI-assistent",
+  "sidebar__nav__contributors": "Bijdragers"
 }

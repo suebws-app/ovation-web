@@ -35,6 +35,8 @@ export const usePageTitle = (): string => {
     .filter((s) => !isLocale(s))
     .filter((s) => !UUID_RE.test(s));
 
+  if (segments[0] === "planner") return "";
+
   for (let i = segments.length - 1; i >= 0; i--) {
     const key = SEGMENT_KEY[segments[i]];
     if (key) return t(key);

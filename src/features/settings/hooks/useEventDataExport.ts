@@ -12,7 +12,10 @@ import type {
   GalleryItem,
   Order,
 } from "@/lib/api/types";
-import { aggregateGuests, type GuestRow } from "@/features/guests/adapters";
+import {
+  aggregateGuests,
+  type GuestRow,
+} from "@/features/contributors/adapters";
 import { saveBlob } from "@/lib/utils/download-blob";
 import { escapeCsv } from "@/lib/utils/csv";
 import { toIsoDate } from "@/lib/utils/formatDate";

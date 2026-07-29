@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Renginiai",
   "sidebar__pro__event_back": "Visi renginiai",
-  "sidebar__pro__subscription": "Prenumerata"
+  "sidebar__pro__subscription": "Prenumerata",
+  "sidebar__nav__wedding_planner": "Planuoklis",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Laiko juosta",
+  "sidebar__wp__tasks": "Užduotys",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Svečiai",
+  "sidebar__wp__vendors": "Tiekėjai",
+  "sidebar__wp__assistant": "DI asistentas",
+  "sidebar__nav__contributors": "Dalyviai"
 }

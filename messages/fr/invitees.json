@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Ajouter {count, plural, one {# invité} other {# invités}}",
   "invitees__import__submitting": "Ajout en cours…",
   "invitees__form__name_label": "Nom",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "ex. John Doe",
   "invitees__form__email_label": "E-mail",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Téléphone",
   "invitees__form__phone_placeholder": "+33 6 12 34 56 78",
   "invitees__form__seats_label": "Places",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} en file d'attente, {skipped} ignorés (pas d'e-mail).",
   "invitees__send_all__error": "Impossible de mettre les invitations en file d'attente. Réessaie.",
   "invitees__preview__cta": "Aperçu",
+  "invitees__preview__hide": "Masquer l’aperçu",
+  "invitees__preview__show": "Afficher l’aperçu",
   "invitees__preview__title": "Aperçu de l'invitation",
   "invitees__edit_card__cta": "Modifier la carte d'invitation"
 }

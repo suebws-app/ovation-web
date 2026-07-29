@@ -74,6 +74,18 @@ export const queryKeys = {
     all: (eventId: string) => ["invitees", eventId] as const,
     list: (eventId: string) => ["invitees", eventId, "list"] as const,
   },
+  weddingPlanner: {
+    all: (eventId: string) => ["wedding-planner", eventId] as const,
+    timeline: (eventId: string) =>
+      ["wedding-planner", eventId, "timeline"] as const,
+    tasks: (eventId: string) => ["wedding-planner", eventId, "tasks"] as const,
+    budget: (eventId: string) =>
+      ["wedding-planner", eventId, "budget"] as const,
+    vendors: (eventId: string) =>
+      ["wedding-planner", eventId, "vendors"] as const,
+    assistant: (eventId: string) =>
+      ["wedding-planner", eventId, "assistant"] as const,
+  },
   invitationTemplates: {
     all: () => ["invitation-templates"] as const,
     list: () => ["invitation-templates", "list"] as const,

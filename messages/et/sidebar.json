@@ -22,5 +22,14 @@
   "sidebar__couple_initials": "L&T",
   "sidebar__pro__events": "Üritused",
   "sidebar__pro__event_back": "Kõik üritused",
-  "sidebar__pro__subscription": "Tellimus"
+  "sidebar__pro__subscription": "Tellimus",
+  "sidebar__nav__wedding_planner": "Planeerija",
+  "sidebar__wp__dashboard": "Dashboard",
+  "sidebar__wp__timeline": "Ajajoon",
+  "sidebar__wp__tasks": "Ülesanded",
+  "sidebar__wp__budget": "Budget",
+  "sidebar__wp__guests": "Külalised",
+  "sidebar__wp__vendors": "Tarnijad",
+  "sidebar__wp__assistant": "AI-assistent",
+  "sidebar__nav__contributors": "Panustajad"
 }

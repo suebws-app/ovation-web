@@ -42,7 +42,7 @@
   "settings__profile__name": "Nome completo",
   "settings__profile__name_hint": "Mostrato al tuo partner e nelle email.",
   "settings__profile__name_placeholder": "Il tuo nome completo",
-  "settings__profile__email": "Email",
+  "settings__profile__email": "E-mail",
   "settings__profile__email_hint": "Usata per accedere. La modifica dell'email non è ancora disponibile.",
   "settings__profile__save": "Salva profilo",
   "settings__profile__saving": "Salvataggio…",

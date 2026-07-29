@@ -26,9 +26,9 @@
   "invitees__import__confirm": "Legg til {count, plural, one {# gjest} other {# gjester}}",
   "invitees__import__submitting": "Legger til…",
   "invitees__form__name_label": "Navn",
-  "invitees__form__name_placeholder": "Maria",
+  "invitees__form__name_placeholder": "f.eks. John Doe",
   "invitees__form__email_label": "E-post",
-  "invitees__form__email_placeholder": "maria@example.com",
+  "invitees__form__email_placeholder": "john.doe@example.com",
   "invitees__form__phone_label": "Telefon",
   "invitees__form__phone_placeholder": "+47 412 34 567",
   "invitees__form__seats_label": "Plasser",
@@ -76,6 +76,8 @@
   "invitees__send_all__success": "{queued} i kø, {skipped} hoppet over (ingen e-post).",
   "invitees__send_all__error": "Kunne ikke legge invitasjoner i kø. Prøv igjen.",
   "invitees__preview__cta": "Forhåndsvis",
+  "invitees__preview__hide": "Skjul forhåndsvisning",
+  "invitees__preview__show": "Vis forhåndsvisning",
   "invitees__preview__title": "Forhåndsvisning av invitasjon",
   "invitees__edit_card__cta": "Rediger invitasjonskort"
 }

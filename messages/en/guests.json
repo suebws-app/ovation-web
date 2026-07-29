@@ -1,5 +1,5 @@
 {
-  "guests__hero__eyebrow": "Guests",
+  "guests__hero__eyebrow": "Contributors",
   "guests__hero__title": "<emph>{count}</emph> {count, plural, one {message} other {messages}} received so far.",
   "guests__hero__subtitle": "Track contributions and share your invite link. A full guest directory is coming soon — for now, every voice that's come in is reflected in the messages list.",
   "guests__hero__add": "Add a guest",

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { BookIcon } from "@ovation/icons/BookIcon";
 import { MicIcon } from "@ovation/icons/MicIcon";
-import { PillBase } from "@/features/guests/components/PillBase";
+import { PillBase } from "@/features/contributors/components/PillBase";
 
 type MessageStatusPillProps = {
   favorited: boolean;

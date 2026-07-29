@@ -6,9 +6,9 @@
   "common__error": "문제가 발생했습니다",
   "common__back": "뒤로",
   "common__next": "다음",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "이전 페이지",
+  "common__pagination__next": "다음 페이지",
+  "common__pagination__page_of": "{current}페이지",
   "common__done": "완료",
   "common__retry": "다시 시도",
   "common__close": "닫기",
@@ -18,6 +18,7 @@
   "common__footer__copyright": "© 2026 Ovation Keepsakes, S.L. · 모든 권리 보유.",
   "common__footer__product": "제품",
   "common__footer__product_links__how_it_works": "이용 방법",
+  "common__footer__product_links__wedding_planner": "웨딩 플래너",
   "common__footer__product_links__gold_book": "Gold Book",
   "common__footer__product_links__keepsakes_store": "Keepsake 스토어",
   "common__footer__product_links__pricing": "요금제",
@@ -68,5 +69,5 @@
   "common__theme__system": "시스템",
   "common__footer__legal_links__terms": "이용약관",
   "common__footer__legal_links__refunds": "환불",
-  "common__load_more": "Load more"
+  "common__load_more": "더 보기"
 }

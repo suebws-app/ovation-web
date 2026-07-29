@@ -13,6 +13,11 @@ const FlowsSection = dynamic(() =>
     default: m.FlowsSection,
   })),
 );
+const WeddingPlannerSection = dynamic(() =>
+  import("./sections/WeddingPlannerSection").then((m) => ({
+    default: m.WeddingPlannerSection,
+  })),
+);
 const MemoryStrip = dynamic(() =>
   import("./sections/MemoryStrip").then((m) => ({
     default: m.MemoryStrip,
@@ -38,6 +43,7 @@ export const LandingPage = async ({ params }: LocalePageProps) => {
       <LandingHero />
       <ProductShowcase />
       <FlowsSection />
+      <WeddingPlannerSection />
       <MemoryStrip />
       <KeepsakeSection />
       <FinalDarkCTA />

@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Ai plecat înainte de a finaliza plata, așa că nu s-a taxat nimic. Comanda ta ciornă <strong>#{id}</strong> rămâne disponibilă — reia-o oricând ești gata.",
   "checkout__cancel__back_keepsakes": "Înapoi la keepsakes",
   "checkout__cancel__skip": "Sari peste acum",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Deschide în browser",
   "checkout__in_app__title": "Finalizează plata în Safari sau Chrome",
   "checkout__in_app__body": "Vizualizezi această pagină în browserul integrat al unei aplicații, unde ferestrele de plată se pot închide neașteptat. Deschide linkul de mai jos în browserul tău obișnuit pentru a finaliza cumpărătura în siguranță.",
   "checkout__in_app__instructions_ios": "Apasă meniul ⋯ din partea de sus sau de jos a ferestrei și alege „Deschide în Safari” — sau copiază linkul și lipește-l în Safari.",
   "checkout__in_app__instructions_android": "Apasă meniul ⋮ din partea de sus a ferestrei și alege „Deschide în Chrome” — sau copiază linkul și lipește-l în Chrome.",
   "checkout__in_app__instructions_other": "Copiază linkul de mai jos și deschide-l în browserul tău obișnuit pentru a finaliza plata.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Copiază linkul",
+  "checkout__in_app__copied": "Copiat",
+  "checkout__in_app__continue_anyway": "Continuă totuși aici"
 }

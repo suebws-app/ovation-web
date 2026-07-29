@@ -6,9 +6,9 @@
   "common__error": "Nekaj je šlo narobe",
   "common__back": "Nazaj",
   "common__next": "Naprej",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Prejšnja stran",
+  "common__pagination__next": "Naslednja stran",
+  "common__pagination__page_of": "Stran {current}",
   "common__done": "Končano",
   "common__retry": "Poskusi znova",
   "common__close": "Zapri",
@@ -18,6 +18,7 @@
   "common__footer__copyright": "© 2026 Ovation Keepsakes, S.L. · Vse pravice pridržane.",
   "common__footer__product": "Izdelek",
   "common__footer__product_links__how_it_works": "Kako deluje",
+  "common__footer__product_links__wedding_planner": "Poročni načrtovalec",
   "common__footer__product_links__gold_book": "Gold Book",
   "common__footer__product_links__keepsakes_store": "Trgovina s spominki",
   "common__footer__product_links__pricing": "Cene",
@@ -68,5 +69,5 @@
   "common__theme__system": "Sistemska",
   "common__footer__legal_links__terms": "Pogoji",
   "common__footer__legal_links__refunds": "Vračila",
-  "common__load_more": "Load more"
+  "common__load_more": "Naloži več"
 }

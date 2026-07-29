@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Otišao/la si prije nego što si dovršio/la plaćanje, pa ništa nije naplaćeno. Tvoja nacrt narudžba <strong>#{id}</strong> ostaje dostupna — vrati joj se kad god budeš spreman/spremna.",
   "checkout__cancel__back_keepsakes": "Natrag na Keepsake",
   "checkout__cancel__skip": "Preskoči za sada",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Otvori u pregledniku",
   "checkout__in_app__title": "Dovršite plaćanje u Safariju ili Chromeu",
   "checkout__in_app__body": "Ovo pregledavate u ugrađenom pregledniku aplikacije u kojem se prozori za plaćanje mogu neočekivano zatvoriti. Otvorite poveznicu ispod u svom uobičajenom pregledniku kako biste sigurno dovršili kupnju.",
   "checkout__in_app__instructions_ios": "Dodirnite izbornik ⋯ pri vrhu ili dnu ovog prozora i odaberite „Otvori u Safariju“ — ili kopirajte poveznicu i zalijepite je u Safari.",
   "checkout__in_app__instructions_android": "Dodirnite izbornik ⋮ pri vrhu ovog prozora i odaberite „Otvori u Chromeu“ — ili kopirajte poveznicu i zalijepite je u Chrome.",
   "checkout__in_app__instructions_other": "Kopirajte poveznicu ispod i otvorite je u svom uobičajenom pregledniku kako biste dovršili plaćanje.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Kopiraj poveznicu",
+  "checkout__in_app__copied": "Kopirano",
+  "checkout__in_app__continue_anyway": "Ipak nastavi ovdje"
 }
