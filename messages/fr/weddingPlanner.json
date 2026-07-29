@@ -187,6 +187,7 @@
   "wp__ai__hello": "Salut ! Je suis ton assistant de planification Ovation. Demande-moi ce que tu veux sur ton mariage — je te répondrai en me basant sur ton plan réel. En mode **Action**, je peux ajouter des tâches, des postes de budget et des prestataires à ta place (tu confirmes d'abord).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Une erreur est survenue. Réessaie.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Configure d'abord les détails de ton mariage pour utiliser l'assistant.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

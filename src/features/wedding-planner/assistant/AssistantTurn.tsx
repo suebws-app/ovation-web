@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
+import { RefreshIcon } from "@ovation/icons/RefreshIcon";
 import type {
   AssistantAppliedAction,
   AssistantMode,
@@ -21,6 +22,9 @@ export type ChatMessage = {
   undone?: boolean;
   dismissed?: boolean;
   streaming?: boolean;
+  error?: boolean;
+  failedPrompt?: string;
+  failedMode?: AssistantMode;
   createdAt?: string;
 };
 
@@ -30,6 +34,7 @@ type AssistantTurnProps = {
   onConfirm: (message: ChatMessage) => void;
   onDismiss: (message: ChatMessage) => void;
   onUndo: (message: ChatMessage) => void;
+  onRetry: (message: ChatMessage) => void;
 };
 
 export const AssistantTurn = ({
@@ -38,6 +43,7 @@ export const AssistantTurn = ({
   onConfirm,
   onDismiss,
   onUndo,
+  onRetry,
 }: AssistantTurnProps) => {
   const t = useTranslations();
   const isAssistant = message.role === "assistant";
@@ -58,9 +64,22 @@ export const AssistantTurn = ({
           {t("wp__ai__mode_action")}
         </span>
       ) : null}
-      <AiMessageBubble
-        message={{ role: isAssistant ? "ai" : "user", text: message.content }}
-      />
+      <div className="flex w-fit flex-col gap-1">
+        <AiMessageBubble
+          message={{ role: isAssistant ? "ai" : "user", text: message.content }}
+          error={message.error}
+        />
+        {message.error ? (
+          <button
+            type="button"
+            onClick={() => onRetry(message)}
+            className="type-caption text-destructive hover:text-destructive/80 flex items-center gap-1 self-end font-semibold transition-colors"
+          >
+            <RefreshIcon width={13} height={13} />
+            {t("wp__ai__retry")}
+          </button>
+        ) : null}
+      </div>
       {isAssistant ? (
         <div className="w-full max-w-lg">
           <AssistantActionPanel

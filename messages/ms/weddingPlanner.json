@@ -187,6 +187,7 @@
   "wp__ai__hello": "Hai! Saya pembantu perancangan Ovation anda. Tanya saya apa sahaja tentang perkahwinan anda — saya akan menjawab berdasarkan rancangan sebenar anda. Dalam mod **Tindakan**, saya boleh menambah tugasan, item belanjawan dan vendor untuk anda (anda sahkan dahulu).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Sesuatu telah berlaku. Sila cuba lagi.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Sediakan butiran perkahwinan anda dahulu untuk menggunakan pembantu ini.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

@@ -29,7 +29,13 @@ const renderMarkdown = (text: string) =>
     return <p key={index}>{renderInline(line, index)}</p>;
   });
 
-export const AiMessageBubble = ({ message }: { message: AiMessage }) => {
+export const AiMessageBubble = ({
+  message,
+  error,
+}: {
+  message: AiMessage;
+  error?: boolean;
+}) => {
   const isUser = message.role === "user";
 
   return (
@@ -40,8 +46,17 @@ export const AiMessageBubble = ({ message }: { message: AiMessage }) => {
       )}
     >
       {!isUser ? (
-        <span className="bg-foreground flex size-8 shrink-0 items-center justify-center rounded-full">
-          <HeartIcon width={16} height={16} className="text-primary" />
+        <span
+          className={cn(
+            "flex size-8 shrink-0 items-center justify-center rounded-full",
+            error ? "bg-destructive" : "bg-foreground",
+          )}
+        >
+          <HeartIcon
+            width={16}
+            height={16}
+            className={error ? "text-destructive-foreground" : "text-primary"}
+          />
         </span>
       ) : null}
       <div
@@ -49,7 +64,9 @@ export const AiMessageBubble = ({ message }: { message: AiMessage }) => {
           "rounded-16 type-body-small px-4 py-3",
           isUser
             ? "bg-primary text-primary-foreground"
-            : "bg-muted/50 border-border border",
+            : error
+              ? "border-destructive/40 bg-destructive/5 text-foreground border"
+              : "bg-muted/50 border-border border",
         )}
       >
         {renderMarkdown(message.text)}

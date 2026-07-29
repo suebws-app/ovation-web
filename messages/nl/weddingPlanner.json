@@ -187,6 +187,7 @@
   "wp__ai__hello": "Hoi! Ik ben je Ovation planningsassistent. Vraag me van alles over je bruiloft — ik antwoord op basis van je echte planning. In de **Actie**-modus kan ik taken, budgetitems en leveranciers voor je toevoegen (jij bevestigt eerst).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Er is iets misgegaan. Probeer het opnieuw.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Stel eerst je trouwgegevens in om de assistent te gebruiken.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

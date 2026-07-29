@@ -187,6 +187,7 @@
   "wp__ai__hello": "안녕하세요! Ovation 결혼 준비 도우미예요. 결혼식에 대해 무엇이든 물어보세요 — 실제 계획을 바탕으로 답해 드릴게요. **액션** 모드에서는 할 일, 예산 항목, 업체를 대신 추가해 드릴 수 있어요 (먼저 확인을 받아요).",
   "wp__ai__send": "Send",
   "wp__ai__error": "문제가 발생했어요. 다시 시도해 주세요.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "도우미를 사용하려면 먼저 결혼식 정보를 설정해 주세요.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

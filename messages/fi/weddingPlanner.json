@@ -187,6 +187,7 @@
   "wp__ai__hello": "Hei! Olen Ovation-suunnitteluassistenttisi. Kysy mitä tahansa häistänne — vastaan todellisen suunnitelmanne pohjalta. **Toiminto**-tilassa voin lisätä puolestasi tehtäviä, budjettikohteita ja toimittajia (vahvistat aina ensin).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Jotain meni pieleen. Yritä uudelleen.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Määritä ensin hääsi tiedot käyttääksesi assistenttia.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

@@ -187,6 +187,7 @@
   "wp__ai__hello": "Sveiks! Es esmu tavs Ovation plānošanas asistents. Jautā man jebko par tavām kāzām — es atbildēšu, balstoties uz tavu reālo plānu. **Action** režīmā es varu tev pievienot uzdevumus, budžeta pozīcijas un pakalpojumu sniedzējus (vispirms tu apstiprini).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Kaut kas nogāja greizi. Lūdzu, mēģini vēlreiz.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Vispirms iestati savas kāzu detaļas, lai izmantotu asistentu.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

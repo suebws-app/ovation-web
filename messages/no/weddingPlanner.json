@@ -187,6 +187,7 @@
   "wp__ai__hello": "Hei! Jeg er planleggingsassistenten din i Ovation. Spør meg om hva som helst om bryllupet ditt — jeg svarer basert på den faktiske planen din. I **Handling**-modus kan jeg legge til oppgaver, budsjettposter og leverandører for deg (du bekrefter først).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Noe gikk galt. Prøv igjen.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Sett opp bryllupsdetaljene dine først for å bruke assistenten.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

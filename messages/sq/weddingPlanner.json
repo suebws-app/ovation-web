@@ -187,6 +187,7 @@
   "wp__ai__hello": "Përshëndetje! Unë jam asistenti juaj i planifikimit Ovation. Më pyesni çfarëdo për dasmën tuaj — do t'ju përgjigjem bazuar në planin tuaj real. Në modalitetin **Veprim** mund të shtoj detyra, zëra buxheti dhe furnizues për ju (ju konfirmoni së pari).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Diçka shkoi keq. Ju lutemi provoni sërish.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Konfiguroni së pari detajet e dasmës suaj për të përdorur asistentin.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

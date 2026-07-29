@@ -187,6 +187,7 @@
   "wp__ai__hello": "Tere! Olen sinu Ovationi planeerimisassistent. Küsi mult ükskõik mida oma pulmade kohta — vastan sinu tegeliku plaani põhjal. **Tegevus** režiimis saan sinu jaoks lisada ülesandeid, eelarveridu ja teenusepakkujaid (kinnitad enne ise).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Midagi läks valesti. Palun proovi uuesti.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Seadista esmalt oma pulmaandmed, et assistenti kasutada.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

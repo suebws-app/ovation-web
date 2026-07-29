@@ -187,6 +187,7 @@
   "wp__ai__hello": "Merhaba! Ben senin Ovation planlama asistanınım. Düğününle ilgili her şeyi bana sorabilirsin — gerçek planına göre cevap veririm. **Aksiyon** modunda senin için görev, bütçe kalemi ve tedarikçi ekleyebilirim (önce sen onaylarsın).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Bir şeyler ters gitti. Lütfen tekrar dene.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Asistanı kullanmak için önce düğün bilgilerini ayarla.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

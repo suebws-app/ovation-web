@@ -187,6 +187,7 @@
   "wp__ai__hello": "Salut! Sunt asistentul tău de planificare Ovation. Întreabă-mă orice despre nunta ta — îți voi răspunde pe baza planului tău real. În modul **Acțiune** pot adăuga sarcini, elemente de buget și furnizori pentru tine (tu confirmi mai întâi).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Ceva nu a mers bine. Te rugăm încearcă din nou.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Configurează mai întâi detaliile nunții pentru a folosi asistentul.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

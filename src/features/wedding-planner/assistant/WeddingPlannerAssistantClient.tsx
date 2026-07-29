@@ -110,6 +110,54 @@ export const WeddingPlannerAssistantClient = ({
     }
   };
 
+  const runStream = async (
+    aiId: string,
+    value: string,
+    currentMode: AssistantMode,
+  ) => {
+    setStreaming(true);
+    await streamAssistant(
+      eventId,
+      { message: value, mode: currentMode },
+      {
+        onToken: (tk) =>
+          setMessages((prev) =>
+            updateById(prev, aiId, (m) => ({ ...m, content: m.content + tk })),
+          ),
+        onDone: ({ messageId, proposedActions }) =>
+          setMessages((prev) =>
+            updateById(prev, aiId, (m) => ({
+              ...m,
+              id: messageId || m.id,
+              streaming: false,
+              error: false,
+              failedPrompt: undefined,
+              failedMode: undefined,
+              proposedActions: proposedActions.length
+                ? proposedActions
+                : undefined,
+            })),
+          ),
+        onError: () =>
+          setMessages((prev) =>
+            updateById(prev, aiId, (m) => ({
+              ...m,
+              streaming: false,
+              error: true,
+              failedPrompt: value,
+              failedMode: currentMode,
+              content: m.content || t("wp__ai__error"),
+            })),
+          ),
+      },
+    );
+
+    setStreaming(false);
+    queryClient.invalidateQueries({
+      queryKey: queryKeys.weddingPlanner.assistant(eventId),
+    });
+  };
+
   const send = async (text: string, overrideMode?: AssistantMode) => {
     const value = text.trim();
     if (!value || streaming) return;
@@ -127,42 +175,22 @@ export const WeddingPlannerAssistantClient = ({
       { id: aiId, role: "assistant", content: "", streaming: true },
     ]);
     setInput("");
-    setStreaming(true);
+    await runStream(aiId, value, currentMode);
+  };
 
-    await streamAssistant(
-      eventId,
-      { message: value, mode: currentMode },
-      {
-        onToken: (tk) =>
-          setMessages((prev) =>
-            updateById(prev, aiId, (m) => ({ ...m, content: m.content + tk })),
-          ),
-        onDone: ({ messageId, proposedActions }) =>
-          setMessages((prev) =>
-            updateById(prev, aiId, (m) => ({
-              ...m,
-              id: messageId || m.id,
-              streaming: false,
-              proposedActions: proposedActions.length
-                ? proposedActions
-                : undefined,
-            })),
-          ),
-        onError: () =>
-          setMessages((prev) =>
-            updateById(prev, aiId, (m) => ({
-              ...m,
-              streaming: false,
-              content: m.content || t("wp__ai__error"),
-            })),
-          ),
-      },
+  const retry = (message: ChatMessage) => {
+    if (streaming || !message.failedPrompt) return;
+    const value = message.failedPrompt;
+    const retryMode = message.failedMode ?? mode;
+    setMessages((prev) =>
+      updateById(prev, message.id, (m) => ({
+        ...m,
+        content: "",
+        streaming: true,
+        error: false,
+      })),
     );
-
-    setStreaming(false);
-    queryClient.invalidateQueries({
-      queryKey: queryKeys.weddingPlanner.assistant(eventId),
-    });
+    void runStream(message.id, value, retryMode);
   };
 
   const confirm = async (message: ChatMessage) => {
@@ -296,6 +324,7 @@ export const WeddingPlannerAssistantClient = ({
               onConfirm={confirm}
               onDismiss={dismiss}
               onUndo={undo}
+              onRetry={retry}
             />
           ))}
           <div ref={endRef} />

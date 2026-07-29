@@ -187,6 +187,7 @@
   "wp__ai__hello": "Bok! Ja sam vaš Ovation asistent za planiranje. Pitajte me bilo što o svom vjenčanju — odgovorit ću na temelju vašeg stvarnog plana. U načinu **Akcija** mogu za vas dodavati zadatke, stavke budžeta i dobavljače (vi najprije potvrđujete).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Nešto je pošlo po zlu. Molimo pokušajte ponovno.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Najprije postavite detalje svog vjenčanja da biste koristili asistenta.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

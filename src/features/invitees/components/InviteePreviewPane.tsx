@@ -38,13 +38,13 @@ export const InviteePreviewPane = ({
             )}
           </PhonePreview>
         </div>
-        <div className="flex w-full flex-col gap-2">
+        <div className="flex w-full gap-2">
           <Button
             type="button"
             size="sm"
             variant="outline"
             onClick={onOpenPreview}
-            className="w-full rounded-full"
+            className="flex-1 rounded-full"
           >
             <EyeIcon width={13} height={13} />
             {t("invitees__preview__cta")}
@@ -53,7 +53,7 @@ export const InviteePreviewPane = ({
             asChild
             size="sm"
             variant="outline"
-            className="w-full rounded-full"
+            className="flex-1 rounded-full"
           >
             <Link href={appRoutes.app.invitation}>
               <PencilIcon width={13} height={13} />

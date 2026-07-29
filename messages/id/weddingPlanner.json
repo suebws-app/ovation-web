@@ -187,6 +187,7 @@
   "wp__ai__hello": "Hai! Aku asisten perencanaan Ovation-mu. Tanyakan apa saja tentang pernikahanmu — aku akan menjawab berdasarkan rencana nyatamu. Dalam mode **Aksi** aku bisa menambahkan tugas, item anggaran, dan vendor untukmu (kamu konfirmasi dulu).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Ada yang tidak beres. Silakan coba lagi.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Siapkan detail pernikahanmu terlebih dahulu untuk menggunakan asisten.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

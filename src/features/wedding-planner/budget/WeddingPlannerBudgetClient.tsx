@@ -46,9 +46,10 @@ export const WeddingPlannerBudgetClient = ({
   const categories = budget?.categories ?? [];
   const payments = budget?.payments ?? [];
   const totalBudget = budget?.totalBudget ?? 0;
-  const spent = categories.reduce((sum, c) => sum + c.actual, 0);
   const paid = categories.reduce((sum, c) => sum + c.paid, 0);
+  const actual = categories.reduce((sum, c) => sum + c.actual, 0);
   const estimated = categories.reduce((sum, c) => sum + c.estimated, 0);
+  const spent = paid;
   const remaining = totalBudget - spent;
   const pctSpent =
     totalBudget > 0 ? Math.round((spent / totalBudget) * 100) : 0;
@@ -215,7 +216,7 @@ export const WeddingPlannerBudgetClient = ({
                   {t("wp__budget__outstanding")}
                 </span>
                 <span className="type-h4 text-primary font-serif">
-                  {money(spent - paid)}
+                  {money(actual - paid)}
                 </span>
               </div>
             </div>

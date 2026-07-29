@@ -187,6 +187,7 @@
   "wp__ai__hello": "Ahoj! Jsem váš plánovací asistent Ovation. Zeptejte se mě na cokoli ohledně vaší svatby — odpovím na základě vašeho skutečného plánu. V režimu **Akce** mohu za vás přidávat úkoly, položky rozpočtu a dodavatele (nejprve to potvrdíte).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Něco se pokazilo. Zkuste to prosím znovu.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Nejprve nastavte podrobnosti o své svatbě, abyste mohli asistenta používat.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",

@@ -187,6 +187,7 @@
   "wp__ai__hello": "Szia! Az Ovation esküvőtervező asszisztensed vagyok. Kérdezz bármit az esküvőtökről — a valós tervetek alapján válaszolok. **Művelet** módban feladatokat, költségtételeket és szolgáltatókat is felvehetek neked (előbb megerősíted).",
   "wp__ai__send": "Send",
   "wp__ai__error": "Valami hiba történt. Kérjük, próbáld újra.",
+  "wp__ai__retry": "Try again",
   "wp__ai__no_event": "Először állítsd be az esküvő részleteit az asszisztens használatához.",
   "wp__ai__mode_plan": "Plan",
   "wp__ai__mode_action": "Action",
