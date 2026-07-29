@@ -7,6 +7,7 @@ export const appRoutes = {
     keepsakes: "/keepsakes",
     pricing: "/pricing",
     forPlanners: "/for-planners",
+    weddingPlanner: "/wedding-planner",
     sample: "/sample",
     changelog: "/changelog",
     blog: "/blog",

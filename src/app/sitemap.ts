@@ -14,6 +14,7 @@ const MARKETING_ROUTES: MarketingRoute[] = [
   { path: "/", priority: 1 },
   { path: "/how-it-works", priority: 0.9 },
   { path: "/pricing", priority: 0.9 },
+  { path: "/wedding-planner", priority: 0.9 },
   { path: "/keepsakes", priority: 0.8 },
   { path: "/gold-book", priority: 0.8 },
   { path: "/for-planners", priority: 0.8 },

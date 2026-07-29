@@ -44,6 +44,8 @@
   "seo__for_media__description": "Brändimateriaalit, tuotekuvakaappaukset, perustajien biografiat, sitaatit ja tietolehdet toimittajille ja tekijöille, jotka kirjoittavat Ovationista.",
   "seo__templates__title": "Ilmaiset hää-QR-korttien ja vieraskirjojen mallit",
   "seo__templates__description": "Painovalmiit mallit hää-QR-korteille, tervetuloa-kylteille, kiitoskorteille ja muille. Kaikki ilmaista, muokattavissa, valmiina ladattavaksi.",
+  "seo__wedding_planner__title": "AI-hääsuunnittelija — ilmainen sovellus pareille",
+  "seo__wedding_planner__description": "Suunnittele häät älykkäällä aikajanalla, tehtävälistalla, budjettiseurannalla, vieraslistalla, palveluntarjoajahakemistolla ja AI-avustajalla, joka tuntee päivämääräsi, budjettisi, vieraasi ja palveluntarjoajasi — ilmaiseksi.",
   "seo__use_case__title": "{title} — Ovation-häävieraskirja",
   "seo__use_case__description": "{subtitle}"
 }

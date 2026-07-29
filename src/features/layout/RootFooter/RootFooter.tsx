@@ -22,6 +22,10 @@ export const RootFooter = ({ className }: RootFooterProps) => {
           href: appRoutes.marketing.howItWorks,
         },
         {
+          label: t("common__footer__product_links__wedding_planner"),
+          href: appRoutes.marketing.weddingPlanner,
+        },
+        {
           label: t("common__footer__product_links__gold_book"),
           href: appRoutes.marketing.goldBook,
         },

@@ -239,6 +239,38 @@ type ItemListEntry = {
   availability?: string;
 };
 
+type SoftwareApplicationInput = {
+  name: string;
+  description: string;
+  url: string;
+  applicationCategory?: string;
+  operatingSystem?: string;
+  imageUrl?: string;
+  featureList?: string[];
+};
+
+export const softwareApplicationSchema = (input: SoftwareApplicationInput) => ({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: input.name,
+  description: input.description,
+  url: input.url,
+  applicationCategory: input.applicationCategory ?? "LifestyleApplication",
+  operatingSystem: input.operatingSystem ?? "Web",
+  image: input.imageUrl,
+  featureList:
+    input.featureList && input.featureList.length > 0
+      ? input.featureList
+      : undefined,
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+  },
+  publisher: { "@id": `${appUrl}/#organization` },
+});
+
 export const itemListSchema = (name: string, items: ItemListEntry[]) => ({
   "@context": "https://schema.org",
   "@type": "ItemList",

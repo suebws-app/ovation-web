@@ -171,3 +171,8 @@ export const generateLegalTermsMetadata = buildMetadataGenerator({
   page: "legal_terms",
   path: "/legal/terms",
 });
+
+export const generateWeddingPlannerMetadata = buildMetadataGenerator({
+  page: "wedding_planner",
+  path: "/wedding-planner",
+});
