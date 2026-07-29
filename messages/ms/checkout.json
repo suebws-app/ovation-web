@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Anda meninggalkan halaman sebelum melengkapkan pembayaran, jadi tiada apa yang dicaj. Pesanan draf anda <strong>#{id}</strong> kekal tersedia — sambung semula bila-bila masa anda bersedia.",
   "checkout__cancel__back_keepsakes": "Kembali ke Keepsake",
   "checkout__cancel__skip": "Langkau buat masa ini",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Buka dalam pelayar anda",
   "checkout__in_app__title": "Selesaikan pembayaran di Safari atau Chrome",
   "checkout__in_app__body": "Anda sedang melihat halaman ini dalam pelayar terbina dalam aplikasi, di mana tetingkap pembayaran boleh tertutup secara tidak dijangka. Buka pautan di bawah dalam pelayar biasa anda untuk menyelesaikan pembelian dengan selamat.",
   "checkout__in_app__instructions_ios": "Ketik menu ⋯ di bahagian atas atau bawah tetingkap ini dan pilih “Buka dalam Safari” — atau salin pautan dan tampalkan ke Safari.",
   "checkout__in_app__instructions_android": "Ketik menu ⋮ di bahagian atas tetingkap ini dan pilih “Buka dalam Chrome” — atau salin pautan dan tampalkan ke Chrome.",
   "checkout__in_app__instructions_other": "Salin pautan di bawah dan buka dalam pelayar biasa anda untuk menyelesaikan pembayaran.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Salin pautan",
+  "checkout__in_app__copied": "Disalin",
+  "checkout__in_app__continue_anyway": "Teruskan di sini juga"
 }

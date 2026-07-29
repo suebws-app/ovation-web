@@ -92,7 +92,7 @@
   "settings__notif__error": "Einstellungen konnten nicht gespeichert werden.",
   "settings__danger__eyebrow": "Einstellungen",
   "settings__danger__title_a": "Gefahren-",
-  "settings__danger__title_b": "zone",
+  "settings__danger__title_b": "Bereich",
   "settings__danger__subtitle": "Änderungen hier sind nicht rückgängig zu machen. Vor jeder Löschung fragen wir dich um Bestätigung.",
   "settings__danger__archive_section": "Archivieren oder löschen",
   "settings__danger__final_warning": "Diese Aktionen sind endgültig",

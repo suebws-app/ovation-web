@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Odešel jsi před dokončením platby, takže nic nebylo účtováno. Tvá rozpracovaná objednávka <strong>#{id}</strong> zůstává dostupná — vrať se k ní, až budeš připraven.",
   "checkout__cancel__back_keepsakes": "Zpět na keepsakes",
   "checkout__cancel__skip": "Přeskočit",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Otevřít v prohlížeči",
   "checkout__in_app__title": "Dokončete platbu v Safari nebo Chrome",
   "checkout__in_app__body": "Prohlížíte tuto stránku ve vestavěném prohlížeči aplikace, kde se platební okno může neočekávaně zavřít. Otevřete odkaz níže v běžném prohlížeči a bezpečně dokončete nákup.",
   "checkout__in_app__instructions_ios": "Klepněte na nabídku ⋯ v horní nebo dolní části okna a zvolte „Otevřít v Safari“ — nebo zkopírujte odkaz a vložte jej do Safari.",
   "checkout__in_app__instructions_android": "Klepněte na nabídku ⋮ v horní části okna a zvolte „Otevřít v Chrome“ — nebo zkopírujte odkaz a vložte jej do Chrome.",
   "checkout__in_app__instructions_other": "Zkopírujte odkaz níže a otevřete jej v běžném prohlížeči pro dokončení platby.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Kopírovat odkaz",
+  "checkout__in_app__copied": "Zkopírováno",
+  "checkout__in_app__continue_anyway": "Přesto pokračovat zde"
 }

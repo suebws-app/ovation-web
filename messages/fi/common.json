@@ -6,9 +6,9 @@
   "common__error": "Jokin meni pieleen",
   "common__back": "Takaisin",
   "common__next": "Seuraava",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Edellinen sivu",
+  "common__pagination__next": "Seuraava sivu",
+  "common__pagination__page_of": "Sivu {current}",
   "common__done": "Valmis",
   "common__retry": "Yritä uudelleen",
   "common__close": "Sulje",
@@ -69,5 +69,5 @@
   "common__theme__system": "Järjestelmä",
   "common__footer__legal_links__terms": "Ehdot",
   "common__footer__legal_links__refunds": "Hyvitykset",
-  "common__load_more": "Load more"
+  "common__load_more": "Lataa lisää"
 }

@@ -20,7 +20,7 @@
   "cart__summary__total": "Ukupno",
   "cart__summary__promo_placeholder": "Promo kôd",
   "cart__summary__promo_apply": "Primijeni",
-  "cart__summary__promo_applied": "Promo · {code}",
+  "cart__summary__promo_applied": "Promocija · {code}",
   "cart__summary__checkout": "Sigurna naplata · {total}",
   "cart__summary__checkout_pending": "Pokretanje naplate…",
   "cart__empty__title": "Tvoja je košarica prazna",

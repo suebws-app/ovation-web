@@ -44,7 +44,7 @@
   "invitation__placeholder__place": "Lago di Como, Italia",
   "invitation__placeholder__message": "Junto con nuestras familias…",
   "invitation__field__guest_name": "Nombre",
-  "invitation__field__guest_email": "Email",
+  "invitation__field__guest_email": "Correo electrónico",
   "invitation__field__guest_phone": "Teléfono",
   "invitation__field__guest_seats": "Asientos",
   "invitation__placeholder__guest_name": "Nombre del invitado",

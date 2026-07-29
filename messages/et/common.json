@@ -6,9 +6,9 @@
   "common__error": "Midagi läks valesti",
   "common__back": "Tagasi",
   "common__next": "Edasi",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Eelmine leht",
+  "common__pagination__next": "Järgmine leht",
+  "common__pagination__page_of": "Leht {current}",
   "common__done": "Valmis",
   "common__retry": "Proovi uuesti",
   "common__close": "Sulge",
@@ -28,7 +28,7 @@
   "common__footer__love_notes_links__sample_book": "Näidisraamat",
   "common__footer__love_notes_links__couple_stories": "Paaride lood",
   "common__footer__love_notes_links__write_a_review": "Kirjuta arvustus",
-  "common__footer__love_notes_links__press": "Press",
+  "common__footer__love_notes_links__press": "Meedia",
   "common__footer__love_notes_links__podcast": "Taskuhääling",
   "common__footer__company": "Ettevõte",
   "common__footer__company_links__about": "Meist",
@@ -69,5 +69,5 @@
   "common__theme__system": "Süsteemi",
   "common__footer__legal_links__terms": "Tingimused",
   "common__footer__legal_links__refunds": "Tagasimaksed",
-  "common__load_more": "Load more"
+  "common__load_more": "Laadi veel"
 }

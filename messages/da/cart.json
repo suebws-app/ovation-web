@@ -17,7 +17,7 @@
   "cart__summary__shipping": "Forsendelse",
   "cart__summary__vat": "Moms ({rate}%)",
   "cart__summary__incl_vat": "inkl. moms",
-  "cart__summary__total": "Total",
+  "cart__summary__total": "I alt",
   "cart__summary__promo_placeholder": "Rabatkode",
   "cart__summary__promo_apply": "Anvend",
   "cart__summary__promo_applied": "Rabat · {code}",

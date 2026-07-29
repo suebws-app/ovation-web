@@ -25,11 +25,11 @@
   "sidebar__pro__subscription": "Abonament",
   "sidebar__nav__wedding_planner": "Planificator",
   "sidebar__wp__dashboard": "Dashboard",
-  "sidebar__wp__timeline": "Timeline",
-  "sidebar__wp__tasks": "Tasks",
+  "sidebar__wp__timeline": "Cronologie",
+  "sidebar__wp__tasks": "Sarcini",
   "sidebar__wp__budget": "Budget",
-  "sidebar__wp__guests": "Guests",
-  "sidebar__wp__vendors": "Vendors",
-  "sidebar__wp__assistant": "AI Assistant",
-  "sidebar__nav__contributors": "Contributors"
+  "sidebar__wp__guests": "Invitați",
+  "sidebar__wp__vendors": "Furnizori",
+  "sidebar__wp__assistant": "Asistent AI",
+  "sidebar__nav__contributors": "Contributori"
 }

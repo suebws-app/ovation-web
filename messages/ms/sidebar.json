@@ -25,11 +25,11 @@
   "sidebar__pro__subscription": "Langganan",
   "sidebar__nav__wedding_planner": "Perancang",
   "sidebar__wp__dashboard": "Dashboard",
-  "sidebar__wp__timeline": "Timeline",
-  "sidebar__wp__tasks": "Tasks",
+  "sidebar__wp__timeline": "Garis masa",
+  "sidebar__wp__tasks": "Tugas",
   "sidebar__wp__budget": "Budget",
-  "sidebar__wp__guests": "Guests",
-  "sidebar__wp__vendors": "Vendors",
-  "sidebar__wp__assistant": "AI Assistant",
-  "sidebar__nav__contributors": "Contributors"
+  "sidebar__wp__guests": "Tetamu",
+  "sidebar__wp__vendors": "Vendor",
+  "sidebar__wp__assistant": "Pembantu AI",
+  "sidebar__nav__contributors": "Penyumbang"
 }

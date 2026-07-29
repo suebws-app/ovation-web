@@ -6,9 +6,9 @@
   "common__error": "Ceva nu a mers bine",
   "common__back": "Înapoi",
   "common__next": "Următor",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Pagina anterioară",
+  "common__pagination__next": "Pagina următoare",
+  "common__pagination__page_of": "Pagina {current}",
   "common__done": "Gata",
   "common__retry": "Încearcă din nou",
   "common__close": "Închide",
@@ -36,7 +36,7 @@
   "common__footer__company_links__careers": "Cariere",
   "common__footer__company_links__sustainability": "Sustenabilitate",
   "common__footer__company_links__contact": "Contact",
-  "common__footer__legal": "Legal",
+  "common__footer__legal": "Informații legale",
   "common__footer__legal_links__privacy": "Confidențialitate",
   "common__footer__legal_links__cookies": "Cookie-uri",
   "common__footer__language": "Română",
@@ -69,5 +69,5 @@
   "common__theme__system": "Sistem",
   "common__footer__legal_links__terms": "Termeni",
   "common__footer__legal_links__refunds": "Rambursări",
-  "common__load_more": "Load more"
+  "common__load_more": "Încarcă mai multe"
 }

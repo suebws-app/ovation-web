@@ -25,11 +25,11 @@
   "sidebar__pro__subscription": "Tilaus",
   "sidebar__nav__wedding_planner": "Suunnittelija",
   "sidebar__wp__dashboard": "Dashboard",
-  "sidebar__wp__timeline": "Timeline",
-  "sidebar__wp__tasks": "Tasks",
+  "sidebar__wp__timeline": "Aikajana",
+  "sidebar__wp__tasks": "Tehtävät",
   "sidebar__wp__budget": "Budget",
-  "sidebar__wp__guests": "Guests",
-  "sidebar__wp__vendors": "Vendors",
-  "sidebar__wp__assistant": "AI Assistant",
-  "sidebar__nav__contributors": "Contributors"
+  "sidebar__wp__guests": "Vieraat",
+  "sidebar__wp__vendors": "Toimittajat",
+  "sidebar__wp__assistant": "Tekoälyavustaja",
+  "sidebar__nav__contributors": "Osallistujat"
 }

@@ -15,7 +15,7 @@
   "cart__summary__title": "주문 요약",
   "cart__summary__subtotal": "소계",
   "cart__summary__shipping": "배송",
-  "cart__summary__vat": "VAT ({rate}%)",
+  "cart__summary__vat": "부가세 ({rate}%)",
   "cart__summary__incl_vat": "VAT 포함",
   "cart__summary__total": "합계",
   "cart__summary__promo_placeholder": "프로모션 코드",

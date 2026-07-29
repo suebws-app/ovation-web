@@ -6,9 +6,9 @@
   "common__error": "Valami hiba történt",
   "common__back": "Vissza",
   "common__next": "Következő",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Előző oldal",
+  "common__pagination__next": "Következő oldal",
+  "common__pagination__page_of": "{current}. oldal",
   "common__done": "Kész",
   "common__retry": "Próbáld újra",
   "common__close": "Bezárás",
@@ -69,5 +69,5 @@
   "common__theme__system": "Rendszer",
   "common__footer__legal_links__terms": "Feltételek",
   "common__footer__legal_links__refunds": "Visszatérítés",
-  "common__load_more": "Load more"
+  "common__load_more": "Több betöltése"
 }

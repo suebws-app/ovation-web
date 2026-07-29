@@ -6,9 +6,9 @@
   "common__error": "Diçka shkoi keq",
   "common__back": "Mbrapa",
   "common__next": "Tjetër",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Faqja e mëparshme",
+  "common__pagination__next": "Faqja tjetër",
+  "common__pagination__page_of": "Faqja {current}",
   "common__done": "U krye",
   "common__retry": "Provo përsëri",
   "common__close": "Mbyll",
@@ -69,5 +69,5 @@
   "nav__close_menu": "Mbyll menynë",
   "common__footer__legal_links__terms": "Kushtet",
   "common__footer__legal_links__refunds": "Rimbursimet",
-  "common__load_more": "Load more"
+  "common__load_more": "Ngarko më shumë"
 }

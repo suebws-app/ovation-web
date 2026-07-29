@@ -119,7 +119,7 @@
   "kiosk_setup__language__set_main": "Atur sebagai bahasa utama",
   "kiosk_setup__language__remove": "Hapus bahasa",
   "kiosk_setup__select__placeholder": "Pilih opsi",
-  "kiosk_setup__slider__label": "Slider",
+  "kiosk_setup__slider__label": "Penggeser",
   "kiosk_setup__save_error": "Gagal menyimpan",
   "kiosk_setup__pin__change": "Ubah PIN",
   "kiosk__gate__title": "Masukkan PIN kiosk",

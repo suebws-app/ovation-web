@@ -15,7 +15,7 @@
   "cart__summary__title": "Ringkasan pesanan",
   "cart__summary__subtotal": "Subjumlah",
   "cart__summary__shipping": "Penghantaran",
-  "cart__summary__vat": "VAT ({rate}%)",
+  "cart__summary__vat": "Cukai ({rate}%)",
   "cart__summary__incl_vat": "termasuk VAT",
   "cart__summary__total": "Jumlah",
   "cart__summary__promo_placeholder": "Kod promosi",

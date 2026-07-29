@@ -6,9 +6,9 @@
   "common__error": "Er ging iets mis",
   "common__back": "Terug",
   "common__next": "Volgende",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Vorige pagina",
+  "common__pagination__next": "Volgende pagina",
+  "common__pagination__page_of": "Pagina {current}",
   "common__done": "Klaar",
   "common__retry": "Probeer opnieuw",
   "common__close": "Sluiten",
@@ -69,5 +69,5 @@
   "common__theme__system": "Systeem",
   "common__footer__legal_links__terms": "Voorwaarden",
   "common__footer__legal_links__refunds": "Terugbetalingen",
-  "common__load_more": "Load more"
+  "common__load_more": "Meer laden"
 }

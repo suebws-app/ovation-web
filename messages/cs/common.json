@@ -8,7 +8,7 @@
   "common__next": "Další",
   "common__pagination__prev": "Předchozí stránka",
   "common__pagination__next": "Další stránka",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__page_of": "Strana {current}",
   "common__done": "Hotovo",
   "common__retry": "Zkusit znovu",
   "common__close": "Zavřít",

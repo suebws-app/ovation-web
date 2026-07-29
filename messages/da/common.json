@@ -6,9 +6,9 @@
   "common__error": "Noget gik galt",
   "common__back": "Tilbage",
   "common__next": "Næste",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Forrige side",
+  "common__pagination__next": "Næste side",
+  "common__pagination__page_of": "Side {current}",
   "common__done": "Færdig",
   "common__retry": "Prøv igen",
   "common__close": "Luk",
@@ -69,5 +69,5 @@
   "common__theme__system": "System",
   "common__footer__legal_links__terms": "Vilkår",
   "common__footer__legal_links__refunds": "Refusion",
-  "common__load_more": "Load more"
+  "common__load_more": "Indlæs mere"
 }

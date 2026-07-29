@@ -25,11 +25,11 @@
   "sidebar__pro__subscription": "Subskrypcja",
   "sidebar__nav__wedding_planner": "Planer",
   "sidebar__wp__dashboard": "Dashboard",
-  "sidebar__wp__timeline": "Timeline",
-  "sidebar__wp__tasks": "Tasks",
+  "sidebar__wp__timeline": "Oś czasu",
+  "sidebar__wp__tasks": "Zadania",
   "sidebar__wp__budget": "Budget",
-  "sidebar__wp__guests": "Guests",
-  "sidebar__wp__vendors": "Vendors",
-  "sidebar__wp__assistant": "AI Assistant",
-  "sidebar__nav__contributors": "Contributors"
+  "sidebar__wp__guests": "Goście",
+  "sidebar__wp__vendors": "Dostawcy",
+  "sidebar__wp__assistant": "Asystent AI",
+  "sidebar__nav__contributors": "Współtwórcy"
 }

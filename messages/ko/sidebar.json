@@ -25,11 +25,11 @@
   "sidebar__pro__subscription": "구독",
   "sidebar__nav__wedding_planner": "플래너",
   "sidebar__wp__dashboard": "Dashboard",
-  "sidebar__wp__timeline": "Timeline",
-  "sidebar__wp__tasks": "Tasks",
+  "sidebar__wp__timeline": "타임라인",
+  "sidebar__wp__tasks": "작업",
   "sidebar__wp__budget": "Budget",
-  "sidebar__wp__guests": "Guests",
-  "sidebar__wp__vendors": "Vendors",
-  "sidebar__wp__assistant": "AI Assistant",
-  "sidebar__nav__contributors": "Contributors"
+  "sidebar__wp__guests": "하객",
+  "sidebar__wp__vendors": "업체",
+  "sidebar__wp__assistant": "AI 어시스턴트",
+  "sidebar__nav__contributors": "기여자"
 }

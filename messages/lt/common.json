@@ -6,9 +6,9 @@
   "common__error": "Kažkas nepavyko",
   "common__back": "Atgal",
   "common__next": "Toliau",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Ankstesnis puslapis",
+  "common__pagination__next": "Kitas puslapis",
+  "common__pagination__page_of": "Puslapis {current}",
   "common__done": "Atlikta",
   "common__retry": "Pabandyti dar kartą",
   "common__close": "Uždaryti",
@@ -69,5 +69,5 @@
   "common__theme__system": "Sistemos",
   "common__footer__legal_links__terms": "Sąlygos",
   "common__footer__legal_links__refunds": "Pinigų grąžinimas",
-  "common__load_more": "Load more"
+  "common__load_more": "Įkelti daugiau"
 }

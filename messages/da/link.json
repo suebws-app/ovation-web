@@ -20,7 +20,7 @@
   "link_toggle__body_on": "Din QR-kode accepterer nye indsendelser. Sæt på pause for at stoppe modtagelsen af beskeder.",
   "link_toggle__body_off": "Dit link er på pause. Aktivér for at modtage beskeder igen.",
   "link_toggle__activate": "Aktivér link",
-  "link_toggle__deactivate": "Pause link",
+  "link_toggle__deactivate": "Sæt link på pause",
   "link_toggle__working": "Gemmer…",
   "link_toggle__error_default": "Kunne ikke opdatere. Prøv venligst igen.",
   "link_settings__title": "Linkindstillinger",

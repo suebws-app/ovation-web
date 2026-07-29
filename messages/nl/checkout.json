@@ -9,7 +9,7 @@
   "checkout__success__body": "We mailen je zo een bevestiging. Houd deze pagina of je inbox in de gaten voor updates over productie en verzending.",
   "checkout__success__order_label": "Bestelling #{id}",
   "checkout__success__total": "Totaal",
-  "checkout__success__tracking": "Tracking",
+  "checkout__success__tracking": "Volgen",
   "checkout__success__qty_unit": "Aantal {qty} · {unit}",
   "checkout__success__back_dashboard": "Terug naar je boek",
   "checkout__success__keep_shopping": "Verder winkelen",
@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Je bent gestopt voordat de betaling klaar was, dus er is niets in rekening gebracht. Je conceptbestelling <strong>#{id}</strong> blijft beschikbaar — pak het op wanneer je wilt.",
   "checkout__cancel__back_keepsakes": "Terug naar keepsakes",
   "checkout__cancel__skip": "Sla over voor nu",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Openen in je browser",
   "checkout__in_app__title": "Rond de betaling af in Safari of Chrome",
   "checkout__in_app__body": "Je bekijkt dit in de ingebouwde browser van een app, waar betaalvensters onverwacht kunnen sluiten. Open de onderstaande link in je gewone browser om je aankoop veilig af te ronden.",
   "checkout__in_app__instructions_ios": "Tik op het ⋯-menu boven- of onderaan dit venster en kies „Openen in Safari” — of kopieer de link en plak hem in Safari.",
   "checkout__in_app__instructions_android": "Tik op het ⋮-menu bovenaan dit venster en kies „Openen in Chrome” — of kopieer de link en plak hem in Chrome.",
   "checkout__in_app__instructions_other": "Kopieer de onderstaande link en open hem in je gewone browser om de betaling af te ronden.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Link kopiëren",
+  "checkout__in_app__copied": "Gekopieerd",
+  "checkout__in_app__continue_anyway": "Toch hier doorgaan"
 }

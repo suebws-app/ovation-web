@@ -1,6 +1,6 @@
 {
   "marketing__nav__how_it_works": "Como funciona",
-  "marketing__nav__keepsakes": "Keepsakes",
+  "marketing__nav__keepsakes": "Recordações",
   "marketing__nav__pricing": "Preços",
   "marketing__nav__for_planners": "Para profissionais",
   "marketing__nav__blog": "Blog",
@@ -45,7 +45,7 @@
   "marketing__features__title_line2": "Invisível onde não deve.",
   "marketing__features__lang_eyebrow": "Detetado automaticamente",
   "marketing__features__lang_title": "{count} idiomas, transcritos automaticamente no idioma em que cada convidado falou.",
-  "marketing__features__book_eyebrow": "Keepsakes",
+  "marketing__features__book_eyebrow": "Recordações",
   "marketing__features__book_title": "O Gold Book e mais — impressão letterpress, vinil, montagem de vídeo.",
   "marketing__features__book_price": "a partir de {price}",
   "marketing__features__book_shipping_v2": "Impresso e enviado pelo nosso parceiro de impressão em 2–3 semanas",

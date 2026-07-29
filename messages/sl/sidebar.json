@@ -25,11 +25,11 @@
   "sidebar__pro__subscription": "Naročnina",
   "sidebar__nav__wedding_planner": "Načrtovalnik",
   "sidebar__wp__dashboard": "Dashboard",
-  "sidebar__wp__timeline": "Timeline",
-  "sidebar__wp__tasks": "Tasks",
+  "sidebar__wp__timeline": "Časovnica",
+  "sidebar__wp__tasks": "Naloge",
   "sidebar__wp__budget": "Budget",
-  "sidebar__wp__guests": "Guests",
-  "sidebar__wp__vendors": "Vendors",
-  "sidebar__wp__assistant": "AI Assistant",
-  "sidebar__nav__contributors": "Contributors"
+  "sidebar__wp__guests": "Gostje",
+  "sidebar__wp__vendors": "Ponudniki",
+  "sidebar__wp__assistant": "AI-pomočnik",
+  "sidebar__nav__contributors": "Sodelujoči"
 }

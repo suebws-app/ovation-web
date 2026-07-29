@@ -6,9 +6,9 @@
   "common__error": "Nekaj je šlo narobe",
   "common__back": "Nazaj",
   "common__next": "Naprej",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Prejšnja stran",
+  "common__pagination__next": "Naslednja stran",
+  "common__pagination__page_of": "Stran {current}",
   "common__done": "Končano",
   "common__retry": "Poskusi znova",
   "common__close": "Zapri",
@@ -69,5 +69,5 @@
   "common__theme__system": "Sistemska",
   "common__footer__legal_links__terms": "Pogoji",
   "common__footer__legal_links__refunds": "Vračila",
-  "common__load_more": "Load more"
+  "common__load_more": "Naloži več"
 }

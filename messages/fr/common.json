@@ -6,8 +6,8 @@
   "common__error": "Une erreur est survenue",
   "common__back": "Retour",
   "common__next": "Suivant",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
+  "common__pagination__prev": "Page précédente",
+  "common__pagination__next": "Page suivante",
   "common__pagination__page_of": "Page {current}",
   "common__done": "Terminé",
   "common__retry": "Réessayer",
@@ -69,5 +69,5 @@
   "common__theme__system": "Système",
   "common__footer__legal_links__terms": "Conditions",
   "common__footer__legal_links__refunds": "Remboursements",
-  "common__load_more": "Load more"
+  "common__load_more": "Charger plus"
 }

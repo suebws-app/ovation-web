@@ -1,6 +1,6 @@
 {
   "marketing__nav__how_it_works": "So funktioniert es",
-  "marketing__nav__keepsakes": "Keepsakes",
+  "marketing__nav__keepsakes": "Andenken",
   "marketing__nav__pricing": "Preise",
   "marketing__nav__for_planners": "Für Planer:innen",
   "marketing__nav__blog": "Blog",
@@ -45,7 +45,7 @@
   "marketing__features__title_line2": "Unsichtbar, wo es nicht sein sollte.",
   "marketing__features__lang_eyebrow": "Automatisch erkannt",
   "marketing__features__lang_title": "{count} Sprachen, automatisch in der Sprache jedes Gastes transkribiert.",
-  "marketing__features__book_eyebrow": "Keepsakes",
+  "marketing__features__book_eyebrow": "Andenken",
   "marketing__features__book_title": "Das Gold Book und mehr — Buchdruck, Vinyl, Video-Montage.",
   "marketing__features__book_price": "ab {price}",
   "marketing__features__book_shipping_v2": "Gedruckt und versandt von unserem Druckpartner in 2–3 Wochen",

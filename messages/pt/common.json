@@ -6,9 +6,9 @@
   "common__error": "Algo correu mal",
   "common__back": "Voltar",
   "common__next": "Seguinte",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Página anterior",
+  "common__pagination__next": "Página seguinte",
+  "common__pagination__page_of": "Página {current}",
   "common__done": "Concluído",
   "common__retry": "Tentar novamente",
   "common__close": "Fechar",
@@ -36,7 +36,7 @@
   "common__footer__company_links__careers": "Carreiras",
   "common__footer__company_links__sustainability": "Sustentabilidade",
   "common__footer__company_links__contact": "Contacto",
-  "common__footer__legal": "Legal",
+  "common__footer__legal": "Aviso legal",
   "common__footer__legal_links__privacy": "Privacidade",
   "common__footer__legal_links__cookies": "Cookies",
   "common__footer__language": "Português",
@@ -69,5 +69,5 @@
   "common__theme__system": "Sistema",
   "common__footer__legal_links__terms": "Termos",
   "common__footer__legal_links__refunds": "Reembolsos",
-  "common__load_more": "Load more"
+  "common__load_more": "Carregar mais"
 }

@@ -6,9 +6,9 @@
   "common__error": "Coś poszło nie tak",
   "common__back": "Wstecz",
   "common__next": "Dalej",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Poprzednia strona",
+  "common__pagination__next": "Następna strona",
+  "common__pagination__page_of": "Strona {current}",
   "common__done": "Gotowe",
   "common__retry": "Spróbuj ponownie",
   "common__close": "Zamknij",
@@ -69,5 +69,5 @@
   "common__theme__system": "Systemowy",
   "common__footer__legal_links__terms": "Regulamin",
   "common__footer__legal_links__refunds": "Zwroty",
-  "common__load_more": "Load more"
+  "common__load_more": "Załaduj więcej"
 }

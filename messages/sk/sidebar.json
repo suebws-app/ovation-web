@@ -25,11 +25,11 @@
   "sidebar__pro__subscription": "Predplatné",
   "sidebar__nav__wedding_planner": "Plánovač",
   "sidebar__wp__dashboard": "Dashboard",
-  "sidebar__wp__timeline": "Timeline",
-  "sidebar__wp__tasks": "Tasks",
+  "sidebar__wp__timeline": "Časová os",
+  "sidebar__wp__tasks": "Úlohy",
   "sidebar__wp__budget": "Budget",
-  "sidebar__wp__guests": "Guests",
-  "sidebar__wp__vendors": "Vendors",
-  "sidebar__wp__assistant": "AI Assistant",
-  "sidebar__nav__contributors": "Contributors"
+  "sidebar__wp__guests": "Hostia",
+  "sidebar__wp__vendors": "Dodávatelia",
+  "sidebar__wp__assistant": "AI asistent",
+  "sidebar__nav__contributors": "Prispievatelia"
 }

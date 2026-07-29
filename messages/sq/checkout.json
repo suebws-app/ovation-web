@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Ju u larguat para se ta përfundonit pagesën, prandaj asgjë nuk u faturua. Porosia juaj draft <strong>#{id}</strong> mbetet e disponueshme — mund ta merrni përsëri kur të jeni gati.",
   "checkout__cancel__back_keepsakes": "Kthehu te kujtimet",
   "checkout__cancel__skip": "Anashkalo për momentin",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Hape në shfletuesin tënd",
   "checkout__in_app__title": "Përfundoje pagesën në Safari ose Chrome",
   "checkout__in_app__body": "Po e shikon këtë brenda shfletuesit të integruar të një aplikacioni, ku dritaret e pagesës mund të mbyllen papritur. Hape linkun më poshtë në shfletuesin tënd të zakonshëm për ta përfunduar blerjen në mënyrë të sigurt.",
   "checkout__in_app__instructions_ios": "Prek menynë ⋯ në krye ose në fund të kësaj dritareje dhe zgjidh “Hape në Safari” — ose kopjo linkun dhe ngjite atë në Safari.",
   "checkout__in_app__instructions_android": "Prek menynë ⋮ në krye të kësaj dritareje dhe zgjidh “Hape në Chrome” — ose kopjo linkun dhe ngjite atë në Chrome.",
   "checkout__in_app__instructions_other": "Kopjo linkun më poshtë dhe hape në shfletuesin tënd të zakonshëm për të përfunduar pagesën.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Kopjo lidhjen",
+  "checkout__in_app__copied": "U kopjua",
+  "checkout__in_app__continue_anyway": "Vazhdo gjithsesi këtu"
 }

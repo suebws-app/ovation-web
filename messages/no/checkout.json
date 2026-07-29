@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Du gikk videre før betalingen var fullført, så ingenting ble belastet. Utkastet ditt <strong>#{id}</strong> er fortsatt tilgjengelig — fortsett når du er klar.",
   "checkout__cancel__back_keepsakes": "Tilbake til minner",
   "checkout__cancel__skip": "Hopp over for nå",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Åpne i nettleseren din",
   "checkout__in_app__title": "Fullfør betalingen i Safari eller Chrome",
   "checkout__in_app__body": "Du ser denne siden i en apps innebygde nettleser, der betalingsvinduer kan lukkes uventet. Åpne lenken nedenfor i din vanlige nettleser for å fullføre kjøpet trygt.",
   "checkout__in_app__instructions_ios": "Trykk på ⋯-menyen øverst eller nederst i vinduet og velg «Åpne i Safari» — eller kopier lenken og lim den inn i Safari.",
   "checkout__in_app__instructions_android": "Trykk på ⋮-menyen øverst i vinduet og velg «Åpne i Chrome» — eller kopier lenken og lim den inn i Chrome.",
   "checkout__in_app__instructions_other": "Kopier lenken nedenfor og åpne den i din vanlige nettleser for å fullføre betalingen.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Kopier lenke",
+  "checkout__in_app__copied": "Kopiert",
+  "checkout__in_app__continue_anyway": "Fortsett her likevel"
 }

@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Du hast den Vorgang vor Abschluss verlassen, daher wurde nichts abgebucht. Deine Entwurfsbestellung <strong>#{id}</strong> bleibt verfügbar — fahre fort, wann immer du bereit bist.",
   "checkout__cancel__back_keepsakes": "Zurück zu Keepsakes",
   "checkout__cancel__skip": "Vorerst überspringen",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "In Ihrem Browser öffnen",
   "checkout__in_app__title": "Bezahlung in Safari oder Chrome abschließen",
   "checkout__in_app__body": "Du siehst diese Seite im integrierten Browser einer App, in dem Zahlungsfenster unerwartet geschlossen werden können. Öffne den Link unten in deinem normalen Browser, um den Kauf sicher abzuschließen.",
   "checkout__in_app__instructions_ios": "Tippe auf das Menü ⋯ oben oder unten im Fenster und wähle „In Safari öffnen“ — oder kopiere den Link und füge ihn in Safari ein.",
   "checkout__in_app__instructions_android": "Tippe auf das Menü ⋮ oben im Fenster und wähle „In Chrome öffnen“ — oder kopiere den Link und füge ihn in Chrome ein.",
   "checkout__in_app__instructions_other": "Kopiere den Link unten und öffne ihn in deinem normalen Browser, um die Bezahlung abzuschließen.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Link kopieren",
+  "checkout__in_app__copied": "Kopiert",
+  "checkout__in_app__continue_anyway": "Trotzdem hier fortfahren"
 }

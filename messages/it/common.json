@@ -6,9 +6,9 @@
   "common__error": "Qualcosa è andato storto",
   "common__back": "Indietro",
   "common__next": "Avanti",
-  "common__pagination__prev": "Previous page",
-  "common__pagination__next": "Next page",
-  "common__pagination__page_of": "Page {current}",
+  "common__pagination__prev": "Pagina precedente",
+  "common__pagination__next": "Pagina successiva",
+  "common__pagination__page_of": "Pagina {current}",
   "common__done": "Fatto",
   "common__retry": "Riprova",
   "common__close": "Chiudi",
@@ -69,5 +69,5 @@
   "common__theme__system": "Sistema",
   "common__footer__legal_links__terms": "Termini",
   "common__footer__legal_links__refunds": "Rimborsi",
-  "common__load_more": "Load more"
+  "common__load_more": "Carica altro"
 }

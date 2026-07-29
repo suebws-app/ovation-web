@@ -77,7 +77,7 @@
   "guest__record__audio__error_in_use": "Microfoon is in gebruik door een andere app of tab.",
   "guest__record__audio__error_other": "Kon de microfoon niet starten.",
   "guest__record__video__caption": "Tot {seconds} seconden. Standaard met camera vooraan.",
-  "guest__record__video__start": "Start camera",
+  "guest__record__video__start": "Camera starten",
   "guest__record__video__requesting": "Cameratoegang vragen…",
   "guest__record__video__stop": "Stop opname",
   "guest__record__video__re_record": "Opnieuw opnemen",

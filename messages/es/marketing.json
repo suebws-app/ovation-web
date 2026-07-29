@@ -1,6 +1,6 @@
 {
   "marketing__nav__how_it_works": "Cómo funciona",
-  "marketing__nav__keepsakes": "Keepsakes",
+  "marketing__nav__keepsakes": "Recuerdos",
   "marketing__nav__pricing": "Precios",
   "marketing__nav__for_planners": "Para wedding planners",
   "marketing__nav__blog": "Blog",
@@ -45,7 +45,7 @@
   "marketing__features__title_line2": "Invisible donde no debe.",
   "marketing__features__lang_eyebrow": "Detección automática",
   "marketing__features__lang_title": "{count} idiomas, transcritos automáticamente en el idioma que habló cada invitado.",
-  "marketing__features__book_eyebrow": "Keepsakes",
+  "marketing__features__book_eyebrow": "Recuerdos",
   "marketing__features__book_title": "El Gold Book y más — tipografía artesanal, vinilo, montaje en vídeo.",
   "marketing__features__book_price": "desde {price}",
   "marketing__features__book_shipping_v2": "Impreso y enviado por nuestro socio de impresión en 2–3 semanas",

@@ -8,7 +8,7 @@
   "checkout__success__title": "Tak. Ordren er registreret.",
   "checkout__success__body": "Vi sender en bekræftelse på e-mail om et øjeblik. Hold øje med denne side eller din indbakke for produktions- og forsendelsesopdateringer.",
   "checkout__success__order_label": "Ordre #{id}",
-  "checkout__success__total": "Total",
+  "checkout__success__total": "I alt",
   "checkout__success__tracking": "Sporing",
   "checkout__success__qty_unit": "Antal {qty} · {unit}",
   "checkout__success__back_dashboard": "Tilbage til din bog",
@@ -26,13 +26,13 @@
   "checkout__cancel__body": "Du gik væk, før betalingen blev gennemført, så der blev ikke trukket noget. Din kladdeordre <strong>#{id}</strong> er stadig tilgængelig — fortsæt hvor du slap, når du er klar.",
   "checkout__cancel__back_keepsakes": "Tilbage til keepsakes",
   "checkout__cancel__skip": "Spring over for nu",
-  "checkout__in_app__eyebrow": "Open in your browser",
+  "checkout__in_app__eyebrow": "Åbn i din browser",
   "checkout__in_app__title": "Fuldfør betaling i Safari eller Chrome",
   "checkout__in_app__body": "Du ser denne side i en apps indbyggede browser, hvor betalingsvinduer kan lukke uventet. Åbn linket nedenfor i din almindelige browser for at gennemføre købet trygt.",
   "checkout__in_app__instructions_ios": "Tryk på ⋯-menuen øverst eller nederst i vinduet og vælg „Åbn i Safari“ — eller kopier linket og indsæt det i Safari.",
   "checkout__in_app__instructions_android": "Tryk på ⋮-menuen øverst i vinduet og vælg „Åbn i Chrome“ — eller kopier linket og indsæt det i Chrome.",
   "checkout__in_app__instructions_other": "Kopier linket nedenfor og åbn det i din almindelige browser for at gennemføre betalingen.",
-  "checkout__in_app__copy_link": "Copy link",
-  "checkout__in_app__copied": "Copied",
-  "checkout__in_app__continue_anyway": "Continue here anyway"
+  "checkout__in_app__copy_link": "Kopier link",
+  "checkout__in_app__copied": "Kopieret",
+  "checkout__in_app__continue_anyway": "Fortsæt her alligevel"
 }

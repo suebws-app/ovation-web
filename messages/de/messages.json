@@ -40,7 +40,7 @@
   "messages__batch__action_unfavourite": "Favorit entfernen",
   "messages__batch__action_download": "Herunterladen",
   "messages__batch__action_translate": "Übersetzen",
-  "messages__batch__action_tag": "Tag",
+  "messages__batch__action_tag": "Markieren",
   "messages__batch__add_to_book": "Zum Gold Book hinzufügen",
   "messages__batch__remove_from_book": "Aus Gold Book entfernen",
   "messages__empty__eyebrow": "Noch kein Event",
