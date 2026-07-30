@@ -2,7 +2,7 @@ import type { InvitationTemplate } from "@/lib/api/types";
 
 export type InvitationTemplateMeta = InvitationTemplate;
 
-export const DEFAULT_INVITATION_TEMPLATE_ID = "classic_elegance";
+export const DEFAULT_INVITATION_TEMPLATE_ID = "floral_blush";
 
 export const FRONTEND_FONT_STACKS: Record<string, string> = {
   cormorant:
@@ -17,6 +17,16 @@ export const FRONTEND_FONT_STACKS: Record<string, string> = {
   lato: "'Lato', system-ui, sans-serif",
   quicksand: "var(--font-quicksand), 'Quicksand', system-ui, sans-serif",
   helvetica: "Helvetica, Arial, sans-serif",
+  sacramento:
+    "var(--font-sacramento), 'Sacramento', 'Brush Script MT', cursive",
+  montserrat: "var(--font-montserrat), 'Montserrat', system-ui, sans-serif",
+  great_vibes:
+    "var(--font-great-vibes), 'Great Vibes', 'Brush Script MT', cursive",
+  merienda: "var(--font-merienda), 'Merienda', cursive",
+  libre_baskerville:
+    "var(--font-libre-baskerville), 'Libre Baskerville', Georgia, serif",
+  italiana: "var(--font-italiana), 'Italiana', 'Times New Roman', serif",
+  poppins: "var(--font-poppins), 'Poppins', system-ui, sans-serif",
 };
 
 export const resolveFontStack = (fontKey: string): string =>

@@ -20,6 +20,15 @@ export type InvitationTemplate = {
   ornamentSymbol: string | null;
   divider: string;
   cornerOrnament: string | null;
+  artSvg?: string;
+  artInsetTop?: number;
+  artInsetBottom?: number;
+  artLayout?: "center" | "split";
+  artNameColor?: string;
+  artDateColor?: string;
+  artPanelColor?: string;
+  artDetailFontKey?: string;
+  artNameMax?: number;
 };
 
 export type InvitationTemplatesResponse = {

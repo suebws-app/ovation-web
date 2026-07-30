@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { cn } from "@ovation/ui/utils/cn";
 import type { InvitationTemplate } from "@/lib/api/types";
 import { resolveFontStack } from "../invitationTemplates";
@@ -7,8 +8,6 @@ import { resolveFontStack } from "../invitationTemplates";
 type TemplateThumbProps = {
   template: InvitationTemplate;
   active: boolean;
-  partnerA: string;
-  partnerB: string;
   onSelect: (id: string) => void;
 };
 
@@ -85,29 +84,58 @@ const CornerOrnament = ({
 export const TemplateThumb = ({
   template,
   active,
-  partnerA,
-  partnerB,
   onSelect,
 }: TemplateThumbProps) => {
-  const displayFont = resolveFontStack(template.displayFontKey);
   const bodyFont = resolveFontStack(template.bodyFontKey);
+
+  const nameLabel = (
+    <span
+      className="type-caption absolute inset-x-0 bottom-1 truncate px-2 text-center font-semibold"
+      style={{ color: template.textColor, fontFamily: bodyFont, fontSize: 9 }}
+    >
+      {template.name}
+    </span>
+  );
+
+  const activeCls = active
+    ? "border-primary shadow-md"
+    : "border-border hover:border-foreground/30";
+
+  if (template.artSvg) {
+    return (
+      <button
+        type="button"
+        onClick={() => onSelect(template.id)}
+        className={cn(
+          "rounded-12 group relative aspect-3/4 overflow-hidden border-2 transition-all",
+          activeCls,
+        )}
+        style={{ background: template.cardBg }}
+      >
+        <Image
+          src={`/invitation-art/${template.artSvg}`}
+          alt={template.name}
+          fill
+          unoptimized
+          className="object-cover"
+        />
+        {nameLabel}
+      </button>
+    );
+  }
 
   return (
     <button
       type="button"
       onClick={() => onSelect(template.id)}
       className={cn(
-        "rounded-12 group relative flex aspect-3/4 flex-col items-center justify-between overflow-hidden border-2 p-3 text-center transition-all",
-        active
-          ? "border-primary shadow-md"
-          : "border-border hover:border-foreground/30",
+        "rounded-12 group relative aspect-3/4 overflow-hidden border-2 p-3 transition-all",
+        activeCls,
       )}
-      style={{
-        background: template.pageBg,
-      }}
+      style={{ background: template.pageBg }}
     >
       <div
-        className="relative flex h-full w-full flex-col items-center justify-between p-2"
+        className="relative h-full w-full"
         style={{
           background: template.cardBg,
           border:
@@ -128,65 +156,30 @@ export const TemplateThumb = ({
                 color={template.accentColor}
               />
             </div>
+            <div className="absolute bottom-1 left-1 scale-y-[-1]">
+              <CornerOrnament
+                kind={template.cornerOrnament}
+                color={template.accentColor}
+              />
+            </div>
+            <div className="absolute right-1 bottom-1 -scale-100">
+              <CornerOrnament
+                kind={template.cornerOrnament}
+                color={template.accentColor}
+              />
+            </div>
           </>
         )}
-
-        <div className="flex flex-1 flex-col items-center justify-center gap-2 px-2">
-          {template.ornamentSymbol && (
-            <span
-              style={{
-                color: template.accentColor,
-                fontSize: 14,
-                lineHeight: 1,
-              }}
-            >
-              {template.ornamentSymbol}
-            </span>
-          )}
+        {template.ornamentSymbol && (
           <span
-            className="text-[8px] tracking-[2px] uppercase"
-            style={{
-              color: template.mutedColor,
-              fontFamily: bodyFont,
-            }}
+            className="absolute top-3 left-1/2 -translate-x-1/2"
+            style={{ color: template.accentColor, fontSize: 16, lineHeight: 1 }}
           >
-            You are invited
+            {template.ornamentSymbol}
           </span>
-          <span
-            className="text-base leading-tight"
-            style={{
-              color: template.textColor,
-              fontFamily: displayFont,
-            }}
-          >
-            {partnerA || "Lila"}{" "}
-            <span
-              style={{
-                color: template.accentColor,
-                fontStyle: "italic",
-              }}
-            >
-              {template.monogramAmp}
-            </span>{" "}
-            {partnerB || "Theo"}
-          </span>
-          <span
-            className="block h-px w-8"
-            style={{ background: template.accentColor }}
-          />
-        </div>
-
-        <span
-          className="type-caption block w-full truncate text-center font-semibold"
-          style={{
-            color: template.textColor,
-            fontFamily: bodyFont,
-            fontSize: 9,
-          }}
-        >
-          {template.name}
-        </span>
+        )}
       </div>
+      {nameLabel}
     </button>
   );
 };
