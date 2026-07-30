@@ -5,19 +5,57 @@ import {
   stackClassName,
 } from "@/lib/utils/layoutClassNames";
 
-const PHOTO_TILE_COUNT = 6;
+const PHOTO_TILE_COUNT = 14;
 const photoTiles = Array.from({ length: PHOTO_TILE_COUNT }, (_, i) => i);
 const ORDER_ROW_COUNT = 3;
 const orderRows = Array.from({ length: ORDER_ROW_COUNT }, (_, i) => i);
 
 const QRWidgetSkeleton = () => (
-  <div className="rounded-20 bg-muted relative flex min-h-110 w-full animate-pulse flex-col gap-4 overflow-hidden p-5 shadow-sm">
-    <div className="bg-muted-foreground/20 rounded-10 size-9" />
-    <div className="bg-background rounded-16 mt-5 flex aspect-square w-full items-center justify-center">
-      <div className="bg-muted-foreground/20 rounded-12 size-44" />
+  <div className="rounded-20 bg-muted relative flex min-h-110 w-full animate-pulse flex-col overflow-hidden p-5 shadow-sm">
+    <div className="flex items-center justify-between">
+      <div className="bg-muted-foreground/20 rounded-10 size-9" />
+      <div className="bg-muted-foreground/20 h-3 w-16 rounded" />
     </div>
-    <div className="bg-muted-foreground/20 mt-4 h-5 w-3/4 rounded" />
-    <div className="bg-muted-foreground/20 mt-3 h-4 w-32 self-center rounded" />
+    <div className="bg-background rounded-16 mt-5 flex aspect-square w-full items-center justify-center p-4">
+      <div className="bg-muted-foreground/20 size-44 rounded" />
+    </div>
+    <div className="mt-4 flex items-center justify-between gap-3">
+      <div className="bg-muted-foreground/20 h-4 flex-1 rounded" />
+      <div className="bg-muted-foreground/20 size-9 shrink-0 rounded-full" />
+    </div>
+    <div className="bg-muted-foreground/20 mt-4 h-4 w-32 self-center rounded" />
+  </div>
+);
+
+const InvitationWidgetSkeleton = () => (
+  <Card>
+    <CardContent className="flex animate-pulse flex-col gap-4">
+      <div className="flex items-start justify-between gap-3">
+        <div className="bg-muted rounded-12 size-10" />
+        <div className="bg-muted h-3 w-20 rounded" />
+      </div>
+      <div className="bg-muted rounded-16 aspect-3/4 w-full" />
+      <div className="bg-muted h-11 w-full rounded-full" />
+    </CardContent>
+  </Card>
+);
+
+const ReferralWidgetSkeleton = () => (
+  <div className="rounded-20 bg-muted relative flex w-full animate-pulse flex-col overflow-hidden p-5 shadow-sm">
+    <div className="flex items-start justify-between gap-3">
+      <div className="bg-muted-foreground/20 rounded-12 size-10" />
+      <div className="bg-muted-foreground/20 h-3 w-16 rounded" />
+    </div>
+    <div className="mt-4 flex flex-col gap-2">
+      <div className="bg-muted-foreground/20 h-5 w-40 rounded" />
+      <div className="bg-muted-foreground/20 h-4 w-full rounded" />
+      <div className="bg-muted-foreground/20 h-4 w-2/3 rounded" />
+    </div>
+    <div className="bg-muted-foreground/20 mt-5 h-11 w-full rounded-full" />
+    <div className="mt-3 flex items-center gap-2">
+      <div className="bg-muted-foreground/20 h-10 flex-1 rounded-full" />
+      <div className="bg-muted-foreground/20 size-10 shrink-0 rounded-full" />
+    </div>
   </div>
 );
 
@@ -57,9 +95,9 @@ const MessagesWidgetSkeleton = () => (
 );
 
 const PhotosWidgetSkeleton = () => (
-  <Card className="min-h-62 w-full min-[1300px]:w-80 min-[1300px]:shrink-0">
+  <Card className="min-h-62 w-full min-w-0 min-[1300px]:h-full min-[1300px]:flex-1">
     <CardContent className="flex animate-pulse flex-col gap-4">
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid [grid-auto-rows:0] [grid-template-columns:repeat(auto-fill,minmax(110px,1fr))] [grid-template-rows:repeat(2,auto)] gap-2 overflow-hidden">
         {photoTiles.map((i) => (
           <div key={i} className="bg-muted rounded-12 aspect-square w-full" />
         ))}
@@ -78,9 +116,9 @@ const PhotosWidgetSkeleton = () => (
 );
 
 const OrdersWidgetSkeleton = () => (
-  <Card className="min-h-62">
-    <CardContent className="flex animate-pulse flex-col gap-4">
-      <div className="flex items-center justify-between gap-4">
+  <Card className="min-h-62 w-full min-[1300px]:h-full min-[1300px]:w-80 min-[1300px]:shrink-0">
+    <CardContent className="flex animate-pulse flex-col flex-wrap">
+      <div className="flex items-center justify-between gap-4 pb-4">
         <div className="flex items-center gap-3">
           <div className="bg-muted rounded-12 size-10 shrink-0" />
           <div className="flex flex-col gap-2">
@@ -90,11 +128,14 @@ const OrdersWidgetSkeleton = () => (
         </div>
         <div className="bg-muted h-4 w-16 rounded" />
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col">
         {orderRows.map((i) => (
           <div
             key={i}
-            className="border-border flex items-center gap-3 border-t"
+            className={cn(
+              "flex items-center gap-3 py-3",
+              i > 0 && "border-border border-t",
+            )}
           >
             <div className="bg-muted rounded-10 size-10 shrink-0" />
             <div className="flex flex-1 flex-col gap-2">
@@ -109,6 +150,47 @@ const OrdersWidgetSkeleton = () => (
   </Card>
 );
 
+const WeddingPlannerWidgetSkeleton = () => (
+  <div className="rounded-20 border-border bg-card w-full border p-5 shadow-sm">
+    <div className="mb-5 flex animate-pulse items-center justify-between">
+      <div className="flex items-center gap-2">
+        <div className="bg-muted rounded-10 size-9" />
+        <div className="bg-muted h-5 w-40 rounded" />
+      </div>
+      <div className="bg-muted rounded-12 h-9 w-28" />
+    </div>
+    <div className="tablet:flex-row tablet:items-center tablet:divide-x tablet:divide-y-0 divide-border flex animate-pulse flex-col divide-y">
+      <div className="tablet:pr-6 tablet:pl-0 tablet:py-0 flex items-baseline gap-2 py-3">
+        <div className="bg-muted h-12 w-14 rounded" />
+        <div className="flex flex-col gap-1.5">
+          <div className="bg-muted h-4 w-20 rounded" />
+          <div className="bg-muted h-3 w-24 rounded" />
+        </div>
+      </div>
+      <div className="tablet:px-6 tablet:py-0 flex items-center gap-3 py-3">
+        <div className="bg-muted size-16 shrink-0 rounded-full" />
+        <div className="flex flex-col gap-1.5">
+          <div className="bg-muted h-3 w-20 rounded" />
+          <div className="bg-muted h-4 w-16 rounded" />
+        </div>
+      </div>
+      <div className="tablet:px-6 tablet:min-w-52 tablet:py-0 flex flex-col justify-center gap-1.5 py-3">
+        <div className="flex items-baseline justify-between gap-3">
+          <div className="bg-muted h-3 w-16 rounded" />
+          <div className="bg-muted h-4 w-24 rounded" />
+        </div>
+        <div className="bg-muted h-2 w-full rounded-full" />
+        <div className="bg-muted h-3 w-28 rounded" />
+      </div>
+      <div className="tablet:pl-6 tablet:flex-1 tablet:py-0 flex min-w-0 flex-col justify-center gap-1.5 py-3">
+        <div className="bg-muted h-3 w-16 rounded" />
+        <div className="bg-muted h-4 w-full rounded" />
+        <div className="bg-muted h-4 w-5/6 rounded" />
+      </div>
+    </div>
+  </div>
+);
+
 export const DashboardSkeleton = () => (
   <div className={containerClassName}>
     <div className={cn(stackClassName, "tablet:flex-row tablet:items-start")}>
@@ -119,6 +201,8 @@ export const DashboardSkeleton = () => (
         )}
       >
         <QRWidgetSkeleton />
+        <InvitationWidgetSkeleton />
+        <ReferralWidgetSkeleton />
         <div className="min-[1300px]:hidden">
           <OrdersWidgetSkeleton />
         </div>
@@ -130,14 +214,15 @@ export const DashboardSkeleton = () => (
         <div
           className={cn(
             stackClassName,
-            "min-[1300px]:flex-row min-[1300px]:items-start",
+            "min-[1300px]:flex-row min-[1300px]:items-stretch",
           )}
         >
           <PhotosWidgetSkeleton />
-          <div className="hidden min-w-0 flex-1 min-[1300px]:block">
+          <div className="hidden w-80 shrink-0 min-[1300px]:block">
             <OrdersWidgetSkeleton />
           </div>
         </div>
+        <WeddingPlannerWidgetSkeleton />
       </div>
     </div>
   </div>
