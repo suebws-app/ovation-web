@@ -321,7 +321,7 @@ export const SvgInviteCard = ({
                 <>
                   <div className={panelClass} style={panelStyle}>
                     {dateEl}
-                    {isLargeSize && messageEl}
+                    {messageEl}
                   </div>
                   {venueEl && (
                     <div className={panelClassSm} style={panelStyleSm}>

@@ -1,5 +1,7 @@
+import { cookies } from "next/headers";
 import { SidebarInset, SidebarProvider } from "@ovation/ui/components/Sidebar";
 import type { Event, User } from "@/lib/api/types";
+import { COLLAPSIBLE_COOKIE_PREFIX } from "@/components/Sidebar";
 import { UpgradeLimitModal } from "@/features/upgrade/UpgradeLimitModal";
 import { ThemeBridge } from "@/features/theme/ThemeBridge";
 import { AppSideBar } from "./AppSidebar";
@@ -17,16 +19,28 @@ type AppLayoutProps = {
   planActivating?: boolean;
 };
 
-export const AppLayout = ({
+export const AppLayout = async ({
   user,
   events,
   children,
   showSubscriptionAlert = true,
   planActivating = false,
 }: AppLayoutProps) => {
+  const cookieStore = await cookies();
+  const initialCollapsibleOpen: Record<string, boolean> = {};
+  for (const c of cookieStore.getAll()) {
+    if (c.name.startsWith(COLLAPSIBLE_COOKIE_PREFIX)) {
+      initialCollapsibleOpen[c.name] = c.value === "1";
+    }
+  }
+
   return (
     <SidebarProvider>
-      <AppSideBar user={user} events={events} />
+      <AppSideBar
+        user={user}
+        events={events}
+        initialCollapsibleOpen={initialCollapsibleOpen}
+      />
       <div className="flex w-full flex-1 flex-col overflow-x-clip">
         <AppHeaderMobile />
         <AppHeader />
