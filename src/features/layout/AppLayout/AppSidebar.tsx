@@ -153,11 +153,6 @@ const buildCoupleGroups = (
         matchPaths: [appRoutes.app.weddingPlanner.root],
         children: [
           {
-            label: t("sidebar__nav__invitation"),
-            href: appRoutes.app.invitation,
-            icon: MailIcon,
-          },
-          {
             label: t("sidebar__wp__dashboard"),
             href: appRoutes.app.weddingPlanner.dashboard,
             icon: GridIcon,
@@ -176,6 +171,11 @@ const buildCoupleGroups = (
             label: t("sidebar__wp__budget"),
             href: appRoutes.app.weddingPlanner.budget,
             icon: WalletIcon,
+          },
+          {
+            label: t("sidebar__nav__invitation"),
+            href: appRoutes.app.invitation,
+            icon: MailIcon,
           },
           {
             label: t("sidebar__wp__guests"),
