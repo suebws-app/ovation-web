@@ -55,7 +55,7 @@ export const BudgetSnapshot = ({
         {totals.map((total) => (
           <div key={total.label}>
             <p className="type-caption text-muted-foreground">{total.label}</p>
-            <p className={cn("type-h3 font-serif", total.className)}>
+            <p className={cn("type-h3", total.className)}>
               {money(total.value)}
             </p>
           </div>

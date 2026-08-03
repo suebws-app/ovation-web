@@ -84,7 +84,7 @@ export const OrdersRow = ({
       </span>
       <div className="mobile:flex-row mobile:items-center mobile:justify-between mobile:gap-4 flex min-w-0 flex-1 flex-col gap-2">
         <div className="min-w-0">
-          <p className="type-body-small truncate font-serif font-semibold">
+          <p className="type-body-small truncate font-semibold">
             {productLabel}
             {order.quantity > 1 && (
               <span className="text-muted-foreground ml-1 font-sans">
@@ -97,7 +97,7 @@ export const OrdersRow = ({
           </p>
         </div>
         <div className="mobile:items-end flex shrink-0 flex-col items-start gap-1">
-          <p className="type-body-small font-serif font-semibold">
+          <p className="type-body-small font-semibold">
             {formatPrice(order.totalCents, order.currency)}
           </p>
           <span

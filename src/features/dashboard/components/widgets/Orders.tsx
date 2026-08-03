@@ -44,7 +44,7 @@ export const Orders = ({ orders }: OrdersProps) => {
               <CartIcon width={18} height={18} />
             </span>
             <div>
-              <p className="type-body font-serif font-semibold">
+              <p className="type-body font-semibold">
                 {t("dashboard__widget__orders__title")}
               </p>
               <p className="type-caption text-muted-foreground">

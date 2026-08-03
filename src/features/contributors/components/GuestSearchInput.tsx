@@ -21,7 +21,7 @@ export const GuestSearchInput = () => {
   }, [draft, search, setSearch]);
 
   return (
-    <div className="rounded-10 border-border bg-background flex w-64 items-center gap-2.5 border px-3.5 py-2">
+    <div className="border-border bg-background focus-within:ring-ring flex h-10 w-64 items-center gap-2 rounded-lg border px-3 focus-within:ring-2 focus-within:outline-none">
       <SearchIcon
         width={14}
         height={14}
@@ -32,7 +32,7 @@ export const GuestSearchInput = () => {
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
         placeholder={t("guests__directory__search_placeholder")}
-        className="type-caption text-foreground placeholder:text-muted-foreground flex-1 bg-transparent outline-none"
+        className="text-foreground placeholder:text-muted-foreground tablet:text-sm flex-1 bg-transparent text-base outline-none disabled:cursor-not-allowed disabled:opacity-50"
       />
       {draft.length > 0 && (
         <button

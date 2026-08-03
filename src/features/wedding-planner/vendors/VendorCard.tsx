@@ -32,7 +32,7 @@ export const VendorCard = ({ vendor, onOpen }: VendorCardProps) => {
           {vendor.category ? (
             <StatusPill tone="neutral">{vendor.category}</StatusPill>
           ) : null}
-          <h3 className="type-h3 mt-2.5 font-serif">{vendor.name}</h3>
+          <h3 className="type-h3 mt-2.5">{vendor.name}</h3>
           {vendor.contact ? (
             <p className="type-body-small text-muted-foreground">
               {vendor.contact}
@@ -56,7 +56,7 @@ export const VendorCard = ({ vendor, onOpen }: VendorCardProps) => {
           <span className="type-body-small text-muted-foreground">—</span>
         )}
         <div className="text-right">
-          <p className="type-h4 font-serif">{money(vendor.price)}</p>
+          <p className="type-h4">{money(vendor.price)}</p>
           <p className="type-caption text-muted-foreground">
             {vendor.deposit
               ? t("wp__vendors__deposit_paid", {

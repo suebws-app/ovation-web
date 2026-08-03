@@ -22,6 +22,7 @@ import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import type { Event } from "@/lib/api/types";
+import { toIsoDate, parseIsoDate } from "@/lib/utils/formatDate";
 import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
 import { SettingsField } from "./SettingsField";
 
@@ -34,11 +35,9 @@ type Status =
   | { kind: "saved" }
   | { kind: "error"; message: string };
 
-const toIsoDate = (raw: string | null): string => {
-  if (!raw) return "";
-  const d = new Date(raw);
-  if (Number.isNaN(d.getTime())) return raw;
-  return d.toISOString().slice(0, 10);
+const eventDateToInput = (raw: string | null): string => {
+  const d = parseIsoDate(raw);
+  return d ? toIsoDate(d) : "";
 };
 
 export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
@@ -57,7 +56,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
     defaultValues: {
       partnerAName: event.partnerAName,
       partnerBName: event.partnerBName,
-      weddingDate: toIsoDate(event.weddingDate),
+      weddingDate: eventDateToInput(event.weddingDate),
       venueName: event.venueName ?? "",
       venueCity: event.venueCity ?? "",
       welcomeMessage: event.welcomeMessage ?? "",
@@ -99,7 +98,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
       reset({
         partnerAName: updated.partnerAName,
         partnerBName: updated.partnerBName,
-        weddingDate: toIsoDate(updated.weddingDate),
+        weddingDate: eventDateToInput(updated.weddingDate),
         venueName: updated.venueName ?? "",
         venueCity: updated.venueCity ?? "",
         welcomeMessage: updated.welcomeMessage ?? "",
@@ -154,9 +153,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
             control={control}
             name="weddingDate"
             render={({ field }) => {
-              const selectedDate = field.value
-                ? new Date(field.value)
-                : undefined;
+              const selectedDate = parseIsoDate(field.value);
               return (
                 <Popover open={datePickerOpen} onOpenChange={setDatePickerOpen}>
                   <PopoverTrigger asChild>
@@ -196,9 +193,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
                       mode="single"
                       selected={selectedDate}
                       onSelect={(date) => {
-                        field.onChange(
-                          date ? date.toISOString().slice(0, 10) : "",
-                        );
+                        field.onChange(date ? toIsoDate(date) : "");
                         setDatePickerOpen(false);
                       }}
                       className="mx-auto"
@@ -248,7 +243,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
             {...register("welcomeMessage")}
             placeholder={t("settings__wedding__welcome_note_placeholder")}
             rows={3}
-            className="border-border bg-background text-foreground type-body-small w-full rounded-lg border p-3 font-serif leading-relaxed outline-none"
+            className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring tablet:text-sm w-full rounded-lg border px-3 py-2 font-serif text-base leading-relaxed focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           />
           {errors.welcomeMessage && (
             <span className="type-caption text-destructive mt-1.5 block">
@@ -269,7 +264,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
             </span>
             <input
               type="text"
-              className="type-body-small text-foreground h-full min-w-0 flex-1 truncate bg-transparent outline-none"
+              className="text-foreground placeholder:text-muted-foreground tablet:text-sm h-full min-w-0 flex-1 truncate bg-transparent text-base outline-none"
               {...register("slug")}
             />
             <button

@@ -9,6 +9,7 @@ import { profileClient } from "@/lib/api/profile-client";
 import { appRoutes } from "@/lib/routes";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import { getCookie } from "@/lib/utils/cookies";
+import { toIsoDate } from "@/lib/utils/formatDate";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import type { SignUpFields } from "@/features/sign-up/signUpSchema";
@@ -18,10 +19,8 @@ import {
   type Currency,
 } from "@/i18n/currency-config";
 
-const toIsoDate = (date: Date | null): string | undefined => {
-  if (!date || Number.isNaN(date.getTime())) return undefined;
-  return date.toISOString().slice(0, 10);
-};
+const toWeddingDate = (date: Date | null): string | undefined =>
+  date && !Number.isNaN(date.getTime()) ? toIsoDate(date) : undefined;
 
 const readPreferredCurrencyCookie = (): Currency | undefined => {
   const raw = getCookie(CURRENCY_COOKIE);
@@ -123,7 +122,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
         const { event } = await eventsClient.create({
           partnerAName: partnerA,
           partnerBName: partnerB,
-          weddingDate: toIsoDate(eventData.weddingDate),
+          weddingDate: toWeddingDate(eventData.weddingDate),
           venueName: eventData.venueName?.trim() || undefined,
           venueCity: eventData.venueCity?.trim() || undefined,
         });

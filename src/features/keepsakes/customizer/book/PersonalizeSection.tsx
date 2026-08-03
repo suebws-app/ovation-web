@@ -62,7 +62,7 @@ export const PersonalizeSection = ({
               placeholder={t(
                 "keepsakes__book_customizer__dedication_placeholder",
               )}
-              className="rounded-12 border-border bg-background type-body-small focus-visible:ring-ring focus-visible:ring-offset-background w-full resize-none border p-3 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+              className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring tablet:text-sm w-full resize-none rounded-lg border px-3 py-2 text-base focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               {...register("dedication")}
             />
           </div>

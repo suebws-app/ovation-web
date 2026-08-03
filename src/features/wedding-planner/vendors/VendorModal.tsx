@@ -127,7 +127,7 @@ export const VendorModal = ({
           aria-describedby={undefined}
           className="bg-card rounded-16 data-[state=closed]:animate-scale-fade-out data-[state=open]:animate-scale-fade-in fixed top-1/2 left-1/2 z-50 flex max-h-[90vh] w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden shadow-lg"
         >
-          <Dialog.Title className="type-h3 border-border border-b p-5 font-serif">
+          <Dialog.Title className="type-h3 border-border border-b p-5">
             {vendor
               ? t("wp__vendors__modal_edit")
               : t("wp__vendors__modal_new")}

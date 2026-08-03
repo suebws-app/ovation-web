@@ -117,7 +117,7 @@ export const MessagesTableRow = ({
               )}
             </div>
             {noteText && (
-              <p className="type-caption text-muted-foreground line-clamp-1 font-serif italic">
+              <p className="type-body-small text-muted-foreground line-clamp-1 font-serif italic">
                 &ldquo;{noteText}&rdquo;
               </p>
             )}

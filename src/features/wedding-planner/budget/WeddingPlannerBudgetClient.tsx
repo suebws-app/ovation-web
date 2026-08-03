@@ -199,7 +199,7 @@ export const WeddingPlannerBudgetClient = ({
                   value={totalBudget}
                   ariaLabel={t("wp__budget__total")}
                   onSave={(value) => setTotal.mutate(value)}
-                  className="type-h4 text-primary font-serif"
+                  className="type-h4 text-primary"
                   iconClassName="text-primary"
                 />
               </div>
@@ -207,7 +207,7 @@ export const WeddingPlannerBudgetClient = ({
                 <span className="type-caption text-muted-foreground">
                   {t("wp__budget__paid")}
                 </span>
-                <span className="type-h4 text-secondary-foreground font-serif">
+                <span className="type-h4 text-secondary-foreground">
                   {money(paid)}
                 </span>
               </div>
@@ -215,7 +215,7 @@ export const WeddingPlannerBudgetClient = ({
                 <span className="type-caption text-muted-foreground">
                   {t("wp__budget__outstanding")}
                 </span>
-                <span className="type-h4 text-primary font-serif">
+                <span className="type-h4 text-primary">
                   {money(actual - paid)}
                 </span>
               </div>

@@ -22,6 +22,7 @@ import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import { setCookie } from "@/lib/utils/cookies";
+import { toIsoDate } from "@/lib/utils/formatDate";
 import { BookPreview } from "./components/BookPreview";
 import { CoverPattern } from "./components/CoverPattern";
 import { CoverPhotoSelector } from "./components/CoverPhotoSelector";
@@ -29,12 +30,6 @@ import { SlugInput } from "./components/SlugInput";
 
 const LAST_EVENT_COOKIE = "ovation_last_event_id";
 const LAST_EVENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
-
-const toIsoDate = (date: Date | null): string | undefined => {
-  if (!date) return undefined;
-  if (Number.isNaN(date.getTime())) return undefined;
-  return date.toISOString().slice(0, 10);
-};
 
 export const CoverPage = () => {
   const t = useTranslations();
@@ -124,7 +119,10 @@ export const CoverPage = () => {
         data.partner1Name.trim() || t("signup__partner_a_default");
       const partnerBName =
         data.partner2Name.trim() || t("signup__partner_b_default");
-      const weddingDate = toIsoDate(data.weddingDate);
+      const weddingDate =
+        data.weddingDate && !Number.isNaN(data.weddingDate.getTime())
+          ? toIsoDate(data.weddingDate)
+          : undefined;
       const venueName = data.venueName?.trim() || undefined;
       const venueCity = data.venueCity?.trim() || undefined;
 
