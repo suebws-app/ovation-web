@@ -11,8 +11,6 @@ export const DesignStep = () => {
   const t = useTranslations();
   const { control, setValue } = useFormContext<InvitationFields>();
   const templateId = useWatch({ control, name: "templateId" });
-  const partnerA = useWatch({ control, name: "partnerA" });
-  const partnerB = useWatch({ control, name: "partnerB" });
 
   const { data, isLoading, isError } = useInvitationTemplatesQuery();
 
@@ -52,8 +50,6 @@ export const DesignStep = () => {
               key={template.id}
               template={template}
               active={template.id === templateId}
-              partnerA={partnerA}
-              partnerB={partnerB}
               onSelect={selectTemplate}
             />
           ))}

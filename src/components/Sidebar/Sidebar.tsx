@@ -21,9 +21,15 @@ type SidebarProps = {
   header?: React.ReactNode;
   groups: SidebarNavGroup[];
   footer?: React.ReactNode;
+  initialCollapsibleOpen?: Record<string, boolean>;
 };
 
-export const Sidebar = ({ header, groups, footer }: SidebarProps) => {
+export const Sidebar = ({
+  header,
+  groups,
+  footer,
+  initialCollapsibleOpen,
+}: SidebarProps) => {
   const pathname = usePathname();
   const activeKey = resolveActiveKey(groups, pathname);
 
@@ -45,6 +51,7 @@ export const Sidebar = ({ header, groups, footer }: SidebarProps) => {
                       key={itemKey(item)}
                       item={item}
                       activeKey={activeKey}
+                      initialOpenByCookie={initialCollapsibleOpen}
                     />
                   ) : (
                     <SidebarItem

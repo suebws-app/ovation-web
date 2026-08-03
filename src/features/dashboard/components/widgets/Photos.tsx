@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
 
@@ -10,6 +10,9 @@ import { appRoutes } from "@/lib/routes";
 import type { GalleryItem } from "@/lib/api/types";
 import { MediaPreviewDialog } from "@/features/keepsakes/customizer/MediaPreviewDialog";
 import { PhotosTile } from "./PhotosTile";
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 type PhotosProps = {
   photos: GalleryItem[];
@@ -32,14 +35,16 @@ const PADDING_PX = 40;
 const ROWS = 2;
 const MIN_COLS = 3;
 const MAX_COLS = 7;
+const RESERVE_TILES = Array.from({ length: MAX_COLS * ROWS }, (_, i) => i);
 
 export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
   const t = useTranslations();
   const [preview, setPreview] = useState<GalleryItem | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState(MIN_COLS);
+  const [measured, setMeasured] = useState(false);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const compute = (width: number) => {
@@ -47,6 +52,7 @@ export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
       const fit = Math.floor(available / (TILE_MIN_PX + GAP_PX));
       const next = Math.max(MIN_COLS, Math.min(MAX_COLS, fit));
       setCols(next);
+      setMeasured(true);
     };
     compute(el.clientWidth);
     const ro = new ResizeObserver((entries) => {
@@ -71,7 +77,19 @@ export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
       className="min-h-62 w-full min-w-0 min-[1300px]:h-full min-[1300px]:flex-1"
     >
       <CardContent className="flex flex-col gap-4">
-        {tiles.length > 0 && (
+        {!measured ? (
+          <div
+            className="grid [grid-auto-rows:0] [grid-template-columns:repeat(auto-fill,minmax(110px,1fr))] [grid-template-rows:repeat(2,auto)] gap-2 overflow-hidden"
+            aria-hidden
+          >
+            {RESERVE_TILES.map((i) => (
+              <div
+                key={i}
+                className="bg-muted rounded-12 aspect-square w-full"
+              />
+            ))}
+          </div>
+        ) : tiles.length > 0 ? (
           <div className={`grid gap-2 ${COLS_CLASS[cols]}`}>
             {tiles.map((item, index) => (
               <PhotosTile
@@ -88,7 +106,7 @@ export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
               />
             ))}
           </div>
-        )}
+        ) : null}
 
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">

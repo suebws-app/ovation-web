@@ -9,7 +9,6 @@ import { HomeIcon } from "@ovation/icons/HomeIcon";
 import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
 import { StarIcon } from "@ovation/icons/StarIcon";
-import { SettingsIcon } from "@ovation/icons/SettingsIcon";
 import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
 import { MonitorIcon } from "@ovation/icons/MonitorIcon";
 import { HelpCircleIcon } from "@ovation/icons/HelpCircleIcon";
@@ -24,6 +23,7 @@ import { ClipboardCheckIcon } from "@ovation/icons/ClipboardCheckIcon";
 import { WalletIcon } from "@ovation/icons/WalletIcon";
 import { StoreIcon } from "@ovation/icons/StoreIcon";
 import { SparkleIcon } from "@ovation/icons/SparkleIcon";
+import { MailIcon } from "@ovation/icons/MailIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
 import { isPaidPlan } from "@/lib/utils/plan";
@@ -147,28 +147,6 @@ const buildCoupleGroups = (
         icon: HomeIcon,
       },
       {
-        label: t("sidebar__nav__messages"),
-        href: appRoutes.app.messages,
-        icon: MessageSquareIcon,
-        badge: counts.messages > 0 ? counts.messages : undefined,
-      },
-      {
-        label: t("sidebar__nav__photos"),
-        href: appRoutes.app.gallery,
-        icon: ImageIcon,
-      },
-      {
-        label: t("sidebar__nav__keepsakes"),
-        href: appRoutes.app.keepsakes,
-        icon: StarIcon,
-        matchPaths: ["/keepsakes"],
-      },
-      {
-        label: t("sidebar__nav__orders"),
-        href: appRoutes.app.orders,
-        icon: BoxIcon,
-      },
-      {
         label: t("sidebar__nav__wedding_planner"),
         href: appRoutes.app.weddingPlanner.dashboard,
         icon: HeartIcon,
@@ -195,6 +173,11 @@ const buildCoupleGroups = (
             icon: WalletIcon,
           },
           {
+            label: t("sidebar__nav__invitation"),
+            href: appRoutes.app.invitation,
+            icon: MailIcon,
+          },
+          {
             label: t("sidebar__wp__guests"),
             href: appRoutes.app.weddingPlanner.guests,
             icon: UserPlusIcon,
@@ -213,9 +196,26 @@ const buildCoupleGroups = (
         ],
       },
       {
-        label: t("sidebar__nav__settings"),
-        href: appRoutes.app.settings,
-        icon: SettingsIcon,
+        label: t("sidebar__nav__messages"),
+        href: appRoutes.app.messages,
+        icon: MessageSquareIcon,
+        badge: counts.messages > 0 ? counts.messages : undefined,
+      },
+      {
+        label: t("sidebar__nav__photos"),
+        href: appRoutes.app.gallery,
+        icon: ImageIcon,
+      },
+      {
+        label: t("sidebar__nav__keepsakes"),
+        href: appRoutes.app.keepsakes,
+        icon: StarIcon,
+        matchPaths: ["/keepsakes"],
+      },
+      {
+        label: t("sidebar__nav__orders"),
+        href: appRoutes.app.orders,
+        icon: BoxIcon,
       },
     ],
   },
@@ -332,9 +332,14 @@ const buildProEventGroups = (
 type AppSideBarProps = {
   user: User;
   events: Event[];
+  initialCollapsibleOpen?: Record<string, boolean>;
 };
 
-export const AppSideBar = ({ user, events }: AppSideBarProps) => {
+export const AppSideBar = ({
+  user,
+  events,
+  initialCollapsibleOpen,
+}: AppSideBarProps) => {
   const t = useTranslations();
   const eventId = useProEventId(events);
   const isPro = user.accountType === "pro";
@@ -370,6 +375,11 @@ export const AppSideBar = ({ user, events }: AppSideBarProps) => {
   );
 
   return (
-    <Sidebar header={header} groups={groups} footer={<NavUser user={user} />} />
+    <Sidebar
+      header={header}
+      groups={groups}
+      footer={<NavUser user={user} />}
+      initialCollapsibleOpen={initialCollapsibleOpen}
+    />
   );
 };

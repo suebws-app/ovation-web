@@ -3,13 +3,14 @@
 import { cn } from "@ovation/ui/utils/cn";
 import type { InvitationTemplate } from "@/lib/api/types";
 import { resolveFontStack } from "../invitationTemplates";
+import { SvgInviteCard } from "./SvgInviteCard";
 import { useFitText } from "./useFitText";
 
 // Largest / smallest name font size (px) per card size. The name shrinks from
 // the max down toward the min so long couple names never exceed the card width.
 const NAME_FIT: Record<InviteCardSize, { max: number; min: number }> = {
-  compact: { max: 26, min: 12 },
-  large: { max: 56, min: 16 },
+  compact: { max: 26, min: 9 },
+  large: { max: 56, min: 12 },
 };
 
 type InviteCardValues = {
@@ -196,6 +197,18 @@ export const InviteCard = ({
     deps: [values.partnerA, values.partnerB, monogramAmp, size],
   });
 
+  if (template.artSvg) {
+    return (
+      <SvgInviteCard
+        template={template}
+        values={values}
+        guestFirstName={guestFirstName}
+        size={size}
+        animate={animate}
+      />
+    );
+  }
+
   return (
     <div
       className="relative flex h-full w-full flex-col items-center justify-center p-4 select-none"
@@ -204,7 +217,7 @@ export const InviteCard = ({
       <div
         ref={containerRef}
         className={cn(
-          "relative flex h-full w-full flex-col items-center justify-between gap-4 overflow-hidden",
+          "relative flex aspect-5/7 max-h-full w-full flex-col items-center justify-between gap-4 overflow-hidden",
           s.padding,
           animate && "animate-invite-card-in",
         )}
@@ -262,7 +275,7 @@ export const InviteCard = ({
 
           <h2
             ref={nameRef}
-            className="px-2 leading-tight whitespace-nowrap"
+            className="max-w-full px-6 leading-tight whitespace-nowrap"
             style={{
               fontFamily: displayFont,
               color: textColor,
