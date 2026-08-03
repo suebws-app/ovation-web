@@ -36,7 +36,7 @@ export const CartItemsCard = ({
             type="button"
             onClick={clear}
             aria-label={t("cart__items__clear")}
-            className="type-caption text-muted-foreground hover:text-foreground border-border tablet:border-0 tablet:px-0 tablet:py-0 inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1.5 transition-colors"
+            className="type-caption text-muted-foreground hover:text-foreground border-border tablet:border-0 tablet:px-0 tablet:py-0 inline-flex cursor-pointer items-center gap-1.5 rounded-lg border px-2.5 py-1.5 transition-colors"
           >
             <span className="tablet:hidden text-base leading-none">🗑️</span>
             <TrashIcon className="tablet:block hidden" width={12} height={12} />

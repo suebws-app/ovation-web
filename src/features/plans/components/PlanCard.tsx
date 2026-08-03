@@ -73,7 +73,7 @@ export const PlanCard = ({
         onClick={onSelect}
         variant={highlighted ? "default" : "outline"}
         className={cn(
-          "mt-6 w-full rounded-full",
+          "mt-6 w-full",
           highlighted && "shadow-primary/40 shadow-md",
         )}
       >

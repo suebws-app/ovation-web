@@ -196,11 +196,7 @@ export const LocalizationForm = ({ user }: LocalizationFormProps) => {
       )}
 
       <div className="mt-5 flex justify-end gap-2.5">
-        <Button
-          type="submit"
-          disabled={!isDirty || isSubmitting}
-          className="rounded-full"
-        >
+        <Button type="submit" disabled={!isDirty || isSubmitting}>
           {isSubmitting
             ? t("settings__profile__saving")
             : t("settings__profile__save")}

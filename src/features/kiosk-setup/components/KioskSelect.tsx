@@ -27,7 +27,7 @@ export const KioskSelect = <T extends string | number>({
   return (
     <span
       className={cn(
-        "border-border bg-card type-body-small relative inline-flex cursor-pointer items-center gap-2 rounded-full border px-3.5 py-2",
+        "border-border bg-card type-body-small relative inline-flex cursor-pointer items-center gap-2 rounded-lg border px-3.5 py-2",
         className,
       )}
     >

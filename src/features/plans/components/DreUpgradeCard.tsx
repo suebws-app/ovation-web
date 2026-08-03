@@ -48,7 +48,6 @@ export const DreUpgradeCard = ({ plan }: DreUpgradeCardProps) => {
       <Button
         type="button"
         variant="default"
-        className="rounded-full"
         disabled={pending}
         onClick={handleActivate}
       >

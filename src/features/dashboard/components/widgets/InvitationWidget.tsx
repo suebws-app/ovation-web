@@ -78,7 +78,7 @@ export const InvitationWidget = ({ event }: InvitationWidgetProps) => {
           )}
         </div>
 
-        <Button asChild className="rounded-full">
+        <Button asChild>
           <Link href={appRoutes.app.invitation}>
             {t("dashboard__widget__invitation__edit_cta")}
           </Link>

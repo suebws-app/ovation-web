@@ -24,7 +24,7 @@ export const GuestThankYouCard = () => {
         </p>
         <button
           type="button"
-          className="bg-card type-body-small text-primary mt-6 inline-flex cursor-pointer items-center gap-2 rounded-full px-4.5 py-3 font-bold shadow-lg"
+          className="bg-card type-body-small text-primary mt-6 inline-flex cursor-pointer items-center gap-2 rounded-lg px-4.5 py-3 font-bold shadow-lg"
         >
           <BookIcon width={14} height={14} />
           {t("guests__thankyou__cta")}

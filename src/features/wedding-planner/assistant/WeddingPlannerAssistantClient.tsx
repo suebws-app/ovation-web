@@ -309,7 +309,7 @@ export const WeddingPlannerAssistantClient = ({
               type="button"
               onClick={loadEarlier}
               disabled={loadingMore}
-              className="type-caption text-muted-foreground hover:text-foreground mx-auto rounded-full px-3 py-1 font-semibold transition-colors disabled:opacity-60"
+              className="type-caption text-muted-foreground hover:text-foreground mx-auto rounded-lg px-3 py-1 font-semibold transition-colors disabled:opacity-60"
             >
               {loadingMore
                 ? t("wp__ai__loading_earlier")

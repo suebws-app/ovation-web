@@ -45,7 +45,7 @@ export const ProUpgradeAlert = ({
         <Button
           asChild
           variant="outline"
-          className="tablet:w-auto w-full rounded-full bg-transparent"
+          className="tablet:w-auto w-full bg-transparent"
         >
           <Link href={`${appRoutes.auth.plans}?as=pro`}>
             {t("app__pro__upgrade_alert__cta")}

@@ -82,7 +82,7 @@ export const CancelSubscriptionButton = ({
             <div className="mt-6.5 flex justify-end gap-2.5">
               <Button
                 variant="outline"
-                className="min-w-56 rounded-full"
+                className="min-w-56"
                 onClick={() => setOpen(false)}
                 disabled={pending}
               >
@@ -90,7 +90,7 @@ export const CancelSubscriptionButton = ({
               </Button>
               <Button
                 variant={cancelAtPeriodEnd ? "default" : "destructive"}
-                className="min-w-56 rounded-full"
+                className="min-w-56"
                 onClick={handleConfirm}
                 disabled={pending}
               >

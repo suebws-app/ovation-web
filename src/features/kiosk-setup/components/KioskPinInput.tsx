@@ -20,7 +20,7 @@ export const KioskPinInput = ({ onChange }: KioskPinInputProps) => {
           setDraft("");
           setEditing(true);
         }}
-        className="border-border bg-card type-body-small hover:bg-background cursor-pointer rounded-full border px-3.5 py-2 font-mono tracking-widest transition-colors"
+        className="border-border bg-card type-body-small hover:bg-background cursor-pointer rounded-lg border px-3.5 py-2 font-mono tracking-widest transition-colors"
       >
         {t("kiosk_setup__pin__change")}
       </button>

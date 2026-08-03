@@ -28,10 +28,10 @@ export const CheckoutError = ({ message, onRetry }: CheckoutErrorProps) => {
         {message}
       </p>
       <div className="mt-7 flex flex-wrap justify-center gap-3">
-        <Button onClick={onRetry} className="rounded-full">
+        <Button onClick={onRetry}>
           {t("signup__completion__error_retry")}
         </Button>
-        <Button asChild variant="outline" className="rounded-full">
+        <Button asChild variant="outline">
           <Link href={appRoutes.app.root}>
             {t("signup__completion__error_skip")}
           </Link>

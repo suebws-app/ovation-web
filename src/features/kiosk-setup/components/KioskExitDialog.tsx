@@ -110,7 +110,7 @@ export const KioskExitDialog = ({
           <button
             type="button"
             onClick={onCancel}
-            className="border-border hover:bg-background type-body-small flex-1 cursor-pointer rounded-full border px-4 py-2.5 font-semibold transition-colors"
+            className="border-border hover:bg-background type-body-small flex-1 cursor-pointer rounded-lg border px-4 py-2.5 font-semibold transition-colors"
           >
             {t("kiosk__exit__cancel")}
           </button>
@@ -118,7 +118,7 @@ export const KioskExitDialog = ({
             type="button"
             onClick={submit}
             disabled={draft.length !== 4 || verifying}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 type-body-small flex-1 cursor-pointer rounded-full px-4 py-2.5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 type-body-small flex-1 cursor-pointer rounded-lg px-4 py-2.5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
           >
             {verifying
               ? t("kiosk__gate__verifying")

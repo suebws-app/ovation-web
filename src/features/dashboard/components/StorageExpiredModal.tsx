@@ -107,7 +107,6 @@ export const StorageExpiredModal = ({
             <Button
               type="button"
               variant="outline"
-              className="rounded-full"
               onClick={handleDismiss}
               disabled={pending}
             >
@@ -116,7 +115,6 @@ export const StorageExpiredModal = ({
             <Button
               type="button"
               variant="default"
-              className="rounded-full"
               onClick={handleActivate}
               disabled={pending}
             >

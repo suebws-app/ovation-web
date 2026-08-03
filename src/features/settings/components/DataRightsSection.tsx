@@ -30,7 +30,6 @@ export const DataRightsSection = () => {
             <Button
               variant="outline"
               size="sm"
-              className="rounded-full"
               onClick={() => {
                 window.location.href = mailtoHref;
               }}

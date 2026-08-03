@@ -306,11 +306,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
       )}
 
       <div className="mt-6 flex justify-end gap-2.5">
-        <Button
-          type="submit"
-          disabled={!isDirty || isSubmitting}
-          className="rounded-full"
-        >
+        <Button type="submit" disabled={!isDirty || isSubmitting}>
           {isSubmitting
             ? t("settings__wedding__saving")
             : t("settings__wedding__save")}

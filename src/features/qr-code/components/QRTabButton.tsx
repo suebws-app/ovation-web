@@ -11,7 +11,7 @@ export const QRTabButton = ({ label, active, onClick }: QRTabButtonProps) => (
     type="button"
     onClick={onClick}
     className={cn(
-      "type-caption cursor-pointer rounded-full px-3.5 py-1.5 font-semibold transition-colors",
+      "type-caption cursor-pointer rounded-lg px-3.5 py-1.5 font-semibold transition-colors",
       active
         ? "bg-card text-foreground"
         : "text-primary-foreground bg-white/15 hover:bg-white/25",

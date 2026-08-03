@@ -60,7 +60,6 @@ export const NoteCaptureCard = () => {
         <div className="mt-3 flex justify-end gap-2">
           <Button
             variant="ghost"
-            className="rounded-full"
             onClick={() => {
               setNote("");
               setEditing(false);

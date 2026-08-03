@@ -35,7 +35,6 @@ export const BookWizardFooter = ({
           variant="ghost"
           onClick={onBack}
           disabled={stepIdx === 0}
-          className="rounded-full"
         >
           {t("keepsakes__book_customizer__nav__back")}
         </Button>
@@ -43,7 +42,7 @@ export const BookWizardFooter = ({
           type="button"
           onClick={isLastStep ? onGoToCheckout : onNext}
           disabled={nextDisabled}
-          className="shadow-primary/40 rounded-full shadow-md"
+          className="shadow-primary/40 shadow-md"
         >
           {isLastStep
             ? t("keepsakes__book_customizer__go_to_checkout")

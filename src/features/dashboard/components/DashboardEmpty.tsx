@@ -20,7 +20,7 @@ export const DashboardEmpty = ({ name }: DashboardEmptyProps) => {
         <p className="type-body-small text-muted-foreground max-w-180 leading-relaxed">
           {t("dashboard__empty__body")}
         </p>
-        <Button asChild className="shadow-primary/40 rounded-full shadow-md">
+        <Button asChild className="shadow-primary/40 shadow-md">
           <Link href={appRoutes.create.root}>{t("dashboard__empty__cta")}</Link>
         </Button>
       </CardContent>

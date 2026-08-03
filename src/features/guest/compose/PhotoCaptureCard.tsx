@@ -169,7 +169,7 @@ export const PhotoCaptureCard = () => {
         <div className="mt-4 flex">
           <Button
             variant="outline"
-            className="w-full rounded-full"
+            className="w-full"
             onClick={() => galleryInputRef.current?.click()}
             disabled={atLimit}
           >

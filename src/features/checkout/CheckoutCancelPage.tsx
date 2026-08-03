@@ -35,12 +35,12 @@ export const CheckoutCancelPage = async ({
         })}
       </p>
       <div className="mt-3 flex flex-wrap justify-center gap-2">
-        <Button asChild className="rounded-full">
+        <Button asChild>
           <Link href={appRoutes.app.keepsakes}>
             {t("checkout__cancel__back_keepsakes")}
           </Link>
         </Button>
-        <Button asChild variant="outline" className="rounded-full">
+        <Button asChild variant="outline">
           <Link href={appRoutes.app.root}>{t("checkout__cancel__skip")}</Link>
         </Button>
       </div>

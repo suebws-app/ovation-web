@@ -25,7 +25,7 @@ export const VerifyEmailPage = async () => {
         title={t("auth__verify__page_missing_title")}
         subtitle={t("auth__verify__page_missing_body")}
       />
-      <Button asChild className="mt-9 rounded-full">
+      <Button asChild className="mt-9">
         <Link href={appRoutes.auth.signIn}>
           {t("auth__verify__back_to_signin")}
         </Link>

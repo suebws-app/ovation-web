@@ -172,7 +172,7 @@ export const KioskLiveFrame = ({
           <button
             type="button"
             onClick={enterFullscreen}
-            className="border-border bg-card/70 type-caption hover:bg-card cursor-pointer rounded-full border px-3 py-1.5 font-semibold shadow-sm transition-colors"
+            className="border-border bg-card/70 type-caption hover:bg-card cursor-pointer rounded-lg border px-3 py-1.5 font-semibold shadow-sm transition-colors"
           >
             {t("kiosk__live__go_fullscreen")}
           </button>
@@ -181,7 +181,7 @@ export const KioskLiveFrame = ({
           type="button"
           onClick={handleExitClick}
           aria-label={t("kiosk__exit__button")}
-          className="border-border bg-card/90 type-caption hover:bg-card inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold shadow-sm transition-colors"
+          className="border-border bg-card/90 type-caption hover:bg-card inline-flex cursor-pointer items-center gap-1.5 rounded-lg border px-3 py-1.5 font-semibold shadow-sm transition-colors"
         >
           <LogOutIcon width={12} height={12} />
           {t("kiosk__exit__button")}

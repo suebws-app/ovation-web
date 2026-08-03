@@ -34,7 +34,7 @@ export const MessageSortButton = () => {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="border-border bg-card type-caption text-muted-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3.5 py-2 font-semibold transition-colors"
+          className="border-border bg-card type-caption text-muted-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-lg border px-3.5 py-2 font-semibold transition-colors"
         >
           <SortIcon width={13} height={13} />
           {t(activeLabel)}

@@ -68,7 +68,6 @@ export const VoiceCaptureCard = ({
           <div className="flex justify-end gap-2">
             <Button
               variant="outline"
-              className="rounded-full"
               onClick={() => {
                 setAudio(null);
                 setEditing(true);
@@ -76,11 +75,7 @@ export const VoiceCaptureCard = ({
             >
               {t("guest__record__audio__re_record")}
             </Button>
-            <Button
-              variant="ghost"
-              className="rounded-full"
-              onClick={() => setAudio(null)}
-            >
+            <Button variant="ghost" onClick={() => setAudio(null)}>
               {t("guest__compose__remove")}
             </Button>
           </div>

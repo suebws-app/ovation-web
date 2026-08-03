@@ -113,7 +113,6 @@ export const DrePlanModal = ({ open, onOpenChange }: DrePlanModalProps) => {
             <Button
               type="button"
               variant="outline"
-              className="rounded-full"
               onClick={() => onOpenChange(false)}
               disabled={pending}
             >
@@ -122,7 +121,6 @@ export const DrePlanModal = ({ open, onOpenChange }: DrePlanModalProps) => {
             <Button
               type="button"
               variant="default"
-              className="rounded-full"
               onClick={handleActivate}
               disabled={pending || loading || !plan}
             >
