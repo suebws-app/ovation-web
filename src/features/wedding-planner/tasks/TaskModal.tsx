@@ -137,7 +137,7 @@ export const TaskModal = ({ eventId, open, todo, onClose }: TaskModalProps) => {
           aria-describedby={undefined}
           className="bg-card rounded-16 data-[state=closed]:animate-scale-fade-out data-[state=open]:animate-scale-fade-in fixed top-1/2 left-1/2 z-50 flex max-h-[90vh] w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden shadow-lg"
         >
-          <Dialog.Title className="type-h3 border-border border-b p-5 font-serif">
+          <Dialog.Title className="type-h3 border-border border-b p-5">
             {todo ? t("wp__tasks__modal_edit") : t("wp__tasks__modal_new")}
           </Dialog.Title>
           <form
@@ -382,7 +382,7 @@ export const TaskModal = ({ eventId, open, todo, onClose }: TaskModalProps) => {
                 <textarea
                   rows={3}
                   {...register("note")}
-                  className="border-border bg-background text-foreground type-body-small w-full rounded-lg border p-3 leading-relaxed outline-none"
+                  className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring tablet:text-sm w-full rounded-lg border px-3 py-2 text-base leading-relaxed focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </label>
             </div>

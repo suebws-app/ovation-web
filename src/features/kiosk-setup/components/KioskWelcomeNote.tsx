@@ -18,7 +18,7 @@ export const KioskWelcomeNote = ({
       <div className="type-caption text-muted-foreground mb-2 font-semibold">
         {t("kiosk__config__welcome__note_label")}
       </div>
-      <div className="rounded-12 border-border bg-card focus-within:border-primary relative min-h-24 border p-3.5 transition-colors">
+      <div className="border-border bg-card focus-within:ring-ring relative min-h-24 rounded-lg border px-3 py-2 transition-colors focus-within:ring-2 focus-within:outline-none">
         <textarea
           value={value}
           onChange={(e) =>
@@ -26,10 +26,10 @@ export const KioskWelcomeNote = ({
           }
           maxLength={KIOSK_WELCOME_NOTE_MAX}
           placeholder={t("kiosk__config__welcome__note_placeholder")}
-          className="type-body-small min-h-16 w-full resize-none leading-relaxed outline-none"
+          className="text-foreground placeholder:text-muted-foreground tablet:text-sm min-h-16 w-full resize-none bg-transparent text-base leading-relaxed outline-none disabled:cursor-not-allowed disabled:opacity-50"
           rows={3}
         />
-        <span className="type-caption text-muted-foreground absolute right-3.5 bottom-2">
+        <span className="type-caption text-muted-foreground absolute right-3 bottom-1.5">
           {t("kiosk__config__welcome__counter", {
             count: value.length,
             max: KIOSK_WELCOME_NOTE_MAX,

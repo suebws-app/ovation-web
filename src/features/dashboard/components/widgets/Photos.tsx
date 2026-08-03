@@ -114,7 +114,7 @@ export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
               <ImageIcon width={18} height={18} />
             </span>
             <div>
-              <p className="type-body font-serif font-semibold">
+              <p className="type-body font-semibold">
                 {totalCount}
                 <span className="type-body text-muted-foreground ml-1.5 font-sans font-normal">
                   {t("dashboard__widget__photos__unit")}

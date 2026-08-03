@@ -132,7 +132,7 @@ export const EventSwitcher = ({
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder={t("event_switcher__search_placeholder")}
-                className="h-9 pl-9"
+                className="pl-9"
                 aria-label={t("event_switcher__search_placeholder")}
               />
             </div>

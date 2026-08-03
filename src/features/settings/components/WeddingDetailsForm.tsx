@@ -248,7 +248,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
             {...register("welcomeMessage")}
             placeholder={t("settings__wedding__welcome_note_placeholder")}
             rows={3}
-            className="border-border bg-background text-foreground type-body-small w-full rounded-lg border p-3 font-serif leading-relaxed outline-none"
+            className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring tablet:text-sm w-full rounded-lg border px-3 py-2 font-serif text-base leading-relaxed focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           />
           {errors.welcomeMessage && (
             <span className="type-caption text-destructive mt-1.5 block">
@@ -269,7 +269,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
             </span>
             <input
               type="text"
-              className="type-body-small text-foreground h-full min-w-0 flex-1 truncate bg-transparent outline-none"
+              className="text-foreground placeholder:text-muted-foreground tablet:text-sm h-full min-w-0 flex-1 truncate bg-transparent text-base outline-none"
               {...register("slug")}
             />
             <button

@@ -72,7 +72,7 @@ export const CloseAccountModal = ({
             value={typed}
             onChange={(e) => setTyped(e.target.value)}
             placeholder={CONFIRMATION_PHRASE}
-            className="rounded-12 border-destructive bg-background type-body-small w-full border-2 p-3 font-mono"
+            className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring tablet:text-sm flex h-10 w-full rounded-lg border px-3 py-2 font-mono text-base focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             autoComplete="off"
           />
         </div>

@@ -181,7 +181,7 @@ export const DetailsStep = () => {
           id="inv-message"
           rows={3}
           placeholder={t("invitation__placeholder__message")}
-          className="border-border bg-background focus-visible:ring-ring rounded-8 w-full resize-none border px-3 py-2 text-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring tablet:text-sm w-full resize-none rounded-lg border px-3 py-2 text-base focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           {...register("message")}
         />
       </div>

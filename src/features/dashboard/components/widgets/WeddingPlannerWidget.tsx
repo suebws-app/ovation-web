@@ -60,7 +60,7 @@ export const WeddingPlannerWidget = async ({
       <div className="tablet:flex-row tablet:items-center tablet:divide-x tablet:divide-y-0 divide-border flex flex-col divide-y">
         {summary.daysToGo !== null ? (
           <div className="tablet:pr-6 tablet:pl-0 tablet:py-0 flex items-baseline gap-2 py-3">
-            <span className="type-h1 text-primary font-serif leading-none">
+            <span className="type-h1 text-primary leading-none">
               {summary.daysToGo}
             </span>
             <div className="flex flex-col">
