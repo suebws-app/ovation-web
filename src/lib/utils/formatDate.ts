@@ -36,6 +36,17 @@ export const toIsoDate = (d: Date): string => {
   return `${y}-${m}-${day}`;
 };
 
+export const parseIsoDate = (
+  value: string | null | undefined,
+): Date | undefined => {
+  if (!value) return undefined;
+  const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(value);
+  const d = match
+    ? new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]))
+    : new Date(value);
+  return Number.isNaN(d.getTime()) ? undefined : d;
+};
+
 export const formatYear = (iso: string | null | undefined): string | null => {
   if (!iso) return null;
   const d = new Date(iso);

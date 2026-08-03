@@ -10,6 +10,7 @@ import { ApiError } from "@/lib/api/client";
 import { invalidateCsrfToken } from "@/lib/api/csrf-token";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import { getOrigin } from "@/lib/utils/browser";
+import { toIsoDate } from "@/lib/utils/formatDate";
 import { appRoutes } from "@/lib/routes";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
@@ -28,10 +29,8 @@ const PLAN_TIER_BY_ID: Record<string, CheckoutPlanTier> = {
   gold: "bundle",
 };
 
-const toIsoDate = (date: Date | null): string | undefined => {
-  if (!date || Number.isNaN(date.getTime())) return undefined;
-  return date.toISOString().slice(0, 10);
-};
+const toWeddingDate = (date: Date | null): string | undefined =>
+  date && !Number.isNaN(date.getTime()) ? toIsoDate(date) : undefined;
 
 type UseCheckoutFlowReturn = {
   state: CheckoutState;
@@ -64,7 +63,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
       JSON.stringify({
         partnerAName: partnerA,
         partnerBName: partnerB,
-        weddingDate: toIsoDate(eventData.weddingDate) ?? null,
+        weddingDate: toWeddingDate(eventData.weddingDate) ?? null,
         venueName: eventData.venueName?.trim() || null,
         venueCity: eventData.venueCity?.trim() || null,
         desiredSlug: eventData.bookUrl.trim() || null,
@@ -148,7 +147,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                 .update(existingEventId, {
                   partnerAName: partnerA,
                   partnerBName: partnerB,
-                  weddingDate: toIsoDate(eventFormData.weddingDate),
+                  weddingDate: toWeddingDate(eventFormData.weddingDate),
                   venueName: eventFormData.venueName?.trim() || undefined,
                   venueCity: eventFormData.venueCity?.trim() || undefined,
                 })
@@ -157,7 +156,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                   const created = await eventsClient.create({
                     partnerAName: partnerA,
                     partnerBName: partnerB,
-                    weddingDate: toIsoDate(eventFormData.weddingDate),
+                    weddingDate: toWeddingDate(eventFormData.weddingDate),
                     venueName: eventFormData.venueName?.trim() || undefined,
                     venueCity: eventFormData.venueCity?.trim() || undefined,
                   });
@@ -167,7 +166,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                 .create({
                   partnerAName: partnerA,
                   partnerBName: partnerB,
-                  weddingDate: toIsoDate(eventFormData.weddingDate),
+                  weddingDate: toWeddingDate(eventFormData.weddingDate),
                   venueName: eventFormData.venueName?.trim() || undefined,
                   venueCity: eventFormData.venueCity?.trim() || undefined,
                 })

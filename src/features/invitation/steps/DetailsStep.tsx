@@ -13,6 +13,7 @@ import {
 } from "@ovation/ui/components/Popover";
 import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { cn } from "@ovation/ui/utils/cn";
+import { toIsoDate, parseIsoDate } from "@/lib/utils/formatDate";
 import {
   INVITATION_NAME_MAX,
   type InvitationFields,
@@ -24,12 +25,6 @@ const formatNiceDate = (date: Date) =>
     month: "long",
     year: "numeric",
   });
-
-const parseIso = (value: string): Date | undefined => {
-  if (!value) return undefined;
-  const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? undefined : date;
-};
 
 export const DetailsStep = () => {
   const t = useTranslations();
@@ -90,7 +85,7 @@ export const DetailsStep = () => {
             control={control}
             name="weddingDate"
             render={({ field }) => {
-              const selected = parseIso(field.value);
+              const selected = parseIsoDate(field.value);
               return (
                 <Popover open={datePickerOpen} onOpenChange={setDatePickerOpen}>
                   <PopoverTrigger asChild>
@@ -124,9 +119,7 @@ export const DetailsStep = () => {
                       mode="single"
                       selected={selected}
                       onSelect={(date) => {
-                        field.onChange(
-                          date ? date.toISOString().slice(0, 10) : "",
-                        );
+                        field.onChange(date ? toIsoDate(date) : "");
                         setDatePickerOpen(false);
                       }}
                       disabled={{ before: new Date() }}
