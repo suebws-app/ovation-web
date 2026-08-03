@@ -14,6 +14,7 @@ import { XIcon } from "@ovation/icons/XIcon";
 import { EditableText } from "./EditableText";
 import { EditableAmount } from "./EditableAmount";
 import { formatShortDate } from "../utils";
+import { toIsoDate, parseIsoDate } from "@/lib/utils/formatDate";
 import type { PlannerPayment } from "@/lib/api/types";
 
 type PaymentRowProps = {
@@ -37,7 +38,7 @@ export const PaymentRow = ({
 }: PaymentRowProps) => {
   const t = useTranslations();
   const [dateOpen, setDateOpen] = useState(false);
-  const selected = payment.dueDate ? new Date(payment.dueDate) : undefined;
+  const selected = parseIsoDate(payment.dueDate);
 
   return (
     <div className="group border-border/60 relative grid grid-cols-12 items-center gap-2 border-b px-5 py-3 last:border-0">
@@ -92,10 +93,7 @@ export const PaymentRow = ({
               mode="single"
               selected={selected}
               onSelect={(date) => {
-                onEditDue(
-                  payment.id,
-                  date ? date.toISOString().slice(0, 10) : null,
-                );
+                onEditDue(payment.id, date ? toIsoDate(date) : null);
                 setDateOpen(false);
               }}
               className="mx-auto"

@@ -30,6 +30,7 @@ import {
   useWeddingPlannerTimeline,
 } from "@/lib/query/weddingPlannerQueries";
 import type { PlannerTodo, TodoPriority, TodoStatus } from "@/lib/api/types";
+import { toIsoDate, parseIsoDate } from "@/lib/utils/formatDate";
 import { getTaskSchema, type TaskFields } from "./taskSchema";
 import { FieldHint } from "../components/FieldHint";
 
@@ -272,9 +273,7 @@ export const TaskModal = ({ eventId, open, todo, onClose }: TaskModalProps) => {
                     control={control}
                     name="dueDate"
                     render={({ field }) => {
-                      const selected = field.value
-                        ? new Date(field.value)
-                        : undefined;
+                      const selected = parseIsoDate(field.value);
                       return (
                         <Popover open={dateOpen} onOpenChange={setDateOpen}>
                           <PopoverTrigger asChild>
@@ -314,9 +313,7 @@ export const TaskModal = ({ eventId, open, todo, onClose }: TaskModalProps) => {
                               mode="single"
                               selected={selected}
                               onSelect={(date) => {
-                                field.onChange(
-                                  date ? date.toISOString().slice(0, 10) : "",
-                                );
+                                field.onChange(date ? toIsoDate(date) : "");
                                 setDateOpen(false);
                               }}
                               className="mx-auto"
