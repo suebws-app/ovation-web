@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Paleisti skaidrių peržiūrą",
   "guest_gallery__lightbox__play": "Paleisti skaidrių peržiūrą",
   "guest_gallery__lightbox__pause": "Pristabdyti skaidrių peržiūrą",
-  "guest_gallery__lightbox__fullscreen": "Perjungti viso ekrano režimą"
+  "guest_gallery__lightbox__fullscreen": "Perjungti viso ekrano režimą",
+  "guest__rsvp__accept": "Priimti",
+  "guest__rsvp__decline": "Atmesti",
+  "guest__rsvp__seats_label": "Kiek žmonių dalyvaus?",
+  "guest__rsvp__note_label": "Pridėti žinutę (nebūtina)",
+  "guest__rsvp__note_placeholder": "Praneškite porai…",
+  "guest__rsvp__submit": "Siųsti atsakymą",
+  "guest__rsvp__confirmed": "Jūs atvyksite · {count} {count, plural, one {vieta} few {vietos} other {vietų}}",
+  "guest__rsvp__declined_state": "Atsisakėte",
+  "guest__rsvp__change": "Keisti atsakymą",
+  "guest__rsvp__success": "Atsakymas išsaugotas",
+  "guest__rsvp__error": "Nepavyko išsaugoti jūsų atsakymo",
+  "guest__rsvp__cta": "Prašome patvirtinti kvietimą",
+  "guest__rsvp__title": "Jūsų atsakymas",
+  "guest__rsvp__cancel": "Atšaukti"
 }

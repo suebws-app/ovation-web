@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Mainkan tayangan slaid",
   "guest_gallery__lightbox__play": "Mainkan tayangan slaid",
   "guest_gallery__lightbox__pause": "Jeda tayangan slaid",
-  "guest_gallery__lightbox__fullscreen": "Togol skrin penuh"
+  "guest_gallery__lightbox__fullscreen": "Togol skrin penuh",
+  "guest__rsvp__accept": "Terima",
+  "guest__rsvp__decline": "Tolak",
+  "guest__rsvp__seats_label": "Berapa ramai akan hadir?",
+  "guest__rsvp__note_label": "Tambah nota (pilihan)",
+  "guest__rsvp__note_placeholder": "Beritahu pasangan…",
+  "guest__rsvp__submit": "Hantar jawapan",
+  "guest__rsvp__confirmed": "Anda akan hadir · {count} {count, plural, other {tempat}}",
+  "guest__rsvp__declined_state": "Anda telah menolak",
+  "guest__rsvp__change": "Tukar jawapan",
+  "guest__rsvp__success": "Jawapan disimpan",
+  "guest__rsvp__error": "Jawapan anda tidak dapat disimpan",
+  "guest__rsvp__cta": "Sila sahkan jemputan anda",
+  "guest__rsvp__title": "Jawapan anda",
+  "guest__rsvp__cancel": "Batal"
 }

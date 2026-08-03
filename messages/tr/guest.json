@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Slayt gösterisini oynat",
   "guest_gallery__lightbox__play": "Slayt gösterisini oynat",
   "guest_gallery__lightbox__pause": "Slayt gösterisini duraklat",
-  "guest_gallery__lightbox__fullscreen": "Tam ekranı aç/kapat"
+  "guest_gallery__lightbox__fullscreen": "Tam ekranı aç/kapat",
+  "guest__rsvp__accept": "Kabul et",
+  "guest__rsvp__decline": "Reddet",
+  "guest__rsvp__seats_label": "Kaç kişi katılacak?",
+  "guest__rsvp__note_label": "Not ekle (isteğe bağlı)",
+  "guest__rsvp__note_placeholder": "Çifte bir not bırakın…",
+  "guest__rsvp__submit": "Yanıtı gönder",
+  "guest__rsvp__confirmed": "Katılıyorsunuz · {count} {count, plural, one {kişilik} other {kişilik}}",
+  "guest__rsvp__declined_state": "Reddettiniz",
+  "guest__rsvp__change": "Yanıtı değiştir",
+  "guest__rsvp__success": "Yanıt kaydedildi",
+  "guest__rsvp__error": "Yanıtınız kaydedilemedi",
+  "guest__rsvp__cta": "Lütfen davetinizi onaylayın",
+  "guest__rsvp__title": "Yanıtınız",
+  "guest__rsvp__cancel": "İptal"
 }

@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Predvajaj diaprojekcijo",
   "guest_gallery__lightbox__play": "Predvajaj diaprojekcijo",
   "guest_gallery__lightbox__pause": "Zaustavi diaprojekcijo",
-  "guest_gallery__lightbox__fullscreen": "Preklopi celozaslonski način"
+  "guest_gallery__lightbox__fullscreen": "Preklopi celozaslonski način",
+  "guest__rsvp__accept": "Sprejmi",
+  "guest__rsvp__decline": "Zavrni",
+  "guest__rsvp__seats_label": "Koliko ljudi bo prišlo?",
+  "guest__rsvp__note_label": "Dodaj sporočilo (neobvezno)",
+  "guest__rsvp__note_placeholder": "Sporočite paru…",
+  "guest__rsvp__submit": "Pošlji odgovor",
+  "guest__rsvp__confirmed": "Prideš · {count} {count, plural, one {mesto} two {mesti} few {mesta} other {mest}}",
+  "guest__rsvp__declined_state": "Zavrnili ste",
+  "guest__rsvp__change": "Spremeni odgovor",
+  "guest__rsvp__success": "Odgovor shranjen",
+  "guest__rsvp__error": "Vašega odgovora ni bilo mogoče shraniti",
+  "guest__rsvp__cta": "Prosimo, potrdite svoje vabilo",
+  "guest__rsvp__title": "Vaš odgovor",
+  "guest__rsvp__cancel": "Prekliči"
 }

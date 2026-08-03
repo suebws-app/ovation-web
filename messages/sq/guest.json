@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Nis shfaqjen e diapozitivëve",
   "guest_gallery__lightbox__play": "Nis shfaqjen e diapozitivëve",
   "guest_gallery__lightbox__pause": "Ndalo shfaqjen e diapozitivëve",
-  "guest_gallery__lightbox__fullscreen": "Ndërro ekranin e plotë"
+  "guest_gallery__lightbox__fullscreen": "Ndërro ekranin e plotë",
+  "guest__rsvp__accept": "Prano",
+  "guest__rsvp__decline": "Refuzo",
+  "guest__rsvp__seats_label": "Sa persona do të marrin pjesë?",
+  "guest__rsvp__note_label": "Shto një shënim (opsionale)",
+  "guest__rsvp__note_placeholder": "Lëri një mesazh çiftit…",
+  "guest__rsvp__submit": "Dërgo përgjigjen",
+  "guest__rsvp__confirmed": "Do të vish · {count} {count, plural, one {vend} other {vende}}",
+  "guest__rsvp__declined_state": "Ke refuzuar",
+  "guest__rsvp__change": "Ndrysho përgjigjen",
+  "guest__rsvp__success": "Përgjigja u ruajt",
+  "guest__rsvp__error": "Përgjigja jote nuk u ruajt dot",
+  "guest__rsvp__cta": "Ju lutemi konfirmoni ftesën tuaj",
+  "guest__rsvp__title": "Përgjigja jote",
+  "guest__rsvp__cancel": "Anulo"
 }

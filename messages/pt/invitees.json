@@ -79,5 +79,11 @@
   "invitees__preview__hide": "Ocultar pré-visualização",
   "invitees__preview__show": "Mostrar pré-visualização",
   "invitees__preview__title": "Pré-visualização do convite",
-  "invitees__edit_card__cta": "Editar cartão de convite"
+  "invitees__edit_card__cta": "Editar cartão de convite",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note"
 }

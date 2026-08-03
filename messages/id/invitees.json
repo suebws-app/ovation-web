@@ -79,5 +79,11 @@
   "invitees__preview__hide": "Sembunyikan pratinjau",
   "invitees__preview__show": "Tampilkan pratinjau",
   "invitees__preview__title": "Pratinjau undangan",
-  "invitees__edit_card__cta": "Edit kartu undangan"
+  "invitees__edit_card__cta": "Edit kartu undangan",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note"
 }

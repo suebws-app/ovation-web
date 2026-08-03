@@ -191,5 +191,19 @@
   "guest_invitation__cta_caption": "Hlas, video, foto nebo rychlá poznámka. Putuje rovnou k páru.",
   "guest_invitation__closed_limit": "Zprávy dosáhly limitu — ale díky, že jsi přišel/přišla.",
   "guest_invitation__closed_not_open": "Zprávy zatím nejsou otevřené. Vrať se brzy.",
-  "guest_invitation__closed_other": "Zprávy momentálně nepřijímají příspěvky."
+  "guest_invitation__closed_other": "Zprávy momentálně nepřijímají příspěvky.",
+  "guest__rsvp__accept": "Přijmout",
+  "guest__rsvp__decline": "Odmítnout",
+  "guest__rsvp__seats_label": "Kolik lidí dorazí?",
+  "guest__rsvp__note_label": "Přidat poznámku (nepovinné)",
+  "guest__rsvp__note_placeholder": "Dejte páru vědět…",
+  "guest__rsvp__submit": "Odeslat odpověď",
+  "guest__rsvp__confirmed": "Přijdete · {count} {count, plural, one {místo} few {místa} many {místa} other {míst}}",
+  "guest__rsvp__declined_state": "Odmítli jste",
+  "guest__rsvp__change": "Změnit odpověď",
+  "guest__rsvp__success": "Odpověď uložena",
+  "guest__rsvp__error": "Odpověď se nepodařilo uložit",
+  "guest__rsvp__cta": "Potvrďte prosím svou účast",
+  "guest__rsvp__title": "Vaše odpověď",
+  "guest__rsvp__cancel": "Zrušit"
 }

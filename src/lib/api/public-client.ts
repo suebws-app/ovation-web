@@ -3,6 +3,7 @@ import type {
   CreateMessageResult,
   GalleryItem,
   PublicEvent,
+  RsvpResult,
   UploadUrlsResult,
 } from "./types";
 
@@ -98,6 +99,21 @@ export const publicClient = {
     clientFetch<void>(`/public/events/${slug}/invitations/open`, {
       method: "POST",
       body: { channel, token: token ?? undefined },
+      skipCsrf: true,
+    }),
+
+  rsvp: (
+    slug: string,
+    input: {
+      token: string;
+      status: "accepted" | "declined";
+      seats?: number;
+      note?: string | null;
+    },
+  ) =>
+    clientFetch<RsvpResult>(`/public/events/${slug}/rsvp`, {
+      method: "POST",
+      body: input,
       skipCsrf: true,
     }),
 

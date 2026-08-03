@@ -191,5 +191,19 @@
   "guest_invitation__cta_caption": "Voice, video, photo or a quick note. Goes straight to the couple.",
   "guest_invitation__closed_limit": "Messages are at capacity — but thank you for showing up.",
   "guest_invitation__closed_not_open": "Messages aren't open yet. Check back soon.",
-  "guest_invitation__closed_other": "Messages aren't accepting submissions right now."
+  "guest_invitation__closed_other": "Messages aren't accepting submissions right now.",
+  "guest__rsvp__accept": "Accept",
+  "guest__rsvp__decline": "Decline",
+  "guest__rsvp__seats_label": "How many will attend?",
+  "guest__rsvp__note_label": "Add a note (optional)",
+  "guest__rsvp__note_placeholder": "Let the couple know…",
+  "guest__rsvp__submit": "Send response",
+  "guest__rsvp__confirmed": "You're coming · {count} {count, plural, one {seat} other {seats}}",
+  "guest__rsvp__declined_state": "You've declined",
+  "guest__rsvp__change": "Change response",
+  "guest__rsvp__success": "Response saved",
+  "guest__rsvp__error": "Could not save your response",
+  "guest__rsvp__cta": "Please confirm your invitation",
+  "guest__rsvp__title": "Your RSVP",
+  "guest__rsvp__cancel": "Cancel"
 }

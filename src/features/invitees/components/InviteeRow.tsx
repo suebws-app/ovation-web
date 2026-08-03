@@ -24,6 +24,8 @@ import {
 import { inviteesTableColumnClasses } from "../tableColumns";
 import { initialsFor, tintFor } from "../utils/inviteeAvatar";
 import { InviteeStatusChip } from "./InviteeStatusChip";
+import { RsvpStatusChip } from "./RsvpStatusChip";
+import { RsvpNoteCell } from "./RsvpNoteCell";
 
 type InviteeRowProps = {
   eventId: string;
@@ -146,6 +148,8 @@ export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
           />
         </TableCell>
         <TableCell className={inviteesTableColumnClasses.status} />
+        <TableCell className={inviteesTableColumnClasses.rsvp} />
+        <TableCell className={inviteesTableColumnClasses.note} />
         <TableCell className={inviteesTableColumnClasses.actions}>
           <div className="flex justify-end gap-1">
             <Button
@@ -204,6 +208,7 @@ export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
                 {t("invitees__row__seats_inline", { count: invitee.seats })}
               </span>
               <InviteeStatusChip invitee={invitee} />
+              <RsvpStatusChip invitee={invitee} />
             </div>
           </div>
         </div>
@@ -223,6 +228,12 @@ export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
       </TableCell>
       <TableCell className={inviteesTableColumnClasses.status}>
         <InviteeStatusChip invitee={invitee} />
+      </TableCell>
+      <TableCell className={inviteesTableColumnClasses.rsvp}>
+        <RsvpStatusChip invitee={invitee} />
+      </TableCell>
+      <TableCell className={inviteesTableColumnClasses.note}>
+        <RsvpNoteCell invitee={invitee} />
       </TableCell>
       <TableCell className={inviteesTableColumnClasses.actions}>
         <div className="flex justify-end gap-1">

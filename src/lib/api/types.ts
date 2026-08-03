@@ -393,7 +393,19 @@ export type PublicInvitation = {
   };
   invitee: {
     firstName: string;
+    seats: number;
+    rsvpStatus: RsvpStatus;
+    rsvpSeats: number | null;
+    rsvpNote: string | null;
   };
+};
+
+export type RsvpStatus = "pending" | "accepted" | "declined";
+
+export type RsvpResult = {
+  status: "accepted" | "declined";
+  seats: number | null;
+  note: string | null;
 };
 
 export type AudioUploadTarget = {
@@ -649,6 +661,10 @@ export type Invitee = {
   email: string | null;
   phone: string | null;
   seats: number;
+  rsvpStatus: RsvpStatus;
+  rsvpSeats: number | null;
+  rsvpNote: string | null;
+  rsvpRespondedAt: string | null;
   inviteToken: string;
   lastSentAt: string | null;
   lastOpenedAt: string | null;

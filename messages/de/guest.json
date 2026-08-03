@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Diashow abspielen",
   "guest_gallery__lightbox__play": "Diashow abspielen",
   "guest_gallery__lightbox__pause": "Diashow pausieren",
-  "guest_gallery__lightbox__fullscreen": "Vollbild umschalten"
+  "guest_gallery__lightbox__fullscreen": "Vollbild umschalten",
+  "guest__rsvp__accept": "Zusagen",
+  "guest__rsvp__decline": "Absagen",
+  "guest__rsvp__seats_label": "Wie viele kommen?",
+  "guest__rsvp__note_label": "Nachricht hinzufügen (optional)",
+  "guest__rsvp__note_placeholder": "Lass es das Paar wissen…",
+  "guest__rsvp__submit": "Antwort senden",
+  "guest__rsvp__confirmed": "Du kommst · {count} {count, plural, one {Platz} other {Plätze}}",
+  "guest__rsvp__declined_state": "Du hast abgesagt",
+  "guest__rsvp__change": "Antwort ändern",
+  "guest__rsvp__success": "Antwort gespeichert",
+  "guest__rsvp__error": "Deine Antwort konnte nicht gespeichert werden",
+  "guest__rsvp__cta": "Bitte bestätige deine Einladung",
+  "guest__rsvp__title": "Deine Antwort",
+  "guest__rsvp__cancel": "Abbrechen"
 }

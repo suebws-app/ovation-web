@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Запустити слайдшоу",
   "guest_gallery__lightbox__play": "Запустити слайдшоу",
   "guest_gallery__lightbox__pause": "Призупинити слайдшоу",
-  "guest_gallery__lightbox__fullscreen": "Перемкнути повноекранний режим"
+  "guest_gallery__lightbox__fullscreen": "Перемкнути повноекранний режим",
+  "guest__rsvp__accept": "Прийняти",
+  "guest__rsvp__decline": "Відхилити",
+  "guest__rsvp__seats_label": "Скільки людей прийде?",
+  "guest__rsvp__note_label": "Додати повідомлення (необов’язково)",
+  "guest__rsvp__note_placeholder": "Повідомте пару…",
+  "guest__rsvp__submit": "Надіслати відповідь",
+  "guest__rsvp__confirmed": "Ви прийдете · {count} {count, plural, one {місце} few {місця} many {місць} other {місця}}",
+  "guest__rsvp__declined_state": "Ви відхилили",
+  "guest__rsvp__change": "Змінити відповідь",
+  "guest__rsvp__success": "Відповідь збережено",
+  "guest__rsvp__error": "Не вдалося зберегти вашу відповідь",
+  "guest__rsvp__cta": "Будь ласка, підтвердьте своє запрошення",
+  "guest__rsvp__title": "Ваша відповідь",
+  "guest__rsvp__cancel": "Скасувати"
 }

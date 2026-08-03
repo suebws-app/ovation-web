@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Spill av lysbildeshow",
   "guest_gallery__lightbox__play": "Spill av lysbildeshow",
   "guest_gallery__lightbox__pause": "Sett lysbildeshow på pause",
-  "guest_gallery__lightbox__fullscreen": "Veksle fullskjerm"
+  "guest_gallery__lightbox__fullscreen": "Veksle fullskjerm",
+  "guest__rsvp__accept": "Godta",
+  "guest__rsvp__decline": "Avslå",
+  "guest__rsvp__seats_label": "Hvor mange kommer?",
+  "guest__rsvp__note_label": "Legg til en melding (valgfritt)",
+  "guest__rsvp__note_placeholder": "Gi paret beskjed…",
+  "guest__rsvp__submit": "Send svar",
+  "guest__rsvp__confirmed": "Du kommer · {count} {count, plural, one {plass} other {plasser}}",
+  "guest__rsvp__declined_state": "Du har avslått",
+  "guest__rsvp__change": "Endre svar",
+  "guest__rsvp__success": "Svar lagret",
+  "guest__rsvp__error": "Kunne ikke lagre svaret ditt",
+  "guest__rsvp__cta": "Bekreft invitasjonen din",
+  "guest__rsvp__title": "Ditt svar",
+  "guest__rsvp__cancel": "Avbryt"
 }

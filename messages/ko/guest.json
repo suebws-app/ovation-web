@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "슬라이드쇼 재생",
   "guest_gallery__lightbox__play": "슬라이드쇼 재생",
   "guest_gallery__lightbox__pause": "슬라이드쇼 일시정지",
-  "guest_gallery__lightbox__fullscreen": "전체 화면 전환"
+  "guest_gallery__lightbox__fullscreen": "전체 화면 전환",
+  "guest__rsvp__accept": "수락",
+  "guest__rsvp__decline": "거절",
+  "guest__rsvp__seats_label": "몇 분이 참석하시나요?",
+  "guest__rsvp__note_label": "메모 추가 (선택 사항)",
+  "guest__rsvp__note_placeholder": "신랑 신부에게 한마디…",
+  "guest__rsvp__submit": "응답 보내기",
+  "guest__rsvp__confirmed": "참석하십니다 · {count} {count, plural, other {석}}",
+  "guest__rsvp__declined_state": "거절하셨습니다",
+  "guest__rsvp__change": "응답 변경",
+  "guest__rsvp__success": "응답이 저장되었습니다",
+  "guest__rsvp__error": "응답을 저장할 수 없습니다",
+  "guest__rsvp__cta": "초대를 확인해 주세요",
+  "guest__rsvp__title": "내 응답",
+  "guest__rsvp__cancel": "취소"
 }

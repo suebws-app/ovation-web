@@ -5,6 +5,7 @@ import type { InvitationTemplate, PublicInvitation } from "@/lib/api/types";
 import { InviteCard } from "@/features/invitation/components/InviteCard";
 import { InvitationOpenTracker } from "@/features/guest/InvitationOpenTracker";
 import { useGuestSubmissionStore } from "@/features/guest/store/useGuestSubmissionStore";
+import { RsvpActions } from "./RsvpActions";
 
 const formatDateLabel = (iso: string | null): string | undefined => {
   if (!iso) return undefined;
@@ -51,9 +52,9 @@ export const GuestInvitationView = ({
       <div className="relative h-dvh w-full overflow-y-auto">
         <InvitationOpenTracker slug={slug} token={token} />
 
-        <div className="flex min-h-dvh w-full flex-col items-center justify-center gap-6 px-4 py-8">
-          <div className="flex w-full items-center justify-center">
-            <div className="tablet:max-w-xl desktop:max-w-2xl aspect-5/7 w-full max-w-lg shadow-2xl">
+        <div className="flex min-h-dvh w-full flex-col items-center justify-center px-4 py-8">
+          <div className="tablet:max-w-xl desktop:max-w-2xl w-full max-w-lg shadow-2xl">
+            <div className="aspect-5/7 w-full">
               <InviteCard
                 template={template}
                 size="large"
@@ -69,6 +70,13 @@ export const GuestInvitationView = ({
                 guestFirstName={invitee.firstName}
               />
             </div>
+
+            <RsvpActions
+              slug={slug}
+              token={token}
+              invitee={invitee}
+              template={template}
+            />
           </div>
         </div>
       </div>

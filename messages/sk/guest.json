@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Spustiť prezentáciu",
   "guest_gallery__lightbox__play": "Spustiť prezentáciu",
   "guest_gallery__lightbox__pause": "Pozastaviť prezentáciu",
-  "guest_gallery__lightbox__fullscreen": "Prepnúť celú obrazovku"
+  "guest_gallery__lightbox__fullscreen": "Prepnúť celú obrazovku",
+  "guest__rsvp__accept": "Prijať",
+  "guest__rsvp__decline": "Odmietnuť",
+  "guest__rsvp__seats_label": "Koľko ľudí príde?",
+  "guest__rsvp__note_label": "Pridať poznámku (nepovinné)",
+  "guest__rsvp__note_placeholder": "Dajte páru vedieť…",
+  "guest__rsvp__submit": "Odoslať odpoveď",
+  "guest__rsvp__confirmed": "Prídete · {count} {count, plural, one {miesto} few {miesta} many {miesta} other {miest}}",
+  "guest__rsvp__declined_state": "Odmietli ste",
+  "guest__rsvp__change": "Zmeniť odpoveď",
+  "guest__rsvp__success": "Odpoveď uložená",
+  "guest__rsvp__error": "Odpoveď sa nepodarilo uložiť",
+  "guest__rsvp__cta": "Potvrďte prosím svoju pozvánku",
+  "guest__rsvp__title": "Vaša odpoveď",
+  "guest__rsvp__cancel": "Zrušiť"
 }

@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Afspil diasshow",
   "guest_gallery__lightbox__play": "Afspil diasshow",
   "guest_gallery__lightbox__pause": "Sæt diasshow på pause",
-  "guest_gallery__lightbox__fullscreen": "Slå fuld skærm til/fra"
+  "guest_gallery__lightbox__fullscreen": "Slå fuld skærm til/fra",
+  "guest__rsvp__accept": "Accepter",
+  "guest__rsvp__decline": "Afvis",
+  "guest__rsvp__seats_label": "Hvor mange kommer?",
+  "guest__rsvp__note_label": "Tilføj en besked (valgfrit)",
+  "guest__rsvp__note_placeholder": "Lad parret det vide…",
+  "guest__rsvp__submit": "Send svar",
+  "guest__rsvp__confirmed": "Du kommer · {count} {count, plural, one {plads} other {pladser}}",
+  "guest__rsvp__declined_state": "Du har afvist",
+  "guest__rsvp__change": "Skift svar",
+  "guest__rsvp__success": "Svar gemt",
+  "guest__rsvp__error": "Dit svar kunne ikke gemmes",
+  "guest__rsvp__cta": "Bekræft venligst din invitation",
+  "guest__rsvp__title": "Dit svar",
+  "guest__rsvp__cancel": "Annuller"
 }

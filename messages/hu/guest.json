@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Diavetítés indítása",
   "guest_gallery__lightbox__play": "Diavetítés indítása",
   "guest_gallery__lightbox__pause": "Diavetítés szüneteltetése",
-  "guest_gallery__lightbox__fullscreen": "Teljes képernyő váltása"
+  "guest_gallery__lightbox__fullscreen": "Teljes képernyő váltása",
+  "guest__rsvp__accept": "Elfogadom",
+  "guest__rsvp__decline": "Elutasítom",
+  "guest__rsvp__seats_label": "Hányan jönnek?",
+  "guest__rsvp__note_label": "Üzenet hozzáadása (nem kötelező)",
+  "guest__rsvp__note_placeholder": "Üzenj a párnak…",
+  "guest__rsvp__submit": "Válasz elküldése",
+  "guest__rsvp__confirmed": "Jössz · {count} {count, plural, one {hely} other {hely}}",
+  "guest__rsvp__declined_state": "Elutasítottad",
+  "guest__rsvp__change": "Válasz módosítása",
+  "guest__rsvp__success": "Válasz mentve",
+  "guest__rsvp__error": "A válaszodat nem sikerült menteni",
+  "guest__rsvp__cta": "Kérjük, erősítsd meg a meghívásod",
+  "guest__rsvp__title": "A válaszod",
+  "guest__rsvp__cancel": "Mégse"
 }

@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Lancer le diaporama",
   "guest_gallery__lightbox__play": "Lancer le diaporama",
   "guest_gallery__lightbox__pause": "Mettre le diaporama en pause",
-  "guest_gallery__lightbox__fullscreen": "Basculer en plein écran"
+  "guest_gallery__lightbox__fullscreen": "Basculer en plein écran",
+  "guest__rsvp__accept": "Accepter",
+  "guest__rsvp__decline": "Décliner",
+  "guest__rsvp__seats_label": "Combien de personnes viendront ?",
+  "guest__rsvp__note_label": "Ajouter une note (facultatif)",
+  "guest__rsvp__note_placeholder": "Laissez un mot aux mariés…",
+  "guest__rsvp__submit": "Envoyer la réponse",
+  "guest__rsvp__confirmed": "Vous venez · {count} {count, plural, one {place} many {places} other {places}}",
+  "guest__rsvp__declined_state": "Vous avez décliné",
+  "guest__rsvp__change": "Modifier la réponse",
+  "guest__rsvp__success": "Réponse enregistrée",
+  "guest__rsvp__error": "Impossible d’enregistrer votre réponse",
+  "guest__rsvp__cta": "Merci de confirmer votre invitation",
+  "guest__rsvp__title": "Votre réponse",
+  "guest__rsvp__cancel": "Annuler"
 }

@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Diavoorstelling afspelen",
   "guest_gallery__lightbox__play": "Diavoorstelling afspelen",
   "guest_gallery__lightbox__pause": "Diavoorstelling pauzeren",
-  "guest_gallery__lightbox__fullscreen": "Volledig scherm aan/uit"
+  "guest_gallery__lightbox__fullscreen": "Volledig scherm aan/uit",
+  "guest__rsvp__accept": "Accepteren",
+  "guest__rsvp__decline": "Afwijzen",
+  "guest__rsvp__seats_label": "Hoeveel personen komen er?",
+  "guest__rsvp__note_label": "Voeg een bericht toe (optioneel)",
+  "guest__rsvp__note_placeholder": "Laat het paar iets weten…",
+  "guest__rsvp__submit": "Antwoord versturen",
+  "guest__rsvp__confirmed": "Je komt · {count} {count, plural, one {plaats} other {plaatsen}}",
+  "guest__rsvp__declined_state": "Je hebt afgewezen",
+  "guest__rsvp__change": "Antwoord wijzigen",
+  "guest__rsvp__success": "Antwoord opgeslagen",
+  "guest__rsvp__error": "Je antwoord kon niet worden opgeslagen",
+  "guest__rsvp__cta": "Bevestig je uitnodiging",
+  "guest__rsvp__title": "Jouw antwoord",
+  "guest__rsvp__cancel": "Annuleren"
 }

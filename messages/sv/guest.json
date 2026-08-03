@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Spela bildspel",
   "guest_gallery__lightbox__play": "Spela bildspel",
   "guest_gallery__lightbox__pause": "Pausa bildspel",
-  "guest_gallery__lightbox__fullscreen": "Växla helskärm"
+  "guest_gallery__lightbox__fullscreen": "Växla helskärm",
+  "guest__rsvp__accept": "Acceptera",
+  "guest__rsvp__decline": "Tacka nej",
+  "guest__rsvp__seats_label": "Hur många kommer?",
+  "guest__rsvp__note_label": "Lägg till ett meddelande (valfritt)",
+  "guest__rsvp__note_placeholder": "Låt paret veta…",
+  "guest__rsvp__submit": "Skicka svar",
+  "guest__rsvp__confirmed": "Du kommer · {count} {count, plural, one {plats} other {platser}}",
+  "guest__rsvp__declined_state": "Du har tackat nej",
+  "guest__rsvp__change": "Ändra svar",
+  "guest__rsvp__success": "Svar sparat",
+  "guest__rsvp__error": "Det gick inte att spara ditt svar",
+  "guest__rsvp__cta": "Bekräfta din inbjudan",
+  "guest__rsvp__title": "Ditt svar",
+  "guest__rsvp__cancel": "Avbryt"
 }

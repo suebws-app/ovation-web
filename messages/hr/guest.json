@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Pokreni prezentaciju",
   "guest_gallery__lightbox__play": "Pokreni prezentaciju",
   "guest_gallery__lightbox__pause": "Pauziraj prezentaciju",
-  "guest_gallery__lightbox__fullscreen": "Uključi/isključi cijeli zaslon"
+  "guest_gallery__lightbox__fullscreen": "Uključi/isključi cijeli zaslon",
+  "guest__rsvp__accept": "Prihvati",
+  "guest__rsvp__decline": "Odbij",
+  "guest__rsvp__seats_label": "Koliko će ljudi doći?",
+  "guest__rsvp__note_label": "Dodaj poruku (neobavezno)",
+  "guest__rsvp__note_placeholder": "Javite paru…",
+  "guest__rsvp__submit": "Pošalji odgovor",
+  "guest__rsvp__confirmed": "Dolazite · {count} {count, plural, one {mjesto} few {mjesta} other {mjesta}}",
+  "guest__rsvp__declined_state": "Odbili ste",
+  "guest__rsvp__change": "Promijeni odgovor",
+  "guest__rsvp__success": "Odgovor spremljen",
+  "guest__rsvp__error": "Vaš odgovor nije moguće spremiti",
+  "guest__rsvp__cta": "Molimo potvrdite svoj poziv",
+  "guest__rsvp__title": "Vaš odgovor",
+  "guest__rsvp__cancel": "Odustani"
 }

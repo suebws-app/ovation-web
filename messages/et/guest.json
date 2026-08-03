@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Esita slaidiseanss",
   "guest_gallery__lightbox__play": "Esita slaidiseanss",
   "guest_gallery__lightbox__pause": "Peata slaidiseanss",
-  "guest_gallery__lightbox__fullscreen": "Lülita täisekraan"
+  "guest_gallery__lightbox__fullscreen": "Lülita täisekraan",
+  "guest__rsvp__accept": "Nõustu",
+  "guest__rsvp__decline": "Keeldu",
+  "guest__rsvp__seats_label": "Kui palju osalejaid tuleb?",
+  "guest__rsvp__note_label": "Lisa märkus (valikuline)",
+  "guest__rsvp__note_placeholder": "Anna paarile teada…",
+  "guest__rsvp__submit": "Saada vastus",
+  "guest__rsvp__confirmed": "Sa tuled · {count} {count, plural, one {koht} other {kohta}}",
+  "guest__rsvp__declined_state": "Sa keeldusid",
+  "guest__rsvp__change": "Muuda vastust",
+  "guest__rsvp__success": "Vastus salvestatud",
+  "guest__rsvp__error": "Vastust ei õnnestunud salvestada",
+  "guest__rsvp__cta": "Palun kinnita oma kutse",
+  "guest__rsvp__title": "Sinu vastus",
+  "guest__rsvp__cancel": "Tühista"
 }

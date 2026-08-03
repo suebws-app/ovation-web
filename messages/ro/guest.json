@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Redă prezentarea",
   "guest_gallery__lightbox__play": "Redă prezentarea",
   "guest_gallery__lightbox__pause": "Întrerupe prezentarea",
-  "guest_gallery__lightbox__fullscreen": "Comută ecranul complet"
+  "guest_gallery__lightbox__fullscreen": "Comută ecranul complet",
+  "guest__rsvp__accept": "Accept",
+  "guest__rsvp__decline": "Refuz",
+  "guest__rsvp__seats_label": "Câte persoane vor participa?",
+  "guest__rsvp__note_label": "Adaugă o notă (opțional)",
+  "guest__rsvp__note_placeholder": "Spune-le mirilor…",
+  "guest__rsvp__submit": "Trimite răspunsul",
+  "guest__rsvp__confirmed": "Vei participa · {count} {count, plural, one {loc} few {locuri} other {de locuri}}",
+  "guest__rsvp__declined_state": "Ai refuzat",
+  "guest__rsvp__change": "Schimbă răspunsul",
+  "guest__rsvp__success": "Răspuns salvat",
+  "guest__rsvp__error": "Răspunsul tău nu a putut fi salvat",
+  "guest__rsvp__cta": "Te rugăm să confirmi invitația",
+  "guest__rsvp__title": "Răspunsul tău",
+  "guest__rsvp__cancel": "Anulează"
 }

@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Atskaņot slaidrādi",
   "guest_gallery__lightbox__play": "Atskaņot slaidrādi",
   "guest_gallery__lightbox__pause": "Apturēt slaidrādi",
-  "guest_gallery__lightbox__fullscreen": "Pārslēgt pilnekrānu"
+  "guest_gallery__lightbox__fullscreen": "Pārslēgt pilnekrānu",
+  "guest__rsvp__accept": "Pieņemt",
+  "guest__rsvp__decline": "Noraidīt",
+  "guest__rsvp__seats_label": "Cik cilvēku ieradīsies?",
+  "guest__rsvp__note_label": "Pievienot piezīmi (nav obligāti)",
+  "guest__rsvp__note_placeholder": "Pastāstiet pārim…",
+  "guest__rsvp__submit": "Nosūtīt atbildi",
+  "guest__rsvp__confirmed": "Jūs ieradīsieties · {count} {count, plural, zero {vietu} one {vieta} other {vietas}}",
+  "guest__rsvp__declined_state": "Jūs atteicāties",
+  "guest__rsvp__change": "Mainīt atbildi",
+  "guest__rsvp__success": "Atbilde saglabāta",
+  "guest__rsvp__error": "Neizdevās saglabāt jūsu atbildi",
+  "guest__rsvp__cta": "Lūdzu, apstipriniet savu ielūgumu",
+  "guest__rsvp__title": "Jūsu atbilde",
+  "guest__rsvp__cancel": "Atcelt"
 }

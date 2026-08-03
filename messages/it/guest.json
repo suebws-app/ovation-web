@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Avvia presentazione",
   "guest_gallery__lightbox__play": "Avvia presentazione",
   "guest_gallery__lightbox__pause": "Metti in pausa la presentazione",
-  "guest_gallery__lightbox__fullscreen": "Attiva/disattiva schermo intero"
+  "guest_gallery__lightbox__fullscreen": "Attiva/disattiva schermo intero",
+  "guest__rsvp__accept": "Accetta",
+  "guest__rsvp__decline": "Rifiuta",
+  "guest__rsvp__seats_label": "Quanti parteciperanno?",
+  "guest__rsvp__note_label": "Aggiungi una nota (facoltativo)",
+  "guest__rsvp__note_placeholder": "Fai sapere agli sposi…",
+  "guest__rsvp__submit": "Invia risposta",
+  "guest__rsvp__confirmed": "Ci sarai · {count} {count, plural, one {posto} other {posti}}",
+  "guest__rsvp__declined_state": "Hai rifiutato",
+  "guest__rsvp__change": "Modifica risposta",
+  "guest__rsvp__success": "Risposta salvata",
+  "guest__rsvp__error": "Impossibile salvare la tua risposta",
+  "guest__rsvp__cta": "Conferma il tuo invito",
+  "guest__rsvp__title": "La tua risposta",
+  "guest__rsvp__cancel": "Annulla"
 }

@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Putar tayangan slide",
   "guest_gallery__lightbox__play": "Putar tayangan slide",
   "guest_gallery__lightbox__pause": "Jeda tayangan slide",
-  "guest_gallery__lightbox__fullscreen": "Alihkan layar penuh"
+  "guest_gallery__lightbox__fullscreen": "Alihkan layar penuh",
+  "guest__rsvp__accept": "Terima",
+  "guest__rsvp__decline": "Tolak",
+  "guest__rsvp__seats_label": "Berapa orang yang akan hadir?",
+  "guest__rsvp__note_label": "Tambahkan catatan (opsional)",
+  "guest__rsvp__note_placeholder": "Beri tahu pasangan…",
+  "guest__rsvp__submit": "Kirim jawaban",
+  "guest__rsvp__confirmed": "Kamu akan hadir · {count} {count, plural, other {kursi}}",
+  "guest__rsvp__declined_state": "Kamu telah menolak",
+  "guest__rsvp__change": "Ubah jawaban",
+  "guest__rsvp__success": "Jawaban tersimpan",
+  "guest__rsvp__error": "Jawabanmu tidak dapat disimpan",
+  "guest__rsvp__cta": "Mohon konfirmasi undanganmu",
+  "guest__rsvp__title": "Jawabanmu",
+  "guest__rsvp__cancel": "Batal"
 }

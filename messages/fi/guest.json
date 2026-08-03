@@ -191,5 +191,19 @@
   "guest_gallery__slideshow": "Toista diaesitys",
   "guest_gallery__lightbox__play": "Toista diaesitys",
   "guest_gallery__lightbox__pause": "Keskeytä diaesitys",
-  "guest_gallery__lightbox__fullscreen": "Vaihda koko näyttö"
+  "guest_gallery__lightbox__fullscreen": "Vaihda koko näyttö",
+  "guest__rsvp__accept": "Hyväksy",
+  "guest__rsvp__decline": "Kieltäydy",
+  "guest__rsvp__seats_label": "Kuinka moni osallistuu?",
+  "guest__rsvp__note_label": "Lisää viesti (valinnainen)",
+  "guest__rsvp__note_placeholder": "Kerro parille…",
+  "guest__rsvp__submit": "Lähetä vastaus",
+  "guest__rsvp__confirmed": "Olet tulossa · {count} {count, plural, one {paikka} other {paikkaa}}",
+  "guest__rsvp__declined_state": "Olet kieltäytynyt",
+  "guest__rsvp__change": "Muuta vastausta",
+  "guest__rsvp__success": "Vastaus tallennettu",
+  "guest__rsvp__error": "Vastaustasi ei voitu tallentaa",
+  "guest__rsvp__cta": "Vahvista kutsusi",
+  "guest__rsvp__title": "Vastauksesi",
+  "guest__rsvp__cancel": "Peruuta"
 }
