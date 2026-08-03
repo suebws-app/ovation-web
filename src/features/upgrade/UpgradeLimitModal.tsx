@@ -57,7 +57,7 @@ export const UpgradeLimitModal = () => {
         <Button
           asChild
           variant="default"
-          className="mt-7 w-full rounded-full"
+          className="mt-7 w-full"
           onClick={close}
         >
           <Link href={appRoutes.app.plans}>{t("upgrade_modal__cta")}</Link>

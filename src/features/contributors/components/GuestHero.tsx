@@ -43,11 +43,7 @@ export const GuestHero = ({ totalMessages, inviteUrl }: GuestHeroProps) => {
             {t("guests__hero__subtitle")}
           </p>
           <div className="mt-6 flex flex-wrap gap-2.5">
-            <Button
-              variant="outline"
-              className="rounded-full"
-              onClick={handleCopy}
-            >
+            <Button variant="outline" onClick={handleCopy}>
               <LinkIcon width={14} height={14} />
               {copied
                 ? t("guests__hero__copied")

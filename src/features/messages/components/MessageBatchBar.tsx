@@ -66,7 +66,6 @@ export const MessageBatchBar = ({
               size="sm"
               onClick={onBulkFavorite}
               disabled={bulkPending}
-              className="rounded-full"
             >
               <HeartIcon width={13} height={13} />
               {t("messages__batch__action_favourite")}
@@ -76,7 +75,6 @@ export const MessageBatchBar = ({
               size="sm"
               onClick={onBulkDownload}
               disabled={bulkPending}
-              className="rounded-full"
             >
               <DownloadIcon width={13} height={13} />
               {t("messages__batch__action_download")}
@@ -85,7 +83,6 @@ export const MessageBatchBar = ({
               size="sm"
               onClick={onBulkAddToGoldBook}
               disabled={bulkPending}
-              className="rounded-full"
             >
               <BookIcon width={13} height={13} />
               {t("messages__batch__add_to_book")}

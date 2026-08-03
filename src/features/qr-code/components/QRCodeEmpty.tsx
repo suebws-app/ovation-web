@@ -14,7 +14,7 @@ export const QRCodeEmpty = () => {
       <p className="type-body-small text-muted-foreground leading-relaxed">
         {t("qr__empty__body")}
       </p>
-      <Button asChild className="rounded-full">
+      <Button asChild>
         <Link href={appRoutes.create.root}>{t("qr__empty__cta")}</Link>
       </Button>
     </div>

@@ -56,7 +56,7 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
           {canOrder && eventId ? (
             <Button
               asChild
-              className="bg-foreground text-background hover:bg-foreground/90 rounded-full"
+              className="bg-foreground text-background hover:bg-foreground/90"
             >
               <Link
                 href={appRoutes.app.eventKeepsakeCustomizer(
@@ -68,10 +68,7 @@ export const FeaturedProduct = ({ product, eventId }: FeaturedProductProps) => {
               </Link>
             </Button>
           ) : (
-            <Button
-              disabled
-              className="bg-foreground text-background rounded-full"
-            >
+            <Button disabled className="bg-foreground text-background">
               {t("keepsakes__featured__create_event_first")}
             </Button>
           )}

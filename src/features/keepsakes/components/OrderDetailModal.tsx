@@ -125,11 +125,7 @@ export const OrderDetailModal = ({
             {(() => {
               const safeTrackingUrl = safeHttpUrl(order.tracking?.url);
               return safeTrackingUrl ? (
-                <Button
-                  asChild
-                  variant="outline"
-                  className="self-start rounded-full"
-                >
+                <Button asChild variant="outline" className="self-start">
                   <a href={safeTrackingUrl} target="_blank" rel="noreferrer">
                     {t("orders__detail__track_shipment")}
                   </a>
@@ -140,7 +136,7 @@ export const OrderDetailModal = ({
         )}
 
         <div className="mt-6 flex justify-end gap-2.5">
-          <Button variant="outline" className="rounded-full" onClick={onClose}>
+          <Button variant="outline" onClick={onClose}>
             {t("orders__detail__close")}
           </Button>
         </div>

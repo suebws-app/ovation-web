@@ -210,15 +210,10 @@ export const CartItemShippingForm = ({
         )}
       </div>
       <div className="flex justify-between gap-2">
-        <Button
-          type="button"
-          variant="outline"
-          className="rounded-full"
-          onClick={onBack}
-        >
+        <Button type="button" variant="outline" onClick={onBack}>
           {t("cart__shipping__back")}
         </Button>
-        <Button type="submit" className="rounded-full" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? t("cart__summary__checkout_pending") : submitLabel}
         </Button>
       </div>

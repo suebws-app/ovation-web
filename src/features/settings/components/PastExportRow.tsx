@@ -35,11 +35,9 @@ export const PastExportRow = ({
       last={last}
     >
       {status === "ready" ? (
-        <Button size="sm" className="rounded-full">
-          {t("settings__data__download")}
-        </Button>
+        <Button size="sm">{t("settings__data__download")}</Button>
       ) : (
-        <Button variant="outline" size="sm" className="rounded-full">
+        <Button variant="outline" size="sm">
           {t("settings__data__past__regenerate")}
         </Button>
       )}

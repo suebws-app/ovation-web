@@ -194,7 +194,6 @@ export const MessagesDirectory = ({
           <MessageSortButton />
           <Button
             size="sm"
-            className="rounded-full"
             disabled={messages.length === 0 || isExporting}
             onClick={exportAll}
           >

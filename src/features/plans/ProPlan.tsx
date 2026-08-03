@@ -91,7 +91,7 @@ export const ProPlan = () => {
           type="button"
           onClick={handleContinue}
           disabled={!formData.selectedPlan}
-          className="shadow-primary/40 mt-8 w-full rounded-full shadow-md"
+          className="shadow-primary/40 mt-8 w-full shadow-md"
         >
           {t("signup__pro_plan__continue")}
         </Button>

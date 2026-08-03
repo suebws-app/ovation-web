@@ -59,14 +59,14 @@ export const KioskStartWarningDialog = ({
           <button
             type="button"
             onClick={onCancel}
-            className="border-border hover:bg-background type-body-small flex-1 cursor-pointer rounded-full border px-4 py-2.5 font-semibold transition-colors"
+            className="border-border hover:bg-background type-body-small flex-1 cursor-pointer rounded-lg border px-4 py-2.5 font-semibold transition-colors"
           >
             {t("kiosk__start_warning__cancel")}
           </button>
           <button
             type="button"
             onClick={onConfirm}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 type-body-small flex-1 cursor-pointer rounded-full px-4 py-2.5 font-semibold transition-colors"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 type-body-small flex-1 cursor-pointer rounded-lg px-4 py-2.5 font-semibold transition-colors"
           >
             {t("kiosk__start_warning__confirm")}
           </button>

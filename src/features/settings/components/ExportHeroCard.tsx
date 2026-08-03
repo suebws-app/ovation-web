@@ -43,7 +43,7 @@ export const ExportHeroCard = ({
           type="button"
           onClick={onDownload}
           disabled={disabled || loading}
-          className="bg-card type-body-small text-primary inline-flex cursor-pointer items-center gap-2 rounded-full px-6 py-3.5 font-bold shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-card type-body-small text-primary inline-flex cursor-pointer items-center gap-2 rounded-lg px-6 py-3.5 font-bold shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
         >
           <BoxIcon width={16} height={16} />
           {loading ? t("common__loading") : t("settings__data__hero__cta")}

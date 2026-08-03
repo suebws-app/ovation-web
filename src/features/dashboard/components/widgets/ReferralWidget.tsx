@@ -179,7 +179,7 @@ const ReferralWidgetShell = ({
         <button
           type="button"
           onClick={handleNativeShare}
-          className="bg-foreground text-background hover:bg-foreground/90 type-body-small relative mt-5 inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full px-5 font-semibold transition-colors"
+          className="bg-foreground text-background hover:bg-foreground/90 type-body-small relative mt-5 inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-5 font-semibold transition-colors"
         >
           <ArrowUpRightIcon width={14} height={14} />
           {t("dashboard__widget__referral__share_cta")}
@@ -207,7 +207,7 @@ const ReferralWidgetShell = ({
                 ? t("dashboard__widget__referral__copied")
                 : t("dashboard__widget__referral__copy_link")
             }
-            className="bg-background/60 hover:bg-background border-foreground/10 type-body-small flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-full border px-4 py-2 font-medium transition-colors"
+            className="bg-background/60 hover:bg-background border-foreground/10 type-body-small flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg border px-4 py-2 font-medium transition-colors"
           >
             {copied ? (
               <CheckIcon width={14} height={14} />

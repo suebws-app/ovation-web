@@ -53,7 +53,7 @@ export const LinkActiveCard = ({ eventId, enabled }: LinkActiveCardProps) => {
         variant={enabled ? "outline" : "default"}
         onClick={handleToggle}
         disabled={pending}
-        className="tablet:w-auto w-full rounded-full"
+        className="tablet:w-auto w-full"
       >
         {pending
           ? t("link_toggle__working")

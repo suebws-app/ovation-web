@@ -27,7 +27,7 @@ export const WizardHeader = ({
         {backHref ? (
           <Link
             href={backHref}
-            className="bg-card/85 border-border text-foreground inline-flex items-center rounded-full border px-3 py-2 shadow-sm backdrop-blur-sm"
+            className="bg-card/85 border-border text-foreground inline-flex items-center rounded-lg border px-3 py-2 shadow-sm backdrop-blur-sm"
           >
             <span className="type-body-small font-semibold">
               {t("guest__wizard__back")}

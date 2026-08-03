@@ -56,7 +56,7 @@ export const KioskChecklistItem = ({
         {description}
       </div>
       {cta && !done && (
-        <Button size="sm" onClick={onCta} className="mt-2.5 rounded-full">
+        <Button size="sm" onClick={onCta} className="mt-2.5">
           {cta}
         </Button>
       )}

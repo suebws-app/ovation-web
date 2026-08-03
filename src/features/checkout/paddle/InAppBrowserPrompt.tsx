@@ -74,7 +74,7 @@ export const InAppBrowserPrompt = ({
             type="button"
             onClick={handleCopy}
             disabled={!href}
-            className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+            className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-lg border px-3 py-1.5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
           >
             {copied ? (
               <>

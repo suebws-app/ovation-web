@@ -179,7 +179,6 @@ export const GuestDirectory = ({
           <GuestSortButton />
           <Button
             size="sm"
-            className="rounded-full"
             disabled={filtered.length === 0 || isExporting}
             onClick={() => exportCsv()}
           >

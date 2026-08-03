@@ -82,7 +82,6 @@ export const SlotPhotoDialog = ({
                       variant="outline"
                       onClick={() => gallery.fetchNextPage()}
                       disabled={gallery.isFetchingNextPage}
-                      className="rounded-full"
                     >
                       {t("common__load_more")}
                     </Button>

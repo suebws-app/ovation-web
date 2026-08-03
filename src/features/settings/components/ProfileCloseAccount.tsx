@@ -70,7 +70,7 @@ export const ProfileCloseAccount = ({ email }: ProfileCloseAccountProps) => {
                 size="sm"
                 onClick={() => setShowModal(true)}
                 disabled={pending}
-                className="ring-destructive text-destructive hover:bg-destructive rounded-full hover:text-white"
+                className="ring-destructive text-destructive hover:bg-destructive hover:text-white"
               >
                 {pending
                   ? t("settings__danger__close_account_pending")

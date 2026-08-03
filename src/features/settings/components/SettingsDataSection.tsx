@@ -125,7 +125,6 @@ export const SettingsDataSection = ({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="rounded-full"
                   disabled={isBusy}
                   onClick={() => run("allEventsExcel")}
                 >
@@ -202,7 +201,6 @@ export const SettingsDataSection = ({
                   <Button
                     variant="outline"
                     size="sm"
-                    className="rounded-full"
                     disabled={disabled}
                     onClick={() => {
                       if (entry.kind) run(entry.kind);

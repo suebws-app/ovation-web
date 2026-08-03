@@ -73,18 +73,10 @@ export const VideoCaptureCard = ({
             className="rounded-12 aspect-video w-full bg-black"
           />
           <div className="flex justify-end gap-2">
-            <Button
-              variant="outline"
-              className="rounded-full"
-              onClick={openRecorder}
-            >
+            <Button variant="outline" onClick={openRecorder}>
               {t("guest__record__video__re_record")}
             </Button>
-            <Button
-              variant="ghost"
-              className="rounded-full"
-              onClick={() => setVideo(null)}
-            >
+            <Button variant="ghost" onClick={() => setVideo(null)}>
               {t("guest__compose__remove")}
             </Button>
           </div>

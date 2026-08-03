@@ -139,7 +139,7 @@ export const KioskPinGate = ({ slug, children }: KioskPinGateProps) => {
           type="button"
           onClick={submit}
           disabled={pin.length !== 4 || verifying}
-          className="bg-primary text-primary-foreground hover:bg-primary/90 type-body-small mt-2 w-full cursor-pointer rounded-full px-4 py-2.5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 type-body-small mt-2 w-full cursor-pointer rounded-lg px-4 py-2.5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
         >
           {verifying ? t("kiosk__gate__verifying") : t("kiosk__gate__submit")}
         </button>

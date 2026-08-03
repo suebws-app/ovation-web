@@ -87,7 +87,7 @@ export const SubscriptionAlert = ({
           <Button
             asChild
             variant="outline"
-            className="tablet:w-auto w-full rounded-full bg-transparent"
+            className="tablet:w-auto w-full bg-transparent"
           >
             <Link href={appRoutes.app.plans}>{ctaLabel}</Link>
           </Button>
@@ -95,7 +95,7 @@ export const SubscriptionAlert = ({
           <Button
             type="button"
             variant="outline"
-            className="tablet:w-auto w-full rounded-full bg-transparent"
+            className="tablet:w-auto w-full bg-transparent"
             onClick={() => setDreModalOpen(true)}
           >
             {ctaLabel}

@@ -47,7 +47,7 @@ export const UrlCard = ({ slug, shortUrl }: UrlCardProps) => {
         <button
           type="button"
           onClick={handleCopy}
-          className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold transition-colors"
+          className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-lg border px-3 py-1.5 font-semibold transition-colors"
         >
           {copied ? t("qr__url__copied") : t("qr__url__copy")}
         </button>

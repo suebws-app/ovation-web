@@ -65,7 +65,7 @@ export const KioskShareCard = ({ slug }: KioskShareCardProps) => {
           type="button"
           onClick={handleCopy}
           disabled={!shareUrl}
-          className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+          className="border-border bg-card type-caption text-foreground hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-lg border px-3 py-1.5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
         >
           {copied ? t("kiosk__share__copied") : t("kiosk__share__copy")}
         </button>

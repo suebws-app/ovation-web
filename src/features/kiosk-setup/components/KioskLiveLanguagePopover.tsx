@@ -48,7 +48,7 @@ export const KioskLiveLanguagePopover = ({
       <PopoverTrigger
         type="button"
         aria-label={t("kiosk__live__language_trigger")}
-        className="border-border bg-card/85 hover:bg-card type-body-small inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 font-semibold shadow-sm transition-colors"
+        className="border-border bg-card/85 hover:bg-card type-body-small inline-flex cursor-pointer items-center gap-2 rounded-lg border px-4 py-2.5 font-semibold shadow-sm transition-colors"
       >
         <GlobeIcon width={14} height={14} className="text-muted-foreground" />
         <span className="type-body">{currentMeta.flag}</span>

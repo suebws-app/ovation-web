@@ -18,7 +18,7 @@ export const AuthSubmitButton = ({
     type="submit"
     disabled={pending}
     className={cn(
-      "shadow-primary/40 tablet:mt-6 mt-4 w-full rounded-full shadow-md",
+      "shadow-primary/40 tablet:mt-6 mt-4 w-full shadow-md",
       className,
     )}
   >

@@ -68,7 +68,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
             <Button
               size="default"
               disabled
-              className="bg-foreground text-background flex-1 rounded-full"
+              className="bg-foreground text-background flex-1"
             >
               {t("keepsakes__product__coming_soon")}
             </Button>
@@ -76,7 +76,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
             <Button
               asChild
               size="default"
-              className="bg-foreground text-background hover:bg-foreground/90 flex-1 rounded-full"
+              className="bg-foreground text-background hover:bg-foreground/90 flex-1"
             >
               <Link
                 href={appRoutes.app.eventKeepsakeCustomizer(
@@ -91,7 +91,7 @@ export const ProductCard = ({ product, eventId, tag }: ProductCardProps) => {
             <Button
               size="sm"
               disabled
-              className="bg-foreground text-background flex-1 rounded-full"
+              className="bg-foreground text-background flex-1"
             >
               {t("keepsakes__product__create_first")}
             </Button>

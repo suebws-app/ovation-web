@@ -413,17 +413,12 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
       </div>
       <StickyCTA layout="split" caption={t("guest__record__caption")}>
         <div className="tablet:w-auto flex w-full gap-2">
-          <Button
-            asChild
-            type="button"
-            variant="outline"
-            className="flex-1 rounded-full"
-          >
+          <Button asChild type="button" variant="outline" className="flex-1">
             <Link href={backHref}>{t("guest__wizard__back")}</Link>
           </Button>
           <Button
             type="button"
-            className="tablet:px-10 flex-1 rounded-full whitespace-nowrap shadow-lg"
+            className="tablet:px-10 flex-1 whitespace-nowrap shadow-lg"
             disabled={submitting}
             onClick={handleSubmit}
           >

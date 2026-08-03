@@ -43,7 +43,7 @@ export const SettingsBillingPage = async () => {
         <p className="type-body text-muted-foreground">
           {t("settings__billing__no_sub")}
         </p>
-        <Button asChild variant="default" size="sm" className="rounded-full">
+        <Button asChild variant="default" size="sm">
           <Link href={`${appRoutes.app.plans}`}>
             {t("settings__billing__upgrade_btn")}
           </Link>

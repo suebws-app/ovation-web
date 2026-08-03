@@ -265,12 +265,7 @@ export const CustomizerCheckoutForm = ({
         />
       )}
       <div className="flex flex-col gap-2.5">
-        <Button
-          type="button"
-          onClick={handleBuyNow}
-          disabled={buttonDisabled}
-          className="rounded-full"
-        >
+        <Button type="button" onClick={handleBuyNow} disabled={buttonDisabled}>
           {t("keepsakes__order__buy_now", {
             amount: formatPrice(effectivePriceCents, productCurrency),
           })}
@@ -280,7 +275,6 @@ export const CustomizerCheckoutForm = ({
           variant="outline"
           onClick={handleAddToCart}
           disabled={buttonDisabled}
-          className="rounded-full"
         >
           {t("keepsakes__order__add_to_cart_short")}
         </Button>
@@ -293,7 +287,6 @@ export const CustomizerCheckoutForm = ({
             (!photoSelectAll && (!photoIds || photoIds.length === 0)) ||
             previewMutation.isPending
           }
-          className="rounded-full"
         >
           {t("keepsakes__preview_pdf__button")}
         </Button>

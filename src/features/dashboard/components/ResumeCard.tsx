@@ -49,7 +49,7 @@ export const ResumeCard = ({ message }: ResumeCardProps) => {
         </div>
         <Button
           onClick={handleResume}
-          className="shadow-primary/40 tablet:w-auto w-full gap-2.5 rounded-full shadow-md"
+          className="shadow-primary/40 tablet:w-auto w-full gap-2.5 shadow-md"
         >
           <PlayIcon width={16} height={16} />
           {t("dashboard__resume__continue")}

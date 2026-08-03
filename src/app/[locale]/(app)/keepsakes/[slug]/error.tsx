@@ -18,10 +18,8 @@ const CustomizerError = ({ error, reset }: CustomizerErrorProps) => {
           {error.message || "Could not load this product."}
         </p>
         <div className="mt-2 flex justify-center gap-2">
-          <Button onClick={reset} className="rounded-full">
-            Try again
-          </Button>
-          <Button asChild variant="outline" className="rounded-full">
+          <Button onClick={reset}>Try again</Button>
+          <Button asChild variant="outline">
             <Link href={appRoutes.app.keepsakes}>Back to keepsakes</Link>
           </Button>
         </div>

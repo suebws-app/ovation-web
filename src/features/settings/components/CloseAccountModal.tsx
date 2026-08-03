@@ -93,17 +93,11 @@ export const CloseAccountModal = ({
         </button>
 
         <div className="mt-6.5 flex justify-end gap-2.5">
-          <Button
-            variant="outline"
-            className="rounded-full"
-            onClick={onClose}
-            disabled={pending}
-          >
+          <Button variant="outline" onClick={onClose} disabled={pending}>
             {t("settings__close_account_modal__keep")}
           </Button>
           <Button
             variant="destructive"
-            className="rounded-full"
             onClick={onConfirm}
             disabled={!canDelete || pending}
           >
