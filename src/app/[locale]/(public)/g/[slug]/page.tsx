@@ -1,1 +1,1 @@
-export { GuestLandingPage as default } from "@/features/guest/GuestLandingPage";
+export { GuestComposePage as default } from "@/features/guest/GuestComposePage";

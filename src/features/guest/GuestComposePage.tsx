@@ -1,8 +1,10 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { GuestWizardShell } from "./shell/GuestWizardShell";
 import { ComposeClient } from "./compose/ComposeClient";
+import { InvitationOpenTracker } from "./InvitationOpenTracker";
 
 type GuestComposePageProps = {
   params: Promise<{ slug: string }>;
@@ -24,12 +26,17 @@ export const GuestComposePage = async ({
 
   if (!event) notFound();
 
-  if (!event.submissionOpen || event.limitReached) {
-    redirect(`/g/${slug}`);
-  }
+  const t = await getTranslations();
+  const submissionClosed = !event.submissionOpen || event.limitReached;
+  const closedMessage = event.limitReached
+    ? t("guest__landing__closed_limit")
+    : !event.submissionOpen
+      ? t("guest__landing__closed_not_open")
+      : t("guest__landing__closed_other");
 
   return (
     <GuestWizardShell event={event}>
+      <InvitationOpenTracker slug={slug} />
       <ComposeClient
         slug={slug}
         captureAudio={event.kiosk.captureAudio}
@@ -38,6 +45,8 @@ export const GuestComposePage = async ({
         maxVideoDurationSec={event.kiosk.maxVideoDurationSeconds}
         maxAudioDurationSec={event.kiosk.maxAudioDurationSeconds}
         sourceParam={sourceParam}
+        submissionClosed={submissionClosed}
+        closedMessage={closedMessage}
       />
     </GuestWizardShell>
   );
