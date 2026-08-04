@@ -30,7 +30,8 @@ export const GuestThankYouPage = async ({
 
   if (!event) notFound();
 
-  const names = `${event.partnerAName} & ${event.partnerBName}`;
+  const names =
+    event.eventName?.trim() || `${event.partnerAName} & ${event.partnerBName}`;
   const canSubmitAnother = event.submissionOpen && !event.limitReached;
 
   return (

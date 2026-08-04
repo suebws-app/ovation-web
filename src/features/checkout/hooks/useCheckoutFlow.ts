@@ -54,13 +54,20 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
   const stashPendingEventData = useCallback(() => {
     if (typeof window === "undefined") return;
     const eventData = useCreateEventStore.getState().formData;
-    const partnerA =
-      eventData.partner1Name?.trim() || t("signup__partner_a_default");
-    const partnerB =
-      eventData.partner2Name?.trim() || t("signup__partner_b_default");
+    const isEventMode = eventData.nameMode === "event";
+    const eventName = isEventMode
+      ? eventData.eventName?.trim() || t("signup__event_name_default")
+      : null;
+    const partnerA = isEventMode
+      ? ""
+      : eventData.partner1Name?.trim() || t("signup__partner_a_default");
+    const partnerB = isEventMode
+      ? ""
+      : eventData.partner2Name?.trim() || t("signup__partner_b_default");
     window.sessionStorage?.setItem(
       "ovation_pending_event_data",
       JSON.stringify({
+        eventName,
         partnerAName: partnerA,
         partnerBName: partnerB,
         weddingDate: toWeddingDate(eventData.weddingDate) ?? null,
@@ -123,17 +130,38 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           }
         }
 
+        const isEventMode = eventFormData.nameMode === "event";
+        const eventNameTrim = eventFormData.eventName?.trim() ?? "";
         const partnerATrim = eventFormData.partner1Name?.trim() ?? "";
         const partnerBTrim = eventFormData.partner2Name?.trim() ?? "";
 
-        if (!partnerATrim && !partnerBTrim) {
+        const hasName = isEventMode
+          ? Boolean(eventNameTrim)
+          : Boolean(partnerATrim || partnerBTrim);
+        if (!hasName) {
           router.push(appRoutes.app.root);
           return { kind: "redirecting" };
         }
 
-        const partnerA = partnerATrim || t("signup__partner_a_default");
-        const partnerB = partnerBTrim || t("signup__partner_b_default");
+        const eventName = isEventMode
+          ? eventNameTrim || t("signup__event_name_default")
+          : undefined;
+        const partnerA = isEventMode
+          ? ""
+          : partnerATrim || t("signup__partner_a_default");
+        const partnerB = isEventMode
+          ? ""
+          : partnerBTrim || t("signup__partner_b_default");
         const bookUrl = useCreateEventStore.getState().formData.bookUrl;
+
+        const eventPayload = {
+          eventName,
+          partnerAName: partnerA,
+          partnerBName: partnerB,
+          weddingDate: toWeddingDate(eventFormData.weddingDate),
+          venueName: eventFormData.venueName?.trim() || undefined,
+          venueCity: eventFormData.venueCity?.trim() || undefined,
+        };
 
         try {
           const existingEventId =
@@ -145,32 +173,15 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           const event = existingEventId
             ? await eventsClient
                 .update(existingEventId, {
-                  partnerAName: partnerA,
-                  partnerBName: partnerB,
-                  weddingDate: toWeddingDate(eventFormData.weddingDate),
-                  venueName: eventFormData.venueName?.trim() || undefined,
-                  venueCity: eventFormData.venueCity?.trim() || undefined,
+                  ...eventPayload,
+                  eventName: eventName ?? "",
                 })
                 .then((r) => r.event)
                 .catch(async () => {
-                  const created = await eventsClient.create({
-                    partnerAName: partnerA,
-                    partnerBName: partnerB,
-                    weddingDate: toWeddingDate(eventFormData.weddingDate),
-                    venueName: eventFormData.venueName?.trim() || undefined,
-                    venueCity: eventFormData.venueCity?.trim() || undefined,
-                  });
+                  const created = await eventsClient.create(eventPayload);
                   return created.event;
                 })
-            : await eventsClient
-                .create({
-                  partnerAName: partnerA,
-                  partnerBName: partnerB,
-                  weddingDate: toWeddingDate(eventFormData.weddingDate),
-                  venueName: eventFormData.venueName?.trim() || undefined,
-                  venueCity: eventFormData.venueCity?.trim() || undefined,
-                })
-                .then((r) => r.event);
+            : await eventsClient.create(eventPayload).then((r) => r.event);
 
           const desiredSlug = bookUrl.trim();
           let finalSlug = event.slug;
@@ -249,6 +260,8 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     };
   }, [
     retryToken,
+    eventFormData.nameMode,
+    eventFormData.eventName,
     eventFormData.partner1Name,
     eventFormData.partner2Name,
     eventFormData.weddingDate,

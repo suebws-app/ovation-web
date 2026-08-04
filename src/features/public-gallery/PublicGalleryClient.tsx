@@ -13,6 +13,7 @@ import { PublicGalleryLightbox } from "./components/PublicGalleryLightbox";
 type PublicGalleryClientProps = {
   slug: string;
   code: string;
+  eventName: string | null;
   partnerAName: string | null;
   partnerBName: string | null;
   couplePhotoUrl: string | null;
@@ -21,6 +22,7 @@ type PublicGalleryClientProps = {
 export const PublicGalleryClient = ({
   slug,
   code,
+  eventName,
   partnerAName,
   partnerBName,
   couplePhotoUrl,
@@ -80,6 +82,7 @@ export const PublicGalleryClient = ({
   const header = (
     <PublicGalleryHeader
       count={items.length}
+      eventName={eventName}
       partnerAName={partnerAName}
       partnerBName={partnerBName}
       couplePhotoUrl={couplePhotoUrl}

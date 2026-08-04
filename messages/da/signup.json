@@ -126,5 +126,11 @@
   "signup__plan__keepsake__feature_1_v2": "Ubegrænsede beskeder",
   "signup__plan__keepsake__feature_2_v2": "Print-klare QR-kort (PDF, PNG og SVG)",
   "signup__plan__keepsake__feature_4_v2": "Download alt når som helst (.zip)",
-  "signup__pro_plan__subtitle_v2": "Månedligt abonnement — opsig når som helst."
+  "signup__pro_plan__subtitle_v2": "Månedligt abonnement — opsig når som helst.",
+  "signup__book_details__name_mode_couple": "Couple",
+  "signup__book_details__name_mode_event": "Event name",
+  "signup__book_details__event_name": "Event name",
+  "signup__book_details__event_name_placeholder": "Summer Gala 2026",
+  "signup__event_name_default": "Our Event",
+  "signup__event_name_fallback": "Our Event"
 }

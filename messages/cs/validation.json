@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "PSČ je povinné",
   "validation__shipping_postal_max": "PSČ je příliš dlouhé",
   "validation__shipping_country_required": "Země je povinná",
-  "validation__shipping_country_format": "Použij dvoupísmenný kód země"
+  "validation__shipping_country_format": "Použij dvoupísmenný kód země",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

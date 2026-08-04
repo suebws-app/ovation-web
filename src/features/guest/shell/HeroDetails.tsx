@@ -29,8 +29,15 @@ export const HeroDetails = async ({ event }: HeroDetailsProps) => {
         {t("guest__landing__welcome_overline")}
       </p>
       <h1 className="type-h1 leading-none font-semibold tracking-tight">
-        {event.partnerAName} <span className="text-primary italic">&amp;</span>{" "}
-        {event.partnerBName}
+        {event.eventName?.trim() ? (
+          event.eventName
+        ) : (
+          <>
+            {event.partnerAName}{" "}
+            <span className="text-primary italic">&amp;</span>{" "}
+            {event.partnerBName}
+          </>
+        )}
       </h1>
       {dateLabel && (
         <p className="type-caption text-muted-foreground mt-2.5 font-mono tracking-wider">

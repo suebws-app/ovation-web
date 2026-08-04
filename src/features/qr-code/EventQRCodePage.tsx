@@ -8,7 +8,7 @@ import { QRCodeHeader } from "./components/QRCodeHeader";
 import { QRCodeStudio } from "./components/QRCodeStudio";
 import { QRStatsCard } from "./components/QRStatsCard";
 import { QRCodeEmpty } from "./components/QRCodeEmpty";
-import { coupleNameOf } from "@/lib/utils/eventFormatters";
+import { eventDisplayName } from "@/lib/utils/eventFormatters";
 import { containerClassName } from "@/lib/utils/layoutClassNames";
 
 export const EventQRCodePage = async ({
@@ -63,7 +63,7 @@ export const EventQRCodePage = async ({
         </div>
       )}
       <QRCodeStudio
-        coupleName={coupleNameOf(event.partnerAName, event.partnerBName)}
+        coupleName={eventDisplayName(event)}
         slug={event.slug}
         shortUrl={qr?.shortUrl ?? `/g/${event.slug}`}
       />

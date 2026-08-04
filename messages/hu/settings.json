@@ -258,5 +258,9 @@
   "settings__billing__dre_cancel_btn": "DRE lemondása",
   "settings__billing__dre_cancellation_scheduled_body": "Lemondás ütemezve. Hozzáférés véget ér {date}-én.",
   "settings__billing__dre_resume_btn": "DRE folytatása",
-  "settings__data__rights__report__email_subject": "Adatjelentés kérése"
+  "settings__data__rights__report__email_subject": "Adatjelentés kérése",
+  "settings__wedding__name_mode_couple": "Couple",
+  "settings__wedding__name_mode_event": "Event name",
+  "settings__wedding__event_name": "Event name",
+  "settings__wedding__event_name_placeholder": "Summer Gala 2026"
 }

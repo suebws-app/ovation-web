@@ -1,6 +1,8 @@
 import type { Event } from "@/lib/api/types";
 
 export const coupleNamesOf = (event?: Event | null): string | undefined => {
+  const name = event?.eventName?.trim();
+  if (name) return name;
   const a = event?.partnerAName?.trim();
   const b = event?.partnerBName?.trim();
   if (a && b) return `${a} & ${b}`;

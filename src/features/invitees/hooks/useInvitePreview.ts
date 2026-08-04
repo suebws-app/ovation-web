@@ -31,24 +31,26 @@ export const useInvitePreview = (event: Event) => {
     );
   }, [data?.defaultTemplateId, data?.templates, event.invitationTemplateId]);
 
-  const values = useMemo(
-    () => ({
-      partnerA: event.partnerAName,
-      partnerB: event.partnerBName,
+  const values = useMemo(() => {
+    const isEventMode = Boolean(event.eventName?.trim());
+    return {
+      partnerA: isEventMode ? event.eventName! : event.partnerAName,
+      partnerB: isEventMode ? "" : event.partnerBName,
+      singleName: isEventMode,
       dateLabel: formatDateLabel(event.weddingDate),
       venue: event.venueName ?? undefined,
       place: event.venueCity ?? undefined,
       message: event.welcomeMessage ?? undefined,
-    }),
-    [
-      event.partnerAName,
-      event.partnerBName,
-      event.weddingDate,
-      event.venueName,
-      event.venueCity,
-      event.welcomeMessage,
-    ],
-  );
+    };
+  }, [
+    event.eventName,
+    event.partnerAName,
+    event.partnerBName,
+    event.weddingDate,
+    event.venueName,
+    event.venueCity,
+    event.welcomeMessage,
+  ]);
 
   return { template, values };
 };

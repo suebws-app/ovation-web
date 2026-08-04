@@ -21,8 +21,19 @@ export const CreatePage = () => {
   const t = useTranslations();
   const hydrated = useHydrateStore(useCreateEventStore);
   const { formData, updateFormData } = useCreateEventStore();
-  const { partner1Name, partner2Name, weddingDate, venueName, venueCity } =
-    formData;
+  const {
+    nameMode,
+    eventName,
+    partner1Name,
+    partner2Name,
+    weddingDate,
+    venueName,
+    venueCity,
+  } = formData;
+  const canContinue =
+    nameMode === "event"
+      ? Boolean(eventName.trim())
+      : Boolean(partner1Name && partner2Name);
   const venuePreview = [venueName, venueCity].filter(Boolean).join(", ");
   const setAccountType = useSignUpStore((s) => s.updateFormData);
   const router = useRouter();
@@ -57,10 +68,14 @@ export const CreatePage = () => {
 
   return (
     <EventBookForm
+      nameMode={nameMode}
+      eventName={eventName}
       partnerAName={partner1Name}
       partnerBName={partner2Name}
       weddingDate={weddingDate}
       venuePreview={venuePreview}
+      onNameModeChange={(mode) => updateFormData({ nameMode: mode })}
+      onEventNameChange={(v) => updateFormData({ eventName: v })}
       onPartnerAChange={(v) => updateFormData({ partner1Name: v })}
       onPartnerBChange={(v) => updateFormData({ partner2Name: v })}
       onWeddingDateChange={(d) => updateFormData({ weddingDate: d })}
@@ -106,7 +121,7 @@ export const CreatePage = () => {
       actionSlot={
         <Button
           type="submit"
-          disabled={!partner1Name || !partner2Name}
+          disabled={!canContinue}
           className="shadow-primary/40 mt-6 w-full rounded-full shadow-md"
         >
           {t("signup__book_details__continue")}

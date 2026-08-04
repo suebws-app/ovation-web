@@ -258,5 +258,9 @@
   "settings__billing__dre_cancel_btn": "Tühista DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Tühistamine ajastatud. Juurdepääs lõpeb {date}.",
   "settings__billing__dre_resume_btn": "Jätka DRE-d",
-  "settings__data__rights__report__email_subject": "Andmearuande taotlus"
+  "settings__data__rights__report__email_subject": "Andmearuande taotlus",
+  "settings__wedding__name_mode_couple": "Couple",
+  "settings__wedding__name_mode_event": "Event name",
+  "settings__wedding__event_name": "Event name",
+  "settings__wedding__event_name_placeholder": "Summer Gala 2026"
 }

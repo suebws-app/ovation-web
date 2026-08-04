@@ -18,8 +18,10 @@ const buildDefaults = ({
   invitees,
 }: InvitationFormDefaultsArgs): InvitationFields => ({
   templateId: event?.invitationTemplateId ?? DEFAULT_INVITATION_TEMPLATE_ID,
-  partnerA: event?.partnerAName ?? "",
-  partnerB: event?.partnerBName ?? "",
+  partnerA: event?.eventName?.trim()
+    ? event.eventName
+    : (event?.partnerAName ?? ""),
+  partnerB: event?.eventName?.trim() ? "" : (event?.partnerBName ?? ""),
   weddingDate: event?.weddingDate ?? "",
   time: "",
   venue: event?.venueName ?? "",

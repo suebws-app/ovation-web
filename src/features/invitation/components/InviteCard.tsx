@@ -16,6 +16,7 @@ const NAME_FIT: Record<InviteCardSize, { max: number; min: number }> = {
 type InviteCardValues = {
   partnerA: string;
   partnerB: string;
+  singleName?: boolean;
   dateLabel?: string;
   time?: string;
   venue?: string;
@@ -194,7 +195,13 @@ export const InviteCard = ({
   } = useFitText<HTMLHeadingElement>({
     maxPx: NAME_FIT[size].max,
     minPx: NAME_FIT[size].min,
-    deps: [values.partnerA, values.partnerB, monogramAmp, size],
+    deps: [
+      values.partnerA,
+      values.partnerB,
+      values.singleName,
+      monogramAmp,
+      size,
+    ],
   });
 
   if (template.artSvg) {
@@ -282,14 +289,20 @@ export const InviteCard = ({
               fontSize: nameFontSize,
             }}
           >
-            {values.partnerA || "Lila"}
-            <span
-              className="mx-2 italic"
-              style={{ color: accentColor, fontFamily: displayFont }}
-            >
-              {monogramAmp}
-            </span>
-            {values.partnerB || "Theo"}
+            {values.singleName ? (
+              values.partnerA
+            ) : (
+              <>
+                {values.partnerA || "Lila"}
+                <span
+                  className="mx-2 italic"
+                  style={{ color: accentColor, fontFamily: displayFont }}
+                >
+                  {monogramAmp}
+                </span>
+                {values.partnerB || "Theo"}
+              </>
+            )}
           </h2>
 
           <span

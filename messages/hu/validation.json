@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Az irányítószám kötelező",
   "validation__shipping_postal_max": "Az irányítószám túl hosszú",
   "validation__shipping_country_required": "Az ország kötelező",
-  "validation__shipping_country_format": "Használd a 2 betűs országkódot"
+  "validation__shipping_country_format": "Használd a 2 betűs országkódot",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

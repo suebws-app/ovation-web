@@ -44,6 +44,9 @@ export const InvitationPreviewPanel = ({
               values={{
                 partnerA: values?.partnerA ?? "",
                 partnerB: values?.partnerB ?? "",
+                singleName:
+                  Boolean(values?.partnerA?.trim()) &&
+                  !values?.partnerB?.trim(),
                 dateLabel: formatDateLabel(values?.weddingDate ?? ""),
                 time: values?.time,
                 venue: values?.venue,

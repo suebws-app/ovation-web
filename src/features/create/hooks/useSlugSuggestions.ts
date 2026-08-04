@@ -11,6 +11,7 @@ type SlugSuggestionsResult = {
 export const useSlugSuggestions = (
   partnerAName: string,
   partnerBName: string,
+  eventName = "",
 ): SlugSuggestionsResult => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,6 +23,7 @@ export const useSlugSuggestions = (
       eventsClient
         .slugSuggestions(
           {
+            eventName: eventName.trim() || undefined,
             partnerAName: partnerAName.trim() || undefined,
             partnerBName: partnerBName.trim() || undefined,
           },
@@ -42,7 +44,7 @@ export const useSlugSuggestions = (
       controller.abort();
       clearTimeout(timer);
     };
-  }, [partnerAName, partnerBName]);
+  }, [partnerAName, partnerBName, eventName]);
 
   return { suggestions, isLoading };
 };

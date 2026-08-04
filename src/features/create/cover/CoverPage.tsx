@@ -42,9 +42,13 @@ export const CoverPage = () => {
 
   useEffect(() => {
     if (!hydrated) return;
-    const { partner1Name, partner2Name } =
+    const { nameMode, eventName, partner1Name, partner2Name } =
       useCreateEventStore.getState().formData;
-    if (!partner1Name.trim() && !partner2Name.trim()) {
+    const hasName =
+      nameMode === "event"
+        ? Boolean(eventName.trim())
+        : Boolean(partner1Name.trim() || partner2Name.trim());
+    if (!hasName) {
       const as = searchParams.get("as");
       const target =
         as === "couple" || as === "pro"
@@ -59,6 +63,7 @@ export const CoverPage = () => {
   const { suggestions, isLoading: suggestionsLoading } = useSlugSuggestions(
     formData.partner1Name,
     formData.partner2Name,
+    formData.eventName,
   );
 
   const [coverFile, setCoverFile] = useState<File | null>(null);
@@ -115,10 +120,16 @@ export const CoverPage = () => {
     } = useCreateEventStore.getState();
 
     try {
-      const partnerAName =
-        data.partner1Name.trim() || t("signup__partner_a_default");
-      const partnerBName =
-        data.partner2Name.trim() || t("signup__partner_b_default");
+      const isEventMode = data.nameMode === "event";
+      const eventName = isEventMode
+        ? data.eventName.trim() || t("signup__event_name_default")
+        : "";
+      const partnerAName = isEventMode
+        ? ""
+        : data.partner1Name.trim() || t("signup__partner_a_default");
+      const partnerBName = isEventMode
+        ? ""
+        : data.partner2Name.trim() || t("signup__partner_b_default");
       const weddingDate =
         data.weddingDate && !Number.isNaN(data.weddingDate.getTime())
           ? toIsoDate(data.weddingDate)
@@ -129,6 +140,7 @@ export const CoverPage = () => {
       let targetEventId: string;
       if (mode === "edit" && eventId) {
         const { event } = await eventsClient.update(eventId, {
+          eventName: isEventMode ? eventName : "",
           partnerAName,
           partnerBName,
           weddingDate,
@@ -138,6 +150,7 @@ export const CoverPage = () => {
         targetEventId = event.id;
       } else {
         const created = await eventsClient.create({
+          eventName: isEventMode ? eventName : undefined,
           partnerAName,
           partnerBName,
           weddingDate,
@@ -174,13 +187,24 @@ export const CoverPage = () => {
     }
   };
 
-  const initials = `${formData.partner1Name?.[0] ?? "L"}&${formData.partner2Name?.[0] ?? "T"}`;
+  const isEventMode = formData.nameMode === "event";
+  const initials = isEventMode
+    ? (formData.eventName?.[0] ?? "E").toUpperCase()
+    : `${formData.partner1Name?.[0] ?? "L"}&${formData.partner2Name?.[0] ?? "T"}`;
   const generatedSlug = useMemo(
     () =>
-      `${formData.partner1Name?.toLowerCase() || "partner1"}-and-${formData.partner2Name?.toLowerCase() || "partner2"}`
+      (isEventMode
+        ? formData.eventName?.toLowerCase() || "event"
+        : `${formData.partner1Name?.toLowerCase() || "partner1"}-and-${formData.partner2Name?.toLowerCase() || "partner2"}`
+      )
         .replace(/[^a-z0-9-]/g, "")
         .slice(0, 20),
-    [formData.partner1Name, formData.partner2Name],
+    [
+      isEventMode,
+      formData.eventName,
+      formData.partner1Name,
+      formData.partner2Name,
+    ],
   );
   const [userEditedSlug, setUserEditedSlug] = useState(false);
   const lastAutoSlugRef = useRef<string | null>(null);
@@ -220,8 +244,9 @@ export const CoverPage = () => {
             {t("signup__cover__brand_eyebrow")}
           </Kicker>
           <BookPreview
-            partner1={formData.partner1Name}
-            partner2={formData.partner2Name}
+            partner1={isEventMode ? formData.eventName : formData.partner1Name}
+            partner2={isEventMode ? "" : formData.partner2Name}
+            singleName={isEventMode}
             date={formData.weddingDate?.toLocaleDateString("en-GB", {
               day: "numeric",
               month: "short",

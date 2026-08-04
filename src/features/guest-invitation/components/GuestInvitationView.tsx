@@ -59,8 +59,11 @@ export const GuestInvitationView = ({
                 size="large"
                 animate
                 values={{
-                  partnerA: event.partnerAName,
-                  partnerB: event.partnerBName,
+                  partnerA: event.eventName?.trim()
+                    ? event.eventName
+                    : event.partnerAName,
+                  partnerB: event.eventName?.trim() ? "" : event.partnerBName,
+                  singleName: Boolean(event.eventName?.trim()),
                   dateLabel: formatDateLabel(event.weddingDate),
                   venue: event.venueName ?? undefined,
                   place: event.venueCity ?? undefined,

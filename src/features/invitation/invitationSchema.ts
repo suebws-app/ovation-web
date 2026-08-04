@@ -23,7 +23,6 @@ export const getInvitationSchema = (t: T) =>
     partnerB: z
       .string()
       .trim()
-      .min(1, t("validation__partner_name_required"))
       .max(INVITATION_NAME_MAX, t("validation__partner_name_max")),
     weddingDate: z.string(),
     time: z.string(),

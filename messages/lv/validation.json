@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Pasta indekss ir obligāts",
   "validation__shipping_postal_max": "Pasta indekss ir pārāk garš",
   "validation__shipping_country_required": "Valsts ir obligāta",
-  "validation__shipping_country_format": "Izmantojiet 2 burtu valsts kodu"
+  "validation__shipping_country_format": "Izmantojiet 2 burtu valsts kodu",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

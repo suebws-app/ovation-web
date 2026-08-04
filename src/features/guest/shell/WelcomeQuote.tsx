@@ -17,7 +17,14 @@ export const WelcomeQuote = ({ event }: WelcomeQuoteProps) => {
           {event.welcomeMessage}
         </p>
         <p className="text-muted-foreground type-caption mt-2.5 text-right font-serif italic">
-          — {event.partnerAName.charAt(0)} &amp; {event.partnerBName.charAt(0)}
+          {event.eventName?.trim() ? (
+            <>— {event.eventName}</>
+          ) : (
+            <>
+              — {event.partnerAName.charAt(0)} &amp;{" "}
+              {event.partnerBName.charAt(0)}
+            </>
+          )}
         </p>
       </CardContent>
     </Card>

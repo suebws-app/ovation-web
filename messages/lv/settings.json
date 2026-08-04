@@ -258,5 +258,9 @@
   "settings__billing__dre_cancel_btn": "Atcelt DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Atcelšana ieplānota. Piekļuve beidzas {date}.",
   "settings__billing__dre_resume_btn": "Atsākt DRE",
-  "settings__data__rights__report__email_subject": "Datu pārskata pieprasījums"
+  "settings__data__rights__report__email_subject": "Datu pārskata pieprasījums",
+  "settings__wedding__name_mode_couple": "Couple",
+  "settings__wedding__name_mode_event": "Event name",
+  "settings__wedding__event_name": "Event name",
+  "settings__wedding__event_name_placeholder": "Summer Gala 2026"
 }

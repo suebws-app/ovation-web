@@ -6,6 +6,7 @@ import { cn } from "@ovation/ui/utils/cn";
 type BookPreviewProps = {
   partner1: string;
   partner2: string;
+  singleName?: boolean;
   date?: string;
   venue?: string;
   coverImage?: React.ReactNode;
@@ -15,6 +16,7 @@ type BookPreviewProps = {
 export const BookPreview = ({
   partner1,
   partner2,
+  singleName = false,
   date,
   venue,
   coverImage,
@@ -36,9 +38,15 @@ export const BookPreview = ({
           {t("signup__book_preview__volume")}
         </p>
         <p className="mt-2 font-serif text-4xl leading-none font-medium tracking-tight wrap-break-word italic">
-          {partner1 || t("signup__partner_1_fallback")}
-          <br />
-          &amp; {partner2 || t("signup__partner_2_fallback")}
+          {singleName ? (
+            partner1 || t("signup__event_name_fallback")
+          ) : (
+            <>
+              {partner1 || t("signup__partner_1_fallback")}
+              <br />
+              &amp; {partner2 || t("signup__partner_2_fallback")}
+            </>
+          )}
         </p>
         {(date || venue) && (
           <p className="type-caption text-muted-foreground mt-1.5 font-mono tracking-wider">

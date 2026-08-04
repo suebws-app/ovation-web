@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Pašto kodas privalomas",
   "validation__shipping_postal_max": "Pašto kodas per ilgas",
   "validation__shipping_country_required": "Šalis privaloma",
-  "validation__shipping_country_format": "Naudokite 2 raidžių šalies kodą"
+  "validation__shipping_country_format": "Naudokite 2 raidžių šalies kodą",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

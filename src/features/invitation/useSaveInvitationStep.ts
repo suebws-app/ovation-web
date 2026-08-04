@@ -15,10 +15,17 @@ const designPayload = (values: InvitationFields): UpdateEventInput => ({
   invitationTemplateId: values.templateId,
 });
 
-const detailsPayload = (values: InvitationFields): UpdateEventInput => {
+const detailsPayload = (
+  values: InvitationFields,
+  isEventMode: boolean,
+): UpdateEventInput => {
   const payload: UpdateEventInput = {};
-  if (values.partnerA.trim()) payload.partnerAName = values.partnerA.trim();
-  if (values.partnerB.trim()) payload.partnerBName = values.partnerB.trim();
+  if (isEventMode) {
+    if (values.partnerA.trim()) payload.eventName = values.partnerA.trim();
+  } else {
+    if (values.partnerA.trim()) payload.partnerAName = values.partnerA.trim();
+    if (values.partnerB.trim()) payload.partnerBName = values.partnerB.trim();
+  }
   if (values.weddingDate) payload.weddingDate = values.weddingDate;
   if (values.venue.trim()) payload.venueName = values.venue.trim();
   if (values.place.trim()) payload.venueCity = values.place.trim();
@@ -42,7 +49,10 @@ export type SaveStatus = "idle" | "saving" | "saved" | "error";
 
 type SaveResult = { ok: boolean; error?: string };
 
-export const useSaveInvitationStep = (eventId: string | null | undefined) => {
+export const useSaveInvitationStep = (
+  eventId: string | null | undefined,
+  isEventMode = false,
+) => {
   const [status, setStatus] = useState<SaveStatus>("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -60,7 +70,9 @@ export const useSaveInvitationStep = (eventId: string | null | undefined) => {
           await inviteesClient.bulkReplace(eventId, guestsPayload(values));
         } else {
           const payload =
-            step === "design" ? designPayload(values) : detailsPayload(values);
+            step === "design"
+              ? designPayload(values)
+              : detailsPayload(values, isEventMode);
           if (Object.keys(payload).length === 0) {
             setStatus("saved");
             return { ok: true };
@@ -76,7 +88,7 @@ export const useSaveInvitationStep = (eventId: string | null | undefined) => {
         return { ok: false, error: message };
       }
     },
-    [eventId],
+    [eventId, isEventMode],
   );
 
   return { save, status, error };

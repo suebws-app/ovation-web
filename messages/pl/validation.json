@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Kod pocztowy jest wymagany",
   "validation__shipping_postal_max": "Kod pocztowy jest za długi",
   "validation__shipping_country_required": "Kraj jest wymagany",
-  "validation__shipping_country_format": "Użyj 2-literowego kodu kraju"
+  "validation__shipping_country_format": "Użyj 2-literowego kodu kraju",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

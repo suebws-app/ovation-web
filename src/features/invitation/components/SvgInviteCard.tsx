@@ -10,6 +10,7 @@ type SvgInviteCardSize = "compact" | "large";
 type SvgInviteCardValues = {
   partnerA: string;
   partnerB: string;
+  singleName?: boolean;
   dateLabel?: string;
   time?: string;
   venue?: string;
@@ -136,7 +137,13 @@ export const SvgInviteCard = ({
   } = useFitText<HTMLHeadingElement>({
     maxPx: nameMax,
     minPx: NAME_FIT[size].min,
-    deps: [values.partnerA, values.partnerB, template.monogramAmp, size],
+    deps: [
+      values.partnerA,
+      values.partnerB,
+      values.singleName,
+      template.monogramAmp,
+      size,
+    ],
   });
 
   const eyebrowEl = (
@@ -163,14 +170,20 @@ export const SvgInviteCard = ({
         fontSize: nameFontSize,
       }}
     >
-      {values.partnerA || "Lila"}
-      <span
-        className="mx-2 italic"
-        style={{ color: accent, fontFamily: displayFont }}
-      >
-        {template.monogramAmp}
-      </span>
-      {values.partnerB || "Theo"}
+      {values.singleName ? (
+        values.partnerA
+      ) : (
+        <>
+          {values.partnerA || "Lila"}
+          <span
+            className="mx-2 italic"
+            style={{ color: accent, fontFamily: displayFont }}
+          >
+            {template.monogramAmp}
+          </span>
+          {values.partnerB || "Theo"}
+        </>
+      )}
     </h2>
   );
 

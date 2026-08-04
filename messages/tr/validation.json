@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Posta kodu gerekli",
   "validation__shipping_postal_max": "Posta kodu çok uzun",
   "validation__shipping_country_required": "Ülke gerekli",
-  "validation__shipping_country_format": "2 harfli ülke kodu kullan"
+  "validation__shipping_country_format": "2 harfli ülke kodu kullan",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

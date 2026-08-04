@@ -198,9 +198,15 @@ export const KioskLiveFrame = ({
             className="mt-3.5 w-full max-w-full text-center font-serif leading-none font-semibold tracking-tight break-words"
             style={{ fontSize: "clamp(2.5rem, 12vw, 96px)" }}
           >
-            {event.partnerAName}{" "}
-            <span className="text-primary italic">&amp;</span>{" "}
-            {event.partnerBName}
+            {event.eventName?.trim() ? (
+              event.eventName
+            ) : (
+              <>
+                {event.partnerAName}{" "}
+                <span className="text-primary italic">&amp;</span>{" "}
+                {event.partnerBName}
+              </>
+            )}
           </h1>
           {dateLabel && (
             <div className="type-body-small text-muted-foreground mt-2.5 font-semibold tracking-widest">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { createZipBlob } from "@/lib/media/createZip";
 import { createXlsxBlob, type XlsxSheet } from "@/lib/spreadsheet/createXlsx";
+import { eventDisplayName } from "@/lib/utils/eventFormatters";
 import { messagesClient } from "@/lib/api/messages-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ordersClient } from "@/lib/api/orders-client";
@@ -221,9 +222,7 @@ const fetchAllOrders = async (eventId: string): Promise<Order[]> => {
 };
 
 const buildGuestSheet = (event: Event, guests: GuestRow[]): XlsxSheet => {
-  const coupleName = [event.partnerAName, event.partnerBName]
-    .filter(Boolean)
-    .join(" & ");
+  const coupleName = eventDisplayName(event, event.slug);
   const rows: (string | number | boolean | null)[][] = [];
   rows.push(["Event", coupleName]);
   rows.push(["Date", event.weddingDate ?? ""]);
@@ -259,7 +258,7 @@ const buildGuestSheet = (event: Event, guests: GuestRow[]): XlsxSheet => {
       g.lastAt,
     ]);
   }
-  return { name: coupleName || event.slug || "Event", rows };
+  return { name: coupleName || "Event", rows };
 };
 
 type UseEventDataExportOptions = {

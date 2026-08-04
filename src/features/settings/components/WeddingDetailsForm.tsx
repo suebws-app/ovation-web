@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
+import { Tabs, TabsList, TabsTrigger } from "@ovation/ui/components/Tabs";
 import { Calendar } from "@ovation/ui/components/DatePicker";
 import {
   Popover,
@@ -54,6 +55,8 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
     reset,
   } = useForm<WeddingFields>({
     defaultValues: {
+      mode: event.eventName ? "event" : "couple",
+      eventName: event.eventName ?? "",
       partnerAName: event.partnerAName,
       partnerBName: event.partnerBName,
       weddingDate: eventDateToInput(event.weddingDate),
@@ -69,6 +72,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
 
   const welcomeMessage = useWatch({ control, name: "welcomeMessage" }) ?? "";
   const slugValue = useWatch({ control, name: "slug" }) ?? "";
+  const nameMode = useWatch({ control, name: "mode" });
   const [copied, setCopied] = useState(false);
   const [datePickerOpen, setDatePickerOpen] = useState(false);
 
@@ -85,10 +89,12 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
 
   const onSubmit = async (values: WeddingFields) => {
     setStatus({ kind: "idle" });
+    const isEventMode = values.mode === "event";
     try {
       const { event: updated } = await eventsClient.update(event.id, {
-        partnerAName: values.partnerAName,
-        partnerBName: values.partnerBName,
+        eventName: isEventMode ? values.eventName?.trim() : "",
+        partnerAName: isEventMode ? "" : values.partnerAName,
+        partnerBName: isEventMode ? "" : values.partnerBName,
         weddingDate: values.weddingDate || undefined,
         venueName: values.venueName || undefined,
         venueCity: values.venueCity || undefined,
@@ -96,6 +102,8 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         slug: values.slug || undefined,
       });
       reset({
+        mode: updated.eventName ? "event" : "couple",
+        eventName: updated.eventName ?? "",
         partnerAName: updated.partnerAName,
         partnerBName: updated.partnerBName,
         weddingDate: eventDateToInput(updated.weddingDate),
@@ -118,34 +126,71 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
-        <SettingsField label={t("settings__wedding__partnerA")}>
+      <Controller
+        control={control}
+        name="mode"
+        render={({ field }) => (
+          <Tabs
+            value={field.value}
+            onValueChange={field.onChange}
+            className="mb-5"
+          >
+            <TabsList>
+              <TabsTrigger value="couple">
+                {t("settings__wedding__name_mode_couple")}
+              </TabsTrigger>
+              <TabsTrigger value="event">
+                {t("settings__wedding__name_mode_event")}
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        )}
+      />
+
+      {nameMode === "event" ? (
+        <SettingsField label={t("settings__wedding__event_name")}>
           <Input
             type="text"
-            placeholder={t("settings__wedding__placeholder_partner_a")}
-            aria-invalid={Boolean(errors.partnerAName)}
-            {...register("partnerAName")}
+            placeholder={t("settings__wedding__event_name_placeholder")}
+            aria-invalid={Boolean(errors.eventName)}
+            {...register("eventName")}
           />
-          {errors.partnerAName && (
+          {errors.eventName && (
             <span className="type-caption text-destructive mt-1.5 block">
-              {errors.partnerAName.message}
+              {errors.eventName.message}
             </span>
           )}
         </SettingsField>
-        <SettingsField label={t("settings__wedding__partnerB")}>
-          <Input
-            type="text"
-            placeholder={t("settings__wedding__placeholder_partner_b")}
-            aria-invalid={Boolean(errors.partnerBName)}
-            {...register("partnerBName")}
-          />
-          {errors.partnerBName && (
-            <span className="type-caption text-destructive mt-1.5 block">
-              {errors.partnerBName.message}
-            </span>
-          )}
-        </SettingsField>
-      </div>
+      ) : (
+        <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
+          <SettingsField label={t("settings__wedding__partnerA")}>
+            <Input
+              type="text"
+              placeholder={t("settings__wedding__placeholder_partner_a")}
+              aria-invalid={Boolean(errors.partnerAName)}
+              {...register("partnerAName")}
+            />
+            {errors.partnerAName && (
+              <span className="type-caption text-destructive mt-1.5 block">
+                {errors.partnerAName.message}
+              </span>
+            )}
+          </SettingsField>
+          <SettingsField label={t("settings__wedding__partnerB")}>
+            <Input
+              type="text"
+              placeholder={t("settings__wedding__placeholder_partner_b")}
+              aria-invalid={Boolean(errors.partnerBName)}
+              {...register("partnerBName")}
+            />
+            {errors.partnerBName && (
+              <span className="type-caption text-destructive mt-1.5 block">
+                {errors.partnerBName.message}
+              </span>
+            )}
+          </SettingsField>
+        </div>
+      )}
 
       <div className="mt-5">
         <SettingsField label={t("settings__wedding__date")}>

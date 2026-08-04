@@ -22,7 +22,11 @@ export const eventsClient = {
     }),
 
   slugSuggestions: (
-    params: { partnerAName?: string; partnerBName?: string },
+    params: {
+      eventName?: string;
+      partnerAName?: string;
+      partnerBName?: string;
+    },
     signal?: AbortSignal,
   ) =>
     clientFetch<{ suggestions: string[] }>("/events/slug-suggestions", {

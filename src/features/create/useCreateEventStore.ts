@@ -4,7 +4,11 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { createTTLLocalStorage } from "@/lib/storage/ttlStorage";
 
+export type CreateEventNameMode = "couple" | "event";
+
 export type CreateEventFormData = {
+  nameMode: CreateEventNameMode;
+  eventName: string;
   partner1Name: string;
   partner2Name: string;
   weddingDate: Date | null;
@@ -26,6 +30,8 @@ type CreateEventStore = {
 };
 
 const initialFormData: CreateEventFormData = {
+  nameMode: "couple",
+  eventName: "",
   partner1Name: "",
   partner2Name: "",
   weddingDate: null,
@@ -69,7 +75,7 @@ export const useCreateEventStore = create<CreateEventStore>()(
     }),
     {
       name: STORE_KEY,
-      version: 2,
+      version: 3,
       skipHydration: true,
       storage: createJSONStorage(
         () => createTTLLocalStorage({ ttlMs: TTL_MS }),

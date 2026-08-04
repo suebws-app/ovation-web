@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { Tabs, TabsList, TabsTrigger } from "@ovation/ui/components/Tabs";
+import type { CreateEventNameMode } from "@/features/create/useCreateEventStore";
 import { Calendar } from "@ovation/ui/components/DatePicker";
 import {
   Popover,
@@ -24,10 +26,14 @@ const BLOB_ACCENT =
 const NAME_MAX_LENGTH = 24;
 
 type EventBookFormProps = {
+  nameMode: CreateEventNameMode;
+  eventName: string;
   partnerAName: string;
   partnerBName: string;
   weddingDate: Date | null;
   venuePreview: string;
+  onNameModeChange: (mode: CreateEventNameMode) => void;
+  onEventNameChange: (v: string) => void;
   onPartnerAChange: (v: string) => void;
   onPartnerBChange: (v: string) => void;
   onWeddingDateChange: (d: Date | null) => void;
@@ -40,10 +46,14 @@ type EventBookFormProps = {
 };
 
 export const EventBookForm = ({
+  nameMode,
+  eventName,
   partnerAName,
   partnerBName,
   weddingDate,
   venuePreview,
+  onNameModeChange,
+  onEventNameChange,
   onPartnerAChange,
   onPartnerBChange,
   onWeddingDateChange,
@@ -56,6 +66,10 @@ export const EventBookForm = ({
 }: EventBookFormProps) => {
   const t = useTranslations();
   const [datePickerOpen, setDatePickerOpen] = useState(false);
+  const isEventMode = nameMode === "event";
+  const canContinue = isEventMode
+    ? Boolean(eventName.trim())
+    : Boolean(partnerAName && partnerBName);
 
   const daysUntil = weddingDate
     ? Math.max(
@@ -87,8 +101,9 @@ export const EventBookForm = ({
           </Kicker>
           <div className="relative">
             <BookPreview
-              partner1={partnerAName}
-              partner2={partnerBName}
+              partner1={isEventMode ? eventName : partnerAName}
+              partner2={isEventMode ? "" : partnerBName}
+              singleName={isEventMode}
               date={weddingDate?.toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "short",
@@ -108,7 +123,7 @@ export const EventBookForm = ({
         className="tablet:px-18 tablet:pt-10 tablet:pb-12 desktop:justify-start flex h-full items-start justify-center overflow-y-auto px-5 pt-5 pb-5"
         onSubmit={(e) => {
           e.preventDefault();
-          if (!partnerAName || !partnerBName) return;
+          if (!canContinue) return;
           onContinue?.();
         }}
       >
@@ -124,35 +139,67 @@ export const EventBookForm = ({
             {subtitle}
           </p>
 
-          <div className="tablet:mt-7 tablet:grid-cols-[1fr_auto_1fr] mt-4 grid grid-cols-1 items-end gap-3.5">
-            <div>
-              <Label htmlFor="partner-a" className="mb-2">
-                {t("signup__book_details__partner1")}
+          <Tabs
+            value={nameMode}
+            onValueChange={(next) =>
+              onNameModeChange(next as CreateEventNameMode)
+            }
+            className="tablet:mt-7 mt-4"
+          >
+            <TabsList>
+              <TabsTrigger value="couple">
+                {t("signup__book_details__name_mode_couple")}
+              </TabsTrigger>
+              <TabsTrigger value="event">
+                {t("signup__book_details__name_mode_event")}
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+
+          {isEventMode ? (
+            <div className="mt-3.5">
+              <Label htmlFor="event-name" className="mb-2">
+                {t("signup__book_details__event_name")}
               </Label>
               <Input
-                id="partner-a"
-                value={partnerAName}
+                id="event-name"
+                value={eventName}
                 maxLength={NAME_MAX_LENGTH}
-                onChange={(e) => onPartnerAChange(e.target.value)}
-                placeholder={t("signup__book_details__name_placeholder")}
+                onChange={(e) => onEventNameChange(e.target.value)}
+                placeholder={t("signup__book_details__event_name_placeholder")}
               />
             </div>
-            <span className="text-muted-foreground type-h1 tablet:block hidden pb-2.5 italic">
-              &amp;
-            </span>
-            <div>
-              <Label htmlFor="partner-b" className="mb-2">
-                {t("signup__book_details__partner2")}
-              </Label>
-              <Input
-                id="partner-b"
-                value={partnerBName}
-                maxLength={NAME_MAX_LENGTH}
-                onChange={(e) => onPartnerBChange(e.target.value)}
-                placeholder={t("signup__book_details__name_placeholder")}
-              />
+          ) : (
+            <div className="tablet:grid-cols-[1fr_auto_1fr] mt-3.5 grid grid-cols-1 items-end gap-3.5">
+              <div>
+                <Label htmlFor="partner-a" className="mb-2">
+                  {t("signup__book_details__partner1")}
+                </Label>
+                <Input
+                  id="partner-a"
+                  value={partnerAName}
+                  maxLength={NAME_MAX_LENGTH}
+                  onChange={(e) => onPartnerAChange(e.target.value)}
+                  placeholder={t("signup__book_details__name_placeholder")}
+                />
+              </div>
+              <span className="text-muted-foreground type-h1 tablet:block hidden pb-2.5 italic">
+                &amp;
+              </span>
+              <div>
+                <Label htmlFor="partner-b" className="mb-2">
+                  {t("signup__book_details__partner2")}
+                </Label>
+                <Input
+                  id="partner-b"
+                  value={partnerBName}
+                  maxLength={NAME_MAX_LENGTH}
+                  onChange={(e) => onPartnerBChange(e.target.value)}
+                  placeholder={t("signup__book_details__name_placeholder")}
+                />
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="tablet:mt-6 mt-3">
             <Label className="mb-2 flex items-center gap-1.5">

@@ -258,5 +258,9 @@
   "settings__billing__dre_cancel_btn": "DRE 취소",
   "settings__billing__dre_cancellation_scheduled_body": "취소 예약됨. {date}에 액세스가 종료됩니다.",
   "settings__billing__dre_resume_btn": "DRE 재개",
-  "settings__data__rights__report__email_subject": "데이터 보고서 요청"
+  "settings__data__rights__report__email_subject": "데이터 보고서 요청",
+  "settings__wedding__name_mode_couple": "Couple",
+  "settings__wedding__name_mode_event": "Event name",
+  "settings__wedding__event_name": "Event name",
+  "settings__wedding__event_name_placeholder": "Summer Gala 2026"
 }

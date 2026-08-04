@@ -1,4 +1,5 @@
 import { eventsApi } from "@/lib/api/events";
+import { eventDisplayName } from "@/lib/utils/eventFormatters";
 import { EventContextProvider } from "@/features/events/EventContext";
 import { EventLabelSync } from "@/features/events/EventLabelSync";
 import { LastEventCookieSync } from "@/features/events/LastEventCookieSync";
@@ -21,8 +22,8 @@ export default async function Layout({
     : null;
   const label = event
     ? datePart
-      ? `${event.partnerAName} & ${event.partnerBName} · ${datePart}`
-      : `${event.partnerAName} & ${event.partnerBName}`
+      ? `${eventDisplayName(event, id)} · ${datePart}`
+      : eventDisplayName(event, id)
     : id;
 
   return (

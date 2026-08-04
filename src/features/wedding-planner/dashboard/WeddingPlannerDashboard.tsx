@@ -9,6 +9,7 @@ import { queryKeys } from "@/lib/query/keys";
 import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isPaidPlan } from "@/lib/utils/plan";
+import { eventDisplayName } from "@/lib/utils/eventFormatters";
 import { ViewHeader } from "../components/ViewHeader";
 import { WeddingPlannerDashboardClient } from "./WeddingPlannerDashboardClient";
 
@@ -53,7 +54,7 @@ export const WeddingPlannerDashboard = async () => {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <WeddingPlannerDashboardClient
         eventId={event.id}
-        partners={`${event.partnerAName} & ${event.partnerBName}`}
+        partners={eventDisplayName(event)}
         weddingDate={event.weddingDate}
         venue={event.venueName}
         city={event.venueCity}

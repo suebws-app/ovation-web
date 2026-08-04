@@ -6,6 +6,7 @@ import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Input } from "@ovation/ui/components/Input";
+import { PasswordInput } from "@ovation/ui/components/PasswordInput";
 import { Label } from "@ovation/ui/components/Label";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Separator } from "@ovation/ui/components/Separator";
@@ -188,12 +189,13 @@ export const SignInForm = ({ initialFailCount }: SignInFormProps) => {
             <Label htmlFor="signin-password" className="mb-2">
               {t("auth__password")}
             </Label>
-            <Input
+            <PasswordInput
               id="signin-password"
-              type="password"
               autoComplete="current-password"
               placeholder={t("auth__signin__password_placeholder")}
               aria-invalid={Boolean(errors.password)}
+              showLabel={t("auth__password_show")}
+              hideLabel={t("auth__password_hide")}
               {...register("password")}
             />
             {errors.password && (

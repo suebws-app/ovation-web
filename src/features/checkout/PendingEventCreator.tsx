@@ -9,6 +9,7 @@ import { ApiError } from "@/lib/api/client";
 const STORAGE_KEY = "ovation_pending_event_data";
 
 type PendingEventData = {
+  eventName?: string | null;
   partnerAName: string;
   partnerBName: string;
   weddingDate: string | null;
@@ -80,6 +81,7 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
       for (let attempt = 0; attempt < maxAttempts && !cancelled; attempt += 1) {
         try {
           const { event } = await eventsClient.create({
+            eventName: data.eventName ?? undefined,
             partnerAName: data.partnerAName,
             partnerBName: data.partnerBName,
             weddingDate: data.weddingDate ?? undefined,

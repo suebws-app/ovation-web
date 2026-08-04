@@ -22,7 +22,7 @@ import {
   useEventDataExport,
   type ExportKind,
 } from "../hooks/useEventDataExport";
-import { coupleNameOf } from "@/lib/utils/eventFormatters";
+import { eventDisplayName } from "@/lib/utils/eventFormatters";
 
 type IndividualEntry = {
   titleKey: string;
@@ -79,8 +79,7 @@ export const SettingsDataSection = ({
   );
 
   const eventLabel = selectedEvent
-    ? coupleNameOf(selectedEvent.partnerAName, selectedEvent.partnerBName) ||
-      selectedEvent.slug
+    ? eventDisplayName(selectedEvent, selectedEvent.slug)
     : null;
 
   const savedScrollRef = useRef(0);
@@ -170,7 +169,7 @@ export const SettingsDataSection = ({
               <SelectContent position="popper" className="max-h-72">
                 {events.map((ev) => (
                   <SelectItem key={ev.id} value={ev.id}>
-                    {coupleNameOf(ev.partnerAName, ev.partnerBName) || ev.slug}
+                    {eventDisplayName(ev, ev.slug)}
                     {ev.weddingDate ? ` · ${ev.weddingDate}` : ""}
                   </SelectItem>
                 ))}

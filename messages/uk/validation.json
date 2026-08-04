@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Введіть поштовий індекс",
   "validation__shipping_postal_max": "Поштовий індекс задовгий",
   "validation__shipping_country_required": "Виберіть країну",
-  "validation__shipping_country_format": "Використовуйте 2-літерний код країни"
+  "validation__shipping_country_format": "Використовуйте 2-літерний код країни",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

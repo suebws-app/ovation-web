@@ -165,6 +165,7 @@ export type Event = {
   id: string;
   ownerUserId: string;
   slug: string;
+  eventName: string | null;
   partnerAName: string;
   partnerBName: string;
   weddingDate: string | null;
@@ -264,8 +265,9 @@ export type MessageDetail = {
 };
 
 export type CreateEventInput = {
-  partnerAName: string;
-  partnerBName: string;
+  eventName?: string;
+  partnerAName?: string;
+  partnerBName?: string;
   weddingDate?: string;
   venueName?: string;
   venueCity?: string;
@@ -273,6 +275,7 @@ export type CreateEventInput = {
 };
 
 export type UpdateEventInput = Partial<CreateEventInput> & {
+  eventName?: string | null;
   welcomeMessage?: string;
   themeColor?: string;
   invitationTemplateId?: string;
@@ -363,6 +366,7 @@ export type PublicKioskSettings = {
 };
 
 export type PublicEvent = {
+  eventName: string | null;
   partnerAName: string;
   partnerBName: string;
   weddingDate: string | null;
@@ -379,6 +383,7 @@ export type PublicEvent = {
 export type PublicInvitation = {
   event: {
     slug: string;
+    eventName: string | null;
     partnerAName: string;
     partnerBName: string;
     weddingDate: string | null;

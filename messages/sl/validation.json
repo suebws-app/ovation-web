@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Poštna številka je obvezna",
   "validation__shipping_postal_max": "Poštna številka je predolga",
   "validation__shipping_country_required": "Država je obvezna",
-  "validation__shipping_country_format": "Uporabi 2-črkovno kodo države"
+  "validation__shipping_country_format": "Uporabi 2-črkovno kodo države",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

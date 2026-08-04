@@ -21,10 +21,12 @@ export const ProEventRow = async ({ event }: ProEventRowProps) => {
     <div className="border-border flex items-center justify-between border-b px-6 py-4 last:border-b-0">
       <div className="flex flex-col gap-0.5">
         <span className="type-body font-medium">
-          {t("app__pro__events__partner_names", {
-            a: event.partnerAName,
-            b: event.partnerBName,
-          })}
+          {event.eventName?.trim()
+            ? event.eventName
+            : t("app__pro__events__partner_names", {
+                a: event.partnerAName,
+                b: event.partnerBName,
+              })}
         </span>
         <span className="type-caption text-muted-foreground">
           {weddingDate}

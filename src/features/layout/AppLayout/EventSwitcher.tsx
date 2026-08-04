@@ -70,10 +70,15 @@ export const EventSwitcher = ({
     return events.filter((event) => {
       const a = event.partnerAName?.toLowerCase() ?? "";
       const b = event.partnerBName?.toLowerCase() ?? "";
+      const name = event.eventName?.toLowerCase() ?? "";
       const venue = event.venueName?.toLowerCase() ?? "";
       const city = event.venueCity?.toLowerCase() ?? "";
       return (
-        a.includes(q) || b.includes(q) || venue.includes(q) || city.includes(q)
+        a.includes(q) ||
+        b.includes(q) ||
+        name.includes(q) ||
+        venue.includes(q) ||
+        city.includes(q)
       );
     });
   }, [events, query]);
