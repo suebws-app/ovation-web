@@ -15,10 +15,20 @@ import {
   useInvitees,
   useSendInvitationsToAll,
 } from "@/lib/query/inviteesQueries";
-import { InviteeImportModal } from "./components/InviteeImportModal";
+import dynamic from "next/dynamic";
 import { InviteeList } from "./components/InviteeList";
 import { InviteePreviewPane } from "./components/InviteePreviewPane";
-import { InvitePreviewModal } from "./components/InvitePreviewModal";
+
+const InviteeImportModal = dynamic(
+  () =>
+    import("./components/InviteeImportModal").then((m) => m.InviteeImportModal),
+  { ssr: false },
+);
+const InvitePreviewModal = dynamic(
+  () =>
+    import("./components/InvitePreviewModal").then((m) => m.InvitePreviewModal),
+  { ssr: false },
+);
 
 type InviteesPageClientProps = {
   event: Event;

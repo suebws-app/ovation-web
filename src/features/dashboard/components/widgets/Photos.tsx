@@ -7,9 +7,17 @@ import { ImageIcon } from "@ovation/icons/ImageIcon";
 import { Card, CardContent } from "@ovation/ui/components/Card";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import dynamic from "next/dynamic";
 import type { GalleryItem } from "@/lib/api/types";
-import { MediaPreviewDialog } from "@/features/keepsakes/customizer/MediaPreviewDialog";
 import { PhotosTile } from "./PhotosTile";
+
+const MediaPreviewDialog = dynamic(
+  () =>
+    import("@/features/keepsakes/customizer/MediaPreviewDialog").then(
+      (m) => m.MediaPreviewDialog,
+    ),
+  { ssr: false },
+);
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;

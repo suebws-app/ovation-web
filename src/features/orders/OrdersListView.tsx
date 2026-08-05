@@ -3,11 +3,19 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import dynamic from "next/dynamic";
 import { FeaturePageLayout } from "@/components/FeaturePageLayout";
 import { PageHeading } from "@/components/PageHeading";
 import { useOrdersList } from "@/lib/query/ordersQueries";
-import { OrderDetailModal } from "@/features/keepsakes/components/OrderDetailModal";
 import type { Order } from "@/lib/api/types";
+
+const OrderDetailModal = dynamic(
+  () =>
+    import("@/features/keepsakes/components/OrderDetailModal").then(
+      (m) => m.OrderDetailModal,
+    ),
+  { ssr: false },
+);
 import { statusKey } from "@/features/checkout/orderHelpers";
 import { OrderCard } from "./OrderCard";
 import { OrdersEmptyState } from "./OrdersEmptyState";

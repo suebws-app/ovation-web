@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
 import { eventsApi } from "@/lib/api/events";
-import { messagesApi } from "@/lib/api/messages";
+import { mediaApi } from "@/lib/api/media";
 import { queryKeys } from "@/lib/query/keys";
 import { PhotosEmptyState } from "./components/PhotosEmptyState";
 import { PhotosPageClient } from "./PhotosPageClient";
@@ -21,15 +21,19 @@ export const EventPhotosPage = async ({
 
   if (!event) return <PhotosEmptyState />;
 
-  const initialQuery = {
-    filter: "with_photo",
+  const initialGalleryQuery = {
+    type: "all",
+    filter: "all",
     sort: "newest",
     limit: 20,
     includeOwnerUploads: true,
   } as const;
 
-  const [initialMessages, stats] = await Promise.all([
-    messagesApi.list(event.id, initialQuery),
+  const [initialGallery, stats] = await Promise.all([
+    mediaApi.gallery(event.id, initialGalleryQuery).catch((error) => {
+      if (ApiError.isApiError(error) && error.status === 404) return null;
+      throw error;
+    }),
     eventsApi.stats(event.id, { includeOwnerUploads: true }).catch((error) => {
       if (ApiError.isApiError(error) && error.status === 404) return null;
       throw error;
@@ -37,13 +41,15 @@ export const EventPhotosPage = async ({
   ]);
 
   const queryClient = new QueryClient();
-  queryClient.setQueryData(
-    queryKeys.messages.infiniteList(event.id, initialQuery),
-    {
-      pages: [initialMessages],
-      pageParams: [null],
-    },
-  );
+  if (initialGallery) {
+    queryClient.setQueryData(
+      queryKeys.gallery.infiniteList(event.id, initialGalleryQuery),
+      {
+        pages: [initialGallery],
+        pageParams: [null],
+      },
+    );
+  }
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

@@ -36,7 +36,6 @@ export const useMessagesCount = (
     queryKey: queryKeys.messages.count(eventId, input),
     queryFn: () => messagesClient.count(eventId, input),
     enabled: Boolean(eventId),
-    staleTime: 30_000,
   });
 
 export const useInfiniteMessagesList = (

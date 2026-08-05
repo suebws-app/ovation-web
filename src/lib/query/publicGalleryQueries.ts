@@ -27,6 +27,5 @@ export const usePublicInfiniteGallery = (
     initialPageParam: null as string | null,
     getNextPageParam: (last) => last.nextCursor ?? null,
     enabled: Boolean(slug && code),
-    staleTime: 30_000,
     retry: false,
   });

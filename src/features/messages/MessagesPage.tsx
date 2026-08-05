@@ -17,7 +17,7 @@ export const MessagesPage = async () => {
     return <MessagesEmptyState />;
   }
 
-  const initialQuery = { filter: "all", sort: "newest", limit: 50 } as const;
+  const initialQuery = { filter: "all", sort: "newest", limit: 20 } as const;
   const [initialMessages, stats] = await Promise.all([
     messagesApi.list(event.id, initialQuery),
     eventsApi.stats(event.id).catch((error) => {
@@ -28,8 +28,11 @@ export const MessagesPage = async () => {
 
   const queryClient = new QueryClient();
   queryClient.setQueryData(
-    queryKeys.messages.list(event.id, initialQuery),
-    initialMessages,
+    queryKeys.messages.infiniteList(event.id, initialQuery),
+    {
+      pages: [initialMessages],
+      pageParams: [null],
+    },
   );
 
   return (

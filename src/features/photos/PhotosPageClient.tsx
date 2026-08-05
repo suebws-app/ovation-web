@@ -11,10 +11,15 @@ import {
 } from "@/lib/query/galleryQueries";
 import type { EventStats } from "@/lib/api/types";
 
+import dynamic from "next/dynamic";
 import { PhotoBatchFooter } from "./components/PhotoBatchFooter";
 import { PhotoGallerySkeleton } from "./skeletons/PhotoGallerySkeleton";
 import { PhotoGallery } from "./components/PhotoGallery";
-import { PhotoLightbox } from "./components/PhotoLightbox";
+
+const PhotoLightbox = dynamic(
+  () => import("./components/PhotoLightbox").then((m) => m.PhotoLightbox),
+  { ssr: false },
+);
 import { PhotosDirectoryEmpty } from "./components/PhotosDirectoryEmpty";
 import { PhotosFilterRail } from "./components/PhotosFilterRail";
 import { PhotoUploadButton } from "./components/PhotoUploadButton";

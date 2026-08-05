@@ -67,6 +67,10 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
     inlineCss: true,
+    staleTimes: {
+      dynamic: 300,
+      static: 600,
+    },
     optimizePackageImports: [
       "@ovation/ui",
       "@ovation/icons",
