@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState, startTransition } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { cn } from "@ovation/ui/utils/cn";
 import { Link, useRouter } from "@/i18n/navigation";
+import { toast } from "@/components/Toaster";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
@@ -44,7 +45,6 @@ export const ComposeClient = ({
   const video = useGuestSubmissionStore((s) => s.video);
   const photos = useGuestSubmissionStore((s) => s.photos);
   const note = useGuestSubmissionStore((s) => s.note);
-  const [stepError, setStepError] = useState<string | null>(null);
 
   useEffect(() => {
     setSlug(slug);
@@ -61,16 +61,11 @@ export const ComposeClient = ({
   const handleContinue = () => {
     if (submissionClosed) return;
     if (!hasAnyContent) {
-      setStepError(t("guest__compose__error_missing_content"));
+      toast.error(t("guest__compose__error_missing_content"));
       return;
     }
-    setStepError(null);
     router.push(nextHref);
   };
-
-  useEffect(() => {
-    if (hasAnyContent) startTransition(() => setStepError(null));
-  }, [hasAnyContent]);
 
   return (
     <div className="flex flex-1 flex-col">
@@ -107,14 +102,9 @@ export const ComposeClient = ({
           {capturePhoto && <PhotoCaptureCard />}
           <NoteCaptureCard />
         </fieldset>
-        {stepError && (
-          <p className="type-body-small text-destructive" role="alert">
-            {stepError}
-          </p>
-        )}
       </div>
-      <StickyCTA layout="split" caption={t("guest__compose__caption")}>
-        <div className="tablet:w-auto flex w-full gap-2">
+      <StickyCTA layout="split" className="bg-card shadow-top">
+        <div className="tablet:w-auto flex w-full justify-end gap-2">
           {backHref && (
             <Button
               asChild
@@ -127,7 +117,7 @@ export const ComposeClient = ({
           )}
           <Button
             type="button"
-            className="tablet:w-auto tablet:px-10 flex-1 rounded-full shadow-lg"
+            className="tablet:w-auto tablet:px-10 flex-1 shadow-lg"
             onClick={handleContinue}
             disabled={submissionClosed}
           >

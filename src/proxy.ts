@@ -31,8 +31,6 @@ const setRegionConsentCookie = (
 
 const intlMiddleware = createMiddleware(routing);
 
-const PREVIEW_COOKIE = "preview_access";
-
 const PROTECTED_PREFIXES = [
   "/home",
   "/analytics",
@@ -92,70 +90,14 @@ const matchesPrefix = (pathname: string, prefixes: string[]): boolean =>
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
   );
 
-const hmacHex = async (value: string, secret: string): Promise<string> => {
-  const enc = new TextEncoder();
-  const key = await crypto.subtle.importKey(
-    "raw",
-    enc.encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    ["sign"],
-  );
-  const sig = await crypto.subtle.sign("HMAC", key, enc.encode(value));
-  return Array.from(new Uint8Array(sig))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
-};
-
 const generateNonce = (): string =>
   btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(16))));
-
-const timingSafeEqual = (a: string, b: string): boolean => {
-  if (a.length !== b.length) return false;
-  const aBytes = new TextEncoder().encode(a);
-  const bBytes = new TextEncoder().encode(b);
-  let diff = 0;
-  for (let i = 0; i < aBytes.length; i++) diff |= aBytes[i] ^ bBytes[i];
-  return diff === 0;
-};
 
 export const proxy = async (request: NextRequest) => {
   const { pathname } = request.nextUrl;
 
-  const isComingSoonPage = pathname === "/coming-soon";
-  const isComingSoonApi = pathname.startsWith("/api/coming-soon");
-
-  if (
-    process.env.COMING_SOON_ENABLED === "true" &&
-    !isComingSoonPage &&
-    !isComingSoonApi
-  ) {
-    const password = process.env.COMING_SOON_PASSWORD;
-    const secret = process.env.AUTH_COOKIE_SECRET;
-    if (password && secret) {
-      const token = request.cookies.get(PREVIEW_COOKIE)?.value ?? "";
-      const expected = await hmacHex(password, secret);
-      if (!timingSafeEqual(token, expected)) {
-        const url = request.nextUrl.clone();
-        url.pathname = "/coming-soon";
-        return NextResponse.redirect(url);
-      }
-    }
-  }
-
-  if (
-    isComingSoonApi ||
-    pathname.startsWith("/api/") ||
-    pathname.startsWith("/monitoring")
-  ) {
+  if (pathname.startsWith("/api/") || pathname.startsWith("/monitoring")) {
     return NextResponse.next();
-  }
-
-  if (isComingSoonPage) {
-    const response = NextResponse.next();
-    response.headers.set("Content-Security-Policy", buildCsp());
-    setRegionConsentCookie(request, response);
-    return response;
   }
 
   if (

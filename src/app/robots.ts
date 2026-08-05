@@ -9,7 +9,6 @@ import { appUrl } from "@/lib/seo/urls";
 const PRIVATE_PATHS = [
   "/api/",
   "/monitoring",
-  "/coming-soon",
   "/checkout/",
   "/plans",
   "/create/",

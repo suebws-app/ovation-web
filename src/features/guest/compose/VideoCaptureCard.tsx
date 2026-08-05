@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { VideoIcon } from "@ovation/icons/VideoIcon";
+import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
+import { videoMimeFromType } from "@/lib/utils/videoMime";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 import { CaptureCardHeader } from "./CaptureCardHeader";
 import { VideoRecorderModal } from "./VideoRecorderModal";
@@ -33,6 +35,8 @@ export const VideoCaptureCard = ({
     setVideo(null);
     setRecorderOpen(true);
   };
+
+  console.log({ videoUrl: video?.url });
 
   return (
     <div className="bg-card/70 rounded-16 tablet:p-5 p-4">
@@ -66,11 +70,13 @@ export const VideoCaptureCard = ({
 
       {video && (
         <div className="mt-4 flex flex-col gap-3">
-          <video
+          <LazyVideoPlayer
+            key={video.url}
             src={video.url}
-            controls
-            playsInline
-            className="rounded-12 aspect-video w-full bg-black"
+            type={videoMimeFromType(video.mimeType)}
+            load="eager"
+            preload="metadata"
+            className="rounded-12 aspect-video w-full"
           />
           <div className="flex justify-end gap-2">
             <Button variant="outline" onClick={openRecorder}>

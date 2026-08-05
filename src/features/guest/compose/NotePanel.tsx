@@ -20,7 +20,7 @@ export const NotePanel = () => {
           placeholder={t("guest__record__note__placeholder")}
           rows={5}
           maxLength={MAX_LENGTH}
-          className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring tablet:text-sm w-full resize-none rounded-lg border px-3 py-2 font-serif text-base leading-relaxed focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring tablet:text-sm w-full resize-none rounded-lg border px-3 py-2 text-base leading-relaxed focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
         <div className="type-caption text-muted-foreground mt-2 flex justify-end">
           {t("guest__record__note__counter", {

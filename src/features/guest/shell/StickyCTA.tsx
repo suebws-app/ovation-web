@@ -20,11 +20,16 @@ export const StickyCTA = ({
     return (
       <div
         className={cn(
-          "from-background small-desktop:sticky small-desktop:bottom-0 tablet:px-8 small-desktop:px-10 z-10 bg-gradient-to-t to-transparent px-5 pt-9 pb-6",
+          "bg-card tablet:px-8 small-desktop:px-10 sticky bottom-0 z-10 px-5 pt-9 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-sm",
           className,
         )}
       >
-        <div className="tablet:flex-row tablet:items-center tablet:justify-between flex flex-col-reverse gap-3">
+        <div
+          className={cn(
+            "tablet:flex-row tablet:items-center flex flex-col-reverse gap-3",
+            caption ? "tablet:justify-between" : "tablet:justify-end",
+          )}
+        >
           {caption && (
             <p className="type-caption text-muted-foreground tablet:text-left text-center">
               {caption}
@@ -39,7 +44,7 @@ export const StickyCTA = ({
   return (
     <div
       className={cn(
-        "from-background small-desktop:sticky small-desktop:bottom-0 tablet:px-8 small-desktop:px-10 z-10 bg-gradient-to-t to-transparent px-5 pt-9 pb-6",
+        "bg-card tablet:px-8 small-desktop:px-10 sticky bottom-0 z-10 px-5 pt-9 pb-[max(1.5rem,env(safe-area-inset-bottom))]",
         className,
       )}
     >

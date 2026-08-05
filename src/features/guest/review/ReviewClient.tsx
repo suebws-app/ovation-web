@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
@@ -11,10 +11,13 @@ import { MicIcon } from "@ovation/icons/MicIcon";
 import { VideoIcon } from "@ovation/icons/VideoIcon";
 import { MessageSquareIcon } from "@ovation/icons/MessageSquareIcon";
 import { CameraIcon } from "@ovation/icons/CameraIcon";
+import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
+import { toast } from "@/components/Toaster";
 import { Link } from "@/i18n/navigation";
 import { ApiError } from "@/lib/api/client";
 import { publicClient, type UploadMediaItem } from "@/lib/api/public-client";
 import { uploadToTarget, UploadError } from "@/lib/media/uploadToTarget";
+import { videoMimeFromType } from "@/lib/utils/videoMime";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
@@ -102,8 +105,9 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
   const [submitting, setSubmitting] = useState(false);
   const [tasks, setTasks] = useState<UploadTask[]>([]);
   const [phase, setPhase] = useState<SubmitPhase>("uploading");
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [nameInvalid, setNameInvalid] = useState(false);
   const [idempotencyKey] = useState(newIdempotencyKey);
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   const hasFailedTask = tasks.some((t) => t.failed);
   const overallPct =
@@ -132,13 +136,17 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
   };
 
   const handleSubmit = async () => {
-    setSubmitError(null);
     if (guestName.trim().length === 0) {
-      setSubmitError(t("guest__review__error_missing_name"));
+      setNameInvalid(true);
+      nameInputRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+      nameInputRef.current?.focus({ preventScroll: true });
       return;
     }
     if (!hasAnyContent) {
-      setSubmitError(t("guest__review__error_missing_content"));
+      toast.error(t("guest__review__error_missing_content"));
       return;
     }
 
@@ -270,7 +278,7 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
           : `/g/${slug}/thank-you`;
       router.replace(successHref);
     } catch (error) {
-      setSubmitError(mapSubmitError(error, t));
+      toast.error(mapSubmitError(error, t));
       setSubmitting(false);
     }
   };
@@ -295,14 +303,36 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
               {t("guest__record__name_label")}
             </Label>
             <Input
+              ref={nameInputRef}
               id="guest-name"
               type="text"
               autoComplete="name"
               placeholder={t("guest__record__name_placeholder")}
               value={guestName}
-              onChange={(e) => setGuestName(e.target.value)}
+              onChange={(e) => {
+                setGuestName(e.target.value);
+                if (nameInvalid && e.target.value.trim().length > 0) {
+                  setNameInvalid(false);
+                }
+              }}
               disabled={submitting}
+              aria-invalid={nameInvalid}
+              aria-describedby={nameInvalid ? "guest-name-error" : undefined}
+              className={
+                nameInvalid
+                  ? "border-destructive ring-destructive ring-2"
+                  : undefined
+              }
             />
+            {nameInvalid && (
+              <p
+                id="guest-name-error"
+                role="alert"
+                className="type-body-small text-destructive mt-2"
+              >
+                {t("guest__review__error_missing_name")}
+              </p>
+            )}
           </CardContent>
         </Card>
 
@@ -327,11 +357,13 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
                 duration: formatTime(video.durationSec),
               })}
               preview={
-                <video
+                <LazyVideoPlayer
+                  key={video.url}
                   src={video.url}
-                  controls
-                  playsInline
-                  className="rounded-12 aspect-video w-full bg-black"
+                  type={videoMimeFromType(video.mimeType)}
+                  load="eager"
+                  preload="metadata"
+                  className="rounded-12 aspect-video w-full"
                 />
               }
             />
@@ -342,7 +374,7 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
               iconClassName="bg-secondary"
               title={t("guest__compose__note_title")}
               preview={
-                <p className="bg-background/60 type-body rounded-12 p-3.5 font-serif leading-relaxed italic">
+                <p className="bg-background/60 type-body rounded-12 p-3.5 leading-relaxed">
                   {note}
                 </p>
               }
@@ -401,15 +433,6 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
             </CardContent>
           </Card>
         )}
-
-        {submitError && (
-          <p
-            className="type-body-small text-destructive animate-slide-up"
-            role="alert"
-          >
-            {submitError}
-          </p>
-        )}
       </div>
       <StickyCTA layout="split" caption={t("guest__record__caption")}>
         <div className="tablet:w-auto flex w-full gap-2">
@@ -418,7 +441,7 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
           </Button>
           <Button
             type="button"
-            className="tablet:px-10 flex-1 whitespace-nowrap shadow-lg"
+            className="tablet:w-auto tablet:px-10 flex-1 whitespace-nowrap shadow-lg"
             disabled={submitting}
             onClick={handleSubmit}
           >

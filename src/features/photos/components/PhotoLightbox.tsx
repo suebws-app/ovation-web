@@ -12,14 +12,8 @@ import { cn } from "@ovation/ui/utils/cn";
 import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
 import { useUpdateMedia } from "@/lib/query/galleryQueries";
 import { safeHttpUrl } from "@/lib/utils/safe-url";
+import { videoMimeFromUrl } from "@/lib/utils/videoMime";
 import type { PhotoView } from "../adapters";
-
-type VideoMime = "video/mp4" | "video/webm";
-
-const mimeFromUrl = (url: string): VideoMime => {
-  const ext = extFromUrl(url, "mp4");
-  return ext === "webm" ? "video/webm" : "video/mp4";
-};
 
 type PhotoLightboxProps = {
   eventId: string;
@@ -266,7 +260,7 @@ export const PhotoLightbox = ({
             <LazyVideoPlayer
               key={fullUrl}
               src={fullUrl}
-              type={mimeFromUrl(fullUrl)}
+              type={videoMimeFromUrl(fullUrl)}
               load="eager"
               preload="metadata"
               className="max-h-full max-w-full"

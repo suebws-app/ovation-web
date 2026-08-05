@@ -13,8 +13,9 @@ const INTERACTION_EVENTS: (keyof WindowEventMap)[] = [
 ];
 const CRISP_SCRIPT_ID = "crisp-widget";
 
+const ALWAYS_HIDDEN_PATH_PREFIXES = ["/g"];
+
 const HIDDEN_PATH_PREFIXES = [
-  "/g",
   "/i",
   "/kiosk",
   "/redeem",
@@ -23,13 +24,18 @@ const HIDDEN_PATH_PREFIXES = [
   "/forgot-password",
   "/reset-password",
   "/verify-email",
-  "/coming-soon",
 ];
 
-const isPathHidden = (pathname: string) =>
-  HIDDEN_PATH_PREFIXES.some(
+const matchesPrefix = (pathname: string, prefixes: string[]) =>
+  prefixes.some(
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
   );
+
+const isPathAlwaysHidden = (pathname: string) =>
+  matchesPrefix(pathname, ALWAYS_HIDDEN_PATH_PREFIXES);
+
+const isPathHidden = (pathname: string) =>
+  matchesPrefix(pathname, HIDDEN_PATH_PREFIXES);
 
 type CrispQueue = { push: (command: unknown[]) => void };
 
@@ -62,7 +68,9 @@ export const CrispChat = ({ websiteId }: { websiteId: string }) => {
   const { data: session } = useSession();
 
   const isAuthenticated = !!session?.user;
-  const shouldShow = isAuthenticated || !isPathHidden(pathname);
+  const shouldShow =
+    !isPathAlwaysHidden(pathname) &&
+    (isAuthenticated || !isPathHidden(pathname));
 
   useEffect(() => {
     if (!shouldShow || scriptLoadedRef.current) return;
