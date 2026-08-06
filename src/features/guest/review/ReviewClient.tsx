@@ -631,7 +631,7 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
                     duration: formatTime(video.durationSec),
                   })}
                   preview={
-                    <div className="rounded-12 bg-muted tablet:max-h-80 relative max-h-56 w-full overflow-hidden">
+                    <div className="rounded-12 bg-muted block aspect-video w-full overflow-hidden">
                       <LazyVideoPlayer
                         key={video.url}
                         src={video.url}
