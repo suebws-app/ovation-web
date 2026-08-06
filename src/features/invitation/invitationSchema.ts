@@ -15,15 +15,18 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const getInvitationSchema = (t: T) =>
   z.object({
     templateId: z.string().min(1),
+    // Optional explicit event/invitation title (shown alone when set). Used by
+    // single-host types (corporate, memorial, …). Empty string means "unset".
+    eventName: z.string().trim().max(80),
     partnerA: z
       .string()
       .trim()
       .min(1, t("validation__partner_name_required"))
       .max(INVITATION_NAME_MAX, t("validation__partner_name_max")),
+    // Second host is optional (single-host event types have none).
     partnerB: z
       .string()
       .trim()
-      .min(1, t("validation__partner_name_required"))
       .max(INVITATION_NAME_MAX, t("validation__partner_name_max")),
     weddingDate: z.string(),
     time: z.string(),

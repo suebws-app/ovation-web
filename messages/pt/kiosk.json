@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Ligação perdida",
   "kiosk__offline__body": "O quiosque precisa de uma ligação à internet para aceitar novas mensagens. Por favor, restabeleça a ligação para continuar.",
   "kiosk__offline__hint": "A reconectar automaticamente…",
-  "kiosk__live__welcome_overline": "Está no casamento de",
+  "kiosk__live__welcome_overline": "Está no {eventNoun} de",
   "kiosk__live__tap_to_record": "Toque para deixar uma mensagem",
   "kiosk__live__closed": "Submissões encerradas",
   "kiosk__live__caption": "Até {seconds} segundos · áudio · fotografia opcional",

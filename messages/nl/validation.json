@@ -6,7 +6,7 @@
   "validation__password_max": "Wachtwoord is te lang",
   "validation__name_required": "Vul je naam in",
   "validation__name_max": "Naam is te lang",
-  "validation__partner_name_required": "Naam partner is verplicht",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Naam is te lang",
   "validation__terms_required": "Accepteer de voorwaarden",
   "validation__confirm_password_required": "Bevestig je wachtwoord",

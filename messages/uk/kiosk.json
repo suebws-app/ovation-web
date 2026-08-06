@@ -17,7 +17,7 @@
   "kiosk__offline__title": "З'єднання втрачено",
   "kiosk__offline__body": "Для прийому нових повідомлень кіоску потрібне інтернет-з'єднання. Будь ласка, відновіть з'єднання, щоб продовжити.",
   "kiosk__offline__hint": "Автоматичне перепідключення…",
-  "kiosk__live__welcome_overline": "Ви на весіллі",
+  "kiosk__live__welcome_overline": "Це {eventNoun}, куди вас запросили:",
   "kiosk__live__tap_to_record": "Торкніться, щоб залишити повідомлення",
   "kiosk__live__closed": "Прийом повідомлень закрито",
   "kiosk__live__caption": "До {seconds} секунд · аудіо · фото за бажанням",

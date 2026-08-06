@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Připojení ztraceno",
   "kiosk__offline__body": "Kiosek potřebuje připojení k internetu, aby přijímal nové zprávy. Obnov připojení a pokračuj.",
   "kiosk__offline__hint": "Automatické obnovování připojení…",
-  "kiosk__live__welcome_overline": "Jsi na svatbě",
+  "kiosk__live__welcome_overline": "Vítá tě {eventNoun}",
   "kiosk__live__tap_to_record": "Klepnutím zanech zprávu",
   "kiosk__live__closed": "Příspěvky uzavřeny",
   "kiosk__live__caption": "Až {seconds} sekund · zvuk · fotografie volitelná",

@@ -11,6 +11,7 @@ const NAMESPACES = [
   "dashboard",
   "errors",
   "event",
+  "eventTypes",
   "guest",
   "guests",
   "help",

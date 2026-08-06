@@ -20,6 +20,7 @@ import { SettingsIcon } from "@ovation/icons/SettingsIcon";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { eventLabel } from "@/lib/utils/eventFormatters";
+import { eventDateOf } from "@/lib/event-types";
 import { formatYear } from "@/lib/utils/formatDate";
 import { stripLocale } from "@/lib/utils/routing";
 import type { Event } from "@/lib/api/types";
@@ -61,17 +62,18 @@ export const EventSwitcher = ({
     ? eventLabel(activeEvent, fallback)
     : t("event_switcher__placeholder");
   const triggerSubLabel = activeEvent
-    ? (formatYear(activeEvent.weddingDate) ?? t("event_switcher__active"))
+    ? (formatYear(eventDateOf(activeEvent)) ?? t("event_switcher__active"))
     : t("event_switcher__all_events");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return events;
     return events.filter((event) => {
-      const a = event.partnerAName?.toLowerCase() ?? "";
-      const b = event.partnerBName?.toLowerCase() ?? "";
-      const venue = event.venueName?.toLowerCase() ?? "";
-      const city = event.venueCity?.toLowerCase() ?? "";
+      const a = (event.hostAName ?? event.partnerAName)?.toLowerCase() ?? "";
+      const b = (event.hostBName ?? event.partnerBName)?.toLowerCase() ?? "";
+      const venue =
+        (event.locationName ?? event.venueName)?.toLowerCase() ?? "";
+      const city = (event.locationCity ?? event.venueCity)?.toLowerCase() ?? "";
       return (
         a.includes(q) || b.includes(q) || venue.includes(q) || city.includes(q)
       );

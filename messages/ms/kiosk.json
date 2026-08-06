@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Sambungan terputus",
   "kiosk__offline__body": "Kiosk memerlukan sambungan internet untuk menerima mesej baharu. Sila sambung semula untuk meneruskan.",
   "kiosk__offline__hint": "Menyambung semula secara automatik…",
-  "kiosk__live__welcome_overline": "Anda berada di perkahwinan",
+  "kiosk__live__welcome_overline": "Anda berada di {eventNoun}",
   "kiosk__live__tap_to_record": "Ketuk untuk meninggalkan mesej",
   "kiosk__live__closed": "Penyerahan ditutup",
   "kiosk__live__caption": "Sehingga {seconds} saat · audio · foto pilihan",

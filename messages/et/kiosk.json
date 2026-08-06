@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Ühendus katkes",
   "kiosk__offline__body": "Kioskil on uute sõnumite vastuvõtmiseks vaja internetiühendust. Palun ühendage uuesti, et jätkata.",
   "kiosk__offline__hint": "Automaatne uuesti ühendamine…",
-  "kiosk__live__welcome_overline": "Olete pulmas",
+  "kiosk__live__welcome_overline": "See on {eventNoun} —",
   "kiosk__live__tap_to_record": "Puudutage, et jätta sõnum",
   "kiosk__live__closed": "Esitused suletud",
   "kiosk__live__caption": "Kuni {seconds} sekundit · heli · foto valikuline",

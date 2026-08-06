@@ -13,10 +13,9 @@ export const getWeddingSchema = (t: T) =>
       .string()
       .min(1, t("validation__partner_name_required"))
       .max(50, t("validation__partner_name_max")),
-    partnerBName: z
-      .string()
-      .min(1, t("validation__partner_name_required"))
-      .max(50, t("validation__partner_name_max")),
+    // Optional: single-host types (birthday, memorial, …) don't render a second
+    // host field, so requiring it would silently block the whole form's submit.
+    partnerBName: z.string().max(50, t("validation__partner_name_max")),
     weddingDate: z.string().max(20).optional(),
     venueName: z.string().max(100).optional(),
     venueCity: z.string().max(100).optional(),

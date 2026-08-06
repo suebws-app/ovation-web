@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 import type { InvitationTemplate, PublicInvitation } from "@/lib/api/types";
 import { InviteCard } from "@/features/invitation/components/InviteCard";
 import { InvitationOpenTracker } from "@/features/guest/InvitationOpenTracker";
 import { useGuestSubmissionStore } from "@/features/guest/store/useGuestSubmissionStore";
 import { RsvpActions } from "./RsvpActions";
+import { eventCardTitle, getEventTypeConfig } from "@/lib/event-types";
 
 const formatDateLabel = (iso: string | null): string | undefined => {
   if (!iso) return undefined;
@@ -33,8 +35,22 @@ export const GuestInvitationView = ({
   invitee,
   template,
 }: GuestInvitationViewProps) => {
+  const t = useTranslations();
   const setGuestName = useGuestSubmissionStore((s) => s.setGuestName);
   const currentGuestName = useGuestSubmissionStore((s) => s.guestName);
+  const titleParts = eventCardTitle(t, {
+    eventType: event.eventType,
+    hostA: event.hostAName ?? event.partnerAName,
+    hostB: event.hostBName ?? event.partnerBName,
+    eventName:
+      typeof event.details?.eventName === "string"
+        ? event.details.eventName
+        : undefined,
+    customEventNoun:
+      typeof event.details?.customEventNoun === "string"
+        ? event.details.customEventNoun
+        : undefined,
+  });
 
   useEffect(() => {
     if (!currentGuestName && invitee.firstName) {
@@ -60,23 +76,26 @@ export const GuestInvitationView = ({
                 size="large"
                 animate
                 values={{
-                  partnerA: event.partnerAName,
-                  partnerB: event.partnerBName,
-                  dateLabel: formatDateLabel(event.weddingDate),
-                  venue: event.venueName ?? undefined,
-                  place: event.venueCity ?? undefined,
+                  ...titleParts,
+                  dateLabel: formatDateLabel(
+                    event.eventDate ?? event.weddingDate,
+                  ),
+                  venue: event.locationName ?? event.venueName ?? undefined,
+                  place: event.locationCity ?? event.venueCity ?? undefined,
                   message: event.welcomeMessage ?? undefined,
                 }}
                 guestFirstName={invitee.firstName}
               />
             </div>
 
-            <RsvpActions
-              slug={slug}
-              token={token}
-              invitee={invitee}
-              template={template}
-            />
+            {getEventTypeConfig(event.eventType).features.rsvp && (
+              <RsvpActions
+                slug={slug}
+                token={token}
+                invitee={invitee}
+                template={template}
+              />
+            )}
           </div>
         </div>
       </div>

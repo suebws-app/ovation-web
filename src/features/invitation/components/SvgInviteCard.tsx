@@ -10,6 +10,9 @@ type SvgInviteCardSize = "compact" | "large";
 type SvgInviteCardValues = {
   partnerA: string;
   partnerB: string;
+  title?: string;
+  eventName?: string;
+  postfix?: string;
   dateLabel?: string;
   time?: string;
   venue?: string;
@@ -136,7 +139,14 @@ export const SvgInviteCard = ({
   } = useFitText<HTMLHeadingElement>({
     maxPx: nameMax,
     minPx: NAME_FIT[size].min,
-    deps: [values.partnerA, values.partnerB, template.monogramAmp, size],
+    deps: [
+      values.title,
+      values.eventName,
+      values.partnerA,
+      values.partnerB,
+      template.monogramAmp,
+      size,
+    ],
   });
 
   const eyebrowEl = (
@@ -154,24 +164,46 @@ export const SvgInviteCard = ({
   );
 
   const namesEl = (
-    <h2
-      ref={nameRef}
-      className="leading-tight whitespace-nowrap"
-      style={{
-        fontFamily: displayFont,
-        color: nameColor,
-        fontSize: nameFontSize,
-      }}
-    >
-      {values.partnerA || "Lila"}
-      <span
-        className="mx-2 italic"
-        style={{ color: accent, fontFamily: displayFont }}
+    <div className="flex flex-col items-center gap-1">
+      <h2
+        ref={nameRef}
+        className="leading-tight whitespace-nowrap"
+        style={{
+          fontFamily: displayFont,
+          color: nameColor,
+          fontSize: nameFontSize,
+        }}
       >
-        {template.monogramAmp}
-      </span>
-      {values.partnerB || "Theo"}
-    </h2>
+        {values.title || values.eventName ? (
+          values.title || values.eventName
+        ) : values.partnerB ? (
+          <>
+            {values.partnerA || "Lila"}
+            <span
+              className="mx-2 italic"
+              style={{ color: accent, fontFamily: displayFont }}
+            >
+              {template.monogramAmp}
+            </span>
+            {values.partnerB}
+          </>
+        ) : (
+          values.partnerA || "Lila"
+        )}
+      </h2>
+      {values.postfix && !values.title && !values.eventName && (
+        <span
+          className="italic"
+          style={{
+            fontFamily: displayFont,
+            color: accent,
+            fontSize: nameFontSize * 0.48,
+          }}
+        >
+          {values.postfix}
+        </span>
+      )}
+    </div>
   );
 
   const dividerEl = (

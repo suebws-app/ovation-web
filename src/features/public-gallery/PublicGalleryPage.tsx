@@ -14,9 +14,9 @@ export const PublicGalleryPage = async ({ params }: PublicGalleryPageProps) => {
       <PublicGalleryClient
         slug={slug}
         code={code}
-        partnerAName={event?.partnerAName ?? null}
-        partnerBName={event?.partnerBName ?? null}
-        couplePhotoUrl={event?.couplePhotoUrl ?? null}
+        partnerAName={event?.hostAName ?? event?.partnerAName ?? null}
+        partnerBName={event?.hostBName ?? event?.partnerBName ?? null}
+        couplePhotoUrl={event?.coverPhotoUrl ?? event?.couplePhotoUrl ?? null}
       />
     </div>
   );

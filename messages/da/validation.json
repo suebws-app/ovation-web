@@ -6,7 +6,7 @@
   "validation__password_max": "Adgangskoden er for lang",
   "validation__name_required": "Indtast dit navn",
   "validation__name_max": "Navnet er for langt",
-  "validation__partner_name_required": "Partners navn er påkrævet",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Navnet er for langt",
   "validation__terms_required": "Accepter venligst vilkårene",
   "validation__confirm_password_required": "Bekræft din adgangskode",

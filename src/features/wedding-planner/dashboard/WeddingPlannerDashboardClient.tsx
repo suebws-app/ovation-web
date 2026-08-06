@@ -66,6 +66,7 @@ type WeddingPlannerDashboardClientProps = {
   weddingDate: string | null;
   venue: string | null;
   city: string | null;
+  showCountdown?: boolean;
   assistantLocked: boolean;
 };
 
@@ -75,6 +76,7 @@ export const WeddingPlannerDashboardClient = ({
   weddingDate,
   venue,
   city,
+  showCountdown = true,
   assistantLocked,
 }: WeddingPlannerDashboardClientProps) => {
   const t = useTranslations();
@@ -121,16 +123,27 @@ export const WeddingPlannerDashboardClient = ({
     <div className="flex flex-col gap-5">
       <div className="desktop:grid-cols-3 grid gap-5">
         <div className="desktop:col-span-2">
-          <CountdownHero
-            partners={partners}
-            venue={venue}
-            city={city}
-            date={weddingDate}
-            daysLabel={t("wp__days_to_go")}
-            askAiLabel={t("wp__hero__ask_ai")}
-            viewTimelineLabel={t("wp__hero__view_timeline")}
-            askAiLocked={assistantLocked}
-          />
+          {showCountdown ? (
+            <CountdownHero
+              partners={partners}
+              venue={venue}
+              city={city}
+              date={weddingDate}
+              daysLabel={t("wp__days_to_go")}
+              askAiLabel={t("wp__hero__ask_ai")}
+              viewTimelineLabel={t("wp__hero__view_timeline")}
+              askAiLocked={assistantLocked}
+            />
+          ) : (
+            <Card className="flex h-full flex-col justify-center gap-2">
+              <h2 className="type-h3 font-serif">{partners}</h2>
+              {(venue || city) && (
+                <p className="type-body-small text-muted-foreground">
+                  {[venue, city].filter(Boolean).join(", ")}
+                </p>
+              )}
+            </Card>
+          )}
         </div>
         <Card className="flex items-center gap-5">
           <ProgressRing

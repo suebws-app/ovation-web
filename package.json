@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "sync:event-types": "tsx scripts/sync-event-types.ts",
     "lint": "eslint",
     "format": "prettier --write \"{src,packages}/**/*.{ts,tsx,js,jsx,css,md,json}\"",
     "format:check": "prettier --check \"{src,packages}/**/*.{ts,tsx,js,jsx,css,md,json}\"",

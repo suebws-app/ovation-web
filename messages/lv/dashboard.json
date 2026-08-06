@@ -60,15 +60,15 @@
   "dashboard__message__pause": "Pauzēt ziņojumu",
   "dashboard__photos__preview": "Priekšskatīt fotoattēlu",
   "dashboard__widget__referral__eyebrow": "Kopīgot Ovation",
-  "dashboard__widget__referral__title": "Vai pazīsti pāri, kas plāno kāzas?",
+  "dashboard__widget__referral__title": "Vai pazīstat kādu, kurš plāno pasākumu?",
   "dashboard__widget__referral__description": "Nosūti viņiem savu ielūguma saiti. Kad viņi iegādāsies pirmo plānu, saņemsi {reward} kredīta savai piemiņas lietai.",
   "dashboard__widget__referral__share_cta": "Kopīgot ar draugu",
   "dashboard__widget__referral__copy_link": "Kopēt saiti",
   "dashboard__widget__referral__copied": "Nokopēts",
   "dashboard__widget__referral__email_share": "Kopīgot pa e-pastu",
-  "dashboard__widget__referral__share_title": "Ovation — balss viesu grāmata jūsu kāzām",
+  "dashboard__widget__referral__share_title": "Ovation — balss viesu grāmata jūsu pasākumam",
   "dashboard__widget__referral__share_body": "{name} nodomāja, ka tev varētu iepatikties Ovation — tā mēs papīra viesu grāmatas vietā ievācām balss ziņas no saviem viesiem.",
-  "dashboard__widget__referral__email_subject": "Domāju, ka tev patiks Ovation tavām kāzām",
+  "dashboard__widget__referral__email_subject": "Domāju, ka jums patiktu Ovation jūsu pasākumam",
   "dashboard__widget__referral__balance_label": "Jūsu kredīta atlikums",
   "dashboard__widget__referral__stats": "{invited, plural, one {uzaicināts # draugs} other {uzaicināti # draugi}} · {converted, plural, one {pievienojies # draugs} other {pievienojušies # draugi}}"
 }

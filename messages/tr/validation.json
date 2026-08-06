@@ -6,7 +6,7 @@
   "validation__password_max": "Şifre çok uzun",
   "validation__name_required": "Lütfen adını gir",
   "validation__name_max": "İsim çok uzun",
-  "validation__partner_name_required": "Partner adı gerekli",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "İsim çok uzun",
   "validation__terms_required": "Lütfen şartları kabul et",
   "validation__confirm_password_required": "Şifreni onayla",

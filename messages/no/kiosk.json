@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Tilkobling tapt",
   "kiosk__offline__body": "Kiosken trenger internettforbindelse for å ta imot nye meldinger. Koble til igjen for å fortsette.",
   "kiosk__offline__hint": "Kobler til automatisk…",
-  "kiosk__live__welcome_overline": "Du er i bryllupet til",
+  "kiosk__live__welcome_overline": "Du er på {eventNoun} til",
   "kiosk__live__tap_to_record": "Trykk for å legge igjen en melding",
   "kiosk__live__closed": "Innsendinger stengt",
   "kiosk__live__caption": "Opptil {seconds} sekunder · lyd · bilde valgfritt",

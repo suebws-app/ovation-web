@@ -1,0 +1,139 @@
+import { getEventTypeConfig } from "./registry";
+
+/** Minimal event shape the formatters need (generic + legacy fields). */
+export type EventLike = {
+  eventType?: string | null;
+  hostAName?: string | null;
+  hostBName?: string | null;
+  eventDate?: string | null;
+  endDate?: string | null;
+  details?: Record<string, unknown> | null;
+  partnerAName?: string | null;
+  partnerBName?: string | null;
+  weddingDate?: string | null;
+};
+
+/** The non-null host names of an event, in order. */
+export const eventHostNames = (event: EventLike): string[] =>
+  [event.hostAName ?? event.partnerAName, event.hostBName ?? event.partnerBName]
+    .map((name) => name?.trim())
+    .filter((name): name is string => Boolean(name));
+
+/** The joined title line for an event (e.g. "Alex & Jordan"). */
+export const eventTitleLine = (event: EventLike): string =>
+  eventHostNames(event).join(" & ");
+
+/** The primary date of an event as a raw string, if any. */
+export const eventDateOf = (event: EventLike): string | null =>
+  event.eventDate ?? event.weddingDate ?? null;
+
+export type EventPhase = "planning" | "post_event";
+
+/**
+ * Whether an event is before ("planning") or after ("post_event") its date,
+ * driving the phase-aware dashboard widget ordering. Uses the end date when
+ * present (multi-day events), otherwise the primary date. Undated events are
+ * treated as "planning".
+ */
+export const getEventPhase = (
+  event: EventLike,
+  now: Date = new Date(),
+): EventPhase => {
+  const boundary = event.endDate ?? eventDateOf(event);
+  if (!boundary) return "planning";
+  const parsed = new Date(`${boundary}T23:59:59`);
+  if (Number.isNaN(parsed.getTime())) return "planning";
+  return parsed.getTime() < now.getTime() ? "post_event" : "planning";
+};
+
+/**
+ * Whether to show a countdown: the event type must allow it (`features.countdown`
+ * — every type except memorial) AND the event date must still be in the future.
+ * A past or undated event shows no countdown.
+ */
+export const showsCountdown = (
+  event: EventLike,
+  now: Date = new Date(),
+): boolean => {
+  if (!getEventTypeConfig(event.eventType).features.countdown) return false;
+  const date = eventDateOf(event);
+  if (!date) return false;
+  const parsed = new Date(`${date}T23:59:59`);
+  if (Number.isNaN(parsed.getTime())) return false;
+  return parsed.getTime() >= now.getTime();
+};
+
+/** Whether an event type has a second host (couple/parents), config-driven. */
+export const hasSecondHost = (eventType: string | null | undefined): boolean =>
+  getEventTypeConfig(eventType).fields.some((f) => f.column === "hostBName");
+
+type TitleT = (
+  key: string,
+  values?: Record<string, string | number | Date>,
+) => string;
+
+/** Max characters shown on the second-tier event-word so it never overflows. */
+const MAX_POSTFIX_LEN = 24;
+
+/** Trim, cap length (with an ellipsis), and capitalize the first letter. */
+const formatPostfix = (raw: string): string => {
+  const trimmed = raw.trim();
+  if (!trimmed) return "";
+  const capped =
+    trimmed.length > MAX_POSTFIX_LEN
+      ? `${trimmed.slice(0, MAX_POSTFIX_LEN - 1).trimEnd()}…`
+      : trimmed;
+  return capped.charAt(0).toUpperCase() + capped.slice(1);
+};
+
+export type InviteCardTitle = {
+  /** Single-line override (a typed Event Name); rendered alone when present. */
+  title?: string;
+  /** First host name (top tier). */
+  partnerA: string;
+  /** Second host name (top tier); empty for single-host types. */
+  partnerB: string;
+  /** The event word rendered on a second tier below the names (e.g. "Anniversary"). */
+  postfix?: string;
+};
+
+/**
+ * The parts of the invitation title, composed per type as a two-tier layout:
+ * host names on top (with the "&" ornament for couples) and the event word
+ * below — e.g. "Alex & Jordan" / "Anniversary", "Alex" / "Birthday". Wedding
+ * has no postfix (just the couple). A typed `eventName` overrides everything
+ * with a single line. Single-host types never emit a second host.
+ */
+export const eventCardTitle = (
+  t: TitleT,
+  input: {
+    eventType?: string | null;
+    hostA?: string | null;
+    hostB?: string | null;
+    eventName?: string | null;
+    /** For custom-noun types (`other`), the user-entered event noun. */
+    customEventNoun?: string | null;
+  },
+): InviteCardTitle => {
+  const a = input.hostA?.trim() ?? "";
+  const b = input.hostB?.trim() ?? "";
+  const override = input.eventName?.trim();
+  if (override) {
+    return { title: override, partnerA: a, partnerB: "" };
+  }
+
+  const config = getEventTypeConfig(input.eventType);
+  // For custom-noun types (`other`), the user's typed event noun is the second
+  // tier (e.g. "Reunion") — the same slot where anniversary shows "Anniversary".
+  // Fall back to the type's generic noun so the tier never vanishes (legacy or
+  // empty custom nouns), then cap length + capitalize.
+  const raw = config.customNoun
+    ? input.customEventNoun?.trim() || t(`et__${config.type}__event`)
+    : t(`et__${config.type}__title_postfix`);
+  const postfix = formatPostfix(raw ?? "");
+  return {
+    partnerA: a,
+    partnerB: hasSecondHost(config.type) ? b : "",
+    postfix: postfix || undefined,
+  };
+};

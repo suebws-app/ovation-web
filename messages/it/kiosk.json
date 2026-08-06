@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Connessione persa",
   "kiosk__offline__body": "Il kiosk ha bisogno di una connessione Internet per accettare nuovi messaggi. Riconnettiti per continuare.",
   "kiosk__offline__hint": "Riconnessione automatica…",
-  "kiosk__live__welcome_overline": "Sei al matrimonio di",
+  "kiosk__live__welcome_overline": "Sei al {eventNoun} di",
   "kiosk__live__tap_to_record": "Tocca per lasciare un messaggio",
   "kiosk__live__closed": "Invii chiusi",
   "kiosk__live__caption": "Fino a {seconds} secondi · audio · foto opzionale",

@@ -6,7 +6,7 @@
   "validation__password_max": "La contraseña es demasiado larga",
   "validation__name_required": "Por favor, introduce tu nombre",
   "validation__name_max": "El nombre es demasiado largo",
-  "validation__partner_name_required": "El nombre de la pareja es obligatorio",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "El nombre es demasiado largo",
   "validation__terms_required": "Por favor, acepta los términos",
   "validation__confirm_password_required": "Confirma tu contraseña",

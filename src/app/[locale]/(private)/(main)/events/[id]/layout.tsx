@@ -1,4 +1,5 @@
 import { eventsApi } from "@/lib/api/events";
+import { eventDateOf, eventTitleLine } from "@/lib/event-types";
 import { EventContextProvider } from "@/features/events/EventContext";
 import { EventLabelSync } from "@/features/events/EventLabelSync";
 import { LastEventCookieSync } from "@/features/events/LastEventCookieSync";
@@ -13,16 +14,17 @@ export default async function Layout({
   const { id } = await params;
   const result = await eventsApi.get(id).catch(() => null);
   const event = result?.event;
-  const datePart = event?.weddingDate
-    ? new Date(event.weddingDate).toLocaleDateString("en", {
+  const dateRaw = event ? eventDateOf(event) : null;
+  const datePart = dateRaw
+    ? new Date(dateRaw).toLocaleDateString("en", {
         month: "short",
         year: "numeric",
       })
     : null;
   const label = event
     ? datePart
-      ? `${event.partnerAName} & ${event.partnerBName} · ${datePart}`
-      : `${event.partnerAName} & ${event.partnerBName}`
+      ? `${eventTitleLine(event)} · ${datePart}`
+      : eventTitleLine(event)
     : id;
 
   return (

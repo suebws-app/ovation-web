@@ -1,7 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Controller, useForm, useWatch } from "react-hook-form";
+import {
+  Controller,
+  useForm,
+  useWatch,
+  type FieldErrors,
+} from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -25,9 +30,20 @@ import type { Event } from "@/lib/api/types";
 import { toIsoDate, parseIsoDate } from "@/lib/utils/formatDate";
 import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
 import { SettingsField } from "./SettingsField";
+import {
+  getEventTypeConfig,
+  type EventColumn,
+  type EventType,
+} from "@/lib/event-types";
 
 type WeddingDetailsFormProps = {
   event: Event;
+  // Rendered inside the form, right after the host/organization name row —
+  // used for the type's detail fields (e.g. corporate logo + agenda uploads).
+  extraFields?: React.ReactNode;
+  // Preview a different type's field layout (labels, 2nd host, date label)
+  // without saving — the actual switch is committed via EventTypeSwitcher.
+  typeOverride?: EventType;
 };
 
 type Status =
@@ -40,22 +56,33 @@ const eventDateToInput = (raw: string | null): string => {
   return d ? toIsoDate(d) : "";
 };
 
-export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
+export const WeddingDetailsForm = ({
+  event,
+  extraFields,
+  typeOverride,
+}: WeddingDetailsFormProps) => {
   const t = useTranslations();
   const router = useRouter();
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const schema = useMemo(() => getWeddingSchema(t), [t]);
 
+  const config = getEventTypeConfig(typeOverride ?? event.eventType);
+  const labelForColumn = (column: EventColumn, fallbackKey: string): string => {
+    const field = config.fields.find((f) => f.column === column);
+    return t(field ? field.labelKey : fallbackKey);
+  };
+  const hasSecondHost = config.fields.some((f) => f.column === "hostBName");
+
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<WeddingFields>({
     defaultValues: {
-      partnerAName: event.partnerAName,
-      partnerBName: event.partnerBName,
+      partnerAName: event.partnerAName ?? "",
+      partnerBName: event.partnerBName ?? "",
       weddingDate: eventDateToInput(event.weddingDate),
       venueName: event.venueName ?? "",
       venueCity: event.venueCity ?? "",
@@ -88,7 +115,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
     try {
       const { event: updated } = await eventsClient.update(event.id, {
         partnerAName: values.partnerAName,
-        partnerBName: values.partnerBName,
+        partnerBName: values.partnerBName || undefined,
         weddingDate: values.weddingDate || undefined,
         venueName: values.venueName || undefined,
         venueCity: values.venueCity || undefined,
@@ -96,8 +123,8 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
         slug: values.slug || undefined,
       });
       reset({
-        partnerAName: updated.partnerAName,
-        partnerBName: updated.partnerBName,
+        partnerAName: updated.partnerAName ?? "",
+        partnerBName: updated.partnerBName ?? "",
         weddingDate: eventDateToInput(updated.weddingDate),
         venueName: updated.venueName ?? "",
         venueCity: updated.venueCity ?? "",
@@ -116,10 +143,23 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
     }
   };
 
+  // Surface WHY a submit was blocked instead of doing nothing silently.
+  const onInvalid = (formErrors: FieldErrors<WeddingFields>) => {
+    const messages = Object.entries(formErrors)
+      .map(([field, err]) => `${field}: ${err?.message ?? "invalid"}`)
+      .join(" · ");
+    setStatus({
+      kind: "error",
+      message: messages || t("settings__wedding__save_error"),
+    });
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate>
       <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
-        <SettingsField label={t("settings__wedding__partnerA")}>
+        <SettingsField
+          label={labelForColumn("hostAName", "settings__wedding__partnerA")}
+        >
           <Input
             type="text"
             placeholder={t("settings__wedding__placeholder_partner_a")}
@@ -132,23 +172,29 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
             </span>
           )}
         </SettingsField>
-        <SettingsField label={t("settings__wedding__partnerB")}>
-          <Input
-            type="text"
-            placeholder={t("settings__wedding__placeholder_partner_b")}
-            aria-invalid={Boolean(errors.partnerBName)}
-            {...register("partnerBName")}
-          />
-          {errors.partnerBName && (
-            <span className="type-caption text-destructive mt-1.5 block">
-              {errors.partnerBName.message}
-            </span>
-          )}
-        </SettingsField>
+        {hasSecondHost && (
+          <SettingsField
+            label={labelForColumn("hostBName", "settings__wedding__partnerB")}
+          >
+            <Input
+              type="text"
+              placeholder={t("settings__wedding__placeholder_partner_b")}
+              aria-invalid={Boolean(errors.partnerBName)}
+              {...register("partnerBName")}
+            />
+            {errors.partnerBName && (
+              <span className="type-caption text-destructive mt-1.5 block">
+                {errors.partnerBName.message}
+              </span>
+            )}
+          </SettingsField>
+        )}
       </div>
 
+      {extraFields && <div className="mt-5">{extraFields}</div>}
+
       <div className="mt-5">
-        <SettingsField label={t("settings__wedding__date")}>
+        <SettingsField label={t(config.nounKeys.dateLabel)}>
           <Controller
             control={control}
             name="weddingDate"
@@ -207,7 +253,12 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
       </div>
 
       <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
-        <SettingsField label={t("settings__wedding__venue_name")}>
+        <SettingsField
+          label={labelForColumn(
+            "locationName",
+            "settings__wedding__venue_name",
+          )}
+        >
           <Input
             type="text"
             placeholder={t("settings__wedding__venue_name_placeholder")}
@@ -215,7 +266,10 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
           />
         </SettingsField>
         <SettingsField
-          label={t("settings__wedding__venue_city")}
+          label={labelForColumn(
+            "locationCity",
+            "settings__wedding__venue_city",
+          )}
           adornmentRight={
             <MapPinIcon
               width={16}
@@ -301,7 +355,7 @@ export const WeddingDetailsForm = ({ event }: WeddingDetailsFormProps) => {
       )}
 
       <div className="mt-6 flex justify-end gap-2.5">
-        <Button type="submit" disabled={!isDirty || isSubmitting}>
+        <Button type="submit" disabled={isSubmitting}>
           {isSubmitting
             ? t("settings__wedding__saving")
             : t("settings__wedding__save")}

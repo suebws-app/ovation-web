@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Koneksi terputus",
   "kiosk__offline__body": "Kiosk membutuhkan koneksi internet untuk menerima pesan baru. Mohon sambungkan kembali untuk melanjutkan.",
   "kiosk__offline__hint": "Menyambungkan kembali secara otomatis…",
-  "kiosk__live__welcome_overline": "Anda di pernikahan",
+  "kiosk__live__welcome_overline": "Anda hadir di {eventNoun}",
   "kiosk__live__tap_to_record": "Ketuk untuk meninggalkan pesan",
   "kiosk__live__closed": "Kiriman ditutup",
   "kiosk__live__caption": "Hingga {seconds} detik · audio · foto opsional",

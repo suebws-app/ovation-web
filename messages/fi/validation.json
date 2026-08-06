@@ -6,7 +6,7 @@
   "validation__password_max": "Salasana on liian pitkä",
   "validation__name_required": "Anna nimesi",
   "validation__name_max": "Nimi on liian pitkä",
-  "validation__partner_name_required": "Kumppanin nimi vaaditaan",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Nimi on liian pitkä",
   "validation__terms_required": "Hyväksy ehdot",
   "validation__confirm_password_required": "Vahvista salasanasi",

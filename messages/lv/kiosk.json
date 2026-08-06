@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Savienojums zudis",
   "kiosk__offline__body": "Kioskam nepieciešams interneta savienojums, lai pieņemtu jaunus ziņojumus. Lūdzu, atjaunojiet savienojumu, lai turpinātu.",
   "kiosk__offline__hint": "Automātiska atkārtota savienojuma izveide…",
-  "kiosk__live__welcome_overline": "Jūs esat kāzās",
+  "kiosk__live__welcome_overline": "Sveiki! Šeit ir {eventNoun}",
   "kiosk__live__tap_to_record": "Pieskarieties, lai atstātu ziņojumu",
   "kiosk__live__closed": "Iesniegumi slēgti",
   "kiosk__live__caption": "Līdz {seconds} sekundēm · audio · fotogrāfija pēc izvēles",

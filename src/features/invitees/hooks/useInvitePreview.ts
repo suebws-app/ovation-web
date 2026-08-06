@@ -1,5 +1,7 @@
 import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 import type { Event } from "@/lib/api/types";
+import { eventCardTitle, eventDateOf } from "@/lib/event-types";
 import { useInvitationTemplatesQuery } from "@/lib/query/invitationTemplatesQueries";
 import { DEFAULT_INVITATION_TEMPLATE_ID } from "@/features/invitation/invitationTemplates";
 
@@ -15,6 +17,7 @@ const formatDateLabel = (iso: string | null): string | undefined => {
 };
 
 export const useInvitePreview = (event: Event) => {
+  const t = useTranslations();
   const { data } = useInvitationTemplatesQuery();
 
   const template = useMemo(() => {
@@ -33,21 +36,25 @@ export const useInvitePreview = (event: Event) => {
 
   const values = useMemo(
     () => ({
-      partnerA: event.partnerAName,
-      partnerB: event.partnerBName,
-      dateLabel: formatDateLabel(event.weddingDate),
-      venue: event.venueName ?? undefined,
-      place: event.venueCity ?? undefined,
+      ...eventCardTitle(t, {
+        eventType: event.eventType,
+        hostA: event.hostAName ?? event.partnerAName,
+        hostB: event.hostBName ?? event.partnerBName,
+        eventName:
+          typeof event.details?.eventName === "string"
+            ? event.details.eventName
+            : undefined,
+        customEventNoun:
+          typeof event.details?.customEventNoun === "string"
+            ? event.details.customEventNoun
+            : undefined,
+      }),
+      dateLabel: formatDateLabel(eventDateOf(event)),
+      venue: event.locationName ?? event.venueName ?? undefined,
+      place: event.locationCity ?? event.venueCity ?? undefined,
       message: event.welcomeMessage ?? undefined,
     }),
-    [
-      event.partnerAName,
-      event.partnerBName,
-      event.weddingDate,
-      event.venueName,
-      event.venueCity,
-      event.welcomeMessage,
-    ],
+    [t, event],
   );
 
   return { template, values };

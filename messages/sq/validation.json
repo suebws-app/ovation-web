@@ -6,7 +6,7 @@
   "validation__password_max": "Fjalëkalimi është shumë i gjatë",
   "validation__name_required": "Ju lutemi vendosni emrin tuaj",
   "validation__name_max": "Emri është shumë i gjatë",
-  "validation__partner_name_required": "Emri i partnerit është i detyrueshëm",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Emri është shumë i gjatë",
   "validation__terms_required": "Ju lutemi pranoni kushtet",
   "validation__confirm_password_required": "Konfirmoni fjalëkalimin tuaj",

@@ -17,8 +17,10 @@ const MIN_CONTRAST_RATIO = 2;
 const sourceLabelKey = (source: CoverTextSource): string => {
   if (typeof source === "object") return "cover_text_color_el_title";
   switch (source) {
+    case "titleLine":
     case "coupleNames":
       return "cover_text_color_el_names";
+    case "dateLine":
     case "weddingDate":
       return "cover_text_color_el_date";
     case "coverSubtitle":

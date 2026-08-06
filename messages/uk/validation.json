@@ -6,7 +6,7 @@
   "validation__password_max": "Пароль задовгий",
   "validation__name_required": "Будь ласка, введіть своє ім’я",
   "validation__name_max": "Ім’я задовге",
-  "validation__partner_name_required": "Введіть ім’я партнера",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Ім’я задовге",
   "validation__terms_required": "Будь ласка, прийміть умови",
   "validation__confirm_password_required": "Підтвердьте пароль",

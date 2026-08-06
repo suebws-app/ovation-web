@@ -6,7 +6,7 @@
   "validation__password_max": "Hasło jest za długie",
   "validation__name_required": "Podaj swoje imię",
   "validation__name_max": "Imię jest za długie",
-  "validation__partner_name_required": "Imię partnera jest wymagane",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Imię jest za długie",
   "validation__terms_required": "Zaakceptuj warunki",
   "validation__confirm_password_required": "Potwierdź swoje hasło",

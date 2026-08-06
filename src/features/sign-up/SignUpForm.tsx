@@ -5,6 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
+import { isConsumerRole, isProRole } from "@/lib/auth/account-role";
 import { useRouter } from "@/i18n/navigation";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
@@ -41,8 +42,8 @@ export const SignUpForm = () => {
   useEffect(() => {
     const as = searchParams.get("as");
     const plan = searchParams.get("plan");
-    if (as === "pro") updateFormData({ accountType: "pro" });
-    else if (as === "couple") updateFormData({ accountType: "couple" });
+    if (isProRole(as)) updateFormData({ accountType: "pro" });
+    else if (isConsumerRole(as)) updateFormData({ accountType: "host" });
     if (plan) updateFormData({ selectedPlan: plan });
   }, [searchParams, updateFormData]);
 

@@ -10,7 +10,9 @@ export const requireFilledCoupleEvent = cache(
   async (): Promise<Event | null> => {
     const user = await getCurrentUser();
     if (!user) return null;
-    if (user.accountType !== "couple") {
+    // Pros manage many events and skip the consumer onboarding gate. Consumer
+    // hosts (accountType "host", or legacy "couple") go through onboarding.
+    if (user.accountType === "pro") {
       return getCurrentEvent();
     }
     if (!user.onboardingComplete) {

@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Kapcsolat megszakadt",
   "kiosk__offline__body": "A kioszknak internetkapcsolatra van szüksége az új üzenetek fogadásához. Kérlek, csatlakozz újra a folytatáshoz.",
   "kiosk__offline__hint": "Automatikus újrakapcsolódás…",
-  "kiosk__live__welcome_overline": "Az esküvőn vagy",
+  "kiosk__live__welcome_overline": "A(z) {eventNoun} vendége vagy",
   "kiosk__live__tap_to_record": "Koppints, hogy üzenetet hagyj",
   "kiosk__live__closed": "Beküldés lezárva",
   "kiosk__live__caption": "Legfeljebb {seconds} másodperc · hang · opcionális fotó",

@@ -6,7 +6,7 @@
   "validation__password_max": "Passordet er for langt",
   "validation__name_required": "Skriv inn navnet ditt",
   "validation__name_max": "Navnet er for langt",
-  "validation__partner_name_required": "Partners navn er påkrevd",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Navnet er for langt",
   "validation__terms_required": "Vennligst godta vilkårene",
   "validation__confirm_password_required": "Bekreft passordet ditt",

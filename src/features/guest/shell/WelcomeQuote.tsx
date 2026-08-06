@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@ovation/ui/components/Card";
 import type { PublicEvent } from "@/lib/api/types";
+import { eventHostNames } from "@/lib/event-types";
 
 type WelcomeQuoteProps = {
   event: PublicEvent;
@@ -7,6 +8,9 @@ type WelcomeQuoteProps = {
 
 export const WelcomeQuote = ({ event }: WelcomeQuoteProps) => {
   if (!event.welcomeMessage) return null;
+  const initials = eventHostNames(event)
+    .map((name) => name.charAt(0))
+    .join(" & ");
   return (
     <Card className="relative">
       <CardContent>
@@ -17,7 +21,7 @@ export const WelcomeQuote = ({ event }: WelcomeQuoteProps) => {
           {event.welcomeMessage}
         </p>
         <p className="text-muted-foreground type-caption mt-2.5 text-right font-serif italic">
-          — {event.partnerAName.charAt(0)} &amp; {event.partnerBName.charAt(0)}
+          — {initials}
         </p>
       </CardContent>
     </Card>

@@ -30,7 +30,7 @@ export const appRoutes = {
     signInVerify: "/sign-in/verify",
     signInWelcome: "/sign-in/welcome",
     signUp: "/sign-up",
-    role: "/role",
+    role: "/create",
     verify: "/verify",
     plans: "/plans",
     forgotPassword: "/forgot-password",
@@ -40,6 +40,8 @@ export const appRoutes = {
 
   create: {
     root: "/create",
+    role: "/create/role",
+    details: "/create/details",
     cover: "/create/cover",
   },
 

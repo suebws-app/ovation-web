@@ -1,10 +1,11 @@
 "use client";
 
 import { CheckIcon } from "@ovation/icons/CheckIcon";
-import { HeartIcon } from "@ovation/icons/HeartIcon";
+import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import type { Event } from "@/lib/api/types";
 import { eventLabel } from "@/lib/utils/eventFormatters";
+import { eventDateOf } from "@/lib/event-types";
 import { formatYear } from "@/lib/utils/formatDate";
 
 type EventOptionProps = {
@@ -20,7 +21,7 @@ export const EventOption = ({
   fallback,
   onSelect,
 }: EventOptionProps) => {
-  const year = formatYear(event.weddingDate);
+  const year = formatYear(eventDateOf(event));
   return (
     <li>
       <button
@@ -39,7 +40,7 @@ export const EventOption = ({
               : "bg-muted text-muted-foreground",
           )}
         >
-          <HeartIcon className="size-3.5" />
+          <CalendarIcon className="size-3.5" />
         </div>
         <div className="grid min-w-0 flex-1">
           <span className="type-body-small truncate font-medium">

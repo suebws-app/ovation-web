@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Conexiune pierdută",
   "kiosk__offline__body": "Kiosk-ul are nevoie de o conexiune la internet pentru a accepta mesaje noi. Te rugăm să te reconectezi pentru a continua.",
   "kiosk__offline__hint": "Se reconectează automat…",
-  "kiosk__live__welcome_overline": "Ești la nunta",
+  "kiosk__live__welcome_overline": "Ești la {eventNoun}",
   "kiosk__live__tap_to_record": "Apasă pentru a lăsa un mesaj",
   "kiosk__live__closed": "Trimiteri închise",
   "kiosk__live__caption": "Până la {seconds} secunde · audio · fotografie opțională",

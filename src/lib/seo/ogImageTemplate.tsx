@@ -100,7 +100,7 @@ export const OgImageTemplate = ({
       }}
     >
       <span>ovationday.com</span>
-      <span>Wedding guest book · voices, photos, notes</span>
+      <span>Event guest book · voices, photos, notes</span>
     </div>
   </div>
 );

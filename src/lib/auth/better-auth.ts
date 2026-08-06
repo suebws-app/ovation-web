@@ -255,7 +255,7 @@ export const auth = betterAuth({
       },
       accountType: {
         type: "string",
-        defaultValue: "couple",
+        defaultValue: "host",
         required: false,
         fieldName: "account_type",
       },

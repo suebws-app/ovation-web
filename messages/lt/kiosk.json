@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Ryšys nutrūko",
   "kiosk__offline__body": "Kioskui reikia interneto ryšio, kad galėtų priimti naujas žinutes. Prašome prisijungti iš naujo, kad tęstumėte.",
   "kiosk__offline__hint": "Automatiškai jungiamasi iš naujo…",
-  "kiosk__live__welcome_overline": "Jūs esate vestuvėse",
+  "kiosk__live__welcome_overline": "Sveiki! Čia {eventNoun}",
   "kiosk__live__tap_to_record": "Palieskite, kad paliktumėte žinutę",
   "kiosk__live__closed": "Pateikimas uždarytas",
   "kiosk__live__caption": "Iki {seconds} sekundžių · garsas · nuotrauka neprivaloma",

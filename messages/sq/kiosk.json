@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Lidhja u humb",
   "kiosk__offline__body": "Kiosku ka nevojë për lidhje interneti për të pranuar mesazhe të reja. Ju lutemi rilidhuni për të vazhduar.",
   "kiosk__offline__hint": "Po rilidhet automatikisht…",
-  "kiosk__live__welcome_overline": "Ju jeni në dasmën e",
+  "kiosk__live__welcome_overline": "Ju jeni në {eventNoun} e",
   "kiosk__live__tap_to_record": "Trokitni për të lënë një mesazh",
   "kiosk__live__closed": "Dorëzimet janë mbyllur",
   "kiosk__live__caption": "Deri në {seconds} sekonda · audio · foto opsionale",

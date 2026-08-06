@@ -4,7 +4,7 @@ export type SignUpFormData = {
   email: string;
   password: string;
   agreedToTerms: boolean;
-  accountType: "couple" | "pro" | "";
+  accountType: "couple" | "host" | "pro" | "";
   businessName: string;
   selectedPlan: string;
 };

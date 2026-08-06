@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Povezava prekinjena",
   "kiosk__offline__body": "Kiosk potrebuje internetno povezavo za sprejemanje novih sporočil. Ponovno se poveži za nadaljevanje.",
   "kiosk__offline__hint": "Samodejna ponovna povezava…",
-  "kiosk__live__welcome_overline": "Si na poroki",
+  "kiosk__live__welcome_overline": "To je {eventNoun}",
   "kiosk__live__tap_to_record": "Tapni za sporočilo",
   "kiosk__live__closed": "Prispevki zaprti",
   "kiosk__live__caption": "Do {seconds} sekund · zvok · fotografija neobvezna",

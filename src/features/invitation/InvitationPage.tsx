@@ -73,6 +73,7 @@ export const InvitationPage = ({
       <div className="bg-background relative flex min-h-0 flex-1 flex-col pb-20">
         <div className="desktop:flex-row flex flex-1 flex-col">
           <InvitationFormPanel
+            eventType={initialEvent?.eventType}
             step={step}
             stepIdx={stepIdx}
             saveStatus={saveStatus}
@@ -87,6 +88,12 @@ export const InvitationPage = ({
           <InvitationPreviewPanel
             template={template}
             values={values}
+            eventType={initialEvent?.eventType}
+            customEventNoun={
+              typeof initialEvent?.details?.customEventNoun === "string"
+                ? initialEvent.details.customEventNoun
+                : undefined
+            }
             step={step}
             selectedGuestFirstName={selectedGuest?.first}
           />

@@ -4,11 +4,13 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@ovation/ui/components/Logo";
 import { Stepper } from "@ovation/ui/components/Stepper";
 
-const TOTAL_STEPS = 2;
+const TOTAL_STEPS = 4;
 
 const useCreateStep = (): number => {
   const pathname = usePathname();
-  if (pathname.endsWith("/cover")) return 2;
+  if (pathname.endsWith("/cover")) return 4;
+  if (pathname.endsWith("/details")) return 3;
+  if (pathname.endsWith("/role")) return 2;
   return 1;
 };
 

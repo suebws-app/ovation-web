@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Conexión perdida",
   "kiosk__offline__body": "El quiosco necesita conexión a internet para aceptar nuevos mensajes. Vuelve a conectarte para continuar.",
   "kiosk__offline__hint": "Reconectando automáticamente…",
-  "kiosk__live__welcome_overline": "Estás en la boda de",
+  "kiosk__live__welcome_overline": "Estás en la {eventNoun} de",
   "kiosk__live__tap_to_record": "Toca para dejar un mensaje",
   "kiosk__live__closed": "Envíos cerrados",
   "kiosk__live__caption": "Hasta {seconds} segundos · audio · foto opcional",

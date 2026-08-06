@@ -6,7 +6,7 @@
   "validation__password_max": "Kata sandi terlalu panjang",
   "validation__name_required": "Silakan masukkan nama Anda",
   "validation__name_max": "Nama terlalu panjang",
-  "validation__partner_name_required": "Nama pasangan wajib diisi",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Nama terlalu panjang",
   "validation__terms_required": "Silakan terima syarat dan ketentuan",
   "validation__confirm_password_required": "Konfirmasi kata sandi Anda",

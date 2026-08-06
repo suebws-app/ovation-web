@@ -12,6 +12,7 @@ import type {
   GalleryItem,
   Order,
 } from "@/lib/api/types";
+import { eventDateOf, eventTitleLine } from "@/lib/event-types";
 import {
   aggregateGuests,
   type GuestRow,
@@ -221,14 +222,12 @@ const fetchAllOrders = async (eventId: string): Promise<Order[]> => {
 };
 
 const buildGuestSheet = (event: Event, guests: GuestRow[]): XlsxSheet => {
-  const coupleName = [event.partnerAName, event.partnerBName]
-    .filter(Boolean)
-    .join(" & ");
+  const coupleName = eventTitleLine(event);
   const rows: (string | number | boolean | null)[][] = [];
   rows.push(["Event", coupleName]);
-  rows.push(["Date", event.weddingDate ?? ""]);
-  rows.push(["Venue", event.venueName ?? ""]);
-  rows.push(["City", event.venueCity ?? ""]);
+  rows.push(["Date", eventDateOf(event) ?? ""]);
+  rows.push(["Venue", event.locationName ?? event.venueName ?? ""]);
+  rows.push(["City", event.locationCity ?? event.venueCity ?? ""]);
   rows.push(["Slug", event.slug]);
   rows.push([]);
   rows.push([

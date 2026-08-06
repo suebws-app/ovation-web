@@ -17,6 +17,12 @@ import {
   stackClassName,
 } from "@/lib/utils/layoutClassNames";
 import { toMessageRowView } from "@/features/messages/adapters";
+import {
+  eventDateOf,
+  getEventPhase,
+  getEventTypeConfig,
+  showsCountdown,
+} from "@/lib/event-types";
 
 import { DashboardBackGuard } from "./components/DashboardBackGuard";
 import { StorageExpiredModal } from "./components/StorageExpiredModal";
@@ -114,9 +120,14 @@ export const EventDashboardPage = async ({
   const totalBudget = plannerBudget?.budget.totalBudget ?? 0;
   const spent = categories.reduce((sum, category) => sum + category.actual, 0);
 
+  const config = getEventTypeConfig(event.eventType);
+  const plannerEnabled = config.features.planner;
+  const isPlanning = getEventPhase(event) === "planning";
+  const eventDate = eventDateOf(event);
+
   const plannerSummary: WeddingPlannerWidgetSummary = {
-    weddingDate: event.weddingDate,
-    daysToGo: event.weddingDate ? daysUntil(event.weddingDate) : null,
+    weddingDate: eventDate,
+    daysToGo: eventDate && showsCountdown(event) ? daysUntil(eventDate) : null,
     progressPct: totalTasks ? Math.round((doneTasks / totalTasks) * 100) : 0,
     doneTasks,
     totalTasks,
@@ -156,6 +167,9 @@ export const EventDashboardPage = async ({
               "tablet:order-1 order-2 min-w-0 flex-1",
             )}
           >
+            {plannerEnabled && isPlanning && (
+              <WeddingPlannerWidget summary={plannerSummary} />
+            )}
             <Messages
               eventId={event.id}
               messages={messageViews}
@@ -176,7 +190,9 @@ export const EventDashboardPage = async ({
                 <Orders orders={ordersPage?.items ?? []} />
               </div>
             </div>
-            <WeddingPlannerWidget summary={plannerSummary} />
+            {plannerEnabled && !isPlanning && (
+              <WeddingPlannerWidget summary={plannerSummary} />
+            )}
           </div>
         </div>
       </div>

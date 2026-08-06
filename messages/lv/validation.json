@@ -6,7 +6,7 @@
   "validation__password_max": "Parole ir pārāk gara",
   "validation__name_required": "Lūdzu, ievadiet savu vārdu",
   "validation__name_max": "Vārds ir pārāk garš",
-  "validation__partner_name_required": "Partnera vārds ir obligāts",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Vārds ir pārāk garš",
   "validation__terms_required": "Lūdzu, piekrītiet noteikumiem",
   "validation__confirm_password_required": "Apstipriniet paroli",

@@ -10,7 +10,7 @@ import { clientEnv } from "@/lib/utils/env.client";
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: {
-    default: "Ovation — Capture Your Wedding Messages",
+    default: "Ovation — Capture Your Event Messages",
     template: "%s | Ovation",
   },
   description:
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Ovation",
-    title: "Ovation — Capture Your Wedding Messages",
+    title: "Ovation — Capture Your Event Messages",
     description:
       "Let your guests leave audio messages, photos, and notes — and turn them into beautiful keepsakes.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ovation — Capture Your Wedding Messages",
+    title: "Ovation — Capture Your Event Messages",
     description:
       "Let your guests leave audio messages, photos, and notes — and turn them into beautiful keepsakes.",
   },

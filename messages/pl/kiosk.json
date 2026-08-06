@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Utracono połączenie",
   "kiosk__offline__body": "Kiosk potrzebuje połączenia internetowego, aby przyjmować nowe wiadomości. Połącz się ponownie, aby kontynuować.",
   "kiosk__offline__hint": "Automatyczne łączenie ponowne…",
-  "kiosk__live__welcome_overline": "Jesteś na ślubie",
+  "kiosk__live__welcome_overline": "To {eventNoun}. Witaj!",
   "kiosk__live__tap_to_record": "Stuknij, aby zostawić wiadomość",
   "kiosk__live__closed": "Zgłoszenia zamknięte",
   "kiosk__live__caption": "Do {seconds} sekund · audio · zdjęcie opcjonalne",

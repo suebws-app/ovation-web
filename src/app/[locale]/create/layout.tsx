@@ -6,8 +6,7 @@ import { appRoutes } from "@/lib/routes";
 import { CreateHeader } from "@/features/layout/CreateHeader/CreateHeader";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 import { eventsApi } from "@/lib/api/events";
-
-export const dynamic = "force-dynamic";
+import { isConsumerRole } from "@/lib/auth/account-role";
 
 export const metadata: Metadata = { robots: { index: false } };
 
@@ -26,8 +25,8 @@ export default async function CreateLayout({
   }
 
   if (
-    user?.accountType === "couple" &&
-    user.primaryEventId &&
+    isConsumerRole(user?.accountType) &&
+    user?.primaryEventId &&
     user.onboardingComplete
   ) {
     redirect(appRoutes.app.root);

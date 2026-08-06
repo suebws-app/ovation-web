@@ -4,6 +4,7 @@ import { Button } from "@ovation/ui/components/Button";
 import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { Link } from "@/i18n/navigation";
+import { getEventCopy } from "@/lib/event-types/getEventCopy";
 import { GuestWizardShell } from "./shell/GuestWizardShell";
 import { StickyCTA } from "./shell/StickyCTA";
 import { LandingSteps } from "./landing/LandingSteps";
@@ -25,9 +26,10 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
 
   if (!event) notFound();
 
+  const copy = await getEventCopy(event);
   const canSubmit = event.submissionOpen && !event.limitReached;
   const closedMessage = event.limitReached
-    ? t("guest__landing__closed_limit")
+    ? copy("guest__landing__closed_limit")
     : !event.submissionOpen
       ? t("guest__landing__closed_not_open")
       : t("guest__landing__closed_other");
@@ -42,7 +44,7 @@ export const GuestLandingPage = async ({ params }: GuestLandingPageProps) => {
             captureVideo={event.kiosk.captureVideo}
             capturePhoto={event.kiosk.capturePhoto}
           />
-          <TrustNote message={t("guest__landing__trust_note")} />
+          <TrustNote message={copy("guest__landing__trust_note")} />
         </div>
         {canSubmit ? (
           <StickyCTA caption={t("guest__landing__cta_caption")}>

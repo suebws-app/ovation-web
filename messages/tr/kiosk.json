@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Bağlantı koptu",
   "kiosk__offline__body": "Kiosk'un yeni mesaj kabul etmesi için internet bağlantısı gerekli. Devam etmek için lütfen tekrar bağlan.",
   "kiosk__offline__hint": "Otomatik olarak tekrar bağlanılıyor…",
-  "kiosk__live__welcome_overline": "Düğündesin:",
+  "kiosk__live__welcome_overline": "Katıldığın {eventNoun}:",
   "kiosk__live__tap_to_record": "Mesaj bırakmak için dokun",
   "kiosk__live__closed": "Gönderimler kapalı",
   "kiosk__live__caption": "{seconds} saniyeye kadar · ses · fotoğraf isteğe bağlı",

@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Forbindelse mistet",
   "kiosk__offline__body": "Kiosken har brug for en internetforbindelse for at modtage nye beskeder. Genopret forbindelsen for at fortsætte.",
   "kiosk__offline__hint": "Genopretter forbindelse automatisk…",
-  "kiosk__live__welcome_overline": "Du er til brylluppet for",
+  "kiosk__live__welcome_overline": "Du er til {eventNoun} for",
   "kiosk__live__tap_to_record": "Tryk for at efterlade en besked",
   "kiosk__live__closed": "Indsendelser lukket",
   "kiosk__live__caption": "Op til {seconds} sekunder · lyd · billede valgfrit",

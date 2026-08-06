@@ -1,8 +1,8 @@
 import { Polaroid } from "./Polaroid";
 
 type PolaroidPairProps = {
-  partnerAName: string;
-  partnerBName: string;
+  hostAName: string;
+  hostBName: string | null;
   themeColor: string;
 };
 
@@ -13,24 +13,37 @@ const counterBackground =
   "linear-gradient(160deg, var(--accent), var(--destructive))";
 
 export const PolaroidPair = ({
-  partnerAName,
-  partnerBName,
+  hostAName,
+  hostBName,
   themeColor,
-}: PolaroidPairProps) => (
-  <div className="relative mx-auto aspect-square w-56">
-    <div className="absolute inset-0 -translate-x-3.5 translate-y-1.5 -rotate-6">
-      <Polaroid
-        initial={partnerBName.charAt(0).toUpperCase()}
-        caption={partnerBName}
-        background={accentBackground(themeColor)}
-      />
+}: PolaroidPairProps) => {
+  if (!hostBName) {
+    return (
+      <div className="relative mx-auto aspect-square w-56">
+        <Polaroid
+          initial={hostAName.charAt(0).toUpperCase()}
+          caption={hostAName}
+          background={accentBackground(themeColor)}
+        />
+      </div>
+    );
+  }
+  return (
+    <div className="relative mx-auto aspect-square w-56">
+      <div className="absolute inset-0 -translate-x-3.5 translate-y-1.5 -rotate-6">
+        <Polaroid
+          initial={hostBName.charAt(0).toUpperCase()}
+          caption={hostBName}
+          background={accentBackground(themeColor)}
+        />
+      </div>
+      <div className="absolute inset-0 translate-x-3.5 -translate-y-0.5 rotate-6">
+        <Polaroid
+          initial={hostAName.charAt(0).toUpperCase()}
+          caption={hostAName}
+          background={counterBackground}
+        />
+      </div>
     </div>
-    <div className="absolute inset-0 translate-x-3.5 -translate-y-0.5 rotate-6">
-      <Polaroid
-        initial={partnerAName.charAt(0).toUpperCase()}
-        caption={partnerAName}
-        background={counterBackground}
-      />
-    </div>
-  </div>
-);
+  );
+};

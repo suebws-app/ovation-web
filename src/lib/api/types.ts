@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import type { Currency } from "@/i18n/currency-config";
+import type { EventType } from "@/lib/event-types";
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
@@ -40,6 +41,8 @@ export type CoverTextSource =
   | "coverTitle"
   | "coverSubtitle"
   | "dedication"
+  | "titleLine"
+  | "dateLine"
   | "coupleNames"
   | "weddingDate"
   | { static: string };
@@ -101,7 +104,7 @@ export type PlanTier =
   | "pro_studio"
   | "free";
 
-export type AccountType = "couple" | "pro";
+export type AccountType = "couple" | "host" | "pro";
 
 export type TranscriptStatus =
   | "pending"
@@ -165,16 +168,28 @@ export type Event = {
   id: string;
   ownerUserId: string;
   slug: string;
+  eventType: EventType | string;
+  // Generic (canonical) fields.
+  hostAName: string;
+  hostBName: string | null;
+  eventDate: string | null;
+  endDate: string | null;
+  locationName: string | null;
+  locationCity: string | null;
+  capacityLimit: number | null;
+  coverPhotoUrl: string | null;
+  details: Record<string, unknown>;
+  // Legacy aliases (still emitted by the API during the transition).
   partnerAName: string;
   partnerBName: string;
   weddingDate: string | null;
   venueName: string | null;
   venueCity: string | null;
+  couplePhotoUrl: string | null;
   expectedGuests: number | null;
   welcomeMessage: string | null;
   themeColor: string;
   invitationTemplateId: string;
-  couplePhotoUrl: string | null;
   status: EventStatus | string;
   defaultLanguage: Locale;
   createdAt: string;
@@ -264,18 +279,30 @@ export type MessageDetail = {
 };
 
 export type CreateEventInput = {
-  partnerAName: string;
-  partnerBName: string;
+  eventType?: EventType | string;
+  // Generic (canonical) fields.
+  hostAName?: string;
+  hostBName?: string;
+  eventDate?: string;
+  endDate?: string;
+  locationName?: string;
+  locationCity?: string;
+  expectedGuests?: number;
+  details?: Record<string, unknown>;
+  // Legacy aliases still accepted by the API.
+  partnerAName?: string;
+  partnerBName?: string;
   weddingDate?: string;
   venueName?: string;
   venueCity?: string;
-  expectedGuests?: number;
 };
 
 export type UpdateEventInput = Partial<CreateEventInput> & {
+  capacityLimit?: number | null;
   welcomeMessage?: string;
   themeColor?: string;
   invitationTemplateId?: string;
+  coverPhotoUrl?: string | null;
   couplePhotoUrl?: string | null;
   defaultLanguage?: Locale;
   slug?: string;
@@ -363,8 +390,14 @@ export type PublicKioskSettings = {
 };
 
 export type PublicEvent = {
+  eventType?: EventType | string;
+  hostAName?: string;
+  hostBName?: string | null;
+  eventDate?: string | null;
+  details?: Record<string, unknown>;
+  coverPhotoUrl?: string | null;
   partnerAName: string;
-  partnerBName: string;
+  partnerBName: string | null;
   weddingDate: string | null;
   welcomeMessage: string | null;
   themeColor: string;
@@ -379,8 +412,17 @@ export type PublicEvent = {
 export type PublicInvitation = {
   event: {
     slug: string;
+    eventType?: EventType | string;
+    hostAName?: string;
+    hostBName?: string | null;
+    eventDate?: string | null;
+    endDate?: string | null;
+    locationName?: string | null;
+    locationCity?: string | null;
+    details?: Record<string, unknown>;
+    coverPhotoUrl?: string | null;
     partnerAName: string;
-    partnerBName: string;
+    partnerBName: string | null;
     weddingDate: string | null;
     venueName: string | null;
     venueCity: string | null;
@@ -986,7 +1028,7 @@ export type CheckoutSessionResult = {
   checkout?: PeechoCheckoutParams;
 };
 
-export type PlanAudience = "couple" | "pro" | "addon";
+export type PlanAudience = "couple" | "host" | "pro" | "addon";
 
 export type PlanPrice = {
   currency: string;

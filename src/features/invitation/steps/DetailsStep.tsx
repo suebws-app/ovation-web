@@ -18,6 +18,11 @@ import {
   INVITATION_NAME_MAX,
   type InvitationFields,
 } from "../invitationSchema";
+import { getEventTypeConfig } from "@/lib/event-types";
+
+type DetailsStepProps = {
+  eventType?: string | null;
+};
 
 const formatNiceDate = (date: Date) =>
   date.toLocaleDateString("en-GB", {
@@ -26,7 +31,7 @@ const formatNiceDate = (date: Date) =>
     year: "numeric",
   });
 
-export const DetailsStep = () => {
+export const DetailsStep = ({ eventType }: DetailsStepProps) => {
   const t = useTranslations();
   const {
     register,
@@ -34,14 +39,31 @@ export const DetailsStep = () => {
     formState: { errors },
   } = useFormContext<InvitationFields>();
 
+  const config = getEventTypeConfig(eventType);
+  const hostALabelKey =
+    config.fields.find((f) => f.column === "hostAName")?.labelKey ??
+    "invitation__field__partner_a";
+  const hostBField = config.fields.find((f) => f.column === "hostBName");
+
   const [datePickerOpen, setDatePickerOpen] = useState(false);
 
   return (
     <>
-      <div className="tablet:mt-7 tablet:grid-cols-[1fr_auto_1fr] mt-5 grid grid-cols-1 items-end gap-3.5">
+      <div className="tablet:mt-7 mt-5">
+        <Label htmlFor="inv-event-name" className="mb-2">
+          {t("event__field__event_name")}
+        </Label>
+        <Input
+          id="inv-event-name"
+          maxLength={80}
+          placeholder={t("event__field__event_name_placeholder")}
+          {...register("eventName")}
+        />
+      </div>
+      <div className="tablet:mt-6 tablet:grid-cols-[1fr_auto_1fr] mt-4 grid grid-cols-1 items-end gap-3.5">
         <div>
           <Label htmlFor="inv-partner-a" className="mb-2">
-            {t("invitation__field__partner_a")}
+            {t(hostALabelKey)}
           </Label>
           <Input
             id="inv-partner-a"
@@ -56,26 +78,30 @@ export const DetailsStep = () => {
             </span>
           )}
         </div>
-        <span className="text-muted-foreground type-h1 tablet:block hidden pb-2.5 italic">
-          &amp;
-        </span>
-        <div>
-          <Label htmlFor="inv-partner-b" className="mb-2">
-            {t("invitation__field__partner_b")}
-          </Label>
-          <Input
-            id="inv-partner-b"
-            maxLength={INVITATION_NAME_MAX}
-            placeholder={t("invitation__placeholder__partner_b")}
-            aria-invalid={Boolean(errors.partnerB)}
-            {...register("partnerB")}
-          />
-          {errors.partnerB?.message && (
-            <span className="type-caption text-destructive mt-1 block">
-              {errors.partnerB.message}
-            </span>
-          )}
-        </div>
+        {hostBField && (
+          <span className="text-muted-foreground type-h1 tablet:block hidden pb-2.5 italic">
+            &amp;
+          </span>
+        )}
+        {hostBField && (
+          <div>
+            <Label htmlFor="inv-partner-b" className="mb-2">
+              {t(hostBField.labelKey)}
+            </Label>
+            <Input
+              id="inv-partner-b"
+              maxLength={INVITATION_NAME_MAX}
+              placeholder={t("invitation__placeholder__partner_b")}
+              aria-invalid={Boolean(errors.partnerB)}
+              {...register("partnerB")}
+            />
+            {errors.partnerB?.message && (
+              <span className="type-caption text-destructive mt-1 block">
+                {errors.partnerB.message}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="tablet:mt-6 tablet:grid-cols-2 mt-4 grid grid-cols-1 gap-3.5">

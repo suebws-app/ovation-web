@@ -23,6 +23,8 @@ const detailsPayload = (values: InvitationFields): UpdateEventInput => {
   if (values.venue.trim()) payload.venueName = values.venue.trim();
   if (values.place.trim()) payload.venueCity = values.place.trim();
   if (values.message.trim()) payload.welcomeMessage = values.message.trim();
+  const eventName = values.eventName?.trim();
+  if (eventName !== undefined) payload.details = { eventName };
   return payload;
 };
 

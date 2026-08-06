@@ -2,10 +2,10 @@ import { Polaroid } from "./Polaroid";
 import { PolaroidPair } from "./PolaroidPair";
 
 type HeroPhotoProps = {
-  partnerAName: string;
-  partnerBName: string;
+  hostAName: string;
+  hostBName: string | null;
   themeColor: string;
-  couplePhotoUrl: string | null;
+  coverPhotoUrl: string | null;
 };
 
 const accentBackground = (themeColor: string) =>
@@ -15,25 +15,34 @@ const counterBackground =
   "linear-gradient(160deg, var(--accent), var(--destructive))";
 
 export const HeroPhoto = ({
-  partnerAName,
-  partnerBName,
+  hostAName,
+  hostBName,
   themeColor,
-  couplePhotoUrl,
+  coverPhotoUrl,
 }: HeroPhotoProps) => {
-  if (couplePhotoUrl) {
+  if (coverPhotoUrl) {
+    const caption = hostBName ? `${hostAName} & ${hostBName}` : hostAName;
     return (
       <div className="relative mx-auto aspect-square w-56">
-        <div className="absolute inset-0 -translate-x-3.5 translate-y-1.5 -rotate-6">
+        {hostBName && (
+          <div className="absolute inset-0 -translate-x-3.5 translate-y-1.5 -rotate-6">
+            <Polaroid
+              initial={hostBName.charAt(0).toUpperCase()}
+              caption={hostBName}
+              background={counterBackground}
+            />
+          </div>
+        )}
+        <div
+          className={
+            hostBName
+              ? "absolute inset-0 translate-x-3.5 -translate-y-0.5 rotate-6"
+              : "absolute inset-0"
+          }
+        >
           <Polaroid
-            initial={partnerBName.charAt(0).toUpperCase()}
-            caption={partnerBName}
-            background={counterBackground}
-          />
-        </div>
-        <div className="absolute inset-0 translate-x-3.5 -translate-y-0.5 rotate-6">
-          <Polaroid
-            photoUrl={couplePhotoUrl}
-            caption={`${partnerAName} & ${partnerBName}`}
+            photoUrl={coverPhotoUrl}
+            caption={caption}
             background={accentBackground(themeColor)}
           />
         </div>
@@ -42,8 +51,8 @@ export const HeroPhoto = ({
   }
   return (
     <PolaroidPair
-      partnerAName={partnerAName}
-      partnerBName={partnerBName}
+      hostAName={hostAName}
+      hostBName={hostBName}
       themeColor={themeColor}
     />
   );

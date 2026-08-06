@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Connexion perdue",
   "kiosk__offline__body": "La borne a besoin d'une connexion Internet pour accepter de nouveaux messages. Veuillez vous reconnecter pour continuer.",
   "kiosk__offline__hint": "Reconnexion automatique en cours…",
-  "kiosk__live__welcome_overline": "Vous êtes au mariage de",
+  "kiosk__live__welcome_overline": "{eventNoun} de",
   "kiosk__live__tap_to_record": "Touchez pour laisser un message",
   "kiosk__live__closed": "Soumissions fermées",
   "kiosk__live__caption": "Jusqu'à {seconds} secondes · audio · photo facultative",

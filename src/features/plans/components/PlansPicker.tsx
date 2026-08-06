@@ -61,7 +61,7 @@ const buildFeatures = (plan: Plan, locale: string, t: Translator): string[] => {
 import { getOrigin } from "@/lib/utils/browser";
 
 type PlansPickerProps = {
-  mode: "couple" | "pro";
+  mode: "couple" | "host" | "pro";
   plans: Plan[];
   currencySelect?: ReactNode;
 };

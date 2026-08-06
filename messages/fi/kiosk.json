@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Yhteys katkesi",
   "kiosk__offline__body": "Kioski tarvitsee internet-yhteyden hyväksyäkseen uusia viestejä. Yhdistä uudelleen jatkaaksesi.",
   "kiosk__offline__hint": "Yhdistetään automaattisesti uudelleen…",
-  "kiosk__live__welcome_overline": "Olet seuraavien häissä",
+  "kiosk__live__welcome_overline": "Tämä on {eventNoun} —",
   "kiosk__live__tap_to_record": "Napauta jättääksesi viesti",
   "kiosk__live__closed": "Lähetykset suljettu",
   "kiosk__live__caption": "Enintään {seconds} sekuntia · ääni · valokuva valinnainen",

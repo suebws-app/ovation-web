@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Anslutning förlorad",
   "kiosk__offline__body": "Kiosken behöver en internetanslutning för att ta emot nya meddelanden. Anslut igen för att fortsätta.",
   "kiosk__offline__hint": "Återansluter automatiskt…",
-  "kiosk__live__welcome_overline": "Du är på bröllopet hos",
+  "kiosk__live__welcome_overline": "Du är på {eventNoun} hos",
   "kiosk__live__tap_to_record": "Tryck för att lämna ett meddelande",
   "kiosk__live__closed": "Inlämningar stängda",
   "kiosk__live__caption": "Upp till {seconds} sekunder · ljud · foto valfritt",

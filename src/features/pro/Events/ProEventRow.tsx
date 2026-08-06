@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { Event } from "@/lib/api/types";
+import { eventDateOf, eventTitleLine } from "@/lib/event-types";
 
 type ProEventRowProps = {
   event: Event;
@@ -9,30 +10,26 @@ type ProEventRowProps = {
 
 export const ProEventRow = async ({ event }: ProEventRowProps) => {
   const t = await getTranslations();
-  const weddingDate = event.weddingDate
-    ? new Date(event.weddingDate).toLocaleDateString(undefined, {
+  const rawDate = eventDateOf(event);
+  const eventDate = rawDate
+    ? new Date(rawDate).toLocaleDateString(undefined, {
         day: "numeric",
         month: "long",
         year: "numeric",
       })
     : "—";
+  const locationName = event.locationName ?? event.venueName;
+  const locationCity = event.locationCity ?? event.venueCity;
 
   return (
     <div className="border-border flex items-center justify-between border-b px-6 py-4 last:border-b-0">
       <div className="flex flex-col gap-0.5">
-        <span className="type-body font-medium">
-          {t("app__pro__events__partner_names", {
-            a: event.partnerAName,
-            b: event.partnerBName,
-          })}
-        </span>
-        <span className="type-caption text-muted-foreground">
-          {weddingDate}
-        </span>
-        {event.venueName && (
+        <span className="type-body font-medium">{eventTitleLine(event)}</span>
+        <span className="type-caption text-muted-foreground">{eventDate}</span>
+        {locationName && (
           <span className="type-caption text-muted-foreground">
-            {event.venueName}
-            {event.venueCity ? `, ${event.venueCity}` : ""}
+            {locationName}
+            {locationCity ? `, ${locationCity}` : ""}
           </span>
         )}
       </div>

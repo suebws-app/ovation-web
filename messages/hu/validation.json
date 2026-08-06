@@ -6,7 +6,7 @@
   "validation__password_max": "A jelszó túl hosszú",
   "validation__name_required": "Kérlek, add meg a neved",
   "validation__name_max": "A név túl hosszú",
-  "validation__partner_name_required": "A partner neve kötelező",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "A név túl hosszú",
   "validation__terms_required": "Kérlek, fogadd el a feltételeket",
   "validation__confirm_password_required": "Erősítsd meg a jelszavadat",

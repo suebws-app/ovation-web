@@ -3,8 +3,10 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { createTTLLocalStorage } from "@/lib/storage/ttlStorage";
+import { DEFAULT_EVENT_TYPE, type EventType } from "@/lib/event-types";
 
 export type CreateEventFormData = {
+  eventType: EventType;
   partner1Name: string;
   partner2Name: string;
   weddingDate: Date | null;
@@ -12,6 +14,9 @@ export type CreateEventFormData = {
   venueCity: string;
   coverType: string;
   bookUrl: string;
+  // Type-specific fields (registry `details` fields) collected by the dynamic
+  // form; merged into the event's `details` on create.
+  details: Record<string, unknown>;
 };
 
 export type CreateEventMode = "create" | "edit";
@@ -26,6 +31,7 @@ type CreateEventStore = {
 };
 
 const initialFormData: CreateEventFormData = {
+  eventType: DEFAULT_EVENT_TYPE,
   partner1Name: "",
   partner2Name: "",
   weddingDate: null,
@@ -33,6 +39,7 @@ const initialFormData: CreateEventFormData = {
   venueCity: "",
   coverType: "",
   bookUrl: "",
+  details: {},
 };
 
 const STORE_KEY = "ovation_create_event_v1";
@@ -69,7 +76,7 @@ export const useCreateEventStore = create<CreateEventStore>()(
     }),
     {
       name: STORE_KEY,
-      version: 2,
+      version: 3,
       skipHydration: true,
       storage: createJSONStorage(
         () => createTTLLocalStorage({ ttlMs: TTL_MS }),
@@ -100,6 +107,8 @@ export const useCreateEventStore = create<CreateEventStore>()(
           formData: {
             ...initialFormData,
             ...persistedForm,
+            eventType: persistedForm.eventType ?? initialFormData.eventType,
+            details: persistedForm.details ?? {},
             weddingDate,
             coverType,
           },

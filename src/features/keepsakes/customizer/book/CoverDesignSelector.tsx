@@ -125,8 +125,10 @@ export const CoverDesignSelector = ({
   const texts = useMemo(
     () => ({
       coverTitle: coverText || undefined,
+      titleLine: coupleNamesOf(event),
+      dateLine: formatWeddingDate(event?.eventDate ?? event?.weddingDate),
       coupleNames: coupleNamesOf(event),
-      weddingDate: formatWeddingDate(event?.weddingDate),
+      weddingDate: formatWeddingDate(event?.eventDate ?? event?.weddingDate),
     }),
     [coverText, event],
   );

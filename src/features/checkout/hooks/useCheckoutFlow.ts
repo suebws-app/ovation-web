@@ -14,6 +14,7 @@ import { toIsoDate } from "@/lib/utils/formatDate";
 import { appRoutes } from "@/lib/routes";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
+import { clearPendingEvent } from "@/features/create/pendingEvent";
 import type {
   CheckoutPlanTier,
   ProCheckoutSessionInput,
@@ -61,11 +62,13 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     window.sessionStorage?.setItem(
       "ovation_pending_event_data",
       JSON.stringify({
+        eventType: eventData.eventType,
         partnerAName: partnerA,
         partnerBName: partnerB,
         weddingDate: toWeddingDate(eventData.weddingDate) ?? null,
         venueName: eventData.venueName?.trim() || null,
         venueCity: eventData.venueCity?.trim() || null,
+        details: eventData.details,
         desiredSlug: eventData.bookUrl.trim() || null,
       }),
     );
@@ -154,21 +157,25 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                 .then((r) => r.event)
                 .catch(async () => {
                   const created = await eventsClient.create({
+                    eventType: eventFormData.eventType,
                     partnerAName: partnerA,
                     partnerBName: partnerB,
                     weddingDate: toWeddingDate(eventFormData.weddingDate),
                     venueName: eventFormData.venueName?.trim() || undefined,
                     venueCity: eventFormData.venueCity?.trim() || undefined,
+                    details: eventFormData.details,
                   });
                   return created.event;
                 })
             : await eventsClient
                 .create({
+                  eventType: eventFormData.eventType,
                   partnerAName: partnerA,
                   partnerBName: partnerB,
                   weddingDate: toWeddingDate(eventFormData.weddingDate),
                   venueName: eventFormData.venueName?.trim() || undefined,
                   venueCity: eventFormData.venueCity?.trim() || undefined,
+                  details: eventFormData.details,
                 })
                 .then((r) => r.event);
 
@@ -191,6 +198,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           updateEventData({ bookUrl: finalSlug });
 
           await profileClient.markOnboardingComplete().catch(() => undefined);
+          clearPendingEvent();
 
           const planTier = PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
           if (!planTier) {
@@ -249,11 +257,13 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     };
   }, [
     retryToken,
+    eventFormData.eventType,
     eventFormData.partner1Name,
     eventFormData.partner2Name,
     eventFormData.weddingDate,
     eventFormData.venueName,
     eventFormData.venueCity,
+    eventFormData.details,
     signUpFormData.selectedPlan,
     signUpFormData.accountType,
     stashPendingEventData,

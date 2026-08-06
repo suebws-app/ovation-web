@@ -22,7 +22,13 @@ import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
 import { setCookie } from "@/lib/utils/cookies";
+import { isConsumerRole, isProRole } from "@/lib/auth/account-role";
 import { toIsoDate } from "@/lib/utils/formatDate";
+import {
+  clearPendingEvent,
+  stashPendingEvent,
+} from "@/features/create/pendingEvent";
+import { getEventTypeConfig } from "@/lib/event-types";
 import { BookPreview } from "./components/BookPreview";
 import { CoverPattern } from "./components/CoverPattern";
 import { CoverPhotoSelector } from "./components/CoverPhotoSelector";
@@ -47,9 +53,9 @@ export const CoverPage = () => {
     if (!partner1Name.trim() && !partner2Name.trim()) {
       const as = searchParams.get("as");
       const target =
-        as === "couple" || as === "pro"
-          ? `${appRoutes.create.root}?as=${as}`
-          : appRoutes.create.root;
+        isConsumerRole(as) || isProRole(as)
+          ? `${appRoutes.create.details}?as=${as}`
+          : appRoutes.create.details;
       router.replace(target);
     }
   }, [router, hydrated, searchParams]);
@@ -95,9 +101,33 @@ export const CoverPage = () => {
     if (!session?.user) {
       const asFromUrl = searchParams.get("as");
       const type =
-        asFromUrl === "pro" || asFromUrl === "couple"
+        isProRole(asFromUrl) || isConsumerRole(asFromUrl)
           ? asFromUrl
-          : accountType || "couple";
+          : accountType || "host";
+      // Durably stash the wizard data so the event can be created after signup
+      // even when email verification delays the session (see EnsureHostEvent).
+      const data = useCreateEventStore.getState().formData;
+      const hasSecondHost = getEventTypeConfig(data.eventType).fields.some(
+        (f) => f.column === "hostBName",
+      );
+      stashPendingEvent({
+        eventType: data.eventType,
+        partnerAName:
+          data.partner1Name.trim() || t("signup__partner_a_default"),
+        // Single-host types (corporate, memorial, …) have no second host —
+        // don't invent a bogus "Partner 2".
+        partnerBName: hasSecondHost
+          ? data.partner2Name.trim() || t("signup__partner_b_default")
+          : undefined,
+        weddingDate:
+          data.weddingDate && !Number.isNaN(data.weddingDate.getTime())
+            ? toIsoDate(data.weddingDate)
+            : undefined,
+        venueName: data.venueName?.trim() || undefined,
+        venueCity: data.venueCity?.trim() || undefined,
+        details: data.details,
+        desiredSlug: data.bookUrl?.trim() || undefined,
+      });
       startNavigation();
       router.push(`${appRoutes.auth.signUp}?as=${type}`);
       return;
@@ -115,10 +145,14 @@ export const CoverPage = () => {
     } = useCreateEventStore.getState();
 
     try {
+      const hasSecondHost = getEventTypeConfig(data.eventType).fields.some(
+        (f) => f.column === "hostBName",
+      );
       const partnerAName =
         data.partner1Name.trim() || t("signup__partner_a_default");
-      const partnerBName =
-        data.partner2Name.trim() || t("signup__partner_b_default");
+      const partnerBName = hasSecondHost
+        ? data.partner2Name.trim() || t("signup__partner_b_default")
+        : undefined;
       const weddingDate =
         data.weddingDate && !Number.isNaN(data.weddingDate.getTime())
           ? toIsoDate(data.weddingDate)
@@ -138,11 +172,13 @@ export const CoverPage = () => {
         targetEventId = event.id;
       } else {
         const created = await eventsClient.create({
+          eventType: data.eventType,
           partnerAName,
           partnerBName,
           weddingDate,
           venueName,
           venueCity,
+          details: data.details,
         });
         targetEventId = created.event.id;
       }
@@ -161,6 +197,7 @@ export const CoverPage = () => {
       setCookie(LAST_EVENT_COOKIE, targetEventId, {
         maxAge: LAST_EVENT_COOKIE_MAX_AGE,
       });
+      clearPendingEvent();
       reset();
       startNavigation();
       router.push(appRoutes.app.root);
@@ -174,14 +211,25 @@ export const CoverPage = () => {
     }
   };
 
-  const initials = `${formData.partner1Name?.[0] ?? "L"}&${formData.partner2Name?.[0] ?? "T"}`;
+  const hostNames = [formData.partner1Name, formData.partner2Name]
+    .map((n) => n?.trim())
+    .filter((n): n is string => Boolean(n));
+  const titleLine = hostNames.join(" & ") || undefined;
+  const initials = hostNames.map((n) => n[0]?.toUpperCase()).join("&") || "OV";
   const generatedSlug = useMemo(
     () =>
-      `${formData.partner1Name?.toLowerCase() || "partner1"}-and-${formData.partner2Name?.toLowerCase() || "partner2"}`
+      (hostNames.length ? hostNames.join("-and-") : "my-event")
+        .toLowerCase()
         .replace(/[^a-z0-9-]/g, "")
         .slice(0, 20),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [formData.partner1Name, formData.partner2Name],
   );
+  const formattedDate = formData.weddingDate?.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
   const [userEditedSlug, setUserEditedSlug] = useState(false);
   const lastAutoSlugRef = useRef<string | null>(null);
 
@@ -220,13 +268,10 @@ export const CoverPage = () => {
             {t("signup__cover__brand_eyebrow")}
           </Kicker>
           <BookPreview
-            partner1={formData.partner1Name}
-            partner2={formData.partner2Name}
-            date={formData.weddingDate?.toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            })}
+            title={titleLine}
+            volumeLabel={t("signup__book_preview__volume")}
+            titleFallback={t("signup__book_preview__title_fallback")}
+            date={formattedDate}
             venue={[formData.venueName, formData.venueCity]
               .filter(Boolean)
               .join(", ")}

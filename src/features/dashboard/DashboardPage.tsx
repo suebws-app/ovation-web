@@ -10,6 +10,11 @@ import { ordersApi } from "@/lib/api/orders";
 import { mediaApi } from "@/lib/api/media";
 import { weddingPlannerApi } from "@/lib/api/wedding-planner";
 import { daysUntil } from "@/features/wedding-planner/utils";
+import {
+  eventDateOf,
+  getEventTypeConfig,
+  showsCountdown,
+} from "@/lib/event-types";
 
 import { cn } from "@ovation/ui/utils/cn";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -22,6 +27,7 @@ import { toMessageRowView } from "@/features/messages/adapters";
 
 import { DashboardEmpty } from "./components/DashboardEmpty";
 import { DashboardPlaceholderCTA } from "./components/DashboardPlaceholderCTA";
+import { EnsureHostEvent } from "./components/EnsureHostEvent";
 import { DashboardBackGuard } from "./components/DashboardBackGuard";
 import { StorageExpiredModal } from "./components/StorageExpiredModal";
 import { DreReturnHandler } from "./components/DreReturnHandler";
@@ -69,6 +75,7 @@ export const DashboardPage = async () => {
       <DashboardBackGuard>
         {expiredModal}
         {dreReturnHandler}
+        <EnsureHostEvent accountType={user.accountType} hasEvent={false} />
         <div className={containerClassName}>
           <DashboardEmpty name={firstName} />
         </div>
@@ -155,9 +162,12 @@ export const DashboardPage = async () => {
   const totalBudget = plannerBudget?.budget.totalBudget ?? 0;
   const spent = categories.reduce((sum, category) => sum + category.actual, 0);
 
+  const config = getEventTypeConfig(event.eventType);
+  const eventDate = eventDateOf(event);
+
   const plannerSummary: WeddingPlannerWidgetSummary = {
-    weddingDate: event.weddingDate,
-    daysToGo: event.weddingDate ? daysUntil(event.weddingDate) : null,
+    weddingDate: eventDate,
+    daysToGo: eventDate && showsCountdown(event) ? daysUntil(eventDate) : null,
     progressPct: totalTasks ? Math.round((doneTasks / totalTasks) * 100) : 0,
     doneTasks,
     totalTasks,
@@ -216,7 +226,9 @@ export const DashboardPage = async () => {
                 <Orders orders={ordersPage?.items ?? []} />
               </div>
             </div>
-            <WeddingPlannerWidget summary={plannerSummary} />
+            {config.features.planner && (
+              <WeddingPlannerWidget summary={plannerSummary} />
+            )}
           </div>
         </div>
       </div>

@@ -16,6 +16,12 @@ const NAME_FIT: Record<InviteCardSize, { max: number; min: number }> = {
 type InviteCardValues = {
   partnerA: string;
   partnerB: string;
+  // Single-line override (a typed Event Name); rendered alone when set.
+  title?: string;
+  // Legacy explicit event title (kept for back-compat with `title`).
+  eventName?: string;
+  // The event word shown on a second tier below the names (e.g. "Anniversary").
+  postfix?: string;
   dateLabel?: string;
   time?: string;
   venue?: string;
@@ -194,7 +200,14 @@ export const InviteCard = ({
   } = useFitText<HTMLHeadingElement>({
     maxPx: NAME_FIT[size].max,
     minPx: NAME_FIT[size].min,
-    deps: [values.partnerA, values.partnerB, monogramAmp, size],
+    deps: [
+      values.title,
+      values.eventName,
+      values.partnerA,
+      values.partnerB,
+      monogramAmp,
+      size,
+    ],
   });
 
   if (template.artSvg) {
@@ -273,24 +286,46 @@ export const InviteCard = ({
             {guestFirstName ? `Dear ${guestFirstName}` : "You are invited"}
           </span>
 
-          <h2
-            ref={nameRef}
-            className="max-w-full px-6 leading-tight whitespace-nowrap"
-            style={{
-              fontFamily: displayFont,
-              color: textColor,
-              fontSize: nameFontSize,
-            }}
-          >
-            {values.partnerA || "Lila"}
-            <span
-              className="mx-2 italic"
-              style={{ color: accentColor, fontFamily: displayFont }}
+          <div className="flex max-w-full flex-col items-center gap-1">
+            <h2
+              ref={nameRef}
+              className="max-w-full px-6 leading-tight whitespace-nowrap"
+              style={{
+                fontFamily: displayFont,
+                color: textColor,
+                fontSize: nameFontSize,
+              }}
             >
-              {monogramAmp}
-            </span>
-            {values.partnerB || "Theo"}
-          </h2>
+              {values.title || values.eventName ? (
+                values.title || values.eventName
+              ) : values.partnerB ? (
+                <>
+                  {values.partnerA || "Lila"}
+                  <span
+                    className="mx-2 italic"
+                    style={{ color: accentColor, fontFamily: displayFont }}
+                  >
+                    {monogramAmp}
+                  </span>
+                  {values.partnerB}
+                </>
+              ) : (
+                values.partnerA || "Lila"
+              )}
+            </h2>
+            {values.postfix && !values.title && !values.eventName && (
+              <span
+                className="italic"
+                style={{
+                  fontFamily: displayFont,
+                  color: accentColor,
+                  fontSize: nameFontSize * 0.48,
+                }}
+              >
+                {values.postfix}
+              </span>
+            )}
+          </div>
 
           <span
             className="block h-px"

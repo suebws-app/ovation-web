@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Verbinding verbroken",
   "kiosk__offline__body": "De kiosk heeft een internetverbinding nodig om nieuwe berichten te accepteren. Maak opnieuw verbinding om verder te gaan.",
   "kiosk__offline__hint": "Automatisch opnieuw verbinden…",
-  "kiosk__live__welcome_overline": "Je bent op de bruiloft van",
+  "kiosk__live__welcome_overline": "Je bent op de {eventNoun} van",
   "kiosk__live__tap_to_record": "Tik om een bericht achter te laten",
   "kiosk__live__closed": "Inzendingen gesloten",
   "kiosk__live__caption": "Tot {seconds} seconden · audio · foto optioneel",

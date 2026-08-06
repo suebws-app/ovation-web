@@ -8,6 +8,7 @@ import { Card, CardContent } from "@ovation/ui/components/Card";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { Event, InvitationTemplate } from "@/lib/api/types";
+import { eventCardTitle } from "@/lib/event-types";
 import { InviteCard } from "@/features/invitation/components/InviteCard";
 import { useInvitationTemplatesQuery } from "@/lib/query/invitationTemplatesQueries";
 
@@ -65,11 +66,24 @@ export const InvitationWidget = ({ event }: InvitationWidgetProps) => {
             <InviteCard
               template={template}
               values={{
-                partnerA: event.partnerAName,
-                partnerB: event.partnerBName,
-                dateLabel: formatDateLabel(event.weddingDate),
-                venue: event.venueName ?? undefined,
-                place: event.venueCity ?? undefined,
+                ...eventCardTitle(t, {
+                  eventType: event.eventType,
+                  hostA: event.hostAName ?? event.partnerAName,
+                  hostB: event.hostBName ?? event.partnerBName,
+                  eventName:
+                    typeof event.details?.eventName === "string"
+                      ? event.details.eventName
+                      : undefined,
+                  customEventNoun:
+                    typeof event.details?.customEventNoun === "string"
+                      ? event.details.customEventNoun
+                      : undefined,
+                }),
+                dateLabel: formatDateLabel(
+                  event.eventDate ?? event.weddingDate,
+                ),
+                venue: event.locationName ?? event.venueName ?? undefined,
+                place: event.locationCity ?? event.venueCity ?? undefined,
                 message: event.welcomeMessage ?? undefined,
               }}
             />

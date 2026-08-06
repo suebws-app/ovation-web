@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Verbindung verloren",
   "kiosk__offline__body": "Der Kiosk benötigt eine Internetverbindung, um neue Nachrichten anzunehmen. Bitte stelle die Verbindung wieder her, um fortzufahren.",
   "kiosk__offline__hint": "Verbindung wird automatisch wiederhergestellt…",
-  "kiosk__live__welcome_overline": "Du bist auf der Hochzeit von",
+  "kiosk__live__welcome_overline": "Du bist auf der {eventNoun} von",
   "kiosk__live__tap_to_record": "Tippe, um eine Nachricht zu hinterlassen",
   "kiosk__live__closed": "Einreichungen geschlossen",
   "kiosk__live__caption": "Bis zu {seconds} Sekunden · Audio · Foto optional",

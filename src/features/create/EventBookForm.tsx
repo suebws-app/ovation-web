@@ -87,8 +87,9 @@ export const EventBookForm = ({
           </Kicker>
           <div className="relative">
             <BookPreview
-              partner1={partnerAName}
-              partner2={partnerBName}
+              title={[partnerAName, partnerBName].filter(Boolean).join(" & ")}
+              volumeLabel={t("signup__book_preview__volume")}
+              titleFallback={t("signup__book_preview__title_fallback")}
               date={weddingDate?.toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "short",

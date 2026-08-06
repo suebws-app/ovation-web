@@ -5,15 +5,18 @@ import { eventsClient } from "@/lib/api/events-client";
 import { planPurchasesClient } from "@/lib/api/plan-purchases-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
+import { clearPendingEvent } from "@/features/create/pendingEvent";
 
 const STORAGE_KEY = "ovation_pending_event_data";
 
 type PendingEventData = {
+  eventType?: string;
   partnerAName: string;
   partnerBName: string;
   weddingDate: string | null;
   venueName: string | null;
   venueCity: string | null;
+  details?: Record<string, unknown>;
   desiredSlug: string | null;
 };
 
@@ -80,11 +83,13 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
       for (let attempt = 0; attempt < maxAttempts && !cancelled; attempt += 1) {
         try {
           const { event } = await eventsClient.create({
+            eventType: data.eventType,
             partnerAName: data.partnerAName,
             partnerBName: data.partnerBName,
             weddingDate: data.weddingDate ?? undefined,
             venueName: data.venueName ?? undefined,
             venueCity: data.venueCity ?? undefined,
+            details: data.details,
           });
 
           if (
@@ -101,6 +106,7 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
 
           await profileClient.markOnboardingComplete().catch(() => undefined);
           window.sessionStorage?.removeItem(STORAGE_KEY);
+          clearPendingEvent();
           return;
         } catch (error) {
           if (!isPendingSubscription(error)) {

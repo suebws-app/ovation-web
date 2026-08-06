@@ -10,10 +10,10 @@ type GuestHeroProps = {
 export const GuestHero = ({ event }: GuestHeroProps) => (
   <div className="gap-6_5 flex flex-col">
     <HeroPhoto
-      partnerAName={event.partnerAName}
-      partnerBName={event.partnerBName}
+      hostAName={event.hostAName ?? event.partnerAName}
+      hostBName={event.hostBName ?? event.partnerBName}
       themeColor={event.themeColor}
-      couplePhotoUrl={event.couplePhotoUrl}
+      coverPhotoUrl={event.coverPhotoUrl ?? event.couplePhotoUrl}
     />
     <HeroDetails event={event} />
     <WelcomeQuote event={event} />
