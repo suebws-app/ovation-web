@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import type { InvitationTemplate, PublicInvitation } from "@/lib/api/types";
+import { EventThemeScope } from "@/lib/theme/EventThemeScope";
 import { InviteCard } from "@/features/invitation/components/InviteCard";
 import { InvitationOpenTracker } from "@/features/guest/InvitationOpenTracker";
 import { useGuestSubmissionStore } from "@/features/guest/store/useGuestSubmissionStore";
@@ -63,7 +64,7 @@ export const GuestInvitationView = ({
   }, [currentGuestName, invitee.firstName, setGuestName]);
 
   return (
-    <>
+    <EventThemeScope event={event}>
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         style={{ background: template.pageBg }}
@@ -102,6 +103,6 @@ export const GuestInvitationView = ({
           </div>
         </div>
       </div>
-    </>
+    </EventThemeScope>
   );
 };

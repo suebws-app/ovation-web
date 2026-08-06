@@ -22,6 +22,10 @@ export const getWeddingSchema = (t: T) =>
       venueName: z.string().max(100).optional(),
       venueCity: z.string().max(100).optional(),
       welcomeMessage: z.string().max(200).optional(),
+      themeColor: z
+        .string()
+        .regex(/^#[0-9a-fA-F]{6}$/)
+        .optional(),
       slug: z
         .string()
         .max(20)
@@ -43,5 +47,6 @@ export type WeddingFields = {
   venueName?: string;
   venueCity?: string;
   welcomeMessage?: string;
+  themeColor?: string;
   slug: string;
 };

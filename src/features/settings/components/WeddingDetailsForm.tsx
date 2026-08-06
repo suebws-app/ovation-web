@@ -30,6 +30,8 @@ import {
   type EventType,
 } from "@/lib/event-types";
 import { DateFieldControl } from "./DateFieldControl";
+import { ThemeColorField } from "./ThemeColorField";
+import { EventThemePreview } from "@/lib/theme/EventThemePreview";
 
 type WeddingDetailsFormProps = {
   event: Event;
@@ -107,6 +109,7 @@ export const WeddingDetailsForm = ({
       venueName: event.venueName ?? "",
       venueCity: event.venueCity ?? "",
       welcomeMessage: event.welcomeMessage ?? "",
+      themeColor: event.themeColor,
       slug: event.slug,
     },
     resolver: standardSchemaResolver(schema),
@@ -117,6 +120,7 @@ export const WeddingDetailsForm = ({
 
   const welcomeMessage = useWatch({ control, name: "welcomeMessage" }) ?? "";
   const slugValue = useWatch({ control, name: "slug" }) ?? "";
+  const themeColorValue = useWatch({ control, name: "themeColor" });
   const [copied, setCopied] = useState(false);
 
   const handleCopyPublicLink = async () => {
@@ -140,6 +144,7 @@ export const WeddingDetailsForm = ({
         venueName: values.venueName || undefined,
         venueCity: values.venueCity || undefined,
         welcomeMessage: values.welcomeMessage || undefined,
+        themeColor: values.themeColor || undefined,
         slug: values.slug || undefined,
       });
       reset({
@@ -150,6 +155,7 @@ export const WeddingDetailsForm = ({
         venueName: updated.venueName ?? "",
         venueCity: updated.venueCity ?? "",
         welcomeMessage: updated.welcomeMessage ?? "",
+        themeColor: updated.themeColor,
         slug: updated.slug,
       });
       toast.success(t("settings__wedding__saved"));
@@ -171,6 +177,10 @@ export const WeddingDetailsForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate>
+      <EventThemePreview
+        themeColor={themeColorValue ?? event.themeColor}
+        eventType={typeOverride ?? event.eventType}
+      />
       <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
         <SettingsField
           label={labelForColumn("hostAName", "settings__wedding__partnerA")}
@@ -331,6 +341,25 @@ export const WeddingDetailsForm = ({
               {errors.welcomeMessage.message}
             </span>
           )}
+        </SettingsField>
+      </div>
+
+      <div className="mt-5">
+        <SettingsField
+          label={t("settings__theme__label")}
+          hint={t("settings__theme__hint")}
+        >
+          <Controller
+            control={control}
+            name="themeColor"
+            render={({ field }) => (
+              <ThemeColorField
+                value={field.value ?? event.themeColor}
+                onChange={field.onChange}
+                eventType={typeOverride ?? event.eventType}
+              />
+            )}
+          />
         </SettingsField>
       </div>
 

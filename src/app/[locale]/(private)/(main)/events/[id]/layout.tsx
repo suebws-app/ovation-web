@@ -1,5 +1,6 @@
 import { eventsApi } from "@/lib/api/events";
 import { eventDateOf, eventTitleLine } from "@/lib/event-types";
+import { EventThemeScope } from "@/lib/theme/EventThemeScope";
 import { EventContextProvider } from "@/features/events/EventContext";
 import { EventLabelSync } from "@/features/events/EventLabelSync";
 import { LastEventCookieSync } from "@/features/events/LastEventCookieSync";
@@ -31,7 +32,14 @@ export default async function Layout({
     <EventContextProvider id={id}>
       <EventLabelSync label={label} />
       <LastEventCookieSync eventId={id} />
-      {children}
+      <EventThemeScope
+        event={{
+          themeColor: event?.themeColor,
+          eventType: event?.eventType,
+        }}
+      >
+        {children}
+      </EventThemeScope>
     </EventContextProvider>
   );
 }
