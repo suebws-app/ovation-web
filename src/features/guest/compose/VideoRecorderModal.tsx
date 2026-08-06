@@ -164,7 +164,7 @@ export const VideoRecorderModal = ({
             <VideoIcon width={16} height={16} />
             {isRequesting
               ? t("guest__record__video__requesting")
-              : t("guest__record__video__start")}
+              : t("guest__record__audio__start")}
           </Button>
         )}
       </div>

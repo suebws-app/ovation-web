@@ -1,20 +1,50 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
+import { Button } from "@ovation/ui/components/Button";
 import { Card, CardContent } from "@ovation/ui/components/Card";
+import { XIcon } from "@ovation/icons/XIcon";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 
 const MAX_LENGTH = 200;
 
-export const NotePanel = () => {
+type NotePanelProps = {
+  onClose?: () => void;
+  autoFocus?: boolean;
+};
+
+export const NotePanel = ({ onClose, autoFocus }: NotePanelProps) => {
   const t = useTranslations();
   const note = useGuestSubmissionStore((s) => s.note);
   const setNote = useGuestSubmissionStore((s) => s.setNote);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (!autoFocus) return;
+    const el = textareaRef.current;
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.focus({ preventScroll: true });
+  }, [autoFocus]);
 
   return (
-    <Card>
+    <Card className="relative pt-12">
+      {onClose && (
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          className="absolute top-2 right-2 z-10 size-8 rounded-full"
+          onClick={onClose}
+          aria-label={t("common__cancel")}
+        >
+          <XIcon width={14} height={14} />
+        </Button>
+      )}
       <CardContent>
         <textarea
+          ref={textareaRef}
           value={note}
           onChange={(e) => setNote(e.target.value.slice(0, MAX_LENGTH))}
           placeholder={t("guest__record__note__placeholder")}

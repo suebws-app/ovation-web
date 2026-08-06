@@ -1,18 +1,37 @@
 import type { ReactNode } from "react";
 import { cn } from "@ovation/ui/utils/cn";
+import { InfoIcon } from "@ovation/icons/InfoIcon";
 
 type StickyCTALayout = "stack" | "split";
+type StickyCTATone = "muted" | "warning";
 
 type StickyCTAProps = {
   children: ReactNode;
   caption?: string;
+  captionTone?: StickyCTATone;
   layout?: StickyCTALayout;
   className?: string;
+};
+
+const captionContent = (caption: string, tone: StickyCTATone) => {
+  if (tone === "warning") {
+    return (
+      <span
+        className="bg-warning/15 type-body-small inline-flex items-center gap-2 rounded-lg px-3.5 py-1.5 font-medium"
+        style={{ color: "var(--warning)" }}
+      >
+        <InfoIcon width={24} height={24} />
+        {caption}
+      </span>
+    );
+  }
+  return <span className="type-caption text-muted-foreground">{caption}</span>;
 };
 
 export const StickyCTA = ({
   children,
   caption,
+  captionTone = "muted",
   layout = "stack",
   className,
 }: StickyCTAProps) => {
@@ -26,13 +45,13 @@ export const StickyCTA = ({
       >
         <div
           className={cn(
-            "tablet:flex-row tablet:items-center flex flex-col-reverse gap-3",
+            "tablet:flex-row tablet:items-center flex flex-col gap-3",
             caption ? "tablet:justify-between" : "tablet:justify-end",
           )}
         >
           {caption && (
-            <p className="type-caption text-muted-foreground tablet:text-left text-center">
-              {caption}
+            <p className="tablet:text-left text-center">
+              {captionContent(caption, captionTone)}
             </p>
           )}
           <div className="tablet:w-auto w-full">{children}</div>
@@ -50,8 +69,8 @@ export const StickyCTA = ({
     >
       {children}
       {caption && (
-        <p className="type-caption text-muted-foreground mt-2.5 text-center">
-          {caption}
+        <p className="mt-2.5 text-center">
+          {captionContent(caption, captionTone)}
         </p>
       )}
     </div>

@@ -137,6 +137,27 @@ export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
     }
   }, []);
 
+  const cancel = useCallback(() => {
+    const recorder = mediaRecorderRef.current;
+    if (recorder) {
+      recorder.ondataavailable = null;
+      recorder.onstop = null;
+      if (recorder.state === "recording") {
+        try {
+          recorder.stop();
+        } catch {
+          // ignore
+        }
+      }
+    }
+    mediaRecorderRef.current = null;
+    chunksRef.current = [];
+    stopTracks();
+    setElapsed(0);
+    setState("idle");
+    setError(null);
+  }, [stopTracks]);
+
   const reset = useCallback(() => {
     if (recording?.url) URL.revokeObjectURL(recording.url);
     setRecording(null);
@@ -152,6 +173,7 @@ export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
     maxDurationSec,
     start,
     stop,
+    cancel,
     reset,
   };
 };

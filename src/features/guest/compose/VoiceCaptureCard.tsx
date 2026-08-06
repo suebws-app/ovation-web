@@ -86,7 +86,9 @@ export const VoiceCaptureCard = ({
         <div className="mt-4">
           <VoicePanel
             onCaptured={() => setEditing(false)}
+            onCancel={() => setEditing(false)}
             maxDurationSec={maxDurationSec}
+            autoFocus={editing}
           />
         </div>
       )}
