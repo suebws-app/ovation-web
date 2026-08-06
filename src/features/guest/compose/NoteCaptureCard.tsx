@@ -22,6 +22,11 @@ export const NoteCaptureCard = () => {
 
   const open = editing || filled;
 
+  const handleClose = () => {
+    setNote("");
+    setEditing(false);
+  };
+
   return (
     <div className="bg-card/70 rounded-16 tablet:p-5 p-4">
       <div className="tablet:flex-row tablet:items-center flex flex-col gap-4">
@@ -52,21 +57,7 @@ export const NoteCaptureCard = () => {
 
       {open && (
         <div className="mt-4">
-          <NotePanel />
-        </div>
-      )}
-
-      {open && filled && (
-        <div className="mt-3 flex justify-end gap-2">
-          <Button
-            variant="ghost"
-            onClick={() => {
-              setNote("");
-              setEditing(false);
-            }}
-          >
-            {t("guest__compose__remove")}
-          </Button>
+          <NotePanel onClose={handleClose} autoFocus={editing} />
         </div>
       )}
     </div>

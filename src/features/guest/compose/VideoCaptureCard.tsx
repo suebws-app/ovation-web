@@ -1,14 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { VideoIcon } from "@ovation/icons/VideoIcon";
+import { UploadIcon } from "@ovation/icons/UploadIcon";
 import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
 import { videoMimeFromType } from "@/lib/utils/videoMime";
+import { getBlobDuration } from "@/lib/media/getBlobDuration";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 import { CaptureCardHeader } from "./CaptureCardHeader";
 import { VideoRecorderModal } from "./VideoRecorderModal";
+
+const MAX_VIDEO_BYTES = 200 * 1024 * 1024;
 
 const formatTime = (sec: number): string => {
   const m = Math.floor(sec / 60);
@@ -30,13 +34,44 @@ export const VideoCaptureCard = ({
   const video = useGuestSubmissionStore((s) => s.video);
   const setVideo = useGuestSubmissionStore((s) => s.setVideo);
   const [recorderOpen, setRecorderOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const uploadInputRef = useRef<HTMLInputElement>(null);
 
   const openRecorder = () => {
     setVideo(null);
     setRecorderOpen(true);
   };
 
-  console.log({ videoUrl: video?.url });
+  const handleUpload = async (file: File | undefined) => {
+    if (!file) return;
+    setError(null);
+    if (!file.type.startsWith("video/")) {
+      setError(t("guest__record__video__error_not_video"));
+      return;
+    }
+    if (file.size > MAX_VIDEO_BYTES) {
+      setError(t("guest__record__video__error_too_large"));
+      return;
+    }
+    setUploading(true);
+    try {
+      const measured = await getBlobDuration(file);
+      const limit = maxDurationSec ?? 60;
+      const durationSec = Math.min(Math.round(measured || 0), limit);
+      const url = URL.createObjectURL(file);
+      setVideo({
+        blob: file,
+        url,
+        durationSec,
+        mimeType: file.type,
+      });
+    } catch {
+      setError(t("guest__record__video__error_other"));
+    } finally {
+      setUploading(false);
+    }
+  };
 
   return (
     <div className="bg-card/70 rounded-16 tablet:p-5 p-4">
@@ -56,15 +91,28 @@ export const VideoCaptureCard = ({
           }
         />
         {!video && (
-          <Button
-            type="button"
-            variant="ghost"
-            className={tonalButtonClass}
-            onClick={() => setRecorderOpen(true)}
-          >
-            <VideoIcon width={16} height={16} />
-            {t("guest__compose__add_video")}
-          </Button>
+          <div className="tablet:w-auto flex w-full gap-2">
+            <Button
+              type="button"
+              variant="ghost"
+              className={`${tonalButtonClass} flex-1`}
+              onClick={() => setRecorderOpen(true)}
+              disabled={uploading}
+            >
+              <VideoIcon width={16} height={16} />
+              {t("guest__compose__add_video")}
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              className={`${tonalButtonClass} flex-1`}
+              onClick={() => uploadInputRef.current?.click()}
+              disabled={uploading}
+            >
+              <UploadIcon width={16} height={16} />
+              {t("guest__compose__upload_video")}
+            </Button>
+          </div>
         )}
       </div>
 
@@ -88,6 +136,23 @@ export const VideoCaptureCard = ({
           </div>
         </div>
       )}
+
+      {error && (
+        <p className="type-body-small text-destructive mt-2.5" role="alert">
+          {error}
+        </p>
+      )}
+
+      <input
+        ref={uploadInputRef}
+        type="file"
+        accept="video/*"
+        className="hidden"
+        onChange={(e) => {
+          handleUpload(e.target.files?.[0]);
+          e.target.value = "";
+        }}
+      />
 
       <VideoRecorderModal
         open={recorderOpen}

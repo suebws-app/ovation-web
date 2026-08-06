@@ -103,7 +103,16 @@ export const ComposeClient = ({
           <NoteCaptureCard />
         </fieldset>
       </div>
-      <StickyCTA layout="split" className="bg-card shadow-top">
+      <StickyCTA
+        layout="split"
+        className="bg-card shadow-top"
+        caption={
+          !submissionClosed && !hasAnyContent
+            ? t("guest__compose__error_missing_content")
+            : undefined
+        }
+        captionTone="warning"
+      >
         <div className="tablet:w-auto flex w-full justify-end gap-2">
           {backHref && (
             <Button
@@ -117,8 +126,12 @@ export const ComposeClient = ({
           )}
           <Button
             type="button"
-            className="tablet:w-auto tablet:px-10 flex-1 shadow-lg"
+            className={cn(
+              "tablet:w-auto tablet:px-10 flex-1 shadow-lg",
+              !hasAnyContent && !submissionClosed && "opacity-50",
+            )}
             onClick={handleContinue}
+            aria-disabled={!hasAnyContent || submissionClosed}
             disabled={submissionClosed}
           >
             {t("guest__wizard__continue")}
