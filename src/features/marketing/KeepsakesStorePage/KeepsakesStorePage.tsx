@@ -37,18 +37,17 @@ export const KeepsakesStorePage = async ({ params }: LocalePageProps) => {
   }));
 
   const keepsakesUrl = localizedAbsoluteUrl(locale, "/keepsakes");
+  const purchasableProducts = products.filter((product) => !product.comingSoon);
   const keepsakesListJsonLd = itemListSchema(
     t("seo__keepsakes__title"),
-    products.map((product) => ({
+    purchasableProducts.map((product) => ({
       name: product.name,
       description: product.description,
       url: `${keepsakesUrl}#${product.productType}`,
       image: product.imageUrl,
-      priceCents: product.comingSoon ? undefined : product.priceCents,
-      currency: product.comingSoon ? undefined : product.currency,
-      availability: product.comingSoon
-        ? "https://schema.org/PreOrder"
-        : "https://schema.org/InStock",
+      priceCents: product.priceCents,
+      currency: product.currency,
+      availability: "https://schema.org/InStock",
     })),
   );
 
@@ -59,7 +58,9 @@ export const KeepsakesStorePage = async ({ params }: LocalePageProps) => {
         page="keepsakes"
         path="/keepsakes"
       />
-      {products.length > 0 ? <JsonLd data={keepsakesListJsonLd} /> : null}
+      {purchasableProducts.length > 0 ? (
+        <JsonLd data={keepsakesListJsonLd} />
+      ) : null}
       <section>
         <div className="section-container-small">
           <div className="flex items-start justify-between gap-4">

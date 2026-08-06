@@ -271,30 +271,35 @@ export const softwareApplicationSchema = (input: SoftwareApplicationInput) => ({
   publisher: { "@id": `${appUrl}/#organization` },
 });
 
-export const itemListSchema = (name: string, items: ItemListEntry[]) => ({
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name,
-  itemListElement: items.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    item: {
-      "@type": "Product",
-      name: item.name,
-      url: item.url,
-      description: item.description,
-      image: item.image ?? undefined,
-      brand: { "@type": "Brand", name: "Ovation" },
-      offers:
-        typeof item.priceCents === "number" && item.currency
-          ? {
-              "@type": "Offer",
-              price: (item.priceCents / 100).toFixed(2),
-              priceCurrency: item.currency,
-              url: item.url,
-              availability: item.availability ?? "https://schema.org/InStock",
-            }
-          : undefined,
-    },
-  })),
-});
+const hasValidOffer = (
+  item: ItemListEntry,
+): item is ItemListEntry & { priceCents: number; currency: string } =>
+  typeof item.priceCents === "number" && Boolean(item.currency);
+
+export const itemListSchema = (name: string, items: ItemListEntry[]) => {
+  const purchasableItems = items.filter(hasValidOffer);
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: purchasableItems.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: item.name,
+        url: item.url,
+        description: item.description,
+        image: item.image ?? undefined,
+        brand: { "@type": "Brand", name: "Ovation" },
+        offers: {
+          "@type": "Offer",
+          price: (item.priceCents / 100).toFixed(2),
+          priceCurrency: item.currency,
+          url: item.url,
+          availability: item.availability ?? "https://schema.org/InStock",
+        },
+      },
+    })),
+  };
+};
