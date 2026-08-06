@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Lagrer…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Kunne ikke lagre arrangementsdetaljer.",
+  "settings__wedding__end_before_start": "Sluttdatoen må være på eller etter startdatoen",
   "settings__couple_photo__eyebrow": "Offentlig lenke",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Vises på polaroiden øverst på gjestelandings- og innsendingssidene dine.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Avbryt DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Kansellering planlagt. Tilgang slutter {date}.",
   "settings__billing__dre_resume_btn": "Gjenoppta DRE",
-  "settings__data__rights__report__email_subject": "Forespørsel om datarapport"
+  "settings__data__rights__report__email_subject": "Forespørsel om datarapport",
+  "settings__event_type__changed": "Hendelsestype endret.",
+  "settings__event_type__change_error": "Kunne ikke endre hendelsestype."
 }

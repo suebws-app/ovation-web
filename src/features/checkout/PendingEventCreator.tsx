@@ -14,6 +14,7 @@ type PendingEventData = {
   partnerAName: string;
   partnerBName: string;
   weddingDate: string | null;
+  endDate?: string | null;
   venueName: string | null;
   venueCity: string | null;
   details?: Record<string, unknown>;
@@ -87,6 +88,7 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
             partnerAName: data.partnerAName,
             partnerBName: data.partnerBName,
             weddingDate: data.weddingDate ?? undefined,
+            endDate: data.endDate ?? undefined,
             venueName: data.venueName ?? undefined,
             venueCity: data.venueCity ?? undefined,
             details: data.details,

@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Guardando…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "No se pudieron guardar los detalles del evento.",
+  "settings__wedding__end_before_start": "La fecha de finalización debe ser igual o posterior a la fecha de inicio",
   "settings__couple_photo__eyebrow": "Enlace público",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Se muestra en la polaroid en la parte superior de tu página de bienvenida y de envío para invitados.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Cancelar DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Cancelación programada. El acceso termina el {date}.",
   "settings__billing__dre_resume_btn": "Reanudar DRE",
-  "settings__data__rights__report__email_subject": "Solicitud de informe de datos"
+  "settings__data__rights__report__email_subject": "Solicitud de informe de datos",
+  "settings__event_type__changed": "Tipo de evento cambiado.",
+  "settings__event_type__change_error": "No se pudo cambiar el tipo de evento."
 }

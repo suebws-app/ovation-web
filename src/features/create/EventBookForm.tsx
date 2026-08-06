@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { getDateFnsLocale } from "@/lib/utils/dateFnsLocale";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
 import { Kicker } from "@ovation/ui/components/Kicker";
@@ -55,6 +56,7 @@ export const EventBookForm = ({
   className,
 }: EventBookFormProps) => {
   const t = useTranslations();
+  const uiLocale = useLocale();
   const [datePickerOpen, setDatePickerOpen] = useState(false);
 
   const daysUntil = weddingDate
@@ -196,6 +198,7 @@ export const EventBookForm = ({
               >
                 <Calendar
                   mode="single"
+                  locale={getDateFnsLocale(uiLocale)}
                   selected={weddingDate ?? undefined}
                   onSelect={(date) => {
                     onWeddingDateChange(date ?? null);

@@ -4,25 +4,26 @@ import { useTranslations } from "next-intl";
 import type { InvitationStepId } from "../constants";
 import type { InvitationFields } from "../invitationSchema";
 import type { InvitationTemplateMeta } from "../invitationTemplates";
-import { eventCardTitle } from "@/lib/event-types";
+import { eventCardTitle, formatDateRange } from "@/lib/event-types";
 import { InviteCard } from "./InviteCard";
 import { PhonePreview } from "./PhonePreview";
 
-const formatDateLabel = (iso: string): string | undefined => {
-  if (!iso) return undefined;
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return undefined;
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+const formatDateLabel = (raw: string): string => {
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime())
+    ? raw
+    : date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
 };
 
 type InvitationPreviewPanelProps = {
   template: InvitationTemplateMeta | undefined;
   values: InvitationFields | undefined;
   eventType?: string | null;
+  endDate?: string | null;
   customEventNoun?: string | null;
   step: InvitationStepId;
   selectedGuestFirstName: string | undefined;
@@ -32,6 +33,7 @@ export const InvitationPreviewPanel = ({
   template,
   values,
   eventType,
+  endDate,
   customEventNoun,
   step,
   selectedGuestFirstName,
@@ -58,7 +60,15 @@ export const InvitationPreviewPanel = ({
               template={template}
               values={{
                 ...titleParts,
-                dateLabel: formatDateLabel(values?.weddingDate ?? ""),
+                dateLabel:
+                  formatDateRange(
+                    {
+                      eventDate: values?.weddingDate ?? null,
+                      endDate: endDate ?? null,
+                      weddingDate: null,
+                    },
+                    formatDateLabel,
+                  ) ?? undefined,
                 time: values?.time,
                 venue: values?.venue,
                 place: values?.place,

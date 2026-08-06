@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Salvataggio…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Impossibile salvare i dettagli dell'evento.",
+  "settings__wedding__end_before_start": "La data di fine deve essere uguale o successiva alla data di inizio",
   "settings__couple_photo__eyebrow": "Link pubblico",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Mostrata sulla polaroid in cima alla tua pagina di benvenuto e di invio per gli ospiti.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Annulla DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Annullamento programmato. L'accesso termina il {date}.",
   "settings__billing__dre_resume_btn": "Riprendi DRE",
-  "settings__data__rights__report__email_subject": "Richiesta di report dei dati"
+  "settings__data__rights__report__email_subject": "Richiesta di report dei dati",
+  "settings__event_type__changed": "Tipo di evento modificato.",
+  "settings__event_type__change_error": "Impossibile modificare il tipo di evento."
 }

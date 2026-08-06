@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Geen openstaande taken. Je bent helemaal bij.",
   "wp__dash__no_payments": "Geen aankomende betalingen.",
   "wp__dash__no_phases": "Voeg tijdlijnfases toe om je fases hier te zien.",
-  "wp__dash__no_payment_date": "Geen datum ingesteld"
+  "wp__dash__no_payment_date": "Geen datum ingesteld",
+  "wp__tasks__delete_all": "Alles verwijderen",
+  "wp__tasks__delete_all_title": "Alle taken verwijderen?",
+  "wp__tasks__delete_all_desc": "Hiermee worden alle taken permanent verwijderd. Dit kan niet ongedaan worden gemaakt.",
+  "wp__tasks__delete_all_done": "Alle taken verwijderd.",
+  "wp__tasks__delete_all_error": "Kan taken niet verwijderen.",
+  "wp__timeline__delete_all": "Alle fasen verwijderen",
+  "wp__timeline__delete_all_title": "Alle fasen verwijderen?",
+  "wp__timeline__delete_all_desc": "De fasen worden verwijderd en hun taken worden niet-toegewezen (geen fase). Dit kan niet ongedaan worden gemaakt.",
+  "wp__timeline__delete_all_done": "Alle fasen verwijderd.",
+  "wp__timeline__delete_all_error": "Kan fasen niet verwijderen.",
+  "wp__budget__delete_all": "Alles verwijderen",
+  "wp__budget__delete_all_title": "Alle budgetitems verwijderen?",
+  "wp__budget__delete_all_desc": "Hiermee worden alle budgetcategorieën en betalingen permanent verwijderd. Dit kan niet ongedaan worden gemaakt.",
+  "wp__budget__delete_all_done": "Budget gewist.",
+  "wp__budget__delete_all_error": "Kan het budget niet wissen."
 }

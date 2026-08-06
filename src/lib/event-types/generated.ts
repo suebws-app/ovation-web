@@ -630,11 +630,11 @@ export const EVENT_TYPE_CONFIGS: EventTypeConfig[] = [
       guestbook: true,
       media: true,
       keepsakes: true,
-      planner: false,
+      planner: true,
       assistant: true,
       kiosk: true,
       link: true,
-      countdown: false,
+      countdown: true,
     },
     rsvp: {
       enabled: false,
@@ -656,10 +656,10 @@ export const EVENT_TYPE_CONFIGS: EventTypeConfig[] = [
       },
     },
     planner: {
-      enabled: false,
-      phaseTemplateId: null,
-      budgetCategoriesId: null,
-      vendorCategoriesId: null,
+      enabled: true,
+      phaseTemplateId: "other_default",
+      budgetCategoriesId: "other_default",
+      vendorCategoriesId: "other_default",
     },
     scheduler: {
       reminders: [],

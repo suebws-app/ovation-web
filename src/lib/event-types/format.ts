@@ -27,6 +27,52 @@ export const eventTitleLine = (event: EventLike): string =>
 export const eventDateOf = (event: EventLike): string | null =>
   event.eventDate ?? event.weddingDate ?? null;
 
+/** Whether an event type declares an end-date field (multi-day support). */
+export const hasEndDateField = (config: {
+  fields: { column?: string | null }[];
+}): boolean => config.fields.some((f) => f.column === "endDate");
+
+/**
+ * Formats an event's date as a single date or a start–end range. Returns the
+ * single date (via `formatOne`) when there is no end date or the end equals the
+ * start. For a real range, the month/year are collapsed when shared: same month
+ * and year → "1–3 August 2026"; same year, different month → "28 August – 2
+ * September 2026"; different year → both full dates joined. Returns null when
+ * the event has no start date.
+ */
+export const formatDateRange = (
+  event: EventLike,
+  formatOne: (raw: string) => string,
+  opts?: { locale?: string; separator?: string },
+): string | null => {
+  const start = eventDateOf(event);
+  if (!start) return null;
+  if (!event.endDate || event.endDate === start) return formatOne(start);
+
+  const separator = opts?.separator ?? "–";
+  const locale = opts?.locale ?? "en-GB";
+  const startDate = new Date(start);
+  const endDate = new Date(event.endDate);
+  if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+    return `${formatOne(start)} ${separator} ${formatOne(event.endDate)}`;
+  }
+
+  const day = (d: Date) => d.toLocaleDateString(locale, { day: "numeric" });
+  const month = (d: Date) => d.toLocaleDateString(locale, { month: "long" });
+  const year = (d: Date) => d.toLocaleDateString(locale, { year: "numeric" });
+
+  const sameYear = year(startDate) === year(endDate);
+  const sameMonth = sameYear && month(startDate) === month(endDate);
+
+  if (sameMonth) {
+    return `${day(startDate)}${separator}${day(endDate)} ${month(startDate)} ${year(startDate)}`;
+  }
+  if (sameYear) {
+    return `${day(startDate)} ${month(startDate)} ${separator} ${day(endDate)} ${month(endDate)} ${year(startDate)}`;
+  }
+  return `${formatOne(start)} ${separator} ${formatOne(event.endDate)}`;
+};
+
 export type EventPhase = "planning" | "post_event";
 
 /**

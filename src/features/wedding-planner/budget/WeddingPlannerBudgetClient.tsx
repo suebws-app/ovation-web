@@ -1,10 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
+import { Button } from "@ovation/ui/components/Button";
 import { Card } from "@ovation/ui/components/Card";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { BellIcon } from "@ovation/icons/BellIcon";
+import { TrashIcon } from "@ovation/icons/TrashIcon";
+import { ConfirmDialog } from "@/components/ConfirmDialog";
+import { toast } from "@/components/Toaster";
 import { ViewHeader } from "../components/ViewHeader";
 import { ProgressRing } from "../components/ProgressRing";
 import { FieldHint } from "../components/FieldHint";
@@ -14,6 +19,7 @@ import {
   useCreatePayment,
   useDeleteCategory,
   useDeletePayment,
+  useDeleteAllBudget,
   useSetBudgetTotal,
   useUpdateCategory,
   useUpdatePayment,
@@ -43,9 +49,22 @@ export const WeddingPlannerBudgetClient = ({
   const updatePayment = useUpdatePayment(eventId);
   const deletePayment = useDeletePayment(eventId);
 
+  const deleteAll = useDeleteAllBudget(eventId);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
   const categories = budget?.categories ?? [];
   const payments = budget?.payments ?? [];
   const totalBudget = budget?.totalBudget ?? 0;
+  const hasBudget = categories.length > 0 || payments.length > 0;
+
+  const confirmDeleteAll = () =>
+    deleteAll.mutate(undefined, {
+      onSuccess: () => {
+        toast.success(t("wp__budget__delete_all_done"));
+        setConfirmOpen(false);
+      },
+      onError: () => toast.error(t("wp__budget__delete_all_error")),
+    });
   const paid = categories.reduce((sum, c) => sum + c.paid, 0);
   const actual = categories.reduce((sum, c) => sum + c.actual, 0);
   const estimated = categories.reduce((sum, c) => sum + c.estimated, 0);
@@ -274,8 +293,30 @@ export const WeddingPlannerBudgetClient = ({
           total: money(totalBudget),
           remaining: money(remaining),
         })}
+        action={
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setConfirmOpen(true)}
+            disabled={!hasBudget}
+          >
+            <TrashIcon width={15} height={15} />
+            {t("wp__budget__delete_all")}
+          </Button>
+        }
       />
       {renderBody()}
+      <ConfirmDialog
+        open={confirmOpen}
+        title={t("wp__budget__delete_all_title")}
+        description={t("wp__budget__delete_all_desc")}
+        cancelLabel={t("wp__tasks__cancel")}
+        confirmLabel={t("wp__budget__delete_all")}
+        confirmTone="destructive"
+        isPending={deleteAll.isPending}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={confirmDeleteAll}
+      />
     </div>
   );
 };

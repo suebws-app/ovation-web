@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Tidak ada tugas terbuka. Semua sudah beres.",
   "wp__dash__no_payments": "Tidak ada pembayaran mendatang.",
   "wp__dash__no_phases": "Tambahkan fase lini masa untuk melihat tahapanmu di sini.",
-  "wp__dash__no_payment_date": "Tidak ada tanggal"
+  "wp__dash__no_payment_date": "Tidak ada tanggal",
+  "wp__tasks__delete_all": "Hapus semua",
+  "wp__tasks__delete_all_title": "Hapus semua tugas?",
+  "wp__tasks__delete_all_desc": "Ini menghapus semua tugas secara permanen. Tindakan ini tidak dapat dibatalkan.",
+  "wp__tasks__delete_all_done": "Semua tugas dihapus.",
+  "wp__tasks__delete_all_error": "Tidak dapat menghapus tugas.",
+  "wp__timeline__delete_all": "Hapus semua fase",
+  "wp__timeline__delete_all_title": "Hapus semua fase?",
+  "wp__timeline__delete_all_desc": "Fase dihapus dan tugasnya menjadi tidak ditetapkan (tanpa fase). Tindakan ini tidak dapat dibatalkan.",
+  "wp__timeline__delete_all_done": "Semua fase dihapus.",
+  "wp__timeline__delete_all_error": "Tidak dapat menghapus fase.",
+  "wp__budget__delete_all": "Hapus semua",
+  "wp__budget__delete_all_title": "Hapus semua item anggaran?",
+  "wp__budget__delete_all_desc": "Ini menghapus semua kategori anggaran dan pembayaran secara permanen. Tindakan ini tidak dapat dibatalkan.",
+  "wp__budget__delete_all_done": "Anggaran dikosongkan.",
+  "wp__budget__delete_all_error": "Tidak dapat mengosongkan anggaran."
 }

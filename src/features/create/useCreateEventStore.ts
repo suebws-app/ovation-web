@@ -10,6 +10,7 @@ export type CreateEventFormData = {
   partner1Name: string;
   partner2Name: string;
   weddingDate: Date | null;
+  endDate: Date | null;
   venueName: string;
   venueCity: string;
   coverType: string;
@@ -35,6 +36,7 @@ const initialFormData: CreateEventFormData = {
   partner1Name: "",
   partner2Name: "",
   weddingDate: null,
+  endDate: null,
   venueName: "",
   venueCity: "",
   coverType: "",
@@ -45,8 +47,11 @@ const initialFormData: CreateEventFormData = {
 const STORE_KEY = "ovation_create_event_v1";
 const TTL_MS = 5 * 60 * 1000;
 
-const weddingDateReviver = (key: string, value: unknown) => {
-  if (key === "weddingDate" && typeof value === "string") {
+const dateFieldReviver = (key: string, value: unknown) => {
+  if (
+    (key === "weddingDate" || key === "endDate") &&
+    typeof value === "string"
+  ) {
     const d = new Date(value);
     return Number.isNaN(d.getTime()) ? null : d;
   }
@@ -76,11 +81,11 @@ export const useCreateEventStore = create<CreateEventStore>()(
     }),
     {
       name: STORE_KEY,
-      version: 3,
+      version: 4,
       skipHydration: true,
       storage: createJSONStorage(
         () => createTTLLocalStorage({ ttlMs: TTL_MS }),
-        { reviver: weddingDateReviver },
+        { reviver: dateFieldReviver },
       ),
       partialize: (state): PersistedState => ({
         formData: state.formData,
@@ -100,6 +105,11 @@ export const useCreateEventStore = create<CreateEventStore>()(
           !Number.isNaN(persistedForm.weddingDate.getTime())
             ? persistedForm.weddingDate
             : null;
+        const endDate =
+          persistedForm.endDate instanceof Date &&
+          !Number.isNaN(persistedForm.endDate.getTime())
+            ? persistedForm.endDate
+            : null;
         return {
           ...current,
           mode: persistedState.mode ?? current.mode,
@@ -110,6 +120,7 @@ export const useCreateEventStore = create<CreateEventStore>()(
             eventType: persistedForm.eventType ?? initialFormData.eventType,
             details: persistedForm.details ?? {},
             weddingDate,
+            endDate,
             coverType,
           },
         };

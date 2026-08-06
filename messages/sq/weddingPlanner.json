@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Nuk ka detyra të hapura. Jeni krejtësisht në rregull.",
   "wp__dash__no_payments": "Nuk ka pagesa të ardhshme.",
   "wp__dash__no_phases": "Shtoni faza të planit kohor për t'i parë etapat tuaja këtu.",
-  "wp__dash__no_payment_date": "Pa datë"
+  "wp__dash__no_payment_date": "Pa datë",
+  "wp__tasks__delete_all": "Fshi të gjitha",
+  "wp__tasks__delete_all_title": "Të fshihen të gjitha detyrat?",
+  "wp__tasks__delete_all_desc": "Kjo heq përgjithmonë të gjitha detyrat. Ky veprim nuk mund të zhbëhet.",
+  "wp__tasks__delete_all_done": "Të gjitha detyrat u fshinë.",
+  "wp__tasks__delete_all_error": "Detyrat nuk u fshinë dot.",
+  "wp__timeline__delete_all": "Fshi të gjitha fazat",
+  "wp__timeline__delete_all_title": "Të fshihen të gjitha fazat?",
+  "wp__timeline__delete_all_desc": "Fazat hiqen dhe detyrat e tyre bëhen të pacaktuara (pa fazë). Ky veprim nuk mund të zhbëhet.",
+  "wp__timeline__delete_all_done": "Të gjitha fazat u fshinë.",
+  "wp__timeline__delete_all_error": "Fazat nuk u fshinë dot.",
+  "wp__budget__delete_all": "Fshi të gjitha",
+  "wp__budget__delete_all_title": "Të fshihen të gjitha zërat e buxhetit?",
+  "wp__budget__delete_all_desc": "Kjo heq përgjithmonë të gjitha kategoritë e buxhetit dhe pagesat. Ky veprim nuk mund të zhbëhet.",
+  "wp__budget__delete_all_done": "Buxheti u pastrua.",
+  "wp__budget__delete_all_error": "Buxheti nuk u pastrua dot."
 }

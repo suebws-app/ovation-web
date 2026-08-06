@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Žiadne otvorené úlohy. Máte všetko vybavené.",
   "wp__dash__no_payments": "Žiadne nadchádzajúce platby.",
   "wp__dash__no_phases": "Pridajte fázy časovej osi, aby ste tu videli svoje etapy.",
-  "wp__dash__no_payment_date": "Bez dátumu"
+  "wp__dash__no_payment_date": "Bez dátumu",
+  "wp__tasks__delete_all": "Odstrániť všetko",
+  "wp__tasks__delete_all_title": "Odstrániť všetky úlohy?",
+  "wp__tasks__delete_all_desc": "Týmto sa natrvalo odstránia všetky úlohy. Túto akciu nie je možné vrátiť späť.",
+  "wp__tasks__delete_all_done": "Všetky úlohy odstránené.",
+  "wp__tasks__delete_all_error": "Úlohy sa nepodarilo odstrániť.",
+  "wp__timeline__delete_all": "Odstrániť všetky fázy",
+  "wp__timeline__delete_all_title": "Odstrániť všetky fázy?",
+  "wp__timeline__delete_all_desc": "Fázy sa odstránia a ich úlohy sa stanú nepriradenými (žiadna fáza). Túto akciu nie je možné vrátiť späť.",
+  "wp__timeline__delete_all_done": "Všetky fázy odstránené.",
+  "wp__timeline__delete_all_error": "Fázy sa nepodarilo odstrániť.",
+  "wp__budget__delete_all": "Odstrániť všetko",
+  "wp__budget__delete_all_title": "Odstrániť všetky položky rozpočtu?",
+  "wp__budget__delete_all_desc": "Týmto sa natrvalo odstránia všetky kategórie rozpočtu a platby. Túto akciu nie je možné vrátiť späť.",
+  "wp__budget__delete_all_done": "Rozpočet vymazaný.",
+  "wp__budget__delete_all_error": "Rozpočet sa nepodarilo vymazať."
 }

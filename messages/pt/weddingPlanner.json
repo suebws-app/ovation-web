@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Não há tarefas pendentes. Está tudo em dia.",
   "wp__dash__no_payments": "Sem pagamentos próximos.",
   "wp__dash__no_phases": "Adicione fases ao cronograma para ver aqui as suas etapas.",
-  "wp__dash__no_payment_date": "Sem data definida"
+  "wp__dash__no_payment_date": "Sem data definida",
+  "wp__tasks__delete_all": "Excluir tudo",
+  "wp__tasks__delete_all_title": "Excluir todas as tarefas?",
+  "wp__tasks__delete_all_desc": "Isto remove permanentemente todas as tarefas. Não pode ser desfeito.",
+  "wp__tasks__delete_all_done": "Todas as tarefas excluídas.",
+  "wp__tasks__delete_all_error": "Não foi possível excluir as tarefas.",
+  "wp__timeline__delete_all": "Excluir todas as fases",
+  "wp__timeline__delete_all_title": "Excluir todas as fases?",
+  "wp__timeline__delete_all_desc": "As fases são removidas e as suas tarefas ficam sem atribuição (sem fase). Não pode ser desfeito.",
+  "wp__timeline__delete_all_done": "Todas as fases excluídas.",
+  "wp__timeline__delete_all_error": "Não foi possível excluir as fases.",
+  "wp__budget__delete_all": "Excluir tudo",
+  "wp__budget__delete_all_title": "Excluir todos os itens do orçamento?",
+  "wp__budget__delete_all_desc": "Isto remove permanentemente todas as categorias de orçamento e pagamentos. Não pode ser desfeito.",
+  "wp__budget__delete_all_done": "Orçamento limpo.",
+  "wp__budget__delete_all_error": "Não foi possível limpar o orçamento."
 }

@@ -64,6 +64,7 @@ type WeddingPlannerDashboardClientProps = {
   eventId: string;
   partners: string;
   weddingDate: string | null;
+  endDate: string | null;
   venue: string | null;
   city: string | null;
   showCountdown?: boolean;
@@ -74,6 +75,7 @@ export const WeddingPlannerDashboardClient = ({
   eventId,
   partners,
   weddingDate,
+  endDate,
   venue,
   city,
   showCountdown = true,
@@ -129,6 +131,7 @@ export const WeddingPlannerDashboardClient = ({
               venue={venue}
               city={city}
               date={weddingDate}
+              endDate={endDate}
               daysLabel={t("wp__days_to_go")}
               askAiLabel={t("wp__hero__ask_ai")}
               viewTimelineLabel={t("wp__hero__view_timeline")}

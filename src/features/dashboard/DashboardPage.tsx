@@ -12,6 +12,7 @@ import { weddingPlannerApi } from "@/lib/api/wedding-planner";
 import { daysUntil } from "@/features/wedding-planner/utils";
 import {
   eventDateOf,
+  getEventPhase,
   getEventTypeConfig,
   showsCountdown,
 } from "@/lib/event-types";
@@ -41,6 +42,7 @@ import {
   WeddingPlannerWidget,
   type WeddingPlannerWidgetSummary,
 } from "./components/widgets/WeddingPlannerWidget";
+import { isPlannerFirst, getColumnOrder } from "./layout/dashboardOrder";
 
 export const DashboardPage = async () => {
   const t = await getTranslations();
@@ -163,10 +165,13 @@ export const DashboardPage = async () => {
   const spent = categories.reduce((sum, category) => sum + category.actual, 0);
 
   const config = getEventTypeConfig(event.eventType);
+  const phase = getEventPhase(event);
+  const columnOrder = getColumnOrder(phase);
   const eventDate = eventDateOf(event);
 
   const plannerSummary: WeddingPlannerWidgetSummary = {
     weddingDate: eventDate,
+    endDate: event.endDate,
     daysToGo: eventDate && showsCountdown(event) ? daysUntil(eventDate) : null,
     progressPct: totalTasks ? Math.round((doneTasks / totalTasks) * 100) : 0,
     doneTasks,
@@ -190,22 +195,24 @@ export const DashboardPage = async () => {
           <div
             className={cn(
               stackClassName,
-              "tablet:order-2 tablet:w-80 tablet:shrink-0 order-1 w-full",
+              "tablet:order-2 tablet:w-80 tablet:shrink-0 w-full",
+              columnOrder.sidebar,
             )}
           >
             <QRcodeWidget shortUrl={qr?.shortUrl ?? `/g/${event.slug}`} />
             <InvitationWidget event={event} />
             <ReferralWidget senderName={referralSenderName} />
-            <div className="min-[1300px]:hidden">
-              <Orders orders={ordersPage?.items ?? []} />
-            </div>
           </div>
           <div
             className={cn(
               stackClassName,
-              "tablet:order-1 order-2 min-w-0 flex-1",
+              "tablet:order-1 min-w-0 flex-1",
+              columnOrder.main,
             )}
           >
+            {config.features.planner && isPlannerFirst(phase) && (
+              <WeddingPlannerWidget summary={plannerSummary} />
+            )}
             <Messages
               eventId={event.id}
               messages={messageViews}
@@ -222,11 +229,11 @@ export const DashboardPage = async () => {
                 totalCount={totalPhotos}
                 hasMore={hasMorePhotos}
               />
-              <div className="hidden w-80 shrink-0 min-[1300px]:block">
+              <div className="w-full min-[1300px]:w-80 min-[1300px]:shrink-0">
                 <Orders orders={ordersPage?.items ?? []} />
               </div>
             </div>
-            {config.features.planner && (
+            {config.features.planner && !isPlannerFirst(phase) && (
               <WeddingPlannerWidget summary={plannerSummary} />
             )}
           </div>

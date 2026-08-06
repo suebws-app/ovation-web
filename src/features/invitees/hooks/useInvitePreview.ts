@@ -1,19 +1,19 @@
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import type { Event } from "@/lib/api/types";
-import { eventCardTitle, eventDateOf } from "@/lib/event-types";
+import { eventCardTitle, formatDateRange } from "@/lib/event-types";
 import { useInvitationTemplatesQuery } from "@/lib/query/invitationTemplatesQueries";
 import { DEFAULT_INVITATION_TEMPLATE_ID } from "@/features/invitation/invitationTemplates";
 
-const formatDateLabel = (iso: string | null): string | undefined => {
-  if (!iso) return undefined;
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return undefined;
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+const formatDateLabel = (raw: string): string => {
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime())
+    ? raw
+    : date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
 };
 
 export const useInvitePreview = (event: Event) => {
@@ -49,7 +49,7 @@ export const useInvitePreview = (event: Event) => {
             ? event.details.customEventNoun
             : undefined,
       }),
-      dateLabel: formatDateLabel(eventDateOf(event)),
+      dateLabel: formatDateRange(event, formatDateLabel) ?? undefined,
       venue: event.locationName ?? event.venueName ?? undefined,
       place: event.locationCity ?? event.venueCity ?? undefined,
       message: event.welcomeMessage ?? undefined,

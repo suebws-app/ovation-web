@@ -123,6 +123,10 @@ export const CoverPage = () => {
           data.weddingDate && !Number.isNaN(data.weddingDate.getTime())
             ? toIsoDate(data.weddingDate)
             : undefined,
+        endDate:
+          data.endDate && !Number.isNaN(data.endDate.getTime())
+            ? toIsoDate(data.endDate)
+            : undefined,
         venueName: data.venueName?.trim() || undefined,
         venueCity: data.venueCity?.trim() || undefined,
         details: data.details,

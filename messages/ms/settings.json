@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Menyimpan…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Tidak dapat menyimpan butiran acara.",
+  "settings__wedding__end_before_start": "Tarikh tamat mestilah pada atau selepas tarikh mula",
   "settings__couple_photo__eyebrow": "Pautan awam",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Ditunjukkan pada polaroid di bahagian atas halaman pendaratan tetamu dan halaman penyerahan anda.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Batal DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Pembatalan dijadualkan. Akses berakhir pada {date}.",
   "settings__billing__dre_resume_btn": "Sambung semula DRE",
-  "settings__data__rights__report__email_subject": "Permintaan laporan data"
+  "settings__data__rights__report__email_subject": "Permintaan laporan data",
+  "settings__event_type__changed": "Jenis acara ditukar.",
+  "settings__event_type__change_error": "Tidak dapat menukar jenis acara."
 }

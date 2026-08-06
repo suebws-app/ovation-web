@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Žádné otevřené úkoly. Máte vše hotové.",
   "wp__dash__no_payments": "Žádné nadcházející platby.",
   "wp__dash__no_phases": "Přidejte fáze harmonogramu a uvidíte zde své etapy.",
-  "wp__dash__no_payment_date": "Bez data"
+  "wp__dash__no_payment_date": "Bez data",
+  "wp__tasks__delete_all": "Smazat vše",
+  "wp__tasks__delete_all_title": "Smazat všechny úkoly?",
+  "wp__tasks__delete_all_desc": "Tímto se trvale odstraní všechny úkoly. Tuto akci nelze vrátit zpět.",
+  "wp__tasks__delete_all_done": "Všechny úkoly smazány.",
+  "wp__tasks__delete_all_error": "Úkoly se nepodařilo smazat.",
+  "wp__timeline__delete_all": "Smazat všechny fáze",
+  "wp__timeline__delete_all_title": "Smazat všechny fáze?",
+  "wp__timeline__delete_all_desc": "Fáze se odstraní a jejich úkoly se stanou nepřiřazenými (žádná fáze). Tuto akci nelze vrátit zpět.",
+  "wp__timeline__delete_all_done": "Všechny fáze smazány.",
+  "wp__timeline__delete_all_error": "Fáze se nepodařilo smazat.",
+  "wp__budget__delete_all": "Smazat vše",
+  "wp__budget__delete_all_title": "Smazat všechny položky rozpočtu?",
+  "wp__budget__delete_all_desc": "Tímto se trvale odstraní všechny kategorie rozpočtu a platby. Tuto akci nelze vrátit zpět.",
+  "wp__budget__delete_all_done": "Rozpočet vymazán.",
+  "wp__budget__delete_all_error": "Rozpočet se nepodařilo vymazat."
 }

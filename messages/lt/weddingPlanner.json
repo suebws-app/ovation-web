@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Neatliktų užduočių nėra. Viskas padaryta.",
   "wp__dash__no_payments": "Būsimų mokėjimų nėra.",
   "wp__dash__no_phases": "Pridėkite laiko juostos etapų, kad čia matytumėte savo stadijas.",
-  "wp__dash__no_payment_date": "Data nenustatyta"
+  "wp__dash__no_payment_date": "Data nenustatyta",
+  "wp__tasks__delete_all": "Ištrinti viską",
+  "wp__tasks__delete_all_title": "Ištrinti visas užduotis?",
+  "wp__tasks__delete_all_desc": "Taip visam laikui pašalinamos visos užduotys. Šio veiksmo anuliuoti negalima.",
+  "wp__tasks__delete_all_done": "Visos užduotys ištrintos.",
+  "wp__tasks__delete_all_error": "Nepavyko ištrinti užduočių.",
+  "wp__timeline__delete_all": "Ištrinti visus etapus",
+  "wp__timeline__delete_all_title": "Ištrinti visus etapus?",
+  "wp__timeline__delete_all_desc": "Etapai pašalinami, o jų užduotys tampa nepriskirtos (nėra etapo). Šio veiksmo anuliuoti negalima.",
+  "wp__timeline__delete_all_done": "Visi etapai ištrinti.",
+  "wp__timeline__delete_all_error": "Nepavyko ištrinti etapų.",
+  "wp__budget__delete_all": "Ištrinti viską",
+  "wp__budget__delete_all_title": "Ištrinti visus biudžeto elementus?",
+  "wp__budget__delete_all_desc": "Taip visam laikui pašalinamos visos biudžeto kategorijos ir mokėjimai. Šio veiksmo anuliuoti negalima.",
+  "wp__budget__delete_all_done": "Biudžetas išvalytas.",
+  "wp__budget__delete_all_error": "Nepavyko išvalyti biudžeto."
 }

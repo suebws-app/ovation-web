@@ -34,6 +34,7 @@ import {
   WeddingPlannerWidget,
   type WeddingPlannerWidgetSummary,
 } from "./components/widgets/WeddingPlannerWidget";
+import { isPlannerFirst, getColumnOrder } from "./layout/dashboardOrder";
 
 type EventDashboardPageProps = {
   params: Promise<{ id: string }>;
@@ -122,11 +123,13 @@ export const EventDashboardPage = async ({
 
   const config = getEventTypeConfig(event.eventType);
   const plannerEnabled = config.features.planner;
-  const isPlanning = getEventPhase(event) === "planning";
+  const phase = getEventPhase(event);
+  const columnOrder = getColumnOrder(phase);
   const eventDate = eventDateOf(event);
 
   const plannerSummary: WeddingPlannerWidgetSummary = {
     weddingDate: eventDate,
+    endDate: event.endDate,
     daysToGo: eventDate && showsCountdown(event) ? daysUntil(eventDate) : null,
     progressPct: totalTasks ? Math.round((doneTasks / totalTasks) * 100) : 0,
     doneTasks,
@@ -153,21 +156,20 @@ export const EventDashboardPage = async ({
           <div
             className={cn(
               stackClassName,
-              "tablet:order-2 tablet:w-80 tablet:shrink-0 order-1 w-full",
+              "tablet:order-2 tablet:w-80 tablet:shrink-0 w-full",
+              columnOrder.sidebar,
             )}
           >
             <QRcodeWidget shortUrl={qr?.shortUrl ?? `/g/${event.slug}`} />
-            <div className="min-[1300px]:hidden">
-              <Orders orders={ordersPage?.items ?? []} />
-            </div>
           </div>
           <div
             className={cn(
               stackClassName,
-              "tablet:order-1 order-2 min-w-0 flex-1",
+              "tablet:order-1 min-w-0 flex-1",
+              columnOrder.main,
             )}
           >
-            {plannerEnabled && isPlanning && (
+            {plannerEnabled && isPlannerFirst(phase) && (
               <WeddingPlannerWidget summary={plannerSummary} />
             )}
             <Messages
@@ -186,11 +188,11 @@ export const EventDashboardPage = async ({
                 totalCount={totalPhotos}
                 hasMore={hasMorePhotos}
               />
-              <div className="hidden min-w-0 flex-1 min-[1300px]:block">
+              <div className="min-w-0 flex-1">
                 <Orders orders={ordersPage?.items ?? []} />
               </div>
             </div>
-            {plannerEnabled && !isPlanning && (
+            {plannerEnabled && !isPlannerFirst(phase) && (
               <WeddingPlannerWidget summary={plannerSummary} />
             )}
           </div>

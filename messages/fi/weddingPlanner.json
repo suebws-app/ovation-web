@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Ei avoimia tehtäviä. Kaikki on hoidossa.",
   "wp__dash__no_payments": "Ei tulevia maksuja.",
   "wp__dash__no_phases": "Lisää aikajanan vaiheita, niin näet vaiheesi täällä.",
-  "wp__dash__no_payment_date": "Ei päivämäärää"
+  "wp__dash__no_payment_date": "Ei päivämäärää",
+  "wp__tasks__delete_all": "Poista kaikki",
+  "wp__tasks__delete_all_title": "Poistetaanko kaikki tehtävät?",
+  "wp__tasks__delete_all_desc": "Tämä poistaa kaikki tehtävät pysyvästi. Toimintoa ei voi kumota.",
+  "wp__tasks__delete_all_done": "Kaikki tehtävät poistettu.",
+  "wp__tasks__delete_all_error": "Tehtävien poistaminen epäonnistui.",
+  "wp__timeline__delete_all": "Poista kaikki vaiheet",
+  "wp__timeline__delete_all_title": "Poistetaanko kaikki vaiheet?",
+  "wp__timeline__delete_all_desc": "Vaiheet poistetaan ja niiden tehtävät muuttuvat määrittämättömiksi (ei vaihetta). Toimintoa ei voi kumota.",
+  "wp__timeline__delete_all_done": "Kaikki vaiheet poistettu.",
+  "wp__timeline__delete_all_error": "Vaiheiden poistaminen epäonnistui.",
+  "wp__budget__delete_all": "Poista kaikki",
+  "wp__budget__delete_all_title": "Poistetaanko kaikki budjettikohteet?",
+  "wp__budget__delete_all_desc": "Tämä poistaa kaikki budjettiluokat ja maksut pysyvästi. Toimintoa ei voi kumota.",
+  "wp__budget__delete_all_done": "Budjetti tyhjennetty.",
+  "wp__budget__delete_all_error": "Budjetin tyhjentäminen epäonnistui."
 }

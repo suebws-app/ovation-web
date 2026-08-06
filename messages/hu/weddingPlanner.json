@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Nincs nyitott feladat. Mindennel megvagytok.",
   "wp__dash__no_payments": "Nincsenek közelgő fizetések.",
   "wp__dash__no_phases": "Adj hozzá idővonal-szakaszokat, hogy itt lásd a fázisaidat.",
-  "wp__dash__no_payment_date": "Nincs dátum"
+  "wp__dash__no_payment_date": "Nincs dátum",
+  "wp__tasks__delete_all": "Összes törlése",
+  "wp__tasks__delete_all_title": "Törli az összes feladatot?",
+  "wp__tasks__delete_all_desc": "Ez véglegesen eltávolítja az összes feladatot. A művelet nem vonható vissza.",
+  "wp__tasks__delete_all_done": "Az összes feladat törölve.",
+  "wp__tasks__delete_all_error": "Nem sikerült törölni a feladatokat.",
+  "wp__timeline__delete_all": "Összes fázis törlése",
+  "wp__timeline__delete_all_title": "Törli az összes fázist?",
+  "wp__timeline__delete_all_desc": "A fázisok eltávolításra kerülnek, feladataik pedig hozzárendelés nélkülivé válnak (nincs fázis). A művelet nem vonható vissza.",
+  "wp__timeline__delete_all_done": "Az összes fázis törölve.",
+  "wp__timeline__delete_all_error": "Nem sikerült törölni a fázisokat.",
+  "wp__budget__delete_all": "Összes törlése",
+  "wp__budget__delete_all_title": "Törli az összes költségvetési tételt?",
+  "wp__budget__delete_all_desc": "Ez véglegesen eltávolítja az összes költségvetési kategóriát és fizetést. A művelet nem vonható vissza.",
+  "wp__budget__delete_all_done": "Költségvetés törölve.",
+  "wp__budget__delete_all_error": "Nem sikerült törölni a költségvetést."
 }

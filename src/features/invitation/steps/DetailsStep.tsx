@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { getDateFnsLocale } from "@/lib/utils/dateFnsLocale";
 import { Controller, useFormContext } from "react-hook-form";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
@@ -33,6 +34,7 @@ const formatNiceDate = (date: Date) =>
 
 export const DetailsStep = ({ eventType }: DetailsStepProps) => {
   const t = useTranslations();
+  const uiLocale = useLocale();
   const {
     register,
     control,
@@ -143,6 +145,7 @@ export const DetailsStep = ({ eventType }: DetailsStepProps) => {
                   >
                     <Calendar
                       mode="single"
+                      locale={getDateFnsLocale(uiLocale)}
                       selected={selected}
                       onSelect={(date) => {
                         field.onChange(date ? toIsoDate(date) : "");

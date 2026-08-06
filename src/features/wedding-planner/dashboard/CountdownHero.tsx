@@ -8,12 +8,14 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useUpgradeModalStore } from "@/features/upgrade/useUpgradeModalStore";
 import { daysUntil, formatLongDate } from "../utils";
+import { formatDateRange } from "@/lib/event-types";
 
 type CountdownHeroProps = {
   partners: string;
   venue: string | null;
   city: string | null;
   date: string | null;
+  endDate?: string | null;
   daysLabel: string;
   askAiLabel: string;
   viewTimelineLabel: string;
@@ -25,6 +27,7 @@ export const CountdownHero = ({
   venue,
   city,
   date,
+  endDate,
   daysLabel,
   askAiLabel,
   viewTimelineLabel,
@@ -33,9 +36,13 @@ export const CountdownHero = ({
   const showUpgrade = useUpgradeModalStore((s) => s.show);
   const days = date ? daysUntil(date) : null;
   const heading = [partners, venue].filter(Boolean).join(" · ");
-  const subline = [date ? formatLongDate(date) : null, city]
-    .filter(Boolean)
-    .join(" · ");
+  const dateLabel = date
+    ? formatDateRange(
+        { eventDate: date, endDate: endDate ?? null, weddingDate: null },
+        formatLongDate,
+      )
+    : null;
+  const subline = [dateLabel, city].filter(Boolean).join(" · ");
 
   return (
     <div className="rounded-20 bg-primary text-primary-foreground tablet:p-8 relative overflow-hidden p-6">

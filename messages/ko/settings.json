@@ -66,6 +66,7 @@
   "settings__wedding__saving": "저장 중…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "이벤트 세부 정보를 저장할 수 없습니다.",
+  "settings__wedding__end_before_start": "종료일은 시작일과 같거나 이후여야 합니다",
   "settings__couple_photo__eyebrow": "공개 링크",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "하객 랜딩 및 제출 페이지 상단의 폴라로이드에 표시됩니다.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "DRE 취소",
   "settings__billing__dre_cancellation_scheduled_body": "취소 예약됨. {date}에 액세스가 종료됩니다.",
   "settings__billing__dre_resume_btn": "DRE 재개",
-  "settings__data__rights__report__email_subject": "데이터 보고서 요청"
+  "settings__data__rights__report__email_subject": "데이터 보고서 요청",
+  "settings__event_type__changed": "이벤트 유형이 변경되었습니다.",
+  "settings__event_type__change_error": "이벤트 유형을 변경할 수 없습니다."
 }

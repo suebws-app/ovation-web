@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Gemmer…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Kunne ikke gemme begivenhedsoplysninger.",
+  "settings__wedding__end_before_start": "Slutdatoen skal være på eller efter startdatoen",
   "settings__couple_photo__eyebrow": "Offentligt link",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Vist på polaroid'en øverst på dine gæstelandings- og indsendelsessider.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Annuller DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Annullering planlagt. Adgang slutter {date}.",
   "settings__billing__dre_resume_btn": "Genoptag DRE",
-  "settings__data__rights__report__email_subject": "Anmodning om datarapport"
+  "settings__data__rights__report__email_subject": "Anmodning om datarapport",
+  "settings__event_type__changed": "Begivenhedstype ændret.",
+  "settings__event_type__change_error": "Kunne ikke ændre begivenhedstype."
 }

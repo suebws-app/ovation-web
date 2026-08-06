@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useQueryClient } from "@tanstack/react-query";
 import { cn } from "@ovation/ui/utils/cn";
 import { Card } from "@ovation/ui/components/Card";
@@ -53,6 +53,7 @@ export const WeddingPlannerAssistantClient = ({
   eventId: string;
 }) => {
   const t = useTranslations();
+  const locale = useLocale();
   const queryClient = useQueryClient();
   const { data: history } = useAssistantMessages(eventId);
   const clearChat = useClearAssistant(eventId);
@@ -118,7 +119,7 @@ export const WeddingPlannerAssistantClient = ({
     setStreaming(true);
     await streamAssistant(
       eventId,
-      { message: value, mode: currentMode },
+      { message: value, mode: currentMode, locale },
       {
         onToken: (tk) =>
           setMessages((prev) =>

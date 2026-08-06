@@ -10,10 +10,12 @@ import {
   formatShortDate,
   money,
 } from "@/features/wedding-planner/utils";
+import { formatDateRange } from "@/lib/event-types";
 import { WeddingPlannerWidgetTaskRow } from "./WeddingPlannerWidgetTaskRow";
 
 export type WeddingPlannerWidgetSummary = {
   weddingDate: string | null;
+  endDate: string | null;
   daysToGo: number | null;
   progressPct: number;
   doneTasks: number;
@@ -69,7 +71,14 @@ export const WeddingPlannerWidget = async ({
               </span>
               {summary.weddingDate ? (
                 <span className="type-caption text-muted-foreground">
-                  {formatShortDate(summary.weddingDate)}
+                  {formatDateRange(
+                    {
+                      eventDate: summary.weddingDate,
+                      endDate: summary.endDate,
+                      weddingDate: null,
+                    },
+                    formatShortDate,
+                  )}
                 </span>
               ) : null}
             </div>

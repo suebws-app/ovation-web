@@ -8,7 +8,7 @@ import { Card, CardContent } from "@ovation/ui/components/Card";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { Event, InvitationTemplate } from "@/lib/api/types";
-import { eventCardTitle } from "@/lib/event-types";
+import { eventCardTitle, formatDateRange } from "@/lib/event-types";
 import { InviteCard } from "@/features/invitation/components/InviteCard";
 import { useInvitationTemplatesQuery } from "@/lib/query/invitationTemplatesQueries";
 
@@ -16,15 +16,15 @@ type InvitationWidgetProps = {
   event: Event;
 };
 
-const formatDateLabel = (iso: string | null): string | undefined => {
-  if (!iso) return undefined;
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return undefined;
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+const formatDateLabel = (raw: string): string => {
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime())
+    ? raw
+    : date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
 };
 
 const pickTemplate = (
@@ -79,9 +79,7 @@ export const InvitationWidget = ({ event }: InvitationWidgetProps) => {
                       ? event.details.customEventNoun
                       : undefined,
                 }),
-                dateLabel: formatDateLabel(
-                  event.eventDate ?? event.weddingDate,
-                ),
+                dateLabel: formatDateRange(event, formatDateLabel) ?? undefined,
                 venue: event.locationName ?? event.venueName ?? undefined,
                 place: event.locationCity ?? event.venueCity ?? undefined,
                 message: event.welcomeMessage ?? undefined,

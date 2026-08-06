@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Ukladá sa…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Nepodarilo sa uložiť detaily udalosti.",
+  "settings__wedding__end_before_start": "Dátum konca musí byť rovnaký alebo neskorší ako dátum začiatku",
   "settings__couple_photo__eyebrow": "Verejný odkaz",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Zobrazená na polaroide v hornej časti stránky hostí a stránok odosielania.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Zrušiť DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Zrušenie naplánované. Prístup končí {date}.",
   "settings__billing__dre_resume_btn": "Obnoviť DRE",
-  "settings__data__rights__report__email_subject": "Žiadosť o dátový report"
+  "settings__data__rights__report__email_subject": "Žiadosť o dátový report",
+  "settings__event_type__changed": "Typ udalosti zmenený.",
+  "settings__event_type__change_error": "Typ udalosti sa nepodarilo zmeniť."
 }

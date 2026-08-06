@@ -12,19 +12,12 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
-import { Calendar } from "@ovation/ui/components/DatePicker";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@ovation/ui/components/Popover";
-import { cn } from "@ovation/ui/utils/cn";
-import { CalendarIcon } from "@ovation/icons/CalendarIcon";
 import { MapPinIcon } from "@ovation/icons/MapPinIcon";
 import { CopyIcon } from "@ovation/icons/CopyIcon";
 import { CheckIcon } from "@ovation/icons/CheckIcon";
 import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
+import { toast } from "@/components/Toaster";
 import { clientEnv as env } from "@/lib/utils/env.client";
 import type { Event } from "@/lib/api/types";
 import { toIsoDate, parseIsoDate } from "@/lib/utils/formatDate";
@@ -32,9 +25,11 @@ import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
 import { SettingsField } from "./SettingsField";
 import {
   getEventTypeConfig,
+  hasEndDateField,
   type EventColumn,
   type EventType,
 } from "@/lib/event-types";
+import { DateFieldControl } from "./DateFieldControl";
 
 type WeddingDetailsFormProps = {
   event: Event;
@@ -46,14 +41,35 @@ type WeddingDetailsFormProps = {
   typeOverride?: EventType;
 };
 
-type Status =
-  | { kind: "idle" }
-  | { kind: "saved" }
-  | { kind: "error"; message: string };
-
 const eventDateToInput = (raw: string | null): string => {
   const d = parseIsoDate(raw);
   return d ? toIsoDate(d) : "";
+};
+
+const FIELD_ORDER: (keyof WeddingFields)[] = [
+  "partnerAName",
+  "partnerBName",
+  "weddingDate",
+  "endDate",
+  "venueName",
+  "venueCity",
+  "welcomeMessage",
+  "slug",
+];
+
+const invalidFieldClass =
+  "aria-[invalid=true]:border-destructive aria-[invalid=true]:ring-1 aria-[invalid=true]:ring-destructive";
+
+const scrollToFirstError = (formErrors: FieldErrors<WeddingFields>) => {
+  if (typeof document === "undefined") return;
+  const first = FIELD_ORDER.find((name) => formErrors[name]);
+  if (!first) return;
+  const anchor = document.querySelector<HTMLElement>(`[data-field="${first}"]`);
+  if (!anchor) return;
+  anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+  anchor
+    .querySelector<HTMLElement>("input, textarea, button")
+    ?.focus({ preventScroll: true });
 };
 
 export const WeddingDetailsForm = ({
@@ -63,7 +79,6 @@ export const WeddingDetailsForm = ({
 }: WeddingDetailsFormProps) => {
   const t = useTranslations();
   const router = useRouter();
-  const [status, setStatus] = useState<Status>({ kind: "idle" });
   const schema = useMemo(() => getWeddingSchema(t), [t]);
 
   const config = getEventTypeConfig(typeOverride ?? event.eventType);
@@ -72,6 +87,10 @@ export const WeddingDetailsForm = ({
     return t(field ? field.labelKey : fallbackKey);
   };
   const hasSecondHost = config.fields.some((f) => f.column === "hostBName");
+  const showEndDate = hasEndDateField(config);
+  const endDateLabel =
+    config.fields.find((f) => f.column === "endDate")?.labelKey ??
+    "event__field__end_date";
 
   const {
     register,
@@ -84,6 +103,7 @@ export const WeddingDetailsForm = ({
       partnerAName: event.partnerAName ?? "",
       partnerBName: event.partnerBName ?? "",
       weddingDate: eventDateToInput(event.weddingDate),
+      endDate: eventDateToInput(event.endDate),
       venueName: event.venueName ?? "",
       venueCity: event.venueCity ?? "",
       welcomeMessage: event.welcomeMessage ?? "",
@@ -92,12 +112,12 @@ export const WeddingDetailsForm = ({
     resolver: standardSchemaResolver(schema),
     mode: "onTouched",
     reValidateMode: "onChange",
+    shouldFocusError: false,
   });
 
   const welcomeMessage = useWatch({ control, name: "welcomeMessage" }) ?? "";
   const slugValue = useWatch({ control, name: "slug" }) ?? "";
   const [copied, setCopied] = useState(false);
-  const [datePickerOpen, setDatePickerOpen] = useState(false);
 
   const handleCopyPublicLink = async () => {
     const url = `${env.APP_URL}/${slugValue}`;
@@ -111,12 +131,12 @@ export const WeddingDetailsForm = ({
   };
 
   const onSubmit = async (values: WeddingFields) => {
-    setStatus({ kind: "idle" });
     try {
       const { event: updated } = await eventsClient.update(event.id, {
         partnerAName: values.partnerAName,
         partnerBName: values.partnerBName || undefined,
         weddingDate: values.weddingDate || undefined,
+        endDate: values.endDate || null,
         venueName: values.venueName || undefined,
         venueCity: values.venueCity || undefined,
         welcomeMessage: values.welcomeMessage || undefined,
@@ -126,32 +146,27 @@ export const WeddingDetailsForm = ({
         partnerAName: updated.partnerAName ?? "",
         partnerBName: updated.partnerBName ?? "",
         weddingDate: eventDateToInput(updated.weddingDate),
+        endDate: eventDateToInput(updated.endDate),
         venueName: updated.venueName ?? "",
         venueCity: updated.venueCity ?? "",
         welcomeMessage: updated.welcomeMessage ?? "",
         slug: updated.slug,
       });
-      setStatus({ kind: "saved" });
+      toast.success(t("settings__wedding__saved"));
       router.refresh();
     } catch (error) {
-      setStatus({
-        kind: "error",
-        message: ApiError.isApiError(error)
+      toast.error(
+        ApiError.isApiError(error)
           ? error.message
           : t("settings__wedding__save_error"),
-      });
+      );
     }
   };
 
-  // Surface WHY a submit was blocked instead of doing nothing silently.
+  // Highlight and scroll to the first invalid field instead of dumping a
+  // developer-facing error string; per-field messages carry the detail.
   const onInvalid = (formErrors: FieldErrors<WeddingFields>) => {
-    const messages = Object.entries(formErrors)
-      .map(([field, err]) => `${field}: ${err?.message ?? "invalid"}`)
-      .join(" · ");
-    setStatus({
-      kind: "error",
-      message: messages || t("settings__wedding__save_error"),
-    });
+    scrollToFirstError(formErrors);
   };
 
   return (
@@ -159,11 +174,13 @@ export const WeddingDetailsForm = ({
       <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
         <SettingsField
           label={labelForColumn("hostAName", "settings__wedding__partnerA")}
+          fieldName="partnerAName"
         >
           <Input
             type="text"
             placeholder={t("settings__wedding__placeholder_partner_a")}
             aria-invalid={Boolean(errors.partnerAName)}
+            className={invalidFieldClass}
             {...register("partnerAName")}
           />
           {errors.partnerAName && (
@@ -175,11 +192,13 @@ export const WeddingDetailsForm = ({
         {hasSecondHost && (
           <SettingsField
             label={labelForColumn("hostBName", "settings__wedding__partnerB")}
+            fieldName="partnerBName"
           >
             <Input
               type="text"
               placeholder={t("settings__wedding__placeholder_partner_b")}
               aria-invalid={Boolean(errors.partnerBName)}
+              className={invalidFieldClass}
               {...register("partnerBName")}
             />
             {errors.partnerBName && (
@@ -194,63 +213,53 @@ export const WeddingDetailsForm = ({
       {extraFields && <div className="mt-5">{extraFields}</div>}
 
       <div className="mt-5">
-        <SettingsField label={t(config.nounKeys.dateLabel)}>
+        <SettingsField
+          label={t(config.nounKeys.dateLabel)}
+          fieldName="weddingDate"
+        >
           <Controller
             control={control}
             name="weddingDate"
-            render={({ field }) => {
-              const selectedDate = parseIsoDate(field.value);
-              return (
-                <Popover open={datePickerOpen} onOpenChange={setDatePickerOpen}>
-                  <PopoverTrigger asChild>
-                    <button
-                      type="button"
-                      className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring hover:border-primary/40 flex h-10 w-full cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-left text-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
-                    >
-                      <CalendarIcon
-                        width={16}
-                        height={16}
-                        className="text-primary shrink-0"
-                      />
-                      <span
-                        className={cn(
-                          "min-w-0 flex-1 truncate",
-                          selectedDate
-                            ? "font-medium"
-                            : "text-muted-foreground",
-                        )}
-                      >
-                        {selectedDate
-                          ? selectedDate.toLocaleDateString("en-GB", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })
-                          : t("signup__book_details__date_placeholder")}
-                      </span>
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent
-                    align="start"
-                    sideOffset={8}
-                    className="rounded-16 w-auto p-3"
-                  >
-                    <Calendar
-                      mode="single"
-                      selected={selectedDate}
-                      onSelect={(date) => {
-                        field.onChange(date ? toIsoDate(date) : "");
-                        setDatePickerOpen(false);
-                      }}
-                      className="mx-auto"
-                    />
-                  </PopoverContent>
-                </Popover>
-              );
-            }}
+            render={({ field }) => (
+              <DateFieldControl
+                value={field.value ?? ""}
+                onChange={field.onChange}
+                placeholder={t("signup__book_details__date_placeholder")}
+                invalid={Boolean(errors.weddingDate)}
+              />
+            )}
           />
+          {errors.weddingDate && (
+            <span className="type-caption text-destructive mt-1.5 block">
+              {errors.weddingDate.message}
+            </span>
+          )}
         </SettingsField>
       </div>
+
+      {showEndDate && (
+        <div className="mt-5">
+          <SettingsField label={t(endDateLabel)} fieldName="endDate">
+            <Controller
+              control={control}
+              name="endDate"
+              render={({ field }) => (
+                <DateFieldControl
+                  value={field.value ?? ""}
+                  onChange={field.onChange}
+                  placeholder={t("signup__book_details__date_placeholder")}
+                  invalid={Boolean(errors.endDate)}
+                />
+              )}
+            />
+            {errors.endDate && (
+              <span className="type-caption text-destructive mt-1.5 block">
+                {errors.endDate.message}
+              </span>
+            )}
+          </SettingsField>
+        </div>
+      )}
 
       <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
         <SettingsField
@@ -258,18 +267,27 @@ export const WeddingDetailsForm = ({
             "locationName",
             "settings__wedding__venue_name",
           )}
+          fieldName="venueName"
         >
           <Input
             type="text"
             placeholder={t("settings__wedding__venue_name_placeholder")}
+            aria-invalid={Boolean(errors.venueName)}
+            className={invalidFieldClass}
             {...register("venueName")}
           />
+          {errors.venueName && (
+            <span className="type-caption text-destructive mt-1.5 block">
+              {errors.venueName.message}
+            </span>
+          )}
         </SettingsField>
         <SettingsField
           label={labelForColumn(
             "locationCity",
             "settings__wedding__venue_city",
           )}
+          fieldName="venueCity"
           adornmentRight={
             <MapPinIcon
               width={16}
@@ -281,23 +299,32 @@ export const WeddingDetailsForm = ({
           <Input
             type="text"
             placeholder={t("settings__wedding__venue_city_placeholder")}
+            aria-invalid={Boolean(errors.venueCity)}
+            className={invalidFieldClass}
             {...register("venueCity")}
           />
+          {errors.venueCity && (
+            <span className="type-caption text-destructive mt-1.5 block">
+              {errors.venueCity.message}
+            </span>
+          )}
         </SettingsField>
       </div>
 
       <div className="mt-5">
         <SettingsField
           label={t("settings__wedding__welcome_note")}
+          fieldName="welcomeMessage"
           hint={t("settings__wedding__welcome_note_hint", {
             count: welcomeMessage.length,
           })}
         >
           <textarea
             {...register("welcomeMessage")}
+            aria-invalid={Boolean(errors.welcomeMessage)}
             placeholder={t("settings__wedding__welcome_note_placeholder")}
             rows={3}
-            className="border-border bg-background text-foreground type-body-small w-full rounded-lg border p-3 font-serif leading-relaxed outline-none"
+            className={`border-border bg-background text-foreground type-body-small w-full rounded-lg border p-3 font-serif leading-relaxed outline-none ${invalidFieldClass}`}
           />
           {errors.welcomeMessage && (
             <span className="type-caption text-destructive mt-1.5 block">
@@ -310,14 +337,22 @@ export const WeddingDetailsForm = ({
       <div className="tablet:grid-cols-2 mt-5 grid grid-cols-1 gap-6">
         <SettingsField
           label={t("settings__wedding__public_link")}
+          fieldName="slug"
           hint={t("settings__wedding__public_link_hint")}
         >
-          <div className="border-border bg-background flex h-10 items-center gap-2 rounded-lg border pr-1 pl-3">
+          <div
+            className={`bg-background flex h-10 items-center gap-2 rounded-lg border pr-1 pl-3 ${
+              errors.slug
+                ? "border-destructive ring-destructive ring-1"
+                : "border-border"
+            }`}
+          >
             <span className="type-body-small text-muted-foreground">
               {env.APP_URL}/
             </span>
             <input
               type="text"
+              aria-invalid={Boolean(errors.slug)}
               className="type-body-small text-foreground h-full min-w-0 flex-1 truncate bg-transparent outline-none"
               {...register("slug")}
             />
@@ -342,17 +377,6 @@ export const WeddingDetailsForm = ({
           )}
         </SettingsField>
       </div>
-
-      {status.kind === "error" && (
-        <p className="type-body-small text-destructive mt-4" role="alert">
-          {status.message}
-        </p>
-      )}
-      {status.kind === "saved" && (
-        <p className="type-body-small text-secondary mt-4">
-          {t("settings__wedding__saved")}
-        </p>
-      )}
 
       <div className="mt-6 flex justify-end gap-2.5">
         <Button type="submit" disabled={isSubmitting}>

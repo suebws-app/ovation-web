@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Saglabā…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Neizdevās saglabāt pasākuma informāciju.",
+  "settings__wedding__end_before_start": "Beigu datumam jābūt sākuma datumā vai vēlāk",
   "settings__couple_photo__eyebrow": "Publiska saite",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Parādīta uz polaroida jūsu viesu nolaišanās un iesniegšanas lapu augšpusē.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Atcelt DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Atcelšana ieplānota. Piekļuve beidzas {date}.",
   "settings__billing__dre_resume_btn": "Atsākt DRE",
-  "settings__data__rights__report__email_subject": "Datu pārskata pieprasījums"
+  "settings__data__rights__report__email_subject": "Datu pārskata pieprasījums",
+  "settings__event_type__changed": "Notikuma veids mainīts.",
+  "settings__event_type__change_error": "Neizdevās mainīt notikuma veidu."
 }

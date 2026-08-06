@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Nessuna attività in sospeso. Sei perfettamente in pari.",
   "wp__dash__no_payments": "Nessun pagamento in arrivo.",
   "wp__dash__no_phases": "Aggiungi le fasi della cronologia per vedere qui le tue tappe.",
-  "wp__dash__no_payment_date": "Nessuna data impostata"
+  "wp__dash__no_payment_date": "Nessuna data impostata",
+  "wp__tasks__delete_all": "Elimina tutto",
+  "wp__tasks__delete_all_title": "Eliminare tutte le attività?",
+  "wp__tasks__delete_all_desc": "Questa operazione rimuove definitivamente tutte le attività. Non può essere annullata.",
+  "wp__tasks__delete_all_done": "Tutte le attività eliminate.",
+  "wp__tasks__delete_all_error": "Impossibile eliminare le attività.",
+  "wp__timeline__delete_all": "Elimina tutte le fasi",
+  "wp__timeline__delete_all_title": "Eliminare tutte le fasi?",
+  "wp__timeline__delete_all_desc": "Le fasi vengono rimosse e le loro attività diventano non assegnate (nessuna fase). Non può essere annullata.",
+  "wp__timeline__delete_all_done": "Tutte le fasi eliminate.",
+  "wp__timeline__delete_all_error": "Impossibile eliminare le fasi.",
+  "wp__budget__delete_all": "Elimina tutto",
+  "wp__budget__delete_all_title": "Eliminare tutte le voci di budget?",
+  "wp__budget__delete_all_desc": "Questa operazione rimuove definitivamente tutte le categorie di budget e i pagamenti. Non può essere annullata.",
+  "wp__budget__delete_all_done": "Budget svuotato.",
+  "wp__budget__delete_all_error": "Impossibile svuotare il budget."
 }

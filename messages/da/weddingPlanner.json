@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Ingen åbne opgaver. Du er helt ajour.",
   "wp__dash__no_payments": "Ingen kommende betalinger.",
   "wp__dash__no_phases": "Tilføj tidslinjefaser for at se dine stadier her.",
-  "wp__dash__no_payment_date": "Ingen dato angivet"
+  "wp__dash__no_payment_date": "Ingen dato angivet",
+  "wp__tasks__delete_all": "Slet alle",
+  "wp__tasks__delete_all_title": "Slet alle opgaver?",
+  "wp__tasks__delete_all_desc": "Dette fjerner permanent alle opgaver. Det kan ikke fortrydes.",
+  "wp__tasks__delete_all_done": "Alle opgaver slettet.",
+  "wp__tasks__delete_all_error": "Kunne ikke slette opgaver.",
+  "wp__timeline__delete_all": "Slet alle faser",
+  "wp__timeline__delete_all_title": "Slet alle faser?",
+  "wp__timeline__delete_all_desc": "Faserne fjernes, og deres opgaver bliver ikke-tildelt (ingen fase). Det kan ikke fortrydes.",
+  "wp__timeline__delete_all_done": "Alle faser slettet.",
+  "wp__timeline__delete_all_error": "Kunne ikke slette faser.",
+  "wp__budget__delete_all": "Slet alle",
+  "wp__budget__delete_all_title": "Slet alle budgetposter?",
+  "wp__budget__delete_all_desc": "Dette fjerner permanent alle budgetkategorier og betalinger. Det kan ikke fortrydes.",
+  "wp__budget__delete_all_done": "Budget ryddet.",
+  "wp__budget__delete_all_error": "Kunne ikke rydde budgettet."
 }

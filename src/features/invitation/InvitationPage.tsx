@@ -89,6 +89,7 @@ export const InvitationPage = ({
             template={template}
             values={values}
             eventType={initialEvent?.eventType}
+            endDate={initialEvent?.endDate ?? null}
             customEventNoun={
               typeof initialEvent?.details?.customEventNoun === "string"
                 ? initialEvent.details.customEventNoun

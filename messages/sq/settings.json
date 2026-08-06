@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Po ruhet…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Detajet e ngjarjes nuk u ruajtën.",
+  "settings__wedding__end_before_start": "Data e përfundimit duhet të jetë në ose pas datës së fillimit",
   "settings__couple_photo__eyebrow": "Lidhja publike",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Shfaqet në polaroidin në krye të faqes së mysafirëve dhe faqeve të dorëzimit.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Anulo DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Anulimi është planifikuar. Qasja përfundon më {date}.",
   "settings__billing__dre_resume_btn": "Rifillo DRE",
-  "settings__data__rights__report__email_subject": "Kërkesë për raport të dhënash"
+  "settings__data__rights__report__email_subject": "Kërkesë për raport të dhënash",
+  "settings__event_type__changed": "Lloji i eventit u ndryshua.",
+  "settings__event_type__change_error": "Nuk u arrit të ndryshohej lloji i eventit."
 }

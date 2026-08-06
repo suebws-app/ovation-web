@@ -4,6 +4,7 @@ type SettingsFieldProps = {
   hint?: string;
   adornmentRight?: React.ReactNode;
   children?: React.ReactNode;
+  fieldName?: string;
 };
 
 export const SettingsField = ({
@@ -12,8 +13,9 @@ export const SettingsField = ({
   hint,
   adornmentRight,
   children,
+  fieldName,
 }: SettingsFieldProps) => (
-  <label className="block">
+  <label className="block" data-field={fieldName}>
     <span className="type-caption text-muted-foreground mb-2 block font-semibold tracking-wide">
       {label}
     </span>

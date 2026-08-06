@@ -30,8 +30,8 @@ export const DynamicEventFields = ({ config }: DynamicEventFieldsProps) => {
       field.storage === "column" && field.column
         ? COLUMN_TO_STORE_KEY[field.column]
         : undefined;
-    if (storeKey === "weddingDate") {
-      return toDateInputValue(formData.weddingDate);
+    if (storeKey === "weddingDate" || storeKey === "endDate") {
+      return toDateInputValue(formData[storeKey]);
     }
     if (storeKey) {
       const value = formData[storeKey];
@@ -46,11 +46,11 @@ export const DynamicEventFields = ({ config }: DynamicEventFieldsProps) => {
       field.storage === "column" && field.column
         ? COLUMN_TO_STORE_KEY[field.column]
         : undefined;
-    if (storeKey === "weddingDate") {
+    if (storeKey === "weddingDate" || storeKey === "endDate") {
       const parsed = value ? new Date(`${value}T00:00:00`) : null;
       updateFormData({
-        weddingDate: parsed && !Number.isNaN(parsed.getTime()) ? parsed : null,
-      });
+        [storeKey]: parsed && !Number.isNaN(parsed.getTime()) ? parsed : null,
+      } as Partial<CreateEventFormData>);
       return;
     }
     if (storeKey) {

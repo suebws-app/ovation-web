@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Ingen åpne oppgaver. Du er à jour.",
   "wp__dash__no_payments": "Ingen kommende betalinger.",
   "wp__dash__no_phases": "Legg til faser i tidslinjen for å se stadiene dine her.",
-  "wp__dash__no_payment_date": "Ingen dato angitt"
+  "wp__dash__no_payment_date": "Ingen dato angitt",
+  "wp__tasks__delete_all": "Slett alle",
+  "wp__tasks__delete_all_title": "Slette alle oppgaver?",
+  "wp__tasks__delete_all_desc": "Dette fjerner alle oppgaver permanent. Dette kan ikke angres.",
+  "wp__tasks__delete_all_done": "Alle oppgaver slettet.",
+  "wp__tasks__delete_all_error": "Kunne ikke slette oppgaver.",
+  "wp__timeline__delete_all": "Slett alle faser",
+  "wp__timeline__delete_all_title": "Slette alle faser?",
+  "wp__timeline__delete_all_desc": "Fasene fjernes, og oppgavene deres blir ikke-tilordnet (ingen fase). Dette kan ikke angres.",
+  "wp__timeline__delete_all_done": "Alle faser slettet.",
+  "wp__timeline__delete_all_error": "Kunne ikke slette faser.",
+  "wp__budget__delete_all": "Slett alle",
+  "wp__budget__delete_all_title": "Slette alle budsjettposter?",
+  "wp__budget__delete_all_desc": "Dette fjerner alle budsjettkategorier og betalinger permanent. Dette kan ikke angres.",
+  "wp__budget__delete_all_done": "Budsjett tømt.",
+  "wp__budget__delete_all_error": "Kunne ikke tømme budsjettet."
 }

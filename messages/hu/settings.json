@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Mentés…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Nem sikerült menteni az eseményrészleteket.",
+  "settings__wedding__end_before_start": "A befejező dátumnak a kezdő dátummal azonosnak vagy annál későbbinek kell lennie",
   "settings__couple_photo__eyebrow": "Nyilvános link",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "A vendég landing és beküldési oldalak tetején lévő polaroidon jelenik meg.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "DRE lemondása",
   "settings__billing__dre_cancellation_scheduled_body": "Lemondás ütemezve. Hozzáférés véget ér {date}-én.",
   "settings__billing__dre_resume_btn": "DRE folytatása",
-  "settings__data__rights__report__email_subject": "Adatjelentés kérése"
+  "settings__data__rights__report__email_subject": "Adatjelentés kérése",
+  "settings__event_type__changed": "Eseménytípus módosítva.",
+  "settings__event_type__change_error": "Nem sikerült módosítani az eseménytípust."
 }

@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { Event } from "@/lib/api/types";
-import { eventDateOf, eventTitleLine } from "@/lib/event-types";
+import { eventTitleLine, formatDateRange } from "@/lib/event-types";
 
 type ProEventRowProps = {
   event: Event;
@@ -10,14 +10,14 @@ type ProEventRowProps = {
 
 export const ProEventRow = async ({ event }: ProEventRowProps) => {
   const t = await getTranslations();
-  const rawDate = eventDateOf(event);
-  const eventDate = rawDate
-    ? new Date(rawDate).toLocaleDateString(undefined, {
+  const eventDate =
+    formatDateRange(event, (raw) =>
+      new Date(raw).toLocaleDateString(undefined, {
         day: "numeric",
         month: "long",
         year: "numeric",
-      })
-    : "—";
+      }),
+    ) ?? "—";
   const locationName = event.locationName ?? event.venueName;
   const locationCity = event.locationCity ?? event.venueCity;
 

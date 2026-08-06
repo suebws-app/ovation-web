@@ -69,7 +69,7 @@ const streamUrl = (eventId: string) =>
 
 export const streamAssistant = async (
   eventId: string,
-  input: { message: string; mode: AssistantMode },
+  input: { message: string; mode: AssistantMode; locale: string },
   handlers: AssistantStreamHandlers,
   signal?: AbortSignal,
 ): Promise<void> => {

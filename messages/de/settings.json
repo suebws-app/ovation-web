@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Wird gespeichert…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Event-Details konnten nicht gespeichert werden.",
+  "settings__wedding__end_before_start": "Das Enddatum muss am oder nach dem Startdatum liegen",
   "settings__couple_photo__eyebrow": "Öffentlicher Link",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Wird auf der Polaroid oben auf deiner Gäste-Landingpage und Einreichungsseite angezeigt.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "DRE kündigen",
   "settings__billing__dre_cancellation_scheduled_body": "Kündigung geplant. Zugang endet am {date}.",
   "settings__billing__dre_resume_btn": "DRE fortsetzen",
-  "settings__data__rights__report__email_subject": "Anfrage: Datenbericht"
+  "settings__data__rights__report__email_subject": "Anfrage: Datenbericht",
+  "settings__event_type__changed": "Ereignistyp geändert.",
+  "settings__event_type__change_error": "Ereignistyp konnte nicht geändert werden."
 }

@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Se salvează…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Nu se pot salva detaliile evenimentului.",
+  "settings__wedding__end_before_start": "Data de sfârșit trebuie să fie la sau după data de început",
   "settings__couple_photo__eyebrow": "Link public",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Afișată pe polaroidul din partea de sus a paginii de aterizare pentru invitați și a paginilor de trimitere.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Anulează DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Anulare programată. Accesul se încheie pe {date}.",
   "settings__billing__dre_resume_btn": "Reia DRE",
-  "settings__data__rights__report__email_subject": "Cerere de raport de date"
+  "settings__data__rights__report__email_subject": "Cerere de raport de date",
+  "settings__event_type__changed": "Tipul evenimentului a fost schimbat.",
+  "settings__event_type__change_error": "Nu s-a putut schimba tipul evenimentului."
 }

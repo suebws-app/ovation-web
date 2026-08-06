@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Sparar…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Kunde inte spara eventdetaljerna.",
+  "settings__wedding__end_before_start": "Slutdatumet måste vara samma som eller efter startdatumet",
   "settings__couple_photo__eyebrow": "Offentlig länk",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Visas på polaroidbilden överst på gästernas landnings- och inlämningssidor.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Avsluta DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Avslut schemalagt. Åtkomsten upphör den {date}.",
   "settings__billing__dre_resume_btn": "Återuppta DRE",
-  "settings__data__rights__report__email_subject": "Begäran om datarapport"
+  "settings__data__rights__report__email_subject": "Begäran om datarapport",
+  "settings__event_type__changed": "Händelsetyp ändrad.",
+  "settings__event_type__change_error": "Det gick inte att ändra händelsetyp."
 }

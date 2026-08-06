@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Keine offenen Aufgaben. Du bist auf dem neuesten Stand.",
   "wp__dash__no_payments": "Keine anstehenden Zahlungen.",
   "wp__dash__no_phases": "Füge Zeitplan-Phasen hinzu, um deine Etappen hier zu sehen.",
-  "wp__dash__no_payment_date": "Kein Datum festgelegt"
+  "wp__dash__no_payment_date": "Kein Datum festgelegt",
+  "wp__tasks__delete_all": "Alle löschen",
+  "wp__tasks__delete_all_title": "Alle Aufgaben löschen?",
+  "wp__tasks__delete_all_desc": "Dadurch werden alle Aufgaben dauerhaft entfernt. Dies kann nicht rückgängig gemacht werden.",
+  "wp__tasks__delete_all_done": "Alle Aufgaben gelöscht.",
+  "wp__tasks__delete_all_error": "Aufgaben konnten nicht gelöscht werden.",
+  "wp__timeline__delete_all": "Alle Phasen löschen",
+  "wp__timeline__delete_all_title": "Alle Phasen löschen?",
+  "wp__timeline__delete_all_desc": "Die Phasen werden entfernt und ihre Aufgaben werden nicht mehr zugewiesen (keine Phase). Dies kann nicht rückgängig gemacht werden.",
+  "wp__timeline__delete_all_done": "Alle Phasen gelöscht.",
+  "wp__timeline__delete_all_error": "Phasen konnten nicht gelöscht werden.",
+  "wp__budget__delete_all": "Alle löschen",
+  "wp__budget__delete_all_title": "Alle Budgetposten löschen?",
+  "wp__budget__delete_all_desc": "Dadurch werden alle Budgetkategorien und Zahlungen dauerhaft entfernt. Dies kann nicht rückgängig gemacht werden.",
+  "wp__budget__delete_all_done": "Budget geleert.",
+  "wp__budget__delete_all_error": "Budget konnte nicht geleert werden."
 }

@@ -297,7 +297,8 @@ export type CreateEventInput = {
   venueCity?: string;
 };
 
-export type UpdateEventInput = Partial<CreateEventInput> & {
+export type UpdateEventInput = Omit<Partial<CreateEventInput>, "endDate"> & {
+  endDate?: string | null;
   capacityLimit?: number | null;
   welcomeMessage?: string;
   themeColor?: string;

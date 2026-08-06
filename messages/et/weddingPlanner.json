@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Avatud ülesandeid pole. Kõik on tehtud.",
   "wp__dash__no_payments": "Eelseisvaid makseid pole.",
   "wp__dash__no_phases": "Lisa ajakava etapid, et näha oma etappe siin.",
-  "wp__dash__no_payment_date": "Kuupäev puudub"
+  "wp__dash__no_payment_date": "Kuupäev puudub",
+  "wp__tasks__delete_all": "Kustuta kõik",
+  "wp__tasks__delete_all_title": "Kustutada kõik ülesanded?",
+  "wp__tasks__delete_all_desc": "See eemaldab jäädavalt kõik ülesanded. Seda ei saa tagasi võtta.",
+  "wp__tasks__delete_all_done": "Kõik ülesanded kustutatud.",
+  "wp__tasks__delete_all_error": "Ülesandeid ei õnnestunud kustutada.",
+  "wp__timeline__delete_all": "Kustuta kõik etapid",
+  "wp__timeline__delete_all_title": "Kustutada kõik etapid?",
+  "wp__timeline__delete_all_desc": "Etapid eemaldatakse ja nende ülesanded muutuvad määramata (etapp puudub). Seda ei saa tagasi võtta.",
+  "wp__timeline__delete_all_done": "Kõik etapid kustutatud.",
+  "wp__timeline__delete_all_error": "Etappe ei õnnestunud kustutada.",
+  "wp__budget__delete_all": "Kustuta kõik",
+  "wp__budget__delete_all_title": "Kustutada kõik eelarve kirjed?",
+  "wp__budget__delete_all_desc": "See eemaldab jäädavalt kõik eelarvekategooriad ja maksed. Seda ei saa tagasi võtta.",
+  "wp__budget__delete_all_done": "Eelarve tühjendatud.",
+  "wp__budget__delete_all_error": "Eelarve tühjendamine ebaõnnestus."
 }

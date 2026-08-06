@@ -56,6 +56,7 @@ export const WeddingPlannerDashboard = async () => {
         eventId={event.id}
         partners={eventTitleLine(event)}
         weddingDate={eventDateOf(event)}
+        endDate={event.endDate}
         venue={event.locationName ?? event.venueName}
         city={event.locationCity ?? event.venueCity}
         showCountdown={showsCountdown(event)}

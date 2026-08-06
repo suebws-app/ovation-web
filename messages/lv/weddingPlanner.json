@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Nav atvērtu uzdevumu. Viss ir izdarīts.",
   "wp__dash__no_payments": "Nav gaidāmu maksājumu.",
   "wp__dash__no_phases": "Pievieno laika grafika posmus, lai šeit redzētu savus etapus.",
-  "wp__dash__no_payment_date": "Nav datuma"
+  "wp__dash__no_payment_date": "Nav datuma",
+  "wp__tasks__delete_all": "Dzēst visu",
+  "wp__tasks__delete_all_title": "Dzēst visus uzdevumus?",
+  "wp__tasks__delete_all_desc": "Tādējādi neatgriezeniski tiek noņemti visi uzdevumi. Šo darbību nevar atsaukt.",
+  "wp__tasks__delete_all_done": "Visi uzdevumi dzēsti.",
+  "wp__tasks__delete_all_error": "Neizdevās dzēst uzdevumus.",
+  "wp__timeline__delete_all": "Dzēst visas fāzes",
+  "wp__timeline__delete_all_title": "Dzēst visas fāzes?",
+  "wp__timeline__delete_all_desc": "Fāzes tiek noņemtas, un to uzdevumi kļūst nepiešķirti (nav fāzes). Šo darbību nevar atsaukt.",
+  "wp__timeline__delete_all_done": "Visas fāzes dzēstas.",
+  "wp__timeline__delete_all_error": "Neizdevās dzēst fāzes.",
+  "wp__budget__delete_all": "Dzēst visu",
+  "wp__budget__delete_all_title": "Dzēst visus budžeta vienumus?",
+  "wp__budget__delete_all_desc": "Tādējādi neatgriezeniski tiek noņemtas visas budžeta kategorijas un maksājumi. Šo darbību nevar atsaukt.",
+  "wp__budget__delete_all_done": "Budžets notīrīts.",
+  "wp__budget__delete_all_error": "Neizdevās notīrīt budžetu."
 }

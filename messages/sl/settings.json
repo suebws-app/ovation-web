@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Shranjevanje…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Podrobnosti dogodka ni bilo mogoče shraniti.",
+  "settings__wedding__end_before_start": "Datum konca mora biti enak datumu začetka ali poznejši",
   "settings__couple_photo__eyebrow": "Javna povezava",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Prikazana na polaroidu na vrhu strani za pristajanje gostov in oddajanje.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Prekliči DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Preklic načrtovan. Dostop se konča {date}.",
   "settings__billing__dre_resume_btn": "Nadaljuj DRE",
-  "settings__data__rights__report__email_subject": "Zahteva za poročilo o podatkih"
+  "settings__data__rights__report__email_subject": "Zahteva za poročilo o podatkih",
+  "settings__event_type__changed": "Vrsta dogodka spremenjena.",
+  "settings__event_type__change_error": "Vrste dogodka ni bilo mogoče spremeniti."
 }

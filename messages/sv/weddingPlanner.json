@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Inga öppna uppgifter. Du är helt ikapp.",
   "wp__dash__no_payments": "Inga kommande betalningar.",
   "wp__dash__no_phases": "Lägg till tidslinjefaser för att se dina steg här.",
-  "wp__dash__no_payment_date": "Inget datum angivet"
+  "wp__dash__no_payment_date": "Inget datum angivet",
+  "wp__tasks__delete_all": "Ta bort alla",
+  "wp__tasks__delete_all_title": "Ta bort alla uppgifter?",
+  "wp__tasks__delete_all_desc": "Detta tar bort alla uppgifter permanent. Det går inte att ångra.",
+  "wp__tasks__delete_all_done": "Alla uppgifter borttagna.",
+  "wp__tasks__delete_all_error": "Det gick inte att ta bort uppgifter.",
+  "wp__timeline__delete_all": "Ta bort alla faser",
+  "wp__timeline__delete_all_title": "Ta bort alla faser?",
+  "wp__timeline__delete_all_desc": "Faserna tas bort och deras uppgifter blir otilldelade (ingen fas). Det går inte att ångra.",
+  "wp__timeline__delete_all_done": "Alla faser borttagna.",
+  "wp__timeline__delete_all_error": "Det gick inte att ta bort faser.",
+  "wp__budget__delete_all": "Ta bort alla",
+  "wp__budget__delete_all_title": "Ta bort alla budgetposter?",
+  "wp__budget__delete_all_desc": "Detta tar bort alla budgetkategorier och betalningar permanent. Det går inte att ångra.",
+  "wp__budget__delete_all_done": "Budget rensad.",
+  "wp__budget__delete_all_error": "Det gick inte att rensa budgeten."
 }

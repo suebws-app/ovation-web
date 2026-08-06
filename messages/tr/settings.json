@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Kaydediliyor…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Etkinlik bilgileri kaydedilemedi.",
+  "settings__wedding__end_before_start": "Bitiş tarihi, başlangıç tarihiyle aynı veya sonrasında olmalıdır",
   "settings__couple_photo__eyebrow": "Herkese açık bağlantı",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Misafir karşılama ve gönderim sayfalarının üst kısmındaki polaroidde gösterilir.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "DRE'yi iptal et",
   "settings__billing__dre_cancellation_scheduled_body": "İptal planlandı. Erişim {date} tarihinde sona erer.",
   "settings__billing__dre_resume_btn": "DRE'yi sürdür",
-  "settings__data__rights__report__email_subject": "Veri raporu talebi"
+  "settings__data__rights__report__email_subject": "Veri raporu talebi",
+  "settings__event_type__changed": "Etkinlik türü değiştirildi.",
+  "settings__event_type__change_error": "Etkinlik türü değiştirilemedi."
 }

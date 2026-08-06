@@ -66,6 +66,7 @@
   "settings__wedding__saving": "Enregistrement…",
   "settings__wedding__saved": "Event details updated.",
   "settings__wedding__save_error": "Impossible d'enregistrer les détails de l'événement.",
+  "settings__wedding__end_before_start": "La date de fin doit être égale ou postérieure à la date de début",
   "settings__couple_photo__eyebrow": "Lien public",
   "settings__couple_photo__title": "Cover photo",
   "settings__couple_photo__section_description": "Affichée sur le polaroïd en haut de votre page d'accueil et de vos pages de soumission destinées aux invités.",
@@ -258,5 +259,7 @@
   "settings__billing__dre_cancel_btn": "Annuler la DRE",
   "settings__billing__dre_cancellation_scheduled_body": "Annulation programmée. L'accès prend fin le {date}.",
   "settings__billing__dre_resume_btn": "Reprendre la DRE",
-  "settings__data__rights__report__email_subject": "Demande de rapport de données"
+  "settings__data__rights__report__email_subject": "Demande de rapport de données",
+  "settings__event_type__changed": "Type d’événement modifié.",
+  "settings__event_type__change_error": "Impossible de modifier le type d’événement."
 }

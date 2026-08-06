@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "No hay tareas pendientes. Lo tienes todo al día.",
   "wp__dash__no_payments": "No hay pagos próximos.",
   "wp__dash__no_phases": "Añade fases al cronograma para ver aquí tus etapas.",
-  "wp__dash__no_payment_date": "Sin fecha definida"
+  "wp__dash__no_payment_date": "Sin fecha definida",
+  "wp__tasks__delete_all": "Eliminar todo",
+  "wp__tasks__delete_all_title": "¿Eliminar todas las tareas?",
+  "wp__tasks__delete_all_desc": "Esto elimina permanentemente todas las tareas. No se puede deshacer.",
+  "wp__tasks__delete_all_done": "Todas las tareas eliminadas.",
+  "wp__tasks__delete_all_error": "No se pudieron eliminar las tareas.",
+  "wp__timeline__delete_all": "Eliminar todas las fases",
+  "wp__timeline__delete_all_title": "¿Eliminar todas las fases?",
+  "wp__timeline__delete_all_desc": "Las fases se eliminan y sus tareas quedan sin asignar (sin fase). No se puede deshacer.",
+  "wp__timeline__delete_all_done": "Todas las fases eliminadas.",
+  "wp__timeline__delete_all_error": "No se pudieron eliminar las fases.",
+  "wp__budget__delete_all": "Eliminar todo",
+  "wp__budget__delete_all_title": "¿Eliminar todos los elementos del presupuesto?",
+  "wp__budget__delete_all_desc": "Esto elimina permanentemente todas las categorías de presupuesto y los pagos. No se puede deshacer.",
+  "wp__budget__delete_all_done": "Presupuesto vaciado.",
+  "wp__budget__delete_all_error": "No se pudo vaciar el presupuesto."
 }

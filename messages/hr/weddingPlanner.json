@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Nema otvorenih zadataka. Sve ste odradili.",
   "wp__dash__no_payments": "Nema nadolazećih plaćanja.",
   "wp__dash__no_phases": "Dodajte faze vremenskog tijeka da biste ovdje vidjeli svoje etape.",
-  "wp__dash__no_payment_date": "Bez datuma"
+  "wp__dash__no_payment_date": "Bez datuma",
+  "wp__tasks__delete_all": "Izbriši sve",
+  "wp__tasks__delete_all_title": "Izbrisati sve zadatke?",
+  "wp__tasks__delete_all_desc": "Time se trajno uklanjaju svi zadaci. Ova se radnja ne može poništiti.",
+  "wp__tasks__delete_all_done": "Svi zadaci izbrisani.",
+  "wp__tasks__delete_all_error": "Nije moguće izbrisati zadatke.",
+  "wp__timeline__delete_all": "Izbriši sve faze",
+  "wp__timeline__delete_all_title": "Izbrisati sve faze?",
+  "wp__timeline__delete_all_desc": "Faze se uklanjaju, a njihovi zadaci postaju nedodijeljeni (bez faze). Ova se radnja ne može poništiti.",
+  "wp__timeline__delete_all_done": "Sve faze izbrisane.",
+  "wp__timeline__delete_all_error": "Nije moguće izbrisati faze.",
+  "wp__budget__delete_all": "Izbriši sve",
+  "wp__budget__delete_all_title": "Izbrisati sve stavke proračuna?",
+  "wp__budget__delete_all_desc": "Time se trajno uklanjaju sve kategorije proračuna i plaćanja. Ova se radnja ne može poništiti.",
+  "wp__budget__delete_all_done": "Proračun očišćen.",
+  "wp__budget__delete_all_error": "Nije moguće očistiti proračun."
 }

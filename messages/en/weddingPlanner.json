@@ -212,5 +212,20 @@
   "wp__ai__suggestions": "Suggestions",
   "wp__ai__plan_prompt": "Help me plan our whole event. Before you build anything, ask me a few quick questions in one short message — our total budget, rough guest count, the style or vibe we're going for, our location or season, and any must-haves or things to avoid. Wait for my answers, then propose a complete plan (timeline phases, the essential tasks under each, budget categories with rough amounts, and set our total budget) for me to confirm.",
   "wp__ai__decide_prompt": "You decide for me — don't ask any questions. Use sensible defaults for a typical event and propose a complete plan right now: timeline phases, the essential tasks under each, budget categories with rough amounts, and a suggested total budget, all for me to confirm.",
-  "wp__ai__decide_for_me": "You decide for me"
+  "wp__ai__decide_for_me": "You decide for me",
+  "wp__tasks__delete_all": "Delete all",
+  "wp__tasks__delete_all_title": "Delete all tasks?",
+  "wp__tasks__delete_all_desc": "This permanently removes every task. This can’t be undone.",
+  "wp__tasks__delete_all_done": "All tasks deleted.",
+  "wp__tasks__delete_all_error": "Couldn’t delete tasks.",
+  "wp__timeline__delete_all": "Delete all phases",
+  "wp__timeline__delete_all_title": "Delete all phases?",
+  "wp__timeline__delete_all_desc": "Phases are removed and their tasks become unassigned (no phase). This can’t be undone.",
+  "wp__timeline__delete_all_done": "All phases deleted.",
+  "wp__timeline__delete_all_error": "Couldn’t delete phases.",
+  "wp__budget__delete_all": "Delete all",
+  "wp__budget__delete_all_title": "Delete all budget items?",
+  "wp__budget__delete_all_desc": "This permanently removes all budget categories and payments. This can’t be undone.",
+  "wp__budget__delete_all_done": "Budget cleared.",
+  "wp__budget__delete_all_error": "Couldn’t clear the budget."
 }

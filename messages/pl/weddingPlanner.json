@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Brak otwartych zadań. Masz wszystko ogarnięte.",
   "wp__dash__no_payments": "Brak nadchodzących płatności.",
   "wp__dash__no_phases": "Dodaj etapy harmonogramu, aby zobaczyć tutaj swoje fazy.",
-  "wp__dash__no_payment_date": "Brak daty"
+  "wp__dash__no_payment_date": "Brak daty",
+  "wp__tasks__delete_all": "Usuń wszystko",
+  "wp__tasks__delete_all_title": "Usunąć wszystkie zadania?",
+  "wp__tasks__delete_all_desc": "Spowoduje to trwałe usunięcie wszystkich zadań. Tej operacji nie można cofnąć.",
+  "wp__tasks__delete_all_done": "Usunięto wszystkie zadania.",
+  "wp__tasks__delete_all_error": "Nie udało się usunąć zadań.",
+  "wp__timeline__delete_all": "Usuń wszystkie etapy",
+  "wp__timeline__delete_all_title": "Usunąć wszystkie etapy?",
+  "wp__timeline__delete_all_desc": "Etapy zostaną usunięte, a ich zadania staną się nieprzypisane (brak etapu). Tej operacji nie można cofnąć.",
+  "wp__timeline__delete_all_done": "Usunięto wszystkie etapy.",
+  "wp__timeline__delete_all_error": "Nie udało się usunąć etapów.",
+  "wp__budget__delete_all": "Usuń wszystko",
+  "wp__budget__delete_all_title": "Usunąć wszystkie pozycje budżetu?",
+  "wp__budget__delete_all_desc": "Spowoduje to trwałe usunięcie wszystkich kategorii budżetu i płatności. Tej operacji nie można cofnąć.",
+  "wp__budget__delete_all_done": "Budżet wyczyszczony.",
+  "wp__budget__delete_all_error": "Nie udało się wyczyścić budżetu."
 }

@@ -10,6 +10,8 @@ import {
   type EventType,
 } from "@/lib/event-types";
 import { eventsClient } from "@/lib/api/events-client";
+import { ApiError } from "@/lib/api/client";
+import { toast } from "@/components/Toaster";
 import { EventTypeCard } from "@/features/create/components/EventTypeCard";
 
 type EventTypeSwitcherProps = {
@@ -53,7 +55,14 @@ export const EventTypeSwitcher = ({
     setPending(true);
     try {
       await eventsClient.changeType(eventId, selected);
+      toast.success(t("settings__event_type__changed"));
       router.refresh();
+    } catch (error) {
+      toast.error(
+        ApiError.isApiError(error)
+          ? error.message
+          : t("settings__event_type__change_error"),
+      );
     } finally {
       setPending(false);
     }

@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Nicio sarcină deschisă. Ești la zi cu tot.",
   "wp__dash__no_payments": "Nicio plată viitoare.",
   "wp__dash__no_phases": "Adaugă etape în cronologie pentru a-ți vedea aici fazele.",
-  "wp__dash__no_payment_date": "Fără dată"
+  "wp__dash__no_payment_date": "Fără dată",
+  "wp__tasks__delete_all": "Șterge tot",
+  "wp__tasks__delete_all_title": "Ștergeți toate sarcinile?",
+  "wp__tasks__delete_all_desc": "Aceasta elimină definitiv toate sarcinile. Această acțiune nu poate fi anulată.",
+  "wp__tasks__delete_all_done": "Toate sarcinile șterse.",
+  "wp__tasks__delete_all_error": "Sarcinile nu au putut fi șterse.",
+  "wp__timeline__delete_all": "Șterge toate fazele",
+  "wp__timeline__delete_all_title": "Ștergeți toate fazele?",
+  "wp__timeline__delete_all_desc": "Fazele sunt eliminate, iar sarcinile lor devin neatribuite (fără fază). Această acțiune nu poate fi anulată.",
+  "wp__timeline__delete_all_done": "Toate fazele șterse.",
+  "wp__timeline__delete_all_error": "Fazele nu au putut fi șterse.",
+  "wp__budget__delete_all": "Șterge tot",
+  "wp__budget__delete_all_title": "Ștergeți toate elementele bugetului?",
+  "wp__budget__delete_all_desc": "Aceasta elimină definitiv toate categoriile de buget și plățile. Această acțiune nu poate fi anulată.",
+  "wp__budget__delete_all_done": "Buget golit.",
+  "wp__budget__delete_all_error": "Bugetul nu a putut fi golit."
 }

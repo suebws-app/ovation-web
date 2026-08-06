@@ -7,17 +7,21 @@ import { InviteCard } from "@/features/invitation/components/InviteCard";
 import { InvitationOpenTracker } from "@/features/guest/InvitationOpenTracker";
 import { useGuestSubmissionStore } from "@/features/guest/store/useGuestSubmissionStore";
 import { RsvpActions } from "./RsvpActions";
-import { eventCardTitle, getEventTypeConfig } from "@/lib/event-types";
+import {
+  eventCardTitle,
+  formatDateRange,
+  getEventTypeConfig,
+} from "@/lib/event-types";
 
-const formatDateLabel = (iso: string | null): string | undefined => {
-  if (!iso) return undefined;
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return undefined;
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+const formatDateLabel = (raw: string): string => {
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime())
+    ? raw
+    : date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
 };
 
 type GuestInvitationViewProps = {
@@ -77,9 +81,8 @@ export const GuestInvitationView = ({
                 animate
                 values={{
                   ...titleParts,
-                  dateLabel: formatDateLabel(
-                    event.eventDate ?? event.weddingDate,
-                  ),
+                  dateLabel:
+                    formatDateRange(event, formatDateLabel) ?? undefined,
                   venue: event.locationName ?? event.venueName ?? undefined,
                   place: event.locationCity ?? event.venueCity ?? undefined,
                   message: event.welcomeMessage ?? undefined,

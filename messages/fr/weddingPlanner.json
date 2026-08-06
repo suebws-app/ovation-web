@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Aucune tâche en cours. Tu es à jour.",
   "wp__dash__no_payments": "Aucun paiement à venir.",
   "wp__dash__no_phases": "Ajoute des phases à ton rétroplanning pour voir tes étapes ici.",
-  "wp__dash__no_payment_date": "Aucune date définie"
+  "wp__dash__no_payment_date": "Aucune date définie",
+  "wp__tasks__delete_all": "Tout supprimer",
+  "wp__tasks__delete_all_title": "Supprimer toutes les tâches ?",
+  "wp__tasks__delete_all_desc": "Cette action supprime définitivement toutes les tâches. Elle est irréversible.",
+  "wp__tasks__delete_all_done": "Toutes les tâches supprimées.",
+  "wp__tasks__delete_all_error": "Impossible de supprimer les tâches.",
+  "wp__timeline__delete_all": "Supprimer toutes les phases",
+  "wp__timeline__delete_all_title": "Supprimer toutes les phases ?",
+  "wp__timeline__delete_all_desc": "Les phases sont supprimées et leurs tâches deviennent non attribuées (aucune phase). Cette action est irréversible.",
+  "wp__timeline__delete_all_done": "Toutes les phases supprimées.",
+  "wp__timeline__delete_all_error": "Impossible de supprimer les phases.",
+  "wp__budget__delete_all": "Tout supprimer",
+  "wp__budget__delete_all_title": "Supprimer tous les éléments du budget ?",
+  "wp__budget__delete_all_desc": "Cette action supprime définitivement toutes les catégories de budget et tous les paiements. Elle est irréversible.",
+  "wp__budget__delete_all_done": "Budget vidé.",
+  "wp__budget__delete_all_error": "Impossible de vider le budget."
 }

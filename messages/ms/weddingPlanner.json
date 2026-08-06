@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Tiada tugasan terbuka. Semuanya sudah selesai.",
   "wp__dash__no_payments": "Tiada pembayaran akan datang.",
   "wp__dash__no_phases": "Tambah fasa garis masa untuk melihat peringkat anda di sini.",
-  "wp__dash__no_payment_date": "Tiada tarikh"
+  "wp__dash__no_payment_date": "Tiada tarikh",
+  "wp__tasks__delete_all": "Padam semua",
+  "wp__tasks__delete_all_title": "Padam semua tugas?",
+  "wp__tasks__delete_all_desc": "Ini mengalih keluar semua tugas secara kekal. Tindakan ini tidak boleh dibuat asal.",
+  "wp__tasks__delete_all_done": "Semua tugas dipadamkan.",
+  "wp__tasks__delete_all_error": "Tidak dapat memadam tugas.",
+  "wp__timeline__delete_all": "Padam semua fasa",
+  "wp__timeline__delete_all_title": "Padam semua fasa?",
+  "wp__timeline__delete_all_desc": "Fasa dialih keluar dan tugasnya menjadi tidak ditugaskan (tiada fasa). Tindakan ini tidak boleh dibuat asal.",
+  "wp__timeline__delete_all_done": "Semua fasa dipadamkan.",
+  "wp__timeline__delete_all_error": "Tidak dapat memadam fasa.",
+  "wp__budget__delete_all": "Padam semua",
+  "wp__budget__delete_all_title": "Padam semua item bajet?",
+  "wp__budget__delete_all_desc": "Ini mengalih keluar semua kategori bajet dan pembayaran secara kekal. Tindakan ini tidak boleh dibuat asal.",
+  "wp__budget__delete_all_done": "Bajet dikosongkan.",
+  "wp__budget__delete_all_error": "Tidak dapat mengosongkan bajet."
 }

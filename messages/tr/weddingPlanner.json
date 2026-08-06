@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Açık görev yok. Her şeyi hallettin.",
   "wp__dash__no_payments": "Yaklaşan ödeme yok.",
   "wp__dash__no_phases": "Aşamalarını burada görmek için zaman çizelgesine evreler ekle.",
-  "wp__dash__no_payment_date": "Tarih belirlenmedi"
+  "wp__dash__no_payment_date": "Tarih belirlenmedi",
+  "wp__tasks__delete_all": "Tümünü sil",
+  "wp__tasks__delete_all_title": "Tüm görevler silinsin mi?",
+  "wp__tasks__delete_all_desc": "Bu, tüm görevleri kalıcı olarak siler. Bu işlem geri alınamaz.",
+  "wp__tasks__delete_all_done": "Tüm görevler silindi.",
+  "wp__tasks__delete_all_error": "Görevler silinemedi.",
+  "wp__timeline__delete_all": "Tüm aşamaları sil",
+  "wp__timeline__delete_all_title": "Tüm aşamalar silinsin mi?",
+  "wp__timeline__delete_all_desc": "Aşamalar kaldırılır ve görevleri atanmamış duruma gelir (aşama yok). Bu işlem geri alınamaz.",
+  "wp__timeline__delete_all_done": "Tüm aşamalar silindi.",
+  "wp__timeline__delete_all_error": "Aşamalar silinemedi.",
+  "wp__budget__delete_all": "Tümünü sil",
+  "wp__budget__delete_all_title": "Tüm bütçe öğeleri silinsin mi?",
+  "wp__budget__delete_all_desc": "Bu, tüm bütçe kategorilerini ve ödemeleri kalıcı olarak siler. Bu işlem geri alınamaz.",
+  "wp__budget__delete_all_done": "Bütçe temizlendi.",
+  "wp__budget__delete_all_error": "Bütçe temizlenemedi."
 }

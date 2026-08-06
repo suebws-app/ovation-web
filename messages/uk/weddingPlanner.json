@@ -212,5 +212,20 @@
   "wp__dash__no_tasks": "Немає відкритих завдань. Ви все встигли.",
   "wp__dash__no_payments": "Немає майбутніх платежів.",
   "wp__dash__no_phases": "Додайте етапи графіка, щоб побачити тут свої стадії.",
-  "wp__dash__no_payment_date": "Без дати"
+  "wp__dash__no_payment_date": "Без дати",
+  "wp__tasks__delete_all": "Видалити все",
+  "wp__tasks__delete_all_title": "Видалити всі завдання?",
+  "wp__tasks__delete_all_desc": "Це назавжди видалить усі завдання. Цю дію не можна скасувати.",
+  "wp__tasks__delete_all_done": "Усі завдання видалено.",
+  "wp__tasks__delete_all_error": "Не вдалося видалити завдання.",
+  "wp__timeline__delete_all": "Видалити всі етапи",
+  "wp__timeline__delete_all_title": "Видалити всі етапи?",
+  "wp__timeline__delete_all_desc": "Етапи буде видалено, а їхні завдання стануть непризначеними (без етапу). Цю дію не можна скасувати.",
+  "wp__timeline__delete_all_done": "Усі етапи видалено.",
+  "wp__timeline__delete_all_error": "Не вдалося видалити етапи.",
+  "wp__budget__delete_all": "Видалити все",
+  "wp__budget__delete_all_title": "Видалити всі елементи бюджету?",
+  "wp__budget__delete_all_desc": "Це назавжди видалить усі категорії бюджету та платежі. Цю дію не можна скасувати.",
+  "wp__budget__delete_all_done": "Бюджет очищено.",
+  "wp__budget__delete_all_error": "Не вдалося очистити бюджет."
 }
