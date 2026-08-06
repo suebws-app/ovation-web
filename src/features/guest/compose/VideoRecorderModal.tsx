@@ -13,6 +13,13 @@ import {
   type VideoCapture,
 } from "../store/useGuestSubmissionStore";
 
+const newVideoId = (): string => {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `v-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+};
+
 const formatTime = (sec: number): string => {
   const m = Math.floor(sec / 60);
   const s = sec % 60;
@@ -33,7 +40,7 @@ export const VideoRecorderModal = ({
   const t = useTranslations();
   const recorder = useVideoRecorder(maxDurationSec);
   const { recording } = recorder;
-  const setVideo = useGuestSubmissionStore((s) => s.setVideo);
+  const addVideo = useGuestSubmissionStore((s) => s.addVideo);
   const previewRef = useRef<HTMLVideoElement | null>(null);
   const recorderRef = useRef(recorder);
   useEffect(() => {
@@ -55,15 +62,16 @@ export const VideoRecorderModal = ({
   useEffect(() => {
     if (!recording) return;
     const capture: VideoCapture = {
+      id: newVideoId(),
       blob: recording.blob,
       url: recording.url,
       durationSec: recording.durationSec,
       mimeType: recording.mimeType,
     };
-    setVideo(capture);
+    addVideo(capture);
     recorderRef.current.reset();
     onClose();
-  }, [recording, setVideo, onClose]);
+  }, [recording, addVideo, onClose]);
 
   useEffect(() => {
     if (!open) return;
@@ -147,9 +155,10 @@ export const VideoRecorderModal = ({
         {isRecording ? (
           <Button
             type="button"
+            size="lg"
             variant="destructive"
             onClick={recorder.stop}
-            className="rounded-full px-8 shadow-lg"
+            className="px-8 shadow-lg"
           >
             <StopIcon width={16} height={16} />
             {t("guest__record__video__stop")}
@@ -157,9 +166,10 @@ export const VideoRecorderModal = ({
         ) : (
           <Button
             type="button"
+            size="lg"
             onClick={recorder.start}
             disabled={!canRecord}
-            className="rounded-full px-8 shadow-lg"
+            className="px-8 shadow-lg"
           >
             <VideoIcon width={16} height={16} />
             {isRequesting

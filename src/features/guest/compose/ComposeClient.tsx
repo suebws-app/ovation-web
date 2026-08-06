@@ -42,7 +42,7 @@ export const ComposeClient = ({
   const isKioskSession = sourceParam === "kiosk";
   const setSlug = useGuestSubmissionStore((s) => s.setSlug);
   const audio = useGuestSubmissionStore((s) => s.audio);
-  const video = useGuestSubmissionStore((s) => s.video);
+  const videos = useGuestSubmissionStore((s) => s.videos);
   const photos = useGuestSubmissionStore((s) => s.photos);
   const note = useGuestSubmissionStore((s) => s.note);
 
@@ -56,7 +56,10 @@ export const ComposeClient = ({
   const backHref = isKioskSession ? `/kiosk/${slug}` : null;
 
   const hasAnyContent =
-    Boolean(audio || video) || photos.length > 0 || note.trim().length > 0;
+    Boolean(audio) ||
+    videos.length > 0 ||
+    photos.length > 0 ||
+    note.trim().length > 0;
 
   const handleContinue = () => {
     if (submissionClosed) return;

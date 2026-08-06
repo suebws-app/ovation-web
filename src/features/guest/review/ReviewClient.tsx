@@ -39,6 +39,7 @@ type UploadItem = {
   audioKey?: string;
   mediaId?: string;
   photoIndex?: number;
+  videoIndex?: number;
 };
 
 type SubmitPhase =
@@ -206,7 +207,7 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
   const guestName = useGuestSubmissionStore((s) => s.guestName);
   const setGuestName = useGuestSubmissionStore((s) => s.setGuestName);
   const audio = useGuestSubmissionStore((s) => s.audio);
-  const video = useGuestSubmissionStore((s) => s.video);
+  const videos = useGuestSubmissionStore((s) => s.videos);
   const note = useGuestSubmissionStore((s) => s.note);
   const photos = useGuestSubmissionStore((s) => s.photos);
   const reset = useGuestSubmissionStore((s) => s.reset);
@@ -227,7 +228,8 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
 
   const hasNote = note.trim().length > 0;
   const hasPhotos = photos.length > 0;
-  const hasAnyContent = Boolean(audio || video) || hasPhotos || hasNote;
+  const hasVideos = videos.length > 0;
+  const hasAnyContent = Boolean(audio) || hasVideos || hasPhotos || hasNote;
 
   const overallPct = useMemo(() => {
     if (items.length === 0) return 0;
@@ -303,15 +305,19 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
       if (targets.length === 0) return { anyFailed: false };
 
       const needsAudio = targets.some((i) => i.kind === "audio");
-      const needsVideo = targets.some((i) => i.kind === "video");
+      const needsVideos = targets.filter((i) => i.kind === "video");
       const needsPhotos = targets.filter((i) => i.kind === "photo");
 
       const mediaRequest: UploadMediaItem[] = [];
-      if (needsVideo && video)
-        mediaRequest.push({
-          type: "video",
-          contentType: stripMimeParams(video.mimeType),
-        });
+      needsVideos.forEach((item) => {
+        const idx = item.videoIndex ?? 0;
+        const v = videos[idx];
+        if (v)
+          mediaRequest.push({
+            type: "video",
+            contentType: stripMimeParams(v.mimeType),
+          });
+      });
       needsPhotos.forEach((item) => {
         const idx = item.photoIndex ?? 0;
         const p = photos[idx];
@@ -329,8 +335,12 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
 
       const jobs: Array<Promise<boolean>> = [];
       let photoTargetIdx = 0;
+      let videoTargetIdx = 0;
       const photoTargets = uploadResult.mediaTargets.filter(
         (m) => m.type === "photo",
+      );
+      const videoTargets = uploadResult.mediaTargets.filter(
+        (m) => m.type === "video",
       );
 
       for (const item of targets) {
@@ -364,17 +374,17 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
           continue;
         }
 
-        if (item.kind === "video" && video) {
-          const target = uploadResult.mediaTargets.find(
-            (m) => m.type === "video",
-          );
-          if (!target) {
+        if (item.kind === "video") {
+          const idx = item.videoIndex ?? 0;
+          const videoItem = videos[idx];
+          const target = videoTargets[videoTargetIdx++];
+          if (!videoItem || !target) {
             patchItem(item.id, { status: "failed" });
             jobs.push(Promise.resolve(false));
             continue;
           }
           jobs.push(
-            uploadToTarget(target, video.blob, {
+            uploadToTarget(target, videoItem.blob, {
               onProgress: (pct) => patchItem(item.id, { pct }),
             })
               .then(() => {
@@ -427,7 +437,7 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
       const results = await Promise.all(jobs);
       return { anyFailed: results.some((ok) => !ok) };
     },
-    [audio, video, photos, slug, submissionSource, sessionStartAt, patchItem],
+    [audio, videos, photos, slug, submissionSource, sessionStartAt, patchItem],
   );
 
   const handleSubmit = async () => {
@@ -458,15 +468,19 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
         status: "queued",
       });
     }
-    if (video) {
+    videos.forEach((_, i) => {
       initial.push({
-        id: "video",
+        id: `video-${i}`,
         kind: "video",
-        label: t("guest__compose__video_title"),
+        label:
+          videos.length === 1
+            ? t("guest__compose__video_title")
+            : `${t("guest__compose__video_title")} ${i + 1}`,
         pct: 0,
         status: "queued",
+        videoIndex: i,
       });
-    }
+    });
     photos.forEach((_, i) => {
       initial.push({
         id: `photo-${i}`,
@@ -622,28 +636,38 @@ export const ReviewClient = ({ slug, sourceParam }: ReviewClientProps) => {
                   }
                 />
               )}
-              {video && (
+              {videos.map((video, i) => (
                 <ReviewItem
+                  key={video.id}
                   icon={<VideoIcon width={18} height={18} />}
                   iconClassName="bg-destructive"
-                  title={t("guest__compose__video_title")}
+                  title={
+                    videos.length === 1
+                      ? t("guest__compose__video_title")
+                      : `${t("guest__compose__video_title")} ${i + 1}`
+                  }
                   meta={t("guest__compose__video_captured", {
                     duration: formatTime(video.durationSec),
                   })}
                   preview={
-                    <div className="rounded-12 bg-muted block aspect-video w-full overflow-hidden">
-                      <LazyVideoPlayer
-                        key={video.url}
-                        src={video.url}
-                        type={videoMimeFromType(video.mimeType)}
-                        load="eager"
-                        preload="metadata"
-                        className="size-full"
-                      />
+                    <div
+                      className="rounded-12 bg-muted relative aspect-video w-full min-w-0 overflow-hidden"
+                      style={{ contain: "layout size paint" }}
+                    >
+                      <div className="absolute inset-0">
+                        <LazyVideoPlayer
+                          key={video.url}
+                          src={video.url}
+                          type={videoMimeFromType(video.mimeType)}
+                          load="eager"
+                          preload="metadata"
+                          className="size-full"
+                        />
+                      </div>
                     </div>
                   }
                 />
-              )}
+              ))}
               {hasNote && (
                 <ReviewItem
                   icon={<MessageSquareIcon width={18} height={18} />}
