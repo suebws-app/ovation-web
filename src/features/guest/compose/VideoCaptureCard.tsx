@@ -118,14 +118,16 @@ export const VideoCaptureCard = ({
 
       {video && (
         <div className="mt-4 flex flex-col gap-3">
-          <LazyVideoPlayer
-            key={video.url}
-            src={video.url}
-            type={videoMimeFromType(video.mimeType)}
-            load="eager"
-            preload="metadata"
-            className="rounded-12 aspect-video w-full"
-          />
+          <div className="rounded-12 bg-muted aspect-video w-full overflow-hidden">
+            <LazyVideoPlayer
+              key={video.url}
+              src={video.url}
+              type={videoMimeFromType(video.mimeType)}
+              load="eager"
+              preload="metadata"
+              className="size-full"
+            />
+          </div>
           <div className="flex justify-end gap-2">
             <Button variant="outline" onClick={openRecorder}>
               {t("guest__record__video__re_record")}
