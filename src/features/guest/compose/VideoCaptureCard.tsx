@@ -118,7 +118,7 @@ export const VideoCaptureCard = ({
 
       {video && (
         <div className="mt-4 flex flex-col gap-3">
-          <div className="rounded-12 bg-muted aspect-video w-full overflow-hidden">
+          <div className="rounded-12 bg-muted tablet:max-h-80 relative max-h-56 w-full overflow-hidden">
             <LazyVideoPlayer
               key={video.url}
               src={video.url}
