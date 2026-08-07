@@ -174,7 +174,7 @@ export const SvgInviteCard = ({
         style={{
           fontFamily: displayFont,
           color: nameColor,
-          fontSize: nameFontSize * 0.5,
+          fontSize: nameFontSize * 0.62,
         }}
       >
         {values.partnerA || "Lila"}
@@ -237,14 +237,13 @@ export const SvgInviteCard = ({
   const ageEl =
     template.artShowAge && typeof values.age === "number" ? (
       <p
-        className="font-bold"
+        className="text-center"
         style={{
-          fontFamily: bodyFont,
+          fontFamily: displayFont,
           color: template.textColor,
           fontSize: isSplit
-            ? "clamp(18px, 7cqw, 34px)"
-            : "clamp(14px, 6cqw, 28px)",
-          letterSpacing: "0.5px",
+            ? "clamp(30px, 12cqw, 56px)"
+            : "clamp(22px, 9cqw, 42px)",
         }}
       >
         {ordinalAge(values.age)}
