@@ -30,6 +30,10 @@ export type InvitationTemplate = {
   artPanelColor?: string;
   artDetailFontKey?: string;
   artNameMax?: number;
+  artEyebrowText?: string;
+  artCelebrantTier?: boolean;
+  artShowAge?: boolean;
+  artHideVenueLabel?: boolean;
 };
 
 export type InvitationTemplatesResponse = {
