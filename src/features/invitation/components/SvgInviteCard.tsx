@@ -2,6 +2,7 @@
 
 import { cn } from "@ovation/ui/utils/cn";
 import type { InvitationTemplate } from "@/lib/api/types";
+import { ordinalAge } from "@/lib/event-types/format";
 import { resolveFontStack } from "../invitationTemplates";
 import { useFitText } from "./useFitText";
 
@@ -18,6 +19,7 @@ type SvgInviteCardValues = {
   venue?: string;
   place?: string;
   message?: string;
+  age?: number;
 };
 
 type SvgInviteCardProps = {
@@ -159,11 +161,37 @@ export const SvgInviteCard = ({
         letterSpacing: s.eyebrowTracking,
       }}
     >
-      {guestFirstName ? `Dear ${guestFirstName}` : "You are invited"}
+      {guestFirstName
+        ? `Dear ${guestFirstName}`
+        : (template.artEyebrowText ?? "You are invited")}
     </span>
   );
 
-  const namesEl = (
+  const bigLine = values.title || values.eventName || values.postfix;
+  const namesEl = template.artCelebrantTier ? (
+    <div className="flex flex-col items-center gap-0.5">
+      <span
+        style={{
+          fontFamily: displayFont,
+          color: nameColor,
+          fontSize: nameFontSize * 0.5,
+        }}
+      >
+        {values.partnerA || "Lila"}
+      </span>
+      <h2
+        ref={nameRef}
+        className="leading-tight whitespace-nowrap"
+        style={{
+          fontFamily: displayFont,
+          color: nameColor,
+          fontSize: nameFontSize,
+        }}
+      >
+        {bigLine || `${values.partnerA || "Lila"}'s Party`}
+      </h2>
+    </div>
+  ) : (
     <div className="flex flex-col items-center gap-1">
       <h2
         ref={nameRef}
@@ -206,6 +234,23 @@ export const SvgInviteCard = ({
     </div>
   );
 
+  const ageEl =
+    template.artShowAge && typeof values.age === "number" ? (
+      <p
+        className="font-bold"
+        style={{
+          fontFamily: bodyFont,
+          color: template.textColor,
+          fontSize: isSplit
+            ? "clamp(18px, 7cqw, 34px)"
+            : "clamp(14px, 6cqw, 28px)",
+          letterSpacing: "0.5px",
+        }}
+      >
+        {ordinalAge(values.age)}
+      </p>
+    ) : null;
+
   const dividerEl = (
     <span
       className="block h-px"
@@ -246,17 +291,19 @@ export const SvgInviteCard = ({
 
   const venueEl = values.venue ? (
     <div>
-      <p
-        className="uppercase"
-        style={{
-          color: template.mutedColor,
-          fontFamily: bodyFont,
-          fontSize: s.venueLabel,
-          letterSpacing: s.venueLabelTracking,
-        }}
-      >
-        Venue
-      </p>
+      {!template.artHideVenueLabel && (
+        <p
+          className="uppercase"
+          style={{
+            color: template.mutedColor,
+            fontFamily: bodyFont,
+            fontSize: s.venueLabel,
+            letterSpacing: s.venueLabelTracking,
+          }}
+        >
+          Venue
+        </p>
+      )}
       <p
         className={cn(
           "mt-0.5 max-w-full break-words",
@@ -352,6 +399,7 @@ export const SvgInviteCard = ({
               {template.artPanelColor ? (
                 <>
                   <div className={panelClass} style={panelStyle}>
+                    {ageEl}
                     {dateEl}
                     {messageEl}
                   </div>
@@ -363,6 +411,7 @@ export const SvgInviteCard = ({
                 </>
               ) : (
                 <>
+                  {ageEl}
                   {dateEl}
                   {messageEl}
                   {venueEl}
@@ -383,6 +432,7 @@ export const SvgInviteCard = ({
             {eyebrowEl}
             {namesEl}
             {dividerEl}
+            {ageEl}
             {dateEl}
             {messageEl}
             {venueEl}

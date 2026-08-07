@@ -183,3 +183,10 @@ export const eventCardTitle = (
     postfix: postfix || undefined,
   };
 };
+
+export const ordinalAge = (n: number): string => {
+  const rem100 = n % 100;
+  if (rem100 >= 11 && rem100 <= 13) return `${n}th`;
+  const suffix = { 1: "st", 2: "nd", 3: "rd" }[n % 10] ?? "th";
+  return `${n}${suffix}`;
+};

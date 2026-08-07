@@ -27,6 +27,7 @@ type InviteCardValues = {
   venue?: string;
   place?: string;
   message?: string;
+  age?: number;
 };
 
 type InviteCardSize = "compact" | "large";
