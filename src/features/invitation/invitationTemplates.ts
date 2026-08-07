@@ -27,6 +27,7 @@ export const FRONTEND_FONT_STACKS: Record<string, string> = {
     "var(--font-libre-baskerville), 'Libre Baskerville', Georgia, serif",
   italiana: "var(--font-italiana), 'Italiana', 'Times New Roman', serif",
   poppins: "var(--font-poppins), 'Poppins', system-ui, sans-serif",
+  montez: "var(--font-montez), 'Montez', 'Brush Script MT', cursive",
 };
 
 export const resolveFontStack = (fontKey: string): string =>

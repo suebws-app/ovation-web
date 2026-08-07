@@ -95,6 +95,11 @@ export const InvitationPage = ({
                 ? initialEvent.details.customEventNoun
                 : undefined
             }
+            age={
+              typeof initialEvent?.details?.age === "number"
+                ? initialEvent.details.age
+                : undefined
+            }
             step={step}
             selectedGuestFirstName={selectedGuest?.first}
           />

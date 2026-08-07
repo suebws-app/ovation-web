@@ -7,6 +7,7 @@ import {
   Libre_Baskerville,
   Lora,
   Merienda,
+  Montez,
   Montserrat,
   Pacifico,
   Playfair_Display,
@@ -79,6 +80,12 @@ const merienda = Merienda({
   variable: "--font-merienda",
   display: "swap",
 });
+const montez = Montez({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-montez",
+  display: "swap",
+});
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -116,6 +123,7 @@ const invitationFontClasses = [
   montserrat.variable,
   greatVibes.variable,
   merienda.variable,
+  montez.variable,
   libreBaskerville.variable,
   italiana.variable,
   poppins.variable,

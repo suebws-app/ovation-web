@@ -87,6 +87,10 @@ export const GuestInvitationView = ({
                   venue: event.locationName ?? event.venueName ?? undefined,
                   place: event.locationCity ?? event.venueCity ?? undefined,
                   message: event.welcomeMessage ?? undefined,
+                  age:
+                    typeof event.details?.age === "number"
+                      ? event.details.age
+                      : undefined,
                 }}
                 guestFirstName={invitee.firstName}
               />

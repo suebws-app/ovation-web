@@ -25,6 +25,7 @@ type InvitationPreviewPanelProps = {
   eventType?: string | null;
   endDate?: string | null;
   customEventNoun?: string | null;
+  age?: number;
   step: InvitationStepId;
   selectedGuestFirstName: string | undefined;
 };
@@ -35,6 +36,7 @@ export const InvitationPreviewPanel = ({
   eventType,
   endDate,
   customEventNoun,
+  age,
   step,
   selectedGuestFirstName,
 }: InvitationPreviewPanelProps) => {
@@ -73,6 +75,7 @@ export const InvitationPreviewPanel = ({
                 venue: values?.venue,
                 place: values?.place,
                 message: values?.message,
+                age,
               }}
               guestFirstName={
                 step === "guests" ? selectedGuestFirstName : undefined
