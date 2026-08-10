@@ -58,18 +58,19 @@ export const loadMessages = async (
   return Object.assign({}, ...files);
 };
 
-const PUBLIC_SHELL_NAMESPACES = [
+export const SHELL_NAMESPACES = [
   "common",
   "errors",
-  "marketing",
   "sidebar",
+  "validation",
 ] as const;
 
-export const loadPublicShellMessages = async (
+export const loadNamespaces = async (
   locale: string,
+  namespaces: readonly string[],
 ): Promise<AbstractIntlMessages> => {
   const files = await Promise.all(
-    PUBLIC_SHELL_NAMESPACES.flatMap((namespace) =>
+    namespaces.flatMap((namespace) =>
       locale === "en"
         ? [loadNamespace("en", namespace)]
         : [loadNamespace("en", namespace), loadNamespace(locale, namespace)],
@@ -78,3 +79,13 @@ export const loadPublicShellMessages = async (
 
   return Object.assign({}, ...files);
 };
+
+export const loadShellMessages = (
+  locale: string,
+  extras: readonly string[] = [],
+): Promise<AbstractIntlMessages> =>
+  loadNamespaces(locale, [...SHELL_NAMESPACES, ...extras]);
+
+export const loadPublicShellMessages = (
+  locale: string,
+): Promise<AbstractIntlMessages> => loadShellMessages(locale);

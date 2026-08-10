@@ -9,6 +9,7 @@ import {
 export const size = OG_IMAGE_SIZE;
 export const contentType = OG_IMAGE_CONTENT_TYPE;
 export const alt = "The Ovation Gold Book";
+export const dynamic = "force-static";
 
 interface Props {
   params: Promise<{ locale: string }>;

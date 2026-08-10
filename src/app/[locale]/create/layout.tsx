@@ -6,6 +6,8 @@ import { appRoutes } from "@/lib/routes";
 import { CreateHeader } from "@/features/layout/CreateHeader/CreateHeader";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 import { eventsApi } from "@/lib/api/events";
+import { loadShellMessages } from "@/i18n/loadMessages";
+import type { LocalePageProps } from "@/i18n/types";
 
 export const dynamic = "force-dynamic";
 
@@ -13,9 +15,9 @@ export const metadata: Metadata = { robots: { index: false } };
 
 export default async function CreateLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+  params,
+}: { children: React.ReactNode } & LocalePageProps) {
+  const { locale } = await params;
   const user = await getCurrentUser();
 
   if (
@@ -38,7 +40,7 @@ export default async function CreateLayout({
       return { items: [], nextCursor: null };
     });
     return (
-      <NextIntlClientProvider>
+      <NextIntlClientProvider locale={locale}>
         <AppLayout
           user={user}
           events={events.items}
@@ -50,8 +52,9 @@ export default async function CreateLayout({
     );
   }
 
+  const messages = await loadShellMessages(locale, ["auth", "signup"]);
   return (
-    <NextIntlClientProvider>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <div className="bg-background flex min-h-screen w-full flex-col">
         <CreateHeader />
         <main className="flex-1">{children}</main>

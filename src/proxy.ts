@@ -16,6 +16,7 @@ const setRegionConsentCookie = (
   request: NextRequest,
   response: NextResponse,
 ): void => {
+  if (request.cookies.has(REGION_CONSENT_COOKIE)) return;
   const country =
     request.headers.get("x-vercel-ip-country") ??
     request.headers.get("cf-ipcountry") ??
