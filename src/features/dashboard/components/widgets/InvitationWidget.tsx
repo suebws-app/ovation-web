@@ -83,7 +83,42 @@ export const InvitationWidget = ({ event }: InvitationWidgetProps) => {
                 venue: event.locationName ?? event.venueName ?? undefined,
                 place: event.locationCity ?? event.venueCity ?? undefined,
                 message: event.welcomeMessage ?? undefined,
+                age:
+                  event.details?.showAge !== false &&
+                  typeof event.details?.age === "number"
+                    ? event.details.age
+                    : undefined,
               }}
+              pageBg={
+                typeof event.details?.pageBg === "string"
+                  ? event.details.pageBg
+                  : undefined
+              }
+              cardBg={
+                typeof event.details?.cardBg === "string"
+                  ? event.details.cardBg
+                  : undefined
+              }
+              textColor={
+                typeof event.details?.textColor === "string"
+                  ? event.details.textColor
+                  : undefined
+              }
+              mutedColor={
+                typeof event.details?.mutedColor === "string"
+                  ? event.details.mutedColor
+                  : undefined
+              }
+              accentColor={
+                typeof event.details?.accentColor === "string"
+                  ? event.details.accentColor
+                  : undefined
+              }
+              textScale={
+                typeof event.details?.textScale === "number"
+                  ? event.details.textScale
+                  : undefined
+              }
             />
           ) : (
             <div className="bg-muted h-full w-full animate-pulse" />

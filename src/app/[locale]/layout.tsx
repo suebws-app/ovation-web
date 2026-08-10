@@ -13,6 +13,7 @@ import { ThemeInitScript } from "@/components/ThemeInitScript";
 import { GoogleTagManagerNoscript } from "@/components/GoogleTagManagerNoscript";
 import { CrispChat } from "@/components/CrispChat";
 import { clientEnv } from "@/lib/utils/env.client";
+import { invitationFontVariables } from "@/features/invitation/invitationFonts";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -52,7 +53,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${rubik.variable} ${cormorant.variable} h-dvh antialiased`}
+      className={`${rubik.variable} ${cormorant.variable} ${invitationFontVariables} h-dvh antialiased`}
       suppressHydrationWarning
     >
       <body className="flex max-h-dvh flex-1 flex-col font-sans">

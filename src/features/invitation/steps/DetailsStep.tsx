@@ -6,6 +6,7 @@ import { getDateFnsLocale } from "@/lib/utils/dateFnsLocale";
 import { Controller, useFormContext } from "react-hook-form";
 import { Input } from "@ovation/ui/components/Input";
 import { Label } from "@ovation/ui/components/Label";
+import { Switch } from "@ovation/ui/components/Switch";
 import { Calendar } from "@ovation/ui/components/DatePicker";
 import {
   Popover,
@@ -19,6 +20,7 @@ import {
   INVITATION_NAME_MAX,
   type InvitationFields,
 } from "../invitationSchema";
+import { TimePicker } from "../components/TimePicker";
 import { getEventTypeConfig } from "@/lib/event-types";
 
 type DetailsStepProps = {
@@ -62,6 +64,56 @@ export const DetailsStep = ({ eventType }: DetailsStepProps) => {
           {...register("eventName")}
         />
       </div>
+      {config.features.rsvp && (
+        <div className="tablet:mt-6 mt-4 flex items-center justify-between gap-3">
+          <Label htmlFor="inv-show-rsvp">
+            {t("invitation__field__allow_rsvp")}
+          </Label>
+          <Controller
+            control={control}
+            name="showRsvp"
+            render={({ field }) => (
+              <Switch
+                id="inv-show-rsvp"
+                checked={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+        </div>
+      )}
+      {eventType === "birthday" && (
+        <div className="tablet:mt-6 mt-4">
+          <Label htmlFor="inv-age" className="mb-2">
+            {t("event__field__turning_age")}
+          </Label>
+          <Input
+            id="inv-age"
+            type="number"
+            inputMode="numeric"
+            min={0}
+            max={150}
+            placeholder={t("event__field__turning_age")}
+            {...register("age")}
+          />
+          <div className="mt-4 flex items-center justify-between gap-3">
+            <Label htmlFor="inv-show-age">
+              {t("invitation__field__show_age")}
+            </Label>
+            <Controller
+              control={control}
+              name="showAge"
+              render={({ field }) => (
+                <Switch
+                  id="inv-show-age"
+                  checked={field.value}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+          </div>
+        </div>
+      )}
       <div className="tablet:mt-6 tablet:grid-cols-[1fr_auto_1fr] mt-4 grid grid-cols-1 items-end gap-3.5">
         <div>
           <Label htmlFor="inv-partner-a" className="mb-2">
@@ -161,13 +213,13 @@ export const DetailsStep = ({ eventType }: DetailsStepProps) => {
           />
         </div>
         <div>
-          <Label htmlFor="inv-time" className="mb-2">
-            {t("invitation__field__time")}
-          </Label>
-          <Input
-            id="inv-time"
-            placeholder={t("invitation__placeholder__time")}
-            {...register("time")}
+          <Label className="mb-2 block">{t("invitation__field__time")}</Label>
+          <Controller
+            control={control}
+            name="time"
+            render={({ field }) => (
+              <TimePicker value={field.value} onChange={field.onChange} />
+            )}
           />
         </div>
       </div>
@@ -205,6 +257,18 @@ export const DetailsStep = ({ eventType }: DetailsStepProps) => {
           placeholder={t("invitation__placeholder__message")}
           className="border-border bg-background focus-visible:ring-ring rounded-8 w-full resize-none border px-3 py-2 text-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
           {...register("message")}
+        />
+      </div>
+
+      <div className="tablet:mt-6 mt-4">
+        <Label htmlFor="inv-greeting" className="mb-2">
+          {t("invitation__field__greeting")}
+        </Label>
+        <Input
+          id="inv-greeting"
+          maxLength={40}
+          placeholder={t("invitation__placeholder__greeting")}
+          {...register("greeting")}
         />
       </div>
     </>

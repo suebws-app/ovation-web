@@ -11,8 +11,19 @@ import type {
 import type { InvitationStepId } from "./constants";
 import type { InvitationFields } from "./invitationSchema";
 
+const designDetails = (values: InvitationFields): Record<string, unknown> => ({
+  pageBg: values.pageBg?.trim() ?? "",
+  surroundBg: values.surroundBg?.trim() ?? "",
+  cardBg: values.cardBg?.trim() ?? "",
+  textColor: values.textColor?.trim() ?? "",
+  mutedColor: values.mutedColor?.trim() ?? "",
+  accentColor: values.accentColor?.trim() ?? "",
+  textScale: typeof values.textScale === "number" ? values.textScale : 1,
+});
+
 const designPayload = (values: InvitationFields): UpdateEventInput => ({
   invitationTemplateId: values.templateId,
+  details: designDetails(values),
 });
 
 const detailsPayload = (values: InvitationFields): UpdateEventInput => {
@@ -23,8 +34,20 @@ const detailsPayload = (values: InvitationFields): UpdateEventInput => {
   if (values.venue.trim()) payload.venueName = values.venue.trim();
   if (values.place.trim()) payload.venueCity = values.place.trim();
   if (values.message.trim()) payload.welcomeMessage = values.message.trim();
+  const details: Record<string, unknown> = {};
   const eventName = values.eventName?.trim();
-  if (eventName !== undefined) payload.details = { eventName };
+  if (eventName !== undefined) details.eventName = eventName;
+  if (values.time?.trim()) details.time = values.time.trim();
+  const greeting = values.greeting?.trim();
+  if (greeting) details.greeting = greeting;
+  const ageValue = values.age?.trim();
+  if (ageValue && Number.isFinite(Number(ageValue))) {
+    details.age = Number(ageValue);
+  }
+  details.showAge = values.showAge;
+  details.showRsvp = values.showRsvp;
+  Object.assign(details, designDetails(values));
+  if (Object.keys(details).length) payload.details = details;
   return payload;
 };
 

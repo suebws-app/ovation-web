@@ -27,6 +27,7 @@ type InviteCardValues = {
   venue?: string;
   place?: string;
   message?: string;
+  greeting?: string;
   age?: number;
 };
 
@@ -38,6 +39,13 @@ type InviteCardProps = {
   guestFirstName?: string;
   size?: InviteCardSize;
   animate?: boolean;
+  padded?: boolean;
+  pageBg?: string;
+  cardBg?: string;
+  textColor?: string;
+  mutedColor?: string;
+  accentColor?: string;
+  textScale?: number;
 };
 
 type CSSSize = number | string;
@@ -61,18 +69,18 @@ const SIZE_TOKENS: Record<
   }
 > = {
   compact: {
-    ornament: 18,
-    eyebrow: 10,
-    eyebrowTracking: 3,
+    ornament: "clamp(12px, 6cqw, 18px)",
+    eyebrow: "clamp(6px, 3.3cqw, 10px)",
+    eyebrowTracking: "clamp(1px, 0.9cqw, 3px)",
     name: 26,
-    divider: 56,
-    date: 11,
-    dateTracking: 2,
-    message: 12,
-    messageMaxWidth: 220,
-    venueLabel: 10,
-    venueLabelTracking: 2,
-    venueName: 14,
+    divider: "clamp(28px, 18cqw, 56px)",
+    date: "clamp(7px, 3.6cqw, 11px)",
+    dateTracking: "clamp(1px, 0.6cqw, 2px)",
+    message: "clamp(8px, 4cqw, 12px)",
+    messageMaxWidth: "90%",
+    venueLabel: "clamp(6px, 3.3cqw, 10px)",
+    venueLabelTracking: "clamp(1px, 0.6cqw, 2px)",
+    venueName: "clamp(9px, 4.6cqw, 14px)",
     padding: "p-6",
   },
   large: {
@@ -178,20 +186,29 @@ export const InviteCard = ({
   guestFirstName,
   size = "compact",
   animate = false,
+  padded = false,
+  pageBg,
+  cardBg,
+  textColor,
+  mutedColor,
+  accentColor,
+  textScale,
 }: InviteCardProps) => {
-  const {
-    pageBg,
-    cardBg,
-    cardBorder,
-    textColor,
-    mutedColor,
-    accentColor,
-    monogramAmp,
-    ornamentSymbol,
-    cornerOrnament,
-  } = template;
+  const { cardBorder, monogramAmp, ornamentSymbol, cornerOrnament } = template;
   const displayFont = resolveFontStack(template.displayFontKey);
   const bodyFont = resolveFontStack(template.bodyFontKey);
+  const ts = textScale ?? 1;
+  const scale = (v: number | string): number | string =>
+    typeof v === "number" ? v * ts : `calc(${v} * ${ts})`;
+  const effectivePageBg = pageBg?.trim() ? pageBg : template.pageBg;
+  const effectiveCardBg = cardBg?.trim() ? cardBg : template.cardBg;
+  const effectiveTextColor = textColor?.trim() ? textColor : template.textColor;
+  const effectiveMutedColor = mutedColor?.trim()
+    ? mutedColor
+    : template.mutedColor;
+  const effectiveAccentColor = accentColor?.trim()
+    ? accentColor
+    : template.accentColor;
   const s = SIZE_TOKENS[size];
 
   const {
@@ -225,8 +242,11 @@ export const InviteCard = ({
 
   return (
     <div
-      className="relative flex h-full w-full flex-col items-center justify-center p-4 select-none"
-      style={{ background: pageBg }}
+      className={cn(
+        "relative flex h-full w-full flex-col items-center justify-center select-none",
+        padded && "p-6",
+      )}
+      style={{ background: effectivePageBg }}
     >
       <div
         ref={containerRef}
@@ -236,24 +256,37 @@ export const InviteCard = ({
           animate && "animate-invite-card-in",
         )}
         style={{
-          background: cardBg,
+          background: effectiveCardBg,
           border: cardBorder !== "none" ? cardBorder : undefined,
-          color: textColor,
+          color: effectiveTextColor,
+          containerType: "size",
         }}
       >
         {cornerOrnament && (
           <>
             <div className="absolute top-2 left-2">
-              <CornerOrnament kind={cornerOrnament} color={accentColor} />
+              <CornerOrnament
+                kind={cornerOrnament}
+                color={effectiveAccentColor}
+              />
             </div>
             <div className="absolute top-2 right-2 scale-x-[-1]">
-              <CornerOrnament kind={cornerOrnament} color={accentColor} />
+              <CornerOrnament
+                kind={cornerOrnament}
+                color={effectiveAccentColor}
+              />
             </div>
             <div className="absolute bottom-2 left-2 scale-y-[-1]">
-              <CornerOrnament kind={cornerOrnament} color={accentColor} />
+              <CornerOrnament
+                kind={cornerOrnament}
+                color={effectiveAccentColor}
+              />
             </div>
             <div className="absolute right-2 bottom-2 -scale-100">
-              <CornerOrnament kind={cornerOrnament} color={accentColor} />
+              <CornerOrnament
+                kind={cornerOrnament}
+                color={effectiveAccentColor}
+              />
             </div>
           </>
         )}
@@ -267,8 +300,8 @@ export const InviteCard = ({
           {ornamentSymbol && (
             <span
               style={{
-                color: accentColor,
-                fontSize: s.ornament,
+                color: effectiveAccentColor,
+                fontSize: scale(s.ornament),
                 lineHeight: 1,
               }}
             >
@@ -278,13 +311,15 @@ export const InviteCard = ({
           <span
             className="uppercase"
             style={{
-              color: mutedColor,
+              color: effectiveMutedColor,
               fontFamily: bodyFont,
-              fontSize: s.eyebrow,
-              letterSpacing: s.eyebrowTracking,
+              fontSize: scale(s.eyebrow),
+              letterSpacing: scale(s.eyebrowTracking),
             }}
           >
-            {guestFirstName ? `Dear ${guestFirstName}` : "You are invited"}
+            {guestFirstName
+              ? `${values.greeting?.trim() || "Dear"} ${guestFirstName}`
+              : "You are invited"}
           </span>
 
           <div className="flex max-w-full flex-col items-center gap-1">
@@ -293,8 +328,8 @@ export const InviteCard = ({
               className="max-w-full px-6 leading-tight whitespace-nowrap"
               style={{
                 fontFamily: displayFont,
-                color: textColor,
-                fontSize: nameFontSize,
+                color: effectiveTextColor,
+                fontSize: nameFontSize * ts,
               }}
             >
               {values.title || values.eventName ? (
@@ -304,7 +339,10 @@ export const InviteCard = ({
                   {values.partnerA || "Lila"}
                   <span
                     className="mx-2 italic"
-                    style={{ color: accentColor, fontFamily: displayFont }}
+                    style={{
+                      color: effectiveAccentColor,
+                      fontFamily: displayFont,
+                    }}
                   >
                     {monogramAmp}
                   </span>
@@ -319,8 +357,8 @@ export const InviteCard = ({
                 className="italic"
                 style={{
                   fontFamily: displayFont,
-                  color: accentColor,
-                  fontSize: nameFontSize * 0.48,
+                  color: effectiveAccentColor,
+                  fontSize: nameFontSize * 0.48 * ts,
                 }}
               >
                 {values.postfix}
@@ -330,17 +368,20 @@ export const InviteCard = ({
 
           <span
             className="block h-px"
-            style={{ background: accentColor, width: s.divider }}
+            style={{
+              background: effectiveAccentColor,
+              width: scale(s.divider),
+            }}
             aria-hidden
           />
 
           <p
             className="uppercase"
             style={{
-              color: mutedColor,
+              color: effectiveMutedColor,
               fontFamily: bodyFont,
-              fontSize: s.date,
-              letterSpacing: s.dateTracking,
+              fontSize: scale(s.date),
+              letterSpacing: scale(s.dateTracking),
             }}
           >
             {values.dateLabel || "12 September 2026"}
@@ -351,10 +392,10 @@ export const InviteCard = ({
             <p
               className="leading-relaxed italic"
               style={{
-                color: mutedColor,
+                color: effectiveMutedColor,
                 fontFamily: bodyFont,
-                fontSize: s.message,
-                maxWidth: s.messageMaxWidth,
+                fontSize: scale(s.message),
+                maxWidth: scale(s.messageMaxWidth),
               }}
             >
               {values.message}
@@ -366,10 +407,10 @@ export const InviteCard = ({
               <p
                 className="uppercase"
                 style={{
-                  color: mutedColor,
+                  color: effectiveMutedColor,
                   fontFamily: bodyFont,
-                  fontSize: s.venueLabel,
-                  letterSpacing: s.venueLabelTracking,
+                  fontSize: scale(s.venueLabel),
+                  letterSpacing: scale(s.venueLabelTracking),
                 }}
               >
                 Venue
@@ -378,8 +419,8 @@ export const InviteCard = ({
                 className="mt-1 italic"
                 style={{
                   fontFamily: displayFont,
-                  color: textColor,
-                  fontSize: s.venueName,
+                  color: effectiveTextColor,
+                  fontSize: scale(s.venueName),
                 }}
               >
                 {values.venue}
@@ -387,9 +428,9 @@ export const InviteCard = ({
               {values.place && (
                 <p
                   style={{
-                    color: mutedColor,
+                    color: effectiveMutedColor,
                     fontFamily: bodyFont,
-                    fontSize: s.venueLabel,
+                    fontSize: scale(s.venueLabel),
                   }}
                 >
                   {values.place}

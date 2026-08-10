@@ -30,6 +30,7 @@ export type InvitationTemplate = {
   artPanelColor?: string;
   artDetailFontKey?: string;
   artNameMax?: number;
+  artStackGap?: number;
   artEyebrowText?: string;
   artCelebrantTier?: boolean;
   artShowAge?: boolean;

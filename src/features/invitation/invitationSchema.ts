@@ -15,6 +15,13 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const getInvitationSchema = (t: T) =>
   z.object({
     templateId: z.string().min(1),
+    pageBg: z.string(),
+    surroundBg: z.string(),
+    cardBg: z.string(),
+    textColor: z.string(),
+    mutedColor: z.string(),
+    accentColor: z.string(),
+    textScale: z.number(),
     // Optional explicit event/invitation title (shown alone when set). Used by
     // single-host types (corporate, memorial, …). Empty string means "unset".
     eventName: z.string().trim().max(80),
@@ -33,6 +40,10 @@ export const getInvitationSchema = (t: T) =>
     venue: z.string(),
     place: z.string(),
     message: z.string().max(INVITATION_MESSAGE_MAX),
+    greeting: z.string().trim().max(40),
+    age: z.string(),
+    showAge: z.boolean(),
+    showRsvp: z.boolean(),
     guests: z.array(
       z.object({
         id: z.string().optional(),

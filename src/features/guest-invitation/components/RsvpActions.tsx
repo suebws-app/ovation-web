@@ -7,6 +7,7 @@ import { Label } from "@ovation/ui/components/Label";
 import { toast } from "@/components/Toaster";
 import { publicClient } from "@/lib/api/public-client";
 import { resolveFontStack } from "@/features/invitation/invitationTemplates";
+import { readableTextColor } from "@/lib/utils/color";
 import type {
   InvitationTemplate,
   PublicInvitation,
@@ -18,6 +19,10 @@ type RsvpActionsProps = {
   token: string;
   invitee: PublicInvitation["invitee"];
   template: InvitationTemplate;
+  cardBg?: string;
+  textColor?: string;
+  mutedColor?: string;
+  accentColor?: string;
 };
 
 const clampSeats = (value: number, max: number) => {
@@ -30,6 +35,10 @@ export const RsvpActions = ({
   token,
   invitee,
   template,
+  cardBg,
+  textColor,
+  mutedColor,
+  accentColor,
 }: RsvpActionsProps) => {
   const t = useTranslations();
 
@@ -73,11 +82,11 @@ export const RsvpActions = ({
   const maxSeats = Math.max(1, invitee.seats);
   const bodyFont = resolveFontStack(template.bodyFontKey);
 
-  const accent = template.accentColor;
-  const onAccent = template.buttonText;
-  const ink = template.textColor;
-  const muted = template.mutedColor;
-  const surface = template.cardBg;
+  const accent = accentColor?.trim() ? accentColor : template.accentColor;
+  const onAccent = readableTextColor(accent);
+  const ink = textColor?.trim() ? textColor : template.textColor;
+  const muted = mutedColor?.trim() ? mutedColor : template.mutedColor;
+  const surface = cardBg?.trim() ? cardBg : template.cardBg;
 
   const toggleStyle = (active: boolean) =>
     active
@@ -95,26 +104,26 @@ export const RsvpActions = ({
     <>
       <div
         style={{
-          background: template.pageBg,
+          background: surface,
           borderTop:
             template.cardBorder !== "none" ? template.cardBorder : undefined,
-          color: template.textColor,
+          color: ink,
           fontFamily: bodyFont,
         }}
         className="flex w-full flex-col items-center gap-3 px-6 pt-2 pb-6 text-center"
       >
         <div
           className="h-px w-16"
-          style={{ background: template.accentColor, opacity: 0.5 }}
+          style={{ background: accent, opacity: 0.5 }}
           aria-hidden
         />
         <button
           type="button"
           onClick={() => setOpen(true)}
           style={{
-            background: template.accentColor,
-            color: template.buttonText,
-            borderColor: template.accentColor,
+            background: accent,
+            color: onAccent,
+            borderColor: accent,
             fontFamily: bodyFont,
           }}
           className="tablet:max-w-md tablet:px-7.5 tablet:py-3.5 tablet:text-base w-full max-w-sm cursor-pointer rounded-full border px-5 py-3 text-sm font-semibold tracking-wide whitespace-nowrap shadow-md transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"

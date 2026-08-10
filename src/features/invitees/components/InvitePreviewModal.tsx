@@ -19,7 +19,7 @@ export const InvitePreviewModal = ({
   onOpenChange,
 }: InvitePreviewModalProps) => {
   const t = useTranslations();
-  const { template, values } = useInvitePreview(event);
+  const { template, values, overrides } = useInvitePreview(event);
 
   return (
     <CenteredModal
@@ -31,7 +31,12 @@ export const InvitePreviewModal = ({
       <div className="flex h-full flex-col items-center justify-center">
         <PhonePreview>
           {template ? (
-            <InviteCard template={template} animate values={values} />
+            <InviteCard
+              template={template}
+              animate
+              values={values}
+              {...overrides}
+            />
           ) : (
             <div className="bg-muted h-full w-full animate-pulse" />
           )}

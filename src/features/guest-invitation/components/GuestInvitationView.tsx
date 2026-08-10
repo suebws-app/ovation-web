@@ -57,6 +57,12 @@ export const GuestInvitationView = ({
         : undefined,
   });
 
+  const detailStr = (key: string): string | undefined => {
+    const value = event.details?.[key];
+    return typeof value === "string" && value ? value : undefined;
+  };
+  const customPageBg = detailStr("pageBg");
+
   useEffect(() => {
     if (!currentGuestName && invitee.firstName) {
       setGuestName(invitee.firstName);
@@ -67,7 +73,7 @@ export const GuestInvitationView = ({
     <EventThemeScope event={event}>
       <div
         className="pointer-events-none fixed inset-0 -z-10"
-        style={{ background: template.pageBg }}
+        style={{ background: customPageBg ?? template.pageBg }}
         aria-hidden
       />
       <div className="relative h-dvh w-full overflow-y-auto">
@@ -84,26 +90,66 @@ export const GuestInvitationView = ({
                   ...titleParts,
                   dateLabel:
                     formatDateRange(event, formatDateLabel) ?? undefined,
+                  time:
+                    typeof event.details?.time === "string"
+                      ? event.details.time
+                      : undefined,
                   venue: event.locationName ?? event.venueName ?? undefined,
                   place: event.locationCity ?? event.venueCity ?? undefined,
                   message: event.welcomeMessage ?? undefined,
+                  greeting:
+                    typeof event.details?.greeting === "string"
+                      ? event.details.greeting
+                      : undefined,
                   age:
+                    event.details?.showAge !== false &&
                     typeof event.details?.age === "number"
                       ? event.details.age
                       : undefined,
                 }}
                 guestFirstName={invitee.firstName}
+                pageBg={customPageBg}
+                cardBg={
+                  typeof event.details?.cardBg === "string"
+                    ? event.details.cardBg
+                    : undefined
+                }
+                textColor={
+                  typeof event.details?.textColor === "string"
+                    ? event.details.textColor
+                    : undefined
+                }
+                mutedColor={
+                  typeof event.details?.mutedColor === "string"
+                    ? event.details.mutedColor
+                    : undefined
+                }
+                accentColor={
+                  typeof event.details?.accentColor === "string"
+                    ? event.details.accentColor
+                    : undefined
+                }
+                textScale={
+                  typeof event.details?.textScale === "number"
+                    ? event.details.textScale
+                    : undefined
+                }
               />
             </div>
 
-            {getEventTypeConfig(event.eventType).features.rsvp && (
-              <RsvpActions
-                slug={slug}
-                token={token}
-                invitee={invitee}
-                template={template}
-              />
-            )}
+            {event.details?.showRsvp !== false &&
+              getEventTypeConfig(event.eventType).features.rsvp && (
+                <RsvpActions
+                  slug={slug}
+                  token={token}
+                  invitee={invitee}
+                  template={template}
+                  cardBg={detailStr("cardBg")}
+                  textColor={detailStr("textColor")}
+                  mutedColor={detailStr("mutedColor")}
+                  accentColor={detailStr("accentColor")}
+                />
+              )}
           </div>
         </div>
       </div>

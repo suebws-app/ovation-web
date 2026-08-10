@@ -19,6 +19,7 @@ type SvgInviteCardValues = {
   venue?: string;
   place?: string;
   message?: string;
+  greeting?: string;
   age?: number;
 };
 
@@ -126,6 +127,33 @@ export const SvgInviteCard = ({
     : s.message;
   const artUrl = `/invitation-art/${template.artSvg}`;
   const cardIsGradient = template.cardBg.includes("gradient");
+  const isTiger = template.id === "tiger_shower";
+  const isGilded = template.id === "gilded_peony";
+  const textBg = cardIsGradient
+    ? "rgba(255,255,255,0.62)"
+    : `color-mix(in srgb, ${template.cardBg} 62%, transparent)`;
+  const textBgBase = isTiger
+    ? {
+        background: textBg,
+        borderRadius: 12,
+        padding: "2px 10px",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+      }
+    : undefined;
+  const textBgStyle = textBgBase
+    ? { ...textBgBase, display: "inline-block" }
+    : undefined;
+  const ageBgStyle = isGilded
+    ? {
+        background: template.artPanelColor ?? textBg,
+        borderRadius: 14,
+        padding: "2px 14px",
+        display: "inline-block",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+      }
+    : undefined;
   const cardBgImage = cardIsGradient
     ? `url("${artUrl}"), ${template.cardBg}`
     : `url("${artUrl}")`;
@@ -159,17 +187,25 @@ export const SvgInviteCard = ({
         fontFamily: bodyFont,
         fontSize: s.eyebrow,
         letterSpacing: s.eyebrowTracking,
+        marginTop: template.artCelebrantTier ? "-10px" : undefined,
+        ...textBgStyle,
       }}
     >
       {guestFirstName
-        ? `Dear ${guestFirstName}`
+        ? `${values.greeting?.trim() || "Dear"} ${guestFirstName}`
         : (template.artEyebrowText ?? "You are invited")}
     </span>
   );
 
   const bigLine = values.title || values.eventName || values.postfix;
   const namesEl = template.artCelebrantTier ? (
-    <div className="flex flex-col items-center gap-0.5">
+    <div
+      className={cn(
+        "flex flex-col items-center gap-0.5",
+        isTiger && "w-fit self-center",
+      )}
+      style={{ marginTop: "5cqh", ...textBgBase }}
+    >
       <span
         style={{
           fontFamily: displayFont,
@@ -192,7 +228,13 @@ export const SvgInviteCard = ({
       </h2>
     </div>
   ) : (
-    <div className="flex flex-col items-center gap-1">
+    <div
+      className={cn(
+        "flex flex-col items-center gap-1",
+        isTiger && "w-fit self-center",
+      )}
+      style={textBgBase}
+    >
       <h2
         ref={nameRef}
         className="leading-tight whitespace-nowrap"
@@ -235,15 +277,22 @@ export const SvgInviteCard = ({
   );
 
   const ageEl =
-    template.artShowAge && typeof values.age === "number" ? (
+    typeof values.age === "number" ? (
       <p
         className="text-center"
         style={{
           fontFamily: displayFont,
-          color: template.textColor,
-          fontSize: isSplit
-            ? "clamp(30px, 12cqw, 56px)"
-            : "clamp(22px, 9cqw, 42px)",
+          color: nameColor,
+          fontSize: isTiger
+            ? "clamp(14px, 9cqw, 44px)"
+            : isGilded
+              ? "clamp(22px, 10cqw, 48px)"
+              : isSplit
+                ? "clamp(38px, 15cqw, 72px)"
+                : "clamp(30px, 12cqw, 60px)",
+          marginTop: isTiger ? "-5px" : undefined,
+          ...textBgStyle,
+          ...ageBgStyle,
         }}
       >
         {ordinalAge(values.age)}
@@ -267,6 +316,7 @@ export const SvgInviteCard = ({
         fontSize: dateSize,
         fontWeight: isSplit ? 700 : undefined,
         letterSpacing: s.dateTracking,
+        ...textBgStyle,
       }}
     >
       {values.dateLabel || "12 September 2026"}
@@ -282,6 +332,7 @@ export const SvgInviteCard = ({
         fontFamily: bodyFont,
         fontSize: messageSize,
         maxWidth: s.messageMaxWidth,
+        ...textBgStyle,
       }}
     >
       {values.message}
@@ -289,7 +340,7 @@ export const SvgInviteCard = ({
   ) : null;
 
   const venueEl = values.venue ? (
-    <div>
+    <div className={cn(isTiger && "w-fit self-center")} style={textBgBase}>
       {!template.artHideVenueLabel && (
         <p
           className="uppercase"
@@ -389,6 +440,7 @@ export const SvgInviteCard = ({
             >
               {eyebrowEl}
               {namesEl}
+              {ageEl}
               {dividerEl}
             </div>
             <div
@@ -398,7 +450,6 @@ export const SvgInviteCard = ({
               {template.artPanelColor ? (
                 <>
                   <div className={panelClass} style={panelStyle}>
-                    {ageEl}
                     {dateEl}
                     {messageEl}
                   </div>
@@ -410,7 +461,6 @@ export const SvgInviteCard = ({
                 </>
               ) : (
                 <>
-                  {ageEl}
                   {dateEl}
                   {messageEl}
                   {venueEl}
@@ -426,12 +476,13 @@ export const SvgInviteCard = ({
               top: `${insetTop}%`,
               bottom: `${insetBottom}%`,
               color: template.textColor,
+              ...(template.artStackGap ? { gap: template.artStackGap } : {}),
             }}
           >
             {eyebrowEl}
             {namesEl}
-            {dividerEl}
             {ageEl}
+            {dividerEl}
             {dateEl}
             {messageEl}
             {venueEl}

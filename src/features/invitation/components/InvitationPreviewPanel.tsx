@@ -7,6 +7,16 @@ import type { InvitationTemplateMeta } from "../invitationTemplates";
 import { eventCardTitle, formatDateRange } from "@/lib/event-types";
 import { InviteCard } from "./InviteCard";
 import { PhonePreview } from "./PhonePreview";
+import { CustomiseControls } from "./CustomiseControls";
+
+const PREVIEW_GUEST_NAME = "Alex";
+
+const TOKEN_CUSTOM_IDS = [
+  "classic_elegance",
+  "watercolor_blush",
+  "charcoal_marble",
+  "modern_botanical",
+];
 
 const formatDateLabel = (raw: string): string => {
   const date = new Date(raw);
@@ -25,7 +35,6 @@ type InvitationPreviewPanelProps = {
   eventType?: string | null;
   endDate?: string | null;
   customEventNoun?: string | null;
-  age?: number;
   step: InvitationStepId;
   selectedGuestFirstName: string | undefined;
 };
@@ -36,7 +45,6 @@ export const InvitationPreviewPanel = ({
   eventType,
   endDate,
   customEventNoun,
-  age,
   step,
   selectedGuestFirstName,
 }: InvitationPreviewPanelProps) => {
@@ -53,38 +61,58 @@ export const InvitationPreviewPanel = ({
     customEventNoun,
   });
 
+  const showCustomise =
+    Boolean(template) &&
+    !template?.artSvg &&
+    TOKEN_CUSTOM_IDS.includes(template?.id ?? "");
+
+  const phonePreview = (
+    <PhonePreview>
+      {template ? (
+        <InviteCard
+          template={template}
+          padded
+          values={{
+            ...titleParts,
+            dateLabel:
+              formatDateRange(
+                {
+                  eventDate: values?.weddingDate ?? null,
+                  endDate: endDate ?? null,
+                  weddingDate: null,
+                },
+                formatDateLabel,
+              ) ?? undefined,
+            time: values?.time,
+            venue: values?.venue,
+            place: values?.place,
+            message: values?.message,
+            greeting: values?.greeting,
+            age:
+              values?.showAge !== false &&
+              values?.age &&
+              Number.isFinite(Number(values.age))
+                ? Number(values.age)
+                : undefined,
+          }}
+          guestFirstName={selectedGuestFirstName ?? PREVIEW_GUEST_NAME}
+          pageBg={values?.pageBg}
+          cardBg={values?.cardBg}
+          textColor={values?.textColor}
+          mutedColor={values?.mutedColor}
+          accentColor={values?.accentColor}
+          textScale={values?.textScale}
+        />
+      ) : (
+        <div className="bg-muted h-full w-full animate-pulse" />
+      )}
+    </PhonePreview>
+  );
+
   return (
-    <aside className="desktop:flex desktop:basis-2/5 desktop:shrink-0 desktop:sticky desktop:top-0 desktop:h-screen mt-20 hidden flex-col items-center px-2 py-8">
-      <div className="flex flex-col items-center gap-4">
-        <PhonePreview>
-          {template ? (
-            <InviteCard
-              template={template}
-              values={{
-                ...titleParts,
-                dateLabel:
-                  formatDateRange(
-                    {
-                      eventDate: values?.weddingDate ?? null,
-                      endDate: endDate ?? null,
-                      weddingDate: null,
-                    },
-                    formatDateLabel,
-                  ) ?? undefined,
-                time: values?.time,
-                venue: values?.venue,
-                place: values?.place,
-                message: values?.message,
-                age,
-              }}
-              guestFirstName={
-                step === "guests" ? selectedGuestFirstName : undefined
-              }
-            />
-          ) : (
-            <div className="bg-muted h-full w-full animate-pulse" />
-          )}
-        </PhonePreview>
+    <aside className="desktop:flex desktop:basis-2/5 desktop:shrink-0 desktop:sticky desktop:top-0 desktop:h-screen desktop:overflow-y-auto mt-20 hidden flex-col items-center px-2 py-8">
+      <div className="flex flex-col items-center gap-4 pb-8">
+        {phonePreview}
         <p className="type-caption text-muted-foreground font-mono tracking-widest uppercase">
           {showPersonalized
             ? t("invitation__preview__personalized", {
@@ -92,6 +120,7 @@ export const InvitationPreviewPanel = ({
               })
             : t("invitation__preview__live")}
         </p>
+        {showCustomise && template && <CustomiseControls template={template} />}
       </div>
     </aside>
   );

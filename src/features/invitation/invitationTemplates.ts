@@ -20,6 +20,10 @@ export const FRONTEND_FONT_STACKS: Record<string, string> = {
   sacramento:
     "var(--font-sacramento), 'Sacramento', 'Brush Script MT', cursive",
   montserrat: "var(--font-montserrat), 'Montserrat', system-ui, sans-serif",
+  bebas: "var(--font-bebas), 'Bebas Neue', 'Arial Narrow', sans-serif",
+  abhaya:
+    "var(--font-abhaya), 'Abhaya Libre', Georgia, 'Times New Roman', serif",
+  sevillana: "var(--font-sevillana), 'Sevillana', 'Brush Script MT', cursive",
   great_vibes:
     "var(--font-great-vibes), 'Great Vibes', 'Brush Script MT', cursive",
   merienda: "var(--font-merienda), 'Merienda', cursive",

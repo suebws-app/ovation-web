@@ -21,7 +21,7 @@ export const InviteePreviewPane = ({
   onOpenPreview,
 }: InviteePreviewPaneProps) => {
   const t = useTranslations();
-  const { template, values } = useInvitePreview(event);
+  const { template, values, overrides } = useInvitePreview(event);
 
   return (
     <aside className="tablet:sticky tablet:top-6 flex flex-col gap-4">
@@ -32,7 +32,7 @@ export const InviteePreviewPane = ({
         <div className="origin-top scale-90">
           <PhonePreview>
             {template ? (
-              <InviteCard template={template} values={values} />
+              <InviteCard template={template} values={values} {...overrides} />
             ) : (
               <div className="bg-muted h-full w-full animate-pulse" />
             )}

@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
+import { SwatchIcon } from "@ovation/icons/SwatchIcon";
 import type { InvitationTemplate } from "@/lib/api/types";
 import { resolveFontStack } from "../invitationTemplates";
 
@@ -86,7 +88,22 @@ export const TemplateThumb = ({
   active,
   onSelect,
 }: TemplateThumbProps) => {
+  const t = useTranslations();
   const bodyFont = resolveFontStack(template.bodyFontKey);
+
+  const customisableBadge = (
+    <span
+      aria-label={t("invitation__thumb__customisable")}
+      title={t("invitation__thumb__customisable")}
+      className="bg-background/85 absolute top-1.5 right-1.5 z-10 flex size-4.5 items-center justify-center rounded-full shadow-sm"
+    >
+      <SwatchIcon
+        width={11}
+        height={11}
+        colors={["#EF4444", "#22C55E", "#3B82F6"]}
+      />
+    </span>
+  );
 
   const nameLabel = (
     <span
@@ -179,6 +196,7 @@ export const TemplateThumb = ({
           </span>
         )}
       </div>
+      {customisableBadge}
       {nameLabel}
     </button>
   );
