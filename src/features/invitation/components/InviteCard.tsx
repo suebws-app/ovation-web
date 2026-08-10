@@ -236,6 +236,7 @@ export const InviteCard = ({
         guestFirstName={guestFirstName}
         size={size}
         animate={animate}
+        padded={padded}
       />
     );
   }

@@ -32,7 +32,12 @@ export const InviteePreviewPane = ({
         <div className="origin-top scale-90">
           <PhonePreview>
             {template ? (
-              <InviteCard template={template} values={values} {...overrides} />
+              <InviteCard
+                template={template}
+                values={values}
+                {...overrides}
+                padded
+              />
             ) : (
               <div className="bg-muted h-full w-full animate-pulse" />
             )}

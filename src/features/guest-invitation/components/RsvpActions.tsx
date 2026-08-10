@@ -19,7 +19,7 @@ type RsvpActionsProps = {
   token: string;
   invitee: PublicInvitation["invitee"];
   template: InvitationTemplate;
-  cardBg?: string;
+  pageBg?: string;
   textColor?: string;
   mutedColor?: string;
   accentColor?: string;
@@ -35,7 +35,7 @@ export const RsvpActions = ({
   token,
   invitee,
   template,
-  cardBg,
+  pageBg,
   textColor,
   mutedColor,
   accentColor,
@@ -83,10 +83,14 @@ export const RsvpActions = ({
   const bodyFont = resolveFontStack(template.bodyFontKey);
 
   const accent = accentColor?.trim() ? accentColor : template.accentColor;
-  const onAccent = readableTextColor(accent);
+  const accentIsCustom =
+    accent.trim().toLowerCase() !== template.accentColor.trim().toLowerCase();
+  const onAccent = accentIsCustom
+    ? readableTextColor(accent)
+    : template.buttonText;
   const ink = textColor?.trim() ? textColor : template.textColor;
   const muted = mutedColor?.trim() ? mutedColor : template.mutedColor;
-  const surface = cardBg?.trim() ? cardBg : template.cardBg;
+  const surface = pageBg?.trim() ? pageBg : template.pageBg;
 
   const toggleStyle = (active: boolean) =>
     active

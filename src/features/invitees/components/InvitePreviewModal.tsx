@@ -36,6 +36,7 @@ export const InvitePreviewModal = ({
               animate
               values={values}
               {...overrides}
+              padded
             />
           ) : (
             <div className="bg-muted h-full w-full animate-pulse" />

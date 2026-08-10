@@ -29,6 +29,7 @@ type SvgInviteCardProps = {
   guestFirstName?: string;
   size?: SvgInviteCardSize;
   animate?: boolean;
+  padded?: boolean;
   accentColor?: string;
   displayFontKey?: string;
   bodyFontKey?: string;
@@ -89,6 +90,7 @@ export const SvgInviteCard = ({
   guestFirstName,
   size = "large",
   animate = false,
+  padded = false,
   accentColor,
   displayFontKey,
   bodyFontKey,
@@ -409,7 +411,10 @@ export const SvgInviteCard = ({
 
   return (
     <div
-      className="relative flex h-full w-full items-center justify-center overflow-hidden p-4 select-none"
+      className={cn(
+        "relative flex h-full w-full items-center justify-center overflow-hidden select-none",
+        padded && "p-4",
+      )}
       style={{
         background: template.pageBg,
         ["--inv-accent" as string]: accent,
