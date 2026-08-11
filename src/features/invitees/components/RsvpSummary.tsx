@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
+import { cn } from "@ovation/ui/utils/cn";
 import type { Invitee } from "@/lib/api/types";
 import {
   computeRsvpSummary,
@@ -22,11 +23,13 @@ type LegendRow = {
 type RsvpSummaryProps = {
   invitees: Invitee[];
   orientation?: "stacked" | "row";
+  className?: string;
 };
 
 export const RsvpSummary = ({
   invitees,
   orientation = "stacked",
+  className,
 }: RsvpSummaryProps) => {
   const t = useTranslations();
   const summary = useMemo(() => computeRsvpSummary(invitees), [invitees]);
@@ -38,7 +41,12 @@ export const RsvpSummary = ({
   ];
 
   return (
-    <div className="rounded-16 border-border bg-card w-full border p-5">
+    <div
+      className={cn(
+        "rounded-16 border-border bg-card w-full border p-5",
+        className,
+      )}
+    >
       <h2 className="type-h4 mb-4">{t("invitees__rsvp_summary__title")}</h2>
       {summary.totalEntries === 0 ? (
         <p className="type-body-small text-muted-foreground">

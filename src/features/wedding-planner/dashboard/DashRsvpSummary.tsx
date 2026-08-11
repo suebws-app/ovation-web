@@ -10,5 +10,5 @@ type DashRsvpSummaryProps = {
 export const DashRsvpSummary = ({ eventId }: DashRsvpSummaryProps) => {
   const { data: invitees = [], isLoading, isError } = useInvitees(eventId);
   if (isLoading || isError) return null;
-  return <RsvpSummary invitees={invitees} />;
+  return <RsvpSummary invitees={invitees} className="shadow-sm" />;
 };
