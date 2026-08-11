@@ -16,6 +16,7 @@ import {
   useSendInvitationsToAll,
 } from "@/lib/query/inviteesQueries";
 import { InviteeImportModal } from "./components/InviteeImportModal";
+import { RsvpSummary } from "./components/RsvpSummary";
 import { InviteeList } from "./components/InviteeList";
 import { InviteePreviewPane } from "./components/InviteePreviewPane";
 import { InvitePreviewModal } from "./components/InvitePreviewModal";
@@ -84,6 +85,12 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
         )}
       </button>
 
+      {!isLoading && !isError ? (
+        <div className="desktop:hidden mb-6">
+          <RsvpSummary invitees={invitees} />
+        </div>
+      ) : null}
+
       <div className="desktop:flex-row flex flex-col gap-6">
         <div className="min-w-0 flex-1">
           <InviteeList
@@ -103,6 +110,12 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
               : "desktop:pointer-events-none desktop:w-0 desktop:shrink-0 desktop:translate-x-4 desktop:overflow-hidden desktop:opacity-0",
           )}
         >
+          {!isLoading && !isError ? (
+            <div className="desktop:block mb-6 hidden">
+              <RsvpSummary invitees={invitees} />
+            </div>
+          ) : null}
+
           <InviteePreviewPane
             event={event}
             onOpenPreview={() => setPreviewOpen(true)}

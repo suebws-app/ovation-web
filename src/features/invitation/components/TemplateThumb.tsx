@@ -133,7 +133,7 @@ export const TemplateThumb = ({
           src={`/invitation-art/${template.artSvg}`}
           alt={template.name}
           fill
-          unoptimized
+          unoptimized={template.artSvg.endsWith(".svg")}
           className="object-cover"
         />
         {nameLabel}

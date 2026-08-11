@@ -99,7 +99,7 @@ export const RsvpActions = ({
 
   const triggerLabel =
     status === "accepted"
-      ? t("guest__rsvp__confirmed", { count: invitee.rsvpSeats ?? seats })
+      ? t("guest__rsvp__confirmed", { count: seats })
       : status === "declined"
         ? t("guest__rsvp__declined_state")
         : t("guest__rsvp__cta");
