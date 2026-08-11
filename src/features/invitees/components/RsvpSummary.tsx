@@ -21,9 +21,13 @@ type LegendRow = {
 
 type RsvpSummaryProps = {
   invitees: Invitee[];
+  orientation?: "stacked" | "row";
 };
 
-export const RsvpSummary = ({ invitees }: RsvpSummaryProps) => {
+export const RsvpSummary = ({
+  invitees,
+  orientation = "stacked",
+}: RsvpSummaryProps) => {
   const t = useTranslations();
   const summary = useMemo(() => computeRsvpSummary(invitees), [invitees]);
 
@@ -41,7 +45,13 @@ export const RsvpSummary = ({ invitees }: RsvpSummaryProps) => {
           {t("invitees__rsvp_summary__empty")}
         </p>
       ) : (
-        <div className="flex flex-col items-center gap-6">
+        <div
+          className={
+            orientation === "row"
+              ? "tablet:flex-row flex flex-col items-center gap-6"
+              : "flex flex-col items-center gap-6"
+          }
+        >
           <div className="flex flex-col items-center gap-2">
             <RsvpDonut
               total={summary.totalHeads}

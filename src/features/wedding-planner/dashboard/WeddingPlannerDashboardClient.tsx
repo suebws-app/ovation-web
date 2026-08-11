@@ -22,6 +22,7 @@ import { DashTaskItem } from "./DashTaskItem";
 import { DashPaymentItem } from "./DashPaymentItem";
 import { DashBudgetSegment } from "./DashBudgetSegment";
 import { DashBudgetLegendItem } from "./DashBudgetLegendItem";
+import { DashRsvpSummary } from "./DashRsvpSummary";
 
 const wp = appRoutes.app.weddingPlanner;
 
@@ -175,7 +176,7 @@ export const WeddingPlannerDashboardClient = ({
         </Card>
       </div>
 
-      <div className="tablet:grid-cols-2 grid gap-5">
+      <div className="tablet:grid-cols-2 desktop:grid-cols-3 grid gap-5">
         <Card>
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -239,6 +240,8 @@ export const WeddingPlannerDashboardClient = ({
             </p>
           )}
         </Card>
+
+        <DashRsvpSummary eventId={eventId} />
       </div>
 
       <div className="desktop:grid-cols-3 grid gap-5">
