@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { RootHeader } from "@/features/layout/RootHeader";
 import { RootFooter } from "@/features/layout/RootFooter";
+import { PromoBar } from "@/features/layout/PromoBar";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationSchema, webSiteSchema } from "@/lib/seo/schemas";
 import { ReferralCapture } from "@/features/marketing/components/ReferralCapture";
@@ -25,7 +26,10 @@ const MarketingLayout = async ({
       <Suspense fallback={null}>
         <ReferralCapture />
       </Suspense>
-      <RootHeader />
+      <div className="sticky top-0 z-50">
+        <PromoBar />
+        <RootHeader sticky={false} />
+      </div>
       <main className="flex-1">{children}</main>
       <RootFooter />
     </NextIntlClientProvider>
