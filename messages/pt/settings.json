@@ -283,5 +283,10 @@
   "theme__preset__rust": "Ferrugem",
   "theme__preset__royal": "Púrpura",
   "theme__preset__crimson": "Carmesim",
-  "theme__preset__graphite": "Grafite"
+  "theme__preset__graphite": "Grafite",
+  "theme__preset__coral": "Coral",
+  "theme__preset__magenta": "Magenta",
+  "theme__preset__cobalt": "Cobalt",
+  "theme__preset__lime": "Lime",
+  "theme__preset__tangerine": "Tangerine"
 }

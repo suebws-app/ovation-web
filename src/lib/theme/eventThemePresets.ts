@@ -18,7 +18,12 @@ export type EventThemePresetId =
   | "rust"
   | "royal"
   | "crimson"
-  | "graphite";
+  | "graphite"
+  | "coral"
+  | "magenta"
+  | "cobalt"
+  | "lime"
+  | "tangerine";
 
 export type EventThemePreset = {
   id: EventThemePresetId;
@@ -188,6 +193,41 @@ export const EVENT_THEME_PRESETS: EventThemePreset[] = [
     hue: 250,
     chromaMul: 0.2,
     deep: 0.15,
+  },
+  {
+    id: "coral",
+    nameKey: "theme__preset__coral",
+    baseHex: "#FF5A5F",
+    hue: 22,
+    chromaMul: 1.15,
+  },
+  {
+    id: "magenta",
+    nameKey: "theme__preset__magenta",
+    baseHex: "#E64AC9",
+    hue: 345,
+    chromaMul: 1.15,
+  },
+  {
+    id: "cobalt",
+    nameKey: "theme__preset__cobalt",
+    baseHex: "#2F6BFF",
+    hue: 262,
+    chromaMul: 1.05,
+  },
+  {
+    id: "lime",
+    nameKey: "theme__preset__lime",
+    baseHex: "#7BC61E",
+    hue: 130,
+    chromaMul: 1.1,
+  },
+  {
+    id: "tangerine",
+    nameKey: "theme__preset__tangerine",
+    baseHex: "#FF7A00",
+    hue: 62,
+    chromaMul: 1.15,
   },
 ];
 

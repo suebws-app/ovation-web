@@ -283,5 +283,10 @@
   "theme__preset__rust": "러스트",
   "theme__preset__royal": "로열",
   "theme__preset__crimson": "크림슨",
-  "theme__preset__graphite": "그라파이트"
+  "theme__preset__graphite": "그라파이트",
+  "theme__preset__coral": "Coral",
+  "theme__preset__magenta": "Magenta",
+  "theme__preset__cobalt": "Cobalt",
+  "theme__preset__lime": "Lime",
+  "theme__preset__tangerine": "Tangerine"
 }

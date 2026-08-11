@@ -283,5 +283,10 @@
   "theme__preset__rust": "Rozsda",
   "theme__preset__royal": "Királyi",
   "theme__preset__crimson": "Karmazsin",
-  "theme__preset__graphite": "Grafit"
+  "theme__preset__graphite": "Grafit",
+  "theme__preset__coral": "Coral",
+  "theme__preset__magenta": "Magenta",
+  "theme__preset__cobalt": "Cobalt",
+  "theme__preset__lime": "Lime",
+  "theme__preset__tangerine": "Tangerine"
 }
