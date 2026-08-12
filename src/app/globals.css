@@ -1119,3 +1119,33 @@
    — high stroke contrast is the wrong choice for a dim room and an
    ageing eye. Guests get Rubik at size.
    ═══════════════════════════════════════════════════════════ */
+
+@keyframes ov-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ov-marquee-track {
+  width: max-content;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ov-marquee-track {
+    animation: ov-marquee 36s linear infinite;
+  }
+}
+.ov-marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}

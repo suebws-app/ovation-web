@@ -47,5 +47,9 @@
   "seo__wedding_planner__title": "AI svatební plánovač — aplikace pro páry zdarma",
   "seo__wedding_planner__description": "Naplánujte svou svatbu s chytrým harmonogramem, seznamem úkolů, sledováním rozpočtu, seznamem hostů, adresářem dodavatelů a AI asistentem, který zná vaše datum, rozpočet, hosty i dodavatele — zdarma.",
   "seo__use_case__title": "{title} — Svatební kniha hostů Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — svatební kniha hostů k vytištění",
+  "seo__wedding__description": "Hosté naskenují QR kód a zanechají hlasové zprávy, fotografie a vzkazy — bez aplikace. Uchovejte každý hlas ze svatebního dne a vytiskněte si jej jako památku.",
+  "seo__general__title": "Ovation — jedna platforma pro každou událost",
+  "seo__general__description": "Svatby, narozeniny, firemní akce, vzpomínkové oslavy a další. Hosté naskenují QR kód a zanechají fotografie, hlasové zprávy a vzkazy — bez aplikace. Uchovejte každou vzpomínku a vytiskněte si ji."
 }

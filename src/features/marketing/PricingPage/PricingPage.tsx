@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { LocalePageProps } from "@/i18n/types";
 import { PricingSection } from "../PricingSection";
-import { FAQSection } from "../LandingPage/FAQSection";
+import { FAQSection } from "../landing/FAQSection";
 import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
 import { JsonLd } from "@/components/JsonLd";
 import { productSchema } from "@/lib/seo/schemas";

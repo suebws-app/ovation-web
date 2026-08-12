@@ -47,5 +47,9 @@
   "seo__wedding_planner__title": "AI-Hochzeitsplaner — Kostenlose App für Paare",
   "seo__wedding_planner__description": "Plant eure Hochzeit mit einer intelligenten Timeline, To-do-Liste, Budget-Tracker, Gästeliste, Dienstleisterverzeichnis und einem AI-Assistenten, der euer Datum, Budget, eure Gäste und Dienstleister kennt — kostenlos.",
   "seo__use_case__title": "{title} — Ovation Hochzeits-Gästebuch",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — Hochzeitsgästebuch zum Drucken",
+  "seo__wedding__description": "Gäste scannen einen QR-Code und hinterlassen Sprachnachrichten, Fotos und Notizen — ganz ohne App. Bewahrt jede Stimme eurer Hochzeit, gedruckt als Keepsake.",
+  "seo__general__title": "Ovation — Eine Plattform für jedes Event",
+  "seo__general__description": "Hochzeiten, Geburtstage, Firmenevents, Gedenkfeiern und mehr. Gäste scannen einen QR-Code und hinterlassen Fotos, Sprachnachrichten und Notizen — ganz ohne App. Bewahrt jede Erinnerung und druckt sie."
 }

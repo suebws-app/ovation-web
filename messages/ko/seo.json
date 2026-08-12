@@ -47,5 +47,9 @@
   "seo__wedding_planner__title": "AI 웨딩 플래너 — 커플을 위한 무료 앱",
   "seo__wedding_planner__description": "스마트 타임라인, 할 일 목록, 예산 관리, 하객 명단, 업체 디렉터리, 그리고 당신의 날짜, 예산, 하객, 업체를 모두 아는 AI 어시스턴트로 결혼식을 준비하세요 — 무료로.",
   "seo__use_case__title": "{title} — Ovation 결혼식 방명록",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — 인쇄할 수 있는 웨딩 방명록",
+  "seo__wedding__description": "하객이 QR 코드를 스캔해 음성 메시지, 사진, 메모를 남깁니다 — 앱 설치 불필요. 결혼식 날의 모든 목소리를 간직하고, 기념 책으로 인쇄하세요.",
+  "seo__general__title": "Ovation — 모든 행사를 위한 하나의 플랫폼",
+  "seo__general__description": "결혼식, 생일, 기업 행사, 추모식 등 무엇이든. 하객이 QR 코드를 스캔해 사진, 음성 메시지, 메모를 남깁니다 — 앱 불필요. 모든 추억을 간직하고, 인쇄하세요."
 }

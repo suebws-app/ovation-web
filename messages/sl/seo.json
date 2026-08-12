@@ -47,5 +47,9 @@
   "seo__wedding_planner__title": "AI načrtovalec poroke — brezplačna aplikacija za pare",
   "seo__wedding_planner__description": "Načrtujte poroko s pametno časovnico, seznamom opravil, sledilnikom proračuna, seznamom gostov, imenikom ponudnikov in pomočnikom AI, ki pozna vaš datum, proračun, goste in ponudnike — brezplačno.",
   "seo__use_case__title": "{title} — Poročna knjiga gostov Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — Poročna knjiga gostov, ki jo lahko natisneš",
+  "seo__wedding__description": "Gostje skenirajo QR-kodo in pustijo glasovna sporočila, fotografije in zapiske — brez aplikacije. Ohrani vsak glas s svoje poroke in ga natisni kot spominek.",
+  "seo__general__title": "Ovation — ena platforma za vsak dogodek",
+  "seo__general__description": "Poroke, rojstni dnevi, poslovni dogodki, žalne slovesnosti in več. Gostje skenirajo QR-kodo in pustijo fotografije, glasovna sporočila in zapiske — brez aplikacije. Ohrani vsak spomin in ga natisni."
 }

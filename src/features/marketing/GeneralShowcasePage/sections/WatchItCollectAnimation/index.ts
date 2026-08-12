@@ -1,0 +1,1 @@
+export { WatchItCollectAnimation } from "./WatchItCollectAnimation";

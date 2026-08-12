@@ -47,5 +47,9 @@
   "seo__wedding_planner__title": "Planificador de bodas con IA — App gratis para parejas",
   "seo__wedding_planner__description": "Organiza tu boda con un cronograma inteligente, lista de tareas, control de presupuesto, lista de invitados, directorio de proveedores y un asistente de IA que conoce tu fecha, presupuesto, invitados y proveedores — gratis.",
   "seo__use_case__title": "{title} — Libro de firmas de boda Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — Libro de firmas de boda para imprimir",
+  "seo__wedding__description": "Tus invitados escanean un código QR y dejan mensajes de voz, fotos y notas — sin apps. Guarda cada voz de tu boda y conviértela en un recuerdo impreso.",
+  "seo__general__title": "Ovation — Una plataforma para cada evento",
+  "seo__general__description": "Bodas, cumpleaños, eventos de empresa, homenajes y mucho más. Tus invitados escanean un código QR para dejar fotos, mensajes de voz y notas — sin apps. Guarda cada recuerdo y luego imprímelo."
 }

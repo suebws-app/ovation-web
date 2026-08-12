@@ -62,6 +62,8 @@ const MARKETING_PREFIXES = [
   "/how-it-works",
   "/pricing",
   "/legal",
+  "/wedding",
+  "/general",
 ];
 
 const stripLocalePrefix = (pathname: string): string => {

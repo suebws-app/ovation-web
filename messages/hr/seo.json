@@ -47,5 +47,9 @@
   "seo__wedding_planner__title": "AI planer vjenčanja — besplatna aplikacija za parove",
   "seo__wedding_planner__description": "Isplanirajte vjenčanje s pametnom vremenskom crtom, popisom zadataka, praćenjem proračuna, popisom gostiju, imenikom dobavljača i AI asistentom koji poznaje vaš datum, proračun, goste i dobavljače — besplatno.",
   "seo__use_case__title": "{title} — Vjenčana knjiga gostiju Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — Knjiga gostiju za vjenčanje koju možete tiskati",
+  "seo__wedding__description": "Gosti skeniraju QR kod i ostavljaju glasovne poruke, fotografije i poruke — bez aplikacije. Sačuvajte svaki glas s vjenčanja i pretvorite ga u tiskanu uspomenu.",
+  "seo__general__title": "Ovation — Jedna platforma za svaki događaj",
+  "seo__general__description": "Vjenčanja, rođendani, poslovni događaji, komemoracije i još mnogo toga. Gosti skeniraju QR kod i ostavljaju fotografije, glasovne poruke i bilješke — bez aplikacije. Sačuvajte svaku uspomenu, a zatim je tiskajte."
 }

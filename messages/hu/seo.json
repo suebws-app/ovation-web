@@ -47,5 +47,9 @@
   "seo__wedding_planner__title": "AI Esküvőtervező — Ingyenes App Pároknak",
   "seo__wedding_planner__description": "Tervezd meg az esküvődet okos idővonallal, feladatlistával, költségvetéskövetővel, vendéglistával, szolgáltatói katalógussal és egy AI asszisztenssel, amely ismeri a dátumod, költségvetésed, vendégeidet és szolgáltatóidat — ingyen.",
   "seo__use_case__title": "{title} — Ovation esküvői vendégkönyv",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — nyomtatható esküvői vendégkönyv",
+  "seo__wedding__description": "A vendégek beolvasnak egy QR-kódot, és hangüzenetet, fotót vagy jegyzetet hagynak — app nélkül. Őrizd meg az esküvőd minden hangját, majd nyomtasd ki emlékbe.",
+  "seo__general__title": "Ovation — egy platform minden eseményhez",
+  "seo__general__description": "Esküvők, születésnapok, céges rendezvények, megemlékezések és még sok más. A vendégek beolvasnak egy QR-kódot, és fotókat, hangüzeneteket és jegyzeteket hagynak — app nélkül. Őrizz meg minden emléket, majd nyomtasd ki."
 }

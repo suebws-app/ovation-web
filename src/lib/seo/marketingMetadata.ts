@@ -64,9 +64,21 @@ const buildMetadataGenerator =
     };
   };
 
-export const generateLandingMetadata = buildMetadataGenerator({
+export const generateGeneralLandingMetadata = buildMetadataGenerator({
   page: "landing",
   path: "/",
+  absoluteTitle: true,
+});
+
+export const generateWeddingLandingMetadata = buildMetadataGenerator({
+  page: "wedding",
+  path: "/wedding",
+  absoluteTitle: true,
+});
+
+export const generateGeneralShowcaseMetadata = buildMetadataGenerator({
+  page: "general",
+  path: "/general",
   absoluteTitle: true,
 });
 
