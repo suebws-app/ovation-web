@@ -20,14 +20,14 @@ export const PromoCodeField = ({
   const [code, setCode] = useState(appliedCode ?? "");
   return (
     <div className="flex gap-2">
-      <label className="border-border bg-muted/40 type-body-small text-muted-foreground inline-flex flex-1 items-center gap-2 rounded-full border px-3.5 py-2.5">
+      <label className="border-border bg-muted/40 text-muted-foreground focus-within:ring-ring inline-flex h-10 flex-1 items-center gap-2 rounded-lg border px-3 focus-within:ring-2 focus-within:outline-none">
         <TagIcon width={13} height={13} />
         <input
           type="text"
           value={code}
           onChange={(e) => setCode(e.target.value)}
           placeholder={t("cart__summary__promo_placeholder")}
-          className="text-foreground placeholder:text-muted-foreground flex-1 bg-transparent outline-none"
+          className="text-foreground placeholder:text-muted-foreground tablet:text-sm flex-1 bg-transparent text-base outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
       </label>
       <Button

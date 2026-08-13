@@ -41,8 +41,8 @@ export const SlugInput = ({
 
   return (
     <div className="min-w-0">
-      <div className="rounded-16 border-border bg-background focus-within:ring-ring tablet:px-4 tablet:py-3 flex min-w-0 items-center gap-2 border px-3 py-2.5 transition-colors focus-within:ring-2">
-        <span className="type-body-small text-muted-foreground min-w-0 shrink truncate font-mono">
+      <div className="border-border bg-background focus-within:ring-ring flex h-10 min-w-0 items-center gap-2 rounded-lg border px-3 transition-colors focus-within:ring-2 focus-within:outline-none">
+        <span className="text-muted-foreground tablet:text-sm min-w-0 shrink truncate font-mono text-base">
           {env.APP_URL} /
         </span>
         <input
@@ -54,7 +54,7 @@ export const SlugInput = ({
             onChange(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))
           }
           placeholder={placeholder}
-          className="type-body-small text-foreground placeholder:text-muted-foreground min-w-0 flex-1 bg-transparent font-medium outline-none placeholder:font-normal"
+          className="text-foreground placeholder:text-muted-foreground tablet:text-sm min-w-0 flex-1 bg-transparent text-base font-medium outline-none placeholder:font-normal disabled:cursor-not-allowed disabled:opacity-50"
         />
         {status === "available" && (
           <AvailableBadge

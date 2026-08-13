@@ -175,6 +175,7 @@ export type Event = {
   slug: string;
   eventType: EventType | string;
   // Generic (canonical) fields.
+  eventName: string | null;
   hostAName: string;
   hostBName: string | null;
   eventDate: string | null;
@@ -286,6 +287,7 @@ export type MessageDetail = {
 export type CreateEventInput = {
   eventType?: EventType | string;
   // Generic (canonical) fields.
+  eventName?: string;
   hostAName?: string;
   hostBName?: string;
   eventDate?: string;
@@ -304,6 +306,7 @@ export type CreateEventInput = {
 
 export type UpdateEventInput = Omit<Partial<CreateEventInput>, "endDate"> & {
   endDate?: string | null;
+  eventName?: string | null;
   capacityLimit?: number | null;
   welcomeMessage?: string;
   themeColor?: string;
@@ -397,6 +400,7 @@ export type PublicKioskSettings = {
 
 export type PublicEvent = {
   eventType?: EventType | string;
+  eventName?: string | null;
   hostAName?: string;
   hostBName?: string | null;
   eventDate?: string | null;
@@ -419,6 +423,7 @@ export type PublicInvitation = {
   event: {
     slug: string;
     eventType?: EventType | string;
+    eventName?: string | null;
     hostAName?: string;
     hostBName?: string | null;
     eventDate?: string | null;

@@ -4,7 +4,9 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Dialog, VisuallyHidden } from "radix-ui";
 import { XIcon } from "@ovation/icons/XIcon";
+import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
 import type { GalleryItem } from "@/lib/api/types";
+import { videoMimeFromUrl } from "@/lib/utils/videoMime";
 
 type MediaPreviewDialogProps = {
   item: GalleryItem | null;
@@ -37,12 +39,16 @@ export const MediaPreviewDialog = ({
             </Dialog.Description>
           </VisuallyHidden.Root>
           {src && item?.type === "video" ? (
-            <video
-              src={src}
-              controls
-              autoPlay
-              className="rounded-12 max-h-full max-w-full"
-            />
+            <div className="flex h-full max-h-full w-full max-w-full items-center justify-center">
+              <LazyVideoPlayer
+                key={src}
+                src={src}
+                type={videoMimeFromUrl(src)}
+                load="eager"
+                preload="metadata"
+                className="max-h-full max-w-full"
+              />
+            </div>
           ) : src ? (
             <div className="relative flex h-full w-full items-center justify-center">
               <Image

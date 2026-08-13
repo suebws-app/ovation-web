@@ -2,18 +2,12 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { appRoutes } from "@/lib/routes";
 
-const AUTH_COOKIE_NAMES = [
-  "ovation.session_token",
-  "ovation.session_data",
-  "ovation.csrf_token",
-];
+const SESSION_COOKIE_NAME = "ovation.session_token";
 
 export const GET = async (request: Request) => {
   const cookieStore = await cookies();
-  for (const name of AUTH_COOKIE_NAMES) {
-    if (cookieStore.get(name)) {
-      cookieStore.delete(name);
-    }
+  if (cookieStore.get(SESSION_COOKIE_NAME)) {
+    cookieStore.delete(SESSION_COOKIE_NAME);
   }
   return NextResponse.redirect(new URL(appRoutes.auth.signIn, request.url));
 };

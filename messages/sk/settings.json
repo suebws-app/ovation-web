@@ -288,5 +288,9 @@
   "theme__preset__magenta": "Magenta",
   "theme__preset__cobalt": "Cobalt",
   "theme__preset__lime": "Lime",
-  "theme__preset__tangerine": "Tangerine"
+  "theme__preset__tangerine": "Tangerine",
+  "settings__wedding__name_mode_couple": "Couple",
+  "settings__wedding__name_mode_event": "Event name",
+  "settings__wedding__event_name": "Event name",
+  "settings__wedding__event_name_placeholder": "Summer Gala 2026"
 }

@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Postinumero vaaditaan",
   "validation__shipping_postal_max": "Postinumero on liian pitkä",
   "validation__shipping_country_required": "Maa vaaditaan",
-  "validation__shipping_country_format": "Käytä 2-kirjaimista maakoodia"
+  "validation__shipping_country_format": "Käytä 2-kirjaimista maakoodia",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

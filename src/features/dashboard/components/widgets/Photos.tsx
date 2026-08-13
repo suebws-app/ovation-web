@@ -7,9 +7,17 @@ import { ImageIcon } from "@ovation/icons/ImageIcon";
 import { Card, CardContent } from "@ovation/ui/components/Card";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import dynamic from "next/dynamic";
 import type { GalleryItem } from "@/lib/api/types";
-import { MediaPreviewDialog } from "@/features/keepsakes/customizer/MediaPreviewDialog";
 import { PhotosTile } from "./PhotosTile";
+
+const MediaPreviewDialog = dynamic(
+  () =>
+    import("@/features/keepsakes/customizer/MediaPreviewDialog").then(
+      (m) => m.MediaPreviewDialog,
+    ),
+  { ssr: false },
+);
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -114,7 +122,7 @@ export const Photos = ({ photos, totalCount, hasMore }: PhotosProps) => {
               <ImageIcon width={18} height={18} />
             </span>
             <div>
-              <p className="type-body font-serif font-semibold">
+              <p className="type-body font-semibold">
                 {totalCount}
                 <span className="type-body text-muted-foreground ml-1.5 font-sans font-normal">
                   {t("dashboard__widget__photos__unit")}

@@ -38,9 +38,6 @@ export const serverEnv = {
   TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "",
   TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY ?? "",
 
-  COMING_SOON_ENABLED: process.env.COMING_SOON_ENABLED ?? "false",
-  COMING_SOON_PASSWORD: process.env.COMING_SOON_PASSWORD ?? "",
-
   REQUIRE_EMAIL_VERIFICATION: process.env.REQUIRE_EMAIL_VERIFICATION === "true",
 
   // Shared secret for the /api/revalidate-blog route the API calls after

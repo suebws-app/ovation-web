@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Postcode is verplicht",
   "validation__shipping_postal_max": "Postcode is te lang",
   "validation__shipping_country_required": "Land is verplicht",
-  "validation__shipping_country_format": "Gebruik de tweeletterige landcode"
+  "validation__shipping_country_format": "Gebruik de tweeletterige landcode",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

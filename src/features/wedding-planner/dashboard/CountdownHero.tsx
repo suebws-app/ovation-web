@@ -49,10 +49,8 @@ export const CountdownHero = ({
       <HeartIcon className="pointer-events-none absolute -top-8 -right-8 size-50 opacity-10" />
       <p className="type-overline text-primary-foreground/80">{heading}</p>
       <div className="mt-4 flex items-baseline gap-4">
-        <span className="type-display font-serif leading-none">
-          {days ?? "—"}
-        </span>
-        <span className="type-h2 text-primary-foreground/85 font-serif italic">
+        <span className="type-display leading-none">{days ?? "—"}</span>
+        <span className="type-h2 text-primary-foreground/85 italic">
           {daysLabel}
         </span>
       </div>

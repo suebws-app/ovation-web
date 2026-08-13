@@ -67,6 +67,10 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
     inlineCss: true,
+    staleTimes: {
+      dynamic: 300,
+      static: 600,
+    },
     optimizePackageImports: [
       "@ovation/ui",
       "@ovation/icons",
@@ -79,6 +83,7 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [65, 70, 75],
+    minimumCacheTTL: 31536000,
     remotePatterns,
   },
   async headers() {

@@ -130,5 +130,11 @@
   "signup__role__step_label": "Ваша роль",
   "signup__role__host_card__title": "Планую власну подію",
   "signup__role__host_card__desc": "Створіть книгу спогадів, яку полюблять ваші гості — голосові повідомлення, фото та спогади, які ви збережете на все життя.",
-  "signup__book_preview__title_fallback": "Ваша подія"
+  "signup__book_preview__title_fallback": "Ваша подія",
+  "signup__book_details__name_mode_couple": "Couple",
+  "signup__book_details__name_mode_event": "Event name",
+  "signup__book_details__event_name": "Event name",
+  "signup__book_details__event_name_placeholder": "Summer Gala 2026",
+  "signup__event_name_default": "Our Event",
+  "signup__event_name_fallback": "Our Event"
 }

@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Postnummer er påkrævet",
   "validation__shipping_postal_max": "Postnummeret er for langt",
   "validation__shipping_country_required": "Land er påkrævet",
-  "validation__shipping_country_format": "Brug 2-bogstavers landekode"
+  "validation__shipping_country_format": "Brug 2-bogstavers landekode",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

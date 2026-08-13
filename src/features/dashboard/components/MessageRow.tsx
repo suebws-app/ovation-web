@@ -63,7 +63,7 @@ export const MessageRow = ({
         </AvatarFallback>
       </Avatar>
       <div className="min-w-0 flex-1">
-        <p className="type-body-large font-serif font-semibold">
+        <p className="type-body-large font-semibold">
           {name}
           {relation && (
             <span className="type-body-small text-muted-foreground ml-2.5 font-medium">
@@ -72,7 +72,7 @@ export const MessageRow = ({
           )}
         </p>
         {quote && (
-          <p className="type-body-small text-muted-foreground mt-0.5 truncate font-serif italic">
+          <p className="type-body-small text-muted-foreground mt-0.5 truncate italic">
             &ldquo;{quote}&rdquo;
           </p>
         )}

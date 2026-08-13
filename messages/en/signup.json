@@ -130,5 +130,11 @@
   "signup__pricing__choose": "Choose {name}",
   "signup__pricing__billing_disclaimer": "Final charge may show in your local currency at checkout.",
   "signup__book_preview__volume": "Ovation · Volume I",
-  "signup__book_preview__title_fallback": "Your event"
+  "signup__book_preview__title_fallback": "Your event",
+  "signup__book_details__name_mode_couple": "Couple",
+  "signup__book_details__name_mode_event": "Event name",
+  "signup__book_details__event_name": "Event name",
+  "signup__book_details__event_name_placeholder": "Summer Gala 2026",
+  "signup__event_name_default": "Our Event",
+  "signup__event_name_fallback": "Our Event"
 }

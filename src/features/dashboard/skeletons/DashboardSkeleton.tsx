@@ -10,7 +10,7 @@ const photoTiles = Array.from({ length: PHOTO_TILE_COUNT }, (_, i) => i);
 const ORDER_ROW_COUNT = 3;
 const orderRows = Array.from({ length: ORDER_ROW_COUNT }, (_, i) => i);
 
-const QRWidgetSkeleton = () => (
+export const QRWidgetSkeleton = () => (
   <div className="rounded-20 bg-muted relative flex min-h-110 w-full animate-pulse flex-col overflow-hidden p-5 shadow-sm">
     <div className="flex items-center justify-between">
       <div className="bg-muted-foreground/20 rounded-10 size-9" />
@@ -27,7 +27,7 @@ const QRWidgetSkeleton = () => (
   </div>
 );
 
-const InvitationWidgetSkeleton = () => (
+export const InvitationWidgetSkeleton = () => (
   <Card>
     <CardContent className="flex animate-pulse flex-col gap-4">
       <div className="flex items-start justify-between gap-3">
@@ -40,7 +40,7 @@ const InvitationWidgetSkeleton = () => (
   </Card>
 );
 
-const ReferralWidgetSkeleton = () => (
+export const ReferralWidgetSkeleton = () => (
   <div className="rounded-20 bg-muted relative flex w-full animate-pulse flex-col overflow-hidden p-5 shadow-sm">
     <div className="flex items-start justify-between gap-3">
       <div className="bg-muted-foreground/20 rounded-12 size-10" />
@@ -59,7 +59,7 @@ const ReferralWidgetSkeleton = () => (
   </div>
 );
 
-const MessagesWidgetSkeleton = () => (
+export const MessagesWidgetSkeleton = () => (
   <Card className="min-h-62">
     <CardContent className="desktop:grid-cols-[1fr_1px_1.4fr] grid grid-cols-1 gap-6">
       <div className="flex animate-pulse flex-col justify-between gap-5">
@@ -94,7 +94,7 @@ const MessagesWidgetSkeleton = () => (
   </Card>
 );
 
-const PhotosWidgetSkeleton = () => (
+export const PhotosWidgetSkeleton = () => (
   <Card className="min-h-62 w-full min-w-0 min-[1300px]:h-full min-[1300px]:flex-1">
     <CardContent className="flex animate-pulse flex-col gap-4">
       <div className="grid [grid-auto-rows:0] [grid-template-columns:repeat(auto-fill,minmax(110px,1fr))] [grid-template-rows:repeat(2,auto)] gap-2 overflow-hidden">
@@ -115,7 +115,7 @@ const PhotosWidgetSkeleton = () => (
   </Card>
 );
 
-const OrdersWidgetSkeleton = () => (
+export const OrdersWidgetSkeleton = () => (
   <Card className="min-h-62 w-full min-[1300px]:h-full min-[1300px]:w-80 min-[1300px]:shrink-0">
     <CardContent className="flex animate-pulse flex-col flex-wrap">
       <div className="flex items-center justify-between gap-4 pb-4">
@@ -150,7 +150,7 @@ const OrdersWidgetSkeleton = () => (
   </Card>
 );
 
-const WeddingPlannerWidgetSkeleton = () => (
+export const WeddingPlannerWidgetSkeleton = () => (
   <div className="rounded-20 border-border bg-card w-full border p-5 shadow-sm">
     <div className="mb-5 flex animate-pulse items-center justify-between">
       <div className="flex items-center gap-2">

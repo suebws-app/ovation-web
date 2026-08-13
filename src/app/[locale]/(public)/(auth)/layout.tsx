@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { AuthLayout } from "@/features/layout/AuthLayout/AuthLayout";
+import { loadShellMessages } from "@/i18n/loadMessages";
+import type { LocalePageProps } from "@/i18n/types";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = { robots: { index: false } };
 
-const AuthGroupLayout = ({ children }: { children: React.ReactNode }) => {
+const AuthGroupLayout = async ({
+  children,
+  params,
+}: { children: React.ReactNode } & LocalePageProps) => {
+  const { locale } = await params;
+  const messages = await loadShellMessages(locale, ["auth", "signup"]);
   return (
-    <NextIntlClientProvider>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <AuthLayout>{children}</AuthLayout>
     </NextIntlClientProvider>
   );

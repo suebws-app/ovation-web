@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Postleitzahl ist erforderlich",
   "validation__shipping_postal_max": "Die Postleitzahl ist zu lang",
   "validation__shipping_country_required": "Land ist erforderlich",
-  "validation__shipping_country_format": "Verwende den 2-Buchstaben-Ländercode"
+  "validation__shipping_country_format": "Verwende den 2-Buchstaben-Ländercode",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

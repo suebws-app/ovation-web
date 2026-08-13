@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { isConsumerRole, isProRole } from "@/lib/auth/account-role";
 import { useRouter } from "@/i18n/navigation";
 import { Input } from "@ovation/ui/components/Input";
+import { PasswordInput } from "@ovation/ui/components/PasswordInput";
 import { Label } from "@ovation/ui/components/Label";
 import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { Separator } from "@ovation/ui/components/Separator";
@@ -99,14 +100,15 @@ export const SignUpForm = () => {
             <Label htmlFor="signup-password" className="mb-2">
               {t("auth__signup__create_account__password_label")}
             </Label>
-            <Input
+            <PasswordInput
               id="signup-password"
-              type="password"
               autoComplete="new-password"
               placeholder={t(
                 "auth__signup__create_account__password_placeholder",
               )}
               aria-invalid={Boolean(errors.password)}
+              showLabel={t("auth__password_show")}
+              hideLabel={t("auth__password_hide")}
               {...register("password")}
             />
             {errors.password ? (

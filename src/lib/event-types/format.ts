@@ -3,6 +3,7 @@ import { getEventTypeConfig } from "./registry";
 /** Minimal event shape the formatters need (generic + legacy fields). */
 export type EventLike = {
   eventType?: string | null;
+  eventName?: string | null;
   hostAName?: string | null;
   hostBName?: string | null;
   eventDate?: string | null;
@@ -19,9 +20,10 @@ export const eventHostNames = (event: EventLike): string[] =>
     .map((name) => name?.trim())
     .filter((name): name is string => Boolean(name));
 
-/** The joined title line for an event (e.g. "Alex & Jordan"). */
+/** The joined title line for an event (e.g. "Alex & Jordan"). An explicit
+ * `eventName` overrides the host names. */
 export const eventTitleLine = (event: EventLike): string =>
-  eventHostNames(event).join(" & ");
+  event.eventName?.trim() || eventHostNames(event).join(" & ");
 
 /** The primary date of an event as a raw string, if any. */
 export const eventDateOf = (event: EventLike): string | null =>

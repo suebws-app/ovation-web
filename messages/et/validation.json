@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Postiindeks on kohustuslik",
   "validation__shipping_postal_max": "Postiindeks on liiga pikk",
   "validation__shipping_country_required": "Riik on kohustuslik",
-  "validation__shipping_country_format": "Kasuta 2-tähelist riigi koodi"
+  "validation__shipping_country_format": "Kasuta 2-tähelist riigi koodi",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

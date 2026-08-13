@@ -11,6 +11,7 @@ import {
 export const size = OG_IMAGE_SIZE;
 export const contentType = OG_IMAGE_CONTENT_TYPE;
 export const alt = "Ovation blog post";
+export const revalidate = 86400;
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>;

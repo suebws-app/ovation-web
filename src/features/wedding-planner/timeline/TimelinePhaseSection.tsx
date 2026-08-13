@@ -55,11 +55,11 @@ export const TimelinePhaseSection = ({
             value={title}
             ariaLabel={t("wp__timeline__edit_phase")}
             onSave={onRename}
-            className="type-h3 font-serif"
-            inputClassName="type-h3 font-serif"
+            className="type-h3"
+            inputClassName="type-h3"
           />
         ) : (
-          <h3 className="type-h3 text-muted-foreground font-serif">{title}</h3>
+          <h3 className="type-h3 text-muted-foreground">{title}</h3>
         )}
         <div className="flex items-center gap-2">
           <StatusPill tone={isComplete ? "sage" : "neutral"}>

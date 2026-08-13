@@ -7,19 +7,26 @@ import { Button } from "@ovation/ui/components/Button";
 
 type PublicGalleryHeaderProps = {
   count: number;
+  eventName: string | null;
   partnerAName: string | null;
   partnerBName: string | null;
   couplePhotoUrl: string | null;
   onStartSlideshow?: () => void;
 };
 
-const coupleNames = (a: string | null, b: string | null): string | null => {
+const resolveNames = (
+  eventName: string | null,
+  a: string | null,
+  b: string | null,
+): string | null => {
+  if (eventName?.trim()) return eventName.trim();
   const names = [a?.trim(), b?.trim()].filter(Boolean);
   return names.length ? names.join(" & ") : null;
 };
 
 export const PublicGalleryHeader = ({
   count,
+  eventName,
   partnerAName,
   partnerBName,
   couplePhotoUrl,
@@ -27,7 +34,7 @@ export const PublicGalleryHeader = ({
 }: PublicGalleryHeaderProps) => {
   const t = useTranslations();
   const [failed, setFailed] = useState(false);
-  const names = coupleNames(partnerAName, partnerBName);
+  const names = resolveNames(eventName, partnerAName, partnerBName);
   const showPhoto = couplePhotoUrl && !failed;
 
   return (

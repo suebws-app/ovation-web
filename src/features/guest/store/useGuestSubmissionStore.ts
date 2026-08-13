@@ -8,6 +8,7 @@ export type AudioCapture = {
 };
 
 export type VideoCapture = {
+  id: string;
   blob: Blob;
   url: string;
   durationSec: number;
@@ -23,6 +24,7 @@ export type PhotoCapture = {
 };
 
 export const MAX_PHOTOS = 5;
+export const MAX_VIDEOS = 3;
 
 type GuestSubmissionState = {
   slug: string | null;
@@ -30,14 +32,16 @@ type GuestSubmissionState = {
   guestName: string;
   inviteToken: string | null;
   audio: AudioCapture | null;
-  video: VideoCapture | null;
+  videos: VideoCapture[];
   note: string;
   photos: PhotoCapture[];
   setSlug: (slug: string) => void;
   setGuestName: (name: string) => void;
   setInviteToken: (token: string | null) => void;
   setAudio: (audio: AudioCapture | null) => void;
-  setVideo: (video: VideoCapture | null) => void;
+  addVideo: (video: VideoCapture) => void;
+  removeVideo: (id: string) => void;
+  clearVideos: () => void;
   setNote: (note: string) => void;
   addPhotos: (photos: PhotoCapture[]) => void;
   removePhoto: (id: string) => void;
@@ -52,7 +56,7 @@ const initial = {
   guestName: "",
   inviteToken: null,
   audio: null,
-  video: null,
+  videos: [] as VideoCapture[],
   note: "",
   photos: [] as PhotoCapture[],
 } as const;
@@ -74,7 +78,7 @@ export const useGuestSubmissionStore = create<GuestSubmissionState>(
       const current = get().slug;
       if (current && current !== slug) {
         revoke(get().audio?.url);
-        revoke(get().video?.url);
+        get().videos.forEach((v) => revoke(v.url));
         get().photos.forEach((p) => revoke(p.url));
         set({ ...initial, slug, sessionStartAt: Date.now() });
       } else {
@@ -90,9 +94,23 @@ export const useGuestSubmissionStore = create<GuestSubmissionState>(
       revoke(get().audio?.url);
       set({ audio });
     },
-    setVideo: (video) => {
-      revoke(get().video?.url);
-      set({ video });
+    addVideo: (video) => {
+      const current = get().videos;
+      if (current.length >= MAX_VIDEOS) {
+        revoke(video.url);
+        return;
+      }
+      set({ videos: [...current, video] });
+    },
+    removeVideo: (id) => {
+      const current = get().videos;
+      const target = current.find((v) => v.id === id);
+      if (target) revoke(target.url);
+      set({ videos: current.filter((v) => v.id !== id) });
+    },
+    clearVideos: () => {
+      get().videos.forEach((v) => revoke(v.url));
+      set({ videos: [] });
     },
     setNote: (note) => set({ note }),
     addPhotos: (incoming) => {
@@ -115,14 +133,17 @@ export const useGuestSubmissionStore = create<GuestSubmissionState>(
       set({ photos: [] });
     },
     hasAnyContent: () => {
-      const { audio, video, note, photos } = get();
+      const { audio, videos, note, photos } = get();
       return (
-        Boolean(audio || video) || photos.length > 0 || note.trim().length > 0
+        Boolean(audio) ||
+        videos.length > 0 ||
+        photos.length > 0 ||
+        note.trim().length > 0
       );
     },
     reset: () => {
       revoke(get().audio?.url);
-      revoke(get().video?.url);
+      get().videos.forEach((v) => revoke(v.url));
       get().photos.forEach((p) => revoke(p.url));
       set({ ...initial });
     },

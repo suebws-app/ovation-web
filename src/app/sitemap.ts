@@ -185,4 +185,6 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   ];
 };
 
+export const revalidate = 3600;
+
 export default sitemap;

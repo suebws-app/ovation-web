@@ -130,5 +130,11 @@
   "signup__role__step_label": "Il tuo ruolo",
   "signup__role__host_card__title": "Organizzo il mio evento",
   "signup__role__host_card__desc": "Crea un libro ricordo che i tuoi ospiti adoreranno — messaggi vocali, foto e ricordi da conservare per sempre.",
-  "signup__book_preview__title_fallback": "Il tuo evento"
+  "signup__book_preview__title_fallback": "Il tuo evento",
+  "signup__book_details__name_mode_couple": "Couple",
+  "signup__book_details__name_mode_event": "Event name",
+  "signup__book_details__event_name": "Event name",
+  "signup__book_details__event_name_placeholder": "Summer Gala 2026",
+  "signup__event_name_default": "Our Event",
+  "signup__event_name_fallback": "Our Event"
 }

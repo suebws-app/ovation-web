@@ -15,7 +15,7 @@ export const DashPaymentItem = ({
       <p className="type-body-small truncate font-medium">{payment.vendor}</p>
       <p className="type-caption text-muted-foreground">{dueLabel}</p>
     </div>
-    <span className="type-h4 text-primary font-serif font-semibold">
+    <span className="type-h4 text-primary font-semibold">
       {money(payment.amount)}
     </span>
   </div>

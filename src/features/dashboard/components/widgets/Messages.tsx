@@ -32,7 +32,7 @@ export const Messages = ({ eventId, messages, totalCount }: MessagesProps) => {
             </span>
           </div>
           <div>
-            <p className="type-h1 font-serif font-semibold">
+            <p className="type-h1 font-semibold">
               {totalCount}
               <span className="type-h3 text-muted-foreground ml-2 font-sans font-normal">
                 {t("dashboard__widget__messages__unit")}

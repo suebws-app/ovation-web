@@ -164,6 +164,7 @@
     both;
   --animate-invite-reveal: invite-reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1)
     both;
+  --animate-marquee: marquee 30s linear infinite;
 }
 
 /* ── Keyframes ──────────────────────────────────────────────── */
@@ -316,6 +317,14 @@
     transform: translateY(0);
   }
 }
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 
 .invite-stagger > * {
   animation: invite-reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -345,6 +354,7 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-invite-card-in,
   .animate-invite-reveal,
+  .animate-marquee,
   .invite-stagger > * {
     animation: none !important;
   }

@@ -156,9 +156,7 @@ export const WeddingPlannerDashboardClient = ({
             sub={t("wp__dash__complete")}
           />
           <div>
-            <h3 className="type-h3 font-serif">
-              {t("wp__dash__progress_title")}
-            </h3>
+            <h3 className="type-h3">{t("wp__dash__progress_title")}</h3>
             <p className="type-body-small text-muted-foreground mt-2">
               {t("wp__dash__progress_sub", {
                 done: doneTasks,
@@ -264,7 +262,7 @@ export const WeddingPlannerDashboardClient = ({
                 <p className="type-caption text-muted-foreground">
                   {total.label}
                 </p>
-                <p className={`type-h3 font-serif ${total.className}`}>
+                <p className={`type-h3 ${total.className}`}>
                   {money(total.value)}
                 </p>
               </div>

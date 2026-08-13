@@ -7,13 +7,19 @@ import { cn } from "@ovation/ui/utils/cn";
 import { RootMobileNav } from "./RootMobileNav";
 import { LanguageSelect } from "@/components/LanguageSelect";
 
-export const RootHeader = ({ className }: { className?: string }) => {
+type RootHeaderProps = {
+  className?: string;
+  sticky?: boolean;
+};
+
+export const RootHeader = ({ className, sticky = true }: RootHeaderProps) => {
   const t = useTranslations();
 
   return (
     <header
       className={cn(
-        "border-border bg-background/90 sticky top-0 z-50 border-b backdrop-blur-md",
+        "border-border bg-background/90 border-b",
+        sticky && "sticky top-0 z-50 backdrop-blur-md",
         className,
       )}
     >

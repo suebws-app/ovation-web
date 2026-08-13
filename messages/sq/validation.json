@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Kodi postar është i detyrueshëm",
   "validation__shipping_postal_max": "Kodi postar është shumë i gjatë",
   "validation__shipping_country_required": "Shteti është i detyrueshëm",
-  "validation__shipping_country_format": "Përdorni kodin e shtetit me 2 shkronja"
+  "validation__shipping_country_format": "Përdorni kodin e shtetit me 2 shkronja",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

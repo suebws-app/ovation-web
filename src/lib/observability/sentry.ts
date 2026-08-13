@@ -31,7 +31,6 @@ const REPLAY_BLOCKED_EXACT = new Set([
   "/pricing",
   "/sample",
   "/sustainability",
-  "/coming-soon",
 ]);
 const REPLAY_BLOCKED_PREFIXES = [
   "/legal",

@@ -37,7 +37,6 @@ export const useGalleryCount = (
     queryKey: queryKeys.gallery.count(eventId, input),
     queryFn: () => mediaClient.galleryCount(eventId, input),
     enabled: Boolean(eventId),
-    staleTime: 30_000,
   });
 
 export const useInfiniteGallery = (
@@ -59,7 +58,6 @@ export const useInfiniteGallery = (
     initialPageParam: null as string | null,
     getNextPageParam: (last) => last.nextCursor ?? null,
     enabled: Boolean(eventId),
-    staleTime: 30_000,
     placeholderData: keepPreviousData,
   });
 

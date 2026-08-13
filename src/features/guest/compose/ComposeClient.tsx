@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState, startTransition } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
+import { cn } from "@ovation/ui/utils/cn";
 import { Link, useRouter } from "@/i18n/navigation";
+import { toast } from "@/components/Toaster";
 import { WizardHeader } from "../shell/WizardHeader";
 import { StickyCTA } from "../shell/StickyCTA";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
@@ -20,6 +22,8 @@ type ComposeClientProps = {
   maxVideoDurationSec: number;
   maxAudioDurationSec: number;
   sourceParam: string | null;
+  submissionClosed: boolean;
+  closedMessage: string;
 };
 
 export const ComposeClient = ({
@@ -30,16 +34,17 @@ export const ComposeClient = ({
   maxVideoDurationSec,
   maxAudioDurationSec,
   sourceParam,
+  submissionClosed,
+  closedMessage,
 }: ComposeClientProps) => {
   const t = useTranslations();
   const router = useRouter();
   const isKioskSession = sourceParam === "kiosk";
   const setSlug = useGuestSubmissionStore((s) => s.setSlug);
   const audio = useGuestSubmissionStore((s) => s.audio);
-  const video = useGuestSubmissionStore((s) => s.video);
+  const videos = useGuestSubmissionStore((s) => s.videos);
   const photos = useGuestSubmissionStore((s) => s.photos);
   const note = useGuestSubmissionStore((s) => s.note);
-  const [stepError, setStepError] = useState<string | null>(null);
 
   useEffect(() => {
     setSlug(slug);
@@ -48,23 +53,22 @@ export const ComposeClient = ({
   const totalSteps = 2;
   const sourceQuery = isKioskSession ? "?source=kiosk" : "";
   const nextHref = `/g/${slug}/review${sourceQuery}`;
-  const backHref = isKioskSession ? `/kiosk/${slug}` : `/g/${slug}`;
+  const backHref = isKioskSession ? `/kiosk/${slug}` : null;
 
   const hasAnyContent =
-    Boolean(audio || video) || photos.length > 0 || note.trim().length > 0;
+    Boolean(audio) ||
+    videos.length > 0 ||
+    photos.length > 0 ||
+    note.trim().length > 0;
 
   const handleContinue = () => {
+    if (submissionClosed) return;
     if (!hasAnyContent) {
-      setStepError(t("guest__compose__error_missing_content"));
+      toast.error(t("guest__compose__error_missing_content"));
       return;
     }
-    setStepError(null);
     router.push(nextHref);
   };
-
-  useEffect(() => {
-    if (hasAnyContent) startTransition(() => setStepError(null));
-  }, [hasAnyContent]);
 
   return (
     <div className="flex flex-1 flex-col">
@@ -75,7 +79,23 @@ export const ComposeClient = ({
           title={t("guest__compose__title")}
           subtitle={t("guest__compose__subtitle")}
         />
-        <div className="flex flex-col gap-3.5">
+        {submissionClosed && (
+          <div
+            className="rounded-16 bg-warm-cream border-border border p-4.5"
+            role="alert"
+          >
+            <p className="type-body-small text-foreground/85 text-center">
+              {closedMessage}
+            </p>
+          </div>
+        )}
+        <fieldset
+          disabled={submissionClosed}
+          className={cn(
+            "flex flex-col gap-3.5",
+            submissionClosed && "pointer-events-none opacity-60",
+          )}
+        >
           {captureAudio && (
             <VoiceCaptureCard maxDurationSec={maxAudioDurationSec} />
           )}
@@ -84,27 +104,38 @@ export const ComposeClient = ({
           )}
           {capturePhoto && <PhotoCaptureCard />}
           <NoteCaptureCard />
-        </div>
-        {stepError && (
-          <p className="type-body-small text-destructive" role="alert">
-            {stepError}
-          </p>
-        )}
+        </fieldset>
       </div>
-      <StickyCTA layout="split" caption={t("guest__compose__caption")}>
-        <div className="tablet:w-auto flex w-full gap-2">
+      <StickyCTA
+        layout="split"
+        className="bg-card shadow-top"
+        caption={
+          !submissionClosed && !hasAnyContent
+            ? t("guest__compose__error_missing_content")
+            : undefined
+        }
+        captionTone="warning"
+      >
+        <div className="tablet:w-auto flex w-full justify-end gap-2">
+          {backHref && (
+            <Button
+              asChild
+              type="button"
+              variant="outline"
+              className="flex-1 rounded-full"
+            >
+              <Link href={backHref}>{t("guest__wizard__back")}</Link>
+            </Button>
+          )}
           <Button
-            asChild
             type="button"
-            variant="outline"
-            className="flex-1 rounded-full"
-          >
-            <Link href={backHref}>{t("guest__wizard__back")}</Link>
-          </Button>
-          <Button
-            type="button"
-            className="tablet:w-auto tablet:px-10 flex-1 rounded-full shadow-lg"
+            className={cn(
+              "tablet:w-auto tablet:px-10 flex-1 shadow-lg",
+              !hasAnyContent && !submissionClosed && "opacity-50",
+            )}
             onClick={handleContinue}
+            aria-disabled={!hasAnyContent || submissionClosed}
+            disabled={submissionClosed}
           >
             {t("guest__wizard__continue")}
           </Button>

@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Postnummer krävs",
   "validation__shipping_postal_max": "Postnumret är för långt",
   "validation__shipping_country_required": "Land krävs",
-  "validation__shipping_country_format": "Använd landskoden med 2 bokstäver"
+  "validation__shipping_country_format": "Använd landskoden med 2 bokstäver",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

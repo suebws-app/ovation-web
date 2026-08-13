@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "우편번호를 입력하세요",
   "validation__shipping_postal_max": "우편번호가 너무 깁니다",
   "validation__shipping_country_required": "국가를 입력하세요",
-  "validation__shipping_country_format": "2자리 국가 코드를 사용하세요"
+  "validation__shipping_country_format": "2자리 국가 코드를 사용하세요",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

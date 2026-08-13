@@ -1,0 +1,1 @@
+export { PromoBar } from "./PromoBar";

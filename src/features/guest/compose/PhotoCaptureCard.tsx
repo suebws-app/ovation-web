@@ -56,6 +56,7 @@ export const PhotoCaptureCard = () => {
   const addPhotos = useGuestSubmissionStore((s) => s.addPhotos);
   const removePhoto = useGuestSubmissionStore((s) => s.removePhoto);
   const galleryInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [pendingCount, setPendingCount] = useState(0);
 
@@ -125,7 +126,18 @@ export const PhotoCaptureCard = () => {
           }
         />
         {showInlineCta && (
-          <div className="tablet:w-auto flex w-full">
+          <div className="tablet:w-auto flex w-full gap-2">
+            <Button
+              type="button"
+              variant="ghost"
+              className={`${tonalButtonClass} tablet:inline-flex hidden flex-1`}
+              style={{ color: photoToneColor }}
+              onClick={() => cameraInputRef.current?.click()}
+              disabled={atLimit}
+            >
+              <CameraIcon width={16} height={16} />
+              {t("guest__compose__camera_snap")}
+            </Button>
             <Button
               type="button"
               variant="ghost"
@@ -166,10 +178,19 @@ export const PhotoCaptureCard = () => {
       )}
 
       {(count > 0 || pendingCount > 0) && (
-        <div className="mt-4 flex">
+        <div className="mt-4 flex gap-2">
           <Button
             variant="outline"
-            className="w-full"
+            className="tablet:inline-flex hidden flex-1"
+            onClick={() => cameraInputRef.current?.click()}
+            disabled={atLimit}
+          >
+            <CameraIcon width={14} height={14} />
+            {t("guest__compose__camera_snap")}
+          </Button>
+          <Button
+            variant="outline"
+            className="flex-1"
             onClick={() => galleryInputRef.current?.click()}
             disabled={atLimit}
           >
@@ -184,6 +205,17 @@ export const PhotoCaptureCard = () => {
         type="file"
         accept="image/*"
         multiple
+        className="hidden"
+        onChange={(e) => {
+          handleFiles(e.target.files);
+          e.target.value = "";
+        }}
+      />
+      <input
+        ref={cameraInputRef}
+        type="file"
+        accept="image/*"
+        capture="environment"
         className="hidden"
         onChange={(e) => {
           handleFiles(e.target.files);

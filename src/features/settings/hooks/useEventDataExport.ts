@@ -258,7 +258,7 @@ const buildGuestSheet = (event: Event, guests: GuestRow[]): XlsxSheet => {
       g.lastAt,
     ]);
   }
-  return { name: coupleName || event.slug || "Event", rows };
+  return { name: coupleName || "Event", rows };
 };
 
 type UseEventDataExportOptions = {

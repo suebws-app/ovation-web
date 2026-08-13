@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Card, CardContent } from "@ovation/ui/components/Card";
 import { MicIcon } from "@ovation/icons/MicIcon";
 import { StopIcon } from "@ovation/icons/StopIcon";
+import { XIcon } from "@ovation/icons/XIcon";
 import { useAudioRecorder } from "./useAudioRecorder";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
 
@@ -17,13 +18,26 @@ const formatTime = (sec: number): string => {
 
 type VoicePanelProps = {
   onCaptured: () => void;
+  onCancel?: () => void;
   maxDurationSec?: number;
+  autoFocus?: boolean;
 };
 
-export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
+export const VoicePanel = ({
+  onCaptured,
+  onCancel,
+  maxDurationSec,
+  autoFocus,
+}: VoicePanelProps) => {
   const t = useTranslations();
   const recorder = useAudioRecorder(maxDurationSec);
   const setAudio = useGuestSubmissionStore((s) => s.setAudio);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!autoFocus) return;
+    cardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [autoFocus]);
 
   useEffect(() => {
     if (recorder.recording) {
@@ -37,9 +51,26 @@ export const VoicePanel = ({ onCaptured, maxDurationSec }: VoicePanelProps) => {
     }
   }, [recorder.recording, setAudio, onCaptured]);
 
+  const handleCancel = () => {
+    recorder.cancel();
+    onCancel?.();
+  };
+
   return (
-    <Card>
-      <CardContent className="gap-4_5 flex flex-col items-center text-center">
+    <Card ref={cardRef} className="relative pt-12">
+      {onCancel && (
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          className="absolute top-2 right-2 z-10 size-8 rounded-full"
+          onClick={handleCancel}
+          aria-label={t("common__cancel")}
+        >
+          <XIcon width={14} height={14} />
+        </Button>
+      )}
+      <CardContent className="flex flex-col items-center gap-4.5 text-center">
         <p className="type-body-small text-muted-foreground max-w-sm">
           {t("guest__record__audio__hint", {
             seconds: recorder.maxDurationSec,

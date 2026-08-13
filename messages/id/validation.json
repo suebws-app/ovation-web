@@ -23,5 +23,7 @@
   "validation__shipping_postal_required": "Kode pos wajib diisi",
   "validation__shipping_postal_max": "Kode pos terlalu panjang",
   "validation__shipping_country_required": "Negara wajib diisi",
-  "validation__shipping_country_format": "Gunakan kode negara 2 huruf"
+  "validation__shipping_country_format": "Gunakan kode negara 2 huruf",
+  "validation__event_name_required": "Event name is required",
+  "validation__event_name_max": "Name is too long"
 }

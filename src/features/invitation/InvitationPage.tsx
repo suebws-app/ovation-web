@@ -31,7 +31,10 @@ export const InvitationPage = ({
   const resetStep = useInvitationStore((s) => s.setStep);
   const router = useRouter();
   const methods = useInvitationForm(initialEvent, initialInvitees);
-  const { save, status: saveStatus } = useSaveInvitationStep(eventId);
+  const { save, status: saveStatus } = useSaveInvitationStep(
+    eventId,
+    Boolean(initialEvent?.eventName?.trim()),
+  );
 
   useEffect(() => {
     if (hydrated) resetStep("design");

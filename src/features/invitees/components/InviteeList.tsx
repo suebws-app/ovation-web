@@ -104,7 +104,6 @@ export const InviteeList = ({
           size="sm"
           onClick={() => setAdding(true)}
           disabled={adding}
-          className="rounded-full"
         >
           <PlusIcon width={13} height={13} />
           {t("invitees__form__add_cta")}

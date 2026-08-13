@@ -187,11 +187,10 @@ export const useVideoRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
   }, [stopTracks]);
 
   const reset = useCallback(() => {
-    if (recording?.url) URL.revokeObjectURL(recording.url);
     setRecording(null);
     setElapsed(0);
     setError(null);
-  }, [recording]);
+  }, []);
 
   return {
     state,

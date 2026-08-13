@@ -130,5 +130,11 @@
   "signup__role__step_label": "역할",
   "signup__role__host_card__title": "내 행사를 준비하고 있어요",
   "signup__role__host_card__desc": "게스트가 좋아할 추억의 책을 만드세요 — 음성 메시지, 사진, 그리고 평생 간직할 추억.",
-  "signup__book_preview__title_fallback": "당신의 행사"
+  "signup__book_preview__title_fallback": "당신의 행사",
+  "signup__book_details__name_mode_couple": "Couple",
+  "signup__book_details__name_mode_event": "Event name",
+  "signup__book_details__event_name": "Event name",
+  "signup__book_details__event_name_placeholder": "Summer Gala 2026",
+  "signup__event_name_default": "Our Event",
+  "signup__event_name_fallback": "Our Event"
 }

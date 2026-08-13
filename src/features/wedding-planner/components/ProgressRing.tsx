@@ -44,7 +44,7 @@ export const ProgressRing = ({
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span
-          className="font-serif leading-none font-semibold"
+          className="leading-none font-semibold"
           style={{ fontSize: size * 0.28 }}
         >
           {label}

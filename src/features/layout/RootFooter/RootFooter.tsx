@@ -101,8 +101,8 @@ export const RootFooter = ({ className }: RootFooterProps) => {
 
   return (
     <footer className={cn("border-border bg-card border-t", className)}>
-      <div className="mx-auto max-w-310 px-6 pt-16 pb-10 lg:px-20">
-        <div className="grid grid-cols-2 gap-10 pb-10 md:grid-cols-4">
+      <div className="mx-auto px-6 pt-16 pb-10 lg:px-20">
+        <div className="grid grid-cols-1 justify-between gap-10 pb-10 md:grid-cols-2">
           <div className="col-span-2 md:col-span-1">
             <Link href={appRoutes.home}>
               <Logo />
@@ -111,10 +111,11 @@ export const RootFooter = ({ className }: RootFooterProps) => {
               {t("common__footer__tagline")}
             </p>
           </div>
-
-          {columns.map((col) => (
-            <FooterColumn key={col.title} col={col} />
-          ))}
+          <div className="grid grid-cols-3 gap-10 pb-10">
+            {columns.map((col) => (
+              <FooterColumn key={col.title} col={col} />
+            ))}
+          </div>
         </div>
 
         <div className="border-border text-muted-foreground flex flex-col items-center justify-between gap-4 border-t pt-6 text-xs md:flex-row">
