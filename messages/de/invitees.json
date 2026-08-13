@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Einladungen jetzt an {count, plural, one {# Gast} other {# Gäste}} senden?",
   "invitees__send_all__success": "{queued} in der Warteschlange, {skipped} übersprungen (keine E-Mail).",
   "invitees__send_all__error": "Einladungen konnten nicht in die Warteschlange gestellt werden. Erneut versuchen.",
+  "invitees__send_all__attach_agenda": "Agenda-PDF anhängen",
   "invitees__preview__cta": "Vorschau",
   "invitees__preview__hide": "Vorschau ausblenden",
   "invitees__preview__show": "Vorschau einblenden",

@@ -69,6 +69,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
         endDate: toWeddingDate(eventData.endDate) ?? null,
         venueName: eventData.venueName?.trim() || null,
         venueCity: eventData.venueCity?.trim() || null,
+        themeColor: eventData.themeColor || null,
         details: eventData.details,
         desiredSlug: eventData.bookUrl.trim() || null,
       }),
@@ -155,6 +156,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
                   endDate: toWeddingDate(eventFormData.endDate),
                   venueName: eventFormData.venueName?.trim() || undefined,
                   venueCity: eventFormData.venueCity?.trim() || undefined,
+                  themeColor: eventFormData.themeColor || undefined,
                 })
                 .then((r) => r.event)
                 .catch(async () => {
@@ -185,14 +187,23 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
           const desiredSlug = bookUrl.trim();
           let finalSlug = event.slug;
-          if (
+          const slugUpdate =
             desiredSlug &&
             desiredSlug !== finalSlug &&
             /^[a-z0-9-]{4,20}$/.test(desiredSlug)
-          ) {
+              ? { slug: desiredSlug }
+              : undefined;
+          // `themeColor` is not accepted on create — apply it here (the update
+          // branch above already sends it for existing events).
+          const themeUpdate =
+            !existingEventId && eventFormData.themeColor
+              ? { themeColor: eventFormData.themeColor }
+              : undefined;
+          if (slugUpdate || themeUpdate) {
             try {
               const updated = await eventsClient.update(event.id, {
-                slug: desiredSlug,
+                ...slugUpdate,
+                ...themeUpdate,
               });
               finalSlug = updated.event.slug;
             } catch {
@@ -268,6 +279,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     eventFormData.endDate,
     eventFormData.venueName,
     eventFormData.venueCity,
+    eventFormData.themeColor,
     eventFormData.details,
     signUpFormData.selectedPlan,
     signUpFormData.accountType,

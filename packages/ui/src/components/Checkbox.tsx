@@ -38,7 +38,7 @@ export const Checkbox = forwardRef<
   if (!label) return root;
 
   return (
-    <label className="flex items-start gap-2.5 text-left">
+    <label className="flex cursor-pointer items-start gap-2.5 text-left select-none">
       {root}
       <span className="type-body-small text-muted-foreground leading-snug">
         {label}

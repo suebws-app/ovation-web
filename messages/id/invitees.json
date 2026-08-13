@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Kirim undangan ke {count} tamu sekarang?",
   "invitees__send_all__success": "{queued} masuk antrean, {skipped} dilewati (tanpa email).",
   "invitees__send_all__error": "Gagal mengantrekan undangan. Coba lagi.",
+  "invitees__send_all__attach_agenda": "Lampirkan PDF agenda",
   "invitees__preview__cta": "Pratinjau",
   "invitees__preview__hide": "Sembunyikan pratinjau",
   "invitees__preview__show": "Tampilkan pratinjau",

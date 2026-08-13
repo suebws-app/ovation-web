@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Hantar jemputan kepada {count} tetamu sekarang?",
   "invitees__send_all__success": "{queued} dalam giliran, {skipped} dilangkau (tiada e-mel).",
   "invitees__send_all__error": "Gagal beratur jemputan. Cuba lagi.",
+  "invitees__send_all__attach_agenda": "Lampirkan PDF agenda",
   "invitees__preview__cta": "Pratonton",
   "invitees__preview__hide": "Sembunyikan pratonton",
   "invitees__preview__show": "Tunjukkan pratonton",

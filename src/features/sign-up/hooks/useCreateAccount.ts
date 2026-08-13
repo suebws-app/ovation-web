@@ -139,6 +139,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
         endDate: toWeddingDate(eventData.endDate),
         venueName: eventData.venueName?.trim() || undefined,
         venueCity: eventData.venueCity?.trim() || undefined,
+        themeColor: eventData.themeColor || undefined,
         details: eventData.details,
         desiredSlug: eventData.bookUrl?.trim() || undefined,
       });
@@ -166,6 +167,12 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
           venueCity: eventData.venueCity?.trim() || undefined,
           details: eventData.details,
         });
+        // `themeColor` is not accepted on create — apply it after.
+        if (eventData.themeColor) {
+          await eventsClient
+            .update(event.id, { themeColor: eventData.themeColor })
+            .catch(() => undefined);
+        }
         if (typeof window !== "undefined") {
           window.sessionStorage?.setItem("ovation_signup_event_id", event.id);
           window.sessionStorage?.setItem("ovation_signup_event_created", "1");

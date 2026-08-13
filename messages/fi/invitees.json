@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Lähetetäänkö kutsut {count, plural, one {# vieraalle} other {# vieraalle}} nyt?",
   "invitees__send_all__success": "{queued} jonossa, {skipped} ohitettu (ei sähköpostia).",
   "invitees__send_all__error": "Kutsuja ei voitu jonottaa. Yritä uudelleen.",
+  "invitees__send_all__attach_agenda": "Liitä ohjelma-PDF",
   "invitees__preview__cta": "Esikatsele",
   "invitees__preview__hide": "Piilota esikatselu",
   "invitees__preview__show": "Näytä esikatselu",

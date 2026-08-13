@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Poslati pozivnice za {count, plural, one {# gosta} few {# gosta} other {# gostiju}} sada?",
   "invitees__send_all__success": "{queued} u redu, {skipped} preskočeno (bez e-pošte).",
   "invitees__send_all__error": "Pozivnice nije bilo moguće staviti u red. Pokušaj ponovno.",
+  "invitees__send_all__attach_agenda": "Priloži PDF s programom",
   "invitees__preview__cta": "Pretpregled",
   "invitees__preview__hide": "Sakrij pregled",
   "invitees__preview__show": "Prikaži pregled",

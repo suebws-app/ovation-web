@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Trimiți invitațiile către {count, plural, one {# invitat} few {# invitați} other {# de invitați}} acum?",
   "invitees__send_all__success": "{queued} în coadă, {skipped} omise (fără e-mail).",
   "invitees__send_all__error": "Nu am putut pune invitațiile în coadă. Încearcă din nou.",
+  "invitees__send_all__attach_agenda": "Atașează PDF-ul agendei",
   "invitees__preview__cta": "Previzualizare",
   "invitees__preview__hide": "Ascunde previzualizarea",
   "invitees__preview__show": "Arată previzualizarea",

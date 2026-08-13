@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "지금 손님 {count}명에게 초대장을 보내시겠습니까?",
   "invitees__send_all__success": "{queued}개 대기열에 추가, {skipped}개 건너뜀(이메일 없음).",
   "invitees__send_all__error": "초대장을 대기열에 추가할 수 없습니다. 다시 시도해 주세요.",
+  "invitees__send_all__attach_agenda": "일정 PDF 첨부",
   "invitees__preview__cta": "미리보기",
   "invitees__preview__hide": "미리보기 숨기기",
   "invitees__preview__show": "미리보기 표시",

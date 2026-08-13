@@ -80,6 +80,7 @@
   "invitees__send_all__confirm": "Odeslat pozvánky {count, plural, one {# hostu} few {# hostům} other {# hostům}} nyní?",
   "invitees__send_all__success": "{queued} ve frontě, {skipped} přeskočeno (bez e-mailu).",
   "invitees__send_all__error": "Pozvánky se nepodařilo zařadit do fronty. Zkus to znovu.",
+  "invitees__send_all__attach_agenda": "Připojit PDF s programem",
   "invitees__table__col_rsvp": "RSVP",
   "invitees__rsvp__pending": "Pending",
   "invitees__rsvp__accepted": "Accepted",

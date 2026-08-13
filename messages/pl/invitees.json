@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Wysłać zaproszenia do {count, plural, one {# gościa} few {# gości} many {# gości} other {# gości}} teraz?",
   "invitees__send_all__success": "{queued} w kolejce, {skipped} pominięto (bez e-maila).",
   "invitees__send_all__error": "Nie udało się umieścić zaproszeń w kolejce. Spróbuj ponownie.",
+  "invitees__send_all__attach_agenda": "Dołącz PDF z agendą",
   "invitees__preview__cta": "Podgląd",
   "invitees__preview__hide": "Ukryj podgląd",
   "invitees__preview__show": "Pokaż podgląd",

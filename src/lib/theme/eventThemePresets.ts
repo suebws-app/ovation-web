@@ -283,8 +283,8 @@ export const DEFAULT_PRESET_BY_TYPE: Record<string, EventThemePresetId> = {
   baby_shower: "blush",
   graduation: "blush",
   other: "blush",
-  corporate: "navy",
-  memorial: "sage",
+  corporate: "blush",
+  memorial: "blush",
 };
 
 export const getPresetById = (

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { Button } from "@ovation/ui/components/Button";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
@@ -67,6 +68,10 @@ export const CouplePlan = () => {
     router.push(appRoutes.checkout.root);
   };
 
+  const handleSkip = () => {
+    router.push(appRoutes.app.root);
+  };
+
   return (
     <div className="bg-background min-h-[calc(100vh-89px)]">
       <div className="mx-auto max-w-310 px-14 py-14">
@@ -99,6 +104,17 @@ export const CouplePlan = () => {
               onSelect={() => handleSelect(plan.id)}
             />
           ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={handleSkip}
+            className="text-muted-foreground hover:text-primary px-0 font-medium hover:bg-transparent"
+          >
+            {t("signup__plan__skip")}
+          </Button>
         </div>
       </div>
     </div>

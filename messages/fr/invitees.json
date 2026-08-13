@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Envoyer les invitations à {count, plural, one {# invité} other {# invités}} maintenant ?",
   "invitees__send_all__success": "{queued} en file d'attente, {skipped} ignorés (pas d'e-mail).",
   "invitees__send_all__error": "Impossible de mettre les invitations en file d'attente. Réessaie.",
+  "invitees__send_all__attach_agenda": "Joindre le PDF du programme",
   "invitees__preview__cta": "Aperçu",
   "invitees__preview__hide": "Masquer l’aperçu",
   "invitees__preview__show": "Afficher l’aperçu",

@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Sende invitasjoner til {count, plural, one {# gjest} other {# gjester}} nå?",
   "invitees__send_all__success": "{queued} i kø, {skipped} hoppet over (ingen e-post).",
   "invitees__send_all__error": "Kunne ikke legge invitasjoner i kø. Prøv igjen.",
+  "invitees__send_all__attach_agenda": "Legg ved agenda-PDF",
   "invitees__preview__cta": "Forhåndsvis",
   "invitees__preview__hide": "Skjul forhåndsvisning",
   "invitees__preview__show": "Vis forhåndsvisning",

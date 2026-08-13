@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getCurrentUser } from "@/lib/auth/session";
 import { appRoutes } from "@/lib/routes";
+import { SignupThemeScope } from "@/components/SignupThemeScope";
 import { CreateHeader } from "@/features/layout/CreateHeader/CreateHeader";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 import { eventsApi } from "@/lib/api/events";
@@ -51,6 +52,7 @@ export default async function CreateLayout({
 
   return (
     <NextIntlClientProvider>
+      <SignupThemeScope />
       <div className="bg-background flex min-h-screen w-full flex-col">
         <CreateHeader />
         <main className="flex-1">{children}</main>

@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Nu uitnodigingen versturen naar {count, plural, one {# gast} other {# gasten}}?",
   "invitees__send_all__success": "{queued} in wachtrij, {skipped} overgeslagen (geen e-mail).",
   "invitees__send_all__error": "Kan uitnodigingen niet in wachtrij plaatsen. Probeer opnieuw.",
+  "invitees__send_all__attach_agenda": "Agenda-pdf bijvoegen",
   "invitees__preview__cta": "Voorbeeld",
   "invitees__preview__hide": "Voorbeeld verbergen",
   "invitees__preview__show": "Voorbeeld tonen",

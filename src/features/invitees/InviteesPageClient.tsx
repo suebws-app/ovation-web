@@ -7,6 +7,7 @@ import { UploadIcon } from "@ovation/icons/UploadIcon";
 import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
 import { ChevronRightIcon } from "@ovation/icons/ChevronRightIcon";
 import { Button } from "@ovation/ui/components/Button";
+import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { cn } from "@ovation/ui/utils/cn";
 import type { Event } from "@/lib/api/types";
 import { toast } from "@/components/Toaster";
@@ -33,6 +34,12 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
   const [importOpen, setImportOpen] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [paneOpen, setPaneOpen] = useState(true);
+  const [attachAgenda, setAttachAgenda] = useState(false);
+
+  const hasAgenda =
+    event.eventType === "corporate" &&
+    typeof event.details?.agenda === "string" &&
+    Boolean(event.details.agenda);
 
   const unsentWithEmail = useMemo(
     () =>
@@ -51,7 +58,9 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
       return;
     }
     try {
-      const result = await sendAll.mutateAsync();
+      const result = await sendAll.mutateAsync(
+        hasAgenda ? { attachAgenda } : undefined,
+      );
       toast.success(
         t("invitees__send_all__success", {
           queued: result.queued,
@@ -98,6 +107,7 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
             invitees={invitees}
             isLoading={isLoading}
             isError={isError}
+            attachAgenda={attachAgenda}
           />
         </div>
 
@@ -136,6 +146,14 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
       />
 
       <footer className="border-border bg-card tablet:px-8 desktop:left-(--sidebar-width) fixed right-0 bottom-0 left-0 z-20 flex items-center justify-end gap-2 border-t px-4 py-4">
+        {hasAgenda && (
+          <Checkbox
+            checked={attachAgenda}
+            onChange={setAttachAgenda}
+            label={t("invitees__send_all__attach_agenda")}
+            className="mr-auto"
+          />
+        )}
         <Button
           type="button"
           size="sm"

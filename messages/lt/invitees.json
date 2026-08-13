@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Siųsti kvietimus {count, plural, one {# svečiui} few {# svečiams} many {# svečio} other {# svečių}} dabar?",
   "invitees__send_all__success": "{queued} eilėje, {skipped} praleista (be el. pašto).",
   "invitees__send_all__error": "Nepavyko įdėti kvietimų į eilę. Pabandyk dar kartą.",
+  "invitees__send_all__attach_agenda": "Pridėti darbotvarkės PDF",
   "invitees__preview__cta": "Peržiūra",
   "invitees__preview__hide": "Slėpti peržiūrą",
   "invitees__preview__show": "Rodyti peržiūrą",

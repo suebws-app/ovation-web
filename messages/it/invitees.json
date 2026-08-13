@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Inviare gli inviti a {count, plural, one {# invitato} other {# invitati}} ora?",
   "invitees__send_all__success": "{queued} in coda, {skipped} saltati (senza email).",
   "invitees__send_all__error": "Impossibile mettere in coda gli inviti. Riprova.",
+  "invitees__send_all__attach_agenda": "Allega il PDF dell'agenda",
   "invitees__preview__cta": "Anteprima",
   "invitees__preview__hide": "Nascondi anteprima",
   "invitees__preview__show": "Mostra anteprima",

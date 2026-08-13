@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "¿Enviar invitaciones a {count, plural, one {# invitado} other {# invitados}} ahora?",
   "invitees__send_all__success": "{queued} en cola, {skipped} omitidas (sin email).",
   "invitees__send_all__error": "No se pudieron poner las invitaciones en cola. Inténtalo de nuevo.",
+  "invitees__send_all__attach_agenda": "Adjuntar PDF de la agenda",
   "invitees__preview__cta": "Vista previa",
   "invitees__preview__hide": "Ocultar vista previa",
   "invitees__preview__show": "Mostrar vista previa",

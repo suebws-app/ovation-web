@@ -5,6 +5,7 @@ import { eventsClient } from "@/lib/api/events-client";
 import { planPurchasesClient } from "@/lib/api/plan-purchases-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
+import type { UpdateEventInput } from "@/lib/api/types";
 import { clearPendingEvent } from "@/features/create/pendingEvent";
 
 const STORAGE_KEY = "ovation_pending_event_data";
@@ -17,6 +18,7 @@ type PendingEventData = {
   endDate?: string | null;
   venueName: string | null;
   venueCity: string | null;
+  themeColor?: string | null;
   details?: Record<string, unknown>;
   desiredSlug: string | null;
 };
@@ -94,15 +96,21 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
             details: data.details,
           });
 
+          const updates: UpdateEventInput = {};
           if (
             data.desiredSlug &&
             data.desiredSlug !== event.slug &&
             SLUG_RE.test(data.desiredSlug)
           ) {
+            updates.slug = data.desiredSlug;
+          }
+          // `themeColor` is not accepted on create — apply it here.
+          if (data.themeColor) updates.themeColor = data.themeColor;
+          if (Object.keys(updates).length > 0) {
             try {
-              await eventsClient.update(event.id, { slug: data.desiredSlug });
+              await eventsClient.update(event.id, updates);
             } catch {
-              // ignore slug failure
+              // ignore update failure
             }
           }
 

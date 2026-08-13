@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Odoslať pozvánky {count, plural, one {# hosťovi} few {# hosťom} other {# hosťom}} teraz?",
   "invitees__send_all__success": "{queued} v rade, {skipped} preskočených (bez e-mailu).",
   "invitees__send_all__error": "Pozvánky sa nepodarilo zaradiť. Skús znova.",
+  "invitees__send_all__attach_agenda": "Priložiť PDF s programom",
   "invitees__preview__cta": "Náhľad",
   "invitees__preview__hide": "Skryť náhľad",
   "invitees__preview__show": "Zobraziť náhľad",

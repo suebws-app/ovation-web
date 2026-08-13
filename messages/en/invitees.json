@@ -80,6 +80,7 @@
   "invitees__send_all__confirm": "Send invitations to {count} guests now?",
   "invitees__send_all__success": "{queued} queued, {skipped} skipped (no email).",
   "invitees__send_all__error": "Couldn't queue invitations. Try again.",
+  "invitees__send_all__attach_agenda": "Attach agenda PDF",
   "invitees__table__col_rsvp": "RSVP",
   "invitees__rsvp__pending": "Pending",
   "invitees__rsvp__accepted": "Accepted",

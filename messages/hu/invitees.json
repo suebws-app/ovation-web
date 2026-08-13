@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Most kiküldöd a meghívókat {count} vendégnek?",
   "invitees__send_all__success": "{queued} sorba állítva, {skipped} kihagyva (nincs e-mail).",
   "invitees__send_all__error": "Nem sikerült sorba állítani a meghívókat. Próbáld újra.",
+  "invitees__send_all__attach_agenda": "Napirend PDF csatolása",
   "invitees__preview__cta": "Előnézet",
   "invitees__preview__hide": "Előnézet elrejtése",
   "invitees__preview__show": "Előnézet megjelenítése",

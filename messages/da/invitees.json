@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Send invitationer til {count, plural, one {# gæst} other {# gæster}} nu?",
   "invitees__send_all__success": "{queued} i kø, {skipped} sprunget over (ingen e-mail).",
   "invitees__send_all__error": "Kunne ikke sætte invitationerne i kø. Prøv igen.",
+  "invitees__send_all__attach_agenda": "Vedhæft dagsorden som PDF",
   "invitees__preview__cta": "Forhåndsvisning",
   "invitees__preview__hide": "Skjul forhåndsvisning",
   "invitees__preview__show": "Vis forhåndsvisning",

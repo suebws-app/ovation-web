@@ -746,6 +746,16 @@ export type InvitationBulkResult = {
   skipped: number;
 };
 
+/**
+ * Options for the invitation-send endpoints. `attachAgenda` asks the backend to
+ * attach the corporate event's agenda PDF (`event.details.agenda`) to the
+ * composed invite email. Backend must honor this — the email is built
+ * server-side.
+ */
+export type SendInvitationInput = {
+  attachAgenda?: boolean;
+};
+
 export type InvitationCopyLinkResult = {
   url: string;
 };

@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Kas saata kutsed {count, plural, one {# külalisele} other {# külalisele}} kohe?",
   "invitees__send_all__success": "{queued} järjekorras, {skipped} vahele jäetud (e-post puudub).",
   "invitees__send_all__error": "Kutsete järjekorda panemine ebaõnnestus. Proovi uuesti.",
+  "invitees__send_all__attach_agenda": "Lisa päevakava PDF",
   "invitees__preview__cta": "Eelvaade",
   "invitees__preview__hide": "Peida eelvaade",
   "invitees__preview__show": "Näita eelvaadet",

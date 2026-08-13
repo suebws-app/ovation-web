@@ -31,9 +31,15 @@ type InviteeRowProps = {
   eventId: string;
   invitee: Invitee;
   index: number;
+  attachAgenda?: boolean;
 };
 
-export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
+export const InviteeRow = ({
+  eventId,
+  invitee,
+  index,
+  attachAgenda,
+}: InviteeRowProps) => {
   const t = useTranslations();
   const update = useUpdateInvitee(eventId);
   const remove = useDeleteInvitee(eventId);
@@ -83,7 +89,7 @@ export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
 
   const handleSend = async () => {
     try {
-      await send.mutateAsync(invitee.id);
+      await send.mutateAsync({ inviteeId: invitee.id, attachAgenda });
       toast.success(
         t("invitees__row__send_success", { name: invitee.firstName }),
       );

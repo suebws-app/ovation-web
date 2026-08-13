@@ -16,11 +16,11 @@ import { useHydrateStore } from "@/lib/storage/useHydrateStore";
 import { startNavigation } from "@/components/NavigationProgress";
 import { useSlugChecker } from "@/features/create/hooks/useSlugChecker";
 import { useSlugSuggestions } from "@/features/create/hooks/useSlugSuggestions";
-import { COVER_OPTIONS } from "@/features/create/constants";
 import { CoverPageSkeleton } from "@/features/create/skeletons/CoverPageSkeleton";
 import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
+import type { UpdateEventInput } from "@/lib/api/types";
 import { setCookie } from "@/lib/utils/cookies";
 import { isConsumerRole, isProRole } from "@/lib/auth/account-role";
 import { toIsoDate } from "@/lib/utils/formatDate";
@@ -29,9 +29,13 @@ import {
   stashPendingEvent,
 } from "@/features/create/pendingEvent";
 import { getEventTypeConfig } from "@/lib/event-types";
+import {
+  resolveEventThemePreset,
+  scaleFor,
+} from "@/lib/theme/eventThemePresets";
 import { BookPreview } from "./components/BookPreview";
 import { CoverPattern } from "./components/CoverPattern";
-import { CoverPhotoSelector } from "./components/CoverPhotoSelector";
+import { CoverColorSelector } from "./components/CoverColorSelector";
 import { SlugInput } from "./components/SlugInput";
 
 const LAST_EVENT_COOKIE = "ovation_last_event_id";
@@ -67,35 +71,11 @@ export const CoverPage = () => {
     formData.partner2Name,
   );
 
-  const [coverFile, setCoverFile] = useState<File | null>(null);
-  const [coverFilePreview, setCoverFilePreview] = useState<string | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (coverFilePreview) URL.revokeObjectURL(coverFilePreview);
-    };
-  }, [coverFilePreview]);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const canContinue =
     status !== "invalid" && status !== "taken" && !isSubmitting;
-
-  const handleSelectPreset = (id: string) => {
-    if (coverFilePreview) URL.revokeObjectURL(coverFilePreview);
-    setCoverFile(null);
-    setCoverFilePreview(null);
-    updateFormData({ coverType: id });
-  };
-
-  const handleSelectFile = (file: File) => {
-    if (coverFilePreview) URL.revokeObjectURL(coverFilePreview);
-    const preview = URL.createObjectURL(file);
-    setCoverFile(file);
-    setCoverFilePreview(preview);
-    updateFormData({ coverType: "" });
-  };
 
   const handleContinue = async () => {
     if (!session?.user) {
@@ -129,6 +109,7 @@ export const CoverPage = () => {
             : undefined,
         venueName: data.venueName?.trim() || undefined,
         venueCity: data.venueCity?.trim() || undefined,
+        themeColor: data.themeColor || undefined,
         details: data.details,
         desiredSlug: data.bookUrl?.trim() || undefined,
       });
@@ -172,6 +153,7 @@ export const CoverPage = () => {
           weddingDate,
           venueName,
           venueCity,
+          themeColor: data.themeColor || undefined,
         });
         targetEventId = event.id;
       } else {
@@ -189,12 +171,21 @@ export const CoverPage = () => {
 
       await profileClient.markOnboardingComplete().catch(() => undefined);
 
+      const updates: UpdateEventInput = {};
       const desiredSlug = data.bookUrl?.trim();
       if (desiredSlug && /^[a-z0-9-]{4,20}$/.test(desiredSlug)) {
+        updates.slug = desiredSlug;
+      }
+      // `themeColor` is not accepted on create — apply it here (edit mode
+      // already sent it in the update above).
+      if (mode !== "edit" && data.themeColor) {
+        updates.themeColor = data.themeColor;
+      }
+      if (Object.keys(updates).length > 0) {
         try {
-          await eventsClient.update(targetEventId, { slug: desiredSlug });
+          await eventsClient.update(targetEventId, updates);
         } catch {
-          // Slug clash — keep existing
+          // Slug clash / non-fatal — keep existing
         }
       }
 
@@ -220,6 +211,15 @@ export const CoverPage = () => {
     .filter((n): n is string => Boolean(n));
   const titleLine = hostNames.join(" & ") || undefined;
   const initials = hostNames.map((n) => n[0]?.toUpperCase()).join("&") || "OV";
+  const selectedPreset = resolveEventThemePreset({
+    themeColor: formData.themeColor,
+    eventType: formData.eventType,
+  });
+  const coverColor = scaleFor(
+    selectedPreset.hue,
+    selectedPreset.chromaMul,
+    selectedPreset.deep,
+  ).light.primary;
   const generatedSlug = useMemo(
     () =>
       (hostNames.length ? hostNames.join("-and-") : "my-event")
@@ -279,22 +279,7 @@ export const CoverPage = () => {
             venue={[formData.venueName, formData.venueCity]
               .filter(Boolean)
               .join(", ")}
-            coverImage={
-              coverFilePreview ? (
-                <img
-                  src={coverFilePreview}
-                  alt={t("signup__cover__step_label")}
-                  className="size-full object-cover"
-                />
-              ) : formData.coverType && formData.coverType !== "upload" ? (
-                <CoverPattern
-                  tint={
-                    COVER_OPTIONS.find((o) => o.id === formData.coverType)
-                      ?.tint ?? "#EFC9A8"
-                  }
-                />
-              ) : undefined
-            }
+            coverImage={<CoverPattern tint={coverColor} />}
           />
           <p className="type-body-small relative max-w-90 leading-relaxed opacity-85">
             {t("signup__cover__brand_caption")}
@@ -319,14 +304,14 @@ export const CoverPage = () => {
           {t("signup__cover__subtitle")}
         </p>
 
-        <CoverPhotoSelector
-          coverType={formData.coverType}
-          coverFile={coverFile}
-          coverFilePreview={coverFilePreview}
-          initials={initials}
-          onSelectPreset={handleSelectPreset}
-          onSelectFile={handleSelectFile}
-        />
+        <div className="tablet:mt-6 mt-4">
+          <CoverColorSelector
+            value={formData.themeColor}
+            onChange={(hex) => updateFormData({ themeColor: hex })}
+            eventType={formData.eventType}
+            initials={initials}
+          />
+        </div>
 
         <div className="tablet:mt-6 mt-4">
           <Kicker className="text-muted-foreground mb-2">

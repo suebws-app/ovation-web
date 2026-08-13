@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Skicka inbjudningar till {count, plural, one {# gäst} other {# gäster}} nu?",
   "invitees__send_all__success": "{queued} i kö, {skipped} hoppade över (ingen e-post).",
   "invitees__send_all__error": "Kunde inte köa inbjudningarna. Försök igen.",
+  "invitees__send_all__attach_agenda": "Bifoga agenda-PDF",
   "invitees__preview__cta": "Förhandsvisa",
   "invitees__preview__hide": "Dölj förhandsgranskning",
   "invitees__preview__show": "Visa förhandsgranskning",

@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Dërgo ftesat tani te {count, plural, one {# i ftuar} other {# të ftuar}}?",
   "invitees__send_all__success": "{queued} në radhë, {skipped} të anashkaluara (pa email).",
   "invitees__send_all__error": "Ftesat nuk u vendosën në radhë. Provo përsëri.",
+  "invitees__send_all__attach_agenda": "Bashkëngjit PDF-në e axhendës",
   "invitees__preview__cta": "Pamje paraprake",
   "invitees__preview__hide": "Fshih parapamjen",
   "invitees__preview__show": "Shfaq parapamjen",

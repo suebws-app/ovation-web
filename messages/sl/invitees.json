@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Pošljemo zdaj vabila {count, plural, one {# gostu} two {# gostoma} few {# gostom} other {# gostom}}?",
   "invitees__send_all__success": "{queued} v vrsti, {skipped} preskočenih (brez e-pošte).",
   "invitees__send_all__error": "Vabil ni bilo mogoče dati v vrsto. Poskusi znova.",
+  "invitees__send_all__attach_agenda": "Pripni PDF z dnevnim redom",
   "invitees__preview__cta": "Predogled",
   "invitees__preview__hide": "Skrij predogled",
   "invitees__preview__show": "Pokaži predogled",

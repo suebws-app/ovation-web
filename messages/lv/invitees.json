@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "Nosūtīt ielūgumus {count, plural, zero {# viesiem} one {# viesim} other {# viesiem}} tagad?",
   "invitees__send_all__success": "{queued} rindā, {skipped} izlaisti (bez e-pasta).",
   "invitees__send_all__error": "Neizdevās ievietot ielūgumus rindā. Mēģini vēlreiz.",
+  "invitees__send_all__attach_agenda": "Pievienot darba kārtības PDF",
   "invitees__preview__cta": "Priekšskatīt",
   "invitees__preview__hide": "Slēpt priekšskatījumu",
   "invitees__preview__show": "Rādīt priekšskatījumu",

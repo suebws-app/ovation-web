@@ -13,7 +13,7 @@ export type CreateEventFormData = {
   endDate: Date | null;
   venueName: string;
   venueCity: string;
-  coverType: string;
+  themeColor: string;
   bookUrl: string;
   // Type-specific fields (registry `details` fields) collected by the dynamic
   // form; merged into the event's `details` on create.
@@ -39,7 +39,7 @@ const initialFormData: CreateEventFormData = {
   endDate: null,
   venueName: "",
   venueCity: "",
-  coverType: "",
+  themeColor: "#FF78AC",
   bookUrl: "",
   details: {},
 };
@@ -81,7 +81,7 @@ export const useCreateEventStore = create<CreateEventStore>()(
     }),
     {
       name: STORE_KEY,
-      version: 4,
+      version: 5,
       skipHydration: true,
       storage: createJSONStorage(
         () => createTTLLocalStorage({ ttlMs: TTL_MS }),
@@ -96,10 +96,6 @@ export const useCreateEventStore = create<CreateEventStore>()(
         const persistedState = (persisted ?? {}) as Partial<PersistedState>;
         const persistedForm = (persistedState.formData ??
           {}) as Partial<PersistedFormData>;
-        const coverType =
-          persistedForm.coverType === "upload"
-            ? ""
-            : (persistedForm.coverType ?? initialFormData.coverType);
         const weddingDate =
           persistedForm.weddingDate instanceof Date &&
           !Number.isNaN(persistedForm.weddingDate.getTime())
@@ -121,7 +117,6 @@ export const useCreateEventStore = create<CreateEventStore>()(
             details: persistedForm.details ?? {},
             weddingDate,
             endDate,
-            coverType,
           },
         };
       },

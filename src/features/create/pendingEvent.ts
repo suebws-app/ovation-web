@@ -9,7 +9,12 @@ import type { CreateEventInput } from "@/lib/api/types";
  */
 const KEY = "ovation_pending_event";
 
-export type PendingEvent = CreateEventInput & { desiredSlug?: string };
+export type PendingEvent = CreateEventInput & {
+  desiredSlug?: string;
+  // Applied via a follow-up `update` after create — the create endpoint does
+  // not accept `themeColor`.
+  themeColor?: string;
+};
 
 export const stashPendingEvent = (data: PendingEvent): void => {
   if (typeof window === "undefined") return;

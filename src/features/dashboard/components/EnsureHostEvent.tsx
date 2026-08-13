@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
+import type { UpdateEventInput } from "@/lib/api/types";
 import {
   clearPendingEvent,
   readPendingEvent,
@@ -40,16 +41,19 @@ export const EnsureHostEvent = ({
 
     const run = async () => {
       try {
-        const { desiredSlug, ...input } = pending;
+        const { desiredSlug, themeColor, ...input } = pending;
         const { event } = await eventsClient.create(input);
+        const updates: UpdateEventInput = {};
         if (
           desiredSlug &&
           desiredSlug !== event.slug &&
           SLUG_RE.test(desiredSlug)
         ) {
-          await eventsClient
-            .update(event.id, { slug: desiredSlug })
-            .catch(() => undefined);
+          updates.slug = desiredSlug;
+        }
+        if (themeColor) updates.themeColor = themeColor;
+        if (Object.keys(updates).length > 0) {
+          await eventsClient.update(event.id, updates).catch(() => undefined);
         }
         await profileClient.markOnboardingComplete().catch(() => undefined);
         clearPendingEvent();

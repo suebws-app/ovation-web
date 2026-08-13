@@ -75,6 +75,7 @@
   "invitees__send_all__confirm": "{count} davetliye şimdi davetiye gönderilsin mi?",
   "invitees__send_all__success": "{queued} sıraya alındı, {skipped} atlandı (e-posta yok).",
   "invitees__send_all__error": "Davetiyeler sıraya alınamadı. Tekrar dene.",
+  "invitees__send_all__attach_agenda": "Gündem PDF'sini ekle",
   "invitees__preview__cta": "Önizle",
   "invitees__preview__hide": "Önizlemeyi gizle",
   "invitees__preview__show": "Önizlemeyi göster",
