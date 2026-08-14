@@ -79,6 +79,7 @@
   "event__field__degree": "Abschluss",
   "event__field__class_year": "Abschlussjahr",
   "event__field__custom_event_noun": "Art der Veranstaltung",
+  "event__field__custom_event_noun_placeholder": "z. B. Wiedersehen, Ruhestand, Einweihung",
   "event__field__host_name": "Name des Gastgebers",
   "event__field__event_date": "Veranstaltungsdatum",
   "event__field__event_name": "Name der Veranstaltung",

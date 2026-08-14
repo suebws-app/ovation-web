@@ -79,6 +79,7 @@
   "event__field__degree": "Kraad",
   "event__field__class_year": "Lõpetamise aasta",
   "event__field__custom_event_noun": "Ürituse tüüp",
+  "event__field__custom_event_noun_placeholder": "nt Kokkutulek, Pensionile jäämine, Sisseõnnistamine",
   "event__field__host_name": "Korraldaja nimi",
   "event__field__event_date": "Ürituse kuupäev",
   "event__field__event_name": "Ürituse nimi",

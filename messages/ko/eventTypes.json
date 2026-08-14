@@ -79,6 +79,7 @@
   "event__field__degree": "학위",
   "event__field__class_year": "졸업 연도",
   "event__field__custom_event_noun": "행사 유형",
+  "event__field__custom_event_noun_placeholder": "예: 동창회, 은퇴, 집들이",
   "event__field__host_name": "주최자 이름",
   "event__field__event_date": "행사 날짜",
   "event__field__event_name": "행사 이름",

@@ -79,6 +79,7 @@
   "event__field__degree": "Derece",
   "event__field__class_year": "Mezuniyet yılı",
   "event__field__custom_event_noun": "Etkinlik türü",
+  "event__field__custom_event_noun_placeholder": "örn. Buluşma, Emeklilik, Ev partisi",
   "event__field__host_name": "Ev sahibi adı",
   "event__field__event_date": "Etkinlik tarihi",
   "event__field__event_name": "Etkinlik adı",

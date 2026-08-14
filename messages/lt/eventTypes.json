@@ -79,6 +79,7 @@
   "event__field__degree": "Laipsnis",
   "event__field__class_year": "Laidos metai",
   "event__field__custom_event_noun": "Renginio tipas",
+  "event__field__custom_event_noun_placeholder": "pvz. Susitikimas, Išėjimas į pensiją, Įkurtuvės",
   "event__field__host_name": "Šeimininko vardas",
   "event__field__event_date": "Renginio data",
   "event__field__event_name": "Renginio pavadinimas",

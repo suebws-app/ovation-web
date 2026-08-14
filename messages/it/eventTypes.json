@@ -79,6 +79,7 @@
   "event__field__degree": "Titolo di studio",
   "event__field__class_year": "Anno di diploma",
   "event__field__custom_event_noun": "Tipo di evento",
+  "event__field__custom_event_noun_placeholder": "es. Rimpatriata, Pensionamento, Festa della casa nuova",
   "event__field__host_name": "Nome dell'organizzatore",
   "event__field__event_date": "Data dell'evento",
   "event__field__event_name": "Nome dell'evento",

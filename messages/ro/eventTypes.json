@@ -79,6 +79,7 @@
   "event__field__degree": "Diplomă",
   "event__field__class_year": "Anul absolvirii",
   "event__field__custom_event_noun": "Tip de eveniment",
+  "event__field__custom_event_noun_placeholder": "de ex. Reuniune, Pensionare, Petrecere de casă nouă",
   "event__field__host_name": "Numele gazdei",
   "event__field__event_date": "Data evenimentului",
   "event__field__event_name": "Numele evenimentului",

@@ -79,6 +79,7 @@
   "event__field__degree": "Diploma",
   "event__field__class_year": "Viti i diplomimit",
   "event__field__custom_event_noun": "Lloji i eventit",
+  "event__field__custom_event_noun_placeholder": "p.sh. Ribashkim, Dalje në pension, Festë shtëpie",
   "event__field__host_name": "Emri i organizatorit",
   "event__field__event_date": "Data e eventit",
   "event__field__event_name": "Emri i eventit",

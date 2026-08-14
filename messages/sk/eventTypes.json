@@ -79,6 +79,7 @@
   "event__field__degree": "Titul",
   "event__field__class_year": "Ročník",
   "event__field__custom_event_noun": "Typ podujatia",
+  "event__field__custom_event_noun_placeholder": "napr. Stretnutie, Odchod do dôchodku, Kolaudácia",
   "event__field__host_name": "Meno hostiteľa",
   "event__field__event_date": "Dátum podujatia",
   "event__field__event_name": "Názov podujatia",

@@ -79,6 +79,7 @@
   "event__field__degree": "Grāds",
   "event__field__class_year": "Izlaiduma gads",
   "event__field__custom_event_noun": "Pasākuma veids",
+  "event__field__custom_event_noun_placeholder": "piem. Salidojums, Pensionēšanās, Iesvētības",
   "event__field__host_name": "Rīkotāja vārds",
   "event__field__event_date": "Pasākuma datums",
   "event__field__event_name": "Pasākuma nosaukums",

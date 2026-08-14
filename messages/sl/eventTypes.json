@@ -79,6 +79,7 @@
   "event__field__degree": "Naziv",
   "event__field__class_year": "Letnik",
   "event__field__custom_event_noun": "Vrsta dogodka",
+  "event__field__custom_event_noun_placeholder": "npr. Srečanje, Upokojitev, Otvoritev doma",
   "event__field__host_name": "Ime gostitelja",
   "event__field__event_date": "Datum dogodka",
   "event__field__event_name": "Ime dogodka",

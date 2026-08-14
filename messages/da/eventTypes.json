@@ -79,6 +79,7 @@
   "event__field__degree": "Uddannelse",
   "event__field__class_year": "Årgang",
   "event__field__custom_event_noun": "Begivenhedstype",
+  "event__field__custom_event_noun_placeholder": "f.eks. Gensyn, Pensionering, Indflytterfest",
   "event__field__host_name": "Værtens navn",
   "event__field__event_date": "Dato for begivenheden",
   "event__field__event_name": "Begivenhedens navn",

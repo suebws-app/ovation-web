@@ -79,6 +79,7 @@
   "event__field__degree": "Diploma",
   "event__field__class_year": "Afstudeerjaar",
   "event__field__custom_event_noun": "Type evenement",
+  "event__field__custom_event_noun_placeholder": "bijv. Reünie, Pensioen, Housewarming",
   "event__field__host_name": "Naam gastheer",
   "event__field__event_date": "Evenementdatum",
   "event__field__event_name": "Naam evenement",

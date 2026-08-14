@@ -102,6 +102,7 @@ export const DetailsStep = ({ eventType, eventId }: DetailsStepProps) => {
           <Input
             id="inv-custom-noun"
             maxLength={40}
+            placeholder={t("event__field__custom_event_noun_placeholder")}
             {...register("customEventNoun")}
           />
         </div>

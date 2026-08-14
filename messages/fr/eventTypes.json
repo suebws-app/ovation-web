@@ -79,6 +79,7 @@
   "event__field__degree": "Diplôme",
   "event__field__class_year": "Promotion",
   "event__field__custom_event_noun": "Type d'événement",
+  "event__field__custom_event_noun_placeholder": "p. ex. Retrouvailles, Départ à la retraite, Pendaison de crémaillère",
   "event__field__host_name": "Nom de l'hôte",
   "event__field__event_date": "Date de l'événement",
   "event__field__event_name": "Nom de l'événement",

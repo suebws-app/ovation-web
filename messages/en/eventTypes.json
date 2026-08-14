@@ -79,6 +79,7 @@
   "event__field__degree": "Degree",
   "event__field__class_year": "Class year",
   "event__field__custom_event_noun": "Event type",
+  "event__field__custom_event_noun_placeholder": "e.g. Reunion, Retirement, Housewarming",
   "event__field__host_name": "Host name",
   "event__field__event_date": "Event date",
   "event__field__event_name": "Event name",

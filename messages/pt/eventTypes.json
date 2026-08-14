@@ -79,6 +79,7 @@
   "event__field__degree": "Curso",
   "event__field__class_year": "Ano de conclusão",
   "event__field__custom_event_noun": "Tipo de evento",
+  "event__field__custom_event_noun_placeholder": "ex.: Reencontro, Aposentadoria, Festa de inauguração",
   "event__field__host_name": "Nome do anfitrião",
   "event__field__event_date": "Data do evento",
   "event__field__event_name": "Nome do evento",

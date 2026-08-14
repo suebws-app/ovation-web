@@ -79,6 +79,7 @@
   "event__field__degree": "Titulación",
   "event__field__class_year": "Año de promoción",
   "event__field__custom_event_noun": "Tipo de evento",
+  "event__field__custom_event_noun_placeholder": "p. ej. Reencuentro, Jubilación, Inauguración de casa",
   "event__field__host_name": "Nombre del anfitrión",
   "event__field__event_date": "Fecha del evento",
   "event__field__event_name": "Nombre del evento",

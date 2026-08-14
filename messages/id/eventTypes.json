@@ -79,6 +79,7 @@
   "event__field__degree": "Gelar",
   "event__field__class_year": "Angkatan",
   "event__field__custom_event_noun": "Jenis acara",
+  "event__field__custom_event_noun_placeholder": "mis. Reuni, Pensiun, Syukuran rumah",
   "event__field__host_name": "Nama tuan rumah",
   "event__field__event_date": "Tanggal acara",
   "event__field__event_name": "Nama acara",

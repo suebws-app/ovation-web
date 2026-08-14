@@ -79,6 +79,7 @@
   "event__field__degree": "Grad",
   "event__field__class_year": "Avgangsår",
   "event__field__custom_event_noun": "Type arrangement",
+  "event__field__custom_event_noun_placeholder": "f.eks. Gjenforening, Pensjonering, Innflyttingsfest",
   "event__field__host_name": "Navn på vert",
   "event__field__event_date": "Arrangementsdato",
   "event__field__event_name": "Navn på arrangement",

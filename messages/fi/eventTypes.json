@@ -79,6 +79,7 @@
   "event__field__degree": "Tutkinto",
   "event__field__class_year": "Valmistumisvuosi",
   "event__field__custom_event_noun": "Tapahtuman tyyppi",
+  "event__field__custom_event_noun_placeholder": "esim. Tapaaminen, Eläkkeelle jääminen, Tupaantuliaiset",
   "event__field__host_name": "Järjestäjän nimi",
   "event__field__event_date": "Tapahtumapäivä",
   "event__field__event_name": "Tapahtuman nimi",

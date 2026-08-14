@@ -79,6 +79,7 @@
   "event__field__degree": "Ijazah",
   "event__field__class_year": "Tahun graduasi",
   "event__field__custom_event_noun": "Jenis acara",
+  "event__field__custom_event_noun_placeholder": "cth. Reuni, Persaraan, Rumah baru",
   "event__field__host_name": "Nama penganjur",
   "event__field__event_date": "Tarikh acara",
   "event__field__event_name": "Nama acara",

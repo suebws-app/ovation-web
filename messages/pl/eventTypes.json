@@ -79,6 +79,7 @@
   "event__field__degree": "Stopień",
   "event__field__class_year": "Rocznik",
   "event__field__custom_event_noun": "Rodzaj wydarzenia",
+  "event__field__custom_event_noun_placeholder": "np. Zjazd, Emerytura, Parapetówka",
   "event__field__host_name": "Nazwa gospodarza",
   "event__field__event_date": "Data wydarzenia",
   "event__field__event_name": "Nazwa wydarzenia",
