@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Odpowiedź zapisana",
   "guest__rsvp__error": "Nie udało się zapisać Twojej odpowiedzi",
   "guest__rsvp__cta": "Prosimy potwierdź zaproszenie",
+  "guest__welcome_default__wedding": "Razem z naszymi rodzinami zapraszamy cię do świętowania naszej miłości — zostaw nam wiadomość na pamiątkę tego dnia.",
+  "guest__welcome_default__birthday": "Świętuj z nami kolejny wspaniały rok — zostaw urodzinowe życzenia, by ten dzień był jeszcze słodszy.",
+  "guest__welcome_default__corporate": "Miło nam cię powitać. Nie możemy się doczekać spotkania — zostaw wiadomość przed wydarzeniem.",
+  "guest__welcome_default__baby_shower": "Powitaj z nami nasze maleństwo — zostaw ciepłą wiadomość i życzenie dla dziecka.",
+  "guest__welcome_default__anniversary": "Świętuj z nami lata miłości i wspomnienia, które dopiero nadejdą — podziel się z nami wiadomością.",
+  "guest__welcome_default__memorial": "Uczcijmy razem pięknie przeżyte życie — podziel się wspomnieniem lub kilkoma ciepłymi słowami.",
+  "guest__welcome_default__graduation": "Świętuj z nami ten ważny moment — zostaw gratulacje dla absolwenta.",
+  "guest__welcome_default__other": "Będzie nam miło, jeśli do nas dołączysz — zostaw wiadomość i bądź częścią tej chwili.",
   "guest__rsvp__title": "Twoja odpowiedź",
   "guest__rsvp__cancel": "Anuluj"
 }

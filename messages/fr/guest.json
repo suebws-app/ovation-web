@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Réponse enregistrée",
   "guest__rsvp__error": "Impossible d’enregistrer votre réponse",
   "guest__rsvp__cta": "Merci de confirmer votre invitation",
+  "guest__welcome_default__wedding": "Avec nos familles, nous vous invitons à célébrer notre amour — laissez-nous un message en souvenir de ce jour.",
+  "guest__welcome_default__birthday": "Venez fêter une nouvelle belle année avec nous — laissez un vœu d'anniversaire pour la rendre encore plus douce.",
+  "guest__welcome_default__corporate": "Nous sommes ravis de vous accueillir. Au plaisir de vous voir — laissez un mot avant l'événement.",
+  "guest__welcome_default__baby_shower": "Venez accueillir notre petit trésor avec nous — laissez un mot tendre et un vœu pour le bébé.",
+  "guest__welcome_default__anniversary": "Venez célébrer des années d'amour et les souvenirs à venir — partagez un message avec nous.",
+  "guest__welcome_default__memorial": "Rendons hommage ensemble à une vie magnifiquement vécue — partagez un souvenir ou quelques mots.",
+  "guest__welcome_default__graduation": "Célébrez cette étape avec nous — laissez un mot de félicitations pour le diplômé.",
+  "guest__welcome_default__other": "Nous serions ravis de vous compter parmi nous — laissez un message et faites partie du moment.",
   "guest__rsvp__title": "Votre réponse",
   "guest__rsvp__cancel": "Annuler"
 }

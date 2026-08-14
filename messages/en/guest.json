@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Response saved",
   "guest__rsvp__error": "Could not save your response",
   "guest__rsvp__cta": "Please confirm your invitation",
+  "guest__welcome_default__wedding": "Together with our families, we invite you to celebrate our love — leave us a message to remember the day by.",
+  "guest__welcome_default__birthday": "Come celebrate another wonderful year with us — leave a birthday wish to make it even sweeter.",
+  "guest__welcome_default__corporate": "We're delighted to welcome you. We look forward to seeing you there — share a note ahead of the event.",
+  "guest__welcome_default__baby_shower": "Join us as we welcome our little one — leave us a note of love and a wish for the baby.",
+  "guest__welcome_default__anniversary": "Join us as we celebrate years of love and the memories still to come — share a message with us.",
+  "guest__welcome_default__memorial": "Join us as we honor and remember a life beautifully lived — share a memory or a few kind words.",
+  "guest__welcome_default__graduation": "Celebrate this milestone with us — leave a note of congratulations for the graduate.",
+  "guest__welcome_default__other": "We'd love for you to join us — leave a message and be part of the moment.",
   "guest__rsvp__title": "Your RSVP",
   "guest__rsvp__cancel": "Cancel"
 }

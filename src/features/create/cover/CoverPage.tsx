@@ -29,6 +29,7 @@ import {
   stashPendingEvent,
 } from "@/features/create/pendingEvent";
 import { getEventTypeConfig } from "@/lib/event-types";
+import { formatPreviewDate } from "@/features/create/formatPreviewDate";
 import {
   resolveEventThemePreset,
   scaleFor,
@@ -229,11 +230,11 @@ export const CoverPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [formData.partner1Name, formData.partner2Name],
   );
-  const formattedDate = formData.weddingDate?.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+  const formattedDate = formatPreviewDate(
+    formData.weddingDate,
+    formData.endDate,
+    formData.eventType,
+  );
   const [userEditedSlug, setUserEditedSlug] = useState(false);
   const lastAutoSlugRef = useRef<string | null>(null);
 

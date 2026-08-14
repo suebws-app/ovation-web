@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Odpoveď uložená",
   "guest__rsvp__error": "Odpoveď sa nepodarilo uložiť",
   "guest__rsvp__cta": "Potvrďte prosím svoju pozvánku",
+  "guest__welcome_default__wedding": "Spolu s našimi rodinami ťa pozývame osláviť našu lásku — zanechaj nám odkaz na pamiatku tohto dňa.",
+  "guest__welcome_default__birthday": "Príď s nami osláviť ďalší nádherný rok — zanechaj narodeninové želanie, nech je deň ešte sladší.",
+  "guest__welcome_default__corporate": "Radi ťa privítame. Tešíme sa na teba — zanechaj odkaz pred podujatím.",
+  "guest__welcome_default__baby_shower": "Privítaj s nami naše bábätko — zanechaj milý odkaz a želanie pre bábätko.",
+  "guest__welcome_default__anniversary": "Oslávme spolu roky lásky a spomienky, ktoré ešte prídu — podeľ sa s nami o odkaz.",
+  "guest__welcome_default__memorial": "Uctime si spolu krásne prežitý život — podeľ sa o spomienku alebo pár láskavých slov.",
+  "guest__welcome_default__graduation": "Osláv s nami tento míľnik — zanechaj gratuláciu pre absolventa.",
+  "guest__welcome_default__other": "Budeme radi, ak sa k nám pridáš — zanechaj odkaz a buď súčasťou tohto okamihu.",
   "guest__rsvp__title": "Vaša odpoveď",
   "guest__rsvp__cancel": "Zrušiť"
 }

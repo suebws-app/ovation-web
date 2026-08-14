@@ -404,6 +404,7 @@ export type PublicEvent = {
   hostAName?: string;
   hostBName?: string | null;
   eventDate?: string | null;
+  endDate?: string | null;
   details?: Record<string, unknown>;
   coverPhotoUrl?: string | null;
   partnerAName: string;

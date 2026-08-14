@@ -1,6 +1,11 @@
 import { getLocale } from "next-intl/server";
 import type { PublicEvent } from "@/lib/api/types";
-import { eventDateOf, eventHostNames } from "@/lib/event-types";
+import {
+  eventDateOf,
+  eventHostNames,
+  getEventTypeConfig,
+  hasEndDateField,
+} from "@/lib/event-types";
 import { getEventCopy } from "@/lib/event-types/getEventCopy";
 
 type HeroDetailsProps = {
@@ -23,7 +28,16 @@ const formatEventDate = (raw: string | null, locale: string): string => {
 export const HeroDetails = async ({ event }: HeroDetailsProps) => {
   const copy = await getEventCopy(event);
   const locale = await getLocale();
-  const dateLabel = formatEventDate(eventDateOf(event), locale);
+  const start = eventDateOf(event);
+  // Multi-day types (corporate) show both dates; others ignore a stray end date.
+  const supportsRange = hasEndDateField(getEventTypeConfig(event.eventType));
+  const end =
+    supportsRange && event.endDate && event.endDate !== start
+      ? event.endDate
+      : null;
+  const dateLabel = end
+    ? `${formatEventDate(start, locale)} – ${formatEventDate(end, locale)}`
+    : formatEventDate(start, locale);
   const names = eventHostNames(event);
 
   return (

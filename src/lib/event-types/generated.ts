@@ -244,6 +244,13 @@ export const EVENT_TYPE_CONFIGS: EventTypeConfig[] = [
         max: 50,
       },
       {
+        key: "eventName",
+        kind: "text",
+        storage: "details",
+        max: 80,
+        labelKey: "event__field__event_name",
+      },
+      {
         key: "eventDate",
         kind: "date",
         storage: "column",
@@ -385,12 +392,6 @@ export const EVENT_TYPE_CONFIGS: EventTypeConfig[] = [
         labelKey: "event__field__shower_date",
       },
       {
-        key: "dueDate",
-        kind: "date",
-        storage: "details",
-        labelKey: "event__field__due_date",
-      },
-      {
         key: "locationName",
         kind: "text",
         storage: "column",
@@ -498,12 +499,6 @@ export const EVENT_TYPE_CONFIGS: EventTypeConfig[] = [
         labelKey: "event__field__celebration_date",
       },
       {
-        key: "sinceDate",
-        kind: "date",
-        storage: "details",
-        labelKey: "event__field__since_date",
-      },
-      {
         key: "locationName",
         kind: "text",
         storage: "column",
@@ -596,13 +591,13 @@ export const EVENT_TYPE_CONFIGS: EventTypeConfig[] = [
       },
       {
         key: "bornOn",
-        kind: "date",
+        kind: "int",
         storage: "details",
         labelKey: "event__field__born_on",
       },
       {
         key: "passedOn",
-        kind: "date",
+        kind: "int",
         storage: "details",
         labelKey: "event__field__passed_on",
       },
@@ -693,28 +688,6 @@ export const EVENT_TYPE_CONFIGS: EventTypeConfig[] = [
         storage: "column",
         column: "eventDate",
         labelKey: "event__field__ceremony_date",
-      },
-      {
-        key: "school",
-        kind: "text",
-        storage: "details",
-        max: 120,
-        labelKey: "event__field__school",
-      },
-      {
-        key: "degree",
-        kind: "text",
-        storage: "details",
-        max: 120,
-        labelKey: "event__field__degree",
-      },
-      {
-        key: "classYear",
-        kind: "int",
-        storage: "details",
-        min: 1900,
-        max: 2100,
-        labelKey: "event__field__class_year",
       },
       {
         key: "locationName",
@@ -821,7 +794,26 @@ export const EVENT_TYPE_CONFIGS: EventTypeConfig[] = [
         kind: "date",
         storage: "column",
         column: "eventDate",
-        labelKey: "event__field__event_date",
+        labelKey: "event__field__start_date",
+      },
+      {
+        key: "endDate",
+        kind: "date",
+        storage: "column",
+        column: "endDate",
+        labelKey: "event__field__end_date",
+      },
+      {
+        key: "logo",
+        kind: "image",
+        storage: "details",
+        labelKey: "event__field__logo",
+      },
+      {
+        key: "agenda",
+        kind: "file",
+        storage: "details",
+        labelKey: "event__field__agenda",
       },
       {
         key: "locationName",

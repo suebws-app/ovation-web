@@ -1,6 +1,5 @@
 {
   "et__common__guest": "invitado",
-
   "et__wedding__event": "boda",
   "et__wedding__host": "pareja",
   "et__wedding__host_plural": "parejas",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Boda",
   "et__wedding__tagline": "Celebra tu matrimonio",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "fiesta de cumpleaños",
   "et__birthday__host": "estrella del cumpleaños",
   "et__birthday__date_label": "Fecha de la fiesta",
   "et__birthday__name": "Cumpleaños",
   "et__birthday__tagline": "Celebra un año más",
   "et__birthday__title_postfix": "Cumpleaños",
-
   "et__corporate__event": "evento",
   "et__corporate__host": "organización",
   "et__corporate__date_label": "Fecha del evento",
   "et__corporate__name": "Evento corporativo",
   "et__corporate__tagline": "Conferencias, lanzamientos y más",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "baby shower",
   "et__baby_shower__host": "familia",
   "et__baby_shower__date_label": "Fecha del baby shower",
   "et__baby_shower__name": "Baby shower",
   "et__baby_shower__tagline": "Da la bienvenida al bebé",
   "et__baby_shower__title_postfix": "Baby shower",
-
   "et__anniversary__event": "aniversario",
   "et__anniversary__host": "pareja",
   "et__anniversary__date_label": "Fecha de la celebración",
   "et__anniversary__name": "Aniversario",
   "et__anniversary__tagline": "Celebra los años juntos",
   "et__anniversary__title_postfix": "Aniversario",
-
   "et__memorial__event": "homenaje",
   "et__memorial__host": "familia",
   "et__memorial__date_label": "Fecha de la ceremonia",
   "et__memorial__name": "Homenaje",
   "et__memorial__tagline": "Honra una vida recordada",
   "et__memorial__title_postfix": "En memoria",
-
   "et__graduation__event": "graduación",
   "et__graduation__host": "persona graduada",
   "et__graduation__date_label": "Fecha de la ceremonia",
   "et__graduation__name": "Graduación",
   "et__graduation__tagline": "Celebra el logro",
   "et__graduation__title_postfix": "Graduación",
-
   "et__other__event": "evento",
   "et__other__host": "persona anfitriona",
   "et__other__date_label": "Fecha del evento",
   "et__other__name": "Otro",
   "et__other__tagline": "Cualquier ocasión que quieras",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Pareja 1",
   "event__field__partner_b": "Pareja 2",
   "event__field__wedding_date": "Fecha de boda",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Fecha del evento",
   "event__field__event_name": "Nombre del evento",
   "event__field__event_name_placeholder": "ej. Conferencia Anual de Acme (opcional)",
-
   "event__type_picker__title": "¿Qué estás celebrando?",
   "event__type_picker__subtitle": "Elige el tipo de evento para empezar",
   "event__type_picker__step_label": "Tipo de evento",
-
   "settings__event_type__warn_lost": "Cambiar el tipo eliminará estos campos: {fields}",
   "settings__event_type__confirm": "Cambiar tipo de evento",
-
   "settings__event_details__upload": "Subir",
   "settings__event_details__replace": "Reemplazar",
+  "settings__event_details__remove": "Quitar",
   "settings__event_details__uploading": "Subiendo…",
   "settings__event_details__upload_error": "Error al subir. Inténtalo de nuevo.",
   "settings__event_details__view_file": "Ver archivo"

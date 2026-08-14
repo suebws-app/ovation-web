@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Risposta salvata",
   "guest__rsvp__error": "Impossibile salvare la tua risposta",
   "guest__rsvp__cta": "Conferma il tuo invito",
+  "guest__welcome_default__wedding": "Insieme alle nostre famiglie, ti invitiamo a celebrare il nostro amore — lasciaci un messaggio per ricordare questo giorno.",
+  "guest__welcome_default__birthday": "Vieni a festeggiare un altro anno meraviglioso con noi — lascia un augurio di compleanno per renderlo ancora più dolce.",
+  "guest__welcome_default__corporate": "Siamo lieti di darti il benvenuto. Non vediamo l'ora di vederti — lascia un messaggio prima dell'evento.",
+  "guest__welcome_default__baby_shower": "Unisciti a noi per dare il benvenuto al nostro piccolo — lasciaci un pensiero affettuoso e un augurio per il bimbo.",
+  "guest__welcome_default__anniversary": "Unisciti a noi per festeggiare anni d'amore e i ricordi che verranno — condividi un messaggio con noi.",
+  "guest__welcome_default__memorial": "Unisciti a noi per onorare e ricordare una vita vissuta splendidamente — condividi un ricordo o poche parole gentili.",
+  "guest__welcome_default__graduation": "Festeggia questo traguardo con noi — lascia un messaggio di congratulazioni per il laureato.",
+  "guest__welcome_default__other": "Ci farebbe piacere averti con noi — lascia un messaggio e sii parte del momento.",
   "guest__rsvp__title": "La tua risposta",
   "guest__rsvp__cancel": "Annulla"
 }

@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Odgovor shranjen",
   "guest__rsvp__error": "Vašega odgovora ni bilo mogoče shraniti",
   "guest__rsvp__cta": "Prosimo, potrdite svoje vabilo",
+  "guest__welcome_default__wedding": "Skupaj z najinima družinama te vabiva, da praznuješ najino ljubezen — pusti nam sporočilo v spomin na ta dan.",
+  "guest__welcome_default__birthday": "Pridi z nami praznovat še eno čudovito leto — pusti rojstnodnevno željo, da bo dan še lepši.",
+  "guest__welcome_default__corporate": "Veseli nas, da te lahko pozdravimo. Veselimo se srečanja — pusti sporočilo pred dogodkom.",
+  "guest__welcome_default__baby_shower": "Pridruži se nam pri sprejemu našega malčka — pusti toplo sporočilo in željo za dojenčka.",
+  "guest__welcome_default__anniversary": "Pridruži se nam pri praznovanju let ljubezni in spominov, ki še prihajajo — deli z nami sporočilo.",
+  "guest__welcome_default__memorial": "Skupaj počastimo lepo preživeto življenje — deli spomin ali nekaj toplih besed.",
+  "guest__welcome_default__graduation": "Praznuj to pomembno prelomnico z nami — pusti čestitko za diplomanta.",
+  "guest__welcome_default__other": "Veseli bomo, če se nam pridružiš — pusti sporočilo in bodi del tega trenutka.",
   "guest__rsvp__title": "Vaš odgovor",
   "guest__rsvp__cancel": "Prekliči"
 }

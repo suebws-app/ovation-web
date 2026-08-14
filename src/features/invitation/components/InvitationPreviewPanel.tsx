@@ -4,7 +4,12 @@ import { useTranslations } from "next-intl";
 import type { InvitationStepId } from "../constants";
 import type { InvitationFields } from "../invitationSchema";
 import type { InvitationTemplateMeta } from "../invitationTemplates";
-import { eventCardTitle, formatDateRange } from "@/lib/event-types";
+import {
+  eventCardTitle,
+  formatDateRange,
+  isDateRange,
+  memorialLifeSpan,
+} from "@/lib/event-types";
 import { InviteCard } from "./InviteCard";
 import { PhonePreview } from "./PhonePreview";
 import { CustomiseControls } from "./CustomiseControls";
@@ -57,9 +62,17 @@ export const InvitationPreviewPanel = ({
     eventType,
     hostA: values?.partnerA,
     hostB: values?.partnerB,
-    eventName: values?.eventName,
+    // Corporate keeps the organization (hostA) as the title; the event name is
+    // shown as a subtitle below, not as an overriding single line.
+    eventName: eventType === "corporate" ? undefined : values?.eventName,
     customEventNoun,
   });
+  const subtitle =
+    eventType === "corporate"
+      ? values?.eventName?.trim() || undefined
+      : eventType === "memorial"
+        ? memorialLifeSpan(values?.bornOn, values?.passedOn)
+        : undefined;
 
   const showCustomise =
     Boolean(template) &&
@@ -74,16 +87,31 @@ export const InvitationPreviewPanel = ({
           padded
           values={{
             ...titleParts,
+            subtitle,
+            logo: values?.showLogo ? values?.logo || undefined : undefined,
             dateLabel:
               formatDateRange(
                 {
+                  eventType,
                   eventDate: values?.weddingDate ?? null,
                   endDate: endDate ?? null,
                   weddingDate: null,
                 },
                 formatDateLabel,
-              ) ?? undefined,
-            time: values?.time,
+              ) ?? t("invitation__placeholder__date"),
+            time: values?.time
+              ? t(
+                  isDateRange({
+                    eventType,
+                    eventDate: values?.weddingDate ?? null,
+                    endDate: endDate ?? null,
+                    weddingDate: null,
+                  })
+                    ? "invitation__time__from"
+                    : "invitation__time__at",
+                  { time: values.time },
+                )
+              : undefined,
             venue: values?.venue,
             place: values?.place,
             message: values?.message,

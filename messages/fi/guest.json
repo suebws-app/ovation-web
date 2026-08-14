@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Vastaus tallennettu",
   "guest__rsvp__error": "Vastaustasi ei voitu tallentaa",
   "guest__rsvp__cta": "Vahvista kutsusi",
+  "guest__welcome_default__wedding": "Yhdessä perheidemme kanssa kutsumme sinut juhlistamaan rakkauttamme — jätä meille viesti muistoksi tästä päivästä.",
+  "guest__welcome_default__birthday": "Tule juhlimaan kanssamme jälleen ihanaa vuotta — jätä syntymäpäivätoivotus tekemään päivästä vieläkin makeamman.",
+  "guest__welcome_default__corporate": "Toivotamme sinut lämpimästi tervetulleeksi. Odotamme näkevämme sinut — jätä viesti ennen tapahtumaa.",
+  "guest__welcome_default__baby_shower": "Tule toivottamaan pienokaisemme tervetulleeksi — jätä lämmin viesti ja toivotus vauvalle.",
+  "guest__welcome_default__anniversary": "Tule juhlistamaan kanssamme vuosia täynnä rakkautta ja tulevia muistoja — jätä meille viesti.",
+  "guest__welcome_default__memorial": "Kunnioittakaamme yhdessä kauniisti elettyä elämää — jaa muisto tai muutama lämmin sana.",
+  "guest__welcome_default__graduation": "Juhlista kanssamme tätä virstanpylvästä — jätä onnittelu valmistuneelle.",
+  "guest__welcome_default__other": "Olisi ihanaa saada sinut mukaan — jätä viesti ja ole osa hetkeä.",
   "guest__rsvp__title": "Vastauksesi",
   "guest__rsvp__cancel": "Peruuta"
 }

@@ -1,6 +1,5 @@
 {
   "et__common__guest": "guest",
-
   "et__wedding__event": "wedding",
   "et__wedding__host": "couple",
   "et__wedding__host_plural": "couples",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Wedding",
   "et__wedding__tagline": "Celebrate your marriage",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "birthday party",
   "et__birthday__host": "birthday star",
   "et__birthday__date_label": "Party date",
   "et__birthday__name": "Birthday",
   "et__birthday__tagline": "Celebrate another year",
   "et__birthday__title_postfix": "Birthday",
-
   "et__corporate__event": "event",
   "et__corporate__host": "organization",
   "et__corporate__date_label": "Event date",
   "et__corporate__name": "Corporate event",
   "et__corporate__tagline": "Conferences, launches & more",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "baby shower",
   "et__baby_shower__host": "family",
   "et__baby_shower__date_label": "Shower date",
   "et__baby_shower__name": "Baby shower",
   "et__baby_shower__tagline": "Welcome the little one",
   "et__baby_shower__title_postfix": "Baby Shower",
-
   "et__anniversary__event": "anniversary",
   "et__anniversary__host": "couple",
   "et__anniversary__date_label": "Celebration date",
   "et__anniversary__name": "Anniversary",
   "et__anniversary__tagline": "Celebrate your years together",
   "et__anniversary__title_postfix": "Anniversary",
-
   "et__memorial__event": "memorial",
   "et__memorial__host": "family",
   "et__memorial__date_label": "Service date",
   "et__memorial__name": "Memorial",
   "et__memorial__tagline": "Honor a life remembered",
   "et__memorial__title_postfix": "In Memoriam",
-
   "et__graduation__event": "graduation",
   "et__graduation__host": "graduate",
   "et__graduation__date_label": "Ceremony date",
   "et__graduation__name": "Graduation",
   "et__graduation__tagline": "Celebrate the achievement",
   "et__graduation__title_postfix": "Graduation",
-
   "et__other__event": "event",
   "et__other__host": "host",
   "et__other__date_label": "Event date",
   "et__other__name": "Other",
   "et__other__tagline": "Any occasion you like",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Partner 1",
   "event__field__partner_b": "Partner 2",
   "event__field__wedding_date": "Wedding date",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Event date",
   "event__field__event_name": "Event name",
   "event__field__event_name_placeholder": "e.g. Acme Annual Conference (optional)",
-
   "event__type_picker__title": "What are you celebrating?",
   "event__type_picker__subtitle": "Choose the kind of event to get started",
   "event__type_picker__step_label": "Event type",
-
   "settings__event_type__warn_lost": "Changing type will remove these fields: {fields}",
   "settings__event_type__confirm": "Change event type",
-
   "settings__event_details__upload": "Upload",
   "settings__event_details__replace": "Replace",
+  "settings__event_details__remove": "Remove",
   "settings__event_details__uploading": "Uploading…",
   "settings__event_details__upload_error": "Upload failed. Try again.",
   "settings__event_details__view_file": "View file"

@@ -25,6 +25,8 @@ export const getInvitationSchema = (t: T) =>
     // Optional explicit event/invitation title (shown alone when set). Used by
     // single-host types (corporate, memorial, …). Empty string means "unset".
     eventName: z.string().trim().max(80),
+    // The user-entered event type word for the "other" event type.
+    customEventNoun: z.string().trim().max(40),
     partnerA: z
       .string()
       .trim()
@@ -36,6 +38,12 @@ export const getInvitationSchema = (t: T) =>
       .trim()
       .max(INVITATION_NAME_MAX, t("validation__partner_name_max")),
     weddingDate: z.string(),
+    endDate: z.string(),
+    // Whether the event spans multiple days (shows the end-date field).
+    multiDay: z.boolean(),
+    // Memorial life-span dates.
+    bornOn: z.string(),
+    passedOn: z.string(),
     time: z.string(),
     venue: z.string(),
     place: z.string(),
@@ -44,6 +52,12 @@ export const getInvitationSchema = (t: T) =>
     age: z.string(),
     showAge: z.boolean(),
     showRsvp: z.boolean(),
+    // Corporate agenda PDF (public URL) + whether to attach it to invite emails.
+    agenda: z.string(),
+    attachAgenda: z.boolean(),
+    // Corporate logo (public image URL) + whether to show it on the card.
+    logo: z.string(),
+    showLogo: z.boolean(),
     guests: z.array(
       z.object({
         id: z.string().optional(),

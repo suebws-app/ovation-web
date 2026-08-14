@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Atsakymas išsaugotas",
   "guest__rsvp__error": "Nepavyko išsaugoti jūsų atsakymo",
   "guest__rsvp__cta": "Prašome patvirtinti kvietimą",
+  "guest__welcome_default__wedding": "Kartu su savo šeimomis kviečiame tave švęsti mūsų meilę — palik mums žinutę šios dienos prisiminimui.",
+  "guest__welcome_default__birthday": "Ateik švęsti su mumis dar vienų nuostabių metų — palik gimtadienio linkėjimą, kad diena būtų dar saldesnė.",
+  "guest__welcome_default__corporate": "Džiaugiamės galėdami tave pasveikinti. Lauksime tavęs — palik žinutę prieš renginį.",
+  "guest__welcome_default__baby_shower": "Prisijunk prie mūsų sutikti mūsų mažylį — palik šiltą žinutę ir linkėjimą kūdikiui.",
+  "guest__welcome_default__anniversary": "Prisijunk švęsti meilės metų ir dar laukiančių prisiminimų — pasidalink su mumis žinute.",
+  "guest__welcome_default__memorial": "Pagerbkime kartu gražiai nugyventą gyvenimą — pasidalink prisiminimu ar keliais šiltais žodžiais.",
+  "guest__welcome_default__graduation": "Švęsk su mumis šį svarbų įvykį — palik sveikinimą absolventui.",
+  "guest__welcome_default__other": "Būtų nuostabu, jei prisijungtum — palik žinutę ir būk šios akimirkos dalimi.",
   "guest__rsvp__title": "Jūsų atsakymas",
   "guest__rsvp__cancel": "Atšaukti"
 }

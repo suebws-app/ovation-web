@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Válasz mentve",
   "guest__rsvp__error": "A válaszodat nem sikerült menteni",
   "guest__rsvp__cta": "Kérjük, erősítsd meg a meghívásod",
+  "guest__welcome_default__wedding": "Családjainkkal együtt meghívunk, hogy ünnepeld velünk szerelmünket — hagyj üzenetet e nap emlékére.",
+  "guest__welcome_default__birthday": "Gyere, ünnepelj velünk egy újabb csodálatos évet — hagyj egy születésnapi kívánságot, hogy még édesebb legyen.",
+  "guest__welcome_default__corporate": "Örömmel köszöntünk. Alig várjuk, hogy találkozzunk — hagyj üzenetet az esemény előtt.",
+  "guest__welcome_default__baby_shower": "Tarts velünk, hogy köszöntsük kicsinkét — hagyj egy kedves üzenetet és egy kívánságot a babának.",
+  "guest__welcome_default__anniversary": "Ünnepeld velünk a szeretet éveit és a még előttünk álló emlékeket — ossz meg velünk egy üzenetet.",
+  "guest__welcome_default__memorial": "Emlékezzünk együtt egy szépen megélt életre — ossz meg egy emléket vagy néhány kedves szót.",
+  "guest__welcome_default__graduation": "Ünnepeld velünk ezt a mérföldkövet — hagyj gratulációt a végzősnek.",
+  "guest__welcome_default__other": "Nagyon örülnénk, ha velünk tartanál — hagyj üzenetet, és légy része a pillanatnak.",
   "guest__rsvp__title": "A válaszod",
   "guest__rsvp__cancel": "Mégse"
 }

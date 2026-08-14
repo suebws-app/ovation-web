@@ -33,7 +33,11 @@ export const InvitationPage = ({
   const methods = useInvitationForm(initialEvent, initialInvitees);
   const { save, status: saveStatus } = useSaveInvitationStep(
     eventId,
-    Boolean(initialEvent?.eventName?.trim()),
+    // Corporate keeps the organization in `hostAName` (the title) and the typed
+    // event name in `details.eventName` (the subtitle) — never event-name mode,
+    // which would route the org into the `eventName` column instead.
+    Boolean(initialEvent?.eventName?.trim()) &&
+      initialEvent?.eventType !== "corporate",
   );
 
   useEffect(() => {
@@ -44,7 +48,12 @@ export const InvitationPage = ({
     useInvitationStepNavigation({
       methods,
       save,
-      onComplete: () => router.push(appRoutes.app.weddingPlanner.guests),
+      onComplete: () => {
+        // Invalidate the Router Cache BEFORE navigating so the guests page
+        // fetches the just-saved event instead of a stale cached render.
+        router.refresh();
+        router.push(appRoutes.app.weddingPlanner.guests);
+      },
     });
 
   const values = useWatch({ control: methods.control }) as InvitationFields;
@@ -92,11 +101,12 @@ export const InvitationPage = ({
             template={template}
             values={values}
             eventType={initialEvent?.eventType}
-            endDate={initialEvent?.endDate ?? null}
+            endDate={values?.multiDay ? values?.endDate || null : null}
             customEventNoun={
-              typeof initialEvent?.details?.customEventNoun === "string"
+              values?.customEventNoun ||
+              (typeof initialEvent?.details?.customEventNoun === "string"
                 ? initialEvent.details.customEventNoun
-                : undefined
+                : undefined)
             }
             step={step}
             selectedGuestFirstName={selectedGuest?.first}

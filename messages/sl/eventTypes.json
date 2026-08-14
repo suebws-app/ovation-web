@@ -1,6 +1,5 @@
 {
   "et__common__guest": "gost",
-
   "et__wedding__event": "poroka",
   "et__wedding__host": "par",
   "et__wedding__host_plural": "pari",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Poroka",
   "et__wedding__tagline": "Praznuj svojo poroko",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "rojstnodnevna zabava",
   "et__birthday__host": "slavljenec",
   "et__birthday__date_label": "Datum zabave",
   "et__birthday__name": "Rojstni dan",
   "et__birthday__tagline": "Praznuj še eno leto",
   "et__birthday__title_postfix": "Rojstni dan",
-
   "et__corporate__event": "dogodek",
   "et__corporate__host": "organizacija",
   "et__corporate__date_label": "Datum dogodka",
   "et__corporate__name": "Poslovni dogodek",
   "et__corporate__tagline": "Konference, predstavitve in več",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "slavje za dojenčka",
   "et__baby_shower__host": "družina",
   "et__baby_shower__date_label": "Datum slavja",
   "et__baby_shower__name": "Slavje za dojenčka",
   "et__baby_shower__tagline": "Pozdravi malčka",
   "et__baby_shower__title_postfix": "Slavje za dojenčka",
-
   "et__anniversary__event": "obletnica",
   "et__anniversary__host": "par",
   "et__anniversary__date_label": "Datum praznovanja",
   "et__anniversary__name": "Obletnica",
   "et__anniversary__tagline": "Praznuj skupna leta",
   "et__anniversary__title_postfix": "Obletnica",
-
   "et__memorial__event": "spominska slovesnost",
   "et__memorial__host": "družina",
   "et__memorial__date_label": "Datum slovesnosti",
   "et__memorial__name": "Spomin",
   "et__memorial__tagline": "Počasti spomin na bližnjega",
   "et__memorial__title_postfix": "V spomin",
-
   "et__graduation__event": "podelitev diplom",
   "et__graduation__host": "diplomant",
   "et__graduation__date_label": "Datum slovesnosti",
   "et__graduation__name": "Diploma",
   "et__graduation__tagline": "Praznuj dosežek",
   "et__graduation__title_postfix": "Diploma",
-
   "et__other__event": "dogodek",
   "et__other__host": "gostitelj",
   "et__other__date_label": "Datum dogodka",
   "et__other__name": "Drugo",
   "et__other__tagline": "Katera koli priložnost",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Partner 1",
   "event__field__partner_b": "Partner 2",
   "event__field__wedding_date": "Datum poroke",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Datum dogodka",
   "event__field__event_name": "Ime dogodka",
   "event__field__event_name_placeholder": "npr. Letna konferenca Acme (neobvezno)",
-
   "event__type_picker__title": "Kaj praznuješ?",
   "event__type_picker__subtitle": "Izberi vrsto dogodka za začetek",
   "event__type_picker__step_label": "Vrsta dogodka",
-
   "settings__event_type__warn_lost": "Sprememba vrste bo odstranila ta polja: {fields}",
   "settings__event_type__confirm": "Spremeni vrsto dogodka",
-
   "settings__event_details__upload": "Naloži",
   "settings__event_details__replace": "Zamenjaj",
+  "settings__event_details__remove": "Odstrani",
   "settings__event_details__uploading": "Nalaganje…",
   "settings__event_details__upload_error": "Nalaganje ni uspelo. Poskusi znova.",
   "settings__event_details__view_file": "Prikaži datoteko"

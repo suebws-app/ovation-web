@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Svar lagret",
   "guest__rsvp__error": "Kunne ikke lagre svaret ditt",
   "guest__rsvp__cta": "Bekreft invitasjonen din",
+  "guest__welcome_default__wedding": "Sammen med familiene våre inviterer vi deg til å feire kjærligheten vår — legg igjen en hilsen til minne om dagen.",
+  "guest__welcome_default__birthday": "Kom og feir enda et fantastisk år med oss — legg igjen et bursdagsønske som gjør dagen enda finere.",
+  "guest__welcome_default__corporate": "Vi er glade for å ønske deg velkommen. Vi gleder oss til å se deg — legg igjen en hilsen før arrangementet.",
+  "guest__welcome_default__baby_shower": "Bli med og ønsk den lille vår velkommen — legg igjen en varm hilsen og et ønske til babyen.",
+  "guest__welcome_default__anniversary": "Bli med og feir år med kjærlighet og minnene som kommer — del en hilsen med oss.",
+  "guest__welcome_default__memorial": "La oss sammen hedre og minnes et vakkert levd liv — del et minne eller noen varme ord.",
+  "guest__welcome_default__graduation": "Feir denne milepælen med oss — legg igjen en gratulasjon til den nyutdannede.",
+  "guest__welcome_default__other": "Vi vil gjerne ha deg med — legg igjen en hilsen og bli en del av øyeblikket.",
   "guest__rsvp__title": "Ditt svar",
   "guest__rsvp__cancel": "Avbryt"
 }

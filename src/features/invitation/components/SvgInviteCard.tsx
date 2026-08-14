@@ -14,6 +14,8 @@ type SvgInviteCardValues = {
   title?: string;
   eventName?: string;
   postfix?: string;
+  subtitle?: string;
+  logo?: string;
   dateLabel?: string;
   time?: string;
   venue?: string;
@@ -181,6 +183,15 @@ export const SvgInviteCard = ({
     ],
   });
 
+  const logoEl = values.logo ? (
+    <img
+      src={values.logo}
+      alt=""
+      className="absolute left-1/2 z-10 w-auto max-w-[40%] -translate-x-1/2 object-contain"
+      style={{ top: "5cqh", maxHeight: "13cqh" }}
+    />
+  ) : null;
+
   const eyebrowEl = (
     <span
       className="uppercase"
@@ -208,15 +219,6 @@ export const SvgInviteCard = ({
       )}
       style={{ marginTop: "5cqh", ...textBgBase }}
     >
-      <span
-        style={{
-          fontFamily: displayFont,
-          color: nameColor,
-          fontSize: nameFontSize * 0.62,
-        }}
-      >
-        {values.partnerA || "Lila"}
-      </span>
       <h2
         ref={nameRef}
         className="leading-tight whitespace-nowrap"
@@ -226,8 +228,41 @@ export const SvgInviteCard = ({
           fontSize: nameFontSize,
         }}
       >
-        {bigLine || `${values.partnerA || "Lila"}'s Party`}
+        {values.partnerB ? (
+          <>
+            {values.partnerA}
+            <span className="mx-2 italic" style={{ color: accent }}>
+              {template.monogramAmp}
+            </span>
+            {values.partnerB}
+          </>
+        ) : (
+          values.partnerA
+        )}
       </h2>
+      {bigLine && (
+        <span
+          style={{
+            fontFamily: displayFont,
+            color: nameColor,
+            fontSize: nameFontSize * 0.55,
+          }}
+        >
+          {bigLine}
+        </span>
+      )}
+      {values.subtitle && (
+        <span
+          className="italic"
+          style={{
+            fontFamily: displayFont,
+            color: nameColor,
+            fontSize: nameFontSize * 0.5,
+          }}
+        >
+          {values.subtitle}
+        </span>
+      )}
     </div>
   ) : (
     <div
@@ -250,7 +285,7 @@ export const SvgInviteCard = ({
           values.title || values.eventName
         ) : values.partnerB ? (
           <>
-            {values.partnerA || "Lila"}
+            {values.partnerA}
             <span
               className="mx-2 italic"
               style={{ color: accent, fontFamily: displayFont }}
@@ -260,7 +295,7 @@ export const SvgInviteCard = ({
             {values.partnerB}
           </>
         ) : (
-          values.partnerA || "Lila"
+          values.partnerA
         )}
       </h2>
       {values.postfix && !values.title && !values.eventName && (
@@ -273,6 +308,19 @@ export const SvgInviteCard = ({
           }}
         >
           {values.postfix}
+        </span>
+      )}
+      {values.subtitle && (
+        <span
+          className="italic"
+          style={{
+            fontFamily: displayFont,
+            color: nameColor,
+            fontSize: nameFontSize * 0.55,
+            ...textBgStyle,
+          }}
+        >
+          {values.subtitle}
         </span>
       )}
     </div>
@@ -321,7 +369,7 @@ export const SvgInviteCard = ({
         ...textBgStyle,
       }}
     >
-      {values.dateLabel || "12 September 2026"}
+      {values.dateLabel}
       {values.time ? ` · ${values.time}` : ""}
     </p>
   );
@@ -436,12 +484,17 @@ export const SvgInviteCard = ({
           containerType: "size",
         }}
       >
+        {logoEl}
         {isSplit ? (
           <>
             <div
               ref={containerRef}
               className={zoneClass}
-              style={{ top: `${insetTop}%`, color: template.textColor }}
+              style={{
+                top: `${insetTop}%`,
+                color: template.textColor,
+                ...(values.logo ? { paddingTop: "12cqh" } : {}),
+              }}
             >
               {eyebrowEl}
               {namesEl}
@@ -482,6 +535,7 @@ export const SvgInviteCard = ({
               bottom: `${insetBottom}%`,
               color: template.textColor,
               ...(template.artStackGap ? { gap: template.artStackGap } : {}),
+              ...(values.logo ? { paddingTop: "12cqh" } : {}),
             }}
           >
             {eyebrowEl}

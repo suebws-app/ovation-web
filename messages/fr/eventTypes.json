@@ -1,6 +1,5 @@
 {
   "et__common__guest": "invité",
-
   "et__wedding__event": "mariage",
   "et__wedding__host": "couple",
   "et__wedding__host_plural": "couples",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Mariage",
   "et__wedding__tagline": "Célébrez votre union",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "fête d'anniversaire",
   "et__birthday__host": "vedette de la fête",
   "et__birthday__date_label": "Date de la fête",
   "et__birthday__name": "Anniversaire",
   "et__birthday__tagline": "Fêtez une année de plus",
   "et__birthday__title_postfix": "Anniversaire",
-
   "et__corporate__event": "événement",
   "et__corporate__host": "organisation",
   "et__corporate__date_label": "Date de l'événement",
   "et__corporate__name": "Événement d'entreprise",
   "et__corporate__tagline": "Conférences, lancements et plus encore",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "baby shower",
   "et__baby_shower__host": "famille",
   "et__baby_shower__date_label": "Date de la baby shower",
   "et__baby_shower__name": "Baby shower",
   "et__baby_shower__tagline": "Accueillez le petit trésor",
   "et__baby_shower__title_postfix": "Baby Shower",
-
   "et__anniversary__event": "anniversaire",
   "et__anniversary__host": "couple",
   "et__anniversary__date_label": "Date de la célébration",
   "et__anniversary__name": "Anniversaire de mariage",
   "et__anniversary__tagline": "Célébrez vos années ensemble",
   "et__anniversary__title_postfix": "Anniversaire",
-
   "et__memorial__event": "commémoration",
   "et__memorial__host": "famille",
   "et__memorial__date_label": "Date de la cérémonie",
   "et__memorial__name": "Commémoration",
   "et__memorial__tagline": "Rendez hommage à une vie et à son souvenir",
   "et__memorial__title_postfix": "In Memoriam",
-
   "et__graduation__event": "remise de diplôme",
   "et__graduation__host": "diplômé",
   "et__graduation__date_label": "Date de la cérémonie",
   "et__graduation__name": "Remise de diplôme",
   "et__graduation__tagline": "Célébrez la réussite",
   "et__graduation__title_postfix": "Remise de diplôme",
-
   "et__other__event": "événement",
   "et__other__host": "hôte",
   "et__other__date_label": "Date de l'événement",
   "et__other__name": "Autre",
   "et__other__tagline": "Pour toute occasion de votre choix",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Partenaire 1",
   "event__field__partner_b": "Partenaire 2",
   "event__field__wedding_date": "Date du mariage",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Date de l'événement",
   "event__field__event_name": "Nom de l'événement",
   "event__field__event_name_placeholder": "ex. Conférence annuelle Acme (facultatif)",
-
   "event__type_picker__title": "Que célébrez-vous ?",
   "event__type_picker__subtitle": "Choisissez le type d'événement pour commencer",
   "event__type_picker__step_label": "Type d'événement",
-
   "settings__event_type__warn_lost": "Changer de type supprimera ces champs : {fields}",
   "settings__event_type__confirm": "Changer le type d'événement",
-
   "settings__event_details__upload": "Téléverser",
   "settings__event_details__replace": "Remplacer",
+  "settings__event_details__remove": "Supprimer",
   "settings__event_details__uploading": "Téléversement…",
   "settings__event_details__upload_error": "Échec du téléversement. Réessayez.",
   "settings__event_details__view_file": "Voir le fichier"

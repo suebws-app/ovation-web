@@ -11,6 +11,7 @@ import { AuthSplitLayout } from "@/features/auth/components/AuthSplitLayout";
 import { EventBookForm } from "@/features/create/EventBookForm";
 import { BookPreviewPanel } from "@/features/create/components/BookPreviewPanel";
 import { DynamicEventFields } from "@/features/create/components/DynamicEventFields";
+import { formatPreviewDate } from "@/features/create/formatPreviewDate";
 import { getEventTypeConfig } from "@/lib/event-types";
 import { isConsumerRole, isProRole } from "@/lib/auth/account-role";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
@@ -35,16 +36,13 @@ export const CreateDetailsPage = () => {
     partner1Name,
     partner2Name,
     weddingDate,
+    endDate,
     venueName,
     venueCity,
   } = formData;
   const venuePreview = [venueName, venueCity].filter(Boolean).join(", ");
   const previewTitle = [partner1Name, partner2Name].filter(Boolean).join(" & ");
-  const previewDate = weddingDate?.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+  const previewDate = formatPreviewDate(weddingDate, endDate, eventType);
   const daysUntil = weddingDate
     ? Math.max(
         0,

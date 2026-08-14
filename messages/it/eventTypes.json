@@ -1,6 +1,5 @@
 {
   "et__common__guest": "ospite",
-
   "et__wedding__event": "matrimonio",
   "et__wedding__host": "coppia",
   "et__wedding__host_plural": "coppie",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Matrimonio",
   "et__wedding__tagline": "Festeggia il tuo matrimonio",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "festa di compleanno",
   "et__birthday__host": "festeggiato",
   "et__birthday__date_label": "Data della festa",
   "et__birthday__name": "Compleanno",
   "et__birthday__tagline": "Festeggia un altro anno",
   "et__birthday__title_postfix": "Compleanno",
-
   "et__corporate__event": "evento",
   "et__corporate__host": "organizzazione",
   "et__corporate__date_label": "Data dell'evento",
   "et__corporate__name": "Evento aziendale",
   "et__corporate__tagline": "Conferenze, lanci e altro",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "baby shower",
   "et__baby_shower__host": "famiglia",
   "et__baby_shower__date_label": "Data del baby shower",
   "et__baby_shower__name": "Baby shower",
   "et__baby_shower__tagline": "Diamo il benvenuto al piccolo",
   "et__baby_shower__title_postfix": "Baby Shower",
-
   "et__anniversary__event": "anniversario",
   "et__anniversary__host": "coppia",
   "et__anniversary__date_label": "Data della celebrazione",
   "et__anniversary__name": "Anniversario",
   "et__anniversary__tagline": "Festeggia i vostri anni insieme",
   "et__anniversary__title_postfix": "Anniversario",
-
   "et__memorial__event": "commemorazione",
   "et__memorial__host": "famiglia",
   "et__memorial__date_label": "Data della cerimonia",
   "et__memorial__name": "Commemorazione",
   "et__memorial__tagline": "Onora una vita da ricordare",
   "et__memorial__title_postfix": "In memoria",
-
   "et__graduation__event": "laurea",
   "et__graduation__host": "laureato",
   "et__graduation__date_label": "Data della cerimonia",
   "et__graduation__name": "Laurea",
   "et__graduation__tagline": "Festeggia il traguardo",
   "et__graduation__title_postfix": "Laurea",
-
   "et__other__event": "evento",
   "et__other__host": "organizzatore",
   "et__other__date_label": "Data dell'evento",
   "et__other__name": "Altro",
   "et__other__tagline": "Qualsiasi occasione desideri",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Partner 1",
   "event__field__partner_b": "Partner 2",
   "event__field__wedding_date": "Data del matrimonio",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Data dell'evento",
   "event__field__event_name": "Nome dell'evento",
   "event__field__event_name_placeholder": "es. Conferenza annuale Acme (facoltativo)",
-
   "event__type_picker__title": "Cosa stai festeggiando?",
   "event__type_picker__subtitle": "Scegli il tipo di evento per iniziare",
   "event__type_picker__step_label": "Tipo di evento",
-
   "settings__event_type__warn_lost": "Cambiando tipo verranno rimossi questi campi: {fields}",
   "settings__event_type__confirm": "Cambia tipo di evento",
-
   "settings__event_details__upload": "Carica",
   "settings__event_details__replace": "Sostituisci",
+  "settings__event_details__remove": "Rimuovi",
   "settings__event_details__uploading": "Caricamento…",
   "settings__event_details__upload_error": "Caricamento non riuscito. Riprova.",
   "settings__event_details__view_file": "Visualizza file"

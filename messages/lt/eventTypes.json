@@ -1,6 +1,5 @@
 {
   "et__common__guest": "svečias",
-
   "et__wedding__event": "vestuvės",
   "et__wedding__host": "pora",
   "et__wedding__host_plural": "poros",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Vestuvės",
   "et__wedding__tagline": "Švęskite savo santuoką",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "gimtadienio šventė",
   "et__birthday__host": "gimtadienio kaltininkas",
   "et__birthday__date_label": "Šventės data",
   "et__birthday__name": "Gimtadienis",
   "et__birthday__tagline": "Švęskite dar vienus metus",
   "et__birthday__title_postfix": "Gimtadienis",
-
   "et__corporate__event": "renginys",
   "et__corporate__host": "organizacija",
   "et__corporate__date_label": "Renginio data",
   "et__corporate__name": "Įmonės renginys",
   "et__corporate__tagline": "Konferencijos, pristatymai ir kt.",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "kūdikio laukimo šventė",
   "et__baby_shower__host": "šeima",
   "et__baby_shower__date_label": "Šventės data",
   "et__baby_shower__name": "Kūdikio laukimo šventė",
   "et__baby_shower__tagline": "Pasitikite mažylį",
   "et__baby_shower__title_postfix": "Kūdikio laukimo šventė",
-
   "et__anniversary__event": "sukaktis",
   "et__anniversary__host": "pora",
   "et__anniversary__date_label": "Šventės data",
   "et__anniversary__name": "Sukaktis",
   "et__anniversary__tagline": "Švęskite kartu praleistus metus",
   "et__anniversary__title_postfix": "Sukaktis",
-
   "et__memorial__event": "atminimo ceremonija",
   "et__memorial__host": "šeima",
   "et__memorial__date_label": "Ceremonijos data",
   "et__memorial__name": "Atminimas",
   "et__memorial__tagline": "Pagerbkite atmintiną gyvenimą",
   "et__memorial__title_postfix": "Atminimui",
-
   "et__graduation__event": "mokslų baigimas",
   "et__graduation__host": "absolventas",
   "et__graduation__date_label": "Ceremonijos data",
   "et__graduation__name": "Mokslų baigimas",
   "et__graduation__tagline": "Švęskite pasiekimą",
   "et__graduation__title_postfix": "Baigimas",
-
   "et__other__event": "renginys",
   "et__other__host": "šeimininkas",
   "et__other__date_label": "Renginio data",
   "et__other__name": "Kita",
   "et__other__tagline": "Bet kokia proga",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Partneris 1",
   "event__field__partner_b": "Partneris 2",
   "event__field__wedding_date": "Vestuvių data",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Renginio data",
   "event__field__event_name": "Renginio pavadinimas",
   "event__field__event_name_placeholder": "pvz. Acme metinė konferencija (nebūtina)",
-
   "event__type_picker__title": "Ką švenčiate?",
   "event__type_picker__subtitle": "Pasirinkite renginio tipą, kad pradėtumėte",
   "event__type_picker__step_label": "Renginio tipas",
-
   "settings__event_type__warn_lost": "Pakeitus tipą bus pašalinti šie laukai: {fields}",
   "settings__event_type__confirm": "Keisti renginio tipą",
-
   "settings__event_details__upload": "Įkelti",
   "settings__event_details__replace": "Pakeisti",
+  "settings__event_details__remove": "Pašalinti",
   "settings__event_details__uploading": "Įkeliama…",
   "settings__event_details__upload_error": "Įkelti nepavyko. Bandykite dar kartą.",
   "settings__event_details__view_file": "Peržiūrėti failą"

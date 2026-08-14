@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Svar sparat",
   "guest__rsvp__error": "Det gick inte att spara ditt svar",
   "guest__rsvp__cta": "Bekräfta din inbjudan",
+  "guest__welcome_default__wedding": "Tillsammans med våra familjer bjuder vi in dig att fira vår kärlek — lämna en hälsning till minne av dagen.",
+  "guest__welcome_default__birthday": "Kom och fira ännu ett underbart år med oss — lämna en födelsedagshälsning som gör dagen ännu finare.",
+  "guest__welcome_default__corporate": "Vi är glada att välkomna dig. Vi ser fram emot att träffas — lämna en hälsning inför evenemanget.",
+  "guest__welcome_default__baby_shower": "Var med och välkomna vår lilla — lämna en varm hälsning och en önskan till bebisen.",
+  "guest__welcome_default__anniversary": "Var med och fira år av kärlek och minnena som väntar — dela en hälsning med oss.",
+  "guest__welcome_default__memorial": "Låt oss tillsammans hedra och minnas ett vackert levt liv — dela ett minne eller några varma ord.",
+  "guest__welcome_default__graduation": "Fira denna milstolpe med oss — lämna en gratulation till den nyexaminerade.",
+  "guest__welcome_default__other": "Vi skulle älska att ha dig med — lämna en hälsning och bli en del av stunden.",
   "guest__rsvp__title": "Ditt svar",
   "guest__rsvp__cancel": "Avbryt"
 }

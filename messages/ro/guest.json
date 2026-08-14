@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Răspuns salvat",
   "guest__rsvp__error": "Răspunsul tău nu a putut fi salvat",
   "guest__rsvp__cta": "Te rugăm să confirmi invitația",
+  "guest__welcome_default__wedding": "Împreună cu familiile noastre, te invităm să sărbătorești iubirea noastră — lasă-ne un mesaj în amintirea acestei zile.",
+  "guest__welcome_default__birthday": "Vino să sărbătorești cu noi încă un an minunat — lasă o urare de ziua de naștere ca să fie și mai dulce.",
+  "guest__welcome_default__corporate": "Ne bucurăm să te întâmpinăm. Abia așteptăm să te vedem — lasă un mesaj înainte de eveniment.",
+  "guest__welcome_default__baby_shower": "Alătură-te nouă pentru a-l întâmpina pe micuțul nostru — lasă un mesaj cald și o urare pentru bebeluș.",
+  "guest__welcome_default__anniversary": "Alătură-te nouă să sărbătorim ani de iubire și amintirile care vor urma — împărtășește un mesaj cu noi.",
+  "guest__welcome_default__memorial": "Să cinstim împreună o viață frumos trăită — împărtășește o amintire sau câteva cuvinte calde.",
+  "guest__welcome_default__graduation": "Sărbătorește această realizare alături de noi — lasă un mesaj de felicitare pentru absolvent.",
+  "guest__welcome_default__other": "Ne-ar plăcea să ni te alături — lasă un mesaj și fii parte din acest moment.",
   "guest__rsvp__title": "Răspunsul tău",
   "guest__rsvp__cancel": "Anulează"
 }

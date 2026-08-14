@@ -1,6 +1,5 @@
 {
   "et__common__guest": "게스트",
-
   "et__wedding__event": "결혼식",
   "et__wedding__host": "커플",
   "et__wedding__host_plural": "커플",
@@ -8,56 +7,48 @@
   "et__wedding__name": "결혼식",
   "et__wedding__tagline": "결혼을 축하하세요",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "생일 파티",
   "et__birthday__host": "생일의 주인공",
   "et__birthday__date_label": "파티 날짜",
   "et__birthday__name": "생일",
   "et__birthday__tagline": "또 한 해를 축하하세요",
   "et__birthday__title_postfix": "생일",
-
   "et__corporate__event": "행사",
   "et__corporate__host": "조직",
   "et__corporate__date_label": "행사 날짜",
   "et__corporate__name": "기업 행사",
   "et__corporate__tagline": "콘퍼런스, 출시 행사 등",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "베이비 샤워",
   "et__baby_shower__host": "가족",
   "et__baby_shower__date_label": "베이비 샤워 날짜",
   "et__baby_shower__name": "베이비 샤워",
   "et__baby_shower__tagline": "아기를 맞이하세요",
   "et__baby_shower__title_postfix": "베이비 샤워",
-
   "et__anniversary__event": "기념일",
   "et__anniversary__host": "커플",
   "et__anniversary__date_label": "기념 날짜",
   "et__anniversary__name": "기념일",
   "et__anniversary__tagline": "함께한 시간을 축하하세요",
   "et__anniversary__title_postfix": "기념일",
-
   "et__memorial__event": "추모식",
   "et__memorial__host": "가족",
   "et__memorial__date_label": "추도식 날짜",
   "et__memorial__name": "추모식",
   "et__memorial__tagline": "소중한 삶을 기리세요",
   "et__memorial__title_postfix": "추모",
-
   "et__graduation__event": "졸업식",
   "et__graduation__host": "졸업생",
   "et__graduation__date_label": "졸업식 날짜",
   "et__graduation__name": "졸업식",
   "et__graduation__tagline": "이 성취를 축하하세요",
   "et__graduation__title_postfix": "졸업",
-
   "et__other__event": "행사",
   "et__other__host": "주최자",
   "et__other__date_label": "행사 날짜",
   "et__other__name": "기타",
   "et__other__tagline": "원하는 어떤 자리든",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "파트너 1",
   "event__field__partner_b": "파트너 2",
   "event__field__wedding_date": "결혼식 날짜",
@@ -93,16 +84,14 @@
   "event__field__event_date": "행사 날짜",
   "event__field__event_name": "행사 이름",
   "event__field__event_name_placeholder": "예: Acme 연례 콘퍼런스 (선택)",
-
   "event__type_picker__title": "무엇을 축하하시나요?",
   "event__type_picker__subtitle": "시작하려면 행사 종류를 선택하세요",
   "event__type_picker__step_label": "행사 유형",
-
   "settings__event_type__warn_lost": "유형을 변경하면 다음 항목이 삭제됩니다: {fields}",
   "settings__event_type__confirm": "행사 유형 변경",
-
   "settings__event_details__upload": "업로드",
   "settings__event_details__replace": "교체",
+  "settings__event_details__remove": "제거",
   "settings__event_details__uploading": "업로드 중…",
   "settings__event_details__upload_error": "업로드에 실패했습니다. 다시 시도하세요.",
   "settings__event_details__view_file": "파일 보기"

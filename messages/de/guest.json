@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Antwort gespeichert",
   "guest__rsvp__error": "Deine Antwort konnte nicht gespeichert werden",
   "guest__rsvp__cta": "Bitte bestätige deine Einladung",
+  "guest__welcome_default__wedding": "Gemeinsam mit unseren Familien laden wir dich ein, unsere Liebe zu feiern — hinterlasse uns eine Nachricht als Erinnerung an diesen Tag.",
+  "guest__welcome_default__birthday": "Feiere mit uns ein weiteres wunderbares Jahr — hinterlasse einen Geburtstagswunsch, der den Tag noch schöner macht.",
+  "guest__welcome_default__corporate": "Wir freuen uns sehr, dich begrüßen zu dürfen. Wir freuen uns auf dich — hinterlasse vorab eine Nachricht.",
+  "guest__welcome_default__baby_shower": "Feiere mit uns die Ankunft unseres kleinen Wunders — hinterlasse eine liebe Nachricht und einen Wunsch für das Baby.",
+  "guest__welcome_default__anniversary": "Feiere mit uns Jahre voller Liebe und die Erinnerungen, die noch kommen — hinterlasse uns eine Nachricht.",
+  "guest__welcome_default__memorial": "Gedenke mit uns eines wunderbar gelebten Lebens — teile eine Erinnerung oder ein paar liebe Worte.",
+  "guest__welcome_default__graduation": "Feiere diesen Meilenstein mit uns — hinterlasse eine Gratulation für die Absolventin oder den Absolventen.",
+  "guest__welcome_default__other": "Wir würden uns freuen, wenn du dabei bist — hinterlasse eine Nachricht und sei Teil des Moments.",
   "guest__rsvp__title": "Deine Antwort",
   "guest__rsvp__cancel": "Abbrechen"
 }

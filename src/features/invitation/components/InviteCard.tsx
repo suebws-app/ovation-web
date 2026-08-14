@@ -22,6 +22,10 @@ type InviteCardValues = {
   eventName?: string;
   // The event word shown on a second tier below the names (e.g. "Anniversary").
   postfix?: string;
+  // Type-specific line under the names (e.g. "Together since 2010", "1950 – 2020").
+  subtitle?: string;
+  // Optional logo (public image URL) shown at the top of the card (corporate).
+  logo?: string;
   dateLabel?: string;
   time?: string;
   venue?: string;
@@ -263,6 +267,14 @@ export const InviteCard = ({
           containerType: "size",
         }}
       >
+        {values.logo && (
+          <img
+            src={values.logo}
+            alt=""
+            className="absolute left-1/2 z-10 w-auto max-w-[40%] -translate-x-1/2 object-contain"
+            style={{ top: "5cqh", maxHeight: "13cqh" }}
+          />
+        )}
         {cornerOrnament && (
           <>
             <div className="absolute top-2 left-2">
@@ -297,6 +309,9 @@ export const InviteCard = ({
             "flex flex-1 flex-col items-center justify-center gap-4 text-center",
             animate && "invite-stagger",
           )}
+          // Reserve room for the absolutely-positioned logo so it never overlaps
+          // the name on short (phone) cards.
+          style={values.logo ? { paddingTop: "18cqh" } : undefined}
         >
           {ornamentSymbol && (
             <span
@@ -337,7 +352,7 @@ export const InviteCard = ({
                 values.title || values.eventName
               ) : values.partnerB ? (
                 <>
-                  {values.partnerA || "Lila"}
+                  {values.partnerA}
                   <span
                     className="mx-2 italic"
                     style={{
@@ -350,7 +365,7 @@ export const InviteCard = ({
                   {values.partnerB}
                 </>
               ) : (
-                values.partnerA || "Lila"
+                values.partnerA
               )}
             </h2>
             {values.postfix && !values.title && !values.eventName && (
@@ -363,6 +378,18 @@ export const InviteCard = ({
                 }}
               >
                 {values.postfix}
+              </span>
+            )}
+            {values.subtitle && (
+              <span
+                className="italic"
+                style={{
+                  fontFamily: displayFont,
+                  color: effectiveTextColor,
+                  fontSize: nameFontSize * 0.52 * ts,
+                }}
+              >
+                {values.subtitle}
               </span>
             )}
           </div>
@@ -385,7 +412,7 @@ export const InviteCard = ({
               letterSpacing: scale(s.dateTracking),
             }}
           >
-            {values.dateLabel || "12 September 2026"}
+            {values.dateLabel}
             {values.time ? ` · ${values.time}` : ""}
           </p>
 

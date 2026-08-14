@@ -58,7 +58,9 @@ export const InvitationFormPanel = ({
         </p>
 
         {step === "design" && <DesignStep />}
-        {step === "details" && <DetailsStep eventType={eventType} />}
+        {step === "details" && (
+          <DetailsStep eventType={eventType} eventId={eventId} />
+        )}
         {step === "guests" && (
           <GuestsStep
             selectedGuestIndex={selectedGuestIndex}

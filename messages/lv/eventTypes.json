@@ -1,6 +1,5 @@
 {
   "et__common__guest": "viesis",
-
   "et__wedding__event": "kāzas",
   "et__wedding__host": "pāris",
   "et__wedding__host_plural": "pāri",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Kāzas",
   "et__wedding__tagline": "Sviniet savu laulību",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "dzimšanas dienas svinības",
   "et__birthday__host": "dzimšanas dienas gaviļnieks",
   "et__birthday__date_label": "Svinību datums",
   "et__birthday__name": "Dzimšanas diena",
   "et__birthday__tagline": "Sviniet vēl vienu gadu",
   "et__birthday__title_postfix": "Dzimšanas diena",
-
   "et__corporate__event": "pasākums",
   "et__corporate__host": "organizācija",
   "et__corporate__date_label": "Pasākuma datums",
   "et__corporate__name": "Uzņēmuma pasākums",
   "et__corporate__tagline": "Konferences, atklāšanas un vairāk",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "mazuļa gaidīšanas svinības",
   "et__baby_shower__host": "ģimene",
   "et__baby_shower__date_label": "Svinību datums",
   "et__baby_shower__name": "Mazuļa gaidīšanas svinības",
   "et__baby_shower__tagline": "Sagaidiet mazuli",
   "et__baby_shower__title_postfix": "Mazuļa gaidīšanas svinības",
-
   "et__anniversary__event": "gadadiena",
   "et__anniversary__host": "pāris",
   "et__anniversary__date_label": "Svinību datums",
   "et__anniversary__name": "Gadadiena",
   "et__anniversary__tagline": "Sviniet kopā pavadītos gadus",
   "et__anniversary__title_postfix": "Gadadiena",
-
   "et__memorial__event": "piemiņas pasākums",
   "et__memorial__host": "ģimene",
   "et__memorial__date_label": "Ceremonijas datums",
   "et__memorial__name": "Piemiņa",
   "et__memorial__tagline": "Godiniet piemiņu",
   "et__memorial__title_postfix": "Piemiņai",
-
   "et__graduation__event": "izlaidums",
   "et__graduation__host": "absolvents",
   "et__graduation__date_label": "Ceremonijas datums",
   "et__graduation__name": "Izlaidums",
   "et__graduation__tagline": "Sviniet sasniegumu",
   "et__graduation__title_postfix": "Izlaidums",
-
   "et__other__event": "pasākums",
   "et__other__host": "rīkotājs",
   "et__other__date_label": "Pasākuma datums",
   "et__other__name": "Cits",
   "et__other__tagline": "Jebkurš gadījums",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Partneris 1",
   "event__field__partner_b": "Partneris 2",
   "event__field__wedding_date": "Kāzu datums",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Pasākuma datums",
   "event__field__event_name": "Pasākuma nosaukums",
   "event__field__event_name_placeholder": "piem. Acme gada konference (neobligāti)",
-
   "event__type_picker__title": "Ko jūs svinat?",
   "event__type_picker__subtitle": "Izvēlieties pasākuma veidu, lai sāktu",
   "event__type_picker__step_label": "Pasākuma veids",
-
   "settings__event_type__warn_lost": "Veida maiņa noņems šos laukus: {fields}",
   "settings__event_type__confirm": "Mainīt pasākuma veidu",
-
   "settings__event_details__upload": "Augšupielādēt",
   "settings__event_details__replace": "Aizstāt",
+  "settings__event_details__remove": "Noņemt",
   "settings__event_details__uploading": "Augšupielādē…",
   "settings__event_details__upload_error": "Augšupielāde neizdevās. Mēģiniet vēlreiz.",
   "settings__event_details__view_file": "Skatīt failu"

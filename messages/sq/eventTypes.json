@@ -1,6 +1,5 @@
 {
   "et__common__guest": "mysafir",
-
   "et__wedding__event": "dasmë",
   "et__wedding__host": "çift",
   "et__wedding__host_plural": "çifte",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Dasmë",
   "et__wedding__tagline": "Festoni martesën tuaj",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "festë ditëlindjeje",
   "et__birthday__host": "festuesi i ditëlindjes",
   "et__birthday__date_label": "Data e festës",
   "et__birthday__name": "Ditëlindje",
   "et__birthday__tagline": "Festoni edhe një vit",
   "et__birthday__title_postfix": "Ditëlindje",
-
   "et__corporate__event": "event",
   "et__corporate__host": "organizatë",
   "et__corporate__date_label": "Data e eventit",
   "et__corporate__name": "Event korporativ",
   "et__corporate__tagline": "Konferenca, lansime e më shumë",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "festë për bebën",
   "et__baby_shower__host": "familje",
   "et__baby_shower__date_label": "Data e festës",
   "et__baby_shower__name": "Festë për bebën",
   "et__baby_shower__tagline": "Mirëpritni të voglin",
   "et__baby_shower__title_postfix": "Festë për Bebën",
-
   "et__anniversary__event": "përvjetor",
   "et__anniversary__host": "çift",
   "et__anniversary__date_label": "Data e festimit",
   "et__anniversary__name": "Përvjetor",
   "et__anniversary__tagline": "Festoni vitet tuaja së bashku",
   "et__anniversary__title_postfix": "Përvjetor",
-
   "et__memorial__event": "përkujtim",
   "et__memorial__host": "familje",
   "et__memorial__date_label": "Data e ceremonisë",
   "et__memorial__name": "Përkujtim",
   "et__memorial__tagline": "Nderoni një jetë të kujtuar",
   "et__memorial__title_postfix": "Në Përkujtim",
-
   "et__graduation__event": "diplomim",
   "et__graduation__host": "i diplomuari",
   "et__graduation__date_label": "Data e ceremonisë",
   "et__graduation__name": "Diplomim",
   "et__graduation__tagline": "Festoni arritjen",
   "et__graduation__title_postfix": "Diplomim",
-
   "et__other__event": "event",
   "et__other__host": "organizator",
   "et__other__date_label": "Data e eventit",
   "et__other__name": "Tjetër",
   "et__other__tagline": "Çfarëdo rasti që dëshironi",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Partneri 1",
   "event__field__partner_b": "Partneri 2",
   "event__field__wedding_date": "Data e dasmës",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Data e eventit",
   "event__field__event_name": "Emri i eventit",
   "event__field__event_name_placeholder": "p.sh. Konferenca Vjetore Acme (opsionale)",
-
   "event__type_picker__title": "Çfarë po festoni?",
   "event__type_picker__subtitle": "Zgjidhni llojin e eventit për të filluar",
   "event__type_picker__step_label": "Lloji i eventit",
-
   "settings__event_type__warn_lost": "Ndryshimi i llojit do të heqë këto fusha: {fields}",
   "settings__event_type__confirm": "Ndrysho llojin e eventit",
-
   "settings__event_details__upload": "Ngarko",
   "settings__event_details__replace": "Zëvendëso",
+  "settings__event_details__remove": "Hiq",
   "settings__event_details__uploading": "Duke ngarkuar…",
   "settings__event_details__upload_error": "Ngarkimi dështoi. Provo përsëri.",
   "settings__event_details__view_file": "Shiko skedarin"

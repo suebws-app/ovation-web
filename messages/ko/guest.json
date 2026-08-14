@@ -207,6 +207,14 @@
   "guest__rsvp__success": "응답이 저장되었습니다",
   "guest__rsvp__error": "응답을 저장할 수 없습니다",
   "guest__rsvp__cta": "초대를 확인해 주세요",
+  "guest__welcome_default__wedding": "저희 가족과 함께 저희의 사랑을 축하해 주세요 — 이 날을 기억할 수 있도록 메시지를 남겨 주세요.",
+  "guest__welcome_default__birthday": "저희와 함께 또 한 번의 멋진 한 해를 축하해요 — 생일 축하 메시지를 남겨 더욱 특별하게 만들어 주세요.",
+  "guest__welcome_default__corporate": "환영합니다. 뵙기를 기대합니다 — 행사 전에 메시지를 남겨 주세요.",
+  "guest__welcome_default__baby_shower": "저희 아기를 함께 맞이해 주세요 — 따뜻한 메시지와 아기를 위한 소망을 남겨 주세요.",
+  "guest__welcome_default__anniversary": "사랑으로 가득한 지난 세월과 앞으로의 추억을 함께 축하해요 — 저희에게 메시지를 남겨 주세요.",
+  "guest__welcome_default__memorial": "아름답게 살아온 삶을 함께 기리고 추억해요 — 추억이나 따뜻한 말씀을 남겨 주세요.",
+  "guest__welcome_default__graduation": "이 소중한 순간을 함께 축하해요 — 졸업생에게 축하 메시지를 남겨 주세요.",
+  "guest__welcome_default__other": "함께해 주시면 기쁘겠습니다 — 메시지를 남기고 이 순간의 일부가 되어 주세요.",
   "guest__rsvp__title": "내 응답",
   "guest__rsvp__cancel": "취소"
 }

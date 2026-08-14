@@ -1,6 +1,5 @@
 {
   "et__common__guest": "tamu",
-
   "et__wedding__event": "pernikahan",
   "et__wedding__host": "pasangan",
   "et__wedding__host_plural": "pasangan",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Pernikahan",
   "et__wedding__tagline": "Rayakan pernikahan Anda",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "pesta ulang tahun",
   "et__birthday__host": "yang berulang tahun",
   "et__birthday__date_label": "Tanggal pesta",
   "et__birthday__name": "Ulang tahun",
   "et__birthday__tagline": "Rayakan satu tahun lagi",
   "et__birthday__title_postfix": "Ulang Tahun",
-
   "et__corporate__event": "acara",
   "et__corporate__host": "organisasi",
   "et__corporate__date_label": "Tanggal acara",
   "et__corporate__name": "Acara perusahaan",
   "et__corporate__tagline": "Konferensi, peluncuran & lainnya",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "baby shower",
   "et__baby_shower__host": "keluarga",
   "et__baby_shower__date_label": "Tanggal baby shower",
   "et__baby_shower__name": "Baby shower",
   "et__baby_shower__tagline": "Sambut sang buah hati",
   "et__baby_shower__title_postfix": "Baby Shower",
-
   "et__anniversary__event": "hari jadi",
   "et__anniversary__host": "pasangan",
   "et__anniversary__date_label": "Tanggal perayaan",
   "et__anniversary__name": "Hari jadi",
   "et__anniversary__tagline": "Rayakan tahun-tahun kebersamaan Anda",
   "et__anniversary__title_postfix": "Hari Jadi",
-
   "et__memorial__event": "peringatan",
   "et__memorial__host": "keluarga",
   "et__memorial__date_label": "Tanggal upacara",
   "et__memorial__name": "Peringatan",
   "et__memorial__tagline": "Kenang sebuah kehidupan",
   "et__memorial__title_postfix": "Mengenang",
-
   "et__graduation__event": "wisuda",
   "et__graduation__host": "wisudawan",
   "et__graduation__date_label": "Tanggal upacara",
   "et__graduation__name": "Wisuda",
   "et__graduation__tagline": "Rayakan pencapaian",
   "et__graduation__title_postfix": "Wisuda",
-
   "et__other__event": "acara",
   "et__other__host": "tuan rumah",
   "et__other__date_label": "Tanggal acara",
   "et__other__name": "Lainnya",
   "et__other__tagline": "Acara apa pun yang Anda suka",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Pasangan 1",
   "event__field__partner_b": "Pasangan 2",
   "event__field__wedding_date": "Tanggal pernikahan",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Tanggal acara",
   "event__field__event_name": "Nama acara",
   "event__field__event_name_placeholder": "mis. Konferensi Tahunan Acme (opsional)",
-
   "event__type_picker__title": "Apa yang Anda rayakan?",
   "event__type_picker__subtitle": "Pilih jenis acara untuk memulai",
   "event__type_picker__step_label": "Jenis acara",
-
   "settings__event_type__warn_lost": "Mengubah jenis akan menghapus kolom ini: {fields}",
   "settings__event_type__confirm": "Ubah jenis acara",
-
   "settings__event_details__upload": "Unggah",
   "settings__event_details__replace": "Ganti",
+  "settings__event_details__remove": "Hapus",
   "settings__event_details__uploading": "Mengunggah…",
   "settings__event_details__upload_error": "Unggahan gagal. Coba lagi.",
   "settings__event_details__view_file": "Lihat file"

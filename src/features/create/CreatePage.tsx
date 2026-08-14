@@ -50,7 +50,22 @@ export const CreatePage = () => {
       </Kicker>
       <EventTypePicker
         value={eventType}
-        onChange={(type) => updateFormData({ eventType: type })}
+        onChange={(type) => {
+          if (type === eventType) return;
+          // Switching event type: clear every type-specific field so stale
+          // values (host names, an end date, or another type's `details`)
+          // don't leak into the new type.
+          updateFormData({
+            eventType: type,
+            partner1Name: "",
+            partner2Name: "",
+            weddingDate: null,
+            endDate: null,
+            venueName: "",
+            venueCity: "",
+            details: {},
+          });
+        }}
       />
       <Button
         type="button"

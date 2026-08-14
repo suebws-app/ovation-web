@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Yanıt kaydedildi",
   "guest__rsvp__error": "Yanıtınız kaydedilemedi",
   "guest__rsvp__cta": "Lütfen davetinizi onaylayın",
+  "guest__welcome_default__wedding": "Ailelerimizle birlikte, aşkımızı kutlamana davet ediyoruz — bu günü hatırlamamız için bize bir mesaj bırak.",
+  "guest__welcome_default__birthday": "Bizimle bir harika yılı daha kutlamaya gel — günü daha da tatlı kılacak bir doğum günü dileği bırak.",
+  "guest__welcome_default__corporate": "Seni ağırlamaktan mutluluk duyuyoruz. Görüşmeyi dört gözle bekliyoruz — etkinlikten önce bir not bırak.",
+  "guest__welcome_default__baby_shower": "Minik bebeğimizi karşılamak için bize katıl — sevgi dolu bir mesaj ve bebek için bir dilek bırak.",
+  "guest__welcome_default__anniversary": "Sevgiyle geçen yılları ve gelecek anıları kutlamak için bize katıl — bizimle bir mesaj paylaş.",
+  "guest__welcome_default__memorial": "Güzel yaşanmış bir hayatı birlikte anmak için katıl — bir anı ya da birkaç güzel söz paylaş.",
+  "guest__welcome_default__graduation": "Bu önemli anı bizimle kutla — mezun için bir tebrik mesajı bırak.",
+  "guest__welcome_default__other": "Aramızda olmanı çok isteriz — bir mesaj bırak ve bu anın parçası ol.",
   "guest__rsvp__title": "Yanıtınız",
   "guest__rsvp__cancel": "İptal"
 }

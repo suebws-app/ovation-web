@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Përgjigja u ruajt",
   "guest__rsvp__error": "Përgjigja jote nuk u ruajt dot",
   "guest__rsvp__cta": "Ju lutemi konfirmoni ftesën tuaj",
+  "guest__welcome_default__wedding": "Së bashku me familjet tona, të ftojmë të festosh dashurinë tonë — na lër një mesazh për ta kujtuar këtë ditë.",
+  "guest__welcome_default__birthday": "Eja të festojmë bashkë edhe një vit të mrekullueshëm — lër një urim ditëlindjeje për ta bërë edhe më të ëmbël.",
+  "guest__welcome_default__corporate": "Jemi të lumtur të të mirëpresim. Mezi presim të të shohim — lër një mesazh para eventit.",
+  "guest__welcome_default__baby_shower": "Bashkohu me ne për të mirëpritur të voglin tonë — lër një mesazh të ngrohtë dhe një urim për bebin.",
+  "guest__welcome_default__anniversary": "Bashkohu me ne për të festuar vite dashurie dhe kujtimet që do të vijnë — ndaj një mesazh me ne.",
+  "guest__welcome_default__memorial": "Le të nderojmë bashkë një jetë të jetuar bukur — ndaj një kujtim ose disa fjalë të mira.",
+  "guest__welcome_default__graduation": "Festo këtë arritje me ne — lër një urim për të diplomuarin.",
+  "guest__welcome_default__other": "Do të ishim shumë të lumtur të ishe me ne — lër një mesazh dhe bëhu pjesë e këtij çasti.",
   "guest__rsvp__title": "Përgjigja jote",
   "guest__rsvp__cancel": "Anulo"
 }

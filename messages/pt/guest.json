@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Resposta guardada",
   "guest__rsvp__error": "Não foi possível guardar a sua resposta",
   "guest__rsvp__cta": "Confirme o seu convite",
+  "guest__welcome_default__wedding": "Junto com as nossas famílias, convidamos você a celebrar o nosso amor — deixe uma mensagem para recordar este dia.",
+  "guest__welcome_default__birthday": "Venha celebrar mais um ano maravilhoso conosco — deixe um desejo de aniversário para o tornar ainda mais especial.",
+  "guest__welcome_default__corporate": "Temos muito prazer em recebê-lo. Esperamos vê-lo lá — deixe uma nota antes do evento.",
+  "guest__welcome_default__baby_shower": "Junte-se a nós para dar as boas-vindas ao nosso pequenino — deixe uma mensagem de carinho e um desejo para o bebê.",
+  "guest__welcome_default__anniversary": "Junte-se a nós para celebrar anos de amor e as memórias que ainda virão — compartilhe uma mensagem conosco.",
+  "guest__welcome_default__memorial": "Junte-se a nós para honrar e recordar uma vida lindamente vivida — compartilhe uma memória ou algumas palavras.",
+  "guest__welcome_default__graduation": "Celebre esta conquista conosco — deixe uma mensagem de parabéns para o formando.",
+  "guest__welcome_default__other": "Adoraríamos ter você conosco — deixe uma mensagem e faça parte do momento.",
   "guest__rsvp__title": "A sua resposta",
   "guest__rsvp__cancel": "Cancelar"
 }

@@ -1,7 +1,11 @@
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import type { Event } from "@/lib/api/types";
-import { eventCardTitle, formatDateRange } from "@/lib/event-types";
+import {
+  eventCardTitle,
+  formatDateRange,
+  memorialLifeSpan,
+} from "@/lib/event-types";
 import { useInvitationTemplatesQuery } from "@/lib/query/invitationTemplatesQueries";
 import { DEFAULT_INVITATION_TEMPLATE_ID } from "@/features/invitation/invitationTemplates";
 
@@ -14,6 +18,24 @@ const formatDateLabel = (raw: string): string => {
         month: "long",
         year: "numeric",
       });
+};
+
+/**
+ * The type-specific subtitle rendered under the names on the card: corporate
+ * shows the event name; memorial shows the life span "1950 – 2020".
+ */
+const cardSubtitle = (event: Event): string | undefined => {
+  if (event.eventType === "corporate") {
+    // Corporate: organization name is the title, event name sits below it.
+    return typeof event.details?.eventName === "string" &&
+      event.details.eventName.trim()
+      ? event.details.eventName.trim()
+      : undefined;
+  }
+  if (event.eventType === "memorial") {
+    return memorialLifeSpan(event.details?.bornOn, event.details?.passedOn);
+  }
+  return undefined;
 };
 
 export const useInvitePreview = (event: Event) => {
@@ -40,7 +62,10 @@ export const useInvitePreview = (event: Event) => {
         eventType: event.eventType,
         hostA: event.hostAName ?? event.partnerAName,
         hostB: event.hostBName ?? event.partnerBName,
+        // Corporate keeps the organization (hostA) as the title and shows the
+        // event name as the subtitle instead, so don't let it override here.
         eventName:
+          event.eventType !== "corporate" &&
           typeof event.details?.eventName === "string"
             ? event.details.eventName
             : undefined,
@@ -49,6 +74,14 @@ export const useInvitePreview = (event: Event) => {
             ? event.details.customEventNoun
             : undefined,
       }),
+      subtitle: cardSubtitle(event),
+      logo:
+        (typeof event.details?.showLogo === "boolean"
+          ? event.details.showLogo
+          : Boolean(event.details?.logo)) &&
+        typeof event.details?.logo === "string"
+          ? event.details.logo
+          : undefined,
       dateLabel: formatDateRange(event, formatDateLabel) ?? undefined,
       venue: event.locationName ?? event.venueName ?? undefined,
       place: event.locationCity ?? event.venueCity ?? undefined,

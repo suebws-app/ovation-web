@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Vastus salvestatud",
   "guest__rsvp__error": "Vastust ei õnnestunud salvestada",
   "guest__rsvp__cta": "Palun kinnita oma kutse",
+  "guest__welcome_default__wedding": "Koos oma peredega kutsume sind meie armastust tähistama — jäta meile sõnum selle päeva mälestuseks.",
+  "guest__welcome_default__birthday": "Tule tähista meiega järjekordset imelist aastat — jäta sünnipäevasoov, et päev veelgi magusam oleks.",
+  "guest__welcome_default__corporate": "Meil on hea meel sind tervitada. Ootame sind — jäta enne üritust sõnum.",
+  "guest__welcome_default__baby_shower": "Tule tervita koos meiega meie väikest — jäta soe sõnum ja soov beebile.",
+  "guest__welcome_default__anniversary": "Tule tähista meiega armastuse aastaid ja tulevasi mälestusi — jaga meiega sõnumit.",
+  "guest__welcome_default__memorial": "Austagem koos kaunilt elatud elu — jaga mälestust või paar sooja sõna.",
+  "guest__welcome_default__graduation": "Tähista meiega seda verstaposti — jäta lõpetajale õnnitlus.",
+  "guest__welcome_default__other": "Meil oleks hea meel, kui sa meiega liituksid — jäta sõnum ja ole osa hetkest.",
   "guest__rsvp__title": "Sinu vastus",
   "guest__rsvp__cancel": "Tühista"
 }

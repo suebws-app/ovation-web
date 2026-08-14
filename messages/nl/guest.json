@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Antwoord opgeslagen",
   "guest__rsvp__error": "Je antwoord kon niet worden opgeslagen",
   "guest__rsvp__cta": "Bevestig je uitnodiging",
+  "guest__welcome_default__wedding": "Samen met onze families nodigen we je uit om onze liefde te vieren — laat een berichtje achter als herinnering aan deze dag.",
+  "guest__welcome_default__birthday": "Kom samen met ons weer een prachtig jaar vieren — laat een verjaardagswens achter om het nog specialer te maken.",
+  "guest__welcome_default__corporate": "We heten je van harte welkom. We kijken ernaar uit je te zien — laat vooraf een bericht achter.",
+  "guest__welcome_default__baby_shower": "Vier met ons de komst van ons kleintje — laat een lief bericht en een wens voor de baby achter.",
+  "guest__welcome_default__anniversary": "Vier met ons jaren van liefde en de herinneringen die nog komen — deel een bericht met ons.",
+  "guest__welcome_default__memorial": "Herdenk samen met ons een mooi geleefd leven — deel een herinnering of een paar warme woorden.",
+  "guest__welcome_default__graduation": "Vier deze mijlpaal met ons — laat een felicitatie achter voor de afgestudeerde.",
+  "guest__welcome_default__other": "We zouden het heerlijk vinden als je erbij bent — laat een bericht achter en wees deel van het moment.",
   "guest__rsvp__title": "Jouw antwoord",
   "guest__rsvp__cancel": "Annuleren"
 }

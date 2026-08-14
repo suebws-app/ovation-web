@@ -38,12 +38,15 @@ const detailsPayload = (
     if (values.partnerB.trim()) payload.partnerBName = values.partnerB.trim();
   }
   if (values.weddingDate) payload.weddingDate = values.weddingDate;
+  payload.endDate = values.endDate || null;
   if (values.venue.trim()) payload.venueName = values.venue.trim();
   if (values.place.trim()) payload.venueCity = values.place.trim();
   if (values.message.trim()) payload.welcomeMessage = values.message.trim();
   const details: Record<string, unknown> = {};
   const eventName = values.eventName?.trim();
   if (eventName !== undefined) details.eventName = eventName;
+  const customEventNoun = values.customEventNoun?.trim();
+  if (customEventNoun) details.customEventNoun = customEventNoun;
   if (values.time?.trim()) details.time = values.time.trim();
   const greeting = values.greeting?.trim();
   if (greeting) details.greeting = greeting;
@@ -53,6 +56,12 @@ const detailsPayload = (
   }
   details.showAge = values.showAge;
   details.showRsvp = values.showRsvp;
+  details.agenda = values.agenda?.trim() || undefined;
+  details.attachAgenda = values.attachAgenda;
+  details.logo = values.logo?.trim() || undefined;
+  details.showLogo = values.showLogo;
+  details.bornOn = values.bornOn?.trim() || undefined;
+  details.passedOn = values.passedOn?.trim() || undefined;
   Object.assign(details, designDetails(values));
   if (Object.keys(details).length) payload.details = details;
   return payload;

@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Atbilde saglabāta",
   "guest__rsvp__error": "Neizdevās saglabāt jūsu atbildi",
   "guest__rsvp__cta": "Lūdzu, apstipriniet savu ielūgumu",
+  "guest__welcome_default__wedding": "Kopā ar mūsu ģimenēm aicinām tevi svinēt mūsu mīlestību — atstāj mums ziņu šīs dienas piemiņai.",
+  "guest__welcome_default__birthday": "Nāc svinēt kopā ar mums vēl vienu brīnišķīgu gadu — atstāj dzimšanas dienas vēlējumu, lai diena būtu vēl saldāka.",
+  "guest__welcome_default__corporate": "Priecājamies tevi sveikt. Gaidīsim tevi — atstāj ziņu pirms pasākuma.",
+  "guest__welcome_default__baby_shower": "Pievienojies mums, lai sagaidītu mūsu mazuli — atstāj sirsnīgu ziņu un vēlējumu mazulim.",
+  "guest__welcome_default__anniversary": "Pievienojies mums, lai svinētu mīlestības gadus un vēl gaidāmās atmiņas — padalies ar mums ziņā.",
+  "guest__welcome_default__memorial": "Godināsim kopā skaisti nodzīvotu dzīvi — padalies atmiņā vai dažos siltos vārdos.",
+  "guest__welcome_default__graduation": "Svini kopā ar mums šo nozīmīgo brīdi — atstāj apsveikumu absolventam.",
+  "guest__welcome_default__other": "Būtu prieks, ja pievienotos mums — atstāj ziņu un esi daļa no šī mirkļa.",
   "guest__rsvp__title": "Jūsu atbilde",
   "guest__rsvp__cancel": "Atcelt"
 }

@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Svar gemt",
   "guest__rsvp__error": "Dit svar kunne ikke gemmes",
   "guest__rsvp__cta": "Bekræft venligst din invitation",
+  "guest__welcome_default__wedding": "Sammen med vores familier inviterer vi dig til at fejre vores kærlighed — efterlad en hilsen til minde om dagen.",
+  "guest__welcome_default__birthday": "Kom og fejr endnu et vidunderligt år med os — efterlad et fødselsdagsønske, der gør dagen endnu bedre.",
+  "guest__welcome_default__corporate": "Vi er glade for at byde dig velkommen. Vi glæder os til at se dig — efterlad en hilsen inden arrangementet.",
+  "guest__welcome_default__baby_shower": "Vær med til at byde vores lille ny velkommen — efterlad en kærlig hilsen og et ønske til babyen.",
+  "guest__welcome_default__anniversary": "Vær med til at fejre år med kærlighed og de minder, der venter — del en hilsen med os.",
+  "guest__welcome_default__memorial": "Lad os sammen ære og mindes et smukt levet liv — del et minde eller et par varme ord.",
+  "guest__welcome_default__graduation": "Fejr denne milepæl med os — efterlad en lykønskning til den nyuddannede.",
+  "guest__welcome_default__other": "Vi vil elske at have dig med — efterlad en hilsen og bliv en del af øjeblikket.",
   "guest__rsvp__title": "Dit svar",
   "guest__rsvp__cancel": "Annuller"
 }

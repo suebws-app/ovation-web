@@ -101,6 +101,16 @@ export const DetailAssetUpload = ({
               ? t("settings__event_details__replace")
               : t("settings__event_details__upload")}
         </Button>
+        {value && status !== "uploading" && (
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => onChange("")}
+            className="text-muted-foreground hover:text-destructive"
+          >
+            {t("settings__event_details__remove")}
+          </Button>
+        )}
       </div>
       {status === "error" && (
         <span className="type-caption text-destructive">

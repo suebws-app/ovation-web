@@ -22,6 +22,7 @@ import { clientEnv as env } from "@/lib/utils/env.client";
 import type { Event } from "@/lib/api/types";
 import { toIsoDate, parseIsoDate } from "@/lib/utils/formatDate";
 import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
+import { Switch } from "@ovation/ui/components/Switch";
 import { SettingsField } from "./SettingsField";
 import {
   getEventTypeConfig,
@@ -90,6 +91,15 @@ export const WeddingDetailsForm = ({
   };
   const hasSecondHost = config.fields.some((f) => f.column === "hostBName");
   const showEndDate = hasEndDateField(config);
+  const showExpectedGuests = config.fields.some(
+    (f) => f.column === "expectedGuests",
+  );
+  // Corporate renders its own event-name field via EventDetailsFields, and
+  // custom-noun types ("other") already use the host-name column as the event
+  // name — don't add a duplicate generic field for those.
+  const showEventName =
+    !config.fields.some((f) => f.key === "eventName") && !config.customNoun;
+  const currentDetails = (event.details ?? {}) as Record<string, unknown>;
   const endDateLabel =
     config.fields.find((f) => f.column === "endDate")?.labelKey ??
     "event__field__end_date";
@@ -98,17 +108,26 @@ export const WeddingDetailsForm = ({
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors, isSubmitting },
     reset,
   } = useForm<WeddingFields>({
     defaultValues: {
       partnerAName: event.partnerAName ?? "",
       partnerBName: event.partnerBName ?? "",
+      eventName:
+        typeof currentDetails.eventName === "string"
+          ? currentDetails.eventName
+          : "",
       weddingDate: eventDateToInput(event.weddingDate),
       endDate: eventDateToInput(event.endDate),
+      multiDay: Boolean(event.endDate),
       venueName: event.venueName ?? "",
       venueCity: event.venueCity ?? "",
-      welcomeMessage: event.welcomeMessage ?? "",
+      expectedGuests:
+        event.expectedGuests != null ? String(event.expectedGuests) : "",
+      welcomeMessage:
+        event.welcomeMessage || t(`guest__welcome_default__${config.type}`),
       themeColor: event.themeColor,
       slug: event.slug,
     },
@@ -119,6 +138,7 @@ export const WeddingDetailsForm = ({
   });
 
   const welcomeMessage = useWatch({ control, name: "welcomeMessage" }) ?? "";
+  const multiDay = useWatch({ control, name: "multiDay" }) ?? false;
   const slugValue = useWatch({ control, name: "slug" }) ?? "";
   const themeColorValue = useWatch({ control, name: "themeColor" });
   const [copied, setCopied] = useState(false);
@@ -143,17 +163,31 @@ export const WeddingDetailsForm = ({
         endDate: values.endDate || null,
         venueName: values.venueName || undefined,
         venueCity: values.venueCity || undefined,
+        expectedGuests: values.expectedGuests
+          ? Number(values.expectedGuests)
+          : undefined,
         welcomeMessage: values.welcomeMessage || undefined,
         themeColor: values.themeColor || undefined,
         slug: values.slug || undefined,
+        ...(showEventName
+          ? { details: { eventName: values.eventName?.trim() || "" } }
+          : {}),
       });
+      const updatedDetails = (updated.details ?? {}) as Record<string, unknown>;
       reset({
         partnerAName: updated.partnerAName ?? "",
         partnerBName: updated.partnerBName ?? "",
+        eventName:
+          typeof updatedDetails.eventName === "string"
+            ? updatedDetails.eventName
+            : "",
         weddingDate: eventDateToInput(updated.weddingDate),
         endDate: eventDateToInput(updated.endDate),
+        multiDay: Boolean(updated.endDate),
         venueName: updated.venueName ?? "",
         venueCity: updated.venueCity ?? "",
+        expectedGuests:
+          updated.expectedGuests != null ? String(updated.expectedGuests) : "",
         welcomeMessage: updated.welcomeMessage ?? "",
         themeColor: updated.themeColor,
         slug: updated.slug,
@@ -220,6 +254,28 @@ export const WeddingDetailsForm = ({
         )}
       </div>
 
+      {showEventName && (
+        <div className="mt-5">
+          <SettingsField
+            label={t("event__field__event_name")}
+            fieldName="eventName"
+          >
+            <Input
+              type="text"
+              placeholder={t("event__field__event_name_placeholder")}
+              aria-invalid={Boolean(errors.eventName)}
+              className={invalidFieldClass}
+              {...register("eventName")}
+            />
+            {errors.eventName && (
+              <span className="type-caption text-destructive mt-1.5 block">
+                {errors.eventName.message}
+              </span>
+            )}
+          </SettingsField>
+        </div>
+      )}
+
       {extraFields && <div className="mt-5">{extraFields}</div>}
 
       <div className="mt-5">
@@ -248,6 +304,27 @@ export const WeddingDetailsForm = ({
       </div>
 
       {showEndDate && (
+        <div className="mt-5 flex items-center justify-between gap-3">
+          <span className="type-body-small text-foreground font-medium">
+            {t("invitation__field__multi_day")}
+          </span>
+          <Controller
+            control={control}
+            name="multiDay"
+            render={({ field }) => (
+              <Switch
+                checked={Boolean(field.value)}
+                onChange={(v) => {
+                  field.onChange(v);
+                  if (!v) setValue("endDate", "");
+                }}
+              />
+            )}
+          />
+        </div>
+      )}
+
+      {showEndDate && multiDay && (
         <div className="mt-5">
           <SettingsField label={t(endDateLabel)} fieldName="endDate">
             <Controller
@@ -321,6 +398,32 @@ export const WeddingDetailsForm = ({
         </SettingsField>
       </div>
 
+      {showExpectedGuests && (
+        <div className="mt-5">
+          <SettingsField
+            label={labelForColumn(
+              "expectedGuests",
+              "event__field__expected_guests",
+            )}
+            fieldName="expectedGuests"
+          >
+            <Input
+              type="number"
+              min={1}
+              inputMode="numeric"
+              aria-invalid={Boolean(errors.expectedGuests)}
+              className={invalidFieldClass}
+              {...register("expectedGuests")}
+            />
+            {errors.expectedGuests && (
+              <span className="type-caption text-destructive mt-1.5 block">
+                {errors.expectedGuests.message}
+              </span>
+            )}
+          </SettingsField>
+        </div>
+      )}
+
       <div className="mt-5">
         <SettingsField
           label={t("settings__wedding__welcome_note")}
@@ -332,9 +435,9 @@ export const WeddingDetailsForm = ({
           <textarea
             {...register("welcomeMessage")}
             aria-invalid={Boolean(errors.welcomeMessage)}
-            placeholder={t("settings__wedding__welcome_note_placeholder")}
+            placeholder={t(`et__${config.type}__tagline`)}
             rows={3}
-            className={`border-border bg-background text-foreground type-body-small w-full rounded-lg border p-3 font-serif leading-relaxed outline-none ${invalidFieldClass}`}
+            className={`border-border bg-card text-foreground type-body-small w-full rounded-lg border p-3 font-serif leading-relaxed outline-none ${invalidFieldClass}`}
           />
           {errors.welcomeMessage && (
             <span className="type-caption text-destructive mt-1.5 block">
@@ -370,7 +473,7 @@ export const WeddingDetailsForm = ({
           hint={t("settings__wedding__public_link_hint")}
         >
           <div
-            className={`bg-background flex h-10 items-center gap-2 rounded-lg border pr-1 pl-3 ${
+            className={`bg-card flex h-10 items-center gap-2 rounded-lg border pr-1 pl-3 ${
               errors.slug
                 ? "border-destructive ring-destructive ring-1"
                 : "border-border"

@@ -35,6 +35,39 @@ export const hasEndDateField = (config: {
 }): boolean => config.fields.some((f) => f.column === "endDate");
 
 /**
+ * The memorial life span shown on the card, e.g. "1950 – 2020". Uses only the
+ * years of `bornOn`/`passedOn`; falls back to a single year if one is missing.
+ */
+export const memorialLifeSpan = (
+  bornOn?: unknown,
+  passedOn?: unknown,
+): string | undefined => {
+  const year = (raw: unknown): number | undefined => {
+    if (typeof raw === "number") return Number.isFinite(raw) ? raw : undefined;
+    if (typeof raw === "string") {
+      const match = raw.match(/\d{4}/);
+      return match ? Number(match[0]) : undefined;
+    }
+    return undefined;
+  };
+  const b = year(bornOn);
+  const p = year(passedOn);
+  if (b && p) return `${b} – ${p}`;
+  return b || p ? String(b ?? p) : undefined;
+};
+
+/**
+ * Whether the event renders as a real date range (multi-day type with a
+ * distinct end date). Drives the time prefix ("from" for ranges, "at" for a
+ * single day) so a start time next to a range isn't ambiguous.
+ */
+export const isDateRange = (event: EventLike): boolean => {
+  const start = eventDateOf(event);
+  if (!start || !event.endDate || event.endDate === start) return false;
+  return hasEndDateField(getEventTypeConfig(event.eventType));
+};
+
+/**
  * Formats an event's date as a single date or a start–end range. Returns the
  * single date (via `formatOne`) when there is no end date or the end equals the
  * start. For a real range, the month/year are collapsed when shared: same month
@@ -49,7 +82,12 @@ export const formatDateRange = (
 ): string | null => {
   const start = eventDateOf(event);
   if (!start) return null;
-  if (!event.endDate || event.endDate === start) return formatOne(start);
+  // Only multi-day types (e.g. corporate) render a range. For single-day types
+  // a stray/legacy end date must be ignored, never shown as "18–20".
+  const supportsRange = hasEndDateField(getEventTypeConfig(event.eventType));
+  if (!supportsRange || !event.endDate || event.endDate === start) {
+    return formatOne(start);
+  }
 
   const separator = opts?.separator ?? "–";
   const locale = opts?.locale ?? "en-GB";
@@ -123,15 +161,19 @@ type TitleT = (
 /** Max characters shown on the second-tier event-word so it never overflows. */
 const MAX_POSTFIX_LEN = 24;
 
-/** Trim, cap length (with an ellipsis), and capitalize the first letter. */
-const formatPostfix = (raw: string): string => {
+/** Trim and cap length (with an ellipsis). Preserves the original casing. */
+const capPostfix = (raw: string): string => {
   const trimmed = raw.trim();
   if (!trimmed) return "";
-  const capped =
-    trimmed.length > MAX_POSTFIX_LEN
-      ? `${trimmed.slice(0, MAX_POSTFIX_LEN - 1).trimEnd()}…`
-      : trimmed;
-  return capped.charAt(0).toUpperCase() + capped.slice(1);
+  return trimmed.length > MAX_POSTFIX_LEN
+    ? `${trimmed.slice(0, MAX_POSTFIX_LEN - 1).trimEnd()}…`
+    : trimmed;
+};
+
+/** Cap length then capitalize the first letter (for translated type nouns). */
+const formatPostfix = (raw: string): string => {
+  const capped = capPostfix(raw);
+  return capped ? capped.charAt(0).toUpperCase() + capped.slice(1) : "";
 };
 
 export type InviteCardTitle = {
@@ -166,19 +208,24 @@ export const eventCardTitle = (
   const a = input.hostA?.trim() ?? "";
   const b = input.hostB?.trim() ?? "";
   const override = input.eventName?.trim();
-  if (override) {
+  const config = getEventTypeConfig(input.eventType);
+  // Custom-noun types ("other") use the host column as the event name and the
+  // typed noun as the tier below — a stray `eventName` must not override it.
+  if (override && !config.customNoun) {
     return { title: override, partnerA: a, partnerB: "" };
   }
 
-  const config = getEventTypeConfig(input.eventType);
   // For custom-noun types (`other`), the user's typed event noun is the second
   // tier (e.g. "Reunion") — the same slot where anniversary shows "Anniversary".
   // Fall back to the type's generic noun so the tier never vanishes (legacy or
   // empty custom nouns), then cap length + capitalize.
-  const raw = config.customNoun
-    ? input.customEventNoun?.trim() || t(`et__${config.type}__event`)
-    : t(`et__${config.type}__title_postfix`);
-  const postfix = formatPostfix(raw ?? "");
+  // Custom nouns keep the exact casing the host typed; translated type nouns
+  // (e.g. "Anniversary") are capitalized.
+  const postfix = config.customNoun
+    ? capPostfix(
+        input.customEventNoun?.trim() || t(`et__${config.type}__event`),
+      )
+    : formatPostfix(t(`et__${config.type}__title_postfix`));
   return {
     partnerA: a,
     partnerB: hasSecondHost(config.type) ? b : "",

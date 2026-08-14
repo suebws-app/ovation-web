@@ -1,6 +1,5 @@
 {
   "et__common__guest": "vieras",
-
   "et__wedding__event": "häät",
   "et__wedding__host": "pari",
   "et__wedding__host_plural": "parit",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Häät",
   "et__wedding__tagline": "Juhli avioliittoanne",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "syntymäpäiväjuhla",
   "et__birthday__host": "päivänsankari",
   "et__birthday__date_label": "Juhlapäivä",
   "et__birthday__name": "Syntymäpäivä",
   "et__birthday__tagline": "Juhli uutta vuotta",
   "et__birthday__title_postfix": "Syntymäpäivä",
-
   "et__corporate__event": "tapahtuma",
   "et__corporate__host": "organisaatio",
   "et__corporate__date_label": "Tapahtumapäivä",
   "et__corporate__name": "Yritystapahtuma",
   "et__corporate__tagline": "Konferenssit, julkaisut ja muut",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "vauvakutsut",
   "et__baby_shower__host": "perhe",
   "et__baby_shower__date_label": "Juhlapäivä",
   "et__baby_shower__name": "Vauvakutsut",
   "et__baby_shower__tagline": "Toivota pienokainen tervetulleeksi",
   "et__baby_shower__title_postfix": "Vauvakutsut",
-
   "et__anniversary__event": "vuosipäivä",
   "et__anniversary__host": "pari",
   "et__anniversary__date_label": "Juhlapäivä",
   "et__anniversary__name": "Vuosipäivä",
   "et__anniversary__tagline": "Juhlikaa yhteisiä vuosianne",
   "et__anniversary__title_postfix": "Vuosipäivä",
-
   "et__memorial__event": "muistotilaisuus",
   "et__memorial__host": "perhe",
   "et__memorial__date_label": "Tilaisuuden päivä",
   "et__memorial__name": "Muistotilaisuus",
   "et__memorial__tagline": "Kunnioita muistettua elämää",
   "et__memorial__title_postfix": "Muistoksi",
-
   "et__graduation__event": "valmistujaiset",
   "et__graduation__host": "valmistuja",
   "et__graduation__date_label": "Seremonian päivä",
   "et__graduation__name": "Valmistujaiset",
   "et__graduation__tagline": "Juhli saavutusta",
   "et__graduation__title_postfix": "Valmistujaiset",
-
   "et__other__event": "tapahtuma",
   "et__other__host": "järjestäjä",
   "et__other__date_label": "Tapahtumapäivä",
   "et__other__name": "Muu",
   "et__other__tagline": "Mikä tahansa tilaisuus",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Kumppani 1",
   "event__field__partner_b": "Kumppani 2",
   "event__field__wedding_date": "Hääpäivä",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Tapahtumapäivä",
   "event__field__event_name": "Tapahtuman nimi",
   "event__field__event_name_placeholder": "esim. Acme-vuosikonferenssi (valinnainen)",
-
   "event__type_picker__title": "Mitä juhlit?",
   "event__type_picker__subtitle": "Aloita valitsemalla tapahtuman tyyppi",
   "event__type_picker__step_label": "Tapahtuman tyyppi",
-
   "settings__event_type__warn_lost": "Tyypin vaihtaminen poistaa nämä kentät: {fields}",
   "settings__event_type__confirm": "Vaihda tapahtuman tyyppi",
-
   "settings__event_details__upload": "Lataa",
   "settings__event_details__replace": "Korvaa",
+  "settings__event_details__remove": "Poista",
   "settings__event_details__uploading": "Ladataan…",
   "settings__event_details__upload_error": "Lataus epäonnistui. Yritä uudelleen.",
   "settings__event_details__view_file": "Näytä tiedosto"

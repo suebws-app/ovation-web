@@ -17,10 +17,13 @@ export const getWeddingSchema = (t: T) =>
       // Optional: single-host types (birthday, memorial, …) don't render a second
       // host field, so requiring it would silently block the whole form's submit.
       partnerBName: z.string().max(50, t("validation__partner_name_max")),
+      eventName: z.string().max(80).optional(),
       weddingDate: z.string().max(20).optional(),
       endDate: z.string().max(20).optional(),
+      multiDay: z.boolean().optional(),
       venueName: z.string().max(100).optional(),
       venueCity: z.string().max(100).optional(),
+      expectedGuests: z.string().max(6).optional(),
       welcomeMessage: z.string().max(200).optional(),
       themeColor: z
         .string()
@@ -42,10 +45,13 @@ export const getWeddingSchema = (t: T) =>
 export type WeddingFields = {
   partnerAName: string;
   partnerBName: string;
+  eventName?: string;
   weddingDate?: string;
   endDate?: string;
+  multiDay?: boolean;
   venueName?: string;
   venueCity?: string;
+  expectedGuests?: string;
   welcomeMessage?: string;
   themeColor?: string;
   slug: string;

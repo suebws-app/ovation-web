@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Odgovor spremljen",
   "guest__rsvp__error": "Vaš odgovor nije moguće spremiti",
   "guest__rsvp__cta": "Molimo potvrdite svoj poziv",
+  "guest__welcome_default__wedding": "Zajedno s našim obiteljima pozivamo te da proslaviš našu ljubav — ostavi nam poruku za uspomenu na ovaj dan.",
+  "guest__welcome_default__birthday": "Dođi proslaviti s nama još jednu prekrasnu godinu — ostavi rođendansku želju da bude još slađa.",
+  "guest__welcome_default__corporate": "Radujemo se što te možemo ugostiti. Veselimo se tvom dolasku — ostavi poruku prije događaja.",
+  "guest__welcome_default__baby_shower": "Pridruži nam se u dočeku našeg malenog — ostavi nam nježnu poruku i želju za bebu.",
+  "guest__welcome_default__anniversary": "Pridruži nam se u slavlju godina ljubavi i uspomena koje dolaze — podijeli poruku s nama.",
+  "guest__welcome_default__memorial": "Odajmo zajedno počast lijepo proživljenom životu — podijeli uspomenu ili nekoliko toplih riječi.",
+  "guest__welcome_default__graduation": "Proslavi s nama ovu prekretnicu — ostavi čestitku za diplomanta.",
+  "guest__welcome_default__other": "Bilo bi nam drago da nam se pridružiš — ostavi poruku i budi dio trenutka.",
   "guest__rsvp__title": "Vaš odgovor",
   "guest__rsvp__cancel": "Odustani"
 }

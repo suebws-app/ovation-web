@@ -11,6 +11,8 @@ import { RsvpActions } from "./RsvpActions";
 import {
   eventCardTitle,
   formatDateRange,
+  isDateRange,
+  memorialLifeSpan,
   getEventTypeConfig,
 } from "@/lib/event-types";
 
@@ -43,19 +45,28 @@ export const GuestInvitationView = ({
   const t = useTranslations();
   const setGuestName = useGuestSubmissionStore((s) => s.setGuestName);
   const currentGuestName = useGuestSubmissionStore((s) => s.guestName);
+  const detailsEventName =
+    typeof event.details?.eventName === "string"
+      ? event.details.eventName.trim()
+      : "";
+  const isCorporate = event.eventType === "corporate";
   const titleParts = eventCardTitle(t, {
     eventType: event.eventType,
     hostA: event.hostAName ?? event.partnerAName,
     hostB: event.hostBName ?? event.partnerBName,
-    eventName:
-      typeof event.details?.eventName === "string"
-        ? event.details.eventName
-        : undefined,
+    // Corporate keeps the organization (hostA) as the title; the event name is
+    // shown as a subtitle below, not as an overriding single line.
+    eventName: isCorporate ? undefined : detailsEventName || undefined,
     customEventNoun:
       typeof event.details?.customEventNoun === "string"
         ? event.details.customEventNoun
         : undefined,
   });
+  const cardSubtitle = isCorporate
+    ? detailsEventName || undefined
+    : event.eventType === "memorial"
+      ? memorialLifeSpan(event.details?.bornOn, event.details?.passedOn)
+      : undefined;
 
   const detailStr = (key: string): string | undefined => {
     const value = event.details?.[key];
@@ -88,15 +99,33 @@ export const GuestInvitationView = ({
                 animate
                 values={{
                   ...titleParts,
+                  subtitle: cardSubtitle,
+                  logo:
+                    (typeof event.details?.showLogo === "boolean"
+                      ? event.details.showLogo
+                      : Boolean(event.details?.logo)) &&
+                    typeof event.details?.logo === "string"
+                      ? event.details.logo
+                      : undefined,
                   dateLabel:
                     formatDateRange(event, formatDateLabel) ?? undefined,
                   time:
-                    typeof event.details?.time === "string"
-                      ? event.details.time
+                    typeof event.details?.time === "string" &&
+                    event.details.time
+                      ? t(
+                          isDateRange(event)
+                            ? "invitation__time__from"
+                            : "invitation__time__at",
+                          { time: event.details.time },
+                        )
                       : undefined,
                   venue: event.locationName ?? event.venueName ?? undefined,
                   place: event.locationCity ?? event.venueCity ?? undefined,
-                  message: event.welcomeMessage ?? undefined,
+                  message:
+                    event.welcomeMessage ||
+                    t(
+                      `guest__welcome_default__${getEventTypeConfig(event.eventType).type}`,
+                    ),
                   greeting:
                     typeof event.details?.greeting === "string"
                       ? event.details.greeting

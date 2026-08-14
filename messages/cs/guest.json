@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Odpověď uložena",
   "guest__rsvp__error": "Odpověď se nepodařilo uložit",
   "guest__rsvp__cta": "Potvrďte prosím svou účast",
+  "guest__welcome_default__wedding": "Spolu s našimi rodinami tě zveme oslavit naši lásku — zanech nám vzkaz na památku tohoto dne.",
+  "guest__welcome_default__birthday": "Přijď s námi oslavit další báječný rok — zanech narozeninové přání, ať je ještě sladší.",
+  "guest__welcome_default__corporate": "Rádi tě přivítáme. Těšíme se na tebe — zanech nám před akcí vzkaz.",
+  "guest__welcome_default__baby_shower": "Přivítej s námi naše miminko — zanech nám milý vzkaz a přání pro miminko.",
+  "guest__welcome_default__anniversary": "Oslav s námi roky lásky a vzpomínky, které teprve přijdou — poděl se s námi o vzkaz.",
+  "guest__welcome_default__memorial": "Uctěme společně krásně prožitý život — sdílej vzpomínku nebo pár laskavých slov.",
+  "guest__welcome_default__graduation": "Oslav s námi tento milník — zanech gratulaci pro absolventa.",
+  "guest__welcome_default__other": "Budeme rádi, když se k nám přidáš — zanech vzkaz a buď součástí toho okamžiku.",
   "guest__rsvp__title": "Vaše odpověď",
   "guest__rsvp__cancel": "Zrušit"
 }

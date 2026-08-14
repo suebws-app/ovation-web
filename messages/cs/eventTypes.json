@@ -1,6 +1,5 @@
 {
   "et__common__guest": "host",
-
   "et__wedding__event": "svatba",
   "et__wedding__host": "pár",
   "et__wedding__host_plural": "páry",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Svatba",
   "et__wedding__tagline": "Oslavte své manželství",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "narozeninová oslava",
   "et__birthday__host": "oslavenec",
   "et__birthday__date_label": "Datum oslavy",
   "et__birthday__name": "Narozeniny",
   "et__birthday__tagline": "Oslavte další rok",
   "et__birthday__title_postfix": "Narozeniny",
-
   "et__corporate__event": "akce",
   "et__corporate__host": "organizace",
   "et__corporate__date_label": "Datum akce",
   "et__corporate__name": "Firemní akce",
   "et__corporate__tagline": "Konference, uvedení produktů a další",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "oslava miminka",
   "et__baby_shower__host": "rodina",
   "et__baby_shower__date_label": "Datum oslavy",
   "et__baby_shower__name": "Oslava miminka",
   "et__baby_shower__tagline": "Přivítejte miminko",
   "et__baby_shower__title_postfix": "Oslava miminka",
-
   "et__anniversary__event": "výročí",
   "et__anniversary__host": "pár",
   "et__anniversary__date_label": "Datum oslavy",
   "et__anniversary__name": "Výročí",
   "et__anniversary__tagline": "Oslavte roky strávené společně",
   "et__anniversary__title_postfix": "Výročí",
-
   "et__memorial__event": "vzpomínková akce",
   "et__memorial__host": "rodina",
   "et__memorial__date_label": "Datum obřadu",
   "et__memorial__name": "Vzpomínka",
   "et__memorial__tagline": "Uctěte památku blízkého",
   "et__memorial__title_postfix": "Na památku",
-
   "et__graduation__event": "promoce",
   "et__graduation__host": "absolvent",
   "et__graduation__date_label": "Datum obřadu",
   "et__graduation__name": "Promoce",
   "et__graduation__tagline": "Oslavte tento úspěch",
   "et__graduation__title_postfix": "Promoce",
-
   "et__other__event": "akce",
   "et__other__host": "pořadatel",
   "et__other__date_label": "Datum akce",
   "et__other__name": "Jiné",
   "et__other__tagline": "Jakákoli příležitost, kterou máte rádi",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Partner 1",
   "event__field__partner_b": "Partner 2",
   "event__field__wedding_date": "Datum svatby",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Datum akce",
   "event__field__event_name": "Název akce",
   "event__field__event_name_placeholder": "např. Výroční konference Acme (volitelné)",
-
   "event__type_picker__title": "Co oslavujete?",
   "event__type_picker__subtitle": "Vyberte typ akce a začněte",
   "event__type_picker__step_label": "Typ akce",
-
   "settings__event_type__warn_lost": "Změna typu odstraní tato pole: {fields}",
   "settings__event_type__confirm": "Změnit typ akce",
-
   "settings__event_details__upload": "Nahrát",
   "settings__event_details__replace": "Nahradit",
+  "settings__event_details__remove": "Odebrat",
   "settings__event_details__uploading": "Nahrávání…",
   "settings__event_details__upload_error": "Nahrání se nezdařilo. Zkuste to znovu.",
   "settings__event_details__view_file": "Zobrazit soubor"

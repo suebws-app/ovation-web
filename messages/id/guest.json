@@ -207,6 +207,14 @@
   "guest__rsvp__success": "Jawaban tersimpan",
   "guest__rsvp__error": "Jawabanmu tidak dapat disimpan",
   "guest__rsvp__cta": "Mohon konfirmasi undanganmu",
+  "guest__welcome_default__wedding": "Bersama keluarga kami, kami mengundangmu untuk merayakan cinta kami — tinggalkan pesan untuk mengenang hari ini.",
+  "guest__welcome_default__birthday": "Ayo rayakan satu tahun indah lagi bersama kami — tinggalkan ucapan ulang tahun agar semakin bermakna.",
+  "guest__welcome_default__corporate": "Kami senang menyambutmu. Kami menantikan kehadiranmu — tinggalkan pesan sebelum acara.",
+  "guest__welcome_default__baby_shower": "Bergabunglah menyambut si kecil kami — tinggalkan pesan penuh kasih dan harapan untuk sang bayi.",
+  "guest__welcome_default__anniversary": "Bergabunglah merayakan tahun-tahun penuh cinta dan kenangan yang akan datang — bagikan pesan dengan kami.",
+  "guest__welcome_default__memorial": "Bergabunglah menghormati dan mengenang hidup yang dijalani dengan indah — bagikan kenangan atau kata-kata baik.",
+  "guest__welcome_default__graduation": "Rayakan tonggak ini bersama kami — tinggalkan ucapan selamat untuk sang wisudawan.",
+  "guest__welcome_default__other": "Kami senang jika kamu hadir — tinggalkan pesan dan jadilah bagian dari momen ini.",
   "guest__rsvp__title": "Jawabanmu",
   "guest__rsvp__cancel": "Batal"
 }

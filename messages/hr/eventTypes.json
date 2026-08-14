@@ -1,6 +1,5 @@
 {
   "et__common__guest": "gost",
-
   "et__wedding__event": "vjenčanje",
   "et__wedding__host": "par",
   "et__wedding__host_plural": "parovi",
@@ -8,56 +7,48 @@
   "et__wedding__name": "Vjenčanje",
   "et__wedding__tagline": "Proslavite svoj brak",
   "et__wedding__title_postfix": "",
-
   "et__birthday__event": "rođendan",
   "et__birthday__host": "slavljenik",
   "et__birthday__date_label": "Datum proslave",
   "et__birthday__name": "Rođendan",
   "et__birthday__tagline": "Proslavite još jednu godinu",
   "et__birthday__title_postfix": "Rođendan",
-
   "et__corporate__event": "događaj",
   "et__corporate__host": "organizacija",
   "et__corporate__date_label": "Datum događaja",
   "et__corporate__name": "Poslovni događaj",
   "et__corporate__tagline": "Konferencije, lansiranja i još mnogo toga",
   "et__corporate__title_postfix": "",
-
   "et__baby_shower__event": "baby shower",
   "et__baby_shower__host": "obitelj",
   "et__baby_shower__date_label": "Datum baby showera",
   "et__baby_shower__name": "Baby shower",
   "et__baby_shower__tagline": "Dočekajte malenoga",
   "et__baby_shower__title_postfix": "Baby Shower",
-
   "et__anniversary__event": "godišnjica",
   "et__anniversary__host": "par",
   "et__anniversary__date_label": "Datum proslave",
   "et__anniversary__name": "Godišnjica",
   "et__anniversary__tagline": "Proslavite godine provedene zajedno",
   "et__anniversary__title_postfix": "Godišnjica",
-
   "et__memorial__event": "komemoracija",
   "et__memorial__host": "obitelj",
   "et__memorial__date_label": "Datum ceremonije",
   "et__memorial__name": "Komemoracija",
   "et__memorial__tagline": "Odajte počast životu koji pamtimo",
   "et__memorial__title_postfix": "In Memoriam",
-
   "et__graduation__event": "diplomiranje",
   "et__graduation__host": "diplomant",
   "et__graduation__date_label": "Datum ceremonije",
   "et__graduation__name": "Diplomiranje",
   "et__graduation__tagline": "Proslavite uspjeh",
   "et__graduation__title_postfix": "Diplomiranje",
-
   "et__other__event": "događaj",
   "et__other__host": "domaćin",
   "et__other__date_label": "Datum događaja",
   "et__other__name": "Ostalo",
   "et__other__tagline": "Za bilo koju prigodu",
   "et__other__title_postfix": "",
-
   "event__field__partner_a": "Partner 1",
   "event__field__partner_b": "Partner 2",
   "event__field__wedding_date": "Datum vjenčanja",
@@ -93,16 +84,14 @@
   "event__field__event_date": "Datum događaja",
   "event__field__event_name": "Naziv događaja",
   "event__field__event_name_placeholder": "npr. Acme godišnja konferencija (nije obavezno)",
-
   "event__type_picker__title": "Što slavite?",
   "event__type_picker__subtitle": "Odaberite vrstu događaja za početak",
   "event__type_picker__step_label": "Vrsta događaja",
-
   "settings__event_type__warn_lost": "Promjena vrste uklonit će ova polja: {fields}",
   "settings__event_type__confirm": "Promijeni vrstu događaja",
-
   "settings__event_details__upload": "Učitaj",
   "settings__event_details__replace": "Zamijeni",
+  "settings__event_details__remove": "Ukloni",
   "settings__event_details__uploading": "Učitavanje…",
   "settings__event_details__upload_error": "Učitavanje nije uspjelo. Pokušajte ponovno.",
   "settings__event_details__view_file": "Prikaži datoteku"
