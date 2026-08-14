@@ -9,6 +9,7 @@ import { useCartStore } from "@/features/cart/store/useCartStore";
 import { useBuyNowStore } from "@/features/cart/store/useBuyNowStore";
 import { useOptimisticPlanStore } from "./useOptimisticPlanStore";
 import { useConfirmCheckout } from "./hooks/useConfirmCheckout";
+import { PendingEventCreator } from "./PendingEventCreator";
 
 type CheckoutSuccessClientProps = {
   orderId: string;
@@ -55,5 +56,5 @@ export const CheckoutSuccessClient = ({
     router.replace(appRoutes.app.root);
   }, [done, kind, t, router, clearCart, clearBuyNow, clearActivating]);
 
-  return null;
+  return <PendingEventCreator orderId={orderId} />;
 };
