@@ -22,7 +22,7 @@ type InviteCardValues = {
   eventName?: string;
   // The event word shown on a second tier below the names (e.g. "Anniversary").
   postfix?: string;
-  // Type-specific line under the names (e.g. "Together since 2010", "1950 – 2020").
+  // Type-specific line under the names (e.g. the memorial life span "1950 – 2020").
   subtitle?: string;
   // Optional logo (public image URL) shown at the top of the card (corporate).
   logo?: string;
