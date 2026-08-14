@@ -217,14 +217,11 @@ export const eventCardTitle = (
 
   // For custom-noun types (`other`), the user's typed event noun is the second
   // tier (e.g. "Reunion") — the same slot where anniversary shows "Anniversary".
-  // Fall back to the type's generic noun so the tier never vanishes (legacy or
-  // empty custom nouns), then cap length + capitalize.
-  // Custom nouns keep the exact casing the host typed; translated type nouns
-  // (e.g. "Anniversary") are capitalized.
+  // When no noun is typed the tier is simply hidden rather than falling back to
+  // the generic "event" word. Custom nouns keep the exact casing the host typed;
+  // translated type nouns (e.g. "Anniversary") are capitalized.
   const postfix = config.customNoun
-    ? capPostfix(
-        input.customEventNoun?.trim() || t(`et__${config.type}__event`),
-      )
+    ? capPostfix(input.customEventNoun?.trim() || "")
     : formatPostfix(t(`et__${config.type}__title_postfix`));
   return {
     partnerA: a,
