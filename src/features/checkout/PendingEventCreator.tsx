@@ -149,7 +149,7 @@ export const PendingEventCreator = ({
     return () => {
       cancelled = true;
     };
-  }, [orderId]);
+  }, [orderId, onComplete]);
 
   return null;
 };
