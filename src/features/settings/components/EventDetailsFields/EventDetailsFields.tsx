@@ -77,6 +77,11 @@ export const EventDetailsFields = ({ event }: EventDetailsFieldsProps) => {
       <SettingsField key={field.key} label={label}>
         <Input
           type={field.kind === "int" ? "number" : "text"}
+          placeholder={
+            field.key === "customEventNoun"
+              ? t("event__field__custom_event_noun_placeholder")
+              : undefined
+          }
           defaultValue={stringValue(field.key)}
           onBlur={(e) => {
             const raw = e.target.value.trim();
