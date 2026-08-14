@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { toast } from "@/components/Toaster";
@@ -25,6 +25,8 @@ export const CheckoutSuccessClient = ({
   const markActivating = useOptimisticPlanStore((s) => s.markActivating);
   const clearActivating = useOptimisticPlanStore((s) => s.clear);
   const firedRef = useRef(false);
+  const [creatorDone, setCreatorDone] = useState(false);
+  const handleCreatorDone = useCallback(() => setCreatorDone(true), []);
 
   useEffect(() => {
     markActivating(orderId);
@@ -33,7 +35,7 @@ export const CheckoutSuccessClient = ({
   const { kind, done } = useConfirmCheckout({ orderId });
 
   useEffect(() => {
-    if (!done || firedRef.current) return;
+    if (!done || !creatorDone || firedRef.current) return;
     firedRef.current = true;
 
     const message =
@@ -54,7 +56,18 @@ export const CheckoutSuccessClient = ({
     toast.success(message);
     if (kind === "plan") router.refresh();
     router.replace(appRoutes.app.root);
-  }, [done, kind, t, router, clearCart, clearBuyNow, clearActivating]);
+  }, [
+    done,
+    creatorDone,
+    kind,
+    t,
+    router,
+    clearCart,
+    clearBuyNow,
+    clearActivating,
+  ]);
 
-  return <PendingEventCreator orderId={orderId} />;
+  return (
+    <PendingEventCreator orderId={orderId} onComplete={handleCreatorDone} />
+  );
 };

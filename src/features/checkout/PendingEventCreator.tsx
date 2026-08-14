@@ -44,9 +44,13 @@ const readPending = (): PendingEventData | null => {
 
 type PendingEventCreatorProps = {
   orderId: string;
+  onComplete?: () => void;
 };
 
-export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
+export const PendingEventCreator = ({
+  orderId,
+  onComplete,
+}: PendingEventCreatorProps) => {
   const startedRef = useRef(false);
 
   useEffect(() => {
@@ -54,6 +58,9 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
     startedRef.current = true;
 
     let cancelled = false;
+    const finish = () => {
+      if (!cancelled) onComplete?.();
+    };
 
     const waitForActivation = async (): Promise<boolean> => {
       const maxAttempts = 30;
@@ -70,17 +77,21 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
     };
 
     const run = async () => {
+      const data = readPending();
+      if (!data) {
+        finish();
+        return;
+      }
+
       const activated = await waitForActivation();
       if (cancelled) return;
       if (!activated) {
         console.warn(
           "[checkout] plan purchase did not reach paid status within poll window",
         );
+        finish();
         return;
       }
-
-      const data = readPending();
-      if (!data) return;
 
       const maxAttempts = 20;
       for (let attempt = 0; attempt < maxAttempts && !cancelled; attempt += 1) {
@@ -117,10 +128,12 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
           await profileClient.markOnboardingComplete().catch(() => undefined);
           window.sessionStorage?.removeItem(STORAGE_KEY);
           clearPendingEvent();
+          finish();
           return;
         } catch (error) {
           if (!isPendingSubscription(error)) {
             console.error("[signup] pending event creation failed", error);
+            finish();
             return;
           }
           await sleep(1500);
@@ -129,6 +142,7 @@ export const PendingEventCreator = ({ orderId }: PendingEventCreatorProps) => {
       console.warn(
         "[signup] gave up creating pending event after retries; webhook may not have activated subscription yet",
       );
+      finish();
     };
 
     run();
