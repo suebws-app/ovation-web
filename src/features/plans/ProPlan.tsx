@@ -10,12 +10,22 @@ import { appRoutes } from "@/lib/routes";
 import { PlanOptionCard } from "@/features/plans/components/PlanOptionCard";
 import { PRO_TIERS } from "@/features/marketing/PricingSection/constants";
 import { usePlans } from "@/lib/query/plansQueries";
+import { eventsClient } from "@/lib/api/events-client";
+import { profileClient } from "@/lib/api/profile-client";
+import { useCreateEventStore } from "@/features/create/useCreateEventStore";
+import { getEventTypeConfig } from "@/lib/event-types";
+import { ApiError } from "@/lib/api/client";
+import { toIsoDate } from "@/lib/utils/formatDate";
+
+const toEventDate = (date: Date | null): string | undefined =>
+  date && !Number.isNaN(date.getTime()) ? toIsoDate(date) : undefined;
 
 export const ProPlan = () => {
   const t = useTranslations();
   const { formData, updateFormData } = useSignUpStore();
   const router = useRouter();
   const [showError, setShowError] = useState(false);
+  const [creating, setCreating] = useState(false);
   const { data } = usePlans();
 
   const priceFor = (planCode: string | null, fallback: string) => {
@@ -36,8 +46,49 @@ export const ProPlan = () => {
     router.push(appRoutes.checkout.root);
   };
 
-  const handleSkip = () => {
-    router.push(appRoutes.app.root);
+  const handleStartFree = async () => {
+    if (creating) return;
+    setCreating(true);
+    setShowError(false);
+    const eventData = useCreateEventStore.getState().formData;
+    const hasSecondHost = getEventTypeConfig(eventData.eventType).fields.some(
+      (f) => f.column === "hostBName",
+    );
+    const partnerA =
+      eventData.partner1Name?.trim() || t("signup__partner_a_default");
+    const partnerB = hasSecondHost
+      ? eventData.partner2Name?.trim() || t("signup__partner_b_default")
+      : undefined;
+    try {
+      const { event } = await eventsClient.create({
+        eventType: eventData.eventType,
+        partnerAName: partnerA,
+        partnerBName: partnerB,
+        weddingDate: toEventDate(eventData.weddingDate),
+        endDate: toEventDate(eventData.endDate),
+        venueName: eventData.venueName?.trim() || undefined,
+        venueCity: eventData.venueCity?.trim() || undefined,
+        details: eventData.details,
+      });
+      if (eventData.themeColor) {
+        await eventsClient
+          .update(event.id, { themeColor: eventData.themeColor })
+          .catch(() => undefined);
+      }
+      await profileClient.markOnboardingComplete().catch(() => undefined);
+      router.replace(appRoutes.app.root);
+    } catch (error) {
+      setCreating(false);
+      if (
+        ApiError.isApiError(error) &&
+        /pro_subscription_required/i.test(error.code ?? error.message ?? "")
+      ) {
+        // Already used the free event — must pick a paid plan.
+        setShowError(true);
+        return;
+      }
+      setShowError(true);
+    }
   };
 
   return (
@@ -104,10 +155,11 @@ export const ProPlan = () => {
           <Button
             type="button"
             variant="ghost"
-            onClick={handleSkip}
+            onClick={handleStartFree}
+            disabled={creating}
             className="text-muted-foreground hover:text-primary px-0 font-medium hover:bg-transparent"
           >
-            {t("signup__plan__skip")}
+            {t("signup__pro_plan__start_free")}
           </Button>
         </div>
       </div>
