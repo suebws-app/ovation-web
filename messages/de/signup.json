@@ -83,6 +83,7 @@
   "signup__plan__subtitle": "Kostenlos starten. Jederzeit upgraden — auch nach Ihrer Veranstaltung. Laden Sie jederzeit eine .zip mit allen Nachrichten herunter.",
   "signup__plan__skip": "Erstmal überspringen",
   "signup__pro_plan__start_free": "Start with 1 free event",
+  "signup__pro_plan__free_error": "Dein Event konnte nicht erstellt werden. Bitte versuche es erneut oder wähle unten einen Tarif.",
   "signup__plan__upgrade_hint": "Du kannst jederzeit über dein Dashboard upgraden",
   "signup__plan__keepsake__name": "Keepsake",
   "signup__plan__keepsake__per": "einmalig",

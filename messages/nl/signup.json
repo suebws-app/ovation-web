@@ -83,6 +83,7 @@
   "signup__plan__subtitle": "Start gratis. Upgrade wanneer je wilt — zelfs na je evenement. Download op elk moment een .zip met alle berichten.",
   "signup__plan__skip": "Sla over voor nu",
   "signup__pro_plan__start_free": "Start with 1 free event",
+  "signup__pro_plan__free_error": "Je evenement kon niet worden aangemaakt. Probeer het opnieuw of kies hieronder een abonnement.",
   "signup__plan__upgrade_hint": "Je kunt op elk moment upgraden vanuit je dashboard",
   "signup__plan__keepsake__name": "Keepsake",
   "signup__plan__keepsake__per": "eenmalig",

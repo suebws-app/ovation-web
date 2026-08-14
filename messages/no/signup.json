@@ -83,6 +83,7 @@
   "signup__plan__subtitle": "Start gratis. Oppgrader når som helst — også etter arrangementet ditt. Last ned en .zip med alle meldinger når som helst.",
   "signup__plan__skip": "Hopp over nå",
   "signup__pro_plan__start_free": "Start with 1 free event",
+  "signup__pro_plan__free_error": "Kunne ikke opprette arrangementet ditt. Prøv igjen eller velg en plan nedenfor.",
   "signup__plan__upgrade_hint": "Du kan oppgradere når som helst fra dashbordet ditt",
   "signup__plan__keepsake__name": "Keepsake",
   "signup__plan__keepsake__per": "engangsbetaling",

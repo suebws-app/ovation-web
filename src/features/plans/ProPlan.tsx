@@ -14,7 +14,6 @@ import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import { getEventTypeConfig } from "@/lib/event-types";
-import { ApiError } from "@/lib/api/client";
 import { toIsoDate } from "@/lib/utils/formatDate";
 
 const toEventDate = (date: Date | null): string | undefined =>
@@ -26,6 +25,7 @@ export const ProPlan = () => {
   const router = useRouter();
   const [showError, setShowError] = useState(false);
   const [creating, setCreating] = useState(false);
+  const [createError, setCreateError] = useState(false);
   const { data } = usePlans();
 
   const priceFor = (planCode: string | null, fallback: string) => {
@@ -49,7 +49,7 @@ export const ProPlan = () => {
   const handleStartFree = async () => {
     if (creating) return;
     setCreating(true);
-    setShowError(false);
+    setCreateError(false);
     const eventData = useCreateEventStore.getState().formData;
     const hasSecondHost = getEventTypeConfig(eventData.eventType).fields.some(
       (f) => f.column === "hostBName",
@@ -77,17 +77,9 @@ export const ProPlan = () => {
       }
       await profileClient.markOnboardingComplete().catch(() => undefined);
       router.replace(appRoutes.app.root);
-    } catch (error) {
+    } catch {
       setCreating(false);
-      if (
-        ApiError.isApiError(error) &&
-        /pro_subscription_required/i.test(error.code ?? error.message ?? "")
-      ) {
-        // Already used the free event — must pick a paid plan.
-        setShowError(true);
-        return;
-      }
-      setShowError(true);
+      setCreateError(true);
     }
   };
 
@@ -150,6 +142,12 @@ export const ProPlan = () => {
         >
           {t("signup__pro_plan__continue")}
         </Button>
+
+        {createError && (
+          <p className="text-destructive type-body-small mt-6 text-center">
+            {t("signup__pro_plan__free_error")}
+          </p>
+        )}
 
         <div className="mt-4 text-center">
           <Button

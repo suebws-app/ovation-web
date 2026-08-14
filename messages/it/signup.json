@@ -80,6 +80,7 @@
   "signup__plan__subtitle": "Inizia gratis. Passa a un piano superiore quando vuoi — anche dopo il tuo evento. Scarica uno .zip con tutti i messaggi in qualsiasi momento.",
   "signup__plan__skip": "Salta per ora",
   "signup__pro_plan__start_free": "Start with 1 free event",
+  "signup__pro_plan__free_error": "Impossibile creare il tuo evento. Riprova o scegli un piano qui sotto.",
   "signup__plan__upgrade_hint": "Puoi passare a un piano superiore in qualsiasi momento dalla dashboard",
   "signup__plan__keepsake__name": "Keepsake",
   "signup__plan__keepsake__per": "una tantum",

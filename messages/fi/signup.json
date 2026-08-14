@@ -83,6 +83,7 @@
   "signup__plan__subtitle": "Aloita ilmaiseksi. Päivitä milloin tahansa — jopa tapahtuman jälkeen. Lataa .zip kaikista viesteistä milloin tahansa.",
   "signup__plan__skip": "Ohita toistaiseksi",
   "signup__pro_plan__start_free": "Start with 1 free event",
+  "signup__pro_plan__free_error": "Tapahtumasi luominen epäonnistui. Yritä uudelleen tai valitse alta tilaus.",
   "signup__plan__upgrade_hint": "Voit päivittää milloin tahansa hallintapaneelistasi",
   "signup__plan__keepsake__name": "Keepsake",
   "signup__plan__keepsake__per": "kertamaksu",

@@ -83,6 +83,7 @@
   "signup__plan__subtitle": "Empieza gratis. Mejora cuando quieras — incluso después de tu evento. Descarga un .zip con todos los mensajes en cualquier momento.",
   "signup__plan__skip": "Omitir por ahora",
   "signup__pro_plan__start_free": "Start with 1 free event",
+  "signup__pro_plan__free_error": "No se pudo crear tu evento. Inténtalo de nuevo o elige un plan a continuación.",
   "signup__plan__upgrade_hint": "Puedes mejorar tu plan en cualquier momento desde tu panel",
   "signup__plan__keepsake__name": "Keepsake",
   "signup__plan__keepsake__per": "pago único",
