@@ -1043,24 +1043,21 @@
 
 @utility section-container {
   margin-inline: auto;
-  max-width: 77.5rem;
+  width: 100%;
+  max-width: 83rem;
   padding-inline: 1.5rem;
   padding-block: 2.5rem;
   @media (width >= 1024px) {
-    padding-inline: 5rem;
     padding-block: 7.5rem;
   }
 }
 
 @utility section-container-small {
   margin-inline: auto;
-  max-width: 77.5rem;
+  width: 100%;
+  max-width: 83rem;
   padding-inline: 1.5rem;
   padding-block: 2.5rem;
-  @media (width >= 1024px) {
-    padding-inline: 5rem;
-    padding-block: 2.5rem;
-  }
 }
 
 @utility hide-scrollbar {
@@ -1158,4 +1155,40 @@
     #000 92%,
     transparent
   );
+}
+
+@keyframes ov-caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.ov-typewriter-caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.78em;
+  vertical-align: baseline;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ov-typewriter-caret {
+    animation: ov-caret-blink 1s steps(2, start) infinite;
+  }
+}
+
+@keyframes ov-tick-rise {
+  from {
+    transform: translateY(0.22em);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.ov-tick-number {
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ov-tick-number {
+    animation: ov-tick-rise 320ms ease-out;
+  }
 }

@@ -1,32 +1,57 @@
 import dynamic from "next/dynamic";
 import { setRequestLocale } from "next-intl/server";
 import type { LocalePageProps } from "@/i18n/types";
-import { LandingHero } from "./sections/LandingHero";
+import { GeneralHero } from "./general/sections/GeneralHero";
 import { GENERAL_KEY_PREFIX } from "./variant";
 
-const ProductShowcase = dynamic(() =>
-  import("./sections/ProductShowcase").then((m) => ({
-    default: m.ProductShowcase,
+const StepStrip = dynamic(() =>
+  import("./general/sections/StepStrip").then((m) => ({
+    default: m.StepStrip,
   })),
 );
-const FlowsSection = dynamic(() =>
-  import("./sections/FlowsSection").then((m) => ({
-    default: m.FlowsSection,
+const PhotoSharing = dynamic(() =>
+  import("./general/sections/PhotoSharing").then((m) => ({
+    default: m.PhotoSharing,
   })),
 );
-const MemoryStrip = dynamic(() =>
-  import("./sections/MemoryStrip").then((m) => ({
-    default: m.MemoryStrip,
+const HowItWorksSteps = dynamic(() =>
+  import("./general/sections/HowItWorksSteps").then((m) => ({
+    default: m.HowItWorksSteps,
+  })),
+);
+const FeatureGrid = dynamic(() =>
+  import("./general/sections/FeatureGrid").then((m) => ({
+    default: m.FeatureGrid,
+  })),
+);
+const OccasionGrid = dynamic(() =>
+  import("./general/sections/OccasionGrid").then((m) => ({
+    default: m.OccasionGrid,
+  })),
+);
+const SocialProof = dynamic(() =>
+  import("./general/sections/SocialProof").then((m) => ({
+    default: m.SocialProof,
+  })),
+);
+const Testimonials = dynamic(() =>
+  import("./general/sections/Testimonials").then((m) => ({
+    default: m.Testimonials,
+  })),
+);
+const Comparison = dynamic(() =>
+  import("./general/sections/Comparison").then((m) => ({
+    default: m.Comparison,
+  })),
+);
+const FaqSection = dynamic(() =>
+  import("./general/sections/FaqSection").then((m) => ({
+    default: m.FaqSection,
   })),
 );
 const KeepsakeSection = dynamic(() =>
   import("./sections/KeepsakeSection").then((m) => ({
     default: m.KeepsakeSection,
-  })),
-);
-const FinalDarkCTA = dynamic(() =>
-  import("./sections/FinalDarkCTA").then((m) => ({
-    default: m.FinalDarkCTA,
   })),
 );
 
@@ -36,12 +61,17 @@ export const GeneralLandingPage = async ({ params }: LocalePageProps) => {
 
   return (
     <>
-      <LandingHero keyPrefix={GENERAL_KEY_PREFIX} />
-      <ProductShowcase keyPrefix={GENERAL_KEY_PREFIX} />
-      <FlowsSection keyPrefix={GENERAL_KEY_PREFIX} />
-      <MemoryStrip keyPrefix={GENERAL_KEY_PREFIX} />
+      <GeneralHero />
+      <StepStrip />
+      <PhotoSharing />
+      <HowItWorksSteps />
+      <FeatureGrid />
+      <OccasionGrid />
+      <SocialProof />
+      <Testimonials />
+      <Comparison />
       <KeepsakeSection keyPrefix={GENERAL_KEY_PREFIX} />
-      <FinalDarkCTA keyPrefix={GENERAL_KEY_PREFIX} />
+      <FaqSection />
     </>
   );
 };

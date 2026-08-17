@@ -17,6 +17,8 @@ import {
 } from "@ovation/ui/components/Sheet";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { USE_CASES_MENU_ITEMS } from "../RootHeader/navItems";
+import { RootMobileNavLink } from "./RootMobileNavLink";
 
 type RootMobileNavProps = {
   languageSelect: ReactNode;
@@ -38,7 +40,7 @@ export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
 
       <SheetContent side="left" className="flex flex-col gap-0 p-0">
         <VisuallyHidden.Root>
-          <SheetTitle>{t("marketing__nav__how_it_works")}</SheetTitle>
+          <SheetTitle>{t("marketing__nav__use_cases")}</SheetTitle>
         </VisuallyHidden.Root>
 
         <div className="border-border flex h-19 shrink-0 items-center justify-between border-b px-6">
@@ -58,46 +60,27 @@ export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
         </div>
 
         <nav className="flex min-h-0 flex-1 flex-col overflow-y-auto px-4 py-4">
-          <SheetClose asChild>
-            <Link
-              href={appRoutes.marketing.howItWorks}
-              className="text-foreground type-body-large rounded-12 hover:bg-muted px-3 py-3.5 font-medium transition"
-            >
-              {t("marketing__nav__how_it_works")}
-            </Link>
-          </SheetClose>
-          <SheetClose asChild>
-            <Link
-              href={appRoutes.marketing.keepsakes}
-              className="text-foreground type-body-large rounded-12 hover:bg-muted px-3 py-3.5 font-medium transition"
-            >
-              {t("marketing__nav__keepsakes")}
-            </Link>
-          </SheetClose>
-          <SheetClose asChild>
-            <Link
-              href={appRoutes.marketing.pricing}
-              className="text-foreground type-body-large rounded-12 hover:bg-muted px-3 py-3.5 font-medium transition"
-            >
-              {t("marketing__nav__pricing")}
-            </Link>
-          </SheetClose>
-          <SheetClose asChild>
-            <Link
-              href={appRoutes.marketing.forPlanners}
-              className="text-foreground type-body-large rounded-12 hover:bg-muted px-3 py-3.5 font-medium transition"
-            >
-              {t("marketing__nav__for_planners")}
-            </Link>
-          </SheetClose>
-          <SheetClose asChild>
-            <Link
-              href={appRoutes.marketing.blog}
-              className="text-foreground type-body-large rounded-12 hover:bg-muted px-3 py-3.5 font-medium transition"
-            >
-              {t("marketing__nav__blog")}
-            </Link>
-          </SheetClose>
+          <p className="text-muted-foreground landing-eyebrow px-3 pt-2 pb-1">
+            {t("marketing__nav__use_cases")}
+          </p>
+          {USE_CASES_MENU_ITEMS.map((item) => (
+            <RootMobileNavLink key={item.key} href={item.href} nested>
+              {t(item.labelKey)}
+            </RootMobileNavLink>
+          ))}
+
+          <RootMobileNavLink href={appRoutes.marketing.pricing}>
+            {t("marketing__nav__pricing")}
+          </RootMobileNavLink>
+          <RootMobileNavLink href={appRoutes.marketing.blog}>
+            {t("marketing__nav__blog")}
+          </RootMobileNavLink>
+          <RootMobileNavLink href={appRoutes.marketing.howItWorks}>
+            {t("marketing__nav__how_it_works")}
+          </RootMobileNavLink>
+          <RootMobileNavLink href={appRoutes.marketing.keepsakes}>
+            {t("marketing__nav__keepsakes")}
+          </RootMobileNavLink>
         </nav>
 
         <div className="border-border shrink-0 border-t px-6 py-6">
@@ -105,14 +88,20 @@ export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
             {languageSelect}
             <ThemeToggle />
           </div>
-          <Button asChild className="w-full gap-1.5" variant="outline">
-            <Link
-              href={appRoutes.auth.signIn}
-              className="text-foreground type-body mb-3 block font-semibold"
-            >
-              {t("marketing__nav__sign_in")}
-            </Link>
-          </Button>
+          <SheetClose asChild>
+            <Button asChild variant="pillPrimary" className="mb-3 h-12 w-full">
+              <Link href={appRoutes.auth.role}>
+                {t("marketing__nav__get_started")}
+              </Link>
+            </Button>
+          </SheetClose>
+          <SheetClose asChild>
+            <Button asChild className="h-12 w-full" variant="outline">
+              <Link href={appRoutes.auth.signIn}>
+                {t("marketing__nav__sign_in")}
+              </Link>
+            </Button>
+          </SheetClose>
         </div>
       </SheetContent>
     </Sheet>
