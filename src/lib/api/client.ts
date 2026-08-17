@@ -17,6 +17,7 @@ export class ApiError extends Error {
     public readonly code: string,
     message: string,
     public readonly details?: Record<string, unknown>,
+    public readonly i18nKey?: string,
   ) {
     super(message);
     this.name = "ApiError";
@@ -56,7 +57,13 @@ export const parseError = async (res: Response): Promise<ApiError> => {
   const body = (await res.json().catch(() => null)) as ApiErrorBody | null;
   const code = body?.error?.code ?? "HTTP_ERROR";
   const message = body?.error?.message ?? res.statusText ?? "Request failed";
-  const err = new ApiError(res.status, code, message, body?.error?.details);
+  const err = new ApiError(
+    res.status,
+    code,
+    message,
+    body?.error?.details,
+    body?.error?.i18nKey,
+  );
   if (err.status >= 500) {
     captureMonitoredException(err, {
       tags: { source: "apiFetch", status: String(err.status), code },

@@ -360,6 +360,7 @@ export type ApiErrorBody = {
   error: {
     code: string;
     message: string;
+    i18nKey?: string;
     details: Record<string, unknown>;
   };
 };

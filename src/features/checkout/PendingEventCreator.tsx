@@ -29,7 +29,9 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const isPendingSubscription = (error: unknown) =>
   ApiError.isApiError(error) &&
-  /pro_subscription_required/i.test(error.code ?? error.message ?? "");
+  /pro_subscription_required/i.test(
+    error.i18nKey ?? error.code ?? error.message ?? "",
+  );
 
 const readPending = (): PendingEventData | null => {
   if (typeof window === "undefined") return null;

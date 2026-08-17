@@ -15,6 +15,7 @@ import { profileClient } from "@/lib/api/profile-client";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import { getEventTypeConfig } from "@/lib/event-types";
 import { toIsoDate } from "@/lib/utils/formatDate";
+import type { UpdateEventInput } from "@/lib/api/types";
 
 const toEventDate = (date: Date | null): string | undefined =>
   date && !Number.isNaN(date.getTime()) ? toIsoDate(date) : undefined;
@@ -70,10 +71,18 @@ export const ProPlan = () => {
         venueCity: eventData.venueCity?.trim() || undefined,
         details: eventData.details,
       });
-      if (eventData.themeColor) {
-        await eventsClient
-          .update(event.id, { themeColor: eventData.themeColor })
-          .catch(() => undefined);
+      const updates: UpdateEventInput = {};
+      const desiredSlug = eventData.bookUrl?.trim();
+      if (
+        desiredSlug &&
+        desiredSlug !== event.slug &&
+        /^[a-z0-9-]{4,20}$/.test(desiredSlug)
+      ) {
+        updates.slug = desiredSlug;
+      }
+      if (eventData.themeColor) updates.themeColor = eventData.themeColor;
+      if (Object.keys(updates).length > 0) {
+        await eventsClient.update(event.id, updates).catch(() => undefined);
       }
       await profileClient.markOnboardingComplete().catch(() => undefined);
       router.replace(appRoutes.app.root);
