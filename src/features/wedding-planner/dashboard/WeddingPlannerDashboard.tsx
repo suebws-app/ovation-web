@@ -10,12 +10,15 @@ import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isPaidPlan } from "@/lib/utils/plan";
 import { eventDateOf, eventTitleLine, showsCountdown } from "@/lib/event-types";
+import type { Event } from "@/lib/api/types";
 import { ViewHeader } from "../components/ViewHeader";
 import { WeddingPlannerDashboardClient } from "./WeddingPlannerDashboardClient";
 
-export const WeddingPlannerDashboard = async () => {
+export const WeddingPlannerDashboard = async ({
+  event: eventProp,
+}: { event?: Event | null } = {}) => {
   const [event, user] = await Promise.all([
-    requireFilledCoupleEvent(),
+    eventProp ? Promise.resolve(eventProp) : requireFilledCoupleEvent(),
     getCurrentUser(),
   ]);
   const assistantLocked = !isPaidPlan(user?.planTier);

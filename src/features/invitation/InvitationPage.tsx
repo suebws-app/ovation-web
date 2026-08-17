@@ -3,7 +3,7 @@
 import { startTransition, useEffect, useState } from "react";
 import { FormProvider, useWatch } from "react-hook-form";
 import { useRouter } from "@/i18n/navigation";
-import { appRoutes } from "@/lib/routes";
+import { usePlannerRoutes } from "@/features/wedding-planner/usePlannerRoutes";
 import { useHydrateStore } from "@/lib/storage/useHydrateStore";
 import type { Event, Invitee } from "@/lib/api/types";
 import { InvitationFooter } from "./components/InvitationFooter";
@@ -30,6 +30,7 @@ export const InvitationPage = ({
   const hydrated = useHydrateStore(useInvitationStore);
   const resetStep = useInvitationStore((s) => s.setStep);
   const router = useRouter();
+  const plannerRoutes = usePlannerRoutes();
   const methods = useInvitationForm(initialEvent, initialInvitees);
   const { save, status: saveStatus } = useSaveInvitationStep(
     eventId,
@@ -52,7 +53,7 @@ export const InvitationPage = ({
         // Invalidate the Router Cache BEFORE navigating so the guests page
         // fetches the just-saved event instead of a stale cached render.
         router.refresh();
-        router.push(appRoutes.app.weddingPlanner.guests);
+        router.push(plannerRoutes.guests);
       },
     });
 

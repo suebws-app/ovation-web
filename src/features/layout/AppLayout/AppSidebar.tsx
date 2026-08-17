@@ -12,7 +12,6 @@ import { StarIcon } from "@ovation/icons/StarIcon";
 import { QrCodeIcon } from "@ovation/icons/QrCodeIcon";
 import { MonitorIcon } from "@ovation/icons/MonitorIcon";
 import { HelpCircleIcon } from "@ovation/icons/HelpCircleIcon";
-import { UsersIcon } from "@ovation/icons/UsersIcon";
 import { UserPlusIcon } from "@ovation/icons/UserPlusIcon";
 import { LinkIcon } from "@ovation/icons/LinkIcon";
 import { BoxIcon } from "@ovation/icons/BoxIcon";
@@ -281,6 +280,8 @@ const buildProEventGroups = (
   t: Translator,
   eventId: string,
   counts: SidebarCounts,
+  plannerEnabled: boolean,
+  assistantOnClick?: () => void,
 ): SidebarNavGroup[] => [
   {
     items: [
@@ -289,17 +290,64 @@ const buildProEventGroups = (
         href: appRoutes.app.eventHome(eventId),
         icon: HomeIcon,
       },
+      ...(plannerEnabled
+        ? [
+            {
+              label: t("sidebar__nav__wedding_planner"),
+              href: appRoutes.app.eventPlannerDashboard(eventId),
+              icon: HeartIcon,
+              matchPaths: [appRoutes.app.eventPlanner(eventId)],
+              children: [
+                {
+                  label: t("sidebar__wp__dashboard"),
+                  href: appRoutes.app.eventPlannerDashboard(eventId),
+                  icon: GridIcon,
+                },
+                {
+                  label: t("sidebar__wp__timeline"),
+                  href: appRoutes.app.eventPlannerTimeline(eventId),
+                  icon: RouteIcon,
+                },
+                {
+                  label: t("sidebar__wp__tasks"),
+                  href: appRoutes.app.eventPlannerTasks(eventId),
+                  icon: ClipboardCheckIcon,
+                },
+                {
+                  label: t("sidebar__wp__budget"),
+                  href: appRoutes.app.eventPlannerBudget(eventId),
+                  icon: WalletIcon,
+                },
+                {
+                  label: t("sidebar__nav__invitation"),
+                  href: appRoutes.app.eventInvitation(eventId),
+                  icon: MailIcon,
+                },
+                {
+                  label: t("sidebar__wp__guests"),
+                  href: appRoutes.app.eventPlannerGuests(eventId),
+                  icon: UserPlusIcon,
+                },
+                {
+                  label: t("sidebar__wp__vendors"),
+                  href: appRoutes.app.eventPlannerVendors(eventId),
+                  icon: StoreIcon,
+                },
+                {
+                  label: t("sidebar__wp__assistant"),
+                  href: appRoutes.app.eventPlannerAssistant(eventId),
+                  icon: SparkleIcon,
+                  onClick: assistantOnClick,
+                },
+              ],
+            },
+          ]
+        : []),
       {
         label: t("sidebar__nav__messages"),
         href: appRoutes.app.eventMessages(eventId),
         icon: MessageSquareIcon,
         badge: counts.messages > 0 ? counts.messages : undefined,
-      },
-      {
-        label: t("sidebar__nav__guests"),
-        href: appRoutes.app.eventGuests(eventId),
-        icon: UsersIcon,
-        badge: counts.guests > 0 ? counts.guests : undefined,
       },
       {
         label: t("sidebar__nav__photos"),
@@ -356,14 +404,21 @@ export const AppSideBar = ({
     : undefined;
   const coupleEventId = !isPro ? (events[0]?.id ?? null) : null;
   const counts = useSidebarCounts(isPro ? eventId : coupleEventId);
-  const plannerEnabled = getEventTypeConfig(events[0]?.eventType).features
+  const selectedEvent = events.find((e) => e.id === eventId) ?? events[0];
+  const plannerEnabled = getEventTypeConfig(selectedEvent?.eventType).features
     .planner;
 
   let groups: SidebarNavGroup[];
   if (isPro) {
     groups = eventId
       ? [
-          ...buildProEventGroups(t, eventId, counts),
+          ...buildProEventGroups(
+            t,
+            eventId,
+            counts,
+            plannerEnabled,
+            assistantOnClick,
+          ),
           ...buildProGlobalGroups(t, isStudioPro),
         ]
       : buildProGlobalGroups(t, isStudioPro);

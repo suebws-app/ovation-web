@@ -170,7 +170,10 @@ export const EventDashboardPage = async ({
             )}
           >
             {plannerEnabled && isPlannerFirst(phase) && (
-              <WeddingPlannerWidget summary={plannerSummary} />
+              <WeddingPlannerWidget
+                summary={plannerSummary}
+                dashboardHref={appRoutes.app.eventPlannerDashboard(event.id)}
+              />
             )}
             <Messages
               eventId={event.id}
@@ -193,7 +196,10 @@ export const EventDashboardPage = async ({
               </div>
             </div>
             {plannerEnabled && !isPlannerFirst(phase) && (
-              <WeddingPlannerWidget summary={plannerSummary} />
+              <WeddingPlannerWidget
+                summary={plannerSummary}
+                dashboardHref={appRoutes.app.eventPlannerDashboard(event.id)}
+              />
             )}
           </div>
         </div>

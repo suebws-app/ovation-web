@@ -8,6 +8,7 @@ import { CreateHeader } from "@/features/layout/CreateHeader/CreateHeader";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
 import { eventsApi } from "@/lib/api/events";
 import { isConsumerRole } from "@/lib/auth/account-role";
+import { isPaidPlan } from "@/lib/utils/plan";
 
 export const metadata: Metadata = { robots: { index: false } };
 
@@ -18,10 +19,7 @@ export default async function CreateLayout({
 }) {
   const user = await getCurrentUser();
 
-  if (
-    user?.accountType === "pro" &&
-    (!user.planTier || user.planTier === "free")
-  ) {
+  if (user?.accountType === "pro" && !isPaidPlan(user.planTier)) {
     redirect(`${appRoutes.auth.plans}?as=pro`);
   }
 

@@ -107,6 +107,7 @@ export type PlanTier =
   | "bundle"
   | "pro_starter"
   | "pro_studio"
+  | "pro_free"
   | "free";
 
 export type AccountType = "couple" | "host" | "pro";

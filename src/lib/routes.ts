@@ -85,6 +85,15 @@ export const appRoutes = {
     eventQrCode: (id: string) => `/events/${id}/qr-code`,
     eventKiosk: (id: string) => `/events/${id}/kiosk`,
     eventLink: (id: string) => `/events/${id}/link`,
+    eventInvitation: (id: string) => `/events/${id}/invitation`,
+    eventPlanner: (id: string) => `/events/${id}/planner`,
+    eventPlannerDashboard: (id: string) => `/events/${id}/planner/dashboard`,
+    eventPlannerTimeline: (id: string) => `/events/${id}/planner/timeline`,
+    eventPlannerTasks: (id: string) => `/events/${id}/planner/tasks`,
+    eventPlannerBudget: (id: string) => `/events/${id}/planner/budget`,
+    eventPlannerGuests: (id: string) => `/events/${id}/planner/guests`,
+    eventPlannerVendors: (id: string) => `/events/${id}/planner/vendors`,
+    eventPlannerAssistant: (id: string) => `/events/${id}/planner/assistant`,
   },
 
   settings: {

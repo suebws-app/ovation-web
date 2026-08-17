@@ -1,11 +1,13 @@
 import { getCurrentEvent } from "@/lib/auth/current-event";
 import { inviteesApi } from "@/lib/api/invitees";
-import type { Invitee } from "@/lib/api/types";
+import type { Event, Invitee } from "@/lib/api/types";
 import { invitationFontVariables } from "./invitationFonts";
 import { InvitationPage } from "./InvitationPage";
 
-export const InvitationPageServer = async () => {
-  const event = await getCurrentEvent();
+export const InvitationPageServer = async ({
+  event: eventProp,
+}: { event?: Event | null } = {}) => {
+  const event = eventProp ?? (await getCurrentEvent());
 
   let initialInvitees: Invitee[] = [];
   if (event?.id) {

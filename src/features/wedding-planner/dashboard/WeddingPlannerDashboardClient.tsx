@@ -7,7 +7,6 @@ import { WalletIcon } from "@ovation/icons/WalletIcon";
 import { RouteIcon } from "@ovation/icons/RouteIcon";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { Link } from "@/i18n/navigation";
-import { appRoutes } from "@/lib/routes";
 import {
   useWeddingPlannerBudget,
   useWeddingPlannerTasks,
@@ -15,6 +14,7 @@ import {
 } from "@/lib/query/weddingPlannerQueries";
 import type { PlannerPhase, PlannerTodo } from "@/lib/api/types";
 import { chartColorVar, formatShortDate, money } from "../utils";
+import { usePlannerRoutes } from "../usePlannerRoutes";
 import { ProgressRing } from "../components/ProgressRing";
 import { CountdownHero } from "./CountdownHero";
 import { StageRow, type StageState } from "./StageRow";
@@ -23,8 +23,6 @@ import { DashPaymentItem } from "./DashPaymentItem";
 import { DashBudgetSegment } from "./DashBudgetSegment";
 import { DashBudgetLegendItem } from "./DashBudgetLegendItem";
 import { DashRsvpSummary } from "./DashRsvpSummary";
-
-const wp = appRoutes.app.weddingPlanner;
 
 const stageLabelKey: Record<StageState, string> = {
   done: "wp__dash__stage_done",
@@ -83,6 +81,7 @@ export const WeddingPlannerDashboardClient = ({
   assistantLocked,
 }: WeddingPlannerDashboardClientProps) => {
   const t = useTranslations();
+  const wp = usePlannerRoutes();
   const todos = useWeddingPlannerTasks(eventId).data ?? [];
   const phases = useWeddingPlannerTimeline(eventId).data ?? [];
   const budget = useWeddingPlannerBudget(eventId).data;

@@ -145,7 +145,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
       });
     }
 
-    if (!error && data?.token && accountType !== "pro") {
+    if (!error && data?.token) {
       try {
         const eventData = useCreateEventStore.getState().formData;
         const hasSecondHost = getEventTypeConfig(

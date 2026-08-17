@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { eventsClient } from "@/lib/api/events-client";
@@ -52,30 +52,6 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
   const inflightRef = useRef<Map<number, Promise<CheckoutState>>>(new Map());
 
-  const stashPendingEventData = useCallback(() => {
-    if (typeof window === "undefined") return;
-    const eventData = useCreateEventStore.getState().formData;
-    const partnerA =
-      eventData.partner1Name?.trim() || t("signup__partner_a_default");
-    const partnerB =
-      eventData.partner2Name?.trim() || t("signup__partner_b_default");
-    window.sessionStorage?.setItem(
-      "ovation_pending_event_data",
-      JSON.stringify({
-        eventType: eventData.eventType,
-        partnerAName: partnerA,
-        partnerBName: partnerB,
-        weddingDate: toWeddingDate(eventData.weddingDate) ?? null,
-        endDate: toWeddingDate(eventData.endDate) ?? null,
-        venueName: eventData.venueName?.trim() || null,
-        venueCity: eventData.venueCity?.trim() || null,
-        themeColor: eventData.themeColor || null,
-        details: eventData.details,
-        desiredSlug: eventData.bookUrl.trim() || null,
-      }),
-    );
-  }, [t]);
-
   useEffect(() => {
     const token = retryToken;
     let mounted = true;
@@ -105,7 +81,6 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           }
           safeSet({ kind: "redirecting" });
           try {
-            stashPendingEventData();
             const checkout = await paymentsClient.createProCheckoutSession({
               planCode:
                 signUpFormData.selectedPlan as ProCheckoutSessionInput["planCode"],
@@ -283,7 +258,6 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     eventFormData.details,
     signUpFormData.selectedPlan,
     signUpFormData.accountType,
-    stashPendingEventData,
     updateEventData,
     router,
     t,

@@ -5,10 +5,10 @@ import { EyeIcon } from "@ovation/icons/EyeIcon";
 import { PencilIcon } from "@ovation/icons/PencilIcon";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
-import { appRoutes } from "@/lib/routes";
 import type { Event } from "@/lib/api/types";
 import { InviteCard } from "@/features/invitation/components/InviteCard";
 import { PhonePreview } from "@/features/invitation/components/PhonePreview";
+import { usePlannerRoutes } from "@/features/wedding-planner/usePlannerRoutes";
 import { useInvitePreview } from "../hooks/useInvitePreview";
 
 type InviteePreviewPaneProps = {
@@ -21,6 +21,7 @@ export const InviteePreviewPane = ({
   onOpenPreview,
 }: InviteePreviewPaneProps) => {
   const t = useTranslations();
+  const routes = usePlannerRoutes();
   const { template, values, overrides } = useInvitePreview(event);
 
   return (
@@ -55,7 +56,7 @@ export const InviteePreviewPane = ({
             {t("invitees__preview__cta")}
           </Button>
           <Button asChild size="sm" variant="outline" className="flex-1">
-            <Link href={appRoutes.app.invitation}>
+            <Link href={routes.invitation}>
               <PencilIcon width={13} height={13} />
               {t("invitees__edit_card__cta")}
             </Link>
