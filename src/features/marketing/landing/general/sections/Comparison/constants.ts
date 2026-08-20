@@ -39,3 +39,15 @@ export const SPLIT_PHOTOS_RIGHT = [
   "/images/general/gen-anniversary-2.avif",
   "/images/hero_man.jpg.webp",
 ];
+
+export const SPLIT_MARQUEE_ROWS = 3;
+export const SPLIT_MARQUEE_PER_ROW = 6;
+
+export const buildMarqueeRows = (photos: string[]): string[][] =>
+  Array.from({ length: SPLIT_MARQUEE_ROWS }, (_, row) =>
+    Array.from(
+      { length: SPLIT_MARQUEE_PER_ROW },
+      (_, index) =>
+        photos[(row * SPLIT_MARQUEE_PER_ROW + index) % photos.length]!,
+    ),
+  );

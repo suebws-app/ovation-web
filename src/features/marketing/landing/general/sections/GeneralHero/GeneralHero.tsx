@@ -5,7 +5,6 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { GENERAL_KEY_PREFIX } from "../../../variant";
 import { HERO_OCCASION_SUFFIXES } from "./constants";
-import { HeroLaurelBadge } from "./HeroLaurelBadge";
 import { TypewriterWord } from "./TypewriterWord";
 import { HeroDeviceComposite } from "./HeroDeviceComposite";
 
@@ -18,10 +17,11 @@ export const GeneralHero = () => {
     <section className="bg-background">
       <div className="tablet:grid-cols-[1.05fr_1fr] tablet:gap-10 tablet:py-14 desktop:py-16 mx-auto grid w-full max-w-332 grid-cols-1 items-center gap-10 px-6 py-10">
         <div className="tablet:items-start tablet:text-left flex flex-col items-center text-center">
-          <HeroLaurelBadge label={k("hero_badge_rating")} />
-
-          <h1 className="landing-h1 tablet:landing-display small-desktop:landing-hero text-foreground mt-8">
-            {k("hero_title_lead")} <TypewriterWord words={occasions} />
+          <h1 className="landing-h1 tablet:landing-display small-desktop:landing-hero text-foreground">
+            {k("hero_title_lead_1")} {k("hero_title_lead_2")}
+            <span className="block">
+              <TypewriterWord words={occasions} />
+            </span>
           </h1>
 
           <p className="landing-body-large text-muted-foreground mt-6 max-w-125">

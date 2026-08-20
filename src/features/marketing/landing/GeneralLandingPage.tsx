@@ -29,16 +29,6 @@ const OccasionGrid = dynamic(() =>
     default: m.OccasionGrid,
   })),
 );
-const SocialProof = dynamic(() =>
-  import("./general/sections/SocialProof").then((m) => ({
-    default: m.SocialProof,
-  })),
-);
-const Testimonials = dynamic(() =>
-  import("./general/sections/Testimonials").then((m) => ({
-    default: m.Testimonials,
-  })),
-);
 const Comparison = dynamic(() =>
   import("./general/sections/Comparison").then((m) => ({
     default: m.Comparison,
@@ -67,8 +57,6 @@ export const GeneralLandingPage = async ({ params }: LocalePageProps) => {
       <HowItWorksSteps />
       <FeatureGrid />
       <OccasionGrid />
-      <SocialProof />
-      <Testimonials />
       <Comparison />
       <KeepsakeSection keyPrefix={GENERAL_KEY_PREFIX} />
       <FaqSection />

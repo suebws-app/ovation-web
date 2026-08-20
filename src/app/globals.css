@@ -736,47 +736,44 @@
   padding-block: 1.5rem;
 }
 
-/* ── Landing typography (Cormorant Garamond) ──────────────── */
-/* Cormorant's stroke contrast collapses below ~18px and below
-   weight 400. Everything here is 20px+ / 500+ by design. */
-
+/* ── Landing typography ───────────────────────────────────── */
 @utility landing-hero {
-  font-family: var(--font-cormorant);
-  font-size: 4.5rem;
+  font-family: var(--font-sans);
+  font-size: 3.75rem;
   line-height: 1.03;
   letter-spacing: -0.02em;
   font-weight: 500;
 }
 @utility landing-display {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 3rem;
   line-height: 1.05;
   letter-spacing: -0.02em;
   font-weight: 500;
 }
 @utility landing-h1 {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 2.5rem;
   line-height: 1.06;
   letter-spacing: -0.015em;
   font-weight: 500;
 }
 @utility landing-h2 {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 2rem;
   line-height: 1.1;
   letter-spacing: -0.01em;
   font-weight: 500;
 }
 @utility landing-h3 {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 1.5rem;
   line-height: 1.15;
   letter-spacing: -0.005em;
   font-weight: 600;
 }
 @utility landing-h4 {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 1.25rem;
   line-height: 1.2;
   font-weight: 600;

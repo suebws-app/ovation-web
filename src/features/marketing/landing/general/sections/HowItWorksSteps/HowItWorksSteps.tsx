@@ -103,7 +103,11 @@ export const HowItWorksSteps = ({
             stepLabel={stepLabel(4)}
             title={k("hiw_4_title")}
             description={k("hiw_4_description")}
-            bullets={[k("hiw_4_bullet_1"), k("hiw_4_bullet_2")]}
+            bullets={[
+              k("hiw_4_bullet_1"),
+              k("hiw_4_bullet_2"),
+              k("hiw_4_bullet_3"),
+            ]}
             action={createEventAction}
             visualFirst
             visual={

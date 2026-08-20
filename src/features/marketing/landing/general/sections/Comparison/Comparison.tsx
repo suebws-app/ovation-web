@@ -61,14 +61,6 @@ export const Comparison = () => {
           >
             <Link href={appRoutes.auth.role}>{k("compare_cta_primary")}</Link>
           </Button>
-          <Button
-            variant="pillGhost"
-            size="pill"
-            asChild
-            className="tablet:w-auto w-full"
-          >
-            <Link href="#reviews">{k("compare_cta_reviews")}</Link>
-          </Button>
         </div>
       </div>
     </section>

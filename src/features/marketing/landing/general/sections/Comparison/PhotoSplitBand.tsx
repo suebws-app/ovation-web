@@ -1,11 +1,19 @@
-import { SPLIT_PHOTOS_LEFT, SPLIT_PHOTOS_RIGHT } from "./constants";
-import { SplitPhoto } from "./SplitPhoto";
+import {
+  buildMarqueeRows,
+  SPLIT_PHOTOS_LEFT,
+  SPLIT_PHOTOS_RIGHT,
+} from "./constants";
+import { SplitPhotoRow } from "./SplitPhotoRow";
 
 type PhotoSplitBandProps = {
   photoAlt: string;
   moreLabel: string;
   fewerLabel: string;
 };
+
+const LEFT_ROWS = buildMarqueeRows(SPLIT_PHOTOS_LEFT);
+const RIGHT_ROWS = buildMarqueeRows(SPLIT_PHOTOS_RIGHT);
+const ROW_DURATIONS = [8, 10, 9];
 
 export const PhotoSplitBand = ({
   photoAlt,
@@ -14,17 +22,27 @@ export const PhotoSplitBand = ({
 }: PhotoSplitBandProps) => (
   <div className="relative mx-auto w-full max-w-200">
     <div className="flex items-stretch">
-      <div className="grid flex-1 grid-cols-4 gap-1.5">
-        {SPLIT_PHOTOS_LEFT.map((src, index) => (
-          <SplitPhoto key={`${src}-${index}`} src={src} alt={photoAlt} />
+      <div className="tablet:gap-1.5 flex min-w-0 flex-1 flex-col gap-1">
+        {LEFT_ROWS.map((photos, index) => (
+          <SplitPhotoRow
+            key={index}
+            photos={photos}
+            alt={photoAlt}
+            durationSeconds={ROW_DURATIONS[index]!}
+          />
         ))}
       </div>
 
       <span aria-hidden className="bg-foreground/70 mx-3 w-px shrink-0" />
 
-      <div className="grid flex-1 grid-cols-4 gap-1.5 opacity-60 grayscale">
-        {[...SPLIT_PHOTOS_RIGHT, ...SPLIT_PHOTOS_RIGHT].map((src, index) => (
-          <SplitPhoto key={`${src}-${index}`} src={src} alt={photoAlt} />
+      <div className="tablet:gap-1.5 flex min-w-0 flex-1 flex-col gap-1 opacity-60 grayscale">
+        {RIGHT_ROWS.map((photos, index) => (
+          <SplitPhotoRow
+            key={index}
+            photos={photos}
+            alt={photoAlt}
+            durationSeconds={ROW_DURATIONS[index]! + 2}
+          />
         ))}
       </div>
     </div>

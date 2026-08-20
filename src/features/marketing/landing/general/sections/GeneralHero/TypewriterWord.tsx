@@ -76,7 +76,7 @@ export const TypewriterWord = ({ words }: TypewriterWordProps) => {
 
   return (
     <span aria-live="polite" className="text-primary whitespace-nowrap">
-      {activeWord.slice(0, state.charCount)}
+      {activeWord.slice(0, state.charCount) || "\u200B"}
       <span className="ov-typewriter-caret bg-primary ml-1" />
     </span>
   );
