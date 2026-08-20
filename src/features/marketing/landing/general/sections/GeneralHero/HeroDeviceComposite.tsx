@@ -22,7 +22,7 @@ export const HeroDeviceComposite = ({
         />
       </div>
 
-      <div className="tablet:bottom-4 desktop:bottom-6 absolute bottom-4 left-0">
+      <div className="tablet:bottom-4 desktop:bottom-6 absolute bottom-4 left-0 w-1/4">
         <HeroPhoneScreen
           photoAlt={k("hero_showcase_alt")}
           newLabel={k("hero_showcase_phone_new")}

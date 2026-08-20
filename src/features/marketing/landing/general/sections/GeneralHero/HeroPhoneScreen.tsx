@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { UploadIcon } from "@ovation/icons/UploadIcon";
-import { HERO_PHONE_GRID } from "./constants";
+import { HERO_PHONE_GRID, HERO_PHONE_SCREEN_INSET } from "./constants";
 import { HeroGridCell } from "./HeroGridCell";
 
 type HeroPhoneScreenProps = {
@@ -14,8 +14,11 @@ export const HeroPhoneScreen = ({
   newLabel,
   uploadLabel,
 }: HeroPhoneScreenProps) => (
-  <div className="bg-foreground tablet:w-32 desktop:w-38 tablet:p-2 w-27 rounded-[2rem] p-1.5 shadow-lg">
-    <div className="bg-background relative overflow-hidden rounded-[1.65rem]">
+  <div className="relative w-full">
+    <div
+      className="bg-background rounded-12 absolute overflow-hidden"
+      style={HERO_PHONE_SCREEN_INSET}
+    >
       <div className="tablet:gap-1.5 tablet:px-3 tablet:pt-5 tablet:pb-2.5 relative flex flex-col items-center gap-1.5 px-2 pt-4 pb-2">
         <span className="ring-primary tablet:size-12 relative size-10 overflow-hidden rounded-full ring-2">
           <Image
@@ -41,5 +44,15 @@ export const HeroPhoneScreen = ({
         ))}
       </div>
     </div>
+
+    <Image
+      src="/images/iphone-11-mockup.webp"
+      alt=""
+      width={900}
+      height={1752}
+      sizes="(min-width: 1220px) 160px, (min-width: 740px) 25vw, 108px"
+      priority
+      className="pointer-events-none relative w-full select-none"
+    />
   </div>
 );

@@ -15,8 +15,8 @@ export const GeneralHero = () => {
 
   return (
     <section className="bg-background">
-      <div className="tablet:grid-cols-[1.05fr_1fr] tablet:gap-10 tablet:py-14 desktop:py-16 mx-auto grid w-full max-w-332 grid-cols-1 items-center gap-10 px-6 py-10">
-        <div className="tablet:items-start tablet:text-left flex flex-col items-center text-center">
+      <div className="desktop:grid-cols-[1.05fr_1fr] desktop:gap-10 tablet:py-14 desktop:py-16 mx-auto grid w-full max-w-332 grid-cols-1 items-center gap-10 px-6 py-10">
+        <div className="desktop:items-start desktop:text-left flex flex-col items-center text-center">
           <h1 className="landing-h1 tablet:landing-display small-desktop:landing-hero text-foreground">
             {k("hero_title_lead_1")} {k("hero_title_lead_2")}
             <span className="block">
