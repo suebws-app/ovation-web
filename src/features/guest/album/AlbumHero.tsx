@@ -9,6 +9,8 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { safeHttpUrl } from "@/lib/utils/safe-url";
 import { GuestAvatar } from "../welcome/GuestAvatar";
+import { AlbumMenu } from "./AlbumMenu";
+import type { AlbumCollection } from "./albumScope";
 
 type AlbumHeroProps = {
   slug: string;
@@ -18,6 +20,7 @@ type AlbumHeroProps = {
   coverUrl: string | null;
   slideUrls: string[];
   count: number | null;
+  onOpenCollection?: (collection: AlbumCollection) => void;
 };
 
 const SLIDE_MS = 5000;
@@ -30,6 +33,7 @@ export const AlbumHero = ({
   coverUrl,
   slideUrls,
   count,
+  onOpenCollection,
 }: AlbumHeroProps) => {
   const t = useTranslations();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -65,6 +69,10 @@ export const AlbumHero = ({
         aria-hidden
         className="from-foreground/95 via-foreground/40 absolute inset-0 bg-gradient-to-t to-transparent"
       />
+
+      <div className="absolute top-4 right-4 z-10">
+        <AlbumMenu slug={slug} onOpenCollection={onOpenCollection} />
+      </div>
 
       <div className="relative flex flex-col gap-4 p-5 pb-6">
         <GuestAvatar

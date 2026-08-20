@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { startTransition, useEffect, useMemo, useRef, useState } from "react";
 import { heightFor } from "@/features/photos/adapters";
 import type { GalleryItem } from "@/lib/api/types";
 import { AlbumColumn } from "./AlbumColumn";
@@ -10,29 +10,35 @@ type AlbumGridProps = {
   onOpen: (index: number) => void;
   onLike: (item: GalleryItem) => void;
   onComment: (item: GalleryItem) => void;
+  onDelete?: (item: GalleryItem) => void;
 };
 
 const TILE_GAP = 12;
 
-const useColumnCount = (): number => {
-  const [count, setCount] = useState(2);
+const TARGET_COLUMN_WIDTH = 260;
+const MIN_COLUMN_COUNT = 2;
+
+const useColumnCount = (
+  ref: React.RefObject<HTMLDivElement | null>,
+): number => {
+  const [count, setCount] = useState(MIN_COLUMN_COUNT);
 
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1200px)");
-    const tablet = window.matchMedia("(min-width: 740px)");
+    const node = ref.current;
+    if (!node) return;
     const compute = () => {
-      if (desktop.matches) setCount(4);
-      else if (tablet.matches) setCount(3);
-      else setCount(2);
+      const width = node.clientWidth;
+      if (width === 0) return;
+      const fitted = Math.floor(
+        (width + TILE_GAP) / (TARGET_COLUMN_WIDTH + TILE_GAP),
+      );
+      startTransition(() => setCount(Math.max(MIN_COLUMN_COUNT, fitted)));
     };
     compute();
-    desktop.addEventListener("change", compute);
-    tablet.addEventListener("change", compute);
-    return () => {
-      desktop.removeEventListener("change", compute);
-      tablet.removeEventListener("change", compute);
-    };
-  }, []);
+    const observer = new ResizeObserver(compute);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [ref]);
 
   return count;
 };
@@ -42,8 +48,10 @@ export const AlbumGrid = ({
   onOpen,
   onLike,
   onComment,
+  onDelete,
 }: AlbumGridProps) => {
-  const columnCount = useColumnCount();
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const columnCount = useColumnCount(gridRef);
 
   const columns = useMemo(() => {
     const cols: { item: GalleryItem; index: number }[][] = Array.from(
@@ -63,7 +71,7 @@ export const AlbumGrid = ({
   }, [items, columnCount]);
 
   return (
-    <div className="flex gap-3">
+    <div ref={gridRef} className="flex gap-3">
       {columns.map((cells, columnIndex) => (
         <AlbumColumn
           key={columnIndex}
@@ -71,6 +79,7 @@ export const AlbumGrid = ({
           onOpen={onOpen}
           onLike={onLike}
           onComment={onComment}
+          onDelete={onDelete}
         />
       ))}
     </div>

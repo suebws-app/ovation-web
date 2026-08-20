@@ -8,6 +8,7 @@ import { XIcon } from "@ovation/icons/XIcon";
 import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 import { ImageIcon } from "@ovation/icons/ImageIcon";
 import { MaximizeIcon } from "@ovation/icons/MaximizeIcon";
+import { TrashIcon } from "@ovation/icons/TrashIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
 import { formatTimeShort } from "@/features/messages/adapters";
@@ -26,6 +27,7 @@ type PublicGalleryLightboxProps = {
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
   slideshow?: boolean;
+  onDelete?: (item: GalleryItem) => void;
   onClose: () => void;
   onIndexChange: (index: number) => void;
   onLoadMore: () => void;
@@ -39,6 +41,7 @@ export const PublicGalleryLightbox = ({
   hasNextPage,
   isFetchingNextPage,
   slideshow = false,
+  onDelete,
   onClose,
   onIndexChange,
   onLoadMore,
@@ -243,7 +246,7 @@ export const PublicGalleryLightbox = ({
       aria-label={t("guest_gallery__lightbox__aria_label")}
       onMouseMove={slideshow ? revealControls : undefined}
       className={cn(
-        "fixed inset-0 z-50 flex flex-col bg-[#1a1a1a]",
+        "bg-foreground/75 fixed inset-0 z-60 flex flex-col backdrop-blur-md",
         slideshow && !controlsVisible && "cursor-none",
       )}
       onClick={onClose}
@@ -291,6 +294,16 @@ export const PublicGalleryLightbox = ({
                 <DownloadIcon width={16} height={16} />
               </button>
             )}
+            {onDelete && item.isMine && (
+              <button
+                type="button"
+                onClick={() => onDelete(item)}
+                aria-label={t("guest__album__delete")}
+                className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/10"
+              >
+                <TrashIcon width={16} height={16} />
+              </button>
+            )}
             <button
               type="button"
               onClick={onClose}
@@ -317,7 +330,7 @@ export const PublicGalleryLightbox = ({
               type={videoMimeFromUrl(fullUrl)}
               load="eager"
               preload="metadata"
-              className="max-h-full max-w-full"
+              className="max-h-full max-w-332"
             />
           </div>
         ) : !fullUrl || failedUrl === fullUrl ? (
@@ -357,7 +370,7 @@ export const PublicGalleryLightbox = ({
             src={displayUrl ?? fullUrl}
             alt={caption}
             onError={() => setFailedUrl(fullUrl)}
-            className="max-h-full max-w-full touch-none object-contain select-none"
+            className="max-h-full max-w-332 touch-none object-contain select-none"
             draggable={false}
           />
         )}

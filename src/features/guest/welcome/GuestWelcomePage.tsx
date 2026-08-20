@@ -5,6 +5,7 @@ import { publicApi } from "@/lib/api/public";
 import { EventThemeScope } from "@/lib/theme/EventThemeScope";
 import { LanguageSelect } from "@/components/LanguageSelect";
 import { eventTitleLine } from "@/lib/event-types";
+import { eventCoverUrl, hostCoverUrl } from "@/lib/event-cover";
 import { safeHttpUrl } from "@/lib/utils/safe-url";
 import { InvitationOpenTracker } from "../InvitationOpenTracker";
 import { guestInitials } from "./guestInitials";
@@ -24,6 +25,7 @@ export const GuestWelcomePage = async ({
   const search = await searchParams;
   const sourceParam = typeof search.source === "string" ? search.source : null;
   const nextParam = typeof search.next === "string" ? search.next : null;
+  const editName = search.edit === "name";
 
   const event = await publicApi.getEvent(slug).catch((error) => {
     if (ApiError.isApiError(error) && error.status === 404) return null;
@@ -33,9 +35,9 @@ export const GuestWelcomePage = async ({
 
   const t = await getTranslations();
   const title = eventTitleLine(event);
-  const coverUrl = event.coverPhotoUrl ?? event.couplePhotoUrl;
+  const coverUrl = eventCoverUrl(event);
   const safeCoverUrl = safeHttpUrl(coverUrl);
-  const avatarUrl = event.hostAvatarUrl ?? coverUrl;
+  const avatarUrl = event.hostAvatarUrl ?? hostCoverUrl(event);
 
   return (
     <EventThemeScope event={event}>
@@ -57,7 +59,7 @@ export const GuestWelcomePage = async ({
           <LanguageSelect />
         </div>
 
-        <div className="relative mt-auto flex w-full flex-col gap-4 p-5 pb-8">
+        <div className="relative mx-auto mt-auto flex w-full max-w-332 flex-col gap-4 p-5 pb-8">
           <GuestAvatar
             url={avatarUrl}
             initials={guestInitials(title)}
@@ -75,6 +77,7 @@ export const GuestWelcomePage = async ({
             slug={slug}
             sourceParam={sourceParam}
             nextParam={nextParam}
+            editName={editName}
           />
         </div>
       </div>

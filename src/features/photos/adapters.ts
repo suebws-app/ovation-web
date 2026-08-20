@@ -14,8 +14,13 @@ export type PhotoView = GalleryItem & {
 
 const HEIGHTS = [260, 200, 300, 240, 220, 280, 340, 200];
 
+const TILE_BASE_WIDTH = 240;
+
 export const heightFor = (index: number): number =>
   HEIGHTS[index % HEIGHTS.length]!;
+
+export const aspectFor = (index: number): number =>
+  TILE_BASE_WIDTH / heightFor(index);
 
 export const toPhotoViewFromGallery = (
   item: GalleryItem,

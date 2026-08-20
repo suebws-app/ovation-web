@@ -46,6 +46,8 @@ export type GalleryQuery = {
   sort?: "newest" | "oldest";
   cursor?: string;
   limit?: number;
+  mine?: boolean;
+  liked?: boolean;
 };
 
 export const publicClient = {
@@ -67,6 +69,7 @@ export const publicClient = {
     clientFetch<UploadUrlsResult>(`/public/events/${slug}/upload-url`, {
       method: "POST",
       body: request,
+      headers: guestDeviceHeaders(),
       skipCsrf: true,
     }),
 
@@ -94,6 +97,8 @@ export const publicClient = {
     if (query.sort) queryParams.sort = query.sort;
     if (query.cursor) queryParams.cursor = query.cursor;
     if (query.limit !== undefined) queryParams.limit = query.limit;
+    if (query.mine) queryParams.mine = "true";
+    if (query.liked) queryParams.liked = "true";
     return clientFetchPaginated<GalleryItem>(`/public/events/${slug}/gallery`, {
       query: queryParams,
       headers: guestDeviceHeaders(),
@@ -141,11 +146,30 @@ export const publicClient = {
       },
     ),
 
-  getGalleryCount: (slug: string, code?: string) =>
+  getGalleryCount: (
+    slug: string,
+    code?: string,
+    scope: { mine?: boolean; liked?: boolean } = {},
+  ) =>
     clientFetch<{ count: number }>(`/public/events/${slug}/gallery-count`, {
-      query: { code },
+      query: {
+        code,
+        mine: scope.mine ? "true" : undefined,
+        liked: scope.liked ? "true" : undefined,
+      },
+      headers: guestDeviceHeaders(),
       skipCsrf: true,
     }),
+
+  deleteOwnGalleryItem: (slug: string, mediaId: string) =>
+    clientFetch<{ deleted: true }>(
+      `/public/events/${slug}/gallery/${mediaId}`,
+      {
+        method: "DELETE",
+        headers: guestDeviceHeaders(),
+        skipCsrf: true,
+      },
+    ),
 
   galleryDownloadUrl: (slug: string, code: string, mediaId: string) =>
     clientFetch<{ url: string }>(

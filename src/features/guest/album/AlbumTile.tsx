@@ -10,18 +10,20 @@ import { AlbumTileActions } from "./AlbumTileActions";
 
 type AlbumTileProps = {
   item: GalleryItem;
-  height: number;
+  aspect: number;
   onOpen: () => void;
   onLike: () => void;
   onComment: () => void;
+  onDelete?: () => void;
 };
 
 export const AlbumTile = ({
   item,
-  height,
+  aspect,
   onOpen,
   onLike,
   onComment,
+  onDelete,
 }: AlbumTileProps) => {
   const t = useTranslations();
   const [failed, setFailed] = useState(false);
@@ -40,7 +42,7 @@ export const AlbumTile = ({
         }
       }}
       aria-label={t("guest_gallery__open_preview")}
-      style={{ height }}
+      style={{ aspectRatio: aspect }}
       className="bg-warm-panel/50 rounded-12 relative w-full cursor-pointer overflow-hidden"
     >
       {previewUrl && !failed ? (
@@ -70,6 +72,8 @@ export const AlbumTile = ({
         commentLabel={t("guest__album__comment")}
         onLike={onLike}
         onComment={onComment}
+        onDelete={onDelete}
+        deleteLabel={t("guest__album__delete")}
       />
     </div>
   );

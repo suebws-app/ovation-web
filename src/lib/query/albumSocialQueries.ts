@@ -52,6 +52,20 @@ export const useToggleAlbumLike = (slug: string) => {
   });
 };
 
+export const useDeleteMyGalleryItem = (slug: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (mediaId: string) =>
+      publicClient.deleteOwnGalleryItem(slug, mediaId),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: queryKeys.publicGallery.all(slug),
+      });
+    },
+  });
+};
+
 export const useCreateAlbumComment = (slug: string, mediaId: string | null) => {
   const queryClient = useQueryClient();
 

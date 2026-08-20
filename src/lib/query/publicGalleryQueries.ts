@@ -8,6 +8,8 @@ type PublicGalleryFilter = {
   type?: "photo" | "video" | "all";
   sort?: "newest" | "oldest";
   limit?: number;
+  mine?: boolean;
+  liked?: boolean;
 };
 
 type PublicGalleryOptions = {
@@ -29,6 +31,8 @@ export const usePublicInfiniteGallery = (
         type: input.type,
         sort: input.sort,
         limit: input.limit,
+        mine: input.mine,
+        liked: input.liked,
         cursor: pageParam ?? undefined,
       }),
     initialPageParam: null as string | null,
@@ -39,10 +43,14 @@ export const usePublicInfiniteGallery = (
     refetchIntervalInBackground: false,
   });
 
-export const usePublicGalleryCount = (slug: string, code?: string) =>
+export const usePublicGalleryCount = (
+  slug: string,
+  code?: string,
+  scope: { mine?: boolean; liked?: boolean } = {},
+) =>
   useQuery({
-    queryKey: queryKeys.publicGallery.count(slug, code),
-    queryFn: () => publicClient.getGalleryCount(slug, code),
+    queryKey: queryKeys.publicGallery.count(slug, code, scope),
+    queryFn: () => publicClient.getGalleryCount(slug, code, scope),
     enabled: Boolean(slug),
     retry: false,
   });

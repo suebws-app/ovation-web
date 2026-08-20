@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@ovation/ui/components/Button";
 import { Input } from "@ovation/ui/components/Input";
@@ -14,12 +14,14 @@ type WelcomeClientProps = {
   slug: string;
   sourceParam: string | null;
   nextParam: string | null;
+  editName?: boolean;
 };
 
 export const WelcomeClient = ({
   slug,
   sourceParam,
   nextParam,
+  editName = false,
 }: WelcomeClientProps) => {
   const t = useTranslations();
   const router = useRouter();
@@ -40,8 +42,14 @@ export const WelcomeClient = ({
     const stored = readStoredGuestName(slug);
     if (!stored) return;
     setGuestName(stored);
+    if (editName) {
+      startTransition(() =>
+        setName((current) => (current.length > 0 ? current : stored)),
+      );
+      return;
+    }
     router.replace(nextHref);
-  }, [slug, setSlug, setGuestName, router, nextHref]);
+  }, [slug, setSlug, setGuestName, router, nextHref, editName]);
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();

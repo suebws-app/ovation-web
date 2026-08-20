@@ -3,6 +3,7 @@ import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { EventThemeScope } from "@/lib/theme/EventThemeScope";
 import { eventTitleLine } from "@/lib/event-types";
+import { eventCoverUrl, hostCoverUrl } from "@/lib/event-cover";
 import { guestInitials } from "../welcome/guestInitials";
 import { AlbumClient } from "./AlbumClient";
 import { AlbumPrivate } from "./AlbumPrivate";
@@ -21,7 +22,8 @@ export const GuestAlbumPage = async ({ params }: GuestAlbumPageProps) => {
   if (!event) notFound();
 
   const title = eventTitleLine(event);
-  const coverUrl = event.coverPhotoUrl ?? event.couplePhotoUrl;
+  const coverUrl = eventCoverUrl(event);
+  const avatarUrl = event.hostAvatarUrl ?? hostCoverUrl(event);
 
   if (!event.galleryPublic) {
     return (
@@ -30,7 +32,7 @@ export const GuestAlbumPage = async ({ params }: GuestAlbumPageProps) => {
           slug={slug}
           title={title}
           initials={guestInitials(title)}
-          avatarUrl={event.hostAvatarUrl ?? coverUrl}
+          avatarUrl={avatarUrl}
           coverUrl={coverUrl}
         />
       </EventThemeScope>
@@ -43,7 +45,7 @@ export const GuestAlbumPage = async ({ params }: GuestAlbumPageProps) => {
         slug={slug}
         title={title}
         initials={guestInitials(title)}
-        avatarUrl={event.hostAvatarUrl ?? coverUrl}
+        avatarUrl={avatarUrl}
         coverUrl={coverUrl}
       />
     </EventThemeScope>

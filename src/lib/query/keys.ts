@@ -63,10 +63,15 @@ export const queryKeys = {
         type?: "photo" | "video" | "all";
         sort?: "newest" | "oldest";
         limit?: number;
+        mine?: boolean;
+        liked?: boolean;
       } = {},
     ) => ["public-gallery", slug, code, "infinite", input] as const,
-    count: (slug: string, code?: string) =>
-      ["public-gallery", slug, code, "count"] as const,
+    count: (
+      slug: string,
+      code?: string,
+      scope: { mine?: boolean; liked?: boolean } = {},
+    ) => ["public-gallery", slug, code, "count", scope] as const,
     pinned: (slug: string, code?: string) =>
       ["public-gallery", slug, code, "pinned"] as const,
   },

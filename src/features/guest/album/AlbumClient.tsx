@@ -2,12 +2,15 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { toast } from "@/components/Toaster";
+import { ConfirmDialog } from "@/components/ConfirmDialog/ConfirmDialog";
 import {
   usePublicGalleryCount,
   usePublicInfiniteGallery,
 } from "@/lib/query/publicGalleryQueries";
 import { PublicGallerySkeleton } from "@/features/public-gallery/components/PublicGallerySkeleton";
 import {
+  useDeleteMyGalleryItem,
   usePinnedGallery,
   useToggleAlbumLike,
 } from "@/lib/query/albumSocialQueries";
@@ -15,6 +18,8 @@ import type { GalleryItem } from "@/lib/api/types";
 import { AlbumCommentsSheet } from "./AlbumCommentsSheet";
 import { AlbumHero } from "./AlbumHero";
 import { AlbumGrid } from "./AlbumGrid";
+import { AlbumCollectionSheet } from "./AlbumCollectionSheet";
+import type { AlbumCollection } from "./albumScope";
 import { PublicGalleryLightbox } from "@/features/public-gallery/components/PublicGalleryLightbox";
 
 type AlbumClientProps = {
@@ -38,6 +43,9 @@ export const AlbumClient = ({
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [commentsMediaId, setCommentsMediaId] = useState<string | null>(null);
+  const [collection, setCollection] = useState<AlbumCollection>("mine");
+  const [collectionOpen, setCollectionOpen] = useState(false);
+  const [pendingDelete, setPendingDelete] = useState<GalleryItem | null>(null);
 
   const { data, isPending, fetchNextPage, hasNextPage, isFetchingNextPage } =
     usePublicInfiniteGallery(slug, undefined, {
@@ -47,6 +55,7 @@ export const AlbumClient = ({
   const countQuery = usePublicGalleryCount(slug);
   const pinnedQuery = usePinnedGallery(slug);
   const toggleLike = useToggleAlbumLike(slug);
+  const deleteMine = useDeleteMyGalleryItem(slug);
 
   const items = useMemo(() => {
     const feed = data?.pages.flatMap((page) => page.items) ?? [];
@@ -55,6 +64,21 @@ export const AlbumClient = ({
 
   const handleLike = (item: GalleryItem) =>
     toggleLike.mutate({ mediaId: item.id, liked: item.likedByMe });
+
+  const confirmDelete = () => {
+    if (!pendingDelete) return;
+    deleteMine.mutate(pendingDelete.id, {
+      onSuccess: () => {
+        setPendingDelete(null);
+        setLightboxIndex(null);
+        toast.success(t("guest__album__delete_success"));
+      },
+      onError: () => {
+        setPendingDelete(null);
+        toast.error(t("guest__album__delete_error"));
+      },
+    });
+  };
 
   const slideUrls = useMemo(
     () =>
@@ -88,6 +112,10 @@ export const AlbumClient = ({
         coverUrl={coverUrl}
         slideUrls={slideUrls}
         count={countQuery.data?.count ?? null}
+        onOpenCollection={(next) => {
+          setCollection(next);
+          setCollectionOpen(true);
+        }}
       />
 
       <div className="flex flex-1 flex-col gap-4 p-3">
@@ -114,6 +142,26 @@ export const AlbumClient = ({
         onClose={() => setCommentsMediaId(null)}
       />
 
+      <AlbumCollectionSheet
+        slug={slug}
+        collection={collection}
+        open={collectionOpen}
+        onClose={() => setCollectionOpen(false)}
+        onDelete={setPendingDelete}
+      />
+
+      <ConfirmDialog
+        open={pendingDelete !== null}
+        title={t("guest__album__delete_confirm_title")}
+        description={t("guest__album__delete_confirm_body")}
+        cancelLabel={t("common__cancel")}
+        confirmLabel={t("guest__album__delete")}
+        confirmTone="destructive"
+        isPending={deleteMine.isPending}
+        onCancel={() => setPendingDelete(null)}
+        onConfirm={confirmDelete}
+      />
+
       {lightboxIndex !== null && (
         <PublicGalleryLightbox
           items={items}
@@ -121,6 +169,7 @@ export const AlbumClient = ({
           slug={slug}
           hasNextPage={Boolean(hasNextPage)}
           isFetchingNextPage={isFetchingNextPage}
+          onDelete={setPendingDelete}
           onClose={() => setLightboxIndex(null)}
           onIndexChange={setLightboxIndex}
           onLoadMore={() => void fetchNextPage()}

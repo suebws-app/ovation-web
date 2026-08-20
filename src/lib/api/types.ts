@@ -509,6 +509,7 @@ export type GalleryItem = {
   likeCount: number;
   commentCount: number;
   likedByMe: boolean;
+  isMine: boolean;
   createdAt: string;
 };
 
