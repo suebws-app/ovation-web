@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Ünnepelj a szeretteiddel",
   "landing_general__occasions_anniversary_subtitle": "Éld át újra a közös éveket",
   "landing_general__occasions_baby_subtitle": "Mentsd el az első jókívánságokat",
-  "landing_general__occasions_corporate_subtitle": "Kapcsolódj a csapatodhoz",
+  "landing_general__occasions_corporate_subtitle": "Programok, regisztráció és többnapos események",
   "landing_general__occasions_any_title": "Bármilyen esemény legyen",
   "landing_general__occasions_any_subtitle": "Számíthatsz ránk",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konferenciák",
   "landing_general__occasions_link_cta": "Kezdés",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> megörökített és megosztott pillanat <events>{eventsCount}</events> felejthetetlen eseményen",
   "landing_general__proof_description": "A nagy céges rendezvényektől a meghitt esküvőkig — mind az Ovationnel megörökítve.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Vásárlói vélemények",
   "landing_general__faq_title": "Kérdések?",
   "landing_general__faq_description": "Minden, amit a termékről tudni érdemes. Nem találod a választ? Írj a csapatunknak. Készen állsz? Használd az alábbi gombot.",
-  "landing_general__faq_cta": "Készen állok a kezdésre"
+  "landing_general__faq_cta": "Készen állok a kezdésre",
+  "landing_general__occasions_graduation_title": "Ballagások",
+  "landing_general__occasions_graduation_subtitle": "Őrizze meg a kapott tanácsokat",
+  "landing_general__occasions_memorial_title": "Megemlékezések",
+  "landing_general__occasions_memorial_subtitle": "Privát hely az emlékezéshez"
 }

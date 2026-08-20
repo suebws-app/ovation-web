@@ -1,13 +1,4 @@
 {
-  "signup__role__eyebrow": "Začni",
-  "signup__role__title": "Pre koho to nastavuješ?",
-  "signup__role__step_label": "Tvoja rola",
-  "signup__role__host_card__title": "Plánujem vlastné podujatie",
-  "signup__role__host_card__desc": "Vytvor pamätnú knihu, ktorú si tvoji hostia zamilujú — hlasové odkazy, fotky a spomienky na celý život.",
-  "signup__role__couple_card__title": "Plánujem vlastnú svadbu",
-  "signup__role__couple_card__desc_v2": "Vytvor svadobnú knihu, ktorú si tvoji hostia zamilujú — hlasové odkazy, fotky a spomienky na celý život.",
-  "signup__role__pro_card__title": "Som svadobný profesionál",
-  "signup__role__pro_card__desc": "Spravuj udalosti Ovation pre svojich klientov ako fotograf, plánovač alebo agentúra.",
   "signup__pro_business__step_label": "Tvoj biznis",
   "signup__pro_business__title": "Povedz nám o",
   "signup__pro_business__title_b": "svojom biznise.",

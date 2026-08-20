@@ -4,6 +4,7 @@ import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 import { blogApi, type BlogListItem } from "@/lib/api/blog";
 import { COMPETITORS } from "@/features/marketing/CompetitorPage";
 import { USE_CASES } from "@/features/marketing/UseCasePage";
+import { EVENT_TYPE_PAGES } from "@/features/marketing/EventTypePage";
 
 type MarketingRoute = {
   path: string;
@@ -17,6 +18,8 @@ const MARKETING_ROUTES: MarketingRoute[] = [
   { path: "/wedding-planner", priority: 0.9 },
   { path: "/keepsakes", priority: 0.8 },
   { path: "/gold-book", priority: 0.8 },
+  { path: "/use-cases", priority: 0.8 },
+  { path: "/for-pros", priority: 0.8 },
   { path: "/for-planners", priority: 0.8 },
   { path: "/for-photographers", priority: 0.7 },
   { path: "/for-venues", priority: 0.7 },
@@ -170,6 +173,14 @@ const buildUseCaseEntries = (): MetadataRoute.Sitemap =>
     }),
   );
 
+const buildEventTypeEntries = (): MetadataRoute.Sitemap =>
+  EVENT_TYPE_PAGES.flatMap((page) =>
+    buildRouteEntries({
+      path: `/use-cases/${page.slug}`,
+      priority: 0.8,
+    }),
+  );
+
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const [routeEntries, articleEntries, authorEntries] = await Promise.all([
     Promise.resolve(MARKETING_ROUTES.flatMap(buildRouteEntries)),
@@ -179,6 +190,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   return [
     ...routeEntries,
     ...buildCompetitorEntries(),
+    ...buildEventTypeEntries(),
     ...buildUseCaseEntries(),
     ...articleEntries,
     ...authorEntries,

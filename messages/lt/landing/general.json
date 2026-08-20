@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Švęskite su artimiausiais",
   "landing_general__occasions_anniversary_subtitle": "Prisiminkite bendrus metus",
   "landing_general__occasions_baby_subtitle": "Išsaugokite pirmus palinkėjimus",
-  "landing_general__occasions_corporate_subtitle": "Suvienykite komandą",
+  "landing_general__occasions_corporate_subtitle": "Programos, registracija ir kelių dienų renginiai",
   "landing_general__occasions_any_title": "Kokia bebūtų šventė",
   "landing_general__occasions_any_subtitle": "Turime sprendimą",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konferencijos",
   "landing_general__occasions_link_cta": "Pradėti",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> užfiksuotų ir pasidalintų akimirkų per <events>{eventsCount}</events> nepamirštamų renginių",
   "landing_general__proof_description": "Nuo didelių įmonės renginių iki jaukių vestuvių — viskas užfiksuota su Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Skaityti klientų atsiliepimus",
   "landing_general__faq_title": "Turite klausimų?",
   "landing_general__faq_description": "Viskas, ką reikia žinoti apie produktą. Neradote atsakymo? Rašykite mūsų komandai. Pasiruošę pradėti? Naudokite mygtuką žemiau.",
-  "landing_general__faq_cta": "Esu pasiruošęs pradėti"
+  "landing_general__faq_cta": "Esu pasiruošęs pradėti",
+  "landing_general__occasions_graduation_title": "Išleistuvės",
+  "landing_general__occasions_graduation_subtitle": "Išsaugokite gautus patarimus",
+  "landing_general__occasions_memorial_title": "Atminimai",
+  "landing_general__occasions_memorial_subtitle": "Privati vieta prisiminimams"
 }

@@ -8,9 +8,10 @@ import { XIcon } from "@ovation/icons/XIcon";
 import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { DownloadIcon } from "@ovation/icons/DownloadIcon";
 import { BookIcon } from "@ovation/icons/BookIcon";
+import { MapPinIcon } from "@ovation/icons/MapPinIcon";
 import { cn } from "@ovation/ui/utils/cn";
 import { LazyVideoPlayer } from "@/components/LazyVideoPlayer";
-import { useUpdateMedia } from "@/lib/query/galleryQueries";
+import { useSetMediaPinned, useUpdateMedia } from "@/lib/query/galleryQueries";
 import { safeHttpUrl } from "@/lib/utils/safe-url";
 import { videoMimeFromUrl } from "@/lib/utils/videoMime";
 import type { PhotoView } from "../adapters";
@@ -69,6 +70,7 @@ export const PhotoLightbox = ({
   const total = photos.length;
   const photo = photos[index] ?? null;
   const update = useUpdateMedia(eventId);
+  const setPinned = useSetMediaPinned(eventId);
 
   const dragStartX = useRef<number | null>(null);
   const activeThumbRef = useRef<HTMLButtonElement | null>(null);
@@ -133,6 +135,7 @@ export const PhotoLightbox = ({
   const fullUrl = safeHttpUrl(photo.url ?? photo.thumbUrl);
   const favorited = photo.isFavorite;
   const inGoldBook = photo.isGoldBookSelected;
+  const pinned = Boolean(photo.pinnedAt);
 
   const handleToggleFavorite = () => {
     update.mutate({
@@ -146,6 +149,10 @@ export const PhotoLightbox = ({
       mediaId: photo.id,
       patch: { isGoldBookSelected: !inGoldBook },
     });
+  };
+
+  const handleTogglePinned = () => {
+    setPinned.mutate({ mediaId: photo.id, pinned: !pinned });
   };
 
   const handleDownload = async () => {
@@ -226,6 +233,23 @@ export const PhotoLightbox = ({
               width={16}
               height={16}
               className={inGoldBook ? "fill-yellow-400 text-yellow-400" : ""}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={handleTogglePinned}
+            disabled={setPinned.isPending}
+            aria-label={
+              pinned
+                ? t("photos__detail__unpin_from_album")
+                : t("photos__detail__pin_to_album")
+            }
+            className="flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/10 disabled:opacity-50"
+          >
+            <MapPinIcon
+              width={16}
+              height={16}
+              className={pinned ? "fill-primary text-primary" : ""}
             />
           </button>
           {fullUrl && (

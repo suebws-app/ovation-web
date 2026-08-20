@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "alebo nahrať fotografie",
   "photos__tile__select_photo": "Vybrať fotografiu od {name}",
-  "photos__lightbox__show_photo": "Zobraziť fotografiu {number}"
+  "photos__lightbox__show_photo": "Zobraziť fotografiu {number}",
+  "photos__detail__pin_to_album": "Pripnúť na začiatok albumu",
+  "photos__detail__unpin_from_album": "Odopnúť z albumu"
 }

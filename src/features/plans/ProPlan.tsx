@@ -33,11 +33,11 @@ export const ProPlan = () => {
       setShowError(true);
       return;
     }
-    router.push(appRoutes.checkout.root);
+    router.push(`${appRoutes.create.root}?as=pro`);
   };
 
   const handleSkip = () => {
-    router.replace(appRoutes.app.root);
+    router.push(`${appRoutes.create.root}?as=pro`);
   };
 
   return (

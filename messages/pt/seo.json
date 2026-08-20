@@ -11,6 +11,8 @@
   "seo__contact__description": "Dúvidas sobre o seu livro de visitas, os planos ou o Gold Book impresso? Fale connosco — respondemos depressa, antes e depois do casamento.",
   "seo__for_planners__title": "Livros de Visitas para Wedding Planners",
   "seo__for_planners__description": "Dê aos seus casais um livro de visitas que os convidados usam mesmo. Configuração simples, cartões QR prontos a imprimir e keepsakes impressos adorados.",
+  "seo__for_pros__title": "Ovation para profissionais de eventos",
+  "seo__for_pros__description": "Gira todos os eventos dos seus clientes a partir de um único painel. Livros de visitas por voz, cartões QR prontos a imprimir e recordações impressas — com preços para organizadores, fotógrafos e espaços.",
   "seo__gold_book__title": "O Gold Book — Keepsake de Casamento Impresso",
   "seo__gold_book__description": "Um livro encadernado em linho com as mensagens do seu casamento — transcrições, fotografias favoritas e códigos QR que reproduzem cada voz. Até 180 páginas.",
   "seo__how_it_works__title": "Como Funciona — Livro de Visitas com Código QR",
@@ -51,5 +53,7 @@
   "seo__wedding__title": "Ovation — Livro de Visitas de Casamento para Imprimir",
   "seo__wedding__description": "Os convidados digitalizam um código QR e deixam mensagens de voz, fotografias e notas — sem app. Guarde cada voz do seu casamento e imprima-a como keepsake.",
   "seo__general__title": "Ovation — Uma plataforma para todos os eventos",
-  "seo__general__description": "Casamentos, aniversários, eventos de empresa, memoriais e muito mais. Os convidados digitalizam um código QR para deixar fotografias, mensagens de voz e notas — sem app. Guarde cada memória e depois imprima-a."
+  "seo__general__description": "Casamentos, aniversários, eventos de empresa, memoriais e muito mais. Os convidados digitalizam um código QR para deixar fotografias, mensagens de voz e notas — sem app. Guarde cada memória e depois imprima-a.",
+  "seo__use_cases_index__title": "Casos de utilização — livros para todas as ocasiões",
+  "seo__use_cases_index__description": "Casamentos, aniversários, eventos de empresa, homenagens e muito mais. Vê como a Ovation recolhe mensagens de voz e fotos dos teus convidados e as transforma num livro de recordação."
 }

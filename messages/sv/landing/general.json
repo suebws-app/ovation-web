@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Fira med dina närmaste",
   "landing_general__occasions_anniversary_subtitle": "Återupplev åren tillsammans",
   "landing_general__occasions_baby_subtitle": "Spara de första hälsningarna",
-  "landing_general__occasions_corporate_subtitle": "Knyt samman ditt team",
+  "landing_general__occasions_corporate_subtitle": "Program, incheckning och flerdagsevent",
   "landing_general__occasions_any_title": "Vilket event det än är",
   "landing_general__occasions_any_subtitle": "Vi har allt du behöver",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konferenser",
   "landing_general__occasions_link_cta": "Kom igång",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> ögonblick fångade och delade på <events>{eventsCount}</events> oförglömliga event",
   "landing_general__proof_description": "Från stora företagsevent till intima bröllop — allt fångat med Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Läs kundomdömen",
   "landing_general__faq_title": "Frågor?",
   "landing_general__faq_description": "Allt du behöver veta om produkten. Hittar du inte svaret? Skriv till vårt team. Klar att börja? Använd knappen nedan.",
-  "landing_general__faq_cta": "Jag är klar att börja"
+  "landing_general__faq_cta": "Jag är klar att börja",
+  "landing_general__occasions_graduation_title": "Studentfiranden",
+  "landing_general__occasions_graduation_subtitle": "Spara råden de fick",
+  "landing_general__occasions_memorial_title": "Minnessidor",
+  "landing_general__occasions_memorial_subtitle": "En privat plats att minnas på"
 }

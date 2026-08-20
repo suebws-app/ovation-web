@@ -10,6 +10,7 @@ export const appRoutes = {
     useCases: "/use-cases",
     useCase: (slug: string) => `/use-cases/${slug}`,
     forPlanners: "/for-planners",
+    forPros: "/for-pros",
     weddingPlanner: "/wedding-planner",
     sample: "/sample",
     changelog: "/changelog",
@@ -43,7 +44,6 @@ export const appRoutes = {
 
   create: {
     root: "/create",
-    role: "/create/role",
     details: "/create/details",
     cover: "/create/cover",
   },
@@ -112,9 +112,10 @@ export const appRoutes = {
 
   guest: {
     base: (slug: string) => `/g/${slug}`,
+    album: (slug: string) => `/g/${slug}/album`,
+    upload: (slug: string) => `/g/${slug}/upload`,
     record: (slug: string) => `/g/${slug}/record`,
     compose: (slug: string) => `/g/${slug}/compose`,
-    review: (slug: string) => `/g/${slug}/review`,
     thankYou: (slug: string) => `/g/${slug}/thank-you`,
     invitation: (slug: string, token: string) => `/i/${slug}/${token}`,
   },

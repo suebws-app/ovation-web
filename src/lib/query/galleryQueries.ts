@@ -141,3 +141,15 @@ export const useUpdateMedia = (eventId: string) => {
     },
   });
 };
+
+export const useSetMediaPinned = (eventId: string) => {
+  const qc = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ mediaId, pinned }: { mediaId: string; pinned: boolean }) =>
+      mediaClient.setPinned(eventId, mediaId, pinned),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: queryKeys.gallery.all(eventId) });
+    },
+  });
+};

@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "vai augšupielādēt fotogrāfijas",
   "photos__tile__select_photo": "Atlasīt fotoattēlu no {name}",
-  "photos__lightbox__show_photo": "Rādīt fotoattēlu {number}"
+  "photos__lightbox__show_photo": "Rādīt fotoattēlu {number}",
+  "photos__detail__pin_to_album": "Piespraust albuma augšā",
+  "photos__detail__unpin_from_album": "Atspraust no albuma"
 }

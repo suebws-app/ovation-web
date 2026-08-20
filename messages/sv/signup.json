@@ -1,13 +1,4 @@
 {
-  "signup__role__eyebrow": "Kom igång",
-  "signup__role__title": "Vem skapar du detta för?",
-  "signup__role__step_label": "Din roll",
-  "signup__role__host_card__title": "Planerar mitt eget evenemang",
-  "signup__role__host_card__desc": "Skapa en minnesbok era gäster kommer att älska — röstmeddelanden, foton och minnen för livet.",
-  "signup__role__couple_card__title": "Planerar mitt eget bröllop",
-  "signup__role__couple_card__desc_v2": "Skapa en bröllopsbok era gäster kommer att älska — röstmeddelanden, foton och minnen för livet.",
-  "signup__role__pro_card__title": "Jag är bröllopsproffs",
-  "signup__role__pro_card__desc": "Hantera Ovation-evenemang åt dina kunder som fotograf, planerare eller byrå.",
   "signup__pro_business__step_label": "Ditt företag",
   "signup__pro_business__title": "Berätta om",
   "signup__pro_business__title_b": "ditt företag.",

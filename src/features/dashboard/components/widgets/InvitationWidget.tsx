@@ -14,6 +14,7 @@ import { useInvitationTemplatesQuery } from "@/lib/query/invitationTemplatesQuer
 
 type InvitationWidgetProps = {
   event: Event;
+  editHref?: string;
 };
 
 const formatDateLabel = (raw: string): string => {
@@ -36,7 +37,10 @@ const pickTemplate = (
   templates.find((tpl) => tpl.id === defaultId) ??
   templates[0];
 
-export const InvitationWidget = ({ event }: InvitationWidgetProps) => {
+export const InvitationWidget = ({
+  event,
+  editHref = appRoutes.app.invitation,
+}: InvitationWidgetProps) => {
   const t = useTranslations();
   const { data } = useInvitationTemplatesQuery();
 
@@ -126,7 +130,7 @@ export const InvitationWidget = ({ event }: InvitationWidgetProps) => {
         </div>
 
         <Button asChild>
-          <Link href={appRoutes.app.invitation}>
+          <Link href={editHref}>
             {t("dashboard__widget__invitation__edit_cta")}
           </Link>
         </Button>

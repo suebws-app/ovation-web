@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "또는 사진 업로드",
   "photos__tile__select_photo": "{name}님의 사진 선택",
-  "photos__lightbox__show_photo": "{number}번 사진 보기"
+  "photos__lightbox__show_photo": "{number}번 사진 보기",
+  "photos__detail__pin_to_album": "앨범 상단에 고정",
+  "photos__detail__unpin_from_album": "앨범 고정 해제"
 }

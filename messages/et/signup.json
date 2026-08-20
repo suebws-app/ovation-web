@@ -1,13 +1,4 @@
 {
-  "signup__role__eyebrow": "Alusta",
-  "signup__role__title": "Kellele te seda seadistate?",
-  "signup__role__step_label": "Sinu roll",
-  "signup__role__host_card__title": "Planeerin oma üritust",
-  "signup__role__host_card__desc": "Loo mälestusraamat, mida su külalised armastavad — häälsõnumid, fotod ja mälestused kogu eluks.",
-  "signup__role__couple_card__title": "Planeerin oma pulma",
-  "signup__role__couple_card__desc_v2": "Looge pulmaraamat, mida teie külalised armastavad — häälsõnumid, fotod ja mälestused kogu eluks.",
-  "signup__role__pro_card__title": "Olen pulmaspetsialist",
-  "signup__role__pro_card__desc": "Hallake Ovation üritusi oma klientidele fotograafina, planeerijana või agentuurina.",
   "signup__pro_business__step_label": "Teie ettevõte",
   "signup__pro_business__title": "Rääkige meile oma",
   "signup__pro_business__title_b": "ettevõttest.",

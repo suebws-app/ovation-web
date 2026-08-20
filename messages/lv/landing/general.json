@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Svin ar sev tuvajiem",
   "landing_general__occasions_anniversary_subtitle": "Atceries kopīgos gadus",
   "landing_general__occasions_baby_subtitle": "Saglabā pirmos vēlējumus",
-  "landing_general__occasions_corporate_subtitle": "Savieno savu komandu",
+  "landing_general__occasions_corporate_subtitle": "Programmas, reģistrācija un vairāku dienu pasākumi",
   "landing_general__occasions_any_title": "Lai kāds arī būtu pasākums",
   "landing_general__occasions_any_subtitle": "Mums ir risinājums",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konferences",
   "landing_general__occasions_link_cta": "Sākt",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> iemūžināti un kopīgoti mirkļi <events>{eventsCount}</events> neaizmirstamos pasākumos",
   "landing_general__proof_description": "No lieliem uzņēmuma pasākumiem līdz klusām kāzām — viss iemūžināts ar Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Lasīt klientu atsauksmes",
   "landing_general__faq_title": "Jautājumi?",
   "landing_general__faq_description": "Viss, kas jāzina par produktu. Neatrodi atbildi? Raksti mūsu komandai. Gatavs sākt? Izmanto zemāk esošo pogu.",
-  "landing_general__faq_cta": "Esmu gatavs sākt"
+  "landing_general__faq_cta": "Esmu gatavs sākt",
+  "landing_general__occasions_graduation_title": "Izlaidumi",
+  "landing_general__occasions_graduation_subtitle": "Saglabājiet saņemtos padomus",
+  "landing_general__occasions_memorial_title": "Piemiņas",
+  "landing_general__occasions_memorial_subtitle": "Privāta vieta atcerei"
 }

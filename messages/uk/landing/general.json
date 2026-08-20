@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Святкуйте з близькими",
   "landing_general__occasions_anniversary_subtitle": "Пригадайте спільні роки",
   "landing_general__occasions_baby_subtitle": "Збережіть перші побажання",
-  "landing_general__occasions_corporate_subtitle": "Об'єднайте свою команду",
+  "landing_general__occasions_corporate_subtitle": "Програми, реєстрація та багатоденні події",
   "landing_general__occasions_any_title": "Якою б не була подія",
   "landing_general__occasions_any_subtitle": "Ми все підготували",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Конференції",
   "landing_general__occasions_link_cta": "Почати",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> збережених і поширених митей на <events>{eventsCount}</events> незабутніх подіях",
   "landing_general__proof_description": "Від великих корпоративних подій до затишних весіль — усе збережено з Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Читати відгуки клієнтів",
   "landing_general__faq_title": "Питання?",
   "landing_general__faq_description": "Усе, що потрібно знати про продукт. Не знайшли відповіді? Напишіть нашій команді. Готові почати? Скористайтеся кнопкою нижче.",
-  "landing_general__faq_cta": "Я готовий почати"
+  "landing_general__faq_cta": "Я готовий почати",
+  "landing_general__occasions_graduation_title": "Випускні",
+  "landing_general__occasions_graduation_subtitle": "Збережіть поради, які вони почули",
+  "landing_general__occasions_memorial_title": "Вшанування",
+  "landing_general__occasions_memorial_subtitle": "Приватне місце для памʼяті"
 }

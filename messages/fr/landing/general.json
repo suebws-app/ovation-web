@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Célébrez avec vos proches",
   "landing_general__occasions_anniversary_subtitle": "Revivez les années passées ensemble",
   "landing_general__occasions_baby_subtitle": "Gardez les premiers vœux",
-  "landing_general__occasions_corporate_subtitle": "Rassemblez vos équipes",
+  "landing_general__occasions_corporate_subtitle": "Programmes, enregistrement et événements sur plusieurs jours",
   "landing_general__occasions_any_title": "Quel que soit l'événement",
   "landing_general__occasions_any_subtitle": "Nous sommes là",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Conférences",
   "landing_general__occasions_link_cta": "Commencer",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> instants capturés et partagés lors de <events>{eventsCount}</events> événements inoubliables",
   "landing_general__proof_description": "Des grands événements d'entreprise aux mariages intimes, tout est capturé avec Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Lire les avis clients",
   "landing_general__faq_title": "Des questions ?",
   "landing_general__faq_description": "Tout ce qu'il faut savoir sur le produit. Vous ne trouvez pas la réponse ? Écrivez à notre équipe. Prêt à commencer ? Utilisez le bouton ci-dessous.",
-  "landing_general__faq_cta": "Je suis prêt à commencer"
+  "landing_general__faq_cta": "Je suis prêt à commencer",
+  "landing_general__occasions_graduation_title": "Remises de diplômes",
+  "landing_general__occasions_graduation_subtitle": "Gardez les conseils reçus",
+  "landing_general__occasions_memorial_title": "Hommages",
+  "landing_general__occasions_memorial_subtitle": "Un lieu privé pour se souvenir"
 }

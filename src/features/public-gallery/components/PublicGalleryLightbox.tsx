@@ -22,7 +22,7 @@ type PublicGalleryLightboxProps = {
   items: GalleryItem[];
   index: number;
   slug: string;
-  code: string;
+  code?: string;
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
   slideshow?: boolean;
@@ -211,7 +211,7 @@ export const PublicGalleryLightbox = ({
   const caption = item.uploaderName?.trim() || t("guest_gallery__anonymous");
 
   const handleDownload = async () => {
-    if (!item) return;
+    if (!item || !code) return;
     try {
       await downloadGalleryItem(slug, code, item.id);
     } catch (err) {
@@ -281,7 +281,7 @@ export const PublicGalleryLightbox = ({
             >
               <MaximizeIcon width={16} height={16} />
             </button>
-            {fullUrl && (
+            {fullUrl && code && (
               <button
                 type="button"
                 onClick={handleDownload}

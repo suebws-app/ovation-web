@@ -84,7 +84,7 @@ export const CreateDetailsPage = () => {
   const stepEyebrow = (
     <Kicker className="text-primary tablet:mb-3 mb-2">
       {t("auth__signup__eyebrow_step", {
-        step: 3,
+        step: 2,
         label: t("signup__book_details__step_label"),
       })}
     </Kicker>

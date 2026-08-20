@@ -1,6 +1,10 @@
 import { clientFetch, clientFetchPaginated, type Paginated } from "./client";
+import { guestDeviceHeaders } from "@/features/guest/album/guestDevice";
 import type {
+  AlbumComment,
+  AlbumLikeResult,
   CreateMessageResult,
+  DemoSession,
   GalleryItem,
   PublicEvent,
   RsvpResult,
@@ -45,6 +49,17 @@ export type GalleryQuery = {
 };
 
 export const publicClient = {
+  createDemoSession: () =>
+    clientFetch<DemoSession>("/public/demo/sessions", {
+      method: "POST",
+      skipCsrf: true,
+    }),
+
+  getDemoSession: (slug: string) =>
+    clientFetch<DemoSession>(`/public/demo/sessions/${slug}`, {
+      skipCsrf: true,
+    }),
+
   getEvent: (slug: string) =>
     clientFetch<PublicEvent>(`/public/events/${slug}`, { skipCsrf: true }),
 
@@ -69,7 +84,7 @@ export const publicClient = {
 
   getGallery: (
     slug: string,
-    code: string,
+    code: string | undefined,
     query: GalleryQuery = {},
   ): Promise<Paginated<GalleryItem>> => {
     const queryParams: Record<string, string | number | boolean | undefined> = {
@@ -81,9 +96,56 @@ export const publicClient = {
     if (query.limit !== undefined) queryParams.limit = query.limit;
     return clientFetchPaginated<GalleryItem>(`/public/events/${slug}/gallery`, {
       query: queryParams,
+      headers: guestDeviceHeaders(),
       skipCsrf: true,
     });
   },
+
+  getGalleryPinned: (slug: string, code?: string) =>
+    clientFetch<GalleryItem[]>(`/public/events/${slug}/gallery-pinned`, {
+      query: { code },
+      headers: guestDeviceHeaders(),
+      skipCsrf: true,
+    }),
+
+  likeGalleryItem: (slug: string, mediaId: string) =>
+    clientFetch<AlbumLikeResult>(
+      `/public/events/${slug}/gallery/${mediaId}/like`,
+      { method: "POST", headers: guestDeviceHeaders(), skipCsrf: true },
+    ),
+
+  unlikeGalleryItem: (slug: string, mediaId: string) =>
+    clientFetch<AlbumLikeResult>(
+      `/public/events/${slug}/gallery/${mediaId}/like`,
+      { method: "DELETE", headers: guestDeviceHeaders(), skipCsrf: true },
+    ),
+
+  getGalleryComments: (slug: string, mediaId: string, cursor?: string) =>
+    clientFetchPaginated<AlbumComment>(
+      `/public/events/${slug}/gallery/${mediaId}/comments`,
+      { query: { cursor }, skipCsrf: true },
+    ),
+
+  createGalleryComment: (
+    slug: string,
+    mediaId: string,
+    input: { guestName: string; body: string },
+  ) =>
+    clientFetch<AlbumComment>(
+      `/public/events/${slug}/gallery/${mediaId}/comments`,
+      {
+        method: "POST",
+        body: input,
+        headers: guestDeviceHeaders(),
+        skipCsrf: true,
+      },
+    ),
+
+  getGalleryCount: (slug: string, code?: string) =>
+    clientFetch<{ count: number }>(`/public/events/${slug}/gallery-count`, {
+      query: { code },
+      skipCsrf: true,
+    }),
 
   galleryDownloadUrl: (slug: string, code: string, mediaId: string) =>
     clientFetch<{ url: string }>(

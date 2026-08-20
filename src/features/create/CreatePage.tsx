@@ -8,16 +8,23 @@ import { WizardContainer } from "@/features/create/components/WizardContainer";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
 import { CreatePageSkeleton } from "@/features/create/skeletons/CreatePageSkeleton";
 import { useSession } from "@/lib/auth/client";
-import { isProRole } from "@/lib/auth/account-role";
+import {
+  CONSUMER_ACCOUNT_TYPE,
+  isConsumerRole,
+  isProRole,
+} from "@/lib/auth/account-role";
+import { useSearchParams } from "next/navigation";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useHydrateStore } from "@/lib/storage/useHydrateStore";
 import { startNavigation } from "@/components/NavigationProgress";
 
 /**
- * Step 1 of the create wizard: pick the event type. Selecting a type continues
- * to the role step for new signups; a logged-in user's role (accountType) is
- * already known, so they skip role and go straight to the details step.
+ * Step 1 of the create wizard: pick the event type. Continues to the details
+ * step, carrying the role along as `?as=` so the later steps and signup keep
+ * it. A logged-in user's role comes from their account; a logged-out visitor's
+ * comes from the incoming `?as=`, which only the pro surfaces (/for-pros and
+ * the professionals tab on /pricing) ever set.
  */
 export const CreatePage = () => {
   const t = useTranslations();
@@ -26,16 +33,22 @@ export const CreatePage = () => {
   const updateFormData = useCreateEventStore((s) => s.updateFormData);
   const { data: session } = useSession();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleContinue = () => {
     startNavigation();
     const user = session?.user as { accountType?: string } | undefined;
     if (user) {
-      const as = isProRole(user.accountType) ? "pro" : "host";
+      const as = isProRole(user.accountType) ? "pro" : CONSUMER_ACCOUNT_TYPE;
       router.push(`${appRoutes.create.details}?as=${as}`);
       return;
     }
-    router.push(appRoutes.create.role);
+    const as = searchParams.get("as");
+    if (isProRole(as) || isConsumerRole(as)) {
+      router.push(`${appRoutes.create.details}?as=${as}`);
+      return;
+    }
+    router.push(appRoutes.create.details);
   };
 
   if (!hydrated) return <CreatePageSkeleton />;

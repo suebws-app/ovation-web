@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Celebra com quem amas",
   "landing_general__occasions_anniversary_subtitle": "Revive os anos juntos",
   "landing_general__occasions_baby_subtitle": "Guarda os primeiros desejos",
-  "landing_general__occasions_corporate_subtitle": "Aproxima a tua equipa",
+  "landing_general__occasions_corporate_subtitle": "Agendas, check-in e eventos de vários dias",
   "landing_general__occasions_any_title": "Seja qual for o evento",
   "landing_general__occasions_any_subtitle": "Estamos aqui para ti",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Conferências",
   "landing_general__occasions_link_cta": "Começar",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> momentos captados e partilhados em <events>{eventsCount}</events> eventos inesquecíveis",
   "landing_general__proof_description": "De grandes eventos de empresa a casamentos intimistas, tudo captado com a Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Ler avaliações de clientes",
   "landing_general__faq_title": "Perguntas?",
   "landing_general__faq_description": "Tudo o que precisas de saber sobre o produto. Não encontras a resposta? Fala com a nossa equipa. Pronto para começar? Usa o botão abaixo.",
-  "landing_general__faq_cta": "Estou pronto para começar"
+  "landing_general__faq_cta": "Estou pronto para começar",
+  "landing_general__occasions_graduation_title": "Formaturas",
+  "landing_general__occasions_graduation_subtitle": "Guarde os conselhos que receberam",
+  "landing_general__occasions_memorial_title": "Homenagens",
+  "landing_general__occasions_memorial_subtitle": "Um lugar privado para recordar"
 }

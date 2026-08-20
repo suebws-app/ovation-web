@@ -46,7 +46,9 @@ export const AudienceLandingPage = async ({
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button size="lg" asChild>
-              <Link href={appRoutes.auth.role}>{t(content.ctaPrimaryKey)}</Link>
+              <Link href={content.ctaPrimaryHref ?? appRoutes.auth.role}>
+                {t(content.ctaPrimaryKey)}
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/sample">{t(content.ctaSecondaryKey)}</Link>

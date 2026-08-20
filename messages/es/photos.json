@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "o sube fotos",
   "photos__tile__select_photo": "Seleccionar foto de {name}",
-  "photos__lightbox__show_photo": "Mostrar foto {number}"
+  "photos__lightbox__show_photo": "Mostrar foto {number}",
+  "photos__detail__pin_to_album": "Fijar arriba del álbum",
+  "photos__detail__unpin_from_album": "Dejar de fijar en el álbum"
 }

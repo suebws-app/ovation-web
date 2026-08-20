@@ -1,13 +1,4 @@
 {
-  "signup__role__eyebrow": "Začni",
-  "signup__role__title": "Za koga to nastavljaš?",
-  "signup__role__step_label": "Tvoja vloga",
-  "signup__role__host_card__title": "Načrtujem svoj dogodek",
-  "signup__role__host_card__desc": "Ustvari knjigo spominov, ki jo bodo tvoji gostje oboževali — glasovna sporočila, fotografije in spomini za vse življenje.",
-  "signup__role__couple_card__title": "Načrtujem svojo poroko",
-  "signup__role__couple_card__desc_v2": "Ustvari poročno knjigo, ki jo bodo tvoji gostje oboževali — glasovna sporočila, fotografije in spomini za vse življenje.",
-  "signup__role__pro_card__title": "Sem poročni profesionalec",
-  "signup__role__pro_card__desc": "Upravljaj dogodke Ovation za svoje stranke kot fotograf, načrtovalec ali agencija.",
   "signup__pro_business__step_label": "Tvoj posel",
   "signup__pro_business__title": "Povej nam o",
   "signup__pro_business__title_b": "svojem poslu.",

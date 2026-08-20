@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Juhli läheistesi kanssa",
   "landing_general__occasions_anniversary_subtitle": "Elä yhteiset vuodet uudelleen",
   "landing_general__occasions_baby_subtitle": "Säilytä ensimmäiset toivotukset",
-  "landing_general__occasions_corporate_subtitle": "Yhdistä väkesi",
+  "landing_general__occasions_corporate_subtitle": "Ohjelmat, sisäänkirjaus ja monipäiväiset tapahtumat",
   "landing_general__occasions_any_title": "Mikä tahansa tapahtuma",
   "landing_general__occasions_any_subtitle": "Meiltä löytyy ratkaisu",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konferenssit",
   "landing_general__occasions_link_cta": "Aloita",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> hetkeä otettu ja jaettu <events>{eventsCount}</events> unohtumattomassa tapahtumassa",
   "landing_general__proof_description": "Suurista yritystapahtumista pieniin häihin — kaikki talteen Ovationilla.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Lue asiakasarvioita",
   "landing_general__faq_title": "Kysymyksiä?",
   "landing_general__faq_description": "Kaikki mitä sinun tarvitsee tietää tuotteesta. Etkö löydä vastausta? Ota yhteyttä tiimiimme. Valmiina? Käytä alla olevaa painiketta.",
-  "landing_general__faq_cta": "Olen valmis aloittamaan"
+  "landing_general__faq_cta": "Olen valmis aloittamaan",
+  "landing_general__occasions_graduation_title": "Valmistujaiset",
+  "landing_general__occasions_graduation_subtitle": "Säilytä saadut neuvot",
+  "landing_general__occasions_memorial_title": "Muistosivut",
+  "landing_general__occasions_memorial_subtitle": "Yksityinen paikka muistaa"
 }

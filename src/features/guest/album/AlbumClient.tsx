@@ -1,0 +1,131 @@
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import {
+  usePublicGalleryCount,
+  usePublicInfiniteGallery,
+} from "@/lib/query/publicGalleryQueries";
+import { PublicGallerySkeleton } from "@/features/public-gallery/components/PublicGallerySkeleton";
+import {
+  usePinnedGallery,
+  useToggleAlbumLike,
+} from "@/lib/query/albumSocialQueries";
+import type { GalleryItem } from "@/lib/api/types";
+import { AlbumCommentsSheet } from "./AlbumCommentsSheet";
+import { AlbumHero } from "./AlbumHero";
+import { AlbumGrid } from "./AlbumGrid";
+import { PublicGalleryLightbox } from "@/features/public-gallery/components/PublicGalleryLightbox";
+
+type AlbumClientProps = {
+  slug: string;
+  title: string;
+  initials: string;
+  avatarUrl: string | null;
+  coverUrl: string | null;
+};
+
+const HERO_SLIDE_LIMIT = 6;
+
+export const AlbumClient = ({
+  slug,
+  title,
+  initials,
+  avatarUrl,
+  coverUrl,
+}: AlbumClientProps) => {
+  const t = useTranslations();
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [commentsMediaId, setCommentsMediaId] = useState<string | null>(null);
+
+  const { data, isPending, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    usePublicInfiniteGallery(slug, undefined, {
+      sort: "newest",
+      limit: 24,
+    });
+  const countQuery = usePublicGalleryCount(slug);
+  const pinnedQuery = usePinnedGallery(slug);
+  const toggleLike = useToggleAlbumLike(slug);
+
+  const items = useMemo(() => {
+    const feed = data?.pages.flatMap((page) => page.items) ?? [];
+    return [...(pinnedQuery.data ?? []), ...feed];
+  }, [data, pinnedQuery.data]);
+
+  const handleLike = (item: GalleryItem) =>
+    toggleLike.mutate({ mediaId: item.id, liked: item.likedByMe });
+
+  const slideUrls = useMemo(
+    () =>
+      items
+        .filter((item) => item.type === "photo")
+        .slice(0, HERO_SLIDE_LIMIT)
+        .map((item) => item.url ?? item.thumbUrl)
+        .filter((url): url is string => Boolean(url)),
+    [items],
+  );
+
+  useEffect(() => {
+    const node = sentinelRef.current;
+    if (!node || !hasNextPage) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting && !isFetchingNextPage) {
+        void fetchNextPage();
+      }
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  return (
+    <div className="bg-background flex min-h-dvh flex-col">
+      <AlbumHero
+        slug={slug}
+        title={title}
+        initials={initials}
+        avatarUrl={avatarUrl}
+        coverUrl={coverUrl}
+        slideUrls={slideUrls}
+        count={countQuery.data?.count ?? null}
+      />
+
+      <div className="flex flex-1 flex-col gap-4 p-3">
+        {isPending && <PublicGallerySkeleton />}
+        {!isPending && items.length === 0 && (
+          <p className="type-body text-muted-foreground py-10 text-center">
+            {t("guest__album__empty")}
+          </p>
+        )}
+        {items.length > 0 && (
+          <AlbumGrid
+            items={items}
+            onOpen={setLightboxIndex}
+            onLike={handleLike}
+            onComment={(item) => setCommentsMediaId(item.id)}
+          />
+        )}
+        <div ref={sentinelRef} className="h-4" />
+      </div>
+
+      <AlbumCommentsSheet
+        slug={slug}
+        mediaId={commentsMediaId}
+        onClose={() => setCommentsMediaId(null)}
+      />
+
+      {lightboxIndex !== null && (
+        <PublicGalleryLightbox
+          items={items}
+          index={lightboxIndex}
+          slug={slug}
+          hasNextPage={Boolean(hasNextPage)}
+          isFetchingNextPage={isFetchingNextPage}
+          onClose={() => setLightboxIndex(null)}
+          onIndexChange={setLightboxIndex}
+          onLoadMore={() => void fetchNextPage()}
+        />
+      )}
+    </div>
+  );
+};

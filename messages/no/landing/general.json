@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Feir med dine nærmeste",
   "landing_general__occasions_anniversary_subtitle": "Gjenopplev årene sammen",
   "landing_general__occasions_baby_subtitle": "Ta vare på de første ønskene",
-  "landing_general__occasions_corporate_subtitle": "Knytt folkene dine sammen",
+  "landing_general__occasions_corporate_subtitle": "Programmer, innsjekking og flerdagsarrangementer",
   "landing_general__occasions_any_title": "Uansett anledning",
   "landing_general__occasions_any_subtitle": "Vi har det du trenger",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konferanser",
   "landing_general__occasions_link_cta": "Kom i gang",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> øyeblikk fanget og delt på <events>{eventsCount}</events> uforglemmelige arrangementer",
   "landing_general__proof_description": "Fra store firmaarrangementer til intime bryllup — alt fanget med Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Les kundeomtaler",
   "landing_general__faq_title": "Spørsmål?",
   "landing_general__faq_description": "Alt du trenger å vite om produktet. Finner du ikke svaret? Skriv til teamet vårt. Klar til å begynne? Bruk knappen nedenfor.",
-  "landing_general__faq_cta": "Jeg er klar til å starte"
+  "landing_general__faq_cta": "Jeg er klar til å starte",
+  "landing_general__occasions_graduation_title": "Avslutninger",
+  "landing_general__occasions_graduation_subtitle": "Ta vare på rådene de fikk",
+  "landing_general__occasions_memorial_title": "Minnesider",
+  "landing_general__occasions_memorial_subtitle": "Et privat sted å minnes"
 }

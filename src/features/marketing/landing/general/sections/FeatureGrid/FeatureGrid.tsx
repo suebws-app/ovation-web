@@ -1,11 +1,19 @@
 import { useTranslations } from "next-intl";
 import { GENERAL_KEY_PREFIX } from "../../../variant";
+import { createVariantKey } from "../../../variantKey";
 import { FEATURE_GRID_ITEMS } from "./constants";
 import { FeatureGridCard } from "./FeatureGridCard";
 
-export const FeatureGrid = () => {
+type FeatureGridProps = {
+  keyPrefix?: string;
+};
+
+export const FeatureGrid = ({
+  keyPrefix = GENERAL_KEY_PREFIX,
+}: FeatureGridProps) => {
   const t = useTranslations();
-  const k = (suffix: string) => t(`${GENERAL_KEY_PREFIX}${suffix}`);
+  const vk = createVariantKey(t, keyPrefix);
+  const k = (suffix: string) => t(vk(suffix));
 
   return (
     <section className="bg-background">

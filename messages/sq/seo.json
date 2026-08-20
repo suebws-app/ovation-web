@@ -11,6 +11,8 @@
   "seo__contact__description": "Pyetje rreth librit të mysafirëve, planeve apo Gold Book të shtypur? Na shkruani — përgjigjemi shpejt, para dhe pas ditës së dasmës suaj.",
   "seo__for_planners__title": "Libra mysafirësh për planifikuesit e dasmave",
   "seo__for_planners__description": "Jepuni çifteve tuaja një libër mysafirësh që mysafirët e përdorin vërtet. Konfigurim i thjeshtë, karta QR gati për shtyp dhe kujtime të shtypura që klientët i duan.",
+  "seo__for_pros__title": "Ovation për profesionistët e eventeve",
+  "seo__for_pros__description": "Menaxho çdo event të klientëve nga një panel i vetëm. Libra mysafirësh me zë, karta QR gati për printim dhe kujtime të printuara — me çmime për organizatorë, fotografë dhe ambiente.",
   "seo__gold_book__title": "Gold Book — Kujtim i shtypur dasme",
   "seo__gold_book__description": "Një libër i lidhur me pëlhurë me mesazhet e dasmës suaj — transkripte, fotot e preferuara dhe kode QR që riprodhojnë çdo zë. Deri në 180 faqe.",
   "seo__how_it_works__title": "Si funksionon — Libri i mysafirëve me kod QR",
@@ -51,5 +53,7 @@
   "seo__wedding__title": "Ovation — Libri i mysafirëve për dasma që mund ta shtypni",
   "seo__wedding__description": "Mysafirët skanojnë një kod QR dhe lënë mesazhe zanore, foto dhe shënime — pa aplikacion. Ruani çdo zë nga dasma juaj dhe shtypeni si kujtim.",
   "seo__general__title": "Ovation — Një platformë e vetme për çdo event",
-  "seo__general__description": "Dasma, ditëlindje, evente korporative, përkujtime dhe më shumë. Mysafirët skanojnë një kod QR për të lënë foto, mesazhe zanore dhe shënime — pa aplikacion. Ruani çdo kujtim, pastaj shtypeni."
+  "seo__general__description": "Dasma, ditëlindje, evente korporative, përkujtime dhe më shumë. Mysafirët skanojnë një kod QR për të lënë foto, mesazhe zanore dhe shënime — pa aplikacion. Ruani çdo kujtim, pastaj shtypeni.",
+  "seo__use_cases_index__title": "Rastet e përdorimit — libra mysafirësh për çdo rast",
+  "seo__use_cases_index__description": "Dasma, ditëlindje, evente korporative, përkujtime dhe më shumë. Shih si Ovation mbledh mesazhet zanore dhe fotot e të ftuarve të tu dhe i kthen në një libër kujtimi."
 }

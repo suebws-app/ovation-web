@@ -14,5 +14,5 @@ export const GuestRecordPage = async ({
   const sourceParam = typeof search.source === "string" ? search.source : null;
   const prefix = locale === "en" ? "" : `/${locale}`;
   const query = sourceParam ? `?source=${sourceParam}` : "";
-  redirect(`${prefix}/g/${slug}/compose${query}`);
+  redirect(`${prefix}/g/${slug}/upload${query}`);
 };

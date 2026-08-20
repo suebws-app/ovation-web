@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Praznujte z najdražjimi",
   "landing_general__occasions_anniversary_subtitle": "Podoživite skupna leta",
   "landing_general__occasions_baby_subtitle": "Shranite prve želje",
-  "landing_general__occasions_corporate_subtitle": "Povežite svojo ekipo",
+  "landing_general__occasions_corporate_subtitle": "Programi, prijava in večdnevni dogodki",
   "landing_general__occasions_any_title": "Kakršen koli dogodek",
   "landing_general__occasions_any_subtitle": "Poskrbimo za vas",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konference",
   "landing_general__occasions_link_cta": "Začni",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> ujetih in deljenih trenutkov na <events>{eventsCount}</events> nepozabnih dogodkih",
   "landing_general__proof_description": "Od velikih poslovnih dogodkov do intimnih porok — vse ujeto z Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Preberite mnenja strank",
   "landing_general__faq_title": "Vprašanja?",
   "landing_general__faq_description": "Vse, kar morate vedeti o izdelku. Ne najdete odgovora? Pišite naši ekipi. Pripravljeni začeti? Uporabite gumb spodaj.",
-  "landing_general__faq_cta": "Pripravljen sem začeti"
+  "landing_general__faq_cta": "Pripravljen sem začeti",
+  "landing_general__occasions_graduation_title": "Zaključne slovesnosti",
+  "landing_general__occasions_graduation_subtitle": "Ohranite prejete nasvete",
+  "landing_general__occasions_memorial_title": "Spomini",
+  "landing_general__occasions_memorial_subtitle": "Zasebno mesto za spomin"
 }

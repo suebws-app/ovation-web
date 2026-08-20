@@ -1,13 +1,4 @@
 {
-  "signup__role__eyebrow": "Kezdjük",
-  "signup__role__title": "Kinek állítod be ezt?",
-  "signup__role__step_label": "A szereped",
-  "signup__role__host_card__title": "A saját eseményemet tervezem",
-  "signup__role__host_card__desc": "Készíts egy emlékkönyvet, amit a vendégeid imádni fognak — hangüzenetek, fotók és emlékek, amelyeket egy életen át megőrzöl.",
-  "signup__role__couple_card__title": "A saját esküvőmet tervezem",
-  "signup__role__couple_card__desc_v2": "Készíts olyan esküvői könyvet, amit a vendégeid imádni fognak — hangüzenetek, fotók és emlékek egy életre.",
-  "signup__role__pro_card__title": "Esküvői szakember vagyok",
-  "signup__role__pro_card__desc": "Kezelj Ovation eseményeket az ügyfeleidnek fotósként, tervezőként vagy ügynökségként.",
   "signup__pro_business__step_label": "A vállalkozásod",
   "signup__pro_business__title": "Mesélj nekünk a",
   "signup__pro_business__title_b": "vállalkozásodról.",

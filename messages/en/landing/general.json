@@ -164,8 +164,8 @@
   "landing_general__occasions_anniversary_subtitle": "Relive the years together",
   "landing_general__occasions_baby_title": "Baby showers",
   "landing_general__occasions_baby_subtitle": "Save the first wishes",
-  "landing_general__occasions_corporate_title": "Company events",
-  "landing_general__occasions_corporate_subtitle": "Connect with your people",
+  "landing_general__occasions_corporate_title": "Conferences",
+  "landing_general__occasions_corporate_subtitle": "Agendas, check-in and multi-day events",
   "landing_general__occasions_any_title": "Whatever the event",
   "landing_general__occasions_any_subtitle": "We've got you covered",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> moments snapped & shared by <events>{eventsCount}</events> unforgettable events",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Read customer reviews",
   "landing_general__faq_title": "Questions?",
   "landing_general__faq_description": "Everything you need to know about the product. Can't find the answer you're looking for? Chat to our team. Ready to go? Use the button below.",
-  "landing_general__faq_cta": "I'm ready to start"
+  "landing_general__faq_cta": "I'm ready to start",
+  "landing_general__occasions_graduation_title": "Graduations",
+  "landing_general__occasions_graduation_subtitle": "Keep the advice they were given",
+  "landing_general__occasions_memorial_title": "Memorials",
+  "landing_general__occasions_memorial_subtitle": "A private place to remember"
 }

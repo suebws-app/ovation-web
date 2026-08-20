@@ -185,6 +185,7 @@ export type Event = {
   locationCity: string | null;
   capacityLimit: number | null;
   coverPhotoUrl: string | null;
+  hostAvatarUrl: string | null;
   details: Record<string, unknown>;
   // Legacy aliases (still emitted by the API during the transition).
   partnerAName: string;
@@ -314,6 +315,7 @@ export type UpdateEventInput = Omit<Partial<CreateEventInput>, "endDate"> & {
   invitationTemplateId?: string;
   coverPhotoUrl?: string | null;
   couplePhotoUrl?: string | null;
+  hostAvatarUrl?: string | null;
   defaultLanguage?: Locale;
   slug?: string;
   submissionsEnabled?: boolean;
@@ -409,6 +411,7 @@ export type PublicEvent = {
   endDate?: string | null;
   details?: Record<string, unknown>;
   coverPhotoUrl?: string | null;
+  hostAvatarUrl?: string | null;
   partnerAName: string;
   partnerBName: string | null;
   weddingDate: string | null;
@@ -419,6 +422,7 @@ export type PublicEvent = {
   supportedLanguages: string[];
   submissionOpen: boolean;
   limitReached: boolean;
+  galleryPublic: boolean;
   kiosk: PublicKioskSettings;
 };
 
@@ -501,7 +505,31 @@ export type GalleryItem = {
   durationSec: number | null;
   isFavorite: boolean;
   isGoldBookSelected: boolean;
+  pinnedAt: string | null;
+  likeCount: number;
+  commentCount: number;
+  likedByMe: boolean;
   createdAt: string;
+};
+
+export type AlbumLikeResult = {
+  likeCount: number;
+  likedByMe: boolean;
+};
+
+export type AlbumComment = {
+  id: string;
+  guestName: string;
+  body: string;
+  createdAt: string;
+};
+
+export type DemoSession = {
+  slug: string;
+  galleryCode: string;
+  guestUrl: string;
+  galleryUrl: string;
+  expiresAt: string;
 };
 
 export type GalleryFeed = {
@@ -1190,6 +1218,7 @@ export type LinkSettings = {
   maxVideoDurationSeconds: number;
   maxAudioDurationSeconds: number;
   galleryPublic: boolean;
+  galleryLinkEnabled: boolean;
   galleryCode: string | null;
   createdAt: string;
   updatedAt: string;

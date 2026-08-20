@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "ou téléverser des photos",
   "photos__tile__select_photo": "Sélectionner la photo de {name}",
-  "photos__lightbox__show_photo": "Afficher la photo {number}"
+  "photos__lightbox__show_photo": "Afficher la photo {number}",
+  "photos__detail__pin_to_album": "Épingler en haut de l'album",
+  "photos__detail__unpin_from_album": "Détacher de l'album"
 }

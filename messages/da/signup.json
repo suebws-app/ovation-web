@@ -1,13 +1,4 @@
 {
-  "signup__role__eyebrow": "Kom i gang",
-  "signup__role__title": "Hvem opretter du dette til?",
-  "signup__role__step_label": "Din rolle",
-  "signup__role__host_card__title": "Planlægger min egen begivenhed",
-  "signup__role__host_card__desc": "Skab en mindebog, dine gæster vil elske — talebeskeder, fotos og minder for livet.",
-  "signup__role__couple_card__title": "Planlægger mit eget bryllup",
-  "signup__role__couple_card__desc_v2": "Skab en bryllupsbog, dine gæster vil elske — talebeskeder, fotos og minder for livet.",
-  "signup__role__pro_card__title": "Jeg er bryllupsfagperson",
-  "signup__role__pro_card__desc": "Administrer Ovation-begivenheder for dine kunder som fotograf, planlægger eller bureau.",
   "signup__pro_business__step_label": "Din virksomhed",
   "signup__pro_business__title": "Fortæl os om",
   "signup__pro_business__title_b": "din virksomhed.",

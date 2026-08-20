@@ -19,10 +19,6 @@ export default async function CreateLayout({
 }) {
   const user = await getCurrentUser();
 
-  if (user?.accountType === "pro" && !isPaidPlan(user.planTier)) {
-    redirect(`${appRoutes.auth.plans}?as=pro`);
-  }
-
   if (
     isConsumerRole(user?.accountType) &&
     user?.primaryEventId &&
@@ -35,6 +31,17 @@ export default async function CreateLayout({
     const events = await eventsApi.list({ limit: 10 }).catch(() => {
       return { items: [], nextCursor: null };
     });
+
+    // A pro on the free tier gets exactly one event (the API enforces the same
+    // limit); only send them to the plans page once that one is used up.
+    if (
+      user.accountType === "pro" &&
+      !isPaidPlan(user.planTier) &&
+      events.items.length > 0
+    ) {
+      redirect(`${appRoutes.auth.plans}?as=pro`);
+    }
+
     return (
       <NextIntlClientProvider>
         <AppLayout

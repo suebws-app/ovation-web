@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Beraya bersama orang tersayang",
   "landing_general__occasions_anniversary_subtitle": "Kenang tahun-tahun bersama",
   "landing_general__occasions_baby_subtitle": "Simpan ucapan pertama",
-  "landing_general__occasions_corporate_subtitle": "Hubungkan pasukan anda",
+  "landing_general__occasions_corporate_subtitle": "Agenda, daftar masuk dan acara berbilang hari",
   "landing_general__occasions_any_title": "Apa pun acaranya",
   "landing_general__occasions_any_subtitle": "Kami sedia membantu",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Persidangan",
   "landing_general__occasions_link_cta": "Mula",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> detik dirakam dan dikongsi dalam <events>{eventsCount}</events> majlis yang tidak dilupakan",
   "landing_general__proof_description": "Daripada acara korporat besar hingga majlis perkahwinan intim, semuanya dirakam dengan Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Baca ulasan pelanggan",
   "landing_general__faq_title": "Ada pertanyaan?",
   "landing_general__faq_description": "Semua yang anda perlu tahu tentang produk ini. Tidak jumpa jawapannya? Hubungi pasukan kami. Sedia untuk mula? Gunakan butang di bawah.",
-  "landing_general__faq_cta": "Saya sedia untuk mula"
+  "landing_general__faq_cta": "Saya sedia untuk mula",
+  "landing_general__occasions_graduation_title": "Konvokesyen",
+  "landing_general__occasions_graduation_subtitle": "Simpan nasihat yang diterima",
+  "landing_general__occasions_memorial_title": "Peringatan",
+  "landing_general__occasions_memorial_subtitle": "Tempat peribadi untuk mengenang"
 }

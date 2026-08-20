@@ -76,7 +76,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
         if (isPro) {
           if (!signUpFormData.selectedPlan) {
-            router.push(appRoutes.auth.plans);
+            router.push(`${appRoutes.auth.plans}?as=pro`);
             return { kind: "redirecting" };
           }
           safeSet({ kind: "redirecting" });

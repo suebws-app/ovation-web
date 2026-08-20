@@ -33,6 +33,11 @@ const readPreferredCurrencyCookie = (): Currency | undefined => {
   return isSupportedCurrency(raw) ? raw : undefined;
 };
 
+const postSignUpTarget = (accountType: string): string =>
+  accountType === "pro"
+    ? `${appRoutes.auth.plans}?as=pro`
+    : appRoutes.auth.plans;
+
 type UseCreateAccountReturn = {
   onSubmit: (values: SignUpFields) => Promise<void>;
   submitError: string | null;
@@ -117,33 +122,29 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
     invalidateCsrfToken();
     updateFormData({ email: values.email, agreedToTerms: true });
 
-    if (accountType !== "pro") {
-      const eventData = useCreateEventStore.getState().formData;
-      const hasSecondHost = getEventTypeConfig(eventData.eventType).fields.some(
-        (f) => f.column === "hostBName",
-      );
-      const trimmedA = eventData.partner1Name?.trim() ?? "";
-      const trimmedB = eventData.partner2Name?.trim() ?? "";
-      const partnerA = trimmedA || t("signup__partner_a_default");
-      const partnerB = hasSecondHost
-        ? trimmedB || t("signup__partner_b_default")
-        : undefined;
-      // Durably stash the event data so it survives an email-verification
-      // round-trip (same browser) and the dashboard's EnsureHostEvent safety
-      // net can create the event even when signup returns no session token.
-      stashPendingEvent({
-        eventType: eventData.eventType,
-        partnerAName: partnerA,
-        partnerBName: partnerB,
-        weddingDate: toWeddingDate(eventData.weddingDate),
-        endDate: toWeddingDate(eventData.endDate),
-        venueName: eventData.venueName?.trim() || undefined,
-        venueCity: eventData.venueCity?.trim() || undefined,
-        themeColor: eventData.themeColor || undefined,
-        details: eventData.details,
-        desiredSlug: eventData.bookUrl?.trim() || undefined,
-      });
-    }
+    const pendingEventData = useCreateEventStore.getState().formData;
+    const pendingHasSecondHost = getEventTypeConfig(
+      pendingEventData.eventType,
+    ).fields.some((f) => f.column === "hostBName");
+    const pendingTrimmedA = pendingEventData.partner1Name?.trim() ?? "";
+    const pendingTrimmedB = pendingEventData.partner2Name?.trim() ?? "";
+    // Durably stash the event data so it survives an email-verification
+    // round-trip (same browser) and the dashboard's EnsureHostEvent safety
+    // net can create the event even when signup returns no session token.
+    stashPendingEvent({
+      eventType: pendingEventData.eventType,
+      partnerAName: pendingTrimmedA || t("signup__partner_a_default"),
+      partnerBName: pendingHasSecondHost
+        ? pendingTrimmedB || t("signup__partner_b_default")
+        : undefined,
+      weddingDate: toWeddingDate(pendingEventData.weddingDate),
+      endDate: toWeddingDate(pendingEventData.endDate),
+      venueName: pendingEventData.venueName?.trim() || undefined,
+      venueCity: pendingEventData.venueCity?.trim() || undefined,
+      themeColor: pendingEventData.themeColor || undefined,
+      details: pendingEventData.details,
+      desiredSlug: pendingEventData.bookUrl?.trim() || undefined,
+    });
 
     if (!error && data?.token) {
       try {
@@ -188,7 +189,9 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
     }
 
     startNavigation();
-    router.replace(data?.token ? appRoutes.auth.plans : appRoutes.auth.verify);
+    router.replace(
+      data?.token ? postSignUpTarget(accountType) : appRoutes.auth.verify,
+    );
   };
 
   return {

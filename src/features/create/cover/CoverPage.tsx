@@ -23,6 +23,7 @@ import { ApiError } from "@/lib/api/client";
 import type { UpdateEventInput } from "@/lib/api/types";
 import { setCookie } from "@/lib/utils/cookies";
 import { isConsumerRole, isProRole } from "@/lib/auth/account-role";
+import { isPaidPlan } from "@/lib/utils/plan";
 import { toIsoDate } from "@/lib/utils/formatDate";
 import {
   clearPendingEvent,
@@ -196,7 +197,17 @@ export const CoverPage = () => {
       clearPendingEvent();
       reset();
       startNavigation();
-      router.push(appRoutes.app.root);
+      // A pro still on the free tier has just used their one free event, so
+      // send them to the pro plans instead of the event dashboard.
+      const account = session.user as {
+        accountType?: string;
+        planTier?: string | null;
+      };
+      router.push(
+        isProRole(account.accountType) && !isPaidPlan(account.planTier)
+          ? `${appRoutes.auth.plans}?as=pro`
+          : appRoutes.app.root,
+      );
     } catch (error) {
       setSubmitError(
         ApiError.isApiError(error)
@@ -291,7 +302,7 @@ export const CoverPage = () => {
       <>
         <Kicker className="text-primary tablet:mb-3 mb-2">
           {t("auth__signup__eyebrow_step", {
-            step: 2,
+            step: 3,
             label: t("signup__cover__step_label"),
           })}
         </Kicker>

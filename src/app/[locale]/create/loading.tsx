@@ -1,4 +1,4 @@
-// The four wizard steps (type / role / details / cover) each have their own
+// The three wizard steps (type / details / cover) each have their own
 // layout, so a single shared loading skeleton would flash a mismatched screen
 // on every step navigation (previously it showed the old book-details split
 // panel before every step). Render nothing — Next keeps the previous content

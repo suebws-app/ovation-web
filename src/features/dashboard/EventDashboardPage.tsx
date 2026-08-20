@@ -30,6 +30,7 @@ import { QRcodeWidget } from "./components/widgets/QRcodeWidget";
 import { Messages } from "./components/widgets/Messages";
 import { Photos } from "./components/widgets/Photos";
 import { Orders } from "./components/widgets/Orders";
+import { InvitationWidget } from "./components/widgets/InvitationWidget";
 import {
   WeddingPlannerWidget,
   type WeddingPlannerWidgetSummary,
@@ -161,6 +162,10 @@ export const EventDashboardPage = async ({
             )}
           >
             <QRcodeWidget shortUrl={qr?.shortUrl ?? `/g/${event.slug}`} />
+            <InvitationWidget
+              event={event}
+              editHref={appRoutes.app.eventInvitation(event.id)}
+            />
           </div>
           <div
             className={cn(
@@ -183,7 +188,7 @@ export const EventDashboardPage = async ({
             <div
               className={cn(
                 stackClassName,
-                "min-[1300px]:flex-row min-[1300px]:items-start",
+                "min-[1300px]:flex-row min-[1300px]:items-stretch",
               )}
             >
               <Photos
@@ -191,7 +196,7 @@ export const EventDashboardPage = async ({
                 totalCount={totalPhotos}
                 hasMore={hasMorePhotos}
               />
-              <div className="min-w-0 flex-1">
+              <div className="w-full min-[1300px]:w-80 min-[1300px]:shrink-0">
                 <Orders orders={ordersPage?.items ?? []} />
               </div>
             </div>

@@ -26,7 +26,9 @@ export const GuestHero = ({ event }: GuestHeroProps) => {
           hostAName={orgName}
           hostBName={event.hostBName ?? event.partnerBName}
           themeColor={event.themeColor}
-          coverPhotoUrl={event.coverPhotoUrl ?? event.couplePhotoUrl}
+          photoUrl={
+            event.hostAvatarUrl ?? event.coverPhotoUrl ?? event.couplePhotoUrl
+          }
         />
       )}
       <HeroDetails event={event} />

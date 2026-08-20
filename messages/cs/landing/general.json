@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Slavte s nejbližšími",
   "landing_general__occasions_anniversary_subtitle": "Připomeňte si společné roky",
   "landing_general__occasions_baby_subtitle": "Uchovejte první přání",
-  "landing_general__occasions_corporate_subtitle": "Spojte svůj tým",
+  "landing_general__occasions_corporate_subtitle": "Programy, registrace a vícedenní akce",
   "landing_general__occasions_any_title": "Ať je to jakákoli akce",
   "landing_general__occasions_any_subtitle": "Máme pro vás řešení",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konference",
   "landing_general__occasions_link_cta": "Začít",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> zachycených okamžiků na <events>{eventsCount}</events> nezapomenutelných událostech",
   "landing_general__proof_description": "Od velkých firemních akcí po komorní svatby — vše zachyceno s Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Přečíst recenze zákazníků",
   "landing_general__faq_title": "Otázky?",
   "landing_general__faq_description": "Vše, co potřebujete vědět o produktu. Nenašli jste odpověď? Napište našemu týmu. Připraveni začít? Použijte tlačítko níže.",
-  "landing_general__faq_cta": "Jsem připraven začít"
+  "landing_general__faq_cta": "Jsem připraven začít",
+  "landing_general__occasions_graduation_title": "Promoce",
+  "landing_general__occasions_graduation_subtitle": "Uchovejte rady, které dostali",
+  "landing_general__occasions_memorial_title": "Vzpomínky",
+  "landing_general__occasions_memorial_subtitle": "Soukromé místo pro vzpomínku"
 }

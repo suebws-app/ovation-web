@@ -7,6 +7,7 @@ import { GENERAL_KEY_PREFIX } from "../../../variant";
 import { SHARING_FEATURES_LEFT, SHARING_FEATURES_RIGHT } from "./constants";
 import { FeatureColumn } from "./FeatureColumn";
 import { ShowcasePhone } from "./ShowcasePhone";
+import { DemoTrigger } from "@/features/marketing/demo";
 
 export const PhotoSharing = () => {
   const t = useTranslations();
@@ -37,17 +38,10 @@ export const PhotoSharing = () => {
             >
               <Link href={appRoutes.auth.role}>{k("sharing_cta_primary")}</Link>
             </Button>
-            <Button
-              variant="pillGhost"
-              size="pill"
-              asChild
-              className="tablet:w-auto w-full"
-            >
-              <Link href={appRoutes.marketing.sample}>
-                {k("sharing_cta_secondary")}
-                <ArrowRightIcon className="size-4" aria-hidden />
-              </Link>
-            </Button>
+            <DemoTrigger className="tablet:w-auto w-full">
+              {k("sharing_cta_secondary")}
+              <ArrowRightIcon className="size-4" aria-hidden />
+            </DemoTrigger>
           </div>
         </div>
 

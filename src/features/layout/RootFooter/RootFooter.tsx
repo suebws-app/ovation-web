@@ -38,6 +38,10 @@ export const RootFooter = ({ className }: RootFooterProps) => {
           href: appRoutes.marketing.pricing,
         },
         {
+          label: t("common__footer__product_links__for_pros"),
+          href: appRoutes.marketing.forPros,
+        },
+        {
           label: t("common__footer__product_links__for_planners"),
           href: appRoutes.marketing.forPlanners,
         },

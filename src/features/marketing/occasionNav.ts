@@ -4,6 +4,8 @@ import { SparkleIcon } from "@ovation/icons/SparkleIcon";
 import { StarIcon } from "@ovation/icons/StarIcon";
 import { UsersIcon } from "@ovation/icons/UsersIcon";
 import { CalendarIcon } from "@ovation/icons/CalendarIcon";
+import { LaurelIcon } from "@ovation/icons/LaurelIcon";
+import { BookIcon } from "@ovation/icons/BookIcon";
 import { appRoutes } from "@/lib/routes";
 
 type OccasionNavItem = {
@@ -17,31 +19,43 @@ export const OCCASION_NAV_ITEMS: OccasionNavItem[] = [
   {
     key: "wedding",
     Icon: HeartIcon,
-    href: appRoutes.marketing.wedding,
+    href: appRoutes.marketing.useCase("wedding"),
     isCta: false,
   },
   {
     key: "birthday",
     Icon: GiftIcon,
-    href: appRoutes.marketing.useCases,
+    href: appRoutes.marketing.useCase("birthday"),
     isCta: false,
   },
   {
     key: "anniversary",
     Icon: SparkleIcon,
-    href: appRoutes.marketing.useCases,
+    href: appRoutes.marketing.useCase("anniversary"),
     isCta: false,
   },
   {
     key: "baby",
     Icon: StarIcon,
-    href: appRoutes.marketing.useCases,
+    href: appRoutes.marketing.useCase("baby-shower"),
     isCta: false,
   },
   {
     key: "corporate",
     Icon: UsersIcon,
-    href: appRoutes.marketing.useCases,
+    href: appRoutes.marketing.useCase("corporate"),
+    isCta: false,
+  },
+  {
+    key: "graduation",
+    Icon: LaurelIcon,
+    href: appRoutes.marketing.useCase("graduation"),
+    isCta: false,
+  },
+  {
+    key: "memorial",
+    Icon: BookIcon,
+    href: appRoutes.marketing.useCase("memorial"),
     isCta: false,
   },
   {

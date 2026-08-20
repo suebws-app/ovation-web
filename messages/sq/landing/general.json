@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Festo me të dashurit",
   "landing_general__occasions_anniversary_subtitle": "Rijeto vitet bashkë",
   "landing_general__occasions_baby_subtitle": "Ruaj urimet e para",
-  "landing_general__occasions_corporate_subtitle": "Lidhu me ekipin tënd",
+  "landing_general__occasions_corporate_subtitle": "Axhenda, regjistrim dhe evente shumëditore",
   "landing_general__occasions_any_title": "Cilido event qoftë",
   "landing_general__occasions_any_subtitle": "Ne të kemi mbuluar",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konferenca",
   "landing_general__occasions_link_cta": "Fillo",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> momente të kapura dhe të ndara në <events>{eventsCount}</events> evente të paharrueshme",
   "landing_general__proof_description": "Nga eventet e mëdha të kompanive te dasmat intime, të gjitha të kapura me Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Lexo vlerësimet e klientëve",
   "landing_general__faq_title": "Pyetje?",
   "landing_general__faq_description": "Gjithçka që duhet të dish për produktin. Nuk e gjen përgjigjen? Shkruaji ekipit tonë. Gati për të nisur? Përdor butonin më poshtë.",
-  "landing_general__faq_cta": "Jam gati për të nisur"
+  "landing_general__faq_cta": "Jam gati për të nisur",
+  "landing_general__occasions_graduation_title": "Diplomime",
+  "landing_general__occasions_graduation_subtitle": "Ruaj këshillat që morën",
+  "landing_general__occasions_memorial_title": "Përkujtime",
+  "landing_general__occasions_memorial_subtitle": "Një vend privat për të kujtuar"
 }

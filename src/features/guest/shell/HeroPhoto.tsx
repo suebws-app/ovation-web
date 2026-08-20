@@ -5,7 +5,7 @@ type HeroPhotoProps = {
   hostAName: string;
   hostBName: string | null;
   themeColor: string;
-  coverPhotoUrl: string | null;
+  photoUrl: string | null;
 };
 
 const accentBackground = (themeColor: string) =>
@@ -18,9 +18,9 @@ export const HeroPhoto = ({
   hostAName,
   hostBName,
   themeColor,
-  coverPhotoUrl,
+  photoUrl,
 }: HeroPhotoProps) => {
-  if (coverPhotoUrl) {
+  if (photoUrl) {
     const caption = hostBName ? `${hostAName} & ${hostBName}` : hostAName;
     return (
       <div className="relative mx-auto aspect-square w-56">
@@ -41,7 +41,7 @@ export const HeroPhoto = ({
           }
         >
           <Polaroid
-            photoUrl={coverPhotoUrl}
+            photoUrl={photoUrl}
             caption={caption}
             background={accentBackground(themeColor)}
           />

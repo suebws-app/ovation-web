@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Sevdiklerinizle kutlayın",
   "landing_general__occasions_anniversary_subtitle": "Birlikte geçen yılları yeniden yaşayın",
   "landing_general__occasions_baby_subtitle": "İlk dilekleri saklayın",
-  "landing_general__occasions_corporate_subtitle": "Ekibinizle bağ kurun",
+  "landing_general__occasions_corporate_subtitle": "Programlar, giriş kaydı ve çok günlü etkinlikler",
   "landing_general__occasions_any_title": "Etkinlik ne olursa olsun",
   "landing_general__occasions_any_subtitle": "Yanınızdayız",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konferanslar",
   "landing_general__occasions_link_cta": "Başla",
   "landing_general__proof_headline": "<events>{eventsCount}</events> unutulmaz etkinlikte yakalanan ve paylaşılan <moments>{momentsCount}</moments> an",
   "landing_general__proof_description": "Büyük şirket etkinliklerinden sade düğünlere kadar, hepsi Ovation ile kayda alındı.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Müşteri yorumlarını okuyun",
   "landing_general__faq_title": "Sorularınız mı var?",
   "landing_general__faq_description": "Ürün hakkında bilmeniz gereken her şey. Aradığınız yanıtı bulamadınız mı? Ekibimize yazın. Başlamaya hazır mısınız? Aşağıdaki düğmeyi kullanın.",
-  "landing_general__faq_cta": "Başlamaya hazırım"
+  "landing_general__faq_cta": "Başlamaya hazırım",
+  "landing_general__occasions_graduation_title": "Mezuniyetler",
+  "landing_general__occasions_graduation_subtitle": "Aldıkları öğütleri saklayın",
+  "landing_general__occasions_memorial_title": "Anma sayfaları",
+  "landing_general__occasions_memorial_subtitle": "Anmak için özel bir alan"
 }

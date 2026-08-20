@@ -104,10 +104,11 @@ export const InvitationPage = ({
             eventType={initialEvent?.eventType}
             endDate={values?.multiDay ? values?.endDate || null : null}
             customEventNoun={
-              values?.customEventNoun ||
-              (typeof initialEvent?.details?.customEventNoun === "string"
-                ? initialEvent.details.customEventNoun
-                : undefined)
+              values
+                ? values.customEventNoun
+                : typeof initialEvent?.details?.customEventNoun === "string"
+                  ? initialEvent.details.customEventNoun
+                  : undefined
             }
             step={step}
             selectedGuestFirstName={selectedGuest?.first}

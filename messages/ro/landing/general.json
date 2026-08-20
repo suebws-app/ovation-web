@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Sărbătorește cu cei dragi",
   "landing_general__occasions_anniversary_subtitle": "Retrăiește anii împreună",
   "landing_general__occasions_baby_subtitle": "Păstrează primele urări",
-  "landing_general__occasions_corporate_subtitle": "Apropie-ți echipa",
+  "landing_general__occasions_corporate_subtitle": "Agende, check-in și evenimente de mai multe zile",
   "landing_general__occasions_any_title": "Orice fel de eveniment",
   "landing_general__occasions_any_subtitle": "Ne ocupăm noi",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Conferințe",
   "landing_general__occasions_link_cta": "Începe",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> momente surprinse și partajate la <events>{eventsCount}</events> evenimente de neuitat",
   "landing_general__proof_description": "De la evenimente mari de companie la nunți intime, totul surprins cu Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Citește recenziile clienților",
   "landing_general__faq_title": "Întrebări?",
   "landing_general__faq_description": "Tot ce trebuie să știi despre produs. Nu găsești răspunsul? Scrie-ne echipei. Ești gata? Folosește butonul de mai jos.",
-  "landing_general__faq_cta": "Sunt gata să încep"
+  "landing_general__faq_cta": "Sunt gata să încep",
+  "landing_general__occasions_graduation_title": "Absolviri",
+  "landing_general__occasions_graduation_subtitle": "Păstrează sfaturile primite",
+  "landing_general__occasions_memorial_title": "Comemorări",
+  "landing_general__occasions_memorial_subtitle": "Un loc privat pentru amintire"
 }

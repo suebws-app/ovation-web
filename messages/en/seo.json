@@ -11,6 +11,8 @@
   "seo__contact__description": "Questions about your guest book, plans, or the printed Gold Book? Get in touch — we reply fast, before and after your wedding day.",
   "seo__for_planners__title": "Guest Books for Wedding Planners",
   "seo__for_planners__description": "Give your couples a guest book their guests actually use. Simple setup, print-ready QR cards, and printed keepsakes clients love.",
+  "seo__for_pros__title": "Ovation for Event Professionals",
+  "seo__for_pros__description": "Run every client event from one dashboard. Voice-first guest books, print-ready QR cards, and printed keepsakes — priced for planners, photographers, and venues.",
   "seo__gold_book__title": "The Gold Book — Printed Wedding Keepsake",
   "seo__gold_book__description": "A linen-bound book of your wedding messages — transcripts, favourite photos, and QR codes that play back every voice. Up to 180 pages.",
   "seo__how_it_works__title": "How It Works — QR Code Guest Book",
@@ -51,5 +53,7 @@
   "seo__wedding__title": "Ovation — Wedding Guest Book You Can Print",
   "seo__wedding__description": "Guests scan a QR code to leave voice messages, photos, and notes — no app needed. Keep every voice from your wedding day, then print it as a keepsake.",
   "seo__general__title": "Ovation — One Platform for Every Event",
-  "seo__general__description": "Weddings, birthdays, corporate events, memorials and more. Guests scan a QR code to leave photos, voice messages and notes — no app. Keep every memory, then print it."
+  "seo__general__description": "Weddings, birthdays, corporate events, memorials and more. Guests scan a QR code to leave photos, voice messages and notes — no app. Keep every memory, then print it.",
+  "seo__use_cases_index__title": "Use Cases — Guest Books for Every Occasion",
+  "seo__use_cases_index__description": "Weddings, birthdays, corporate events, memorials and more. See how Ovation collects voice messages and photos from your guests and turns them into a keepsake book."
 }

@@ -11,6 +11,8 @@
   "seo__contact__description": "Misafir defterin, planlar veya basılı Gold Book hakkında soruların mı var? Bize yaz — düğün gününden önce de sonra da hızlıca yanıtlıyoruz.",
   "seo__for_planners__title": "Düğün Planlayıcıları için Misafir Defterleri",
   "seo__for_planners__description": "Çiftlerine misafirlerin gerçekten kullandığı bir misafir defteri sun. Kolay kurulum, baskıya hazır QR kartları ve müşterilerin bayılacağı basılı hatıralar.",
+  "seo__for_pros__title": "Etkinlik profesyonelleri için Ovation",
+  "seo__for_pros__description": "Tüm müşteri etkinliklerinizi tek bir panelden yönetin. Sesli anı defterleri, baskıya hazır QR kartlar ve basılı hatıralar — organizatörler, fotoğrafçılar ve mekanlar için fiyatlandırıldı.",
   "seo__gold_book__title": "Gold Book — Basılı Düğün Hatırası",
   "seo__gold_book__description": "Düğün mesajlarının keten ciltli kitabı — transkriptler, favori fotoğraflar ve her sesi çalan QR kodları. 180 sayfaya kadar.",
   "seo__how_it_works__title": "Nasıl Çalışır — QR Kodlu Misafir Defteri",
@@ -51,5 +53,7 @@
   "seo__wedding__title": "Ovation — Bastırabileceğin Düğün Misafir Defteri",
   "seo__wedding__description": "Misafirler QR kodu tarayıp sesli mesaj, fotoğraf ve not bırakır — uygulama gerekmez. Düğün günündeki her sesi sakla, sonra hatıra kitabı olarak bastır.",
   "seo__general__title": "Ovation — Her Etkinlik için Tek Platform",
-  "seo__general__description": "Düğünler, doğum günleri, kurumsal etkinlikler, anmalar ve daha fazlası. Misafirler bir QR kodu tarayıp fotoğraf, sesli mesaj ve not bırakır — uygulama yok. Her anıyı saklayın, sonra bastırın."
+  "seo__general__description": "Düğünler, doğum günleri, kurumsal etkinlikler, anmalar ve daha fazlası. Misafirler bir QR kodu tarayıp fotoğraf, sesli mesaj ve not bırakır — uygulama yok. Her anıyı saklayın, sonra bastırın.",
+  "seo__use_cases_index__title": "Kullanım Örnekleri — Her Etkinlik için Anı Defterleri",
+  "seo__use_cases_index__description": "Düğünler, doğum günleri, şirket etkinlikleri, anmalar ve daha fazlası. Ovation'ın misafirlerinizden sesli mesaj ve fotoğrafları nasıl toplayıp bir hatıra kitabına dönüştürdüğünü görün."
 }

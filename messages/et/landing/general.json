@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Tähista lähedastega",
   "landing_general__occasions_anniversary_subtitle": "Ela ühised aastad uuesti läbi",
   "landing_general__occasions_baby_subtitle": "Hoia alles esimesed soovid",
-  "landing_general__occasions_corporate_subtitle": "Ühenda oma tiim",
+  "landing_general__occasions_corporate_subtitle": "Kavad, registreerimine ja mitmepäevased sündmused",
   "landing_general__occasions_any_title": "Ükskõik milline sündmus",
   "landing_general__occasions_any_subtitle": "Meil on lahendus",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Konverentsid",
   "landing_general__occasions_link_cta": "Alusta",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> jäädvustatud ja jagatud hetke <events>{eventsCount}</events> unustamatul üritusel",
   "landing_general__proof_description": "Suurtest firmaüritustest väikeste pulmadeni — kõik jäädvustatud Ovationiga.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Loe klientide arvustusi",
   "landing_general__faq_title": "Küsimused?",
   "landing_general__faq_description": "Kõik, mida toote kohta teada vajad. Ei leidnud vastust? Kirjuta meie tiimile. Valmis alustama? Kasuta allolevat nuppu.",
-  "landing_general__faq_cta": "Olen valmis alustama"
+  "landing_general__faq_cta": "Olen valmis alustama",
+  "landing_general__occasions_graduation_title": "Lõpetamised",
+  "landing_general__occasions_graduation_subtitle": "Hoia alles saadud nõuanded",
+  "landing_general__occasions_memorial_title": "Mälestused",
+  "landing_general__occasions_memorial_subtitle": "Privaatne koht mälestamiseks"
 }

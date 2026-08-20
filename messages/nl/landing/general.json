@@ -159,14 +159,14 @@
   "landing_general__occasions_birthday_subtitle": "Vier het met je dierbaren",
   "landing_general__occasions_anniversary_subtitle": "Herleef de jaren samen",
   "landing_general__occasions_baby_subtitle": "Bewaar de eerste wensen",
-  "landing_general__occasions_corporate_subtitle": "Verbind je mensen",
+  "landing_general__occasions_corporate_subtitle": "Programma's, check-in en meerdaagse events",
   "landing_general__occasions_any_title": "Wat je ook viert",
   "landing_general__occasions_any_subtitle": "Wij staan voor je klaar",
   "landing_general__occasions_wedding_title": "Weddings",
   "landing_general__occasions_birthday_title": "Birthdays",
   "landing_general__occasions_anniversary_title": "Anniversaries",
   "landing_general__occasions_baby_title": "Baby showers",
-  "landing_general__occasions_corporate_title": "Company events",
+  "landing_general__occasions_corporate_title": "Congressen",
   "landing_general__occasions_link_cta": "Aan de slag",
   "landing_general__proof_headline": "<moments>{momentsCount}</moments> momenten vastgelegd en gedeeld op <events>{eventsCount}</events> onvergetelijke evenementen",
   "landing_general__proof_description": "Van grote bedrijfsevenementen tot intieme bruiloften, alles vastgelegd met Ovation.",
@@ -196,5 +196,9 @@
   "landing_general__compare_cta_reviews": "Lees klantreviews",
   "landing_general__faq_title": "Vragen?",
   "landing_general__faq_description": "Alles wat je over het product moet weten. Vind je het antwoord niet? Neem contact op met ons team. Klaar om te beginnen? Gebruik de knop hieronder.",
-  "landing_general__faq_cta": "Ik ben klaar om te starten"
+  "landing_general__faq_cta": "Ik ben klaar om te starten",
+  "landing_general__occasions_graduation_title": "Diploma-uitreikingen",
+  "landing_general__occasions_graduation_subtitle": "Bewaar de adviezen die ze kregen",
+  "landing_general__occasions_memorial_title": "Herdenkingen",
+  "landing_general__occasions_memorial_subtitle": "Een privéplek om te herdenken"
 }

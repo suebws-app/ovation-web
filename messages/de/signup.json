@@ -1,13 +1,4 @@
 {
-  "signup__role__eyebrow": "Loslegen",
-  "signup__role__title": "Für wen richtest du das ein?",
-  "signup__role__step_label": "Deine Rolle",
-  "signup__role__host_card__title": "Ich plane meine eigene Veranstaltung",
-  "signup__role__host_card__desc": "Erstelle ein Erinnerungsbuch, das deine Gäste lieben werden — Sprachnachrichten, Fotos und Erinnerungen fürs Leben.",
-  "signup__role__couple_card__title": "Ich plane meine eigene Hochzeit",
-  "signup__role__couple_card__desc_v2": "Erstelle ein Hochzeitsbuch, das deine Gäste lieben werden — Sprachnachrichten, Fotos und Erinnerungen fürs Leben.",
-  "signup__role__pro_card__title": "Ich bin Hochzeitsprofi",
-  "signup__role__pro_card__desc": "Verwalte Ovation-Events für deine Kunden als Fotograf, Planer oder Agentur.",
   "signup__pro_business__step_label": "Dein Unternehmen",
   "signup__pro_business__title": "Erzähl uns von",
   "signup__pro_business__title_b": "deinem Unternehmen.",

@@ -1,1 +1,1 @@
-export { GuestReviewPage as default } from "@/features/guest/GuestReviewPage";
+export { GuestReviewRedirectPage as default } from "@/features/guest/GuestReviewRedirectPage";

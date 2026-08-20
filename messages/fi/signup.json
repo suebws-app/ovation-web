@@ -1,13 +1,4 @@
 {
-  "signup__role__eyebrow": "Aloita",
-  "signup__role__title": "Kenelle olet asettamassa tätä?",
-  "signup__role__step_label": "Roolisi",
-  "signup__role__host_card__title": "Suunnittelen omaa tapahtumaani",
-  "signup__role__host_card__desc": "Luo muistokirja, jota vieraasi rakastavat — ääniviestejä, valokuvia ja muistoja koko elämäksi.",
-  "signup__role__couple_card__title": "Suunnittelen omat häät",
-  "signup__role__couple_card__desc_v2": "Luo hääkirja, jota vieraasi rakastavat — ääniviestejä, valokuvia ja muistoja koko elämäksi.",
-  "signup__role__pro_card__title": "Olen häiden ammattilainen",
-  "signup__role__pro_card__desc": "Hallitse Ovation-tapahtumia asiakkaillesi valokuvaajana, suunnittelijana tai toimistona.",
   "signup__pro_business__step_label": "Yrityksesi",
   "signup__pro_business__title": "Kerro meille",
   "signup__pro_business__title_b": "yrityksestäsi.",

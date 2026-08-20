@@ -107,6 +107,16 @@ export const generateForPlannersMetadata = buildMetadataGenerator({
   path: "/for-planners",
 });
 
+export const generateUseCasesIndexMetadata = buildMetadataGenerator({
+  page: "use_cases_index",
+  path: "/use-cases",
+});
+
+export const generateForProsMetadata = buildMetadataGenerator({
+  page: "for_pros",
+  path: "/for-pros",
+});
+
 export const generateForPhotographersMetadata = buildMetadataGenerator({
   page: "for_photographers",
   path: "/for-photographers",

@@ -45,8 +45,10 @@ const detailsPayload = (
   const details: Record<string, unknown> = {};
   const eventName = values.eventName?.trim();
   if (eventName !== undefined) details.eventName = eventName;
+  // Send the key even when blank: the API drops empty values after merging, so
+  // omitting it would leave a previously saved noun in place forever.
   const customEventNoun = values.customEventNoun?.trim();
-  if (customEventNoun) details.customEventNoun = customEventNoun;
+  if (customEventNoun !== undefined) details.customEventNoun = customEventNoun;
   if (values.time?.trim()) details.time = values.time.trim();
   const greeting = values.greeting?.trim();
   if (greeting) details.greeting = greeting;

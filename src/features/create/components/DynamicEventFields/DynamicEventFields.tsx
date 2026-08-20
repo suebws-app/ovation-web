@@ -1,6 +1,7 @@
 "use client";
 
 import type { EventTypeConfig, FieldDef } from "@/lib/event-types";
+import { toIsoDate } from "@/lib/utils/formatDate";
 import {
   useCreateEventStore,
   type CreateEventFormData,
@@ -12,8 +13,11 @@ type DynamicEventFieldsProps = {
   config: EventTypeConfig;
 };
 
+// Must read back in local time to match how `writeValue` parses the input
+// (`T00:00:00` with no offset is local). Using toISOString() here shifted the
+// value a day back for every timezone ahead of UTC.
 const toDateInputValue = (date: Date | null): string =>
-  date && !Number.isNaN(date.getTime()) ? date.toISOString().slice(0, 10) : "";
+  date && !Number.isNaN(date.getTime()) ? toIsoDate(date) : "";
 
 /**
  * Registry-driven create form: renders each of the event type's fields and

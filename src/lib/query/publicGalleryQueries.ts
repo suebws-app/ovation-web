@@ -1,6 +1,6 @@
 "use client";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { publicClient } from "@/lib/api/public-client";
 import { queryKeys } from "./keys";
 
@@ -10,10 +10,17 @@ type PublicGalleryFilter = {
   limit?: number;
 };
 
+type PublicGalleryOptions = {
+  /** Poll the first page on an interval — used by the live demo wall. */
+  refetchInterval?: number;
+  enabled?: boolean;
+};
+
 export const usePublicInfiniteGallery = (
   slug: string,
-  code: string,
+  code: string | undefined,
   input: PublicGalleryFilter = {},
+  options: PublicGalleryOptions = {},
 ) =>
   useInfiniteQuery({
     queryKey: queryKeys.publicGallery.infiniteList(slug, code, input),
@@ -26,6 +33,16 @@ export const usePublicInfiniteGallery = (
       }),
     initialPageParam: null as string | null,
     getNextPageParam: (last) => last.nextCursor ?? null,
-    enabled: Boolean(slug && code),
+    enabled: Boolean(slug) && options.enabled !== false,
+    retry: false,
+    refetchInterval: options.refetchInterval,
+    refetchIntervalInBackground: false,
+  });
+
+export const usePublicGalleryCount = (slug: string, code?: string) =>
+  useQuery({
+    queryKey: queryKeys.publicGallery.count(slug, code),
+    queryFn: () => publicClient.getGalleryCount(slug, code),
+    enabled: Boolean(slug),
     retry: false,
   });

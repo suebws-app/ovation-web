@@ -4,6 +4,7 @@ import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { GENERAL_KEY_PREFIX } from "../../../variant";
+import { createVariantKey } from "../../../variantKey";
 import { ENJOY_PILLS } from "./constants";
 import { StepRow } from "./StepRow";
 import { StepVisualCreate } from "./StepVisualCreate";
@@ -11,11 +12,17 @@ import { StepVisualShare } from "./StepVisualShare";
 import { StepVisualSlideshow } from "./StepVisualSlideshow";
 import { StepVisualEnjoy } from "./StepVisualEnjoy";
 
-export const HowItWorksSteps = () => {
+type HowItWorksStepsProps = {
+  keyPrefix?: string;
+};
+
+export const HowItWorksSteps = ({
+  keyPrefix = GENERAL_KEY_PREFIX,
+}: HowItWorksStepsProps) => {
   const t = useTranslations();
-  const k = (suffix: string) => t(`${GENERAL_KEY_PREFIX}${suffix}`);
-  const stepLabel = (number: number) =>
-    t(`${GENERAL_KEY_PREFIX}hero_step_label`, { number });
+  const vk = createVariantKey(t, keyPrefix);
+  const k = (suffix: string) => t(vk(suffix));
+  const stepLabel = (number: number) => t(vk("hero_step_label"), { number });
 
   const createEventAction = (
     <Button variant="pillPrimary" size="pill" asChild>
@@ -71,9 +78,7 @@ export const HowItWorksSteps = () => {
 
           <StepRow
             number={3}
-            stepLabel={t(`${GENERAL_KEY_PREFIX}hiw_step_label_optional`, {
-              number: 3,
-            })}
+            stepLabel={t(vk("hiw_step_label_optional"), { number: 3 })}
             title={k("hiw_3_title")}
             description={k("hiw_3_description")}
             action={

@@ -1,13 +1,4 @@
 {
-  "signup__role__eyebrow": "Sākt",
-  "signup__role__title": "Kam jūs to iestatāt?",
-  "signup__role__step_label": "Jūsu loma",
-  "signup__role__host_card__title": "Plānoju savu pasākumu",
-  "signup__role__host_card__desc": "Izveidojiet piemiņas grāmatu, ko jūsu viesi iemīlēs — balss ziņas, fotogrāfijas un atmiņas visam mūžam.",
-  "signup__role__couple_card__title": "Plānoju savas kāzas",
-  "signup__role__couple_card__desc_v2": "Izveidojiet kāzu grāmatu, ko jūsu viesi iemīlēs — balss ziņas, fotogrāfijas un atmiņas visam mūžam.",
-  "signup__role__pro_card__title": "Esmu kāzu profesionālis",
-  "signup__role__pro_card__desc": "Pārvaldiet Ovation pasākumus saviem klientiem kā fotogrāfs, plānotājs vai aģentūra.",
   "signup__pro_business__step_label": "Jūsu uzņēmums",
   "signup__pro_business__title": "Pastāstiet mums par",
   "signup__pro_business__title_b": "savu uzņēmumu.",

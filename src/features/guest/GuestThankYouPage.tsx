@@ -76,7 +76,7 @@ export const GuestThankYouPage = async ({
         {canSubmitAnother && !isKioskSession && (
           <StickyCTA>
             <Button asChild variant="outline" className="w-full">
-              <Link href={`/g/${slug}/compose`}>
+              <Link href={`/g/${slug}/album`}>
                 {t("guest__thank_you__cta")}
               </Link>
             </Button>
