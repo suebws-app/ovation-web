@@ -21,6 +21,12 @@ const MarketingLayout = async ({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      {/* Third-party origins Lighthouse flags as critical-path on marketing:
+          Cloudflare Insights beacon (auto-injected when proxied through CF)
+          and Vercel Analytics/Speed Insights scripts. Preconnect saves
+          ~150-300ms on the LCP path. */}
+      <link rel="preconnect" href="https://static.cloudflareinsights.com" />
+      <link rel="preconnect" href="https://va.vercel-scripts.com" />
       <JsonLd data={organizationSchema()} />
       <JsonLd data={webSiteSchema()} />
       <Suspense fallback={null}>
