@@ -15,3 +15,11 @@ export const writeStoredGuestName = (slug: string, name: string) => {
     return;
   }
 };
+
+export const clearStoredGuestName = (slug: string) => {
+  try {
+    window.localStorage.removeItem(storageKey(slug));
+  } catch {
+    return;
+  }
+};

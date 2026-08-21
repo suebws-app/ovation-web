@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Kaydırıcı",
   "kiosk_setup__save_error": "Kaydedilemedi",
   "kiosk_setup__pin__change": "PIN'i değiştir",
+  "kiosk_setup__pin__show": "PIN'i göster",
+  "kiosk_setup__pin__hide": "PIN'i gizle",
+  "kiosk_setup__pin__unknown": "Gizli",
   "kiosk__gate__title": "Kiosk PIN'ini girin",
   "kiosk__gate__hint": "Kioskı açmak için 4 haneli PIN'i girin.",
   "kiosk__gate__submit": "Kioskı aç",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Bu bağlantıyı, kioskı gün içinde kuracak kişiye gönderin. Açmak için PIN'e ihtiyaçları olacak.",
   "kiosk__share__copy": "Bağlantıyı kopyala",
   "kiosk__share__copied": "Kopyalandı!",
-  "kiosk__share__pin_set": "Varsayılan PIN 1234'tür. Paylaşmadan önce kilit kartından değiştirin."
+  "kiosk__share__pin_value": "Kiosk PIN: {pin}. Kiosku açan kişinin buna ihtiyacı var.",
+  "kiosk__share__pin_unknown": "Burada görmek için kilit kartından yeni bir kiosk PIN belirleyin."
 }

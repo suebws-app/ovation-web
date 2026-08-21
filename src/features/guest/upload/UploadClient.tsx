@@ -57,6 +57,7 @@ export const UploadClient = ({
   const removePhoto = useGuestSubmissionStore((s) => s.removePhoto);
   const guestName = useGuestSubmissionStore((s) => s.guestName);
   const setGuestName = useGuestSubmissionStore((s) => s.setGuestName);
+  const isKiosk = sourceParam === "kiosk";
   const [voiceOpen, setVoiceOpen] = useState(false);
   const [noteOpen, setNoteOpen] = useState(false);
   const { pick, isProcessing, error } = useMediaPicker(maxVideoDurationSec);
@@ -67,17 +68,23 @@ export const UploadClient = ({
 
   useEffect(() => {
     setSlug(slug);
+  }, [slug, setSlug]);
+
+  useEffect(() => {
+    if (phase !== "idle") return;
     if (guestName.trim().length > 0) return;
 
-    const stored = readStoredGuestName(slug);
-    if (stored) {
-      setGuestName(stored);
-      return;
+    if (!isKiosk) {
+      const stored = readStoredGuestName(slug);
+      if (stored) {
+        setGuestName(stored);
+        return;
+      }
     }
 
     const source = sourceParam ? `&source=${sourceParam}` : "";
     router.replace(`${appRoutes.guest.base(slug)}?next=upload${source}`);
-  }, [slug, setSlug, guestName, setGuestName, sourceParam, router]);
+  }, [slug, guestName, setGuestName, sourceParam, router, isKiosk, phase]);
 
   const hasNote = note.trim().length > 0;
   const hasAnyContent =

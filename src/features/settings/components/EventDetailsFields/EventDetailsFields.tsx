@@ -27,7 +27,15 @@ export const EventDetailsFields = ({ event }: EventDetailsFieldsProps) => {
   const [details, setDetails] = useState<Record<string, unknown>>(
     event.details ?? {},
   );
+  const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [error, setError] = useState<string | null>(null);
+  const [syncedDetails, setSyncedDetails] = useState(event.details);
+
+  if (syncedDetails !== event.details) {
+    setSyncedDetails(event.details);
+    setDetails(event.details ?? {});
+    setDrafts({});
+  }
 
   const config = getEventTypeConfig(event.eventType);
   const detailFields = config.fields.filter((f) => f.storage === "details");
@@ -82,9 +90,21 @@ export const EventDetailsFields = ({ event }: EventDetailsFieldsProps) => {
               ? t("event__field__custom_event_noun_placeholder")
               : undefined
           }
-          defaultValue={stringValue(field.key)}
+          value={drafts[field.key] ?? stringValue(field.key)}
+          onChange={(e) =>
+            setDrafts((current) => ({
+              ...current,
+              [field.key]: e.target.value,
+            }))
+          }
           onBlur={(e) => {
             const raw = e.target.value.trim();
+            setDrafts((current) => {
+              if (!(field.key in current)) return current;
+              const rest = { ...current };
+              delete rest[field.key];
+              return rest;
+            });
             if (raw === stringValue(field.key)) return;
             // Int fields must be sent as a number — the API `details` schema
             // validates `z.number()`, so a string would be rejected.

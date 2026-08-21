@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Liukusäädin",
   "kiosk_setup__save_error": "Tallennus epäonnistui",
   "kiosk_setup__pin__change": "Vaihda PIN",
+  "kiosk_setup__pin__show": "Näytä PIN",
+  "kiosk_setup__pin__hide": "Piilota PIN",
+  "kiosk_setup__pin__unknown": "Piilotettu",
   "kiosk__gate__title": "Syötä kioskin PIN",
   "kiosk__gate__hint": "Anna 4-numeroinen PIN avataksesi kioskin.",
   "kiosk__gate__submit": "Avaa kioski",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Lähetä tämä linkki henkilölle, joka asentaa kioskin paikan päällä. He tarvitsevat PIN-koodin avatakseen sen.",
   "kiosk__share__copy": "Kopioi linkki",
   "kiosk__share__copied": "Kopioitu!",
-  "kiosk__share__pin_set": "Oletus-PIN on 1234. Vaihda se lukituskortista ennen jakamista."
+  "kiosk__share__pin_value": "Kioskin PIN: {pin}. Kioskin avaaja tarvitsee sen.",
+  "kiosk__share__pin_unknown": "Aseta uusi kioskin PIN lukituskortissa, jotta näet sen täällä."
 }

@@ -24,15 +24,16 @@ export const RootHeader = ({ className, sticky = true }: RootHeaderProps) => {
         className,
       )}
     >
-      <div className="mx-auto flex h-19 w-full max-w-332 items-center justify-between px-6">
-        <div className="flex items-center gap-10">
+      <div className="tablet:grid tablet:grid-cols-[1fr_auto_1fr] mx-auto flex h-19 w-full max-w-332 items-center justify-between px-6">
+        <div className="flex items-center">
           <Link href={appRoutes.home}>
             <Logo />
           </Link>
-          <RootNavLinks />
         </div>
 
-        <div className="flex items-center gap-5">
+        <RootNavLinks />
+
+        <div className="tablet:justify-end flex items-center gap-5">
           <span className="tablet:flex hidden">
             <LanguageSelect />
           </span>

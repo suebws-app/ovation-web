@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Klizač",
   "kiosk_setup__save_error": "Spremanje nije uspjelo",
   "kiosk_setup__pin__change": "Promijeni PIN",
+  "kiosk_setup__pin__show": "Prikaži PIN",
+  "kiosk_setup__pin__hide": "Sakrij PIN",
+  "kiosk_setup__pin__unknown": "Skriveno",
   "kiosk__gate__title": "Unesi PIN kioska",
   "kiosk__gate__hint": "Upiši 4-znamenkasti PIN za otvaranje kioska.",
   "kiosk__gate__submit": "Otvori kiosk",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Pošalji ovu vezu osobi koja će postaviti kiosk na dan. Trebat će joj PIN za otvaranje.",
   "kiosk__share__copy": "Kopiraj vezu",
   "kiosk__share__copied": "Kopirano!",
-  "kiosk__share__pin_set": "Zadani PIN je 1234. Promijeni ga u kartici zaključavanja prije dijeljenja."
+  "kiosk__share__pin_value": "PIN kioska: {pin}. Treba ga onaj tko otvara kiosk.",
+  "kiosk__share__pin_unknown": "Postavite novi PIN kioska u kartici zaključavanja da biste ga vidjeli ovdje."
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import type { InvitationStepId } from "../constants";
+import { PREVIEW_GUEST_NAME, type InvitationStepId } from "../constants";
 import type { InvitationFields } from "../invitationSchema";
 import type { InvitationTemplateMeta } from "../invitationTemplates";
 import {
@@ -13,8 +13,6 @@ import {
 import { InviteCard } from "./InviteCard";
 import { PhonePreview } from "./PhonePreview";
 import { CustomiseControls } from "./CustomiseControls";
-
-const PREVIEW_GUEST_NAME = "Alex";
 
 const TOKEN_CUSTOM_IDS = [
   "classic_elegance",

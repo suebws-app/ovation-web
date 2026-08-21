@@ -1241,6 +1241,7 @@ export type KioskSettings = {
   fullscreenLock: boolean;
   guidedMode: boolean;
   hasPin: boolean;
+  kioskPin: string | null;
   airplaneMode: boolean;
   welcomeNote: string | null;
   welcomeShowPhoto: boolean;
@@ -1253,7 +1254,10 @@ export type KioskSettings = {
 };
 
 export type UpdateKioskSettingsInput = Partial<
-  Omit<KioskSettings, "id" | "eventId" | "hasPin" | "createdAt" | "updatedAt">
+  Omit<
+    KioskSettings,
+    "id" | "eventId" | "hasPin" | "kioskPin" | "createdAt" | "updatedAt"
+  >
 > & {
   kioskPin?: string;
 };

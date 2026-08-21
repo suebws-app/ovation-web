@@ -8,6 +8,9 @@ import { LockIcon } from "@ovation/icons/LockIcon";
 import { LogOutIcon } from "@ovation/icons/LogOutIcon";
 import type { PublicEvent } from "@/lib/api/types";
 import { eventDateOf, eventHostNames, useEventCopy } from "@/lib/event-types";
+import { appRoutes } from "@/lib/routes";
+import { useGuestSubmissionStore } from "@/features/guest/store/useGuestSubmissionStore";
+import { clearStoredGuestName } from "@/features/guest/welcome/guestNameStorage";
 import { useFullscreen } from "@/lib/hooks/useFullscreen";
 import { useWakeLock } from "@/lib/hooks/useWakeLock";
 import { KioskLiveLanguagePopover } from "./KioskLiveLanguagePopover";
@@ -49,8 +52,12 @@ export const KioskLiveFrame = ({
   const searchParams = useSearchParams();
   const dateLabel = formatEventDate(eventDateOf(event));
   const names = eventHostNames(event);
-  const recordHref = `/g/${slug}/record?source=kiosk`;
-  const handleStart = () => router.push(recordHref);
+  const welcomeHref = `${appRoutes.guest.base(slug)}?next=upload&source=kiosk`;
+  const handleStart = () => {
+    clearStoredGuestName(slug);
+    useGuestSubmissionStore.getState().reset();
+    router.push(welcomeHref);
+  };
   const isClosed = !event.submissionOpen || event.limitReached;
   const showThanks = searchParams.get("submitted") === "1";
   const [exitOpen, setExitOpen] = useState(false);

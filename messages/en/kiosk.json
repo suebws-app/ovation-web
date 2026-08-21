@@ -117,6 +117,9 @@
   "kiosk__start_warning__cancel": "Cancel",
   "kiosk__start_warning__confirm": "Start anyway",
   "kiosk_setup__pin__change": "Change PIN",
+  "kiosk_setup__pin__show": "Show PIN",
+  "kiosk_setup__pin__hide": "Hide PIN",
+  "kiosk_setup__pin__unknown": "Hidden",
   "kiosk_setup__language__set_main": "Set as main language",
   "kiosk_setup__language__remove": "Remove language",
   "kiosk_setup__select__placeholder": "Select option",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Send this link to whoever is setting up the kiosk on the day. They'll need the PIN to open it.",
   "kiosk__share__copy": "Copy link",
   "kiosk__share__copied": "Copied!",
-  "kiosk__share__pin_set": "Default PIN is 1234. Change it from the lock-down card before sharing."
+  "kiosk__share__pin_value": "Kiosk PIN: {pin}. Whoever opens the kiosk needs it.",
+  "kiosk__share__pin_unknown": "Set a new kiosk PIN in the lock-down card so you can see it here."
 }

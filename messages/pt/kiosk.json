@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Cursor",
   "kiosk_setup__save_error": "Falha ao guardar",
   "kiosk_setup__pin__change": "Alterar PIN",
+  "kiosk_setup__pin__show": "Mostrar PIN",
+  "kiosk_setup__pin__hide": "Ocultar PIN",
+  "kiosk_setup__pin__unknown": "Oculto",
   "kiosk__gate__title": "Introduzir PIN do quiosque",
   "kiosk__gate__hint": "Digite o PIN de 4 dígitos para abrir o quiosque.",
   "kiosk__gate__submit": "Abrir quiosque",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Envie este link a quem montar o quiosque no dia. Precisará do PIN para o abrir.",
   "kiosk__share__copy": "Copiar link",
   "kiosk__share__copied": "Copiado!",
-  "kiosk__share__pin_set": "O PIN predefinido é 1234. Altere-o no cartão de bloqueio antes de partilhar."
+  "kiosk__share__pin_value": "PIN do quiosque: {pin}. Quem abrir o quiosque precisa dele.",
+  "kiosk__share__pin_unknown": "Defina um novo PIN do quiosque no cartão de bloqueio para o ver aqui."
 }

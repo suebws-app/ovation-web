@@ -7,7 +7,7 @@ export const RootNavLinks = () => {
   const t = useTranslations();
 
   return (
-    <nav className="tablet:flex hidden items-center gap-7">
+    <nav className="tablet:flex hidden items-center justify-center gap-7">
       <UseCasesMenu />
       <RootNavLink href={appRoutes.marketing.pricing}>
         {t("marketing__nav__pricing")}

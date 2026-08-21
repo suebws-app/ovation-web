@@ -15,6 +15,11 @@ type InvitationFormDefaultsArgs = {
   t: (key: string) => string;
 };
 
+const detailYear = (raw: unknown): string => {
+  if (typeof raw === "number") return Number.isFinite(raw) ? String(raw) : "";
+  return typeof raw === "string" ? raw : "";
+};
+
 const buildDefaults = ({
   event,
   invitees,
@@ -56,10 +61,8 @@ const buildDefaults = ({
   weddingDate: event?.eventDate ?? event?.weddingDate ?? "",
   endDate: event?.endDate ?? "",
   multiDay: Boolean(event?.endDate),
-  bornOn:
-    typeof event?.details?.bornOn === "string" ? event.details.bornOn : "",
-  passedOn:
-    typeof event?.details?.passedOn === "string" ? event.details.passedOn : "",
+  bornOn: detailYear(event?.details?.bornOn),
+  passedOn: detailYear(event?.details?.passedOn),
   time: typeof event?.details?.time === "string" ? event.details.time : "",
   venue: event?.venueName ?? "",
   place: event?.venueCity ?? "",

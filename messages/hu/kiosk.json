@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Csúszka",
   "kiosk_setup__save_error": "A mentés nem sikerült",
   "kiosk_setup__pin__change": "PIN módosítása",
+  "kiosk_setup__pin__show": "PIN megjelenítése",
+  "kiosk_setup__pin__hide": "PIN elrejtése",
+  "kiosk_setup__pin__unknown": "Rejtve",
   "kiosk__gate__title": "Adja meg a kioszk PIN-kódját",
   "kiosk__gate__hint": "Írja be a 4 jegyű PIN-kódot a kioszk megnyitásához.",
   "kiosk__gate__submit": "Kioszk megnyitása",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Küldje el ezt a linket annak, aki a kioszkot a napon beállítja. Szüksége lesz a PIN-kódra a megnyitáshoz.",
   "kiosk__share__copy": "Hivatkozás másolása",
   "kiosk__share__copied": "Másolva!",
-  "kiosk__share__pin_set": "Alapértelmezett PIN: 1234. Módosítsa a lezárás kártyán megosztás előtt."
+  "kiosk__share__pin_value": "Kioszk PIN: {pin}. Annak kell, aki megnyitja a kioszkot.",
+  "kiosk__share__pin_unknown": "Állíts be új kioszk PIN-t a lezárási kártyán, hogy itt lásd."
 }

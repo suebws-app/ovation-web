@@ -8,7 +8,11 @@ import { Label } from "@ovation/ui/components/Label";
 import { useRouter } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useGuestSubmissionStore } from "../store/useGuestSubmissionStore";
-import { readStoredGuestName, writeStoredGuestName } from "./guestNameStorage";
+import {
+  clearStoredGuestName,
+  readStoredGuestName,
+  writeStoredGuestName,
+} from "./guestNameStorage";
 
 type WelcomeClientProps = {
   slug: string;
@@ -28,6 +32,7 @@ export const WelcomeClient = ({
   const setSlug = useGuestSubmissionStore((s) => s.setSlug);
   const setGuestName = useGuestSubmissionStore((s) => s.setGuestName);
   const [name, setName] = useState("");
+  const isKiosk = sourceParam === "kiosk";
   const [error, setError] = useState<string | null>(null);
   const destination =
     nextParam === "upload"
@@ -39,6 +44,11 @@ export const WelcomeClient = ({
 
   useEffect(() => {
     setSlug(slug);
+    if (isKiosk) {
+      clearStoredGuestName(slug);
+      setGuestName("");
+      return;
+    }
     const stored = readStoredGuestName(slug);
     if (!stored) return;
     setGuestName(stored);
@@ -49,7 +59,7 @@ export const WelcomeClient = ({
       return;
     }
     router.replace(nextHref);
-  }, [slug, setSlug, setGuestName, router, nextHref, editName]);
+  }, [slug, setSlug, setGuestName, router, nextHref, editName, isKiosk]);
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -59,7 +69,11 @@ export const WelcomeClient = ({
       return;
     }
     setGuestName(trimmed);
-    writeStoredGuestName(slug, trimmed);
+    if (isKiosk) {
+      clearStoredGuestName(slug);
+    } else {
+      writeStoredGuestName(slug, trimmed);
+    }
     router.push(nextHref);
   };
 

@@ -117,6 +117,9 @@
   "kiosk__start_warning__cancel": "Anulo",
   "kiosk__start_warning__confirm": "Starto sidoqoftë",
   "kiosk_setup__pin__change": "Ndrysho PIN-in",
+  "kiosk_setup__pin__show": "Shfaq PIN-in",
+  "kiosk_setup__pin__hide": "Fshih PIN-in",
+  "kiosk_setup__pin__unknown": "I fshehur",
   "kiosk_setup__language__set_main": "Cakto si gjuhë kryesore",
   "kiosk_setup__language__remove": "Hiq gjuhën",
   "kiosk_setup__select__placeholder": "Zgjidhni opsionin",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Dërgoni këtë lidhje te kushdo që do të konfigurojë kioskun ditën e dasmës. Atyre do t'u nevojitet PIN-i për ta hapur.",
   "kiosk__share__copy": "Kopjo lidhjen",
   "kiosk__share__copied": "U kopjua!",
-  "kiosk__share__pin_set": "PIN-i i parazgjedhur është 1234. Ndryshojeni nga karta e kyçjes para se ta ndani."
+  "kiosk__share__pin_value": "PIN-i i kioskut: {pin}. I duhet atij që hap kioskun.",
+  "kiosk__share__pin_unknown": "Vendos një PIN të ri kioski te karta e bllokimit që ta shohësh këtu."
 }

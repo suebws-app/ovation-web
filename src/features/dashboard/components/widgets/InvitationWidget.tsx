@@ -8,8 +8,14 @@ import { Card, CardContent } from "@ovation/ui/components/Card";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { Event, InvitationTemplate } from "@/lib/api/types";
-import { eventCardTitle, formatDateRange } from "@/lib/event-types";
+import {
+  eventCardTitle,
+  formatDateRange,
+  isDateRange,
+  memorialLifeSpan,
+} from "@/lib/event-types";
 import { InviteCard } from "@/features/invitation/components/InviteCard";
+import { PREVIEW_GUEST_NAME } from "@/features/invitation/constants";
 import { useInvitationTemplatesQuery } from "@/lib/query/invitationTemplatesQueries";
 
 type InvitationWidgetProps = {
@@ -83,16 +89,42 @@ export const InvitationWidget = ({
                       ? event.details.customEventNoun
                       : undefined,
                 }),
+                subtitle:
+                  event.eventType === "memorial"
+                    ? memorialLifeSpan(
+                        event.details?.bornOn,
+                        event.details?.passedOn,
+                      )
+                    : undefined,
+                logo:
+                  event.details?.showLogo !== false &&
+                  typeof event.details?.logo === "string"
+                    ? event.details.logo
+                    : undefined,
                 dateLabel: formatDateRange(event, formatDateLabel) ?? undefined,
+                time:
+                  typeof event.details?.time === "string" && event.details.time
+                    ? t(
+                        isDateRange(event)
+                          ? "invitation__time__from"
+                          : "invitation__time__at",
+                        { time: event.details.time },
+                      )
+                    : undefined,
                 venue: event.locationName ?? event.venueName ?? undefined,
                 place: event.locationCity ?? event.venueCity ?? undefined,
                 message: event.welcomeMessage ?? undefined,
+                greeting:
+                  typeof event.details?.greeting === "string"
+                    ? event.details.greeting
+                    : undefined,
                 age:
                   event.details?.showAge !== false &&
                   typeof event.details?.age === "number"
                     ? event.details.age
                     : undefined,
               }}
+              guestFirstName={PREVIEW_GUEST_NAME}
               pageBg={
                 typeof event.details?.pageBg === "string"
                   ? event.details.pageBg

@@ -5,7 +5,7 @@ import { appRoutes } from "@/lib/routes";
 export const USE_CASES_MENU_ITEMS = [
   ...OCCASION_NAV_ITEMS.map((item) => ({
     key: item.key,
-    href: item.href,
+    href: item.isCta ? appRoutes.marketing.useCases : item.href,
     Icon: item.Icon,
     labelKey: `marketing__nav__occasion__${item.key}__title`,
     descriptionKey: `marketing__nav__occasion__${item.key}__subtitle`,

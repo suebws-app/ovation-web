@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Posuvník",
   "kiosk_setup__save_error": "Uloženie zlyhalo",
   "kiosk_setup__pin__change": "Zmeniť PIN",
+  "kiosk_setup__pin__show": "Zobraziť PIN",
+  "kiosk_setup__pin__hide": "Skryť PIN",
+  "kiosk_setup__pin__unknown": "Skryté",
   "kiosk__gate__title": "Zadajte PIN kiosku",
   "kiosk__gate__hint": "Zadajte 4-miestny PIN na otvorenie kiosku.",
   "kiosk__gate__submit": "Otvoriť kiosk",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Pošlite tento odkaz osobe, ktorá bude kiosk v deň akcie inštalovať. Bude potrebovať PIN na jeho otvorenie.",
   "kiosk__share__copy": "Kopírovať odkaz",
   "kiosk__share__copied": "Skopírované!",
-  "kiosk__share__pin_set": "Predvolený PIN je 1234. Zmeňte ho v karte zamknutia pred zdieľaním."
+  "kiosk__share__pin_value": "PIN kiosku: {pin}. Potrebuje ho ten, kto kiosk otvorí.",
+  "kiosk__share__pin_unknown": "Nastavte nový PIN kiosku v karte uzamknutia, aby sa tu zobrazil."
 }

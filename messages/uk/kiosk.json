@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Повзунок",
   "kiosk_setup__save_error": "Не вдалося зберегти",
   "kiosk_setup__pin__change": "Змінити PIN",
+  "kiosk_setup__pin__show": "Показати PIN",
+  "kiosk_setup__pin__hide": "Сховати PIN",
+  "kiosk_setup__pin__unknown": "Приховано",
   "kiosk__gate__title": "Введіть PIN кіоску",
   "kiosk__gate__hint": "Введіть 4-значний PIN, щоб відкрити кіоск.",
   "kiosk__gate__submit": "Відкрити кіоск",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Надішліть це посилання тому, хто налаштовуватиме кіоск у день події. Йому знадобиться PIN, щоб його відкрити.",
   "kiosk__share__copy": "Копіювати посилання",
   "kiosk__share__copied": "Скопійовано!",
-  "kiosk__share__pin_set": "Стандартний PIN — 1234. Змініть його у картці блокування перед поширенням."
+  "kiosk__share__pin_value": "PIN кіоска: {pin}. Він потрібен тому, хто відкриває кіоск.",
+  "kiosk__share__pin_unknown": "Установіть новий PIN кіоска в картці блокування, щоб побачити його тут."
 }

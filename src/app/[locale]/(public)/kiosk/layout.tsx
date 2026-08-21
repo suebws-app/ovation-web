@@ -10,7 +10,7 @@ const KioskLayout = async ({
   params,
 }: { children: React.ReactNode } & LocalePageProps) => {
   const { locale } = await params;
-  const messages = await loadShellMessages(locale, ["kiosk"]);
+  const messages = await loadShellMessages(locale, ["kiosk", "eventTypes"]);
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <div className="bg-background fixed inset-0 overflow-hidden">

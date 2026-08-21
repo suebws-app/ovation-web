@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Skyder",
   "kiosk_setup__save_error": "Kunne ikke gemme",
   "kiosk_setup__pin__change": "Skift PIN",
+  "kiosk_setup__pin__show": "Vis PIN",
+  "kiosk_setup__pin__hide": "Skjul PIN",
+  "kiosk_setup__pin__unknown": "Skjult",
   "kiosk__gate__title": "Indtast kiosk-PIN",
   "kiosk__gate__hint": "Indtast den 4-cifrede PIN for at åbne kiosken.",
   "kiosk__gate__submit": "Åbn kiosk",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Send dette link til den, der opsætter kiosken på dagen. De skal bruge PIN'en for at åbne den.",
   "kiosk__share__copy": "Kopier link",
   "kiosk__share__copied": "Kopieret!",
-  "kiosk__share__pin_set": "Standard-PIN er 1234. Skift den i låsekortet før deling."
+  "kiosk__share__pin_value": "Kiosk-PIN: {pin}. Den, der åbner kiosken, skal bruge den.",
+  "kiosk__share__pin_unknown": "Angiv en ny kiosk-PIN i låsekortet, så du kan se den her."
 }

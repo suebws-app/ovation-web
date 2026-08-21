@@ -19,6 +19,7 @@ import { eventsClient } from "@/lib/api/events-client";
 import { ApiError } from "@/lib/api/client";
 import { toast } from "@/components/Toaster";
 import { clientEnv as env } from "@/lib/utils/env.client";
+import { appRoutes } from "@/lib/routes";
 import type { Event } from "@/lib/api/types";
 import { toIsoDate, parseIsoDate } from "@/lib/utils/formatDate";
 import { getWeddingSchema, type WeddingFields } from "../weddingSchema";
@@ -144,7 +145,7 @@ export const WeddingDetailsForm = ({
   const [copied, setCopied] = useState(false);
 
   const handleCopyPublicLink = async () => {
-    const url = `${env.APP_URL}/${slugValue}`;
+    const url = `${env.APP_URL}${appRoutes.guest.base(slugValue)}`;
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
@@ -480,7 +481,7 @@ export const WeddingDetailsForm = ({
             }`}
           >
             <span className="type-body-small text-muted-foreground">
-              {env.APP_URL}/
+              {env.APP_URL}/g/
             </span>
             <input
               type="text"

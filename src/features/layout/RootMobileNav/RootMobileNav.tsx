@@ -19,6 +19,8 @@ import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { USE_CASES_MENU_ITEMS } from "../RootHeader/navItems";
 import { RootMobileNavLink } from "./RootMobileNavLink";
+import { RootMobileNavGroup } from "./RootMobileNavGroup";
+import { RootMobileNavUseCase } from "./RootMobileNavUseCase";
 
 type RootMobileNavProps = {
   languageSelect: ReactNode;
@@ -60,14 +62,17 @@ export const RootMobileNav = ({ languageSelect }: RootMobileNavProps) => {
         </div>
 
         <nav className="flex min-h-0 flex-1 flex-col overflow-y-auto px-4 py-4">
-          <p className="text-muted-foreground landing-eyebrow px-3 pt-2 pb-1">
-            {t("marketing__nav__use_cases")}
-          </p>
-          {USE_CASES_MENU_ITEMS.map((item) => (
-            <RootMobileNavLink key={item.key} href={item.href} nested>
-              {t(item.labelKey)}
-            </RootMobileNavLink>
-          ))}
+          <RootMobileNavGroup label={t("marketing__nav__use_cases")}>
+            {USE_CASES_MENU_ITEMS.map((item) => (
+              <RootMobileNavUseCase
+                key={item.key}
+                href={item.href}
+                Icon={item.Icon}
+                label={t(item.labelKey)}
+                description={t(item.descriptionKey)}
+              />
+            ))}
+          </RootMobileNavGroup>
 
           <RootMobileNavLink href={appRoutes.marketing.pricing}>
             {t("marketing__nav__pricing")}
