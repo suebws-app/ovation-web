@@ -231,6 +231,8 @@ export const CoverPage = () => {
     selectedPreset.hue,
     selectedPreset.chromaMul,
     selectedPreset.deep,
+    selectedPreset.primaryL,
+    selectedPreset.primaryC,
   ).light.primary;
   const generatedSlug = useMemo(
     () =>

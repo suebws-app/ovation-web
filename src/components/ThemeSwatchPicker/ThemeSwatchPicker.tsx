@@ -51,8 +51,13 @@ export const ThemeSwatchPicker = ({
                 : "border-border",
             )}
             style={{
-              background: scaleFor(preset.hue, preset.chromaMul, preset.deep)
-                .light.primary,
+              background: scaleFor(
+                preset.hue,
+                preset.chromaMul,
+                preset.deep,
+                preset.primaryL,
+                preset.primaryC,
+              ).light.primary,
             }}
           >
             {isSelected && (

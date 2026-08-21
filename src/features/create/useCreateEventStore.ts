@@ -39,7 +39,7 @@ const initialFormData: CreateEventFormData = {
   endDate: null,
   venueName: "",
   venueCity: "",
-  themeColor: "#FF78AC",
+  themeColor: "#F11D64",
   bookUrl: "",
   details: {},
 };

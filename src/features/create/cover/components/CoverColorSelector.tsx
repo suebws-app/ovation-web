@@ -11,11 +11,11 @@ import { CoverColorTile } from "./CoverColorTile";
 
 const COVER_PRESET_IDS: EventThemePresetId[] = [
   "blush",
-  "terracotta",
-  "sage",
-  "navy",
-  "plum",
-  "graphite",
+  "deep_orange",
+  "green",
+  "blue",
+  "purple",
+  "grey",
 ];
 
 const COVER_PRESETS = COVER_PRESET_IDS.map((id) =>
@@ -45,7 +45,13 @@ export const CoverColorSelector = ({
           key={preset.id}
           label={t(preset.nameKey)}
           color={
-            scaleFor(preset.hue, preset.chromaMul, preset.deep).light.primary
+            scaleFor(
+              preset.hue,
+              preset.chromaMul,
+              preset.deep,
+              preset.primaryL,
+              preset.primaryC,
+            ).light.primary
           }
           initials={initials}
           selected={preset.id === selected.id}
