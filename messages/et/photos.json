@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "või laadige üles fotod",
   "photos__tile__select_photo": "Vali foto saatjalt {name}",
-  "photos__lightbox__show_photo": "Näita fotot {number}"
+  "photos__lightbox__show_photo": "Näita fotot {number}",
+  "photos__detail__pin_to_album": "Kinnita albumi algusesse",
+  "photos__detail__unpin_from_album": "Eemalda kinnitus"
 }

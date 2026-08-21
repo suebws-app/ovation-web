@@ -10,7 +10,7 @@ import { breadcrumbListSchema, faqPageSchema } from "@/lib/seo/schemas";
 import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 import { findUseCase } from "./useCases";
 import { UseCaseStep } from "./UseCaseStep";
-import { UseCaseFaqItem } from "./UseCaseFaqItem";
+import { FaqAccordion } from "../components/FaqAccordion";
 
 interface UseCasePageProps {
   params: Promise<{ locale: string; case: string }>;
@@ -134,15 +134,7 @@ export const UseCasePage = async ({ params }: UseCasePageProps) => {
             <h2 className="landing-h2 text-foreground">
               {t("marketing__use_case__faq_heading")}
             </h2>
-            <dl className="mt-8 space-y-6">
-              {faqItems.map((item) => (
-                <UseCaseFaqItem
-                  key={item.key}
-                  question={item.question}
-                  answer={item.answer}
-                />
-              ))}
-            </dl>
+            <FaqAccordion items={faqItems} />
           </div>
         </section>
       ) : null}

@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import type { Currency } from "@/i18n/currency-config";
+import type { EventType } from "@/lib/event-types";
 
 export type EventStatus = "draft" | "active" | "paused" | "archived";
 
@@ -29,6 +30,11 @@ export type InvitationTemplate = {
   artPanelColor?: string;
   artDetailFontKey?: string;
   artNameMax?: number;
+  artStackGap?: number;
+  artEyebrowText?: string;
+  artCelebrantTier?: boolean;
+  artShowAge?: boolean;
+  artHideVenueLabel?: boolean;
 };
 
 export type InvitationTemplatesResponse = {
@@ -40,6 +46,8 @@ export type CoverTextSource =
   | "coverTitle"
   | "coverSubtitle"
   | "dedication"
+  | "titleLine"
+  | "dateLine"
   | "coupleNames"
   | "weddingDate"
   | { static: string };
@@ -99,9 +107,10 @@ export type PlanTier =
   | "bundle"
   | "pro_starter"
   | "pro_studio"
+  | "pro_free"
   | "free";
 
-export type AccountType = "couple" | "pro";
+export type AccountType = "couple" | "host" | "pro";
 
 export type TranscriptStatus =
   | "pending"
@@ -165,17 +174,30 @@ export type Event = {
   id: string;
   ownerUserId: string;
   slug: string;
+  eventType: EventType | string;
+  // Generic (canonical) fields.
   eventName: string | null;
+  hostAName: string;
+  hostBName: string | null;
+  eventDate: string | null;
+  endDate: string | null;
+  locationName: string | null;
+  locationCity: string | null;
+  capacityLimit: number | null;
+  coverPhotoUrl: string | null;
+  hostAvatarUrl: string | null;
+  details: Record<string, unknown>;
+  // Legacy aliases (still emitted by the API during the transition).
   partnerAName: string;
   partnerBName: string;
   weddingDate: string | null;
   venueName: string | null;
   venueCity: string | null;
+  couplePhotoUrl: string | null;
   expectedGuests: number | null;
   welcomeMessage: string | null;
   themeColor: string;
   invitationTemplateId: string;
-  couplePhotoUrl: string | null;
   status: EventStatus | string;
   defaultLanguage: Locale;
   createdAt: string;
@@ -265,21 +287,35 @@ export type MessageDetail = {
 };
 
 export type CreateEventInput = {
+  eventType?: EventType | string;
+  // Generic (canonical) fields.
   eventName?: string;
+  hostAName?: string;
+  hostBName?: string;
+  eventDate?: string;
+  endDate?: string;
+  locationName?: string;
+  locationCity?: string;
+  expectedGuests?: number;
+  details?: Record<string, unknown>;
+  // Legacy aliases still accepted by the API.
   partnerAName?: string;
   partnerBName?: string;
   weddingDate?: string;
   venueName?: string;
   venueCity?: string;
-  expectedGuests?: number;
 };
 
-export type UpdateEventInput = Partial<CreateEventInput> & {
+export type UpdateEventInput = Omit<Partial<CreateEventInput>, "endDate"> & {
+  endDate?: string | null;
   eventName?: string | null;
+  capacityLimit?: number | null;
   welcomeMessage?: string;
   themeColor?: string;
   invitationTemplateId?: string;
+  coverPhotoUrl?: string | null;
   couplePhotoUrl?: string | null;
+  hostAvatarUrl?: string | null;
   defaultLanguage?: Locale;
   slug?: string;
   submissionsEnabled?: boolean;
@@ -327,6 +363,7 @@ export type ApiErrorBody = {
   error: {
     code: string;
     message: string;
+    i18nKey?: string;
     details: Record<string, unknown>;
   };
 };
@@ -366,9 +403,17 @@ export type PublicKioskSettings = {
 };
 
 export type PublicEvent = {
-  eventName: string | null;
+  eventType?: EventType | string;
+  eventName?: string | null;
+  hostAName?: string;
+  hostBName?: string | null;
+  eventDate?: string | null;
+  endDate?: string | null;
+  details?: Record<string, unknown>;
+  coverPhotoUrl?: string | null;
+  hostAvatarUrl?: string | null;
   partnerAName: string;
-  partnerBName: string;
+  partnerBName: string | null;
   weddingDate: string | null;
   welcomeMessage: string | null;
   themeColor: string;
@@ -377,15 +422,25 @@ export type PublicEvent = {
   supportedLanguages: string[];
   submissionOpen: boolean;
   limitReached: boolean;
+  galleryPublic: boolean;
   kiosk: PublicKioskSettings;
 };
 
 export type PublicInvitation = {
   event: {
     slug: string;
-    eventName: string | null;
+    eventType?: EventType | string;
+    eventName?: string | null;
+    hostAName?: string;
+    hostBName?: string | null;
+    eventDate?: string | null;
+    endDate?: string | null;
+    locationName?: string | null;
+    locationCity?: string | null;
+    details?: Record<string, unknown>;
+    coverPhotoUrl?: string | null;
     partnerAName: string;
-    partnerBName: string;
+    partnerBName: string | null;
     weddingDate: string | null;
     venueName: string | null;
     venueCity: string | null;
@@ -398,7 +453,19 @@ export type PublicInvitation = {
   };
   invitee: {
     firstName: string;
+    seats: number;
+    rsvpStatus: RsvpStatus;
+    rsvpSeats: number | null;
+    rsvpNote: string | null;
   };
+};
+
+export type RsvpStatus = "pending" | "accepted" | "declined";
+
+export type RsvpResult = {
+  status: "accepted" | "declined";
+  seats: number | null;
+  note: string | null;
 };
 
 export type AudioUploadTarget = {
@@ -438,7 +505,32 @@ export type GalleryItem = {
   durationSec: number | null;
   isFavorite: boolean;
   isGoldBookSelected: boolean;
+  pinnedAt: string | null;
+  likeCount: number;
+  commentCount: number;
+  likedByMe: boolean;
+  isMine: boolean;
   createdAt: string;
+};
+
+export type AlbumLikeResult = {
+  likeCount: number;
+  likedByMe: boolean;
+};
+
+export type AlbumComment = {
+  id: string;
+  guestName: string;
+  body: string;
+  createdAt: string;
+};
+
+export type DemoSession = {
+  slug: string;
+  galleryCode: string;
+  guestUrl: string;
+  galleryUrl: string;
+  expiresAt: string;
 };
 
 export type GalleryFeed = {
@@ -654,6 +746,10 @@ export type Invitee = {
   email: string | null;
   phone: string | null;
   seats: number;
+  rsvpStatus: RsvpStatus;
+  rsvpSeats: number | null;
+  rsvpNote: string | null;
+  rsvpRespondedAt: string | null;
   inviteToken: string;
   lastSentAt: string | null;
   lastOpenedAt: string | null;
@@ -680,6 +776,16 @@ export type InvitationSendResult = {
 export type InvitationBulkResult = {
   queued: number;
   skipped: number;
+};
+
+/**
+ * Options for the invitation-send endpoints. `attachAgenda` asks the backend to
+ * attach the corporate event's agenda PDF (`event.details.agenda`) to the
+ * composed invite email. Backend must honor this — the email is built
+ * server-side.
+ */
+export type SendInvitationInput = {
+  attachAgenda?: boolean;
 };
 
 export type InvitationCopyLinkResult = {
@@ -975,7 +1081,7 @@ export type CheckoutSessionResult = {
   checkout?: PeechoCheckoutParams;
 };
 
-export type PlanAudience = "couple" | "pro" | "addon";
+export type PlanAudience = "couple" | "host" | "pro" | "addon";
 
 export type PlanPrice = {
   currency: string;
@@ -1113,6 +1219,7 @@ export type LinkSettings = {
   maxVideoDurationSeconds: number;
   maxAudioDurationSeconds: number;
   galleryPublic: boolean;
+  galleryLinkEnabled: boolean;
   galleryCode: string | null;
   createdAt: string;
   updatedAt: string;
@@ -1134,6 +1241,7 @@ export type KioskSettings = {
   fullscreenLock: boolean;
   guidedMode: boolean;
   hasPin: boolean;
+  kioskPin: string | null;
   airplaneMode: boolean;
   welcomeNote: string | null;
   welcomeShowPhoto: boolean;
@@ -1146,7 +1254,10 @@ export type KioskSettings = {
 };
 
 export type UpdateKioskSettingsInput = Partial<
-  Omit<KioskSettings, "id" | "eventId" | "hasPin" | "createdAt" | "updatedAt">
+  Omit<
+    KioskSettings,
+    "id" | "eventId" | "hasPin" | "kioskPin" | "createdAt" | "updatedAt"
+  >
 > & {
   kioskPin?: string;
 };

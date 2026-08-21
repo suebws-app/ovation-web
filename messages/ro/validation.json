@@ -6,7 +6,7 @@
   "validation__password_max": "Parola este prea lungă",
   "validation__name_required": "Te rugăm să introduci numele tău",
   "validation__name_max": "Numele este prea lung",
-  "validation__partner_name_required": "Numele partenerului este obligatoriu",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Numele este prea lung",
   "validation__terms_required": "Te rugăm să accepți termenii",
   "validation__confirm_password_required": "Confirmă parola ta",

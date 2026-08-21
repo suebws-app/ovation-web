@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "vagy tölts fel fényképeket",
   "photos__tile__select_photo": "Fénykép kijelölése — {name}",
-  "photos__lightbox__show_photo": "{number}. fénykép megjelenítése"
+  "photos__lightbox__show_photo": "{number}. fénykép megjelenítése",
+  "photos__detail__pin_to_album": "Kitűzés az album elejére",
+  "photos__detail__unpin_from_album": "Kitűzés visszavonása"
 }

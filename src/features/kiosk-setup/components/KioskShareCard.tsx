@@ -8,6 +8,7 @@ import { LockIcon } from "@ovation/icons/LockIcon";
 
 type KioskShareCardProps = {
   slug: string;
+  pin: string | null;
 };
 
 const subscribeNoop = () => () => {};
@@ -23,7 +24,7 @@ const displayUrl = (raw: string): string => {
   }
 };
 
-export const KioskShareCard = ({ slug }: KioskShareCardProps) => {
+export const KioskShareCard = ({ slug, pin }: KioskShareCardProps) => {
   const t = useTranslations();
   const origin = useSyncExternalStore(
     subscribeNoop,
@@ -73,7 +74,11 @@ export const KioskShareCard = ({ slug }: KioskShareCardProps) => {
 
       <div className="rounded-12 bg-primary/5 text-primary type-caption flex items-start gap-2.5 px-3.5 py-2.5">
         <LockIcon width={14} height={14} className="mt-0.5 shrink-0" />
-        <span>{t("kiosk__share__pin_set")}</span>
+        <span>
+          {pin
+            ? t("kiosk__share__pin_value", { pin })
+            : t("kiosk__share__pin_unknown")}
+        </span>
       </div>
     </div>
   );

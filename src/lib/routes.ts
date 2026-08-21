@@ -6,7 +6,11 @@ export const appRoutes = {
     goldBook: "/gold-book",
     keepsakes: "/keepsakes",
     pricing: "/pricing",
+    wedding: "/wedding",
+    useCases: "/use-cases",
+    useCase: (slug: string) => `/use-cases/${slug}`,
     forPlanners: "/for-planners",
+    forPros: "/for-pros",
     weddingPlanner: "/wedding-planner",
     sample: "/sample",
     changelog: "/changelog",
@@ -30,7 +34,7 @@ export const appRoutes = {
     signInVerify: "/sign-in/verify",
     signInWelcome: "/sign-in/welcome",
     signUp: "/sign-up",
-    role: "/role",
+    role: "/create",
     verify: "/verify",
     plans: "/plans",
     forgotPassword: "/forgot-password",
@@ -40,6 +44,7 @@ export const appRoutes = {
 
   create: {
     root: "/create",
+    details: "/create/details",
     cover: "/create/cover",
   },
 
@@ -83,6 +88,15 @@ export const appRoutes = {
     eventQrCode: (id: string) => `/events/${id}/qr-code`,
     eventKiosk: (id: string) => `/events/${id}/kiosk`,
     eventLink: (id: string) => `/events/${id}/link`,
+    eventInvitation: (id: string) => `/events/${id}/invitation`,
+    eventPlanner: (id: string) => `/events/${id}/planner`,
+    eventPlannerDashboard: (id: string) => `/events/${id}/planner/dashboard`,
+    eventPlannerTimeline: (id: string) => `/events/${id}/planner/timeline`,
+    eventPlannerTasks: (id: string) => `/events/${id}/planner/tasks`,
+    eventPlannerBudget: (id: string) => `/events/${id}/planner/budget`,
+    eventPlannerGuests: (id: string) => `/events/${id}/planner/guests`,
+    eventPlannerVendors: (id: string) => `/events/${id}/planner/vendors`,
+    eventPlannerAssistant: (id: string) => `/events/${id}/planner/assistant`,
   },
 
   settings: {
@@ -98,9 +112,10 @@ export const appRoutes = {
 
   guest: {
     base: (slug: string) => `/g/${slug}`,
+    album: (slug: string) => `/g/${slug}/album`,
+    upload: (slug: string) => `/g/${slug}/upload`,
     record: (slug: string) => `/g/${slug}/record`,
     compose: (slug: string) => `/g/${slug}/compose`,
-    review: (slug: string) => `/g/${slug}/review`,
     thankYou: (slug: string) => `/g/${slug}/thank-you`,
     invitation: (slug: string, token: string) => `/i/${slug}/${token}`,
   },

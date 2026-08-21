@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { PublicEvent } from "@/lib/api/types";
+import { EventThemeScope } from "@/lib/theme/EventThemeScope";
 import { LanguageSelect } from "@/components/LanguageSelect";
 import { GuestHero } from "./GuestHero";
 
@@ -20,20 +21,22 @@ export const GuestWizardShell = ({
   event,
   children,
 }: GuestWizardShellProps) => (
-  <div className="bg-warm-cream small-desktop:flex-row flex min-h-screen flex-col">
-    <aside
-      className="small-desktop:w-2/5 small-desktop:h-screen small-desktop:sticky small-desktop:top-0 small-desktop:overflow-y-auto tablet:px-8 small-desktop:px-10 small-desktop:py-8 relative flex flex-col gap-6 px-5 pt-4"
-      style={heroBackgroundStyle(event.themeColor)}
-    >
-      <div className="flex items-center justify-between">
-        <LanguageSelect />
-      </div>
-      <div className="small-desktop:my-auto small-desktop:max-w-md small-desktop:mx-auto flex flex-col gap-6.5">
-        <GuestHero event={event} />
-      </div>
-    </aside>
-    <main className="small-desktop:w-3/5 small-desktop:h-screen small-desktop:overflow-y-auto bg-background relative flex flex-1 flex-col">
-      {children}
-    </main>
-  </div>
+  <EventThemeScope event={event}>
+    <div className="bg-warm-cream small-desktop:flex-row flex min-h-screen flex-col">
+      <aside
+        className="small-desktop:w-2/5 small-desktop:h-screen small-desktop:sticky small-desktop:top-0 small-desktop:overflow-y-auto tablet:px-8 small-desktop:px-10 small-desktop:py-8 relative flex flex-col gap-6 px-5 pt-4 pb-9"
+        style={heroBackgroundStyle(event.themeColor)}
+      >
+        <div className="flex items-center justify-between">
+          <LanguageSelect />
+        </div>
+        <div className="small-desktop:my-auto small-desktop:max-w-md small-desktop:mx-auto gap-6_5 flex flex-col">
+          <GuestHero event={event} />
+        </div>
+      </aside>
+      <main className="small-desktop:w-3/5 small-desktop:h-screen small-desktop:overflow-y-auto bg-background relative flex flex-1 flex-col">
+        {children}
+      </main>
+    </div>
+  </EventThemeScope>
 );

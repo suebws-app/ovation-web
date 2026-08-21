@@ -1,20 +1,45 @@
 import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 import type { Event } from "@/lib/api/types";
+import {
+  eventCardTitle,
+  formatDateRange,
+  memorialLifeSpan,
+} from "@/lib/event-types";
 import { useInvitationTemplatesQuery } from "@/lib/query/invitationTemplatesQueries";
 import { DEFAULT_INVITATION_TEMPLATE_ID } from "@/features/invitation/invitationTemplates";
 
-const formatDateLabel = (iso: string | null): string | undefined => {
-  if (!iso) return undefined;
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return undefined;
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+const formatDateLabel = (raw: string): string => {
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime())
+    ? raw
+    : date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
+};
+
+/**
+ * The type-specific subtitle rendered under the names on the card: corporate
+ * shows the event name; memorial shows the life span "1950 – 2020".
+ */
+const cardSubtitle = (event: Event): string | undefined => {
+  if (event.eventType === "corporate") {
+    // Corporate: organization name is the title, event name sits below it.
+    return typeof event.details?.eventName === "string" &&
+      event.details.eventName.trim()
+      ? event.details.eventName.trim()
+      : undefined;
+  }
+  if (event.eventType === "memorial") {
+    return memorialLifeSpan(event.details?.bornOn, event.details?.passedOn);
+  }
+  return undefined;
 };
 
 export const useInvitePreview = (event: Event) => {
+  const t = useTranslations();
   const { data } = useInvitationTemplatesQuery();
 
   const template = useMemo(() => {
@@ -31,26 +56,74 @@ export const useInvitePreview = (event: Event) => {
     );
   }, [data?.defaultTemplateId, data?.templates, event.invitationTemplateId]);
 
-  const values = useMemo(() => {
-    const isEventMode = Boolean(event.eventName?.trim());
-    return {
-      partnerA: isEventMode ? event.eventName! : event.partnerAName,
-      partnerB: isEventMode ? "" : event.partnerBName,
-      singleName: isEventMode,
-      dateLabel: formatDateLabel(event.weddingDate),
-      venue: event.venueName ?? undefined,
-      place: event.venueCity ?? undefined,
+  const values = useMemo(
+    () => ({
+      ...eventCardTitle(t, {
+        eventType: event.eventType,
+        hostA: event.hostAName ?? event.partnerAName,
+        hostB: event.hostBName ?? event.partnerBName,
+        // Corporate keeps the organization (hostA) as the title and shows the
+        // event name as the subtitle instead, so don't let it override here.
+        eventName:
+          event.eventType !== "corporate" &&
+          typeof event.details?.eventName === "string"
+            ? event.details.eventName
+            : undefined,
+        customEventNoun:
+          typeof event.details?.customEventNoun === "string"
+            ? event.details.customEventNoun
+            : undefined,
+      }),
+      subtitle: cardSubtitle(event),
+      logo:
+        (typeof event.details?.showLogo === "boolean"
+          ? event.details.showLogo
+          : Boolean(event.details?.logo)) &&
+        typeof event.details?.logo === "string"
+          ? event.details.logo
+          : undefined,
+      dateLabel: formatDateRange(event, formatDateLabel) ?? undefined,
+      venue: event.locationName ?? event.venueName ?? undefined,
+      place: event.locationCity ?? event.venueCity ?? undefined,
       message: event.welcomeMessage ?? undefined,
-    };
-  }, [
-    event.eventName,
-    event.partnerAName,
-    event.partnerBName,
-    event.weddingDate,
-    event.venueName,
-    event.venueCity,
-    event.welcomeMessage,
-  ]);
+      age:
+        event.details?.showAge !== false &&
+        typeof event.details?.age === "number"
+          ? event.details.age
+          : undefined,
+    }),
+    [t, event],
+  );
 
-  return { template, values };
+  const overrides = useMemo(
+    () => ({
+      pageBg:
+        typeof event.details?.pageBg === "string"
+          ? event.details.pageBg
+          : undefined,
+      cardBg:
+        typeof event.details?.cardBg === "string"
+          ? event.details.cardBg
+          : undefined,
+      textColor:
+        typeof event.details?.textColor === "string"
+          ? event.details.textColor
+          : undefined,
+      mutedColor:
+        typeof event.details?.mutedColor === "string"
+          ? event.details.mutedColor
+          : undefined,
+      accentColor:
+        typeof event.details?.accentColor === "string"
+          ? event.details.accentColor
+          : undefined,
+      textScale:
+        typeof event.details?.textScale === "number"
+          ? event.details.textScale
+          : undefined,
+    }),
+    [event],
+  );
+
+  return { template, values, overrides };
 };

@@ -11,6 +11,8 @@
   "seo__contact__description": "Vprašanja o knjigi gostov, paketih ali tiskanem Gold Booku? Piši nam — odgovorimo hitro, pred poroko in po njej.",
   "seo__for_planners__title": "Knjige gostov za poročne načrtovalce",
   "seo__for_planners__description": "Ponudi svojim parom knjigo gostov, ki jo gostje zares uporabljajo. Preprosta nastavitev, QR-kartice za tisk in tiskani spominki, ki jih stranke obožujejo.",
+  "seo__for_pros__title": "Ovation za organizatorje dogodkov",
+  "seo__for_pros__description": "Vodite vse dogodke strank z ene nadzorne plošče. Glasovne knjige gostov, QR kartice, pripravljene za tisk, in tiskani spominki — cene za organizatorje, fotografe in prizorišča.",
   "seo__gold_book__title": "Gold Book — tiskan poročni spominek",
   "seo__gold_book__description": "V platno vezana knjiga tvojih poročnih sporočil — prepisi, najljubše fotografije in QR-kode, ki predvajajo vsak glas. Do 180 strani.",
   "seo__how_it_works__title": "Kako deluje — knjiga gostov s QR-kodo",
@@ -47,5 +49,11 @@
   "seo__wedding_planner__title": "AI načrtovalec poroke — brezplačna aplikacija za pare",
   "seo__wedding_planner__description": "Načrtujte poroko s pametno časovnico, seznamom opravil, sledilnikom proračuna, seznamom gostov, imenikom ponudnikov in pomočnikom AI, ki pozna vaš datum, proračun, goste in ponudnike — brezplačno.",
   "seo__use_case__title": "{title} — Poročna knjiga gostov Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — Poročna knjiga gostov, ki jo lahko natisneš",
+  "seo__wedding__description": "Gostje skenirajo QR-kodo in pustijo glasovna sporočila, fotografije in zapiske — brez aplikacije. Ohrani vsak glas s svoje poroke in ga natisni kot spominek.",
+  "seo__general__title": "Ovation — ena platforma za vsak dogodek",
+  "seo__general__description": "Poroke, rojstni dnevi, poslovni dogodki, žalne slovesnosti in več. Gostje skenirajo QR-kodo in pustijo fotografije, glasovna sporočila in zapiske — brez aplikacije. Ohrani vsak spomin in ga natisni.",
+  "seo__use_cases_index__title": "Primeri uporabe — knjige gostov za vsako priložnost",
+  "seo__use_cases_index__description": "Poroke, rojstni dnevi, poslovni dogodki, spominske strani in še več. Poglejte, kako Ovation zbere glasovna sporočila in fotografije vaših gostov ter jih spremeni v spominsko knjigo."
 }

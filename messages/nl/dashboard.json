@@ -60,15 +60,15 @@
   "dashboard__message__pause": "Bericht pauzeren",
   "dashboard__photos__preview": "Foto bekijken",
   "dashboard__widget__referral__eyebrow": "Ovation delen",
-  "dashboard__widget__referral__title": "Ken je een stel dat een bruiloft plant?",
+  "dashboard__widget__referral__title": "Ken je iemand die een evenement plant?",
   "dashboard__widget__referral__description": "Stuur ze je uitnodigingslink. Je krijgt {reward} tegoed voor je aandenken zodra ze hun eerste abonnement kopen.",
   "dashboard__widget__referral__share_cta": "Delen met een vriend",
   "dashboard__widget__referral__copy_link": "Link kopiëren",
   "dashboard__widget__referral__copied": "Gekopieerd",
   "dashboard__widget__referral__email_share": "Delen via e-mail",
-  "dashboard__widget__referral__share_title": "Ovation — een stem-gastenboek voor jullie bruiloft",
+  "dashboard__widget__referral__share_title": "Ovation — een spraakgastenboek voor je evenement",
   "dashboard__widget__referral__share_body": "{name} dacht dat je Ovation misschien geweldig zou vinden — zo verzamelden we spraakberichten van onze gasten in plaats van een papieren gastenboek.",
-  "dashboard__widget__referral__email_subject": "Ik denk dat je Ovation geweldig zou vinden voor je bruiloft",
+  "dashboard__widget__referral__email_subject": "Ik denk dat je Ovation geweldig zou vinden voor je evenement",
   "dashboard__widget__referral__balance_label": "Je kredietsaldo",
   "dashboard__widget__referral__stats": "{invited, plural, one {# vriend uitgenodigd} other {# vrienden uitgenodigd}} · {converted, plural, one {# meegedaan} other {# meegedaan}}"
 }

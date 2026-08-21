@@ -16,16 +16,28 @@ import { useHydrateStore } from "@/lib/storage/useHydrateStore";
 import { startNavigation } from "@/components/NavigationProgress";
 import { useSlugChecker } from "@/features/create/hooks/useSlugChecker";
 import { useSlugSuggestions } from "@/features/create/hooks/useSlugSuggestions";
-import { COVER_OPTIONS } from "@/features/create/constants";
 import { CoverPageSkeleton } from "@/features/create/skeletons/CoverPageSkeleton";
 import { eventsClient } from "@/lib/api/events-client";
 import { profileClient } from "@/lib/api/profile-client";
 import { ApiError } from "@/lib/api/client";
+import type { UpdateEventInput } from "@/lib/api/types";
 import { setCookie } from "@/lib/utils/cookies";
+import { isConsumerRole, isProRole } from "@/lib/auth/account-role";
+import { isPaidPlan } from "@/lib/utils/plan";
 import { toIsoDate } from "@/lib/utils/formatDate";
+import {
+  clearPendingEvent,
+  stashPendingEvent,
+} from "@/features/create/pendingEvent";
+import { getEventTypeConfig } from "@/lib/event-types";
+import { formatPreviewDate } from "@/features/create/formatPreviewDate";
+import {
+  resolveEventThemePreset,
+  scaleFor,
+} from "@/lib/theme/eventThemePresets";
 import { BookPreview } from "./components/BookPreview";
 import { CoverPattern } from "./components/CoverPattern";
-import { CoverPhotoSelector } from "./components/CoverPhotoSelector";
+import { CoverColorSelector } from "./components/CoverColorSelector";
 import { SlugInput } from "./components/SlugInput";
 
 const LAST_EVENT_COOKIE = "ovation_last_event_id";
@@ -42,18 +54,14 @@ export const CoverPage = () => {
 
   useEffect(() => {
     if (!hydrated) return;
-    const { nameMode, eventName, partner1Name, partner2Name } =
+    const { partner1Name, partner2Name } =
       useCreateEventStore.getState().formData;
-    const hasName =
-      nameMode === "event"
-        ? Boolean(eventName.trim())
-        : Boolean(partner1Name.trim() || partner2Name.trim());
-    if (!hasName) {
+    if (!partner1Name.trim() && !partner2Name.trim()) {
       const as = searchParams.get("as");
       const target =
-        as === "couple" || as === "pro"
-          ? `${appRoutes.create.root}?as=${as}`
-          : appRoutes.create.root;
+        isConsumerRole(as) || isProRole(as)
+          ? `${appRoutes.create.details}?as=${as}`
+          : appRoutes.create.details;
       router.replace(target);
     }
   }, [router, hydrated, searchParams]);
@@ -63,17 +71,7 @@ export const CoverPage = () => {
   const { suggestions, isLoading: suggestionsLoading } = useSlugSuggestions(
     formData.partner1Name,
     formData.partner2Name,
-    formData.eventName,
   );
-
-  const [coverFile, setCoverFile] = useState<File | null>(null);
-  const [coverFilePreview, setCoverFilePreview] = useState<string | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (coverFilePreview) URL.revokeObjectURL(coverFilePreview);
-    };
-  }, [coverFilePreview]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -81,28 +79,42 @@ export const CoverPage = () => {
   const canContinue =
     status !== "invalid" && status !== "taken" && !isSubmitting;
 
-  const handleSelectPreset = (id: string) => {
-    if (coverFilePreview) URL.revokeObjectURL(coverFilePreview);
-    setCoverFile(null);
-    setCoverFilePreview(null);
-    updateFormData({ coverType: id });
-  };
-
-  const handleSelectFile = (file: File) => {
-    if (coverFilePreview) URL.revokeObjectURL(coverFilePreview);
-    const preview = URL.createObjectURL(file);
-    setCoverFile(file);
-    setCoverFilePreview(preview);
-    updateFormData({ coverType: "" });
-  };
-
   const handleContinue = async () => {
     if (!session?.user) {
       const asFromUrl = searchParams.get("as");
       const type =
-        asFromUrl === "pro" || asFromUrl === "couple"
+        isProRole(asFromUrl) || isConsumerRole(asFromUrl)
           ? asFromUrl
-          : accountType || "couple";
+          : accountType || "host";
+      // Durably stash the wizard data so the event can be created after signup
+      // even when email verification delays the session (see EnsureHostEvent).
+      const data = useCreateEventStore.getState().formData;
+      const hasSecondHost = getEventTypeConfig(data.eventType).fields.some(
+        (f) => f.column === "hostBName",
+      );
+      stashPendingEvent({
+        eventType: data.eventType,
+        partnerAName:
+          data.partner1Name.trim() || t("signup__partner_a_default"),
+        // Single-host types (corporate, memorial, …) have no second host —
+        // don't invent a bogus "Partner 2".
+        partnerBName: hasSecondHost
+          ? data.partner2Name.trim() || t("signup__partner_b_default")
+          : undefined,
+        weddingDate:
+          data.weddingDate && !Number.isNaN(data.weddingDate.getTime())
+            ? toIsoDate(data.weddingDate)
+            : undefined,
+        endDate:
+          data.endDate && !Number.isNaN(data.endDate.getTime())
+            ? toIsoDate(data.endDate)
+            : undefined,
+        venueName: data.venueName?.trim() || undefined,
+        venueCity: data.venueCity?.trim() || undefined,
+        themeColor: data.themeColor || undefined,
+        details: data.details,
+        desiredSlug: data.bookUrl?.trim() || undefined,
+      });
       startNavigation();
       router.push(`${appRoutes.auth.signUp}?as=${type}`);
       return;
@@ -120,16 +132,14 @@ export const CoverPage = () => {
     } = useCreateEventStore.getState();
 
     try {
-      const isEventMode = data.nameMode === "event";
-      const eventName = isEventMode
-        ? data.eventName.trim() || t("signup__event_name_default")
-        : "";
-      const partnerAName = isEventMode
-        ? ""
-        : data.partner1Name.trim() || t("signup__partner_a_default");
-      const partnerBName = isEventMode
-        ? ""
-        : data.partner2Name.trim() || t("signup__partner_b_default");
+      const hasSecondHost = getEventTypeConfig(data.eventType).fields.some(
+        (f) => f.column === "hostBName",
+      );
+      const partnerAName =
+        data.partner1Name.trim() || t("signup__partner_a_default");
+      const partnerBName = hasSecondHost
+        ? data.partner2Name.trim() || t("signup__partner_b_default")
+        : undefined;
       const weddingDate =
         data.weddingDate && !Number.isNaN(data.weddingDate.getTime())
           ? toIsoDate(data.weddingDate)
@@ -140,43 +150,64 @@ export const CoverPage = () => {
       let targetEventId: string;
       if (mode === "edit" && eventId) {
         const { event } = await eventsClient.update(eventId, {
-          eventName: isEventMode ? eventName : "",
           partnerAName,
           partnerBName,
           weddingDate,
           venueName,
           venueCity,
+          themeColor: data.themeColor || undefined,
         });
         targetEventId = event.id;
       } else {
         const created = await eventsClient.create({
-          eventName: isEventMode ? eventName : undefined,
+          eventType: data.eventType,
           partnerAName,
           partnerBName,
           weddingDate,
           venueName,
           venueCity,
+          details: data.details,
         });
         targetEventId = created.event.id;
       }
 
       await profileClient.markOnboardingComplete().catch(() => undefined);
 
+      const updates: UpdateEventInput = {};
       const desiredSlug = data.bookUrl?.trim();
       if (desiredSlug && /^[a-z0-9-]{4,20}$/.test(desiredSlug)) {
+        updates.slug = desiredSlug;
+      }
+      // `themeColor` is not accepted on create — apply it here (edit mode
+      // already sent it in the update above).
+      if (mode !== "edit" && data.themeColor) {
+        updates.themeColor = data.themeColor;
+      }
+      if (Object.keys(updates).length > 0) {
         try {
-          await eventsClient.update(targetEventId, { slug: desiredSlug });
+          await eventsClient.update(targetEventId, updates);
         } catch {
-          // Slug clash — keep existing
+          // Slug clash / non-fatal — keep existing
         }
       }
 
       setCookie(LAST_EVENT_COOKIE, targetEventId, {
         maxAge: LAST_EVENT_COOKIE_MAX_AGE,
       });
+      clearPendingEvent();
       reset();
       startNavigation();
-      router.push(appRoutes.app.root);
+      // A pro still on the free tier has just used their one free event, so
+      // send them to the pro plans instead of the event dashboard.
+      const account = session.user as {
+        accountType?: string;
+        planTier?: string | null;
+      };
+      router.push(
+        isProRole(account.accountType) && !isPaidPlan(account.planTier)
+          ? `${appRoutes.auth.plans}?as=pro`
+          : appRoutes.app.root,
+      );
     } catch (error) {
       setSubmitError(
         ApiError.isApiError(error)
@@ -187,24 +218,33 @@ export const CoverPage = () => {
     }
   };
 
-  const isEventMode = formData.nameMode === "event";
-  const initials = isEventMode
-    ? (formData.eventName?.[0] ?? "E").toUpperCase()
-    : `${formData.partner1Name?.[0] ?? "L"}&${formData.partner2Name?.[0] ?? "T"}`;
+  const hostNames = [formData.partner1Name, formData.partner2Name]
+    .map((n) => n?.trim())
+    .filter((n): n is string => Boolean(n));
+  const titleLine = hostNames.join(" & ") || undefined;
+  const initials = hostNames.map((n) => n[0]?.toUpperCase()).join("&") || "OV";
+  const selectedPreset = resolveEventThemePreset({
+    themeColor: formData.themeColor,
+    eventType: formData.eventType,
+  });
+  const coverColor = scaleFor(
+    selectedPreset.hue,
+    selectedPreset.chromaMul,
+    selectedPreset.deep,
+  ).light.primary;
   const generatedSlug = useMemo(
     () =>
-      (isEventMode
-        ? formData.eventName?.toLowerCase() || "event"
-        : `${formData.partner1Name?.toLowerCase() || "partner1"}-and-${formData.partner2Name?.toLowerCase() || "partner2"}`
-      )
+      (hostNames.length ? hostNames.join("-and-") : "my-event")
+        .toLowerCase()
         .replace(/[^a-z0-9-]/g, "")
         .slice(0, 20),
-    [
-      isEventMode,
-      formData.eventName,
-      formData.partner1Name,
-      formData.partner2Name,
-    ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [formData.partner1Name, formData.partner2Name],
+  );
+  const formattedDate = formatPreviewDate(
+    formData.weddingDate,
+    formData.endDate,
+    formData.eventType,
   );
   const [userEditedSlug, setUserEditedSlug] = useState(false);
   const lastAutoSlugRef = useRef<string | null>(null);
@@ -244,33 +284,14 @@ export const CoverPage = () => {
             {t("signup__cover__brand_eyebrow")}
           </Kicker>
           <BookPreview
-            partner1={isEventMode ? formData.eventName : formData.partner1Name}
-            partner2={isEventMode ? "" : formData.partner2Name}
-            singleName={isEventMode}
-            date={formData.weddingDate?.toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            })}
+            title={titleLine}
+            volumeLabel={t("signup__book_preview__volume")}
+            titleFallback={t("signup__book_preview__title_fallback")}
+            date={formattedDate}
             venue={[formData.venueName, formData.venueCity]
               .filter(Boolean)
               .join(", ")}
-            coverImage={
-              coverFilePreview ? (
-                <img
-                  src={coverFilePreview}
-                  alt={t("signup__cover__step_label")}
-                  className="size-full object-cover"
-                />
-              ) : formData.coverType && formData.coverType !== "upload" ? (
-                <CoverPattern
-                  tint={
-                    COVER_OPTIONS.find((o) => o.id === formData.coverType)
-                      ?.tint ?? "#EFC9A8"
-                  }
-                />
-              ) : undefined
-            }
+            coverImage={<CoverPattern tint={coverColor} />}
           />
           <p className="type-body-small relative max-w-90 leading-relaxed opacity-85">
             {t("signup__cover__brand_caption")}
@@ -281,7 +302,7 @@ export const CoverPage = () => {
       <>
         <Kicker className="text-primary tablet:mb-3 mb-2">
           {t("auth__signup__eyebrow_step", {
-            step: 2,
+            step: 3,
             label: t("signup__cover__step_label"),
           })}
         </Kicker>
@@ -295,14 +316,14 @@ export const CoverPage = () => {
           {t("signup__cover__subtitle")}
         </p>
 
-        <CoverPhotoSelector
-          coverType={formData.coverType}
-          coverFile={coverFile}
-          coverFilePreview={coverFilePreview}
-          initials={initials}
-          onSelectPreset={handleSelectPreset}
-          onSelectFile={handleSelectFile}
-        />
+        <div className="tablet:mt-6 mt-4">
+          <CoverColorSelector
+            value={formData.themeColor}
+            onChange={(hex) => updateFormData({ themeColor: hex })}
+            eventType={formData.eventType}
+            initials={initials}
+          />
+        </div>
 
         <div className="tablet:mt-6 mt-4">
           <Kicker className="text-muted-foreground mb-2">

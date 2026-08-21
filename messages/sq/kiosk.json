@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Lidhja u humb",
   "kiosk__offline__body": "Kiosku ka nevojë për lidhje interneti për të pranuar mesazhe të reja. Ju lutemi rilidhuni për të vazhduar.",
   "kiosk__offline__hint": "Po rilidhet automatikisht…",
-  "kiosk__live__welcome_overline": "Ju jeni në dasmën e",
+  "kiosk__live__welcome_overline": "Ju jeni në {eventNoun} e",
   "kiosk__live__tap_to_record": "Trokitni për të lënë një mesazh",
   "kiosk__live__closed": "Dorëzimet janë mbyllur",
   "kiosk__live__caption": "Deri në {seconds} sekonda · audio · foto opsionale",
@@ -117,6 +117,9 @@
   "kiosk__start_warning__cancel": "Anulo",
   "kiosk__start_warning__confirm": "Starto sidoqoftë",
   "kiosk_setup__pin__change": "Ndrysho PIN-in",
+  "kiosk_setup__pin__show": "Shfaq PIN-in",
+  "kiosk_setup__pin__hide": "Fshih PIN-in",
+  "kiosk_setup__pin__unknown": "I fshehur",
   "kiosk_setup__language__set_main": "Cakto si gjuhë kryesore",
   "kiosk_setup__language__remove": "Hiq gjuhën",
   "kiosk_setup__select__placeholder": "Zgjidhni opsionin",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Dërgoni këtë lidhje te kushdo që do të konfigurojë kioskun ditën e dasmës. Atyre do t'u nevojitet PIN-i për ta hapur.",
   "kiosk__share__copy": "Kopjo lidhjen",
   "kiosk__share__copied": "U kopjua!",
-  "kiosk__share__pin_set": "PIN-i i parazgjedhur është 1234. Ndryshojeni nga karta e kyçjes para se ta ndani."
+  "kiosk__share__pin_value": "PIN-i i kioskut: {pin}. I duhet atij që hap kioskun.",
+  "kiosk__share__pin_unknown": "Vendos një PIN të ri kioski te karta e bllokimit që ta shohësh këtu."
 }

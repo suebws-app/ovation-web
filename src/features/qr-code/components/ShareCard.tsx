@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { clientEnv as env } from "@/lib/utils/env.client";
+import { appRoutes } from "@/lib/routes";
 import { WhatsAppIcon } from "@ovation/icons/WhatsAppIcon";
 import { MailIcon } from "@ovation/icons/MailIcon";
 import { SmsIcon } from "@ovation/icons/SmsIcon";
@@ -10,12 +11,13 @@ import { AirDropIcon } from "@ovation/icons/AirDropIcon";
 import { ShareChannel } from "./ShareChannel";
 
 type ShareCardProps = {
-  url?: string;
+  slug?: string;
 };
 
-export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
+export const ShareCard = ({ slug = "lena-and-tomas" }: ShareCardProps) => {
   const t = useTranslations();
-  const shareUrl = `${env.APP_URL}/${url}`;
+  const guestPath = appRoutes.guest.base(slug);
+  const shareUrl = `${env.APP_URL}${guestPath}`;
   const shareBody = `${t("qr_code__share__suggested_a")}${shareUrl}${t("qr_code__share__suggested_b")}`;
   const encodedBody = encodeURIComponent(shareBody);
   const subject = encodeURIComponent(t("qr_code__share__email_subject"));
@@ -97,9 +99,7 @@ export const ShareCard = ({ url = "lena-and-tomas" }: ShareCardProps) => {
         </p>
         <p className="type-body-small text-foreground mt-1 font-serif italic">
           {t("qr_code__share__suggested_a")}{" "}
-          <span className="font-mono not-italic">
-            {env.APP_URL}/{url}
-          </span>
+          <span className="font-mono not-italic">{shareUrl}</span>
           {t("qr_code__share__suggested_b")}
         </p>
       </div>

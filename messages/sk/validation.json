@@ -6,7 +6,7 @@
   "validation__password_max": "Heslo je príliš dlhé",
   "validation__name_required": "Prosím, zadaj svoje meno",
   "validation__name_max": "Meno je príliš dlhé",
-  "validation__partner_name_required": "Meno partnera je povinné",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Meno je príliš dlhé",
   "validation__terms_required": "Prosím, prijmi podmienky",
   "validation__confirm_password_required": "Potvrď svoje heslo",

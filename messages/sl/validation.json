@@ -6,7 +6,7 @@
   "validation__password_max": "Geslo je predolgo",
   "validation__name_required": "Prosim, vnesi svoje ime",
   "validation__name_max": "Ime je predolgo",
-  "validation__partner_name_required": "Ime partnerja je obvezno",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Ime je predolgo",
   "validation__terms_required": "Prosim, sprejmi pogoje",
   "validation__confirm_password_required": "Potrdi svoje geslo",

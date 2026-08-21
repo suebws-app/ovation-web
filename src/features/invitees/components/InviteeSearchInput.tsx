@@ -37,7 +37,7 @@ export const InviteeSearchInput = ({
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
         placeholder={t("invitees__directory__search_placeholder")}
-        className="text-foreground placeholder:text-muted-foreground tablet:text-sm flex-1 bg-transparent text-base outline-none disabled:cursor-not-allowed disabled:opacity-50"
+        className="text-foreground placeholder:text-muted-foreground tablet:text-sm flex-1 bg-transparent text-base font-normal outline-none disabled:cursor-not-allowed disabled:opacity-50"
       />
       {draft.length > 0 && (
         <button

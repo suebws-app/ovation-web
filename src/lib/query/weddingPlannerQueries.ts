@@ -81,6 +81,28 @@ export const useDeletePhase = (eventId: string) => {
   });
 };
 
+export const useDeleteAllPhases = (eventId: string) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => weddingPlannerClient.deleteAllPhases(eventId),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.weddingPlanner.all(eventId),
+      }),
+  });
+};
+
+export const useDeleteAllTodos = (eventId: string) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => weddingPlannerClient.deleteAllTodos(eventId),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.weddingPlanner.all(eventId),
+      }),
+  });
+};
+
 export const useCreateTask = (eventId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -324,6 +346,14 @@ export const useDeleteCategory = (eventId: string) => {
   return useMutation({
     mutationFn: (categoryId: string) =>
       weddingPlannerClient.deleteCategory(eventId, categoryId),
+    onSuccess: () => invalidateBudget(queryClient, eventId),
+  });
+};
+
+export const useDeleteAllBudget = (eventId: string) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => weddingPlannerClient.deleteAllBudget(eventId),
     onSuccess: () => invalidateBudget(queryClient, eventId),
   });
 };

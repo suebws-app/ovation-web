@@ -11,6 +11,11 @@ import {
   type CoverSlot,
 } from "./BookFormContext";
 import { usePeechoVariantResolver } from "./usePeechoVariantResolver";
+import {
+  photosNeededForMinPages,
+  photosOverMaxPages,
+  type InteriorDensity,
+} from "@/lib/utils/billablePages";
 import type { KeepsakeProductVariant, PhotoSelectAll } from "@/lib/api/types";
 
 export type BookPriceBreakdown = {
@@ -157,15 +162,22 @@ export const useBookCheckoutData = (
       return t("keepsakes__book_customizer__not_ready_pick_size");
     if (pageCount === 0)
       return t("keepsakes__book_customizer__not_ready_no_photos");
+    const density = (interiorDensity ?? "spacious") as InteriorDensity;
+    const isLayflat = binding === "layflat";
     if (minPages !== null && billablePages < minPages) {
       return t("keepsakes__book_customizer__below_min_label", {
-        needed: minPages - billablePages,
+        needed: photosNeededForMinPages(
+          pageCount,
+          minPages,
+          isLayflat,
+          density,
+        ),
         min: minPages,
       });
     }
     if (maxPages !== null && billablePages > maxPages) {
       return t("keepsakes__book_customizer__above_max_label", {
-        extra: billablePages - maxPages,
+        extra: photosOverMaxPages(pageCount, maxPages, isLayflat, density),
         max: maxPages,
       });
     }

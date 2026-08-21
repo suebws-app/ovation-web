@@ -7,11 +7,14 @@ import { getTranslations } from "next-intl/server";
 import { weddingPlannerApi } from "@/lib/api/wedding-planner";
 import { queryKeys } from "@/lib/query/keys";
 import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
+import type { Event } from "@/lib/api/types";
 import { ViewHeader } from "../components/ViewHeader";
 import { WeddingPlannerTasksClient } from "./WeddingPlannerTasksClient";
 
-export const WeddingPlannerTasks = async () => {
-  const event = await requireFilledCoupleEvent();
+export const WeddingPlannerTasks = async ({
+  event: eventProp,
+}: { event?: Event | null } = {}) => {
+  const event = eventProp ?? (await requireFilledCoupleEvent());
 
   if (!event) {
     const t = await getTranslations();

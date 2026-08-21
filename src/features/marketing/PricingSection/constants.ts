@@ -92,7 +92,7 @@ export const PRO_TIERS: Tier[] = [
     descKey: "marketing__pricing__pro_starter_desc_v2",
     ctaKey: "marketing__pricing__pro_starter_cta",
     featKeys: PRO_STARTER_FEAT_KEYS,
-    href: "/sign-up?as=pro&plan=pro_starter",
+    href: "/create?as=pro",
   },
   {
     key: "pro_studio",
@@ -105,6 +105,6 @@ export const PRO_TIERS: Tier[] = [
     descKey: "marketing__pricing__pro_desc",
     ctaKey: "marketing__pricing__pro_studio_cta",
     featKeys: PRO_FEAT_KEYS,
-    href: "/sign-up?as=pro&plan=pro_studio",
+    href: "/create?as=pro",
   },
 ];

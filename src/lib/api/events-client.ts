@@ -40,6 +40,12 @@ export const eventsClient = {
       body: input,
     }),
 
+  changeType: (eventId: string, eventType: string) =>
+    clientFetch<{ event: Event }>(`/events/${eventId}/type`, {
+      method: "PATCH",
+      body: { eventType },
+    }),
+
   archive: (eventId: string) =>
     clientFetch<{ event: Event }>(`/events/${eventId}/archive`, {
       method: "POST",
@@ -52,6 +58,12 @@ export const eventsClient = {
     clientFetch<CoverUploadResult>(`/events/${eventId}/cover-upload-url`, {
       method: "POST",
       body: { contentType },
+    }),
+
+  assetUploadUrl: (eventId: string, field: string, contentType: string) =>
+    clientFetch<CoverUploadResult>(`/events/${eventId}/asset-upload-url`, {
+      method: "POST",
+      body: { field, contentType },
     }),
 
   qrCode: (eventId: string, format: QrCodeFormat = "png", size = 1024) =>

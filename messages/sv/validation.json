@@ -6,7 +6,7 @@
   "validation__password_max": "Lösenordet är för långt",
   "validation__name_required": "Ange ditt namn",
   "validation__name_max": "Namnet är för långt",
-  "validation__partner_name_required": "Partnerns namn krävs",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Namnet är för långt",
   "validation__terms_required": "Godkänn villkoren",
   "validation__confirm_password_required": "Bekräfta ditt lösenord",

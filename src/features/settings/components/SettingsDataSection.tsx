@@ -22,7 +22,8 @@ import {
   useEventDataExport,
   type ExportKind,
 } from "../hooks/useEventDataExport";
-import { eventDisplayName } from "@/lib/utils/eventFormatters";
+import { eventLabel as eventLabelOf } from "@/lib/utils/eventFormatters";
+import { eventDateOf } from "@/lib/event-types";
 
 type IndividualEntry = {
   titleKey: string;
@@ -79,7 +80,7 @@ export const SettingsDataSection = ({
   );
 
   const eventLabel = selectedEvent
-    ? eventDisplayName(selectedEvent, selectedEvent.slug)
+    ? eventLabelOf(selectedEvent, selectedEvent.slug)
     : null;
 
   const savedScrollRef = useRef(0);
@@ -150,9 +151,9 @@ export const SettingsDataSection = ({
             </div>
             <div className="type-body-small truncate font-semibold">
               {eventLabel ?? "—"}
-              {selectedEvent?.weddingDate && (
+              {selectedEvent && eventDateOf(selectedEvent) && (
                 <span className="text-muted-foreground ml-2 font-normal">
-                  · {selectedEvent.weddingDate}
+                  · {eventDateOf(selectedEvent)}
                 </span>
               )}
             </div>
@@ -169,8 +170,8 @@ export const SettingsDataSection = ({
               <SelectContent position="popper" className="max-h-72">
                 {events.map((ev) => (
                   <SelectItem key={ev.id} value={ev.id}>
-                    {eventDisplayName(ev, ev.slug)}
-                    {ev.weddingDate ? ` · ${ev.weddingDate}` : ""}
+                    {eventLabelOf(ev, ev.slug)}
+                    {eventDateOf(ev) ? ` · ${eventDateOf(ev)}` : ""}
                   </SelectItem>
                 ))}
               </SelectContent>

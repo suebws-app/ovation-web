@@ -11,6 +11,8 @@
   "seo__contact__description": "Vragen over je gastenboek, de plannen of het gedrukte Gold Book? Neem contact op — we reageren snel, vóór en na je trouwdag.",
   "seo__for_planners__title": "Gastenboeken voor Weddingplanners",
   "seo__for_planners__description": "Geef je stellen een gastenboek dat gasten écht gebruiken. Eenvoudige setup, printklare QR-kaarten en gedrukte aandenkens waar klanten van houden.",
+  "seo__for_pros__title": "Ovation voor eventprofessionals",
+  "seo__for_pros__description": "Beheer al je klantevenementen vanuit één dashboard. Gastenboeken met spraak, printklare QR-kaarten en gedrukte aandenkens — met prijzen voor planners, fotografen en locaties.",
   "seo__gold_book__title": "Het Gold Book — Gedrukt Trouwaandenken",
   "seo__gold_book__description": "Een linnengebonden boek met je trouwberichten — transcripties, favoriete foto's en QR-codes die elke stem afspelen. Tot 180 pagina's.",
   "seo__how_it_works__title": "Zo werkt het — Gastenboek met QR-code",
@@ -47,5 +49,11 @@
   "seo__wedding_planner__title": "AI-trouwplanner — Gratis app voor koppels",
   "seo__wedding_planner__description": "Plan jullie bruiloft met een slimme tijdlijn, takenlijst, budgettracker, gastenlijst, leveranciersoverzicht en een AI-assistent die jullie datum, budget, gasten en leveranciers kent — gratis.",
   "seo__use_case__title": "{title} — Ovation-bruiloftsgastenboek",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — Trouwgastenboek dat je kunt printen",
+  "seo__wedding__description": "Gasten scannen een QR-code en laten spraakberichten, foto's en notities achter — geen app nodig. Bewaar elke stem van je trouwdag en druk hem af als aandenken.",
+  "seo__general__title": "Ovation — Eén platform voor elk evenement",
+  "seo__general__description": "Bruiloften, verjaardagen, bedrijfsevenementen, herdenkingen en meer. Gasten scannen een QR-code om foto's, spraakberichten en notities achter te laten — geen app. Bewaar elke herinnering en druk hem daarna af.",
+  "seo__use_cases_index__title": "Toepassingen — gastenboeken voor elke gelegenheid",
+  "seo__use_cases_index__description": "Bruiloften, verjaardagen, bedrijfsevenementen, herdenkingen en meer. Zie hoe Ovation spraakberichten en foto's van je gasten verzamelt en er een herinneringsboek van maakt."
 }

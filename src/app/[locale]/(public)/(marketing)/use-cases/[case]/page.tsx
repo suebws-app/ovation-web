@@ -1,11 +1,17 @@
 import { locales } from "@/i18n/config";
-import { USE_CASES, UseCasePage } from "@/features/marketing/UseCasePage";
+import { EVENT_TYPE_PAGES } from "@/features/marketing/EventTypePage";
+import { USE_CASES } from "@/features/marketing/UseCasePage";
 
-export { generateUseCaseMetadata as generateMetadata } from "@/features/marketing/UseCasePage/metadata";
+export { generateUseCaseRouteMetadata as generateMetadata } from "@/features/marketing/UseCaseRoute/metadata";
 
-export const generateStaticParams = () =>
-  locales.flatMap((locale) =>
-    USE_CASES.map((useCase) => ({ locale, case: useCase.slug })),
+export const generateStaticParams = () => {
+  const slugs = [
+    ...EVENT_TYPE_PAGES.map((page) => page.slug),
+    ...USE_CASES.map((useCase) => useCase.slug),
+  ];
+  return locales.flatMap((locale) =>
+    slugs.map((slug) => ({ locale, case: slug })),
   );
+};
 
-export { UseCasePage as default };
+export { UseCaseRoute as default } from "@/features/marketing/UseCaseRoute";

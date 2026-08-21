@@ -21,6 +21,7 @@ const applyOptimistic = (
   const next: KioskSettings = { ...prev, ...settingsChanges };
   if (kioskPin !== undefined) {
     next.hasPin = true;
+    next.kioskPin = kioskPin;
   }
   return next;
 };

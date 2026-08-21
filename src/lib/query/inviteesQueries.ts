@@ -7,6 +7,7 @@ import type {
   BulkReplaceInviteesInput,
   Invitee,
   InviteeInput,
+  SendInvitationInput,
   UpdateInviteeInput,
 } from "@/lib/api/types";
 import { queryKeys } from "./keys";
@@ -100,9 +101,18 @@ const markInviteesSent = (
 export const useSendInvitationToInvitee = (eventId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (inviteeId: string) =>
-      invitationsClient.sendToInvitee(eventId, inviteeId),
-    onSuccess: (_data, inviteeId) => {
+    mutationFn: ({
+      inviteeId,
+      attachAgenda,
+    }: {
+      inviteeId: string;
+    } & SendInvitationInput) =>
+      invitationsClient.sendToInvitee(
+        eventId,
+        inviteeId,
+        attachAgenda ? { attachAgenda } : undefined,
+      ),
+    onSuccess: (_data, { inviteeId }) => {
       markInviteesSent(
         queryClient,
         eventId,
@@ -115,7 +125,8 @@ export const useSendInvitationToInvitee = (eventId: string) => {
 export const useSendInvitationsToAll = (eventId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => invitationsClient.sendAll(eventId),
+    mutationFn: (input?: SendInvitationInput) =>
+      invitationsClient.sendAll(eventId, input),
     onSuccess: () => {
       markInviteesSent(
         queryClient,

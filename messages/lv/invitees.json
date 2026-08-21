@@ -75,9 +75,20 @@
   "invitees__send_all__confirm": "Nosūtīt ielūgumus {count, plural, zero {# viesiem} one {# viesim} other {# viesiem}} tagad?",
   "invitees__send_all__success": "{queued} rindā, {skipped} izlaisti (bez e-pasta).",
   "invitees__send_all__error": "Neizdevās ievietot ielūgumus rindā. Mēģini vēlreiz.",
+  "invitees__send_all__attach_agenda": "Pievienot darba kārtības PDF",
   "invitees__preview__cta": "Priekšskatīt",
   "invitees__preview__hide": "Slēpt priekšskatījumu",
   "invitees__preview__show": "Rādīt priekšskatījumu",
   "invitees__preview__title": "Ielūguma priekšskatījums",
-  "invitees__edit_card__cta": "Rediģēt ielūguma kartīti"
+  "invitees__edit_card__cta": "Rediģēt ielūguma kartīti",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note",
+  "invitees__rsvp_summary__title": "RSVP",
+  "invitees__rsvp_summary__coming": "coming",
+  "invitees__rsvp_summary__entries": "{coming} of {total} invites",
+  "invitees__rsvp_summary__empty": "No guests yet"
 }

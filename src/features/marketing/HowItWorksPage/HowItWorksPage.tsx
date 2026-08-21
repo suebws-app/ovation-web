@@ -1,8 +1,8 @@
 import { use } from "react";
 import { setRequestLocale } from "next-intl/server";
 import type { LocalePageProps } from "@/i18n/types";
-import { HowItWorks } from "../LandingPage/HowItWorks";
-import { FinalCTA } from "../LandingPage/FinalCTA";
+import { HowItWorks } from "../landing/HowItWorks";
+import { FinalCTA } from "../landing/FinalCTA";
 import { PageBreadcrumbJsonLd } from "../components/PageBreadcrumbJsonLd";
 
 export const HowItWorksPage = ({ params }: LocalePageProps) => {

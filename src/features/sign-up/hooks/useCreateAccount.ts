@@ -12,6 +12,11 @@ import { getCookie } from "@/lib/utils/cookies";
 import { toIsoDate } from "@/lib/utils/formatDate";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
+import {
+  clearPendingEvent,
+  stashPendingEvent,
+} from "@/features/create/pendingEvent";
+import { getEventTypeConfig } from "@/lib/event-types";
 import type { SignUpFields } from "@/features/sign-up/signUpSchema";
 import {
   CURRENCY_COOKIE,
@@ -27,6 +32,11 @@ const readPreferredCurrencyCookie = (): Currency | undefined => {
   if (!raw) return undefined;
   return isSupportedCurrency(raw) ? raw : undefined;
 };
+
+const postSignUpTarget = (accountType: string): string =>
+  accountType === "pro"
+    ? `${appRoutes.auth.plans}?as=pro`
+    : appRoutes.auth.plans;
 
 type UseCreateAccountReturn = {
   onSubmit: (values: SignUpFields) => Promise<void>;
@@ -49,7 +59,7 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
     setSubmitError(null);
 
     const accountType =
-      useSignUpStore.getState().formData.accountType || "couple";
+      useSignUpStore.getState().formData.accountType || "host";
 
     if (env.TURNSTILE_SITE_KEY && !turnstileToken) {
       setSubmitError(t("auth__signup__error_turnstile"));
@@ -112,34 +122,76 @@ export const useCreateAccount = (): UseCreateAccountReturn => {
     invalidateCsrfToken();
     updateFormData({ email: values.email, agreedToTerms: true });
 
-    if (!error && data?.token && accountType !== "pro") {
+    const pendingEventData = useCreateEventStore.getState().formData;
+    const pendingHasSecondHost = getEventTypeConfig(
+      pendingEventData.eventType,
+    ).fields.some((f) => f.column === "hostBName");
+    const pendingTrimmedA = pendingEventData.partner1Name?.trim() ?? "";
+    const pendingTrimmedB = pendingEventData.partner2Name?.trim() ?? "";
+    // Durably stash the event data so it survives an email-verification
+    // round-trip (same browser) and the dashboard's EnsureHostEvent safety
+    // net can create the event even when signup returns no session token.
+    stashPendingEvent({
+      eventType: pendingEventData.eventType,
+      partnerAName: pendingTrimmedA || t("signup__partner_a_default"),
+      partnerBName: pendingHasSecondHost
+        ? pendingTrimmedB || t("signup__partner_b_default")
+        : undefined,
+      weddingDate: toWeddingDate(pendingEventData.weddingDate),
+      endDate: toWeddingDate(pendingEventData.endDate),
+      venueName: pendingEventData.venueName?.trim() || undefined,
+      venueCity: pendingEventData.venueCity?.trim() || undefined,
+      themeColor: pendingEventData.themeColor || undefined,
+      details: pendingEventData.details,
+      desiredSlug: pendingEventData.bookUrl?.trim() || undefined,
+    });
+
+    if (!error && data?.token) {
       try {
         const eventData = useCreateEventStore.getState().formData;
+        const hasSecondHost = getEventTypeConfig(
+          eventData.eventType,
+        ).fields.some((f) => f.column === "hostBName");
         const trimmedA = eventData.partner1Name?.trim() ?? "";
         const trimmedB = eventData.partner2Name?.trim() ?? "";
         const partnerA = trimmedA || t("signup__partner_a_default");
-        const partnerB = trimmedB || t("signup__partner_b_default");
+        const partnerB = hasSecondHost
+          ? trimmedB || t("signup__partner_b_default")
+          : undefined;
         const { event } = await eventsClient.create({
+          eventType: eventData.eventType,
           partnerAName: partnerA,
           partnerBName: partnerB,
           weddingDate: toWeddingDate(eventData.weddingDate),
+          endDate: toWeddingDate(eventData.endDate),
           venueName: eventData.venueName?.trim() || undefined,
           venueCity: eventData.venueCity?.trim() || undefined,
+          details: eventData.details,
         });
+        // `themeColor` is not accepted on create — apply it after.
+        if (eventData.themeColor) {
+          await eventsClient
+            .update(event.id, { themeColor: eventData.themeColor })
+            .catch(() => undefined);
+        }
         if (typeof window !== "undefined") {
           window.sessionStorage?.setItem("ovation_signup_event_id", event.id);
           window.sessionStorage?.setItem("ovation_signup_event_created", "1");
         }
-        if (trimmedA || trimmedB) {
-          await profileClient.markOnboardingComplete().catch(() => undefined);
-        }
+        // The event was created, so onboarding is complete regardless of
+        // whether a host name was typed (defaults are used when blank).
+        // Otherwise the dashboard would keep showing the create-event CTA.
+        await profileClient.markOnboardingComplete().catch(() => undefined);
+        clearPendingEvent();
       } catch {
         // non-fatal: event will be created at checkout
       }
     }
 
     startNavigation();
-    router.replace(data?.token ? appRoutes.auth.plans : appRoutes.auth.verify);
+    router.replace(
+      data?.token ? postSignUpTarget(accountType) : appRoutes.auth.verify,
+    );
   };
 
   return {

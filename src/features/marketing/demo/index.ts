@@ -1,0 +1,1 @@
+export { DemoTrigger } from "./DemoTrigger";

@@ -6,11 +6,14 @@ import {
 import { inviteesApi } from "@/lib/api/invitees";
 import { queryKeys } from "@/lib/query/keys";
 import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
+import type { Event } from "@/lib/api/types";
 import { InviteesPageClient } from "./InviteesPageClient";
 import { InviteesEmptyState } from "./components/InviteesEmptyState";
 
-export const InviteesPage = async () => {
-  const event = await requireFilledCoupleEvent();
+export const InviteesPage = async ({
+  event: eventProp,
+}: { event?: Event | null } = {}) => {
+  const event = eventProp ?? (await requireFilledCoupleEvent());
   if (!event) {
     return <InviteesEmptyState />;
   }

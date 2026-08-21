@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "of foto's uploaden",
   "photos__tile__select_photo": "Foto van {name} selecteren",
-  "photos__lightbox__show_photo": "Foto {number} tonen"
+  "photos__lightbox__show_photo": "Foto {number} tonen",
+  "photos__detail__pin_to_album": "Bovenaan het album vastzetten",
+  "photos__detail__unpin_from_album": "Losmaken van het album"
 }

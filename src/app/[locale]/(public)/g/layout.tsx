@@ -10,7 +10,7 @@ const GuestLayout = async ({
   params,
 }: { children: React.ReactNode } & LocalePageProps) => {
   const { locale } = await params;
-  const messages = await loadShellMessages(locale, ["guest"]);
+  const messages = await loadShellMessages(locale, ["guest", "eventTypes"]);
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <main className="flex-1">{children}</main>

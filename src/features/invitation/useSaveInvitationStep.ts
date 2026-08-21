@@ -11,8 +11,19 @@ import type {
 import type { InvitationStepId } from "./constants";
 import type { InvitationFields } from "./invitationSchema";
 
+const designDetails = (values: InvitationFields): Record<string, unknown> => ({
+  pageBg: values.pageBg?.trim() ?? "",
+  surroundBg: values.surroundBg?.trim() ?? "",
+  cardBg: values.cardBg?.trim() ?? "",
+  textColor: values.textColor?.trim() ?? "",
+  mutedColor: values.mutedColor?.trim() ?? "",
+  accentColor: values.accentColor?.trim() ?? "",
+  textScale: typeof values.textScale === "number" ? values.textScale : 1,
+});
+
 const designPayload = (values: InvitationFields): UpdateEventInput => ({
   invitationTemplateId: values.templateId,
+  details: designDetails(values),
 });
 
 const detailsPayload = (
@@ -27,9 +38,34 @@ const detailsPayload = (
     if (values.partnerB.trim()) payload.partnerBName = values.partnerB.trim();
   }
   if (values.weddingDate) payload.weddingDate = values.weddingDate;
+  payload.endDate = values.endDate || null;
   if (values.venue.trim()) payload.venueName = values.venue.trim();
   if (values.place.trim()) payload.venueCity = values.place.trim();
   if (values.message.trim()) payload.welcomeMessage = values.message.trim();
+  const details: Record<string, unknown> = {};
+  const eventName = values.eventName?.trim();
+  if (eventName !== undefined) details.eventName = eventName;
+  // Send the key even when blank: the API drops empty values after merging, so
+  // omitting it would leave a previously saved noun in place forever.
+  const customEventNoun = values.customEventNoun?.trim();
+  if (customEventNoun !== undefined) details.customEventNoun = customEventNoun;
+  if (values.time?.trim()) details.time = values.time.trim();
+  const greeting = values.greeting?.trim();
+  if (greeting) details.greeting = greeting;
+  const ageValue = values.age?.trim();
+  if (ageValue && Number.isFinite(Number(ageValue))) {
+    details.age = Number(ageValue);
+  }
+  details.showAge = values.showAge;
+  details.showRsvp = values.showRsvp;
+  details.agenda = values.agenda?.trim() || undefined;
+  details.attachAgenda = values.attachAgenda;
+  details.logo = values.logo?.trim() || undefined;
+  details.showLogo = values.showLogo;
+  details.bornOn = values.bornOn?.trim() || undefined;
+  details.passedOn = values.passedOn?.trim() || undefined;
+  Object.assign(details, designDetails(values));
+  if (Object.keys(details).length) payload.details = details;
   return payload;
 };
 

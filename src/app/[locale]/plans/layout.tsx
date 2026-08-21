@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
+import { SignupThemeScope } from "@/components/SignupThemeScope";
 import { loadShellMessages } from "@/i18n/loadMessages";
 import type { LocalePageProps } from "@/i18n/types";
 
@@ -15,6 +16,7 @@ const PlansLayout = async ({
   const messages = await loadShellMessages(locale, ["plans", "signup", "link"]);
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <SignupThemeScope />
       {children}
     </NextIntlClientProvider>
   );

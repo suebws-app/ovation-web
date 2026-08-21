@@ -33,7 +33,11 @@ export const ProPlan = () => {
       setShowError(true);
       return;
     }
-    router.push(appRoutes.checkout.root);
+    router.push(`${appRoutes.create.root}?as=pro`);
+  };
+
+  const handleSkip = () => {
+    router.push(`${appRoutes.create.root}?as=pro`);
   };
 
   return (
@@ -95,6 +99,17 @@ export const ProPlan = () => {
         >
           {t("signup__pro_plan__continue")}
         </Button>
+
+        <div className="mt-4 text-center">
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={handleSkip}
+            className="text-muted-foreground hover:text-primary px-0 font-medium hover:bg-transparent"
+          >
+            {t("signup__pro_plan__start_free")}
+          </Button>
+        </div>
       </div>
     </div>
   );

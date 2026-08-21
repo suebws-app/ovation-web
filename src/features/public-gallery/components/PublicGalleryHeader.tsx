@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { PlayIcon } from "@ovation/icons/PlayIcon";
 import { Button } from "@ovation/ui/components/Button";
+import { cn } from "@ovation/ui/utils/cn";
+import { DEFAULT_EVENT_COVER_URL } from "@/lib/event-cover";
 
 type PublicGalleryHeaderProps = {
   count: number;
@@ -36,6 +38,7 @@ export const PublicGalleryHeader = ({
   const [failed, setFailed] = useState(false);
   const names = resolveNames(eventName, partnerAName, partnerBName);
   const showPhoto = couplePhotoUrl && !failed;
+  const isDefaultCover = couplePhotoUrl === DEFAULT_EVENT_COVER_URL;
 
   return (
     <div className="rounded-16 from-primary to-primary/70 tablet:h-96 relative h-72 w-full overflow-hidden bg-linear-to-br shadow-lg">
@@ -44,7 +47,10 @@ export const PublicGalleryHeader = ({
           src={couplePhotoUrl}
           alt={names ?? ""}
           onError={() => setFailed(true)}
-          className="size-full object-contain"
+          className={cn(
+            "size-full",
+            isDefaultCover ? "object-cover" : "object-contain",
+          )}
         />
       )}
 

@@ -10,7 +10,11 @@ const InvitationLayout = async ({
   params,
 }: { children: React.ReactNode } & LocalePageProps) => {
   const { locale } = await params;
-  const messages = await loadShellMessages(locale, ["invitation"]);
+  const messages = await loadShellMessages(locale, [
+    "invitation",
+    "guest",
+    "eventTypes",
+  ]);
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       {children}

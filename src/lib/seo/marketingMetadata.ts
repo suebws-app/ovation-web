@@ -64,9 +64,21 @@ const buildMetadataGenerator =
     };
   };
 
-export const generateLandingMetadata = buildMetadataGenerator({
+export const generateGeneralLandingMetadata = buildMetadataGenerator({
   page: "landing",
   path: "/",
+  absoluteTitle: true,
+});
+
+export const generateWeddingLandingMetadata = buildMetadataGenerator({
+  page: "wedding",
+  path: "/wedding",
+  absoluteTitle: true,
+});
+
+export const generateGeneralShowcaseMetadata = buildMetadataGenerator({
+  page: "general",
+  path: "/general",
   absoluteTitle: true,
 });
 
@@ -93,6 +105,16 @@ export const generateContactMetadata = buildMetadataGenerator({
 export const generateForPlannersMetadata = buildMetadataGenerator({
   page: "for_planners",
   path: "/for-planners",
+});
+
+export const generateUseCasesIndexMetadata = buildMetadataGenerator({
+  page: "use_cases_index",
+  path: "/use-cases",
+});
+
+export const generateForProsMetadata = buildMetadataGenerator({
+  page: "for_pros",
+  path: "/for-pros",
 });
 
 export const generateForPhotographersMetadata = buildMetadataGenerator({

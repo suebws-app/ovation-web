@@ -11,6 +11,8 @@
   "seo__contact__description": "Küsimused külalisteraamatu, pakettide või trükitud Gold Booki kohta? Kirjutage meile — vastame kiiresti, nii enne kui ka pärast pulmapäeva.",
   "seo__for_planners__title": "Külalisteraamatud pulmakorraldajatele",
   "seo__for_planners__description": "Andke paaridele külalisteraamat, mida külalised päriselt kasutavad. Lihtne seadistus, trükivalmis QR-kaardid ja trükitud mälestused, mida kliendid armastavad.",
+  "seo__for_pros__title": "Ovation sündmuste professionaalidele",
+  "seo__for_pros__description": "Halda kõiki kliendisündmusi ühest töölauast. Häälepõhised külalisraamatud, trükivalmis QR-kaardid ja trükitud mälestused — hinnastatud korraldajatele, fotograafidele ja pidupaikadele.",
   "seo__gold_book__title": "Gold Book — trükitud pulmamälestus",
   "seo__gold_book__description": "Riidekaantega raamat teie pulmasõnumitest — transkriptsioonid, lemmikfotod ja QR-koodid, mis mängivad ette iga hääle. Kuni 180 lehekülge.",
   "seo__how_it_works__title": "Kuidas see töötab — QR-koodiga külalisteraamat",
@@ -47,5 +49,11 @@
   "seo__wedding_planner__title": "AI Pulmaplaneerija — Tasuta Rakendus Paaridele",
   "seo__wedding_planner__description": "Planeeri oma pulmad nutika ajajoone, ülesannete nimekirja, eelarvejälgija, külaliste nimekirja, teenusepakkujate kataloogi ja AI-assistendiga, kes teab sinu kuupäeva, eelarvet, külalisi ja teenusepakkujaid — tasuta.",
   "seo__use_case__title": "{title} — Ovation'i pulmakülalisteraamat",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — Trükitav pulmakülalisteraamat",
+  "seo__wedding__description": "Külalised skannivad QR-koodi ja jätavad häälsõnumeid, fotosid ja soove — ilma äpita. Hoidke alles iga hääl oma pulmapäevast ja trükkige see mälestuseks.",
+  "seo__general__title": "Ovation — Üks platvorm igaks ürituseks",
+  "seo__general__description": "Pulmad, sünnipäevad, firmaüritused, mälestusüritused ja palju muud. Külalised skannivad QR-koodi, et jätta fotosid, häälsõnumeid ja märkmeid — ilma äpita. Hoidke iga mälestus alles ja seejärel trükkige see.",
+  "seo__use_cases_index__title": "Kasutusjuhud — külalisteraamatud igaks sündmuseks",
+  "seo__use_cases_index__description": "Pulmad, sünnipäevad, firmaüritused, mälestuslehed ja palju muud. Vaata, kuidas Ovation kogub külalistelt häälsõnumeid ja fotosid ning teeb neist mälestusraamatu."
 }

@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "eller ladda upp foton",
   "photos__tile__select_photo": "Välj foto från {name}",
-  "photos__lightbox__show_photo": "Visa foto {number}"
+  "photos__lightbox__show_photo": "Visa foto {number}",
+  "photos__detail__pin_to_album": "Fäst högst upp i albumet",
+  "photos__detail__unpin_from_album": "Lossa från albumet"
 }

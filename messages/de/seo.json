@@ -11,6 +11,8 @@
   "seo__contact__description": "Fragen zu deinem Gästebuch, den Tarifen oder dem gedruckten Gold Book? Schreib uns — wir antworten schnell, vor und nach eurer Hochzeit.",
   "seo__for_planners__title": "Gästebücher für Hochzeitsplaner",
   "seo__for_planners__description": "Schenke deinen Paaren ein Gästebuch, das Gäste wirklich nutzen. Einfache Einrichtung, druckfertige QR-Karten und gedruckte Keepsakes, die Kunden lieben.",
+  "seo__for_pros__title": "Ovation für Event-Profis",
+  "seo__for_pros__description": "Verwalte alle Kundenevents an einem Ort. Sprachbasierte Gästebücher, druckfertige QR-Karten und gedruckte Erinnerungsstücke — mit Preisen für Planer:innen, Fotograf:innen und Locations.",
   "seo__gold_book__title": "Das Gold Book — gedrucktes Hochzeits-Keepsake",
   "seo__gold_book__description": "Ein leinengebundenes Buch eurer Hochzeitsnachrichten — Transkripte, Lieblingsfotos und QR-Codes, die jede Stimme abspielen. Bis zu 180 Seiten.",
   "seo__how_it_works__title": "So funktioniert's — Gästebuch per QR-Code",
@@ -47,5 +49,11 @@
   "seo__wedding_planner__title": "AI-Hochzeitsplaner — Kostenlose App für Paare",
   "seo__wedding_planner__description": "Plant eure Hochzeit mit einer intelligenten Timeline, To-do-Liste, Budget-Tracker, Gästeliste, Dienstleisterverzeichnis und einem AI-Assistenten, der euer Datum, Budget, eure Gäste und Dienstleister kennt — kostenlos.",
   "seo__use_case__title": "{title} — Ovation Hochzeits-Gästebuch",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — Hochzeitsgästebuch zum Drucken",
+  "seo__wedding__description": "Gäste scannen einen QR-Code und hinterlassen Sprachnachrichten, Fotos und Notizen — ganz ohne App. Bewahrt jede Stimme eurer Hochzeit, gedruckt als Keepsake.",
+  "seo__general__title": "Ovation — Eine Plattform für jedes Event",
+  "seo__general__description": "Hochzeiten, Geburtstage, Firmenevents, Gedenkfeiern und mehr. Gäste scannen einen QR-Code und hinterlassen Fotos, Sprachnachrichten und Notizen — ganz ohne App. Bewahrt jede Erinnerung und druckt sie.",
+  "seo__use_cases_index__title": "Anwendungsfälle — Gästebücher für jeden Anlass",
+  "seo__use_cases_index__description": "Hochzeiten, Geburtstage, Firmenevents, Gedenkseiten und mehr. Seht, wie Ovation Sprachnachrichten und Fotos eurer Gäste sammelt und daraus ein Erinnerungsbuch macht."
 }

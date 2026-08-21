@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Povezava prekinjena",
   "kiosk__offline__body": "Kiosk potrebuje internetno povezavo za sprejemanje novih sporočil. Ponovno se poveži za nadaljevanje.",
   "kiosk__offline__hint": "Samodejna ponovna povezava…",
-  "kiosk__live__welcome_overline": "Si na poroki",
+  "kiosk__live__welcome_overline": "To je {eventNoun}",
   "kiosk__live__tap_to_record": "Tapni za sporočilo",
   "kiosk__live__closed": "Prispevki zaprti",
   "kiosk__live__caption": "Do {seconds} sekund · zvok · fotografija neobvezna",
@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Drsnik",
   "kiosk_setup__save_error": "Shranjevanje ni uspelo",
   "kiosk_setup__pin__change": "Spremeni PIN",
+  "kiosk_setup__pin__show": "Prikaži PIN",
+  "kiosk_setup__pin__hide": "Skrij PIN",
+  "kiosk_setup__pin__unknown": "Skrito",
   "kiosk__gate__title": "Vnesite PIN kioska",
   "kiosk__gate__hint": "Vpišite 4-mestni PIN za odpiranje kioska.",
   "kiosk__gate__submit": "Odpri kiosk",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Pošljite to povezavo osebi, ki bo kiosk postavila na dan dogodka. Za odpiranje bo potrebovala PIN.",
   "kiosk__share__copy": "Kopiraj povezavo",
   "kiosk__share__copied": "Kopirano!",
-  "kiosk__share__pin_set": "Privzeti PIN je 1234. Spremenite ga v kartici zaklepanja pred deljenjem."
+  "kiosk__share__pin_value": "PIN kioska: {pin}. Potrebuje ga tisti, ki odpre kiosk.",
+  "kiosk__share__pin_unknown": "Nastavite nov PIN kioska v kartici zaklepanja, da ga vidite tukaj."
 }

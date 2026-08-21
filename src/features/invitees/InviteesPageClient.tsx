@@ -7,6 +7,7 @@ import { UploadIcon } from "@ovation/icons/UploadIcon";
 import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
 import { ChevronRightIcon } from "@ovation/icons/ChevronRightIcon";
 import { Button } from "@ovation/ui/components/Button";
+import { Checkbox } from "@ovation/ui/components/Checkbox";
 import { cn } from "@ovation/ui/utils/cn";
 import type { Event } from "@/lib/api/types";
 import { toast } from "@/components/Toaster";
@@ -15,20 +16,11 @@ import {
   useInvitees,
   useSendInvitationsToAll,
 } from "@/lib/query/inviteesQueries";
-import dynamic from "next/dynamic";
+import { InviteeImportModal } from "./components/InviteeImportModal";
+import { RsvpSummary } from "./components/RsvpSummary";
 import { InviteeList } from "./components/InviteeList";
 import { InviteePreviewPane } from "./components/InviteePreviewPane";
-
-const InviteeImportModal = dynamic(
-  () =>
-    import("./components/InviteeImportModal").then((m) => m.InviteeImportModal),
-  { ssr: false },
-);
-const InvitePreviewModal = dynamic(
-  () =>
-    import("./components/InvitePreviewModal").then((m) => m.InvitePreviewModal),
-  { ssr: false },
-);
+import { InvitePreviewModal } from "./components/InvitePreviewModal";
 
 type InviteesPageClientProps = {
   event: Event;
@@ -42,6 +34,12 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
   const [importOpen, setImportOpen] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [paneOpen, setPaneOpen] = useState(true);
+  const [attachAgenda, setAttachAgenda] = useState(false);
+
+  const hasAgenda =
+    event.eventType === "corporate" &&
+    typeof event.details?.agenda === "string" &&
+    Boolean(event.details.agenda);
 
   const unsentWithEmail = useMemo(
     () =>
@@ -60,7 +58,9 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
       return;
     }
     try {
-      const result = await sendAll.mutateAsync();
+      const result = await sendAll.mutateAsync(
+        hasAgenda ? { attachAgenda } : undefined,
+      );
       toast.success(
         t("invitees__send_all__success", {
           queued: result.queued,
@@ -94,6 +94,12 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
         )}
       </button>
 
+      {!isLoading && !isError ? (
+        <div className="desktop:hidden mb-6">
+          <RsvpSummary invitees={invitees} />
+        </div>
+      ) : null}
+
       <div className="desktop:flex-row flex flex-col gap-6">
         <div className="min-w-0 flex-1">
           <InviteeList
@@ -101,6 +107,7 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
             invitees={invitees}
             isLoading={isLoading}
             isError={isError}
+            attachAgenda={attachAgenda}
           />
         </div>
 
@@ -113,6 +120,12 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
               : "desktop:pointer-events-none desktop:w-0 desktop:shrink-0 desktop:translate-x-4 desktop:overflow-hidden desktop:opacity-0",
           )}
         >
+          {!isLoading && !isError ? (
+            <div className="desktop:block mb-6 hidden">
+              <RsvpSummary invitees={invitees} />
+            </div>
+          ) : null}
+
           <InviteePreviewPane
             event={event}
             onOpenPreview={() => setPreviewOpen(true)}
@@ -133,6 +146,14 @@ export const InviteesPageClient = ({ event }: InviteesPageClientProps) => {
       />
 
       <footer className="border-border bg-card tablet:px-8 desktop:left-(--sidebar-width) fixed right-0 bottom-0 left-0 z-20 flex items-center justify-end gap-2 border-t px-4 py-4">
+        {hasAgenda && (
+          <Checkbox
+            checked={attachAgenda}
+            onChange={setAttachAgenda}
+            label={t("invitees__send_all__attach_agenda")}
+            className="mr-auto"
+          />
+        )}
         <Button
           type="button"
           size="sm"

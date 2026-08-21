@@ -6,7 +6,7 @@
   "validation__password_max": "Parool on liiga pikk",
   "validation__name_required": "Palun sisesta oma nimi",
   "validation__name_max": "Nimi on liiga pikk",
-  "validation__partner_name_required": "Partneri nimi on kohustuslik",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Nimi on liiga pikk",
   "validation__terms_required": "Palun nõustu tingimustega",
   "validation__confirm_password_required": "Kinnita oma parool",

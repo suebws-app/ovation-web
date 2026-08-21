@@ -60,15 +60,15 @@
   "dashboard__message__pause": "Pausar mensaje",
   "dashboard__photos__preview": "Vista previa de la foto",
   "dashboard__widget__referral__eyebrow": "Compartir Ovation",
-  "dashboard__widget__referral__title": "¿Conoces a alguna pareja que esté planeando su boda?",
+  "dashboard__widget__referral__title": "¿Conoces a alguien que esté organizando un evento?",
   "dashboard__widget__referral__description": "Envíales tu enlace de invitación. Ganarás {reward} de crédito para tu recuerdo cuando compren su primer plan.",
   "dashboard__widget__referral__share_cta": "Compartir con un amigo",
   "dashboard__widget__referral__copy_link": "Copiar enlace",
   "dashboard__widget__referral__copied": "Copiado",
   "dashboard__widget__referral__email_share": "Compartir por correo",
-  "dashboard__widget__referral__share_title": "Ovation — un libro de invitados por voz para tu boda",
+  "dashboard__widget__referral__share_title": "Ovation — un libro de visitas con voz para tu evento",
   "dashboard__widget__referral__share_body": "{name} pensó que te encantaría Ovation — así fue como capturamos los mensajes de voz de nuestros invitados en lugar de un libro de firmas de papel.",
-  "dashboard__widget__referral__email_subject": "Creo que te encantaría Ovation para tu boda",
+  "dashboard__widget__referral__email_subject": "Creo que te encantaría Ovation para tu evento",
   "dashboard__widget__referral__balance_label": "Tu saldo de crédito",
   "dashboard__widget__referral__stats": "{invited, plural, one {# amigo invitado} other {# amigos invitados}} · {converted, plural, one {# se unió} other {# se unieron}}"
 }

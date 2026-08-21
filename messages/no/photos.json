@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "eller last opp bilder",
   "photos__tile__select_photo": "Velg bilde fra {name}",
-  "photos__lightbox__show_photo": "Vis bilde {number}"
+  "photos__lightbox__show_photo": "Vis bilde {number}",
+  "photos__detail__pin_to_album": "Fest øverst i albumet",
+  "photos__detail__unpin_from_album": "Løsne fra albumet"
 }

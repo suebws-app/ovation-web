@@ -11,6 +11,8 @@
   "seo__contact__description": "Spørgsmål om din gæstebog, planerne eller den trykte Gold Book? Skriv til os — vi svarer hurtigt, både før og efter bryllupsdagen.",
   "seo__for_planners__title": "Gæstebøger til bryllupsplanlæggere",
   "seo__for_planners__description": "Giv dine par en gæstebog, som gæsterne faktisk bruger. Nem opsætning, printklare QR-kort og trykte minder, som kunderne elsker.",
+  "seo__for_pros__title": "Ovation for eventprofessionelle",
+  "seo__for_pros__description": "Kør alle kundeevents fra ét dashboard. Stemmebaserede gæstebøger, printklare QR-kort og trykte minder — prissat til planlæggere, fotografer og venues.",
   "seo__gold_book__title": "Gold Book — Trykt bryllupsminde",
   "seo__gold_book__description": "En lærredsindbundet bog med jeres bryllupsbeskeder — transskriptioner, yndlingsfotos og QR-koder, der afspiller hver stemme. Op til 180 sider.",
   "seo__how_it_works__title": "Sådan fungerer det — Gæstebog med QR-kode",
@@ -47,5 +49,11 @@
   "seo__wedding_planner__title": "AI-bryllupsplanlægger — Gratis app til par",
   "seo__wedding_planner__description": "Planlæg jeres bryllup med en smart tidslinje, to-do-liste, budgetværktøj, gæsteliste, leverandørkatalog og en AI-assistent, der kender jeres dato, budget, gæster og leverandører — gratis.",
   "seo__use_case__title": "{title} — Ovation-bryllupsgæstebog",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__wedding__title": "Ovation — Bryllupsgæstebog, du kan trykke",
+  "seo__wedding__description": "Gæster scanner en QR-kode og efterlader talebeskeder, billeder og noter — ingen app nødvendig. Bevar hver stemme fra jeres bryllupsdag, og tryk den som minde.",
+  "seo__general__title": "Ovation — Én platform til enhver begivenhed",
+  "seo__general__description": "Bryllupper, fødselsdage, firmaevents, mindehøjtideligheder og mere. Gæster scanner en QR-kode og efterlader billeder, talebeskeder og noter — ingen app. Bevar hvert minde, og tryk det så.",
+  "seo__use_cases_index__title": "Anvendelser — gæstebøger til enhver anledning",
+  "seo__use_cases_index__description": "Bryllupper, fødselsdage, firmaevents, mindesider og mere. Se hvordan Ovation samler talebeskeder og billeder fra jeres gæster og gør dem til en erindringsbog."
 }

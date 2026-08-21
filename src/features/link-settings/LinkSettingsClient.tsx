@@ -4,7 +4,8 @@ import type { LinkSettings } from "@/lib/api/types";
 import { useLinkSettings } from "./useLinkSettings";
 import { LinkHeader } from "./components/LinkHeader";
 import { LinkActiveCard } from "./components/LinkActiveCard";
-import { LinkCouplePhotoCard } from "./components/LinkCouplePhotoCard";
+import { LinkCoverPhotoCard } from "./components/LinkCoverPhotoCard";
+import { LinkHostAvatarCard } from "./components/LinkHostAvatarCard";
 import { LinkSubmissionTypesCard } from "./components/LinkSubmissionTypesCard";
 import { LinkVideoDurationCard } from "./components/LinkVideoDurationCard";
 import { LinkAudioDurationCard } from "./components/LinkAudioDurationCard";
@@ -15,6 +16,7 @@ type LinkSettingsClientProps = {
   slug: string;
   submissionsEnabled: boolean;
   couplePhotoUrl: string | null;
+  hostAvatarUrl: string | null;
   initialSettings: LinkSettings;
 };
 
@@ -23,6 +25,7 @@ export const LinkSettingsClient = ({
   slug,
   submissionsEnabled,
   couplePhotoUrl,
+  hostAvatarUrl,
   initialSettings,
 }: LinkSettingsClientProps) => {
   const { settings, patch, isSaving } = useLinkSettings(
@@ -34,7 +37,8 @@ export const LinkSettingsClient = ({
     <div className="flex flex-col gap-6">
       <LinkHeader />
       <LinkActiveCard eventId={eventId} enabled={submissionsEnabled} />
-      <LinkCouplePhotoCard eventId={eventId} initialPhotoUrl={couplePhotoUrl} />
+      <LinkCoverPhotoCard eventId={eventId} initialPhotoUrl={couplePhotoUrl} />
+      <LinkHostAvatarCard eventId={eventId} initialPhotoUrl={hostAvatarUrl} />
       <LinkGalleryShareCard
         slug={slug}
         settings={settings}

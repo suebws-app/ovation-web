@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Connexion perdue",
   "kiosk__offline__body": "La borne a besoin d'une connexion Internet pour accepter de nouveaux messages. Veuillez vous reconnecter pour continuer.",
   "kiosk__offline__hint": "Reconnexion automatique en cours…",
-  "kiosk__live__welcome_overline": "Vous êtes au mariage de",
+  "kiosk__live__welcome_overline": "{eventNoun} de",
   "kiosk__live__tap_to_record": "Touchez pour laisser un message",
   "kiosk__live__closed": "Soumissions fermées",
   "kiosk__live__caption": "Jusqu'à {seconds} secondes · audio · photo facultative",
@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Curseur",
   "kiosk_setup__save_error": "Échec de l'enregistrement",
   "kiosk_setup__pin__change": "Modifier le PIN",
+  "kiosk_setup__pin__show": "Afficher le code PIN",
+  "kiosk_setup__pin__hide": "Masquer le code PIN",
+  "kiosk_setup__pin__unknown": "Masqué",
   "kiosk__gate__title": "Saisir le PIN du kiosque",
   "kiosk__gate__hint": "Tapez le PIN à 4 chiffres pour ouvrir le kiosque.",
   "kiosk__gate__submit": "Ouvrir le kiosque",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Envoyez ce lien à la personne qui installera le kiosque le jour J. Elle aura besoin du PIN pour l'ouvrir.",
   "kiosk__share__copy": "Copier le lien",
   "kiosk__share__copied": "Copié !",
-  "kiosk__share__pin_set": "Le PIN par défaut est 1234. Modifiez-le depuis la carte de verrouillage avant de partager."
+  "kiosk__share__pin_value": "Code PIN du kiosque : {pin}. La personne qui ouvre le kiosque en a besoin.",
+  "kiosk__share__pin_unknown": "Définissez un nouveau code PIN dans la carte de verrouillage pour l'afficher ici."
 }

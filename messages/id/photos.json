@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "atau unggah foto",
   "photos__tile__select_photo": "Pilih foto dari {name}",
-  "photos__lightbox__show_photo": "Tampilkan foto {number}"
+  "photos__lightbox__show_photo": "Tampilkan foto {number}",
+  "photos__detail__pin_to_album": "Sematkan di atas album",
+  "photos__detail__unpin_from_album": "Lepas sematan dari album"
 }

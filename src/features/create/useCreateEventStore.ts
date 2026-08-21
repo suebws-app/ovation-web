@@ -3,19 +3,21 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { createTTLLocalStorage } from "@/lib/storage/ttlStorage";
-
-export type CreateEventNameMode = "couple" | "event";
+import { DEFAULT_EVENT_TYPE, type EventType } from "@/lib/event-types";
 
 export type CreateEventFormData = {
-  nameMode: CreateEventNameMode;
-  eventName: string;
+  eventType: EventType;
   partner1Name: string;
   partner2Name: string;
   weddingDate: Date | null;
+  endDate: Date | null;
   venueName: string;
   venueCity: string;
-  coverType: string;
+  themeColor: string;
   bookUrl: string;
+  // Type-specific fields (registry `details` fields) collected by the dynamic
+  // form; merged into the event's `details` on create.
+  details: Record<string, unknown>;
 };
 
 export type CreateEventMode = "create" | "edit";
@@ -30,22 +32,26 @@ type CreateEventStore = {
 };
 
 const initialFormData: CreateEventFormData = {
-  nameMode: "couple",
-  eventName: "",
+  eventType: DEFAULT_EVENT_TYPE,
   partner1Name: "",
   partner2Name: "",
   weddingDate: null,
+  endDate: null,
   venueName: "",
   venueCity: "",
-  coverType: "",
+  themeColor: "#FF78AC",
   bookUrl: "",
+  details: {},
 };
 
 const STORE_KEY = "ovation_create_event_v1";
 const TTL_MS = 5 * 60 * 1000;
 
-const weddingDateReviver = (key: string, value: unknown) => {
-  if (key === "weddingDate" && typeof value === "string") {
+const dateFieldReviver = (key: string, value: unknown) => {
+  if (
+    (key === "weddingDate" || key === "endDate") &&
+    typeof value === "string"
+  ) {
     const d = new Date(value);
     return Number.isNaN(d.getTime()) ? null : d;
   }
@@ -75,11 +81,11 @@ export const useCreateEventStore = create<CreateEventStore>()(
     }),
     {
       name: STORE_KEY,
-      version: 3,
+      version: 5,
       skipHydration: true,
       storage: createJSONStorage(
         () => createTTLLocalStorage({ ttlMs: TTL_MS }),
-        { reviver: weddingDateReviver },
+        { reviver: dateFieldReviver },
       ),
       partialize: (state): PersistedState => ({
         formData: state.formData,
@@ -90,14 +96,15 @@ export const useCreateEventStore = create<CreateEventStore>()(
         const persistedState = (persisted ?? {}) as Partial<PersistedState>;
         const persistedForm = (persistedState.formData ??
           {}) as Partial<PersistedFormData>;
-        const coverType =
-          persistedForm.coverType === "upload"
-            ? ""
-            : (persistedForm.coverType ?? initialFormData.coverType);
         const weddingDate =
           persistedForm.weddingDate instanceof Date &&
           !Number.isNaN(persistedForm.weddingDate.getTime())
             ? persistedForm.weddingDate
+            : null;
+        const endDate =
+          persistedForm.endDate instanceof Date &&
+          !Number.isNaN(persistedForm.endDate.getTime())
+            ? persistedForm.endDate
             : null;
         return {
           ...current,
@@ -106,8 +113,10 @@ export const useCreateEventStore = create<CreateEventStore>()(
           formData: {
             ...initialFormData,
             ...persistedForm,
+            eventType: persistedForm.eventType ?? initialFormData.eventType,
+            details: persistedForm.details ?? {},
             weddingDate,
-            coverType,
+            endDate,
           },
         };
       },

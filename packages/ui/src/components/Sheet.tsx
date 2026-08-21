@@ -45,7 +45,7 @@ const SheetContent = forwardRef<
         side === "top" &&
           "border-border inset-x-0 top-0 border-b transition-transform duration-300 ease-in-out data-[state=closed]:-translate-y-full data-[state=open]:translate-y-0",
         side === "bottom" &&
-          "border-border inset-x-0 bottom-0 border-t transition-transform duration-300 ease-in-out data-[state=closed]:translate-y-full data-[state=open]:translate-y-0",
+          "border-border data-[state=open]:animate-sheet-slide-in-bottom data-[state=closed]:animate-sheet-slide-out-bottom inset-x-0 bottom-0 border-t",
         side === "center" &&
           "border-border rounded-16 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 border",
         className,

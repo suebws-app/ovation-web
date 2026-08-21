@@ -7,7 +7,6 @@ import { WalletIcon } from "@ovation/icons/WalletIcon";
 import { RouteIcon } from "@ovation/icons/RouteIcon";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 import { Link } from "@/i18n/navigation";
-import { appRoutes } from "@/lib/routes";
 import {
   useWeddingPlannerBudget,
   useWeddingPlannerTasks,
@@ -15,6 +14,7 @@ import {
 } from "@/lib/query/weddingPlannerQueries";
 import type { PlannerPhase, PlannerTodo } from "@/lib/api/types";
 import { chartColorVar, formatShortDate, money } from "../utils";
+import { usePlannerRoutes } from "../usePlannerRoutes";
 import { ProgressRing } from "../components/ProgressRing";
 import { CountdownHero } from "./CountdownHero";
 import { StageRow, type StageState } from "./StageRow";
@@ -22,8 +22,7 @@ import { DashTaskItem } from "./DashTaskItem";
 import { DashPaymentItem } from "./DashPaymentItem";
 import { DashBudgetSegment } from "./DashBudgetSegment";
 import { DashBudgetLegendItem } from "./DashBudgetLegendItem";
-
-const wp = appRoutes.app.weddingPlanner;
+import { DashRsvpSummary } from "./DashRsvpSummary";
 
 const stageLabelKey: Record<StageState, string> = {
   done: "wp__dash__stage_done",
@@ -64,8 +63,10 @@ type WeddingPlannerDashboardClientProps = {
   eventId: string;
   partners: string;
   weddingDate: string | null;
+  endDate: string | null;
   venue: string | null;
   city: string | null;
+  showCountdown?: boolean;
   assistantLocked: boolean;
 };
 
@@ -73,11 +74,14 @@ export const WeddingPlannerDashboardClient = ({
   eventId,
   partners,
   weddingDate,
+  endDate,
   venue,
   city,
+  showCountdown = true,
   assistantLocked,
 }: WeddingPlannerDashboardClientProps) => {
   const t = useTranslations();
+  const wp = usePlannerRoutes();
   const todos = useWeddingPlannerTasks(eventId).data ?? [];
   const phases = useWeddingPlannerTimeline(eventId).data ?? [];
   const budget = useWeddingPlannerBudget(eventId).data;
@@ -121,16 +125,28 @@ export const WeddingPlannerDashboardClient = ({
     <div className="flex flex-col gap-5">
       <div className="desktop:grid-cols-3 grid gap-5">
         <div className="desktop:col-span-2">
-          <CountdownHero
-            partners={partners}
-            venue={venue}
-            city={city}
-            date={weddingDate}
-            daysLabel={t("wp__days_to_go")}
-            askAiLabel={t("wp__hero__ask_ai")}
-            viewTimelineLabel={t("wp__hero__view_timeline")}
-            askAiLocked={assistantLocked}
-          />
+          {showCountdown ? (
+            <CountdownHero
+              partners={partners}
+              venue={venue}
+              city={city}
+              date={weddingDate}
+              endDate={endDate}
+              daysLabel={t("wp__days_to_go")}
+              askAiLabel={t("wp__hero__ask_ai")}
+              viewTimelineLabel={t("wp__hero__view_timeline")}
+              askAiLocked={assistantLocked}
+            />
+          ) : (
+            <Card className="flex h-full flex-col justify-center gap-2">
+              <h2 className="type-h3 font-serif">{partners}</h2>
+              {(venue || city) && (
+                <p className="type-body-small text-muted-foreground">
+                  {[venue, city].filter(Boolean).join(", ")}
+                </p>
+              )}
+            </Card>
+          )}
         </div>
         <Card className="flex items-center gap-5">
           <ProgressRing
@@ -157,7 +173,7 @@ export const WeddingPlannerDashboardClient = ({
         </Card>
       </div>
 
-      <div className="tablet:grid-cols-2 grid gap-5">
+      <div className="tablet:grid-cols-2 desktop:grid-cols-3 grid gap-5">
         <Card>
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -221,6 +237,8 @@ export const WeddingPlannerDashboardClient = ({
             </p>
           )}
         </Card>
+
+        <DashRsvpSummary eventId={eventId} />
       </div>
 
       <div className="desktop:grid-cols-3 grid gap-5">

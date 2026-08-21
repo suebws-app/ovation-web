@@ -6,6 +6,8 @@ import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { ApiError } from "@/lib/api/client";
 import { publicApi } from "@/lib/api/public";
 import { Link } from "@/i18n/navigation";
+import { eventTitleLine } from "@/lib/event-types";
+import { getEventCopy } from "@/lib/event-types/getEventCopy";
 import { GuestWizardShell } from "./shell/GuestWizardShell";
 import { StickyCTA } from "./shell/StickyCTA";
 
@@ -30,8 +32,8 @@ export const GuestThankYouPage = async ({
 
   if (!event) notFound();
 
-  const names =
-    event.eventName?.trim() || `${event.partnerAName} & ${event.partnerBName}`;
+  const copy = await getEventCopy(event);
+  const names = eventTitleLine(event);
   const canSubmitAnother = event.submissionOpen && !event.limitReached;
 
   return (
@@ -66,7 +68,7 @@ export const GuestThankYouPage = async ({
 
           <div className="bg-card/65 border-border rounded-16 border p-4 backdrop-blur-sm">
             <p className="type-caption text-muted-foreground text-center leading-relaxed">
-              {t("guest__thank_you__caption")}
+              {copy("guest__thank_you__caption")}
             </p>
           </div>
         </div>
@@ -74,7 +76,7 @@ export const GuestThankYouPage = async ({
         {canSubmitAnother && !isKioskSession && (
           <StickyCTA>
             <Button asChild variant="outline" className="w-full">
-              <Link href={`/g/${slug}/compose`}>
+              <Link href={`/g/${slug}/album`}>
                 {t("guest__thank_you__cta")}
               </Link>
             </Button>

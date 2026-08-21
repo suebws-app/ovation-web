@@ -60,15 +60,15 @@
   "dashboard__message__pause": "Întrerupe mesajul",
   "dashboard__photos__preview": "Previzualizează fotografia",
   "dashboard__widget__referral__eyebrow": "Distribuie Ovation",
-  "dashboard__widget__referral__title": "Cunoști un cuplu care își planifică nunta?",
+  "dashboard__widget__referral__title": "Cunoști pe cineva care organizează un eveniment?",
   "dashboard__widget__referral__description": "Trimite-le linkul tău de invitație. Vei primi credit de {reward} pentru amintirea ta când vor cumpăra primul plan.",
   "dashboard__widget__referral__share_cta": "Distribuie unui prieten",
   "dashboard__widget__referral__copy_link": "Copiază linkul",
   "dashboard__widget__referral__copied": "Copiat",
   "dashboard__widget__referral__email_share": "Distribuie prin e-mail",
-  "dashboard__widget__referral__share_title": "Ovation — o carte de oaspeți vocală pentru nunta ta",
+  "dashboard__widget__referral__share_title": "Ovation — o carte de oaspeți cu voce pentru evenimentul tău",
   "dashboard__widget__referral__share_body": "{name} s-a gândit că ți-ar plăcea Ovation — așa am adunat mesajele vocale de la invitații noștri în loc de o carte de oaspeți pe hârtie.",
-  "dashboard__widget__referral__email_subject": "Cred că ți-ar plăcea Ovation pentru nunta ta",
+  "dashboard__widget__referral__email_subject": "Cred că ți-ar plăcea Ovation pentru evenimentul tău",
   "dashboard__widget__referral__balance_label": "Soldul tău de credit",
   "dashboard__widget__referral__stats": "{invited, plural, one {# prieten invitat} other {# prieteni invitați}} · {converted, plural, one {# s-a alăturat} other {# s-au alăturat}}"
 }

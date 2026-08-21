@@ -18,6 +18,7 @@ type InvitationFormPanelProps = {
   stepIdx: number;
   saveStatus: SaveStatus;
   eventId: string | null;
+  eventType?: string | null;
   selectedGuestIndex: number | null;
   onSelectGuest: (index: number | null) => void;
   onSubmit: FormEventHandler<HTMLFormElement>;
@@ -28,6 +29,7 @@ export const InvitationFormPanel = ({
   stepIdx,
   saveStatus,
   eventId,
+  eventType,
   selectedGuestIndex,
   onSelectGuest,
   onSubmit,
@@ -56,7 +58,9 @@ export const InvitationFormPanel = ({
         </p>
 
         {step === "design" && <DesignStep />}
-        {step === "details" && <DetailsStep />}
+        {step === "details" && (
+          <DetailsStep eventType={eventType} eventId={eventId} />
+        )}
         {step === "guests" && (
           <GuestsStep
             selectedGuestIndex={selectedGuestIndex}

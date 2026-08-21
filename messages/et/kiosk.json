@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Ühendus katkes",
   "kiosk__offline__body": "Kioskil on uute sõnumite vastuvõtmiseks vaja internetiühendust. Palun ühendage uuesti, et jätkata.",
   "kiosk__offline__hint": "Automaatne uuesti ühendamine…",
-  "kiosk__live__welcome_overline": "Olete pulmas",
+  "kiosk__live__welcome_overline": "See on {eventNoun} —",
   "kiosk__live__tap_to_record": "Puudutage, et jätta sõnum",
   "kiosk__live__closed": "Esitused suletud",
   "kiosk__live__caption": "Kuni {seconds} sekundit · heli · foto valikuline",
@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Liugur",
   "kiosk_setup__save_error": "Salvestamine ebaõnnestus",
   "kiosk_setup__pin__change": "Muuda PINi",
+  "kiosk_setup__pin__show": "Näita PIN-koodi",
+  "kiosk_setup__pin__hide": "Peida PIN-kood",
+  "kiosk_setup__pin__unknown": "Peidetud",
   "kiosk__gate__title": "Sisestage kioski PIN",
   "kiosk__gate__hint": "Sisestage 4-kohaline PIN, et kiosk avada.",
   "kiosk__gate__submit": "Ava kiosk",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Saada see link inimesele, kes kioski päeval üles seab. Avamiseks vajab ta PINi.",
   "kiosk__share__copy": "Kopeeri link",
   "kiosk__share__copied": "Kopeeritud!",
-  "kiosk__share__pin_set": "Vaikimisi PIN on 1234. Muuda see lukustuskaardilt enne jagamist."
+  "kiosk__share__pin_value": "Kioski PIN: {pin}. Seda vajab see, kes kioski avab.",
+  "kiosk__share__pin_unknown": "Määra lukustuskaardil uus kioski PIN, et seda siin näha."
 }

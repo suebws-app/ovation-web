@@ -38,6 +38,10 @@ export const RootFooter = ({ className }: RootFooterProps) => {
           href: appRoutes.marketing.pricing,
         },
         {
+          label: t("common__footer__product_links__for_pros"),
+          href: appRoutes.marketing.forPros,
+        },
+        {
           label: t("common__footer__product_links__for_planners"),
           href: appRoutes.marketing.forPlanners,
         },
@@ -100,8 +104,8 @@ export const RootFooter = ({ className }: RootFooterProps) => {
   ];
 
   return (
-    <footer className={cn("border-border bg-card border-t", className)}>
-      <div className="mx-auto px-6 pt-16 pb-10 lg:px-20">
+    <footer className={cn("border-border bg-background border-t", className)}>
+      <div className="mx-auto w-full max-w-332 px-6 pt-16 pb-10">
         <div className="grid grid-cols-1 justify-between gap-10 pb-10 md:grid-cols-2">
           <div className="col-span-2 md:col-span-1">
             <Link href={appRoutes.home}>

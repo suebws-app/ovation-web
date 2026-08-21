@@ -6,7 +6,7 @@
   "validation__password_max": "비밀번호가 너무 깁니다",
   "validation__name_required": "이름을 입력해 주세요",
   "validation__name_max": "이름이 너무 깁니다",
-  "validation__partner_name_required": "파트너 이름을 입력하세요",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "이름이 너무 깁니다",
   "validation__terms_required": "약관에 동의해 주세요",
   "validation__confirm_password_required": "비밀번호를 확인하세요",

@@ -6,7 +6,7 @@
   "validation__password_max": "Lozinka je predugačka",
   "validation__name_required": "Molimo unesite svoje ime",
   "validation__name_max": "Ime je predugačko",
-  "validation__partner_name_required": "Ime partnera je obavezno",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Ime je predugačko",
   "validation__terms_required": "Molimo prihvatite uvjete",
   "validation__confirm_password_required": "Potvrdite svoju lozinku",

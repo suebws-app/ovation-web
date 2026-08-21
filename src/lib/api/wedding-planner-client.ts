@@ -47,6 +47,9 @@ export const weddingPlannerClient = {
       method: "DELETE",
     }),
 
+  deleteAllPhases: (eventId: string) =>
+    clientFetch<void>(`${plannerPath(eventId)}/phases`, { method: "DELETE" }),
+
   createTask: (eventId: string, phaseId: string, input: CreateTaskInput) =>
     clientFetch<{ task: PlannerTask }>(
       `${plannerPath(eventId)}/phases/${phaseId}/tasks`,
@@ -83,6 +86,12 @@ export const weddingPlannerClient = {
     clientFetch<void>(`${plannerPath(eventId)}/todos/${todoId}`, {
       method: "DELETE",
     }),
+
+  deleteAllTodos: (eventId: string) =>
+    clientFetch<void>(`${plannerPath(eventId)}/todos`, { method: "DELETE" }),
+
+  deleteAllBudget: (eventId: string) =>
+    clientFetch<void>(`${plannerPath(eventId)}/budget`, { method: "DELETE" }),
 
   getBudget: (eventId: string) =>
     clientFetch<{ budget: PlannerBudget }>(`${plannerPath(eventId)}/budget`),

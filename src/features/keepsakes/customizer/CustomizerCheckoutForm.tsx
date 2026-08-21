@@ -21,6 +21,7 @@ import type {
   KeepsakeProductVariant,
   PhotoSelectAll,
 } from "@/lib/api/types";
+import { eventTitleLine } from "@/lib/event-types";
 
 type PriceBreakdown = {
   baseCents: number;
@@ -52,12 +53,8 @@ type CustomizerCheckoutFormProps = {
   onRegisterBuyNow?: (fn: (() => void) | null) => void;
 };
 
-const eventDisplayName = (event: Event, fallback: string): string => {
-  const a = event.partnerAName?.trim();
-  const b = event.partnerBName?.trim();
-  if (a && b) return `${a} & ${b}`;
-  return a || b || fallback;
-};
+const eventDisplayName = (event: Event, fallback: string): string =>
+  eventTitleLine(event) || fallback;
 
 export const CustomizerCheckoutForm = ({
   product,

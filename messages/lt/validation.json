@@ -6,7 +6,7 @@
   "validation__password_max": "Slaptažodis per ilgas",
   "validation__name_required": "Įveskite savo vardą",
   "validation__name_max": "Vardas per ilgas",
-  "validation__partner_name_required": "Partnerio vardas privalomas",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Vardas per ilgas",
   "validation__terms_required": "Sutikite su sąlygomis",
   "validation__confirm_password_required": "Patvirtinkite slaptažodį",

@@ -29,7 +29,7 @@ export const KioskConfigLeft = ({
     : appRoutes.app.link;
   return (
     <div className="flex flex-col gap-5">
-      {slug && <KioskShareCard slug={slug} />}
+      {slug && <KioskShareCard slug={slug} pin={settings.kioskPin} />}
       <div className="rounded-16 border-border bg-card flex flex-col gap-2 border px-7 py-5">
         <div className="type-h3 font-semibold">
           {t("kiosk__config__link_redirect__title")}
@@ -53,7 +53,10 @@ export const KioskConfigLeft = ({
           title={t("kiosk__config__lockdown__pin__title")}
           description={t("kiosk__config__lockdown__pin__desc")}
         >
-          <KioskPinInput onChange={(kioskPin) => onPatch({ kioskPin })} />
+          <KioskPinInput
+            pin={settings.kioskPin}
+            onChange={(kioskPin) => onPatch({ kioskPin })}
+          />
         </KioskConfigRow>
         <KioskConfigRow
           title={t("kiosk__config__lockdown__fullscreen__title")}
