@@ -20,8 +20,9 @@ export const HeroTabletScreen = ({
         src="/images/general/gen-wedding-party.webp"
         alt={photoAlt}
         fill
-        sizes="(min-width: 1024px) 45vw, 90vw"
+        sizes="(min-width: 1220px) 540px, (min-width: 1024px) 42vw, (min-width: 640px) 88vw, 92vw"
         priority
+        fetchPriority="high"
         quality={70}
         className="object-cover"
       />
