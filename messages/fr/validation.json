@@ -6,7 +6,7 @@
   "validation__password_max": "Le mot de passe est trop long",
   "validation__name_required": "Veuillez saisir votre nom",
   "validation__name_max": "Le nom est trop long",
-  "validation__partner_name_required": "Le nom du partenaire est requis",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Le nom est trop long",
   "validation__terms_required": "Veuillez accepter les conditions",
   "validation__confirm_password_required": "Confirmez votre mot de passe",

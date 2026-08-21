@@ -75,9 +75,20 @@
   "invitees__send_all__confirm": "Odoslať pozvánky {count, plural, one {# hosťovi} few {# hosťom} other {# hosťom}} teraz?",
   "invitees__send_all__success": "{queued} v rade, {skipped} preskočených (bez e-mailu).",
   "invitees__send_all__error": "Pozvánky sa nepodarilo zaradiť. Skús znova.",
+  "invitees__send_all__attach_agenda": "Priložiť PDF s programom",
   "invitees__preview__cta": "Náhľad",
   "invitees__preview__hide": "Skryť náhľad",
   "invitees__preview__show": "Zobraziť náhľad",
   "invitees__preview__title": "Náhľad pozvánky",
-  "invitees__edit_card__cta": "Upraviť kartu pozvánky"
+  "invitees__edit_card__cta": "Upraviť kartu pozvánky",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note",
+  "invitees__rsvp_summary__title": "RSVP",
+  "invitees__rsvp_summary__coming": "coming",
+  "invitees__rsvp_summary__entries": "{coming} of {total} invites",
+  "invitees__rsvp_summary__empty": "No guests yet"
 }

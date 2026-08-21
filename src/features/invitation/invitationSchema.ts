@@ -15,20 +15,49 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const getInvitationSchema = (t: T) =>
   z.object({
     templateId: z.string().min(1),
+    pageBg: z.string(),
+    surroundBg: z.string(),
+    cardBg: z.string(),
+    textColor: z.string(),
+    mutedColor: z.string(),
+    accentColor: z.string(),
+    textScale: z.number(),
+    // Optional explicit event/invitation title (shown alone when set). Used by
+    // single-host types (corporate, memorial, …). Empty string means "unset".
+    eventName: z.string().trim().max(80),
+    // The user-entered event type word for the "other" event type.
+    customEventNoun: z.string().trim().max(40),
     partnerA: z
       .string()
       .trim()
       .min(1, t("validation__partner_name_required"))
       .max(INVITATION_NAME_MAX, t("validation__partner_name_max")),
+    // Second host is optional (single-host event types have none).
     partnerB: z
       .string()
       .trim()
       .max(INVITATION_NAME_MAX, t("validation__partner_name_max")),
     weddingDate: z.string(),
+    endDate: z.string(),
+    // Whether the event spans multiple days (shows the end-date field).
+    multiDay: z.boolean(),
+    // Memorial life-span dates.
+    bornOn: z.string(),
+    passedOn: z.string(),
     time: z.string(),
     venue: z.string(),
     place: z.string(),
     message: z.string().max(INVITATION_MESSAGE_MAX),
+    greeting: z.string().trim().max(40),
+    age: z.string(),
+    showAge: z.boolean(),
+    showRsvp: z.boolean(),
+    // Corporate agenda PDF (public URL) + whether to attach it to invite emails.
+    agenda: z.string(),
+    attachAgenda: z.boolean(),
+    // Corporate logo (public image URL) + whether to show it on the card.
+    logo: z.string(),
+    showLogo: z.boolean(),
     guests: z.array(
       z.object({
         id: z.string().optional(),

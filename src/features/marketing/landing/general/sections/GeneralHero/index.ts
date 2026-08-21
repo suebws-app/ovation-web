@@ -1,0 +1,1 @@
+export { GeneralHero } from "./GeneralHero";

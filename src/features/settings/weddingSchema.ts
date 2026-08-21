@@ -10,14 +10,25 @@ const SLUG_RE = /^[a-z0-9-]+$/;
 export const getWeddingSchema = (t: T) =>
   z
     .object({
-      mode: z.enum(["couple", "event"]),
-      eventName: z.string().max(80, t("validation__event_name_max")).optional(),
-      partnerAName: z.string().max(50, t("validation__partner_name_max")),
+      partnerAName: z
+        .string()
+        .min(1, t("validation__partner_name_required"))
+        .max(50, t("validation__partner_name_max")),
+      // Optional: single-host types (birthday, memorial, …) don't render a second
+      // host field, so requiring it would silently block the whole form's submit.
       partnerBName: z.string().max(50, t("validation__partner_name_max")),
+      eventName: z.string().max(80).optional(),
       weddingDate: z.string().max(20).optional(),
+      endDate: z.string().max(20).optional(),
+      multiDay: z.boolean().optional(),
       venueName: z.string().max(100).optional(),
       venueCity: z.string().max(100).optional(),
+      expectedGuests: z.string().max(6).optional(),
       welcomeMessage: z.string().max(200).optional(),
+      themeColor: z
+        .string()
+        .regex(/^#[0-9a-fA-F]{6}$/)
+        .optional(),
       slug: z
         .string()
         .max(20)
@@ -26,43 +37,22 @@ export const getWeddingSchema = (t: T) =>
           t("validation__slug_format"),
         ),
     })
-    .superRefine((data, ctx) => {
-      if (data.mode === "event") {
-        if (!data.eventName?.trim()) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            path: ["eventName"],
-            message: t("validation__event_name_required"),
-          });
-        }
-        return;
-      }
-      if (!data.partnerAName?.trim()) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["partnerAName"],
-          message: t("validation__partner_name_required"),
-        });
-      }
-      if (!data.partnerBName?.trim()) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["partnerBName"],
-          message: t("validation__partner_name_required"),
-        });
-      }
+    .refine((v) => !v.weddingDate || !v.endDate || v.endDate >= v.weddingDate, {
+      path: ["endDate"],
+      message: t("settings__wedding__end_before_start"),
     });
 
-export type WeddingNameMode = "couple" | "event";
-
 export type WeddingFields = {
-  mode: WeddingNameMode;
-  eventName?: string;
   partnerAName: string;
   partnerBName: string;
+  eventName?: string;
   weddingDate?: string;
+  endDate?: string;
+  multiDay?: boolean;
   venueName?: string;
   venueCity?: string;
+  expectedGuests?: string;
   welcomeMessage?: string;
+  themeColor?: string;
   slug: string;
 };

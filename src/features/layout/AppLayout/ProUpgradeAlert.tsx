@@ -5,6 +5,7 @@ import { Button } from "@ovation/ui/components/Button";
 import { Link, usePathname } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import { useOptimisticPlanStore } from "@/features/checkout/useOptimisticPlanStore";
+import { isPaidPlan } from "@/lib/utils/plan";
 
 type ProUpgradeAlertProps = {
   planTier: string | null;
@@ -21,8 +22,7 @@ export const ProUpgradeAlert = ({
 
   if (pathname.startsWith(appRoutes.app.plans)) return null;
 
-  const isFree = !planTier || planTier === "free";
-  if (!isFree) return null;
+  if (isPaidPlan(planTier)) return null;
   if (planActivating || activatingOrderId) return null;
 
   return (

@@ -4,8 +4,9 @@ import { useEffect, useRef } from "react";
 import { useSession } from "@/lib/auth/client";
 import { isExcludedFromAnalytics } from "@/lib/analytics/excludedEmails";
 import { loadPostHog } from "@/lib/analytics/posthogLoader";
+import { useDeferredMount } from "@/lib/hooks/useDeferredMount";
 
-export const PostHogIdentify = () => {
+const PostHogIdentifyActive = () => {
   const { data: session, isPending } = useSession();
   const identifiedUserId = useRef<string | null>(null);
 
@@ -49,4 +50,10 @@ export const PostHogIdentify = () => {
   }, [session, isPending]);
 
   return null;
+};
+
+export const PostHogIdentify = () => {
+  const active = useDeferredMount();
+  if (!active) return null;
+  return <PostHogIdentifyActive />;
 };

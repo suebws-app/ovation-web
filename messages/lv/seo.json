@@ -11,6 +11,8 @@
   "seo__contact__description": "Jautājumi par viesu grāmatu, plāniem vai drukāto Gold Book? Sazinieties — atbildam ātri, pirms un pēc jūsu kāzu dienas.",
   "seo__for_planners__title": "Viesu grāmatas kāzu plānotājiem",
   "seo__for_planners__description": "Dodiet saviem pāriem viesu grāmatu, ko viesi tiešām izmanto. Vienkārša uzstādīšana, drukai gatavas QR kartītes un drukātas piemiņas, ko klienti iemīl.",
+  "seo__for_pros__title": "Ovation pasākumu profesionāļiem",
+  "seo__for_pros__description": "Vadiet visus klientu pasākumus no vienas vietas. Balss viesu grāmatas, drukai gatavas QR kartes un drukātas piemiņas lietas — cenas organizatoriem, fotogrāfiem un norises vietām.",
   "seo__gold_book__title": "Gold Book — drukāta kāzu piemiņa",
   "seo__gold_book__description": "Audeklā iesieta grāmata ar jūsu kāzu ziņām — transkripcijas, mīļākās fotogrāfijas un QR kodi, kas atskaņo katru balsi. Līdz 180 lappusēm.",
   "seo__how_it_works__title": "Kā tas darbojas — viesu grāmata ar QR kodu",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "AI kāzu plānotājs — bezmaksas lietotne pāriem",
   "seo__wedding_planner__description": "Plānojiet savas kāzas ar viedu laika grafiku, uzdevumu sarakstu, budžeta uzskaiti, viesu sarakstu, pakalpojumu sniedzēju katalogu un AI asistentu, kurš zina jūsu datumu, budžetu, viesus un pakalpojumu sniedzējus — bez maksas.",
   "seo__use_case__title": "{title} — Ovation kāzu viesu grāmata",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Lietojuma piemēri — viesu grāmatas ikvienam notikumam",
+  "seo__use_cases_index__description": "Kāzas, dzimšanas dienas, uzņēmumu pasākumi, piemiņas lapas un vēl daudz kas. Paskaties, kā Ovation savāc tavu viesu balss ziņas un fotogrāfijas un pārvērš tās piemiņas grāmatā."
 }

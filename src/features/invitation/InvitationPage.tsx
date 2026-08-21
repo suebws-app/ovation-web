@@ -3,7 +3,7 @@
 import { startTransition, useEffect, useState } from "react";
 import { FormProvider, useWatch } from "react-hook-form";
 import { useRouter } from "@/i18n/navigation";
-import { appRoutes } from "@/lib/routes";
+import { usePlannerRoutes } from "@/features/wedding-planner/usePlannerRoutes";
 import { useHydrateStore } from "@/lib/storage/useHydrateStore";
 import type { Event, Invitee } from "@/lib/api/types";
 import { InvitationFooter } from "./components/InvitationFooter";
@@ -30,10 +30,15 @@ export const InvitationPage = ({
   const hydrated = useHydrateStore(useInvitationStore);
   const resetStep = useInvitationStore((s) => s.setStep);
   const router = useRouter();
+  const plannerRoutes = usePlannerRoutes();
   const methods = useInvitationForm(initialEvent, initialInvitees);
   const { save, status: saveStatus } = useSaveInvitationStep(
     eventId,
-    Boolean(initialEvent?.eventName?.trim()),
+    // Corporate keeps the organization in `hostAName` (the title) and the typed
+    // event name in `details.eventName` (the subtitle) — never event-name mode,
+    // which would route the org into the `eventName` column instead.
+    Boolean(initialEvent?.eventName?.trim()) &&
+      initialEvent?.eventType !== "corporate",
   );
 
   useEffect(() => {
@@ -44,7 +49,12 @@ export const InvitationPage = ({
     useInvitationStepNavigation({
       methods,
       save,
-      onComplete: () => router.push(appRoutes.app.weddingPlanner.guests),
+      onComplete: () => {
+        // Invalidate the Router Cache BEFORE navigating so the guests page
+        // fetches the just-saved event instead of a stale cached render.
+        router.refresh();
+        router.push(plannerRoutes.guests);
+      },
     });
 
   const values = useWatch({ control: methods.control }) as InvitationFields;
@@ -76,6 +86,7 @@ export const InvitationPage = ({
       <div className="bg-background relative flex min-h-0 flex-1 flex-col pb-20">
         <div className="desktop:flex-row flex flex-1 flex-col">
           <InvitationFormPanel
+            eventType={initialEvent?.eventType}
             step={step}
             stepIdx={stepIdx}
             saveStatus={saveStatus}
@@ -90,6 +101,15 @@ export const InvitationPage = ({
           <InvitationPreviewPanel
             template={template}
             values={values}
+            eventType={initialEvent?.eventType}
+            endDate={values?.multiDay ? values?.endDate || null : null}
+            customEventNoun={
+              values
+                ? values.customEventNoun
+                : typeof initialEvent?.details?.customEventNoun === "string"
+                  ? initialEvent.details.customEventNoun
+                  : undefined
+            }
             step={step}
             selectedGuestFirstName={selectedGuest?.first}
           />

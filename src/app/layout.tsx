@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -7,10 +7,20 @@ import { DeferredGoogleTagManager } from "@/components/DeferredGoogleTagManager"
 import { appUrl } from "@/lib/seo/urls";
 import { clientEnv } from "@/lib/utils/env.client";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: {
-    default: "Ovation — Capture Your Wedding Messages",
+    default: "Ovation — Capture Your Event Messages",
     template: "%s | Ovation",
   },
   description:
@@ -18,13 +28,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Ovation",
-    title: "Ovation — Capture Your Wedding Messages",
+    title: "Ovation — Capture Your Event Messages",
     description:
       "Let your guests leave audio messages, photos, and notes — and turn them into beautiful keepsakes.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ovation — Capture Your Wedding Messages",
+    title: "Ovation — Capture Your Event Messages",
     description:
       "Let your guests leave audio messages, photos, and notes — and turn them into beautiful keepsakes.",
   },

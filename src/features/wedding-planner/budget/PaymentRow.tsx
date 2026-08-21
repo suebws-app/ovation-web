@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { getDateFnsLocale } from "@/lib/utils/dateFnsLocale";
 import { cn } from "@ovation/ui/utils/cn";
 import {
   Popover,
@@ -37,6 +38,7 @@ export const PaymentRow = ({
   onRemove,
 }: PaymentRowProps) => {
   const t = useTranslations();
+  const uiLocale = useLocale();
   const [dateOpen, setDateOpen] = useState(false);
   const selected = parseIsoDate(payment.dueDate);
 
@@ -91,6 +93,7 @@ export const PaymentRow = ({
           >
             <Calendar
               mode="single"
+              locale={getDateFnsLocale(uiLocale)}
               selected={selected}
               onSelect={(date) => {
                 onEditDue(payment.id, date ? toIsoDate(date) : null);

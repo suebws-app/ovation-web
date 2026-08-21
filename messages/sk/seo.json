@@ -11,6 +11,8 @@
   "seo__contact__description": "Máš otázky o knihe hostí, plánoch alebo tlačenej Gold Book? Ozvi sa — odpovedáme rýchlo, pred svadbou aj po nej.",
   "seo__for_planners__title": "Knihy hostí pre svadobných plánovačov",
   "seo__for_planners__description": "Daj svojim párom knihu hostí, ktorú hostia naozaj používajú. Jednoduché nastavenie, QR karty pripravené na tlač a tlačené pamiatky, ktoré klienti milujú.",
+  "seo__for_pros__title": "Ovation pre event profesionálov",
+  "seo__for_pros__description": "Riaďte všetky klientske podujatia z jedného miesta. Hlasové knihy hostí, QR karty pripravené na tlač a tlačené spomienky — ceny pre organizátorov, fotografov a priestory.",
   "seo__gold_book__title": "Gold Book — tlačená svadobná pamiatka",
   "seo__gold_book__description": "Kniha viazaná v plátne s tvojimi svadobnými odkazmi — prepisy, obľúbené fotky a QR kódy, ktoré prehrajú každý hlas. Až 180 strán.",
   "seo__how_it_works__title": "Ako to funguje — kniha hostí s QR kódom",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "AI svadobný plánovač — bezplatná aplikácia pre páry",
   "seo__wedding_planner__description": "Naplánujte si svadbu s inteligentným harmonogramom, zoznamom úloh, sledovaním rozpočtu, zoznamom hostí, adresárom dodávateľov a AI asistentom, ktorý pozná váš dátum, rozpočet, hostí aj dodávateľov — zadarmo.",
   "seo__use_case__title": "{title} — Svadobná kniha hostí Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Príklady použitia — knihy hostí na každú príležitosť",
+  "seo__use_cases_index__description": "Svadby, narodeniny, firemné podujatia, spomienkové stránky a mnoho ďalšieho. Pozrite sa, ako Ovation zbiera hlasové odkazy a fotky od vašich hostí a mení ich na pamätnú knihu."
 }

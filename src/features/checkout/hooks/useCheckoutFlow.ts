@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { eventsClient } from "@/lib/api/events-client";
@@ -14,6 +14,7 @@ import { toIsoDate } from "@/lib/utils/formatDate";
 import { appRoutes } from "@/lib/routes";
 import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { useCreateEventStore } from "@/features/create/useCreateEventStore";
+import { clearPendingEvent } from "@/features/create/pendingEvent";
 import type {
   CheckoutPlanTier,
   ProCheckoutSessionInput,
@@ -51,33 +52,6 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
   const inflightRef = useRef<Map<number, Promise<CheckoutState>>>(new Map());
 
-  const stashPendingEventData = useCallback(() => {
-    if (typeof window === "undefined") return;
-    const eventData = useCreateEventStore.getState().formData;
-    const isEventMode = eventData.nameMode === "event";
-    const eventName = isEventMode
-      ? eventData.eventName?.trim() || t("signup__event_name_default")
-      : null;
-    const partnerA = isEventMode
-      ? ""
-      : eventData.partner1Name?.trim() || t("signup__partner_a_default");
-    const partnerB = isEventMode
-      ? ""
-      : eventData.partner2Name?.trim() || t("signup__partner_b_default");
-    window.sessionStorage?.setItem(
-      "ovation_pending_event_data",
-      JSON.stringify({
-        eventName,
-        partnerAName: partnerA,
-        partnerBName: partnerB,
-        weddingDate: toWeddingDate(eventData.weddingDate) ?? null,
-        venueName: eventData.venueName?.trim() || null,
-        venueCity: eventData.venueCity?.trim() || null,
-        desiredSlug: eventData.bookUrl.trim() || null,
-      }),
-    );
-  }, [t]);
-
   useEffect(() => {
     const token = retryToken;
     let mounted = true;
@@ -102,12 +76,11 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
 
         if (isPro) {
           if (!signUpFormData.selectedPlan) {
-            router.push(appRoutes.auth.plans);
+            router.push(`${appRoutes.auth.plans}?as=pro`);
             return { kind: "redirecting" };
           }
           safeSet({ kind: "redirecting" });
           try {
-            stashPendingEventData();
             const checkout = await paymentsClient.createProCheckoutSession({
               planCode:
                 signUpFormData.selectedPlan as ProCheckoutSessionInput["planCode"],
@@ -130,38 +103,17 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           }
         }
 
-        const isEventMode = eventFormData.nameMode === "event";
-        const eventNameTrim = eventFormData.eventName?.trim() ?? "";
         const partnerATrim = eventFormData.partner1Name?.trim() ?? "";
         const partnerBTrim = eventFormData.partner2Name?.trim() ?? "";
 
-        const hasName = isEventMode
-          ? Boolean(eventNameTrim)
-          : Boolean(partnerATrim || partnerBTrim);
-        if (!hasName) {
+        if (!partnerATrim && !partnerBTrim) {
           router.push(appRoutes.app.root);
           return { kind: "redirecting" };
         }
 
-        const eventName = isEventMode
-          ? eventNameTrim || t("signup__event_name_default")
-          : undefined;
-        const partnerA = isEventMode
-          ? ""
-          : partnerATrim || t("signup__partner_a_default");
-        const partnerB = isEventMode
-          ? ""
-          : partnerBTrim || t("signup__partner_b_default");
+        const partnerA = partnerATrim || t("signup__partner_a_default");
+        const partnerB = partnerBTrim || t("signup__partner_b_default");
         const bookUrl = useCreateEventStore.getState().formData.bookUrl;
-
-        const eventPayload = {
-          eventName,
-          partnerAName: partnerA,
-          partnerBName: partnerB,
-          weddingDate: toWeddingDate(eventFormData.weddingDate),
-          venueName: eventFormData.venueName?.trim() || undefined,
-          venueCity: eventFormData.venueCity?.trim() || undefined,
-        };
 
         try {
           const existingEventId =
@@ -173,26 +125,60 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           const event = existingEventId
             ? await eventsClient
                 .update(existingEventId, {
-                  ...eventPayload,
-                  eventName: eventName ?? "",
+                  partnerAName: partnerA,
+                  partnerBName: partnerB,
+                  weddingDate: toWeddingDate(eventFormData.weddingDate),
+                  endDate: toWeddingDate(eventFormData.endDate),
+                  venueName: eventFormData.venueName?.trim() || undefined,
+                  venueCity: eventFormData.venueCity?.trim() || undefined,
+                  themeColor: eventFormData.themeColor || undefined,
                 })
                 .then((r) => r.event)
                 .catch(async () => {
-                  const created = await eventsClient.create(eventPayload);
+                  const created = await eventsClient.create({
+                    eventType: eventFormData.eventType,
+                    partnerAName: partnerA,
+                    partnerBName: partnerB,
+                    weddingDate: toWeddingDate(eventFormData.weddingDate),
+                    endDate: toWeddingDate(eventFormData.endDate),
+                    venueName: eventFormData.venueName?.trim() || undefined,
+                    venueCity: eventFormData.venueCity?.trim() || undefined,
+                    details: eventFormData.details,
+                  });
                   return created.event;
                 })
-            : await eventsClient.create(eventPayload).then((r) => r.event);
+            : await eventsClient
+                .create({
+                  eventType: eventFormData.eventType,
+                  partnerAName: partnerA,
+                  partnerBName: partnerB,
+                  weddingDate: toWeddingDate(eventFormData.weddingDate),
+                  endDate: toWeddingDate(eventFormData.endDate),
+                  venueName: eventFormData.venueName?.trim() || undefined,
+                  venueCity: eventFormData.venueCity?.trim() || undefined,
+                  details: eventFormData.details,
+                })
+                .then((r) => r.event);
 
           const desiredSlug = bookUrl.trim();
           let finalSlug = event.slug;
-          if (
+          const slugUpdate =
             desiredSlug &&
             desiredSlug !== finalSlug &&
             /^[a-z0-9-]{4,20}$/.test(desiredSlug)
-          ) {
+              ? { slug: desiredSlug }
+              : undefined;
+          // `themeColor` is not accepted on create — apply it here (the update
+          // branch above already sends it for existing events).
+          const themeUpdate =
+            !existingEventId && eventFormData.themeColor
+              ? { themeColor: eventFormData.themeColor }
+              : undefined;
+          if (slugUpdate || themeUpdate) {
             try {
               const updated = await eventsClient.update(event.id, {
-                slug: desiredSlug,
+                ...slugUpdate,
+                ...themeUpdate,
               });
               finalSlug = updated.event.slug;
             } catch {
@@ -202,6 +188,7 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
           updateEventData({ bookUrl: finalSlug });
 
           await profileClient.markOnboardingComplete().catch(() => undefined);
+          clearPendingEvent();
 
           const planTier = PLAN_TIER_BY_ID[signUpFormData.selectedPlan ?? ""];
           if (!planTier) {
@@ -260,16 +247,17 @@ export const useCheckoutFlow = (): UseCheckoutFlowReturn => {
     };
   }, [
     retryToken,
-    eventFormData.nameMode,
-    eventFormData.eventName,
+    eventFormData.eventType,
     eventFormData.partner1Name,
     eventFormData.partner2Name,
     eventFormData.weddingDate,
+    eventFormData.endDate,
     eventFormData.venueName,
     eventFormData.venueCity,
+    eventFormData.themeColor,
+    eventFormData.details,
     signUpFormData.selectedPlan,
     signUpFormData.accountType,
-    stashPendingEventData,
     updateEventData,
     router,
     t,

@@ -1,4 +1,5 @@
 import { publicApi } from "@/lib/api/public";
+import { eventCoverUrl } from "@/lib/event-cover";
 import { PublicGalleryClient } from "./PublicGalleryClient";
 
 type PublicGalleryPageProps = {
@@ -15,9 +16,9 @@ export const PublicGalleryPage = async ({ params }: PublicGalleryPageProps) => {
         slug={slug}
         code={code}
         eventName={event?.eventName ?? null}
-        partnerAName={event?.partnerAName ?? null}
-        partnerBName={event?.partnerBName ?? null}
-        couplePhotoUrl={event?.couplePhotoUrl ?? null}
+        partnerAName={event?.hostAName ?? event?.partnerAName ?? null}
+        partnerBName={event?.hostBName ?? event?.partnerBName ?? null}
+        couplePhotoUrl={eventCoverUrl(event)}
       />
     </div>
   );

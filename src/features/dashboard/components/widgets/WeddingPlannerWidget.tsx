@@ -3,17 +3,18 @@ import { ClipboardCheckIcon } from "@ovation/icons/ClipboardCheckIcon";
 import { ArrowRightIcon } from "@ovation/icons/ArrowRightIcon";
 
 import { Link } from "@/i18n/navigation";
-import { appRoutes } from "@/lib/routes";
 import { ProgressRing } from "@/features/wedding-planner/components/ProgressRing";
 import {
   clampPct,
   formatShortDate,
   money,
 } from "@/features/wedding-planner/utils";
+import { formatDateRange } from "@/lib/event-types";
 import { WeddingPlannerWidgetTaskRow } from "./WeddingPlannerWidgetTaskRow";
 
 export type WeddingPlannerWidgetSummary = {
   weddingDate: string | null;
+  endDate: string | null;
   daysToGo: number | null;
   progressPct: number;
   doneTasks: number;
@@ -24,14 +25,14 @@ export type WeddingPlannerWidgetSummary = {
   remaining: number;
 };
 
-const wp = appRoutes.app.weddingPlanner;
-
 type WeddingPlannerWidgetProps = {
   summary: WeddingPlannerWidgetSummary;
+  dashboardHref: string;
 };
 
 export const WeddingPlannerWidget = async ({
   summary,
+  dashboardHref,
 }: WeddingPlannerWidgetProps) => {
   const t = await getTranslations();
   const spentPct =
@@ -49,7 +50,7 @@ export const WeddingPlannerWidget = async ({
           <h3 className="type-h4">{t("sidebar__nav__wedding_planner")}</h3>
         </div>
         <Link
-          href={wp.dashboard}
+          href={dashboardHref}
           className="bg-primary text-primary-foreground rounded-12 type-body-small inline-flex items-center gap-2 px-4 py-2 font-semibold transition-opacity hover:opacity-90"
         >
           {t("wp__widget__open")}
@@ -69,7 +70,14 @@ export const WeddingPlannerWidget = async ({
               </span>
               {summary.weddingDate ? (
                 <span className="type-caption text-muted-foreground">
-                  {formatShortDate(summary.weddingDate)}
+                  {formatDateRange(
+                    {
+                      eventDate: summary.weddingDate,
+                      endDate: summary.endDate,
+                      weddingDate: null,
+                    },
+                    formatShortDate,
+                  )}
                 </span>
               ) : null}
             </div>

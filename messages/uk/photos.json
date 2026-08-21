@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Марко",
   "photos__empty__or_upload": "або завантажте фото",
   "photos__tile__select_photo": "Вибрати фото від {name}",
-  "photos__lightbox__show_photo": "Показати фото {number}"
+  "photos__lightbox__show_photo": "Показати фото {number}",
+  "photos__detail__pin_to_album": "Закріпити вгорі альбому",
+  "photos__detail__unpin_from_album": "Відкріпити з альбому"
 }

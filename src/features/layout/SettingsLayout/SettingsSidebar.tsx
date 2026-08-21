@@ -10,6 +10,7 @@ import { ChevronLeftIcon } from "@ovation/icons/ChevronLeftIcon";
 import { Sidebar } from "@/components/Sidebar";
 import type { SidebarNavGroup } from "@/components/Sidebar";
 import type { User } from "@/lib/api/types";
+import { isPaidPlan } from "@/lib/utils/plan";
 import { appRoutes } from "@/lib/routes";
 import type { PlanTier } from "@/lib/api/types";
 
@@ -44,7 +45,7 @@ const buildGroups = (
         href: appRoutes.settings.notifications,
         icon: BellIcon,
       },
-      ...(planTier !== "free"
+      ...(isPaidPlan(planTier)
         ? [
             {
               key: "subscription",

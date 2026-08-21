@@ -39,3 +39,9 @@ export const contrastRatio = (hexA: string, hexB: string): number | null => {
   const darker = Math.min(la, lb);
   return (lighter + 0.05) / (darker + 0.05);
 };
+
+export const readableTextColor = (hex: string): string => {
+  const onBlack = contrastRatio(hex, "#000000") ?? 0;
+  const onWhite = contrastRatio(hex, "#FFFFFF") ?? 0;
+  return onBlack >= onWhite ? "#000000" : "#FFFFFF";
+};

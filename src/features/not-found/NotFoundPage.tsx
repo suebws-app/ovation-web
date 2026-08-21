@@ -1,16 +1,23 @@
-import { getTranslations } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Kicker } from "@ovation/ui/components/Kicker";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
+import { loadShellMessages } from "@/i18n/loadMessages";
 import { RootHeader } from "@/features/layout/RootHeader";
 import { RootFooter } from "@/features/layout/RootFooter";
 
+// RootHeader's nav is a client component reading `marketing__*`, and the
+// locale layout only hands the shell namespaces to the client provider — so
+// this page has to supply the marketing namespace itself.
 export const NotFoundPage = async () => {
+  const locale = await getLocale();
+  const messages = await loadShellMessages(locale, ["marketing"]);
   const t = await getTranslations();
 
   return (
-    <>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <div className="flex min-h-dvh shrink-0 flex-col">
         <RootHeader />
         <main className="bg-warm-cream relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 py-16">
@@ -58,6 +65,6 @@ export const NotFoundPage = async () => {
         </main>
       </div>
       <RootFooter className="shrink-0" />
-    </>
+    </NextIntlClientProvider>
   );
 };

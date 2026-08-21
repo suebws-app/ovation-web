@@ -255,7 +255,7 @@ export const auth = betterAuth({
       },
       accountType: {
         type: "string",
-        defaultValue: "couple",
+        defaultValue: "host",
         required: false,
         fieldName: "account_type",
       },
@@ -404,16 +404,26 @@ export const auth = betterAuth({
     user: {
       create: {
         before: async (userRecord, ctx) => {
-          const incoming = userRecord as { preferredLanguage?: string | null };
-          const alreadySet =
+          const incoming = userRecord as {
+            preferredLanguage?: string | null;
+            accountType?: string | null;
+          };
+          const patch: Record<string, unknown> = {};
+
+          const localeAlreadySet =
             typeof incoming.preferredLanguage === "string" &&
             isSupportedLocale(incoming.preferredLanguage);
-          if (alreadySet) return { data: userRecord };
-          const fromRequest = parseSignupLocale(ctx?.request);
-          if (!fromRequest) return { data: userRecord };
-          return {
-            data: { ...userRecord, preferredLanguage: fromRequest },
-          };
+          if (!localeAlreadySet) {
+            const fromRequest = parseSignupLocale(ctx?.request);
+            if (fromRequest) patch.preferredLanguage = fromRequest;
+          }
+
+          if (incoming.accountType === "pro") {
+            patch.planTier = "pro_free";
+          }
+
+          if (Object.keys(patch).length === 0) return { data: userRecord };
+          return { data: { ...userRecord, ...patch } };
         },
         after: async (userRecord, ctx) => {
           await recordAuthEvent("login_success", userRecord.id, null, null, {

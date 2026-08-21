@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { unstable_noStore as noStore } from "next/cache";
 import { plansApi } from "@/lib/api/plans";
 import { getCurrentUser } from "@/lib/auth/session";
+import { CONSUMER_ACCOUNT_TYPE } from "@/lib/auth/account-role";
 import { appRoutes } from "@/lib/routes";
 import { PlansPicker } from "./components/PlansPicker";
 import { DreUpgradeCard } from "./components/DreUpgradeCard";
@@ -40,16 +41,23 @@ export const PlansPage = async ({ searchParams }: PlansPageProps) => {
     );
   }
 
-  if (user.planTier && user.planTier !== "free") redirect(appRoutes.app.root);
+  if (
+    user.planTier &&
+    user.planTier !== "free" &&
+    user.planTier !== "pro_free"
+  ) {
+    redirect(appRoutes.app.root);
+  }
 
-  const mode = user.accountType === "pro" ? "pro" : "couple";
+  const mode = user.accountType === "pro" ? "pro" : CONSUMER_ACCOUNT_TYPE;
   const { plans } = await plansApi.list(mode);
+  const selectablePlans = plans.filter((plan) => plan.code !== "pro_free");
 
   return (
     <PlansBackGuard>
       <PlansPicker
         mode={mode}
-        plans={plans}
+        plans={selectablePlans}
         currencySelect={<CurrencySelect />}
       />
     </PlansBackGuard>

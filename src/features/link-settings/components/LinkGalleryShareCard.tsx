@@ -32,7 +32,7 @@ export const LinkGalleryShareCard = ({
   const [copied, setCopied] = useState(false);
 
   const shareUrl =
-    settings.galleryPublic && settings.galleryCode
+    settings.galleryLinkEnabled && settings.galleryCode
       ? galleryUrl(slug, settings.galleryCode)
       : null;
 
@@ -55,11 +55,21 @@ export const LinkGalleryShareCard = ({
       <KioskConfigRow
         title={t("link_settings__gallery__toggle_title")}
         description={t("link_settings__gallery__toggle_desc")}
-        last={!shareUrl}
       >
         <KioskToggle
           on={settings.galleryPublic}
           onChange={(galleryPublic) => onPatch({ galleryPublic })}
+        />
+      </KioskConfigRow>
+
+      <KioskConfigRow
+        title={t("link_settings__gallery__link_toggle_title")}
+        description={t("link_settings__gallery__link_toggle_desc")}
+        last={!shareUrl}
+      >
+        <KioskToggle
+          on={settings.galleryLinkEnabled}
+          onChange={(galleryLinkEnabled) => onPatch({ galleryLinkEnabled })}
         />
       </KioskConfigRow>
 

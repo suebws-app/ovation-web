@@ -4,41 +4,50 @@ import { localizedAbsoluteUrl } from "@/lib/seo/urls";
 import { blogApi, type BlogListItem } from "@/lib/api/blog";
 import { COMPETITORS } from "@/features/marketing/CompetitorPage";
 import { USE_CASES } from "@/features/marketing/UseCasePage";
+import { EVENT_TYPE_PAGES } from "@/features/marketing/EventTypePage";
+
+type ChangeFrequency = NonNullable<
+  MetadataRoute.Sitemap[number]["changeFrequency"]
+>;
 
 type MarketingRoute = {
   path: string;
   priority: number;
+  changeFrequency?: ChangeFrequency;
 };
 
 const MARKETING_ROUTES: MarketingRoute[] = [
-  { path: "/", priority: 1 },
-  { path: "/how-it-works", priority: 0.9 },
-  { path: "/pricing", priority: 0.9 },
-  { path: "/wedding-planner", priority: 0.9 },
-  { path: "/keepsakes", priority: 0.8 },
-  { path: "/gold-book", priority: 0.8 },
-  { path: "/for-planners", priority: 0.8 },
-  { path: "/for-photographers", priority: 0.7 },
-  { path: "/for-venues", priority: 0.7 },
-  { path: "/for-family", priority: 0.7 },
-  { path: "/for-media", priority: 0.4 },
-  { path: "/templates", priority: 0.6 },
-  { path: "/sample", priority: 0.7 },
-  { path: "/blog", priority: 0.7 },
-  { path: "/about", priority: 0.5 },
-  { path: "/contact", priority: 0.5 },
-  { path: "/careers", priority: 0.4 },
-  { path: "/changelog", priority: 0.4 },
-  { path: "/sustainability", priority: 0.4 },
-  { path: "/legal/privacy", priority: 0.3 },
-  { path: "/legal/terms", priority: 0.3 },
-  { path: "/legal/cookies", priority: 0.3 },
-  { path: "/legal/refunds", priority: 0.3 },
+  { path: "/", priority: 1, changeFrequency: "weekly" },
+  { path: "/how-it-works", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/pricing", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/wedding-planner", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/keepsakes", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/gold-book", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/use-cases", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/for-pros", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/for-planners", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/for-photographers", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/for-venues", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/for-family", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/for-media", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/templates", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/sample", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/about", priority: 0.5, changeFrequency: "yearly" },
+  { path: "/contact", priority: 0.5, changeFrequency: "yearly" },
+  { path: "/careers", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/changelog", priority: 0.4, changeFrequency: "weekly" },
+  { path: "/sustainability", priority: 0.4, changeFrequency: "yearly" },
+  { path: "/legal/privacy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/terms", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/cookies", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/refunds", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 const buildRouteEntries = ({
   path,
   priority,
+  changeFrequency = "monthly",
 }: MarketingRoute): MetadataRoute.Sitemap => {
   const languages = {
     ...Object.fromEntries(
@@ -49,7 +58,7 @@ const buildRouteEntries = ({
 
   return locales.map((locale) => ({
     url: localizedAbsoluteUrl(locale, path),
-    changeFrequency: "weekly",
+    changeFrequency,
     priority,
     alternates: { languages },
   }));
@@ -170,6 +179,14 @@ const buildUseCaseEntries = (): MetadataRoute.Sitemap =>
     }),
   );
 
+const buildEventTypeEntries = (): MetadataRoute.Sitemap =>
+  EVENT_TYPE_PAGES.flatMap((page) =>
+    buildRouteEntries({
+      path: `/use-cases/${page.slug}`,
+      priority: 0.8,
+    }),
+  );
+
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const [routeEntries, articleEntries, authorEntries] = await Promise.all([
     Promise.resolve(MARKETING_ROUTES.flatMap(buildRouteEntries)),
@@ -179,6 +196,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   return [
     ...routeEntries,
     ...buildCompetitorEntries(),
+    ...buildEventTypeEntries(),
     ...buildUseCaseEntries(),
     ...articleEntries,
     ...authorEntries,

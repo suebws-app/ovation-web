@@ -60,15 +60,15 @@
   "dashboard__message__pause": "Wstrzymaj wiadomość",
   "dashboard__photos__preview": "Podgląd zdjęcia",
   "dashboard__widget__referral__eyebrow": "Udostępnij Ovation",
-  "dashboard__widget__referral__title": "Znasz parę, która planuje ślub?",
+  "dashboard__widget__referral__title": "Znasz kogoś, kto planuje wydarzenie?",
   "dashboard__widget__referral__description": "Wyślij im swój link zaproszeniowy. Otrzymasz {reward} kredytu na swój pamiątkowy album, gdy kupią swój pierwszy plan.",
   "dashboard__widget__referral__share_cta": "Udostępnij znajomemu",
   "dashboard__widget__referral__copy_link": "Kopiuj link",
   "dashboard__widget__referral__copied": "Skopiowano",
   "dashboard__widget__referral__email_share": "Udostępnij e-mailem",
-  "dashboard__widget__referral__share_title": "Ovation — głosowa księga gości na Waszym ślubie",
+  "dashboard__widget__referral__share_title": "Ovation — głosowa księga gości na Twoje wydarzenie",
   "dashboard__widget__referral__share_body": "{name} pomyślał, że możesz pokochać Ovation — w ten sposób zamiast papierowej księgi gości zebraliśmy głosowe wiadomości od naszych gości.",
-  "dashboard__widget__referral__email_subject": "Myślę, że pokochasz Ovation na swój ślub",
+  "dashboard__widget__referral__email_subject": "Myślę, że pokochasz Ovation na swoje wydarzenie",
   "dashboard__widget__referral__balance_label": "Twoje saldo kredytów",
   "dashboard__widget__referral__stats": "{invited, plural, one {# zaproszony znajomy} other {# zaproszonych znajomych}} · {converted, plural, one {# dołączył} other {# dołączyło}}"
 }

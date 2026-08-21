@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
+import { SignupThemeScope } from "@/components/SignupThemeScope";
 import { loadShellMessages } from "@/i18n/loadMessages";
 import type { LocalePageProps } from "@/i18n/types";
+import { ApiPreconnect } from "@/components/ApiPreconnect";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +17,8 @@ const PlansLayout = async ({
   const messages = await loadShellMessages(locale, ["plans", "signup", "link"]);
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <ApiPreconnect />
+      <SignupThemeScope />
       {children}
     </NextIntlClientProvider>
   );

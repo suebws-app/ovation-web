@@ -4,6 +4,7 @@ import { useEffect, useState, startTransition, type ReactNode } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Kicker } from "@ovation/ui/components/Kicker";
+import { Button } from "@ovation/ui/components/Button";
 import { PlanCard } from "@/features/plans/components/PlanCard";
 import { CheckoutRedirecting as CompletionRedirectingState } from "@/features/checkout/components/CheckoutRedirecting";
 import { paymentsClient } from "@/lib/api/payments-client";
@@ -61,7 +62,7 @@ const buildFeatures = (plan: Plan, locale: string, t: Translator): string[] => {
 import { getOrigin } from "@/lib/utils/browser";
 
 type PlansPickerProps = {
-  mode: "couple" | "pro";
+  mode: "couple" | "host" | "pro";
   plans: Plan[];
   currencySelect?: ReactNode;
 };
@@ -184,6 +185,17 @@ export const PlansPicker = (props: PlansPickerProps) => {
             {error}
           </p>
         )}
+
+        <div className="mt-8 text-center">
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => router.push(appRoutes.app.root)}
+            className="text-muted-foreground hover:text-primary px-0 font-medium hover:bg-transparent"
+          >
+            {t("signup__plan__skip")}
+          </Button>
+        </div>
       </div>
     </div>
   );

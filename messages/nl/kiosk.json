@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Verbinding verbroken",
   "kiosk__offline__body": "De kiosk heeft een internetverbinding nodig om nieuwe berichten te accepteren. Maak opnieuw verbinding om verder te gaan.",
   "kiosk__offline__hint": "Automatisch opnieuw verbinden…",
-  "kiosk__live__welcome_overline": "Je bent op de bruiloft van",
+  "kiosk__live__welcome_overline": "Je bent op de {eventNoun} van",
   "kiosk__live__tap_to_record": "Tik om een bericht achter te laten",
   "kiosk__live__closed": "Inzendingen gesloten",
   "kiosk__live__caption": "Tot {seconds} seconden · audio · foto optioneel",
@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Schuifregelaar",
   "kiosk_setup__save_error": "Opslaan mislukt",
   "kiosk_setup__pin__change": "PIN wijzigen",
+  "kiosk_setup__pin__show": "Pincode tonen",
+  "kiosk_setup__pin__hide": "Pincode verbergen",
+  "kiosk_setup__pin__unknown": "Verborgen",
   "kiosk__gate__title": "Voer kiosk-PIN in",
   "kiosk__gate__hint": "Voer de 4-cijferige PIN in om de kiosk te openen.",
   "kiosk__gate__submit": "Kiosk openen",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Stuur deze link naar degene die de kiosk op de dag instelt. Ze hebben de PIN nodig om hem te openen.",
   "kiosk__share__copy": "Link kopiëren",
   "kiosk__share__copied": "Gekopieerd!",
-  "kiosk__share__pin_set": "Standaard-PIN is 1234. Wijzig deze in de vergrendelingskaart voordat je deelt."
+  "kiosk__share__pin_value": "Kiosk-pincode: {pin}. Wie de kiosk opent, heeft deze nodig.",
+  "kiosk__share__pin_unknown": "Stel een nieuwe kiosk-pincode in bij de vergrendelkaart om hem hier te zien."
 }

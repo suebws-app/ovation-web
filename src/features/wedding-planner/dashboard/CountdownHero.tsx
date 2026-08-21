@@ -5,15 +5,17 @@ import { HeartIcon } from "@ovation/icons/HeartIcon";
 import { SparkleIcon } from "@ovation/icons/SparkleIcon";
 import { LockIcon } from "@ovation/icons/LockIcon";
 import { Link } from "@/i18n/navigation";
-import { appRoutes } from "@/lib/routes";
 import { useUpgradeModalStore } from "@/features/upgrade/useUpgradeModalStore";
 import { daysUntil, formatLongDate } from "../utils";
+import { usePlannerRoutes } from "../usePlannerRoutes";
+import { formatDateRange } from "@/lib/event-types";
 
 type CountdownHeroProps = {
   partners: string;
   venue: string | null;
   city: string | null;
   date: string | null;
+  endDate?: string | null;
   daysLabel: string;
   askAiLabel: string;
   viewTimelineLabel: string;
@@ -25,17 +27,23 @@ export const CountdownHero = ({
   venue,
   city,
   date,
+  endDate,
   daysLabel,
   askAiLabel,
   viewTimelineLabel,
   askAiLocked = false,
 }: CountdownHeroProps) => {
   const showUpgrade = useUpgradeModalStore((s) => s.show);
+  const routes = usePlannerRoutes();
   const days = date ? daysUntil(date) : null;
   const heading = [partners, venue].filter(Boolean).join(" · ");
-  const subline = [date ? formatLongDate(date) : null, city]
-    .filter(Boolean)
-    .join(" · ");
+  const dateLabel = date
+    ? formatDateRange(
+        { eventDate: date, endDate: endDate ?? null, weddingDate: null },
+        formatLongDate,
+      )
+    : null;
+  const subline = [dateLabel, city].filter(Boolean).join(" · ");
 
   return (
     <div className="rounded-20 bg-primary text-primary-foreground tablet:p-8 relative overflow-hidden p-6">
@@ -72,7 +80,7 @@ export const CountdownHero = ({
             variant="secondary"
             className="text-primary-foreground"
           >
-            <Link href={appRoutes.app.weddingPlanner.assistant}>
+            <Link href={routes.assistant}>
               <SparkleIcon width={15} height={15} />
               {askAiLabel}
             </Link>
@@ -84,9 +92,7 @@ export const CountdownHero = ({
           variant="pillGhost"
           className="text-primary-foreground border-primary-foreground/35 hover:bg-primary-foreground/10 bg-transparent"
         >
-          <Link href={appRoutes.app.weddingPlanner.timeline}>
-            {viewTimelineLabel}
-          </Link>
+          <Link href={routes.timeline}>{viewTimelineLabel}</Link>
         </Button>
       </div>
     </div>

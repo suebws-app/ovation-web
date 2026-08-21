@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "veya fotoğraf yükle",
   "photos__tile__select_photo": "{name} kişisinden gelen fotoğrafı seç",
-  "photos__lightbox__show_photo": "Fotoğraf {number}'ı göster"
+  "photos__lightbox__show_photo": "Fotoğraf {number}'ı göster",
+  "photos__detail__pin_to_album": "Albümün başına sabitle",
+  "photos__detail__unpin_from_album": "Albümden sabitlemeyi kaldır"
 }

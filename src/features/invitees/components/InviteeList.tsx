@@ -18,6 +18,7 @@ type InviteeListProps = {
   invitees: Invitee[];
   isLoading: boolean;
   isError: boolean;
+  attachAgenda?: boolean;
 };
 
 export const InviteeList = ({
@@ -25,6 +26,7 @@ export const InviteeList = ({
   invitees,
   isLoading,
   isError,
+  attachAgenda,
 }: InviteeListProps) => {
   const t = useTranslations();
   const [search, setSearch] = useState("");
@@ -54,6 +56,7 @@ export const InviteeList = ({
             eventId={eventId}
             invitee={invitee}
             index={i}
+            attachAgenda={attachAgenda}
           />
         ))}
       </TableBody>

@@ -75,9 +75,20 @@
   "invitees__send_all__confirm": "Надіслати запрошення {count, plural, one {# гостю} few {# гостям} many {# гостям} other {# гостям}} зараз?",
   "invitees__send_all__success": "{queued} у черзі, {skipped} пропущено (без email).",
   "invitees__send_all__error": "Не вдалося поставити запрошення в чергу. Спробуй ще раз.",
+  "invitees__send_all__attach_agenda": "Додати PDF з порядком денним",
   "invitees__preview__cta": "Перегляд",
   "invitees__preview__hide": "Сховати попередній перегляд",
   "invitees__preview__show": "Показати попередній перегляд",
   "invitees__preview__title": "Попередній перегляд запрошення",
-  "invitees__edit_card__cta": "Редагувати картку запрошення"
+  "invitees__edit_card__cta": "Редагувати картку запрошення",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note",
+  "invitees__rsvp_summary__title": "RSVP",
+  "invitees__rsvp_summary__coming": "coming",
+  "invitees__rsvp_summary__entries": "{coming} of {total} invites",
+  "invitees__rsvp_summary__empty": "No guests yet"
 }

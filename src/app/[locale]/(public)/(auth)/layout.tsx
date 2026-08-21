@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
+import { SignupThemeScope } from "@/components/SignupThemeScope";
 import { AuthLayout } from "@/features/layout/AuthLayout/AuthLayout";
+import { ApiPreconnect } from "@/components/ApiPreconnect";
 import { loadShellMessages } from "@/i18n/loadMessages";
 import type { LocalePageProps } from "@/i18n/types";
 
@@ -16,6 +18,8 @@ const AuthGroupLayout = async ({
   const messages = await loadShellMessages(locale, ["auth", "signup"]);
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <ApiPreconnect />
+      <SignupThemeScope />
       <AuthLayout>{children}</AuthLayout>
     </NextIntlClientProvider>
   );

@@ -11,6 +11,8 @@
   "seo__contact__description": "Pitanja o knjizi gostiju, planovima ili tiskanom Gold Booku? Javite nam se — odgovaramo brzo, prije i nakon vašeg vjenčanja.",
   "seo__for_planners__title": "Knjige gostiju za wedding planere",
   "seo__for_planners__description": "Ponudite svojim parovima knjigu gostiju koju gosti stvarno koriste. Jednostavno postavljanje, QR kartice spremne za tisak i tiskane uspomene koje klijenti vole.",
+  "seo__for_pros__title": "Ovation za profesionalce u organizaciji događaja",
+  "seo__for_pros__description": "Vodite sve klijentske događaje s jednog mjesta. Glasovne knjige gostiju, QR kartice spremne za tisak i tiskane uspomene — s cijenama za organizatore, fotografe i prostore.",
   "seo__gold_book__title": "Gold Book — tiskana uspomena s vjenčanja",
   "seo__gold_book__description": "Knjiga vaših poruka s vjenčanja uvezena u platno — transkripti, omiljene fotografije i QR kodovi koji reproduciraju svaki glas. Do 180 stranica.",
   "seo__how_it_works__title": "Kako funkcionira — knjiga gostiju s QR kodom",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "AI planer vjenčanja — besplatna aplikacija za parove",
   "seo__wedding_planner__description": "Isplanirajte vjenčanje s pametnom vremenskom crtom, popisom zadataka, praćenjem proračuna, popisom gostiju, imenikom dobavljača i AI asistentom koji poznaje vaš datum, proračun, goste i dobavljače — besplatno.",
   "seo__use_case__title": "{title} — Vjenčana knjiga gostiju Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Primjeri primjene — knjige gostiju za svaku prigodu",
+  "seo__use_cases_index__description": "Vjenčanja, rođendani, poslovni događaji, komemoracije i još mnogo toga. Pogledajte kako Ovation prikuplja glasovne poruke i fotografije vaših gostiju i pretvara ih u knjigu uspomena."
 }

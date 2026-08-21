@@ -75,9 +75,20 @@
   "invitees__send_all__confirm": "Lähetetäänkö kutsut {count, plural, one {# vieraalle} other {# vieraalle}} nyt?",
   "invitees__send_all__success": "{queued} jonossa, {skipped} ohitettu (ei sähköpostia).",
   "invitees__send_all__error": "Kutsuja ei voitu jonottaa. Yritä uudelleen.",
+  "invitees__send_all__attach_agenda": "Liitä ohjelma-PDF",
   "invitees__preview__cta": "Esikatsele",
   "invitees__preview__hide": "Piilota esikatselu",
   "invitees__preview__show": "Näytä esikatselu",
   "invitees__preview__title": "Kutsun esikatselu",
-  "invitees__edit_card__cta": "Muokkaa kutsukorttia"
+  "invitees__edit_card__cta": "Muokkaa kutsukorttia",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note",
+  "invitees__rsvp_summary__title": "RSVP",
+  "invitees__rsvp_summary__coming": "coming",
+  "invitees__rsvp_summary__entries": "{coming} of {total} invites",
+  "invitees__rsvp_summary__empty": "No guests yet"
 }

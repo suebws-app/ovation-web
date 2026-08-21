@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { getBlobDuration } from "@/lib/media/getBlobDuration";
 
 const DEFAULT_MAX_DURATION_SEC = 60;
+const LEVEL_BAR_COUNT = 32;
+const IDLE_LEVELS: number[] = Array.from({ length: LEVEL_BAR_COUNT }, () => 0);
 
 export type AudioRecording = {
   blob: Blob;
@@ -34,6 +36,7 @@ export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
   const [state, setState] = useState<RecorderState>("idle");
   const [recording, setRecording] = useState<AudioRecording | null>(null);
   const [elapsed, setElapsed] = useState(0);
+  const [levels, setLevels] = useState<number[]>(IDLE_LEVELS);
   const [error, setError] = useState<string | null>(null);
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -41,19 +44,68 @@ export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
   const chunksRef = useRef<Blob[]>([]);
   const startedAtRef = useRef<number>(0);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const frameRef = useRef<number | null>(null);
   const maxDurationRef = useRef(maxDurationSec);
   useEffect(() => {
     maxDurationRef.current = maxDurationSec;
   });
 
+  const stopMeter = useCallback(() => {
+    if (frameRef.current !== null) {
+      cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
+    }
+    void audioContextRef.current?.close().catch(() => undefined);
+    audioContextRef.current = null;
+    setLevels(IDLE_LEVELS);
+  }, []);
+
+  const startMeter = useCallback((stream: MediaStream) => {
+    const AudioContextCtor =
+      window.AudioContext ??
+      (window as unknown as { webkitAudioContext?: typeof AudioContext })
+        .webkitAudioContext;
+    if (!AudioContextCtor) return;
+
+    const context = new AudioContextCtor();
+    audioContextRef.current = context;
+    const analyser = context.createAnalyser();
+    analyser.fftSize = 1024;
+    analyser.smoothingTimeConstant = 0.6;
+    context.createMediaStreamSource(stream).connect(analyser);
+
+    const buffer = new Uint8Array(analyser.fftSize);
+    let lastSampleAt = 0;
+
+    const sample = (now: number) => {
+      frameRef.current = requestAnimationFrame(sample);
+      if (now - lastSampleAt < 60) return;
+      lastSampleAt = now;
+
+      analyser.getByteTimeDomainData(buffer);
+      let sumSquares = 0;
+      for (const value of buffer) {
+        const centred = (value - 128) / 128;
+        sumSquares += centred * centred;
+      }
+      const rms = Math.sqrt(sumSquares / buffer.length);
+      const level = Math.min(1, Math.max(0.06, rms * 3.2));
+      setLevels((prev) => [...prev.slice(1), level]);
+    };
+
+    frameRef.current = requestAnimationFrame(sample);
+  }, []);
+
   const stopTracks = useCallback(() => {
+    stopMeter();
     streamRef.current?.getTracks().forEach((track) => track.stop());
     streamRef.current = null;
     if (tickRef.current) {
       clearInterval(tickRef.current);
       tickRef.current = null;
     }
-  }, []);
+  }, [stopMeter]);
 
   useEffect(() => {
     return () => {
@@ -106,6 +158,7 @@ export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
       recorder.start(250);
       startedAtRef.current = Date.now();
       setElapsed(0);
+      startMeter(stream);
       setState("recording");
 
       tickRef.current = setInterval(() => {
@@ -129,7 +182,7 @@ export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
               : "guest__record__audio__error_other";
       setError(t(key));
     }
-  }, [stopTracks, t]);
+  }, [startMeter, stopTracks, t]);
 
   const stop = useCallback(() => {
     if (mediaRecorderRef.current?.state === "recording") {
@@ -169,6 +222,7 @@ export const useAudioRecorder = (maxDurationSec = DEFAULT_MAX_DURATION_SEC) => {
     state,
     recording,
     elapsed,
+    levels,
     error,
     maxDurationSec,
     start,

@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Savienojums zudis",
   "kiosk__offline__body": "Kioskam nepieciešams interneta savienojums, lai pieņemtu jaunus ziņojumus. Lūdzu, atjaunojiet savienojumu, lai turpinātu.",
   "kiosk__offline__hint": "Automātiska atkārtota savienojuma izveide…",
-  "kiosk__live__welcome_overline": "Jūs esat kāzās",
+  "kiosk__live__welcome_overline": "Sveiki! Šeit ir {eventNoun}",
   "kiosk__live__tap_to_record": "Pieskarieties, lai atstātu ziņojumu",
   "kiosk__live__closed": "Iesniegumi slēgti",
   "kiosk__live__caption": "Līdz {seconds} sekundēm · audio · fotogrāfija pēc izvēles",
@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Slīdnis",
   "kiosk_setup__save_error": "Neizdevās saglabāt",
   "kiosk_setup__pin__change": "Mainīt PIN",
+  "kiosk_setup__pin__show": "Rādīt PIN",
+  "kiosk_setup__pin__hide": "Slēpt PIN",
+  "kiosk_setup__pin__unknown": "Paslēpts",
   "kiosk__gate__title": "Ievadiet kioska PIN",
   "kiosk__gate__hint": "Ierakstiet 4 ciparu PIN, lai atvērtu kiosku.",
   "kiosk__gate__submit": "Atvērt kiosku",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Nosūtiet šo saiti personai, kas kiosku iestatīs dienā. Tai būs nepieciešams PIN, lai to atvērtu.",
   "kiosk__share__copy": "Kopēt saiti",
   "kiosk__share__copied": "Nokopēts!",
-  "kiosk__share__pin_set": "Noklusējuma PIN ir 1234. Mainiet to bloķēšanas kartē pirms kopīgošanas."
+  "kiosk__share__pin_value": "Kioska PIN: {pin}. Tas nepieciešams tam, kurš atver kiosku.",
+  "kiosk__share__pin_unknown": "Iestatiet jaunu kioska PIN bloķēšanas kartē, lai to redzētu šeit."
 }

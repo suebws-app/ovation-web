@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { getDateFnsLocale } from "@/lib/utils/dateFnsLocale";
 import { Dialog } from "radix-ui";
 import { cn } from "@ovation/ui/utils/cn";
 import { Button } from "@ovation/ui/components/Button";
@@ -74,6 +75,7 @@ const toDefaults = (todo: PlannerTodo | null): TaskFields =>
 
 export const TaskModal = ({ eventId, open, todo, onClose }: TaskModalProps) => {
   const t = useTranslations();
+  const uiLocale = useLocale();
   const schema = useMemo(() => getTaskSchema(t), [t]);
   const phases = useWeddingPlannerTimeline(eventId).data ?? [];
   const createTodo = useCreateTodo(eventId);
@@ -311,6 +313,7 @@ export const TaskModal = ({ eventId, open, todo, onClose }: TaskModalProps) => {
                           >
                             <Calendar
                               mode="single"
+                              locale={getDateFnsLocale(uiLocale)}
                               selected={selected}
                               onSelect={(date) => {
                                 field.onChange(date ? toIsoDate(date) : "");

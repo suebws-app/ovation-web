@@ -111,6 +111,21 @@ export const mediaClient = {
       body: input,
     }),
 
+  setPinned: (
+    eventId: string,
+    mediaId: string,
+    pinned: boolean,
+  ): Promise<{ id: string; pinned: boolean }> =>
+    clientFetch<{ id: string; pinned: boolean }>(
+      `${mediaPath(eventId)}/${mediaId}/pin`,
+      { method: "PATCH", body: { pinned } },
+    ),
+
+  removeComment: (eventId: string, commentId: string): Promise<void> =>
+    clientFetch<void>(`${mediaPath(eventId)}/comments/${commentId}`, {
+      method: "DELETE",
+    }),
+
   bulkUpdate: (
     eventId: string,
     body: MediaBulkSelector & {

@@ -11,6 +11,8 @@
   "seo__contact__description": "Dúvidas sobre o seu livro de visitas, os planos ou o Gold Book impresso? Fale connosco — respondemos depressa, antes e depois do casamento.",
   "seo__for_planners__title": "Livros de Visitas para Wedding Planners",
   "seo__for_planners__description": "Dê aos seus casais um livro de visitas que os convidados usam mesmo. Configuração simples, cartões QR prontos a imprimir e keepsakes impressos adorados.",
+  "seo__for_pros__title": "Ovation para profissionais de eventos",
+  "seo__for_pros__description": "Gira todos os eventos dos seus clientes a partir de um único painel. Livros de visitas por voz, cartões QR prontos a imprimir e recordações impressas — com preços para organizadores, fotógrafos e espaços.",
   "seo__gold_book__title": "O Gold Book — Keepsake de Casamento Impresso",
   "seo__gold_book__description": "Um livro encadernado em linho com as mensagens do seu casamento — transcrições, fotografias favoritas e códigos QR que reproduzem cada voz. Até 180 páginas.",
   "seo__how_it_works__title": "Como Funciona — Livro de Visitas com Código QR",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "Planeador de casamentos com IA — App gratuita para casais",
   "seo__wedding_planner__description": "Planeie o seu casamento com um cronograma inteligente, lista de tarefas, controlo de orçamento, lista de convidados, diretório de fornecedores e um assistente de IA que conhece a sua data, orçamento, convidados e fornecedores — gratuitamente.",
   "seo__use_case__title": "{title} — Livro de honra de casamento Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Casos de utilização — livros para todas as ocasiões",
+  "seo__use_cases_index__description": "Casamentos, aniversários, eventos de empresa, homenagens e muito mais. Vê como a Ovation recolhe mensagens de voz e fotos dos teus convidados e as transforma num livro de recordação."
 }

@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Conexiune pierdută",
   "kiosk__offline__body": "Kiosk-ul are nevoie de o conexiune la internet pentru a accepta mesaje noi. Te rugăm să te reconectezi pentru a continua.",
   "kiosk__offline__hint": "Se reconectează automat…",
-  "kiosk__live__welcome_overline": "Ești la nunta",
+  "kiosk__live__welcome_overline": "Ești la {eventNoun}",
   "kiosk__live__tap_to_record": "Apasă pentru a lăsa un mesaj",
   "kiosk__live__closed": "Trimiteri închise",
   "kiosk__live__caption": "Până la {seconds} secunde · audio · fotografie opțională",
@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Glisor",
   "kiosk_setup__save_error": "Salvarea a eșuat",
   "kiosk_setup__pin__change": "Schimbă PIN-ul",
+  "kiosk_setup__pin__show": "Afișează PIN-ul",
+  "kiosk_setup__pin__hide": "Ascunde PIN-ul",
+  "kiosk_setup__pin__unknown": "Ascuns",
   "kiosk__gate__title": "Introdu PIN-ul kioscului",
   "kiosk__gate__hint": "Introdu PIN-ul de 4 cifre pentru a deschide kioscul.",
   "kiosk__gate__submit": "Deschide kioscul",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Trimite acest link persoanei care va instala kioscul în ziua respectivă. Va avea nevoie de PIN pentru a-l deschide.",
   "kiosk__share__copy": "Copiază linkul",
   "kiosk__share__copied": "Copiat!",
-  "kiosk__share__pin_set": "PIN-ul implicit este 1234. Schimbă-l din cardul de blocare înainte de distribuire."
+  "kiosk__share__pin_value": "PIN chioșc: {pin}. Îi trebuie celui care deschide chioșcul.",
+  "kiosk__share__pin_unknown": "Setează un PIN nou pentru chioșc în cardul de blocare ca să îl vezi aici."
 }

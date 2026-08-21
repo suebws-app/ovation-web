@@ -62,7 +62,7 @@ export const QRCodeStudio = ({
           dark={style.dark}
           light={style.light}
         />
-        <ShareCard url={slug} />
+        <ShareCard slug={slug} />
       </div>
     </div>
   );

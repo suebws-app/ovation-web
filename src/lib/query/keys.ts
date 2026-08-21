@@ -51,17 +51,33 @@ export const queryKeys = {
       } = {},
     ) => ["gallery", eventId, "count", input] as const,
   },
+  demo: {
+    session: () => ["demo-session"] as const,
+  },
   publicGallery: {
     all: (slug: string) => ["public-gallery", slug] as const,
     infiniteList: (
       slug: string,
-      code: string,
+      code: string | undefined,
       input: {
         type?: "photo" | "video" | "all";
         sort?: "newest" | "oldest";
         limit?: number;
+        mine?: boolean;
+        liked?: boolean;
       } = {},
     ) => ["public-gallery", slug, code, "infinite", input] as const,
+    count: (
+      slug: string,
+      code?: string,
+      scope: { mine?: boolean; liked?: boolean } = {},
+    ) => ["public-gallery", slug, code, "count", scope] as const,
+    pinned: (slug: string, code?: string) =>
+      ["public-gallery", slug, code, "pinned"] as const,
+  },
+  albumComments: {
+    list: (slug: string, mediaId: string) =>
+      ["album-comments", slug, mediaId] as const,
   },
   guests: {
     all: (eventId: string) => ["guests", eventId] as const,

@@ -60,15 +60,15 @@
   "dashboard__message__pause": "Призупинити повідомлення",
   "dashboard__photos__preview": "Переглянути фото",
   "dashboard__widget__referral__eyebrow": "Поділитися Ovation",
-  "dashboard__widget__referral__title": "Знайомі планують весілля?",
+  "dashboard__widget__referral__title": "Знаєте когось, хто планує подію?",
   "dashboard__widget__referral__description": "Надішли їм своє посилання-запрошення. Коли вони придбають перший план, ти отримаєш {reward} кредиту на свій пам'ятний альбом.",
   "dashboard__widget__referral__share_cta": "Поділитися з другом",
   "dashboard__widget__referral__copy_link": "Копіювати посилання",
   "dashboard__widget__referral__copied": "Скопійовано",
   "dashboard__widget__referral__email_share": "Поділитися електронною поштою",
-  "dashboard__widget__referral__share_title": "Ovation — голосова гостьова книга для вашого весілля",
+  "dashboard__widget__referral__share_title": "Ovation — голосова книга гостей для вашої події",
   "dashboard__widget__referral__share_body": "{name} подумав, що тобі може сподобатись Ovation — саме так ми зібрали голосові повідомлення від наших гостей замість паперової гостьової книги.",
-  "dashboard__widget__referral__email_subject": "Думаю, тобі сподобається Ovation для твого весілля",
+  "dashboard__widget__referral__email_subject": "Гадаю, вам сподобався б Ovation для вашої події",
   "dashboard__widget__referral__balance_label": "Ваш баланс кредитів",
   "dashboard__widget__referral__stats": "{invited, plural, one {запрошено # друга} other {запрошено # друзів}} · {converted, plural, one {приєднався #} other {приєдналося #}}"
 }

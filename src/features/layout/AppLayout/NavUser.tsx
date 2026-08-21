@@ -27,6 +27,7 @@ import { appRoutes } from "@/lib/routes";
 import { signOut } from "@/lib/auth/client";
 import type { User } from "@/lib/api/types";
 import { displayName, initialsOf } from "@/lib/utils/userFormatters";
+import { isPaidPlan } from "@/lib/utils/plan";
 
 type NavUserProps = {
   user: User;
@@ -105,7 +106,7 @@ export const NavUser = ({ user }: NavUserProps) => {
                 </Link>
               </DropdownMenuItem>
 
-              {user.planTier !== "free" ? (
+              {isPaidPlan(user.planTier) ? (
                 <DropdownMenuItem asChild>
                   <Link href={appRoutes.settings.billing}>
                     <StarIcon />

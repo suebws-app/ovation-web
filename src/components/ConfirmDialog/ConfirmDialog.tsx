@@ -21,6 +21,7 @@ export const ConfirmDialog = ({
   description,
   cancelLabel,
   confirmLabel,
+  confirmTone = "primary",
   isPending = false,
   onCancel,
   onConfirm,
@@ -73,6 +74,7 @@ export const ConfirmDialog = ({
           </Button>
           <Button
             type="button"
+            variant={confirmTone === "destructive" ? "destructive" : undefined}
             onClick={onConfirm}
             disabled={isPending}
             className="flex-1 rounded-full"

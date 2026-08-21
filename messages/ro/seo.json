@@ -11,6 +11,8 @@
   "seo__contact__description": "Ai întrebări despre cartea de oaspeți, planuri sau Gold Book tipărită? Scrie-ne — răspundem rapid, înainte și după ziua nunții.",
   "seo__for_planners__title": "Cărți de oaspeți pentru planneri de nunți",
   "seo__for_planners__description": "Oferă cuplurilor tale o carte de oaspeți pe care invitații chiar o folosesc. Configurare simplă, carduri QR gata de tipar, amintiri tipărite adorate de clienți.",
+  "seo__for_pros__title": "Ovation pentru profesioniștii din evenimente",
+  "seo__for_pros__description": "Gestionează toate evenimentele clienților dintr-un singur panou. Cărți de oaspeți cu mesaje vocale, carduri QR gata de tipar și amintiri tipărite — prețuri pentru organizatori, fotografi și locații.",
   "seo__gold_book__title": "Gold Book — amintire tipărită de nuntă",
   "seo__gold_book__description": "O carte legată în pânză cu mesajele de la nunta ta — transcrieri, fotografii preferate și coduri QR care redau fiecare voce. Până la 180 de pagini.",
   "seo__how_it_works__title": "Cum funcționează — carte de oaspeți cu cod QR",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "Planificator de nuntă cu AI — Aplicație gratuită pentru cupluri",
   "seo__wedding_planner__description": "Planifică-ți nunta cu un calendar inteligent, listă de sarcini, monitorizare a bugetului, listă de invitați, director de furnizori și un asistent AI care îți cunoaște data, bugetul, invitații și furnizorii — gratuit.",
   "seo__use_case__title": "{title} — Cartea de oaspeți de nuntă Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Cazuri de utilizare — cărți de oaspeți pentru orice ocazie",
+  "seo__use_cases_index__description": "Nunți, zile de naștere, evenimente de companie, comemorări și multe altele. Vezi cum adună Ovation mesajele vocale și pozele invitaților tăi și le transformă într-o carte de amintire."
 }

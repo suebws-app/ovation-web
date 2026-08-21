@@ -11,6 +11,8 @@
   "seo__contact__description": "¿Dudas sobre tu libro de firmas, los planes o el Gold Book impreso? Escríbenos — respondemos rápido, antes y después de tu boda.",
   "seo__for_planners__title": "Libros de firmas para wedding planners",
   "seo__for_planners__description": "Ofrece a tus parejas un libro de firmas que sus invitados usan de verdad. Configuración sencilla, tarjetas QR listas para imprimir y keepsakes impresos.",
+  "seo__for_pros__title": "Ovation para profesionales de eventos",
+  "seo__for_pros__description": "Gestiona todos los eventos de tus clientes desde un solo panel. Libros de visitas con voz, tarjetas QR listas para imprimir y recuerdos impresos — con precios para organizadores, fotógrafos y espacios.",
   "seo__gold_book__title": "El Gold Book — recuerdo de boda impreso",
   "seo__gold_book__description": "Un libro encuadernado en lino con los mensajes de tu boda — transcripciones, fotos favoritas y códigos QR que reproducen cada voz. Hasta 180 páginas.",
   "seo__how_it_works__title": "Cómo funciona — libro de firmas con código QR",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "Planificador de bodas con IA — App gratis para parejas",
   "seo__wedding_planner__description": "Organiza tu boda con un cronograma inteligente, lista de tareas, control de presupuesto, lista de invitados, directorio de proveedores y un asistente de IA que conoce tu fecha, presupuesto, invitados y proveedores — gratis.",
   "seo__use_case__title": "{title} — Libro de firmas de boda Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Casos de uso — libros de firmas para cada ocasión",
+  "seo__use_cases_index__description": "Bodas, cumpleaños, eventos de empresa, memoriales y más. Descubre cómo Ovation reúne mensajes de voz y fotos de tus invitados y los convierte en un libro de recuerdo."
 }

@@ -1,4 +1,6 @@
 export const INVITATION_STEPS = ["design", "details", "guests"] as const;
+
+export const PREVIEW_GUEST_NAME = "Alex";
 export type InvitationStepId = (typeof INVITATION_STEPS)[number];
 
 export const TOTAL_INVITATION_STEPS = INVITATION_STEPS.length;

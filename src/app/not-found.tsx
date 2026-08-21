@@ -3,13 +3,13 @@ import { Kicker } from "@ovation/ui/components/Kicker";
 import { Button } from "@ovation/ui/components/Button";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
-import { loadPublicShellMessages } from "@/i18n/loadMessages";
+import { loadShellMessages } from "@/i18n/loadMessages";
 import { RootHeader } from "@/features/layout/RootHeader";
 import { RootFooter } from "@/features/layout/RootFooter";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
 
 const RootNotFound = async () => {
-  const messages = await loadPublicShellMessages("en");
+  const messages = await loadShellMessages("en", ["marketing"]);
   const t = (key: string) => (messages[key] as string) ?? key;
 
   return (

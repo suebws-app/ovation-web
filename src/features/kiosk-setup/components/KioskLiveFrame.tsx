@@ -7,6 +7,10 @@ import { useRouter, usePathname } from "@/i18n/navigation";
 import { LockIcon } from "@ovation/icons/LockIcon";
 import { LogOutIcon } from "@ovation/icons/LogOutIcon";
 import type { PublicEvent } from "@/lib/api/types";
+import { eventDateOf, eventHostNames, useEventCopy } from "@/lib/event-types";
+import { appRoutes } from "@/lib/routes";
+import { useGuestSubmissionStore } from "@/features/guest/store/useGuestSubmissionStore";
+import { clearStoredGuestName } from "@/features/guest/welcome/guestNameStorage";
 import { useFullscreen } from "@/lib/hooks/useFullscreen";
 import { useWakeLock } from "@/lib/hooks/useWakeLock";
 import { KioskLiveLanguagePopover } from "./KioskLiveLanguagePopover";
@@ -21,7 +25,7 @@ type KioskLiveFrameProps = {
   enableWakeLock?: boolean;
 };
 
-const formatWeddingDate = (raw: string | null): string => {
+const formatEventDate = (raw: string | null): string => {
   if (!raw) return "";
   const d = new Date(raw);
   if (Number.isNaN(d.getTime())) return raw;
@@ -41,13 +45,19 @@ export const KioskLiveFrame = ({
   enableWakeLock = false,
 }: KioskLiveFrameProps) => {
   const t = useTranslations();
+  const copy = useEventCopy(event);
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale();
   const searchParams = useSearchParams();
-  const dateLabel = formatWeddingDate(event.weddingDate);
-  const recordHref = `/g/${slug}/record?source=kiosk`;
-  const handleStart = () => router.push(recordHref);
+  const dateLabel = formatEventDate(eventDateOf(event));
+  const names = eventHostNames(event);
+  const welcomeHref = `${appRoutes.guest.base(slug)}?next=upload&source=kiosk`;
+  const handleStart = () => {
+    clearStoredGuestName(slug);
+    useGuestSubmissionStore.getState().reset();
+    router.push(welcomeHref);
+  };
   const isClosed = !event.submissionOpen || event.limitReached;
   const showThanks = searchParams.get("submitted") === "1";
   const [exitOpen, setExitOpen] = useState(false);
@@ -191,21 +201,20 @@ export const KioskLiveFrame = ({
       <div className="tablet:px-20 hide-scrollbar relative z-10 flex min-h-0 flex-1 flex-col items-center overflow-y-auto px-6 py-8 text-center">
         <div className="m-auto flex w-full max-w-full flex-col items-center">
           <div className="type-overline text-primary tracking-widest">
-            {t("kiosk__live__welcome_overline")}
+            {copy("kiosk__live__welcome_overline")}
           </div>
 
           <h1
             className="mt-3.5 w-full max-w-full text-center font-serif leading-none font-semibold tracking-tight break-words"
             style={{ fontSize: "clamp(2.5rem, 12vw, 96px)" }}
           >
-            {event.eventName?.trim() ? (
-              event.eventName
-            ) : (
+            {names.length > 1 ? (
               <>
-                {event.partnerAName}{" "}
-                <span className="text-primary italic">&amp;</span>{" "}
-                {event.partnerBName}
+                {names[0]} <span className="text-primary italic">&amp;</span>{" "}
+                {names[1]}
               </>
+            ) : (
+              names[0]
             )}
           </h1>
           {dateLabel && (

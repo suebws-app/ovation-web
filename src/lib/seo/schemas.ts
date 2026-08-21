@@ -1,5 +1,6 @@
 import { appUrl } from "./urls";
 import { clientEnv } from "@/lib/utils/env.client";
+import { locales } from "@/i18n/config";
 
 type FaqItem = {
   q: string;
@@ -45,7 +46,6 @@ export const organizationSchema = () => {
     legalName: clientEnv.LEGAL_ENTITY_NAME,
     url: appUrl,
     logo: `${appUrl}/apple-icon.png`,
-    foundingDate: "2026",
     address: clientEnv.LEGAL_ENTITY_ADDRESS,
     contactPoint: {
       "@type": "ContactPoint",
@@ -63,6 +63,7 @@ export const webSiteSchema = () => ({
   "@id": `${appUrl}/#website`,
   name: "Ovation",
   url: appUrl,
+  inLanguage: [...locales],
   publisher: { "@id": `${appUrl}/#organization` },
   // SearchAction / sitelinks searchbox removed: no /search route exists
   // yet. Add it back once we ship an actual search page — pointing at a
@@ -246,6 +247,7 @@ type SoftwareApplicationInput = {
   applicationCategory?: string;
   operatingSystem?: string;
   imageUrl?: string;
+  screenshot?: string | string[];
   featureList?: string[];
 };
 
@@ -258,6 +260,7 @@ export const softwareApplicationSchema = (input: SoftwareApplicationInput) => ({
   applicationCategory: input.applicationCategory ?? "LifestyleApplication",
   operatingSystem: input.operatingSystem ?? "Web",
   image: input.imageUrl,
+  screenshot: input.screenshot,
   featureList:
     input.featureList && input.featureList.length > 0
       ? input.featureList
@@ -269,6 +272,29 @@ export const softwareApplicationSchema = (input: SoftwareApplicationInput) => ({
     availability: "https://schema.org/InStock",
   },
   publisher: { "@id": `${appUrl}/#organization` },
+});
+
+type LinkItemListEntry = {
+  name: string;
+  url: string;
+  description?: string;
+};
+
+export const linkItemListSchema = (
+  name: string,
+  items: LinkItemListEntry[],
+) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name,
+  numberOfItems: items.length,
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    url: item.url,
+    ...(item.description ? { description: item.description } : {}),
+  })),
 });
 
 const hasValidOffer = (

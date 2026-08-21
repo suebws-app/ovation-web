@@ -11,6 +11,8 @@
   "seo__contact__description": "Spørsmål om gjesteboken din, planene eller den trykte Gold Book? Ta kontakt — vi svarer raskt, både før og etter bryllupsdagen.",
   "seo__for_planners__title": "Gjestebøker for bryllupsplanleggere",
   "seo__for_planners__description": "Gi parene dine en gjestebok gjestene faktisk bruker. Enkelt oppsett, trykkeklare QR-kort og trykte minner kundene elsker.",
+  "seo__for_pros__title": "Ovation for eventprofesjonelle",
+  "seo__for_pros__description": "Kjør alle kundearrangementer fra ett dashbord. Stemmebaserte gjestebøker, trykkeklare QR-kort og trykte minner — priset for planleggere, fotografer og lokaler.",
   "seo__gold_book__title": "Gold Book — Trykt bryllupsminne",
   "seo__gold_book__description": "En lerretsinnbundet bok med bryllupsmeldingene deres — transkripsjoner, favorittbilder og QR-koder som spiller av hver stemme. Opptil 180 sider.",
   "seo__how_it_works__title": "Slik fungerer det — Gjestebok med QR-kode",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "AI-bryllupsplanlegger — Gratis app for par",
   "seo__wedding_planner__description": "Planlegg bryllupet deres med en smart tidslinje, oppgaveliste, budsjettverktøy, gjesteliste, leverandørkatalog og en AI-assistent som kjenner datoen, budsjettet, gjestene og leverandørene deres — gratis.",
   "seo__use_case__title": "{title} — Ovation-bryllupsgjestebok",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Bruksområder — gjestebøker for enhver anledning",
+  "seo__use_cases_index__description": "Bryllup, bursdager, bedriftsarrangementer, minnesider og mer. Se hvordan Ovation samler talemeldinger og bilder fra gjestene dine og gjør det om til en minnebok."
 }

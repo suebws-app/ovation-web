@@ -11,6 +11,8 @@
   "seo__contact__description": "Kérdésed van a vendégkönyvről, a csomagokról vagy a nyomtatott Gold Book-ról? Írj nekünk — gyorsan válaszolunk, az esküvőd előtt és után is.",
   "seo__for_planners__title": "Vendégkönyvek esküvőszervezőknek",
   "seo__for_planners__description": "Adj a párjaidnak olyan vendégkönyvet, amit a vendégek tényleg használnak. Egyszerű beállítás, nyomdakész QR-kártyák és nyomtatott emlékek, amiket imádnak.",
+  "seo__for_pros__title": "Ovation eseményszervező szakembereknek",
+  "seo__for_pros__description": "Kezelje minden ügyfélrendezvényét egyetlen felületről. Hangalapú vendégkönyvek, nyomdakész QR-kártyák és nyomtatott emlékek — szervezőknek, fotósoknak és helyszíneknek szabott árakon.",
   "seo__gold_book__title": "Gold Book — nyomtatott esküvői emlék",
   "seo__gold_book__description": "Vászonkötésű könyv az esküvői üzeneteidből — átiratok, kedvenc fotók és QR-kódok, amelyek minden hangot lejátszanak. Akár 180 oldal.",
   "seo__how_it_works__title": "Hogyan működik — QR-kódos vendégkönyv",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "AI Esküvőtervező — Ingyenes App Pároknak",
   "seo__wedding_planner__description": "Tervezd meg az esküvődet okos idővonallal, feladatlistával, költségvetéskövetővel, vendéglistával, szolgáltatói katalógussal és egy AI asszisztenssel, amely ismeri a dátumod, költségvetésed, vendégeidet és szolgáltatóidat — ingyen.",
   "seo__use_case__title": "{title} — Ovation esküvői vendégkönyv",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Felhasználási esetek — vendégkönyvek minden alkalomra",
+  "seo__use_cases_index__description": "Esküvők, születésnapok, céges rendezvények, megemlékezések és sok más. Nézd meg, hogyan gyűjti az Ovation a vendégeid hangüzeneteit és fotóit, és hogyan formálja emlékkönyvvé."
 }

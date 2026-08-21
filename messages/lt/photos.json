@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "arba įkelti nuotraukas",
   "photos__tile__select_photo": "Pasirinkti nuotrauką nuo {name}",
-  "photos__lightbox__show_photo": "Rodyti nuotrauką {number}"
+  "photos__lightbox__show_photo": "Rodyti nuotrauką {number}",
+  "photos__detail__pin_to_album": "Prisegti albumo viršuje",
+  "photos__detail__unpin_from_album": "Atsegti nuo albumo"
 }

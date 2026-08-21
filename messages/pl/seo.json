@@ -11,6 +11,8 @@
   "seo__contact__description": "Masz pytania o księgę gości, plany lub drukowaną Gold Book? Napisz do nas — odpowiadamy szybko, przed ślubem i po nim.",
   "seo__for_planners__title": "Księgi gości dla wedding plannerów",
   "seo__for_planners__description": "Daj swoim parom księgę gości, z której goście naprawdę korzystają. Prosta konfiguracja, gotowe do druku karty QR i drukowane pamiątki, które klienci kochają.",
+  "seo__for_pros__title": "Ovation dla profesjonalistów eventowych",
+  "seo__for_pros__description": "Prowadź wszystkie wydarzenia klientów z jednego panelu. Głosowe księgi gości, karty QR gotowe do druku i drukowane pamiątki — w cenach dla organizatorów, fotografów i obiektów.",
   "seo__gold_book__title": "Gold Book — drukowana pamiątka ślubna",
   "seo__gold_book__description": "Oprawiona w płótno księga waszych ślubnych wiadomości — transkrypcje, ulubione zdjęcia i kody QR odtwarzające każdy głos. Do 180 stron.",
   "seo__how_it_works__title": "Jak to działa — księga gości z kodem QR",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "Planer ślubu z AI — bezpłatna aplikacja dla par",
   "seo__wedding_planner__description": "Zaplanujcie swój ślub z inteligentnym harmonogramem, listą zadań, kontrolą budżetu, listą gości, katalogiem dostawców i asystentem AI, który zna Waszą datę, budżet, gości i dostawców — bezpłatnie.",
   "seo__use_case__title": "{title} — Ślubna księga gości Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Zastosowania — księgi gości na każdą okazję",
+  "seo__use_cases_index__description": "Wesela, urodziny, wydarzenia firmowe, strony pamięci i wiele więcej. Zobacz, jak Ovation zbiera wiadomości głosowe i zdjęcia od Twoich gości i zamienia je w książkę pamiątkową."
 }

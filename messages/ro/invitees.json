@@ -75,9 +75,20 @@
   "invitees__send_all__confirm": "Trimiți invitațiile către {count, plural, one {# invitat} few {# invitați} other {# de invitați}} acum?",
   "invitees__send_all__success": "{queued} în coadă, {skipped} omise (fără e-mail).",
   "invitees__send_all__error": "Nu am putut pune invitațiile în coadă. Încearcă din nou.",
+  "invitees__send_all__attach_agenda": "Atașează PDF-ul agendei",
   "invitees__preview__cta": "Previzualizare",
   "invitees__preview__hide": "Ascunde previzualizarea",
   "invitees__preview__show": "Arată previzualizarea",
   "invitees__preview__title": "Previzualizarea invitației",
-  "invitees__edit_card__cta": "Editează cardul de invitație"
+  "invitees__edit_card__cta": "Editează cardul de invitație",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note",
+  "invitees__rsvp_summary__title": "RSVP",
+  "invitees__rsvp_summary__coming": "coming",
+  "invitees__rsvp_summary__entries": "{coming} of {total} invites",
+  "invitees__rsvp_summary__empty": "No guests yet"
 }

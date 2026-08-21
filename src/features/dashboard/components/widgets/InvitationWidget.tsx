@@ -8,22 +8,30 @@ import { Card, CardContent } from "@ovation/ui/components/Card";
 import { Link } from "@/i18n/navigation";
 import { appRoutes } from "@/lib/routes";
 import type { Event, InvitationTemplate } from "@/lib/api/types";
+import {
+  eventCardTitle,
+  formatDateRange,
+  isDateRange,
+  memorialLifeSpan,
+} from "@/lib/event-types";
 import { InviteCard } from "@/features/invitation/components/InviteCard";
+import { PREVIEW_GUEST_NAME } from "@/features/invitation/constants";
 import { useInvitationTemplatesQuery } from "@/lib/query/invitationTemplatesQueries";
 
 type InvitationWidgetProps = {
   event: Event;
+  editHref?: string;
 };
 
-const formatDateLabel = (iso: string | null): string | undefined => {
-  if (!iso) return undefined;
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return undefined;
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+const formatDateLabel = (raw: string): string => {
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime())
+    ? raw
+    : date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
 };
 
 const pickTemplate = (
@@ -35,7 +43,10 @@ const pickTemplate = (
   templates.find((tpl) => tpl.id === defaultId) ??
   templates[0];
 
-export const InvitationWidget = ({ event }: InvitationWidgetProps) => {
+export const InvitationWidget = ({
+  event,
+  editHref = appRoutes.app.invitation,
+}: InvitationWidgetProps) => {
   const t = useTranslations();
   const { data } = useInvitationTemplatesQuery();
 
@@ -65,16 +76,85 @@ export const InvitationWidget = ({ event }: InvitationWidgetProps) => {
             <InviteCard
               template={template}
               values={{
-                partnerA: event.eventName?.trim()
-                  ? event.eventName
-                  : event.partnerAName,
-                partnerB: event.eventName?.trim() ? "" : event.partnerBName,
-                singleName: Boolean(event.eventName?.trim()),
-                dateLabel: formatDateLabel(event.weddingDate),
-                venue: event.venueName ?? undefined,
-                place: event.venueCity ?? undefined,
+                ...eventCardTitle(t, {
+                  eventType: event.eventType,
+                  hostA: event.hostAName ?? event.partnerAName,
+                  hostB: event.hostBName ?? event.partnerBName,
+                  eventName:
+                    typeof event.details?.eventName === "string"
+                      ? event.details.eventName
+                      : undefined,
+                  customEventNoun:
+                    typeof event.details?.customEventNoun === "string"
+                      ? event.details.customEventNoun
+                      : undefined,
+                }),
+                subtitle:
+                  event.eventType === "memorial"
+                    ? memorialLifeSpan(
+                        event.details?.bornOn,
+                        event.details?.passedOn,
+                      )
+                    : undefined,
+                logo:
+                  event.details?.showLogo !== false &&
+                  typeof event.details?.logo === "string"
+                    ? event.details.logo
+                    : undefined,
+                dateLabel: formatDateRange(event, formatDateLabel) ?? undefined,
+                time:
+                  typeof event.details?.time === "string" && event.details.time
+                    ? t(
+                        isDateRange(event)
+                          ? "invitation__time__from"
+                          : "invitation__time__at",
+                        { time: event.details.time },
+                      )
+                    : undefined,
+                venue: event.locationName ?? event.venueName ?? undefined,
+                place: event.locationCity ?? event.venueCity ?? undefined,
                 message: event.welcomeMessage ?? undefined,
+                greeting:
+                  typeof event.details?.greeting === "string"
+                    ? event.details.greeting
+                    : undefined,
+                age:
+                  event.details?.showAge !== false &&
+                  typeof event.details?.age === "number"
+                    ? event.details.age
+                    : undefined,
               }}
+              guestFirstName={PREVIEW_GUEST_NAME}
+              pageBg={
+                typeof event.details?.pageBg === "string"
+                  ? event.details.pageBg
+                  : undefined
+              }
+              cardBg={
+                typeof event.details?.cardBg === "string"
+                  ? event.details.cardBg
+                  : undefined
+              }
+              textColor={
+                typeof event.details?.textColor === "string"
+                  ? event.details.textColor
+                  : undefined
+              }
+              mutedColor={
+                typeof event.details?.mutedColor === "string"
+                  ? event.details.mutedColor
+                  : undefined
+              }
+              accentColor={
+                typeof event.details?.accentColor === "string"
+                  ? event.details.accentColor
+                  : undefined
+              }
+              textScale={
+                typeof event.details?.textScale === "number"
+                  ? event.details.textScale
+                  : undefined
+              }
             />
           ) : (
             <div className="bg-muted h-full w-full animate-pulse" />
@@ -82,7 +162,7 @@ export const InvitationWidget = ({ event }: InvitationWidgetProps) => {
         </div>
 
         <Button asChild>
-          <Link href={appRoutes.app.invitation}>
+          <Link href={editHref}>
             {t("dashboard__widget__invitation__edit_cta")}
           </Link>
         </Button>

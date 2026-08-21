@@ -20,9 +20,9 @@ export const PhotoThumb = ({
       type="button"
       onClick={onRemove}
       aria-label={removeLabel}
-      className="bg-foreground/70 text-background hover:bg-foreground absolute top-1.5 right-1.5 flex size-6 items-center justify-center rounded-full backdrop-blur-sm transition"
+      className="bg-foreground/70 text-background hover:bg-foreground absolute top-1 right-1 flex size-5 items-center justify-center rounded-full backdrop-blur-sm transition"
     >
-      <XIcon width={12} height={12} />
+      <XIcon width={10} height={10} />
     </button>
   </div>
 );

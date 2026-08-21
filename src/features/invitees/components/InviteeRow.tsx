@@ -24,14 +24,22 @@ import {
 import { inviteesTableColumnClasses } from "../tableColumns";
 import { initialsFor, tintFor } from "../utils/inviteeAvatar";
 import { InviteeStatusChip } from "./InviteeStatusChip";
+import { RsvpStatusChip } from "./RsvpStatusChip";
+import { RsvpNoteCell } from "./RsvpNoteCell";
 
 type InviteeRowProps = {
   eventId: string;
   invitee: Invitee;
   index: number;
+  attachAgenda?: boolean;
 };
 
-export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
+export const InviteeRow = ({
+  eventId,
+  invitee,
+  index,
+  attachAgenda,
+}: InviteeRowProps) => {
   const t = useTranslations();
   const update = useUpdateInvitee(eventId);
   const remove = useDeleteInvitee(eventId);
@@ -81,7 +89,7 @@ export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
 
   const handleSend = async () => {
     try {
-      await send.mutateAsync(invitee.id);
+      await send.mutateAsync({ inviteeId: invitee.id, attachAgenda });
       toast.success(
         t("invitees__row__send_success", { name: invitee.firstName }),
       );
@@ -146,6 +154,8 @@ export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
           />
         </TableCell>
         <TableCell className={inviteesTableColumnClasses.status} />
+        <TableCell className={inviteesTableColumnClasses.rsvp} />
+        <TableCell className={inviteesTableColumnClasses.note} />
         <TableCell className={inviteesTableColumnClasses.actions}>
           <div className="flex justify-end gap-1">
             <Button
@@ -204,6 +214,7 @@ export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
                 {t("invitees__row__seats_inline", { count: invitee.seats })}
               </span>
               <InviteeStatusChip invitee={invitee} />
+              <RsvpStatusChip invitee={invitee} />
             </div>
           </div>
         </div>
@@ -223,6 +234,12 @@ export const InviteeRow = ({ eventId, invitee, index }: InviteeRowProps) => {
       </TableCell>
       <TableCell className={inviteesTableColumnClasses.status}>
         <InviteeStatusChip invitee={invitee} />
+      </TableCell>
+      <TableCell className={inviteesTableColumnClasses.rsvp}>
+        <RsvpStatusChip invitee={invitee} />
+      </TableCell>
+      <TableCell className={inviteesTableColumnClasses.note}>
+        <RsvpNoteCell invitee={invitee} />
       </TableCell>
       <TableCell className={inviteesTableColumnClasses.actions}>
         <div className="flex justify-end gap-1">

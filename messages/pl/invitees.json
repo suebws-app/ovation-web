@@ -75,9 +75,20 @@
   "invitees__send_all__confirm": "Wysłać zaproszenia do {count, plural, one {# gościa} few {# gości} many {# gości} other {# gości}} teraz?",
   "invitees__send_all__success": "{queued} w kolejce, {skipped} pominięto (bez e-maila).",
   "invitees__send_all__error": "Nie udało się umieścić zaproszeń w kolejce. Spróbuj ponownie.",
+  "invitees__send_all__attach_agenda": "Dołącz PDF z agendą",
   "invitees__preview__cta": "Podgląd",
   "invitees__preview__hide": "Ukryj podgląd",
   "invitees__preview__show": "Pokaż podgląd",
   "invitees__preview__title": "Podgląd zaproszenia",
-  "invitees__edit_card__cta": "Edytuj kartę zaproszenia"
+  "invitees__edit_card__cta": "Edytuj kartę zaproszenia",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note",
+  "invitees__rsvp_summary__title": "RSVP",
+  "invitees__rsvp_summary__coming": "coming",
+  "invitees__rsvp_summary__entries": "{coming} of {total} invites",
+  "invitees__rsvp_summary__empty": "No guests yet"
 }

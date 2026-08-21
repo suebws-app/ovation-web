@@ -11,6 +11,8 @@
   "seo__contact__description": "Klausimai apie svečių knygą, planus ar spausdintą Gold Book? Susisiekite — atsakome greitai, prieš vestuves ir po jų.",
   "seo__for_planners__title": "Svečių knygos vestuvių planuotojams",
   "seo__for_planners__description": "Suteikite savo poroms svečių knygą, kuria svečiai tikrai naudojasi. Paprastas paruošimas, spausdinimui paruoštos QR kortelės ir klientų pamėgti spausdinti atminimai.",
+  "seo__for_pros__title": "Ovation renginių profesionalams",
+  "seo__for_pros__description": "Valdykite visus klientų renginius iš vienos vietos. Balsu paremtos svečių knygos, spausdinti paruoštos QR kortelės ir spausdinti prisiminimai — kainos organizatoriams, fotografams ir renginių erdvėms.",
   "seo__gold_book__title": "Gold Book — spausdintas vestuvių atminimas",
   "seo__gold_book__description": "Drobe įrišta jūsų vestuvių žinučių knyga — transkripcijos, mėgstamiausios nuotraukos ir QR kodai, atkuriantys kiekvieną balsą. Iki 180 puslapių.",
   "seo__how_it_works__title": "Kaip tai veikia — svečių knyga su QR kodu",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "AI vestuvių planuotojas — nemokama programa poroms",
   "seo__wedding_planner__description": "Planuokite vestuves su išmania laiko juosta, užduočių sąrašu, biudžeto sekimu, svečių sąrašu, tiekėjų katalogu ir AI asistentu, kuris žino jūsų datą, biudžetą, svečius ir tiekėjus — nemokamai.",
   "seo__use_case__title": "{title} — Ovation vestuvių svečių knyga",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Naudojimo atvejai — svečių knygos kiekvienai progai",
+  "seo__use_cases_index__description": "Vestuvės, gimtadieniai, įmonių renginiai, atminimo puslapiai ir dar daugiau. Pažiūrėkite, kaip Ovation surenka jūsų svečių balso žinutes bei nuotraukas ir paverčia jas atminimo knyga."
 }

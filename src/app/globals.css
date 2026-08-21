@@ -5,7 +5,7 @@
 
 /* ═══════════════════════════════════════════════════════════════
    OVATION DESIGN SYSTEM
-   Palette: warm cream ground (#F2F0EA), brand pink (#FF78AC),
+   Palette: warm cream ground (#F2F0EA), brand pink (#F11D64),
    calm teal (#A8D5E3). Pink is used as-is for CTAs — its label
    is always dark ink (white on it measures 2.45:1 and fails AA;
    ink on it measures 6.5:1 and passes AA normal). Teal is a
@@ -159,6 +159,9 @@
   --animate-rec-pulse: rec-pulse 1.4s ease-in-out infinite;
   --animate-sheet-slide-in-left: sheet-slide-in-left 0.3s ease-out;
   --animate-sheet-slide-out-left: sheet-slide-out-left 0.3s ease-in;
+  --animate-sheet-slide-in-bottom: sheet-slide-in-bottom 0.32s
+    cubic-bezier(0.32, 0.72, 0, 1);
+  --animate-sheet-slide-out-bottom: sheet-slide-out-bottom 0.24s ease-in;
   --animate-shake: shake 0.4s ease-in-out;
   --animate-invite-card-in: invite-card-in 0.8s cubic-bezier(0.22, 1, 0.36, 1)
     both;
@@ -283,6 +286,22 @@
     transform: translateX(-100%);
   }
 }
+@keyframes sheet-slide-in-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes sheet-slide-out-bottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
 @keyframes shake {
   0%,
   100% {
@@ -378,15 +397,15 @@
   --muted-foreground: oklch(0.505 0.02 40); /* #6F6156 — 5.3:1 AA */
   --subtle-foreground: oklch(0.62 0.018 40); /* #8E8177 — 3.3:1 large only */
 
-  /* ── Brand pink — #FF78AC ──────────────────────────────────
+  /* ── Brand pink — #F11D64 ──────────────────────────────────
      MEASURED on the cream ground:
        white text on it   2.45:1  FAIL AA
        ink text on it     6.5:1   PASS AA normal
      Label is INK across the whole system, both themes. */
-  --brand-neon: oklch(0.735 0.163 10); /* #FF78AC */
+  --brand-neon: oklch(0.6202 0.2366 10.35); /* #F11D64 */
 
   /* Primary — brand pink as the actionable CTA (ink label). */
-  --primary: oklch(0.735 0.163 10); /* #FF78AC */
+  --primary: oklch(0.6202 0.2366 10.35); /* #F11D64 */
   --primary-hover: oklch(0.68 0.185 8); /* #F35E97 — ink 5.8:1 */
   --primary-active: oklch(0.615 0.205 5); /* #DA4483 — ink 4.6:1 */
   --primary-subtle: oklch(0.955 0.03 10); /* #FDE6EE — badge tint */
@@ -411,7 +430,7 @@
   --border: oklch(0.895 0.01 85); /* #E1DDD1 */
   --border-strong: oklch(0.79 0.014 85); /* #C0BAAA — inputs */
   --input: oklch(0.79 0.014 85);
-  --ring: oklch(0.735 0.163 10);
+  --ring: oklch(0.6202 0.2366 10.35);
 
   /* Semantic */
   --destructive: oklch(0.52 0.19 32); /* #BE260B — 6.06:1 */
@@ -431,19 +450,19 @@
   --recording: oklch(0.55 0.22 28); /* #D40E14 — 5.43:1 */
 
   /* Charts — pink, teal, and three supporting hues */
-  --chart-1: oklch(0.735 0.163 10); /* pink */
+  --chart-1: oklch(0.6202 0.2366 10.35); /* pink */
   --chart-2: oklch(0.51 0.075 220); /* deep teal */
   --chart-3: oklch(0.72 0.1 72);
   --chart-4: oklch(0.55 0.13 300);
   --chart-5: oklch(0.63 0.09 240);
 
   /* Sidebar */
-  --sidebar-primary: oklch(0.735 0.163 10);
+  --sidebar-primary: oklch(0.6202 0.2366 10.35);
   --sidebar-primary-foreground: oklch(0.26 0.018 40);
   --sidebar-accent: oklch(0.925 0.012 88);
   --sidebar-accent-foreground: oklch(0.615 0.205 5);
   --sidebar-border: oklch(0.895 0.01 85);
-  --sidebar-ring: oklch(0.735 0.163 10);
+  --sidebar-ring: oklch(0.6202 0.2366 10.35);
 
   --warm-cream: oklch(0.955 0.008 90); /* #F2F0EA */
   --warm-panel: oklch(0.925 0.012 88); /* #E7E3D9 */
@@ -480,11 +499,11 @@
   --muted-foreground: oklch(0.735 0.014 85); /* #B0A99D — 7.5:1 AAA */
   --subtle-foreground: oklch(0.61 0.014 85);
 
-  --brand-neon: oklch(0.735 0.163 10); /* #FF78AC — 7.0:1 on bg */
+  --brand-neon: oklch(0.6202 0.2366 10.35); /* #F11D64 — 7.0:1 on bg */
 
   /* Primary keeps the same pink. Ink label is the dark bg colour
-     — white on #FF78AC still measures 2.45:1 and fails. */
-  --primary: oklch(0.735 0.163 10); /* #FF78AC — 7.0:1 on bg */
+     — white on #F11D64 still measures 2.45:1 and fails. */
+  --primary: oklch(0.6202 0.2366 10.35);
   --primary-hover: oklch(0.795 0.135 10); /* #FF9CBF — 8.6:1 */
   --primary-active: oklch(0.68 0.185 8); /* #F35E97 — 5.7:1 */
   --primary-subtle: oklch(0.34 0.06 10);
@@ -504,7 +523,7 @@
   --border: oklch(0.34 0.012 60); /* #3D3A34 */
   --border-strong: oklch(0.42 0.014 60);
   --input: oklch(0.42 0.014 60);
-  --ring: oklch(0.735 0.163 10);
+  --ring: oklch(0.6202 0.2366 10.35);
 
   --destructive: oklch(0.68 0.17 32); /* #EE6951 — 6.02:1 */
   --destructive-foreground: oklch(0.19 0.008 60);
@@ -518,18 +537,18 @@
 
   --recording: oklch(0.68 0.2 28); /* #FB594D — 5.92:1 */
 
-  --chart-1: oklch(0.735 0.163 10);
+  --chart-1: oklch(0.6202 0.2366 10.35);
   --chart-2: oklch(0.835 0.045 222);
   --chart-3: oklch(0.83 0.075 72);
   --chart-4: oklch(0.72 0.12 300);
   --chart-5: oklch(0.75 0.09 240);
 
-  --sidebar-primary: oklch(0.735 0.163 10);
+  --sidebar-primary: oklch(0.6202 0.2366 10.35);
   --sidebar-primary-foreground: oklch(0.19 0.008 60);
   --sidebar-accent: oklch(0.29 0.012 60);
   --sidebar-accent-foreground: oklch(0.955 0.008 90);
   --sidebar-border: oklch(0.34 0.012 60);
-  --sidebar-ring: oklch(0.735 0.163 10);
+  --sidebar-ring: oklch(0.6202 0.2366 10.35);
 
   --warm-cream: oklch(0.24 0.01 60);
   --warm-panel: oklch(0.29 0.014 60);
@@ -717,47 +736,44 @@
   padding-block: 1.5rem;
 }
 
-/* ── Landing typography (Cormorant Garamond) ──────────────── */
-/* Cormorant's stroke contrast collapses below ~18px and below
-   weight 400. Everything here is 20px+ / 500+ by design. */
-
+/* ── Landing typography ───────────────────────────────────── */
 @utility landing-hero {
-  font-family: var(--font-cormorant);
-  font-size: 4.5rem;
+  font-family: var(--font-sans);
+  font-size: 3.75rem;
   line-height: 1.03;
   letter-spacing: -0.02em;
   font-weight: 500;
 }
 @utility landing-display {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 3rem;
   line-height: 1.05;
   letter-spacing: -0.02em;
   font-weight: 500;
 }
 @utility landing-h1 {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 2.5rem;
   line-height: 1.06;
   letter-spacing: -0.015em;
   font-weight: 500;
 }
 @utility landing-h2 {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 2rem;
   line-height: 1.1;
   letter-spacing: -0.01em;
   font-weight: 500;
 }
 @utility landing-h3 {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 1.5rem;
   line-height: 1.15;
   letter-spacing: -0.005em;
   font-weight: 600;
 }
 @utility landing-h4 {
-  font-family: var(--font-cormorant);
+  font-family: var(--font-sans);
   font-size: 1.25rem;
   line-height: 1.2;
   font-weight: 600;
@@ -1033,34 +1049,31 @@
   --card-foreground: oklch(0.26 0.018 40);
   --muted: oklch(0.925 0.012 88);
   --muted-foreground: oklch(0.505 0.02 40);
-  --primary: oklch(0.735 0.163 10);
+  --primary: oklch(0.6202 0.2366 10.35);
   --primary-hover: oklch(0.68 0.185 8);
   --primary-foreground: oklch(1 0 0);
   --accent: oklch(0.835 0.045 222);
   --border: oklch(0.895 0.01 85);
-  --ring: oklch(0.735 0.163 10);
+  --ring: oklch(0.6202 0.2366 10.35);
 }
 
 @utility section-container {
   margin-inline: auto;
-  max-width: 77.5rem;
+  width: 100%;
+  max-width: 83rem;
   padding-inline: 1.5rem;
   padding-block: 2.5rem;
   @media (width >= 1024px) {
-    padding-inline: 5rem;
     padding-block: 7.5rem;
   }
 }
 
 @utility section-container-small {
   margin-inline: auto;
-  max-width: 77.5rem;
+  width: 100%;
+  max-width: 83rem;
   padding-inline: 1.5rem;
   padding-block: 2.5rem;
-  @media (width >= 1024px) {
-    padding-inline: 5rem;
-    padding-block: 2.5rem;
-  }
 }
 
 @utility hide-scrollbar {
@@ -1083,7 +1096,7 @@
 /* ═══════════════════════════════════════════════════════════
    USAGE RULES
 
-   PINK LABEL CONTRAST. White on #FF78AC measures 2.45:1 and
+   PINK LABEL CONTRAST. White on #F11D64 measures 2.45:1 and
    FAILS WCAG AA. --primary-foreground is white by explicit
    design choice — pair pink CTAs with a large size (18px+/bold
    clears the 3:1 large-text threshold at 2.45:1... barely — the
@@ -1119,7 +1132,7 @@
    GALLERY. The highest-traffic screen and the one full of guest
    photography. Brand colour appears on controls only.
 
-   PRINT / PDF / VINYL: #FF78AC ≈ CMYK 0/60/17/0 converts well
+   PRINT / PDF / VINYL: #F11D64 ≈ CMYK 0/60/17/0 converts well
    in four-colour process (no fluorescent plate needed). Cream
    #F2F0EA ≈ CMYK 0/1/4/5 — spec Pantone 7527 C for solids.
    Teal #A8D5E3 ≈ CMYK 26/2/6/0 — spec Pantone 290 C for solids.
@@ -1129,3 +1142,69 @@
    — high stroke contrast is the wrong choice for a dim room and an
    ageing eye. Guests get Rubik at size.
    ═══════════════════════════════════════════════════════════ */
+
+@keyframes ov-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ov-marquee-track {
+  width: max-content;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ov-marquee-track {
+    animation: ov-marquee 36s linear infinite;
+  }
+}
+.ov-marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+@keyframes ov-caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.ov-typewriter-caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.78em;
+  vertical-align: baseline;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ov-typewriter-caret {
+    animation: ov-caret-blink 1s steps(2, start) infinite;
+  }
+}
+
+@keyframes ov-tick-rise {
+  from {
+    transform: translateY(0.22em);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.ov-tick-number {
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ov-tick-number {
+    animation: ov-tick-rise 320ms ease-out;
+  }
+}

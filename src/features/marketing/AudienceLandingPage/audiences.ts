@@ -9,6 +9,7 @@ export type AudiencePageContent = {
   subtitleKey: string;
   bulletKeys: string[];
   ctaPrimaryKey: string;
+  ctaPrimaryHref?: string;
   ctaSecondaryKey: string;
 };
 
@@ -27,6 +28,7 @@ export const AUDIENCE_PAGES: AudiencePageContent[] = [
       "marketing__audience_photographers__bullet_4",
     ],
     ctaPrimaryKey: "marketing__audience__cta_primary",
+    ctaPrimaryHref: "/for-pros",
     ctaSecondaryKey: "marketing__audience__cta_secondary",
   },
   {
@@ -43,6 +45,7 @@ export const AUDIENCE_PAGES: AudiencePageContent[] = [
       "marketing__audience_venues__bullet_4",
     ],
     ctaPrimaryKey: "marketing__audience__cta_primary",
+    ctaPrimaryHref: "/for-pros",
     ctaSecondaryKey: "marketing__audience__cta_secondary",
   },
   {

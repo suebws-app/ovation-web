@@ -1,15 +1,17 @@
 import type { Event } from "@/lib/api/types";
+import { eventTitleLine } from "@/lib/event-types";
 
-export const coupleNamesOf = (event?: Event | null): string | undefined => {
-  const name = event?.eventName?.trim();
-  if (name) return name;
-  const a = event?.partnerAName?.trim();
-  const b = event?.partnerBName?.trim();
-  if (a && b) return `${a} & ${b}`;
-  return a || b || undefined;
+/** The event's title line (host names), event-type-agnostic. */
+export const titleLineOf = (event?: Event | null): string | undefined => {
+  if (!event) return undefined;
+  const line = eventTitleLine(event);
+  return line || undefined;
 };
 
-export const formatWeddingDate = (date?: string | null): string | undefined => {
+/** Legacy alias. */
+export const coupleNamesOf = titleLineOf;
+
+export const formatEventDate = (date?: string | null): string | undefined => {
   if (!date) return undefined;
   const parsed = new Date(`${date}T00:00:00Z`);
   if (Number.isNaN(parsed.getTime())) return undefined;
@@ -20,3 +22,6 @@ export const formatWeddingDate = (date?: string | null): string | undefined => {
     timeZone: "UTC",
   }).format(parsed);
 };
+
+/** Legacy alias. */
+export const formatWeddingDate = formatEventDate;

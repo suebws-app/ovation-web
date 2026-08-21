@@ -60,3 +60,49 @@ export const computeRenderedBookPages = (
   const even = content % 2 === 0 ? content : content + 1;
   return even + 2;
 };
+
+// Loop backstop so a bad min/max never spins forever.
+const PHOTO_DELTA_CAP = 10000;
+
+/**
+ * How many MORE photos are needed so the rendered book reaches `minPages`,
+ * accounting for densities that pack several photos per page. Returns 0 if the
+ * current photo count already renders enough pages.
+ */
+export const photosNeededForMinPages = (
+  currentPhotos: number,
+  minPages: number,
+  isLayflat: boolean,
+  density: InteriorDensity,
+): number => {
+  let extra = 0;
+  while (
+    extra < PHOTO_DELTA_CAP &&
+    computeRenderedBookPages(currentPhotos + extra, isLayflat, density) <
+      minPages
+  ) {
+    extra += 1;
+  }
+  return extra;
+};
+
+/**
+ * How many photos must be REMOVED so the rendered book fits within `maxPages`.
+ * Returns 0 if it already fits (never returns more than `currentPhotos`).
+ */
+export const photosOverMaxPages = (
+  currentPhotos: number,
+  maxPages: number,
+  isLayflat: boolean,
+  density: InteriorDensity,
+): number => {
+  let remove = 0;
+  while (
+    remove < currentPhotos &&
+    computeRenderedBookPages(currentPhotos - remove, isLayflat, density) >
+      maxPages
+  ) {
+    remove += 1;
+  }
+  return remove;
+};

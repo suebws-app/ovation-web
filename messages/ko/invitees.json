@@ -75,9 +75,20 @@
   "invitees__send_all__confirm": "지금 손님 {count}명에게 초대장을 보내시겠습니까?",
   "invitees__send_all__success": "{queued}개 대기열에 추가, {skipped}개 건너뜀(이메일 없음).",
   "invitees__send_all__error": "초대장을 대기열에 추가할 수 없습니다. 다시 시도해 주세요.",
+  "invitees__send_all__attach_agenda": "일정 PDF 첨부",
   "invitees__preview__cta": "미리보기",
   "invitees__preview__hide": "미리보기 숨기기",
   "invitees__preview__show": "미리보기 표시",
   "invitees__preview__title": "초대장 미리보기",
-  "invitees__edit_card__cta": "초대 카드 편집"
+  "invitees__edit_card__cta": "초대 카드 편집",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note",
+  "invitees__rsvp_summary__title": "RSVP",
+  "invitees__rsvp_summary__coming": "coming",
+  "invitees__rsvp_summary__entries": "{coming} of {total} invites",
+  "invitees__rsvp_summary__empty": "No guests yet"
 }

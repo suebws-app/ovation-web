@@ -24,6 +24,12 @@ export const InviteeTableHead = () => {
         <TableHead className={inviteesTableColumnClasses.status}>
           {t("invitees__table__col_status")}
         </TableHead>
+        <TableHead className={inviteesTableColumnClasses.rsvp}>
+          {t("invitees__table__col_rsvp")}
+        </TableHead>
+        <TableHead className={inviteesTableColumnClasses.note}>
+          {t("invitees__table__col_note")}
+        </TableHead>
         <TableHead className={inviteesTableColumnClasses.actions}>
           {t("invitees__list__actions_label")}
         </TableHead>

@@ -2,11 +2,10 @@ import { Polaroid } from "./Polaroid";
 import { PolaroidPair } from "./PolaroidPair";
 
 type HeroPhotoProps = {
-  eventName: string | null;
-  partnerAName: string;
-  partnerBName: string;
+  hostAName: string;
+  hostBName: string | null;
   themeColor: string;
-  couplePhotoUrl: string | null;
+  photoUrl: string | null;
 };
 
 const accentBackground = (themeColor: string) =>
@@ -16,59 +15,44 @@ const counterBackground =
   "linear-gradient(160deg, var(--accent), var(--destructive))";
 
 export const HeroPhoto = ({
-  eventName,
-  partnerAName,
-  partnerBName,
+  hostAName,
+  hostBName,
   themeColor,
-  couplePhotoUrl,
+  photoUrl,
 }: HeroPhotoProps) => {
-  const name = eventName?.trim();
-
-  if (couplePhotoUrl) {
+  if (photoUrl) {
+    const caption = hostBName ? `${hostAName} & ${hostBName}` : hostAName;
     return (
       <div className="relative mx-auto aspect-square w-56">
-        {!name && (
+        {hostBName && (
           <div className="absolute inset-0 -translate-x-3.5 translate-y-1.5 -rotate-6">
             <Polaroid
-              initial={partnerBName.charAt(0).toUpperCase()}
-              caption={partnerBName}
+              initial={hostBName.charAt(0).toUpperCase()}
+              caption={hostBName}
               background={counterBackground}
             />
           </div>
         )}
         <div
           className={
-            name
-              ? "relative mx-auto"
-              : "absolute inset-0 translate-x-3.5 -translate-y-0.5 rotate-6"
+            hostBName
+              ? "absolute inset-0 translate-x-3.5 -translate-y-0.5 rotate-6"
+              : "absolute inset-0"
           }
         >
           <Polaroid
-            photoUrl={couplePhotoUrl}
-            caption={name ? name : `${partnerAName} & ${partnerBName}`}
+            photoUrl={photoUrl}
+            caption={caption}
             background={accentBackground(themeColor)}
           />
         </div>
       </div>
     );
   }
-
-  if (name) {
-    return (
-      <div className="mx-auto aspect-square w-56">
-        <Polaroid
-          initial={name.charAt(0).toUpperCase()}
-          caption={name}
-          background={accentBackground(themeColor)}
-        />
-      </div>
-    );
-  }
-
   return (
     <PolaroidPair
-      partnerAName={partnerAName}
-      partnerBName={partnerBName}
+      hostAName={hostAName}
+      hostBName={hostBName}
       themeColor={themeColor}
     />
   );

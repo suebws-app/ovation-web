@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "sau încarcă fotografii",
   "photos__tile__select_photo": "Selectează fotografia de la {name}",
-  "photos__lightbox__show_photo": "Afișează fotografia {number}"
+  "photos__lightbox__show_photo": "Afișează fotografia {number}",
+  "photos__detail__pin_to_album": "Fixează în capul albumului",
+  "photos__detail__unpin_from_album": "Anulează fixarea în album"
 }

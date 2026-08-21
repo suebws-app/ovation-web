@@ -1,0 +1,1 @@
+export { GeneralLandingPage } from "./GeneralLandingPage";

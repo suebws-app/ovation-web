@@ -1,2 +1,2 @@
-export { LandingPage as default } from "@/features/marketing/LandingPage";
-export { generateLandingMetadata as generateMetadata } from "@/lib/seo/marketingMetadata";
+export { GeneralLandingPage as default } from "@/features/marketing/landing";
+export { generateGeneralLandingMetadata as generateMetadata } from "@/lib/seo/marketingMetadata";

@@ -14,8 +14,18 @@ export const DesignStep = () => {
 
   const { data, isLoading, isError } = useInvitationTemplatesQuery();
 
-  const selectTemplate = (id: string) =>
+  const selectTemplate = (id: string) => {
+    if (id !== templateId) {
+      setValue("pageBg", "", { shouldDirty: true });
+      setValue("surroundBg", "", { shouldDirty: true });
+      setValue("cardBg", "", { shouldDirty: true });
+      setValue("textColor", "", { shouldDirty: true });
+      setValue("mutedColor", "", { shouldDirty: true });
+      setValue("accentColor", "", { shouldDirty: true });
+      setValue("textScale", 1, { shouldDirty: true });
+    }
     setValue("templateId", id, { shouldDirty: true });
+  };
 
   return (
     <>

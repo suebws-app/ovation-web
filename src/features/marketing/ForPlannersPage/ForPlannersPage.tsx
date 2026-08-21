@@ -62,7 +62,7 @@ export const ForPlannersPage = ({ params }: LocalePageProps) => {
         <div className="section-container-small">
           <div className="flex flex-wrap gap-4">
             <Button size="lg" asChild>
-              <Link href={`${appRoutes.create.root}?as=pro`}>
+              <Link href={appRoutes.marketing.forPros}>
                 {t("marketing__for_planners__cta")}
               </Link>
             </Button>

@@ -6,33 +6,30 @@ import { useSignUpStore } from "@/features/sign-up/useSignUpStore";
 import { CouplePlan } from "@/features/plans/CouplePlan";
 import { ProPlan } from "@/features/plans/ProPlan";
 import { useRedirectOnBackNavigation } from "@/lib/hooks/useRedirectOnBackNavigation";
+import {
+  isConsumerRole,
+  isProRole,
+  normalizeAccountType,
+} from "@/lib/auth/account-role";
 import { appRoutes } from "@/lib/routes";
 
-type SignUpPlansPageProps = {
-  initialAccountType?: "couple" | "pro" | null;
-};
-
-export const SignUpPlansPage = ({
-  initialAccountType,
-}: SignUpPlansPageProps = {}) => {
+export const SignUpPlansPage = () => {
   const { formData, updateFormData } = useSignUpStore();
   const searchParams = useSearchParams();
   const asParam = searchParams.get("as");
+  const hasRoleParam = isProRole(asParam) || isConsumerRole(asParam);
 
   useEffect(() => {
-    if (asParam === "pro") updateFormData({ accountType: "pro" });
-    else if (asParam === "couple") updateFormData({ accountType: "couple" });
-    else if (initialAccountType && !formData.accountType) {
-      updateFormData({ accountType: initialAccountType });
+    if (hasRoleParam) {
+      updateFormData({ accountType: normalizeAccountType(asParam) });
     }
-  }, [asParam, initialAccountType, formData.accountType, updateFormData]);
+  }, [asParam, hasRoleParam, updateFormData]);
 
   useRedirectOnBackNavigation(appRoutes.app.root);
 
-  const accountType =
-    asParam === "pro" || asParam === "couple"
-      ? asParam
-      : formData.accountType || initialAccountType || "";
+  const accountType = hasRoleParam
+    ? normalizeAccountType(asParam)
+    : formData.accountType;
 
   if (accountType === "pro") return <ProPlan />;
   return <CouplePlan />;

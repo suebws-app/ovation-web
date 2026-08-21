@@ -11,6 +11,8 @@
   "seo__contact__description": "Frågor om er gästbok, våra planer eller den tryckta Guldboken? Hör av er — vi svarar snabbt, både före och efter bröllopsdagen.",
   "seo__for_planners__title": "Gästböcker för bröllopsplanerare",
   "seo__for_planners__description": "Ge dina par en gästbok som gästerna faktiskt använder. Enkel setup, tryckfärdiga QR-kort och tryckta minnessaker som kunderna älskar.",
+  "seo__for_pros__title": "Ovation för eventproffs",
+  "seo__for_pros__description": "Driv alla kundevent från en enda vy. Röstbaserade gästböcker, tryckfärdiga QR-kort och tryckta minnen — prissatt för planerare, fotografer och lokaler.",
   "seo__gold_book__title": "Guldboken — Tryckt bröllopsminne",
   "seo__gold_book__description": "En linneinbunden bok med era bröllopshälsningar — transkriptioner, favoritfoton och QR-koder som spelar upp varje röst. Upp till 180 sidor.",
   "seo__how_it_works__title": "Så fungerar det — Gästbok med QR-kod",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "AI-bröllopsplanerare — Gratis app för par",
   "seo__wedding_planner__description": "Planera ert bröllop med en smart tidslinje, att göra-lista, budgetverktyg, gästlista, leverantörskatalog och en AI-assistent som känner till ert datum, budget, gäster och leverantörer — gratis.",
   "seo__use_case__title": "{title} — Ovation-bröllopsgästbok",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Användningsområden — gästböcker för varje tillfälle",
+  "seo__use_cases_index__description": "Bröllop, födelsedagar, företagsevenemang, minnessidor och mer. Se hur Ovation samlar in röstmeddelanden och bilder från dina gäster och gör det till en minnesbok."
 }

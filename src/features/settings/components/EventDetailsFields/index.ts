@@ -1,0 +1,1 @@
+export { EventDetailsFields } from "./EventDetailsFields";

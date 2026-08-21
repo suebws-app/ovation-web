@@ -11,6 +11,8 @@
   "seo__contact__description": "Domande sul tuo guestbook, sui piani o sul Gold Book stampato? Scrivici — rispondiamo in fretta, prima e dopo il matrimonio.",
   "seo__for_planners__title": "Guestbook per Wedding Planner",
   "seo__for_planners__description": "Regala alle tue coppie un guestbook che gli ospiti usano davvero. Configurazione semplice, card QR pronte da stampare e keepsake stampati amatissimi.",
+  "seo__for_pros__title": "Ovation per i professionisti degli eventi",
+  "seo__for_pros__description": "Gestisci tutti gli eventi dei clienti da un'unica dashboard. Guestbook vocali, carte QR pronte per la stampa e ricordi stampati — con prezzi pensati per wedding planner, fotografi e location.",
   "seo__gold_book__title": "Il Gold Book — Keepsake di Matrimonio Stampato",
   "seo__gold_book__description": "Un libro rilegato in lino con i messaggi del tuo matrimonio — trascrizioni, foto preferite e codici QR che riproducono ogni voce. Fino a 180 pagine.",
   "seo__how_it_works__title": "Come Funziona — Guestbook con Codice QR",
@@ -47,5 +49,7 @@
   "seo__wedding_planner__title": "Wedding planner IA — App gratis per coppie",
   "seo__wedding_planner__description": "Organizza il tuo matrimonio con una timeline intelligente, lista di attività, controllo del budget, lista invitati, rubrica dei fornitori e un assistente IA che conosce la tua data, il budget, gli invitati e i fornitori — gratis.",
   "seo__use_case__title": "{title} — Guest book di matrimonio Ovation",
-  "seo__use_case__description": "{subtitle}"
+  "seo__use_case__description": "{subtitle}",
+  "seo__use_cases_index__title": "Casi d'uso — libri degli ospiti per ogni occasione",
+  "seo__use_cases_index__description": "Matrimoni, compleanni, eventi aziendali, commemorazioni e altro ancora. Scopri come Ovation raccoglie messaggi vocali e foto dei tuoi invitati e li trasforma in un libro ricordo."
 }

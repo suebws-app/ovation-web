@@ -96,5 +96,7 @@
   "photos__filter__person_marco": "Marco",
   "photos__empty__or_upload": "ali naloži fotografije",
   "photos__tile__select_photo": "Izberi fotografijo osebe {name}",
-  "photos__lightbox__show_photo": "Pokaži fotografijo {number}"
+  "photos__lightbox__show_photo": "Pokaži fotografijo {number}",
+  "photos__detail__pin_to_album": "Pripni na vrh albuma",
+  "photos__detail__unpin_from_album": "Odpni iz albuma"
 }

@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Utracono połączenie",
   "kiosk__offline__body": "Kiosk potrzebuje połączenia internetowego, aby przyjmować nowe wiadomości. Połącz się ponownie, aby kontynuować.",
   "kiosk__offline__hint": "Automatyczne łączenie ponowne…",
-  "kiosk__live__welcome_overline": "Jesteś na ślubie",
+  "kiosk__live__welcome_overline": "To {eventNoun}. Witaj!",
   "kiosk__live__tap_to_record": "Stuknij, aby zostawić wiadomość",
   "kiosk__live__closed": "Zgłoszenia zamknięte",
   "kiosk__live__caption": "Do {seconds} sekund · audio · zdjęcie opcjonalne",
@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Suwak",
   "kiosk_setup__save_error": "Nie udało się zapisać",
   "kiosk_setup__pin__change": "Zmień PIN",
+  "kiosk_setup__pin__show": "Pokaż PIN",
+  "kiosk_setup__pin__hide": "Ukryj PIN",
+  "kiosk_setup__pin__unknown": "Ukryty",
   "kiosk__gate__title": "Wprowadź PIN kiosku",
   "kiosk__gate__hint": "Wpisz 4-cyfrowy PIN, aby otworzyć kiosk.",
   "kiosk__gate__submit": "Otwórz kiosk",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Wyślij ten link osobie, która ustawi kiosk w danym dniu. Będzie potrzebować PIN-u, aby go otworzyć.",
   "kiosk__share__copy": "Kopiuj link",
   "kiosk__share__copied": "Skopiowano!",
-  "kiosk__share__pin_set": "Domyślny PIN to 1234. Zmień go w karcie blokady przed udostępnieniem."
+  "kiosk__share__pin_value": "PIN kiosku: {pin}. Potrzebuje go osoba otwierająca kiosk.",
+  "kiosk__share__pin_unknown": "Ustaw nowy PIN kiosku w karcie blokady, aby zobaczyć go tutaj."
 }

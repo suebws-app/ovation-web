@@ -23,7 +23,7 @@ export default async function Loading() {
         <div className="mx-auto my-auto w-full max-w-130 min-w-0">
           <Kicker className="text-primary tablet:mb-3 mb-2">
             {t("auth__signup__eyebrow_step", {
-              step: 2,
+              step: 3,
               label: t("signup__cover__step_label"),
             })}
           </Kicker>

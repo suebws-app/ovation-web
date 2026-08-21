@@ -11,12 +11,15 @@ import { appRoutes } from "@/lib/routes";
 import { requireFilledCoupleEvent } from "@/lib/auth/require-filled-event";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isPaidPlan } from "@/lib/utils/plan";
+import type { Event } from "@/lib/api/types";
 import { ViewHeader } from "../components/ViewHeader";
 import { WeddingPlannerAssistantClient } from "./WeddingPlannerAssistantClient";
 
-export const WeddingPlannerAssistant = async () => {
+export const WeddingPlannerAssistant = async ({
+  event: eventProp,
+}: { event?: Event | null } = {}) => {
   const [event, user] = await Promise.all([
-    requireFilledCoupleEvent(),
+    eventProp ? Promise.resolve(eventProp) : requireFilledCoupleEvent(),
     getCurrentUser(),
   ]);
   if (!isPaidPlan(user?.planTier)) {

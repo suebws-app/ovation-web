@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Verbindung verloren",
   "kiosk__offline__body": "Der Kiosk benötigt eine Internetverbindung, um neue Nachrichten anzunehmen. Bitte stelle die Verbindung wieder her, um fortzufahren.",
   "kiosk__offline__hint": "Verbindung wird automatisch wiederhergestellt…",
-  "kiosk__live__welcome_overline": "Du bist auf der Hochzeit von",
+  "kiosk__live__welcome_overline": "Du bist auf der {eventNoun} von",
   "kiosk__live__tap_to_record": "Tippe, um eine Nachricht zu hinterlassen",
   "kiosk__live__closed": "Einreichungen geschlossen",
   "kiosk__live__caption": "Bis zu {seconds} Sekunden · Audio · Foto optional",
@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Schieberegler",
   "kiosk_setup__save_error": "Speichern fehlgeschlagen",
   "kiosk_setup__pin__change": "PIN ändern",
+  "kiosk_setup__pin__show": "PIN anzeigen",
+  "kiosk_setup__pin__hide": "PIN verbergen",
+  "kiosk_setup__pin__unknown": "Verborgen",
   "kiosk__gate__title": "Kiosk-PIN eingeben",
   "kiosk__gate__hint": "Geben Sie die 4-stellige PIN ein, um den Kiosk zu öffnen.",
   "kiosk__gate__submit": "Kiosk öffnen",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Senden Sie diesen Link an die Person, die den Kiosk am Tag einrichtet. Sie benötigt die PIN, um ihn zu öffnen.",
   "kiosk__share__copy": "Link kopieren",
   "kiosk__share__copied": "Kopiert!",
-  "kiosk__share__pin_set": "Standard-PIN ist 1234. Ändern Sie sie in der Lockdown-Karte vor dem Teilen."
+  "kiosk__share__pin_value": "Kiosk-PIN: {pin}. Wer den Kiosk öffnet, braucht sie.",
+  "kiosk__share__pin_unknown": "Lege im Sperr-Bereich eine neue Kiosk-PIN fest, damit sie hier angezeigt wird."
 }

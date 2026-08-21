@@ -2,15 +2,20 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { Button } from "@ovation/ui/components/Button";
+import { TrashIcon } from "@ovation/icons/TrashIcon";
 import { ViewHeader } from "../components/ViewHeader";
 import {
   useCreatePhase,
   useCreateTodo,
   useDeletePhase,
+  useDeleteAllPhases,
   useUpdatePhase,
   useWeddingPlannerTasks,
   useWeddingPlannerTimeline,
 } from "@/lib/query/weddingPlannerQueries";
+import { ConfirmDialog } from "@/components/ConfirmDialog";
+import { toast } from "@/components/Toaster";
 import type { PlannerTodo } from "@/lib/api/types";
 import { AddPhaseRow } from "./AddPhaseRow";
 import { TimelinePhaseBoard } from "./TimelinePhaseBoard";
@@ -48,6 +53,18 @@ export const WeddingPlannerTimelineClient = ({
 
   const phases = phasesQuery.data;
   const todos = tasksQuery.data;
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const deleteAllPhases = useDeleteAllPhases(eventId);
+  const hasPhases = Boolean(phases && phases.length > 0);
+
+  const confirmDeleteAll = () =>
+    deleteAllPhases.mutate(undefined, {
+      onSuccess: () => {
+        toast.success(t("wp__timeline__delete_all_done"));
+        setConfirmOpen(false);
+      },
+      onError: () => toast.error(t("wp__timeline__delete_all_error")),
+    });
   const isLoading = phasesQuery.isLoading || tasksQuery.isLoading;
   const isError = phasesQuery.isError || tasksQuery.isError;
 
@@ -103,6 +120,17 @@ export const WeddingPlannerTimelineClient = ({
       <ViewHeader
         title={t("wp__timeline__title")}
         subtitle={t("wp__timeline__sub")}
+        action={
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setConfirmOpen(true)}
+            disabled={!hasPhases}
+          >
+            <TrashIcon width={15} height={15} />
+            {t("wp__timeline__delete_all")}
+          </Button>
+        }
       />
       {renderBody()}
       <TaskModal
@@ -110,6 +138,17 @@ export const WeddingPlannerTimelineClient = ({
         open={modalOpen}
         todo={activeTodo}
         onClose={() => setModalOpen(false)}
+      />
+      <ConfirmDialog
+        open={confirmOpen}
+        title={t("wp__timeline__delete_all_title")}
+        description={t("wp__timeline__delete_all_desc")}
+        cancelLabel={t("wp__tasks__cancel")}
+        confirmLabel={t("wp__timeline__delete_all")}
+        confirmTone="destructive"
+        isPending={deleteAllPhases.isPending}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={confirmDeleteAll}
       />
     </div>
   );

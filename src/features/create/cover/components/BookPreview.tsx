@@ -1,12 +1,12 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { cn } from "@ovation/ui/utils/cn";
 
 type BookPreviewProps = {
-  partner1: string;
-  partner2: string;
-  singleName?: boolean;
+  /** The event's title line (host names), e.g. "Alex & Jordan" or "Acme Corp". */
+  title?: string;
+  volumeLabel: string;
+  titleFallback: string;
   date?: string;
   venue?: string;
   coverImage?: React.ReactNode;
@@ -14,15 +14,14 @@ type BookPreviewProps = {
 };
 
 export const BookPreview = ({
-  partner1,
-  partner2,
-  singleName = false,
+  title,
+  volumeLabel,
+  titleFallback,
   date,
   venue,
   coverImage,
   className,
 }: BookPreviewProps) => {
-  const t = useTranslations();
   return (
     <div
       className={cn(
@@ -35,18 +34,10 @@ export const BookPreview = ({
       )}
       <div className="text-card-foreground p-8">
         <p className="type-overline text-muted-foreground tracking-[2px]">
-          {t("signup__book_preview__volume")}
+          {volumeLabel}
         </p>
         <p className="mt-2 font-serif text-4xl leading-none font-medium tracking-tight wrap-break-word italic">
-          {singleName ? (
-            partner1 || t("signup__event_name_fallback")
-          ) : (
-            <>
-              {partner1 || t("signup__partner_1_fallback")}
-              <br />
-              &amp; {partner2 || t("signup__partner_2_fallback")}
-            </>
-          )}
+          {title || titleFallback}
         </p>
         {(date || venue) && (
           <p className="type-caption text-muted-foreground mt-1.5 font-mono tracking-wider">

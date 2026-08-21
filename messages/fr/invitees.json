@@ -75,9 +75,20 @@
   "invitees__send_all__confirm": "Envoyer les invitations à {count, plural, one {# invité} other {# invités}} maintenant ?",
   "invitees__send_all__success": "{queued} en file d'attente, {skipped} ignorés (pas d'e-mail).",
   "invitees__send_all__error": "Impossible de mettre les invitations en file d'attente. Réessaie.",
+  "invitees__send_all__attach_agenda": "Joindre le PDF du programme",
   "invitees__preview__cta": "Aperçu",
   "invitees__preview__hide": "Masquer l’aperçu",
   "invitees__preview__show": "Afficher l’aperçu",
   "invitees__preview__title": "Aperçu de l'invitation",
-  "invitees__edit_card__cta": "Modifier la carte d'invitation"
+  "invitees__edit_card__cta": "Modifier la carte d'invitation",
+  "invitees__table__col_rsvp": "RSVP",
+  "invitees__rsvp__pending": "Pending",
+  "invitees__rsvp__accepted": "Accepted",
+  "invitees__rsvp__declined": "Declined",
+  "invitees__rsvp__seats_suffix": "· {count}",
+  "invitees__table__col_note": "Note",
+  "invitees__rsvp_summary__title": "RSVP",
+  "invitees__rsvp_summary__coming": "coming",
+  "invitees__rsvp_summary__entries": "{coming} of {total} invites",
+  "invitees__rsvp_summary__empty": "No guests yet"
 }

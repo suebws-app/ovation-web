@@ -17,7 +17,7 @@
   "kiosk__offline__title": "Anslutning förlorad",
   "kiosk__offline__body": "Kiosken behöver en internetanslutning för att ta emot nya meddelanden. Anslut igen för att fortsätta.",
   "kiosk__offline__hint": "Återansluter automatiskt…",
-  "kiosk__live__welcome_overline": "Du är på bröllopet hos",
+  "kiosk__live__welcome_overline": "Du är på {eventNoun} hos",
   "kiosk__live__tap_to_record": "Tryck för att lämna ett meddelande",
   "kiosk__live__closed": "Inlämningar stängda",
   "kiosk__live__caption": "Upp till {seconds} sekunder · ljud · foto valfritt",
@@ -122,6 +122,9 @@
   "kiosk_setup__slider__label": "Skjutreglage",
   "kiosk_setup__save_error": "Det gick inte att spara",
   "kiosk_setup__pin__change": "Ändra PIN",
+  "kiosk_setup__pin__show": "Visa PIN",
+  "kiosk_setup__pin__hide": "Dölj PIN",
+  "kiosk_setup__pin__unknown": "Dold",
   "kiosk__gate__title": "Ange kiosk-PIN",
   "kiosk__gate__hint": "Skriv den 4-siffriga PIN-koden för att öppna kiosken.",
   "kiosk__gate__submit": "Öppna kiosk",
@@ -132,5 +135,6 @@
   "kiosk__share__desc": "Skicka denna länk till den som ställer in kiosken på dagen. De behöver PIN-koden för att öppna den.",
   "kiosk__share__copy": "Kopiera länk",
   "kiosk__share__copied": "Kopierat!",
-  "kiosk__share__pin_set": "Standard-PIN är 1234. Ändra den i låsningskortet före delning."
+  "kiosk__share__pin_value": "Kiosk-PIN: {pin}. Den som öppnar kiosken behöver den.",
+  "kiosk__share__pin_unknown": "Ange en ny kiosk-PIN i låskortet för att se den här."
 }

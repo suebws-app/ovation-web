@@ -3,33 +3,26 @@ import { redirect } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getCurrentUser } from "@/lib/auth/session";
 import { appRoutes } from "@/lib/routes";
+import { SignupThemeScope } from "@/components/SignupThemeScope";
 import { CreateHeader } from "@/features/layout/CreateHeader/CreateHeader";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
+import { ApiPreconnect } from "@/components/ApiPreconnect";
 import { eventsApi } from "@/lib/api/events";
-import { loadShellMessages } from "@/i18n/loadMessages";
-import type { LocalePageProps } from "@/i18n/types";
-
-export const dynamic = "force-dynamic";
+import { isConsumerRole } from "@/lib/auth/account-role";
+import { isPaidPlan } from "@/lib/utils/plan";
 
 export const metadata: Metadata = { robots: { index: false } };
 
 export default async function CreateLayout({
   children,
-  params,
-}: { children: React.ReactNode } & LocalePageProps) {
-  const { locale } = await params;
+}: {
+  children: React.ReactNode;
+}) {
   const user = await getCurrentUser();
 
   if (
-    user?.accountType === "pro" &&
-    (!user.planTier || user.planTier === "free")
-  ) {
-    redirect(`${appRoutes.auth.plans}?as=pro`);
-  }
-
-  if (
-    user?.accountType === "couple" &&
-    user.primaryEventId &&
+    isConsumerRole(user?.accountType) &&
+    user?.primaryEventId &&
     user.onboardingComplete
   ) {
     redirect(appRoutes.app.root);
@@ -39,8 +32,20 @@ export default async function CreateLayout({
     const events = await eventsApi.list({ limit: 10 }).catch(() => {
       return { items: [], nextCursor: null };
     });
+
+    // A pro on the free tier gets exactly one event (the API enforces the same
+    // limit); only send them to the plans page once that one is used up.
+    if (
+      user.accountType === "pro" &&
+      !isPaidPlan(user.planTier) &&
+      events.items.length > 0
+    ) {
+      redirect(`${appRoutes.auth.plans}?as=pro`);
+    }
+
     return (
-      <NextIntlClientProvider locale={locale}>
+      <NextIntlClientProvider>
+        <ApiPreconnect />
         <AppLayout
           user={user}
           events={events.items}
@@ -52,9 +57,10 @@ export default async function CreateLayout({
     );
   }
 
-  const messages = await loadShellMessages(locale, ["auth", "signup"]);
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider>
+      <ApiPreconnect />
+      <SignupThemeScope />
       <div className="bg-background flex min-h-screen w-full flex-col">
         <CreateHeader />
         <main className="flex-1">{children}</main>

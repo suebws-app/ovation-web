@@ -6,7 +6,7 @@ import { SettingsSectionTitle } from "./SettingsSectionTitle";
 import { SettingsRow } from "./SettingsRow";
 import { SettingsToggle } from "./SettingsToggle";
 import { ProfileNameForm } from "./ProfileNameForm";
-import { WeddingDetailsForm } from "./WeddingDetailsForm";
+import { EventDetailsSection } from "./EventDetailsSection";
 import { LocalizationForm } from "./LocalizationForm";
 import { ProfileCloseAccount } from "./ProfileCloseAccount";
 
@@ -55,8 +55,8 @@ export const SettingsProfileSection = ({
               description={t("settings__profile__wedding_details_description")}
             />
             <Card>
-              <CardContent>
-                <WeddingDetailsForm event={event} />
+              <CardContent className="flex flex-col gap-6">
+                <EventDetailsSection event={event} />
               </CardContent>
             </Card>
           </section>

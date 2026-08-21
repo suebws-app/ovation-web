@@ -6,7 +6,7 @@
   "validation__password_max": "Kata laluan terlalu panjang",
   "validation__name_required": "Sila masukkan nama anda",
   "validation__name_max": "Nama terlalu panjang",
-  "validation__partner_name_required": "Nama pasangan diperlukan",
+  "validation__partner_name_required": "Name is required",
   "validation__partner_name_max": "Nama terlalu panjang",
   "validation__terms_required": "Sila terima terma",
   "validation__confirm_password_required": "Sahkan kata laluan anda",
