@@ -1,6 +1,6 @@
 {
-  "seo__landing__title": "Ovation — The Guest Book You Can Print, for Any Event",
-  "seo__landing__description": "Guests scan a QR code to leave voice messages, photos, and notes — no app needed. Collect every memory from any celebration, then print it as a keepsake.",
+  "seo__landing__title": "Ovation — Wedding Guest Book You Can Print, for Any Event",
+  "seo__landing__description": "Guests scan a QR code to leave voice messages, photos, and notes — no app needed. From weddings to birthdays, keep every memory and print it as a keepsake.",
   "seo__about__title": "About Us — The Team Behind the Guest Book",
   "seo__about__description": "The team behind Ovation — why we help couples keep the voices, photos, and notes from their wedding day forever.",
   "seo__careers__title": "Careers — Help Couples Keep Every Voice",
@@ -50,10 +50,6 @@
   "seo__wedding_planner__description": "Plan your wedding with a smart timeline, task list, budget tracker, guest list, vendor directory, and an AI assistant that knows your date, budget, guests, and vendors — free.",
   "seo__use_case__title": "{title} — Ovation Wedding Guest Book",
   "seo__use_case__description": "{subtitle}",
-  "seo__wedding__title": "Ovation — Wedding Guest Book You Can Print",
-  "seo__wedding__description": "Guests scan a QR code to leave voice messages, photos, and notes — no app needed. Keep every voice from your wedding day, then print it as a keepsake.",
-  "seo__general__title": "Ovation — One Platform for Every Event",
-  "seo__general__description": "Weddings, birthdays, corporate events, memorials and more. Guests scan a QR code to leave photos, voice messages and notes — no app. Keep every memory, then print it.",
   "seo__use_cases_index__title": "Use Cases — Guest Books for Every Occasion",
   "seo__use_cases_index__description": "Weddings, birthdays, corporate events, memorials and more. See how Ovation collects voice messages and photos from your guests and turns them into a keepsake book."
 }

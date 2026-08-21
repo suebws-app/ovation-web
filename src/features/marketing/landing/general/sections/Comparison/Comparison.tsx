@@ -37,15 +37,20 @@ export const Comparison = () => {
 
         <div className="tablet:grid-cols-2 tablet:mt-20 tablet:gap-16 mx-auto mt-14 grid max-w-240 grid-cols-1 gap-12">
           <ComparisonColumn
-            heading={<Logo />}
+            heading={
+              <>
+                <span className="sr-only">Ovation</span>
+                <Logo aria-hidden />
+              </>
+            }
             items={COMPARISON_OVATION_KEYS.map((key) => k(key))}
             isPositive
           />
           <ComparisonColumn
             heading={
-              <p className="text-foreground landing-h4">
+              <span className="text-foreground landing-h4">
                 {k("compare_others_heading")}
-              </p>
+              </span>
             }
             items={COMPARISON_OTHERS_KEYS.map((key) => k(key))}
             isPositive={false}

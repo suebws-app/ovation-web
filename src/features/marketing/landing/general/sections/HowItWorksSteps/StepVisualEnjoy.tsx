@@ -14,13 +14,13 @@ export const StepVisualEnjoy = ({
 }: StepVisualEnjoyProps) => (
   <div className="relative w-full max-w-160 pt-6">
     <div className="tablet:pt-8 flex items-center justify-center gap-3">
-      <PhotoGridColumn sources={ENJOY_GRID_LEFT} alt={photoAlt} />
+      <PhotoGridColumn sources={ENJOY_GRID_LEFT} />
       <StepPhone
         imageSrc="/images/general/gen-wedding.webp"
         imageAlt={photoAlt}
         className="tablet:w-46 z-10 w-40 shrink-0"
       />
-      <PhotoGridColumn sources={ENJOY_GRID_RIGHT} alt={photoAlt} />
+      <PhotoGridColumn sources={ENJOY_GRID_RIGHT} />
     </div>
 
     {ENJOY_PILLS.map((pill, index) => (

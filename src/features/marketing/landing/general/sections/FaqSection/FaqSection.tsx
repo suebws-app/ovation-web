@@ -8,7 +8,13 @@ import { GENERAL_KEY_PREFIX } from "../../../variant";
 import { FAQ_DRE_FALLBACK_PRICE } from "./constants";
 import { FaqItem } from "./FaqItem";
 
-export const FaqSection = () => {
+type FaqSectionProps = {
+  drePrice?: string;
+};
+
+export const FaqSection = ({
+  drePrice = FAQ_DRE_FALLBACK_PRICE,
+}: FaqSectionProps) => {
   const t = useTranslations();
   const k = (suffix: string) => t(`${GENERAL_KEY_PREFIX}${suffix}`);
 
@@ -24,7 +30,7 @@ export const FaqSection = () => {
               {k("faq_description")}
             </p>
             <Button variant="pillPrimary" size="pill" asChild className="mt-8">
-              <Link href={appRoutes.auth.role}>{k("faq_cta")}</Link>
+              <Link href={appRoutes.marketing.contact}>{k("faq_cta")}</Link>
             </Button>
           </div>
 
@@ -35,7 +41,7 @@ export const FaqSection = () => {
                 value={`faq-${index}`}
                 question={t(item.q)}
                 answerKey={item.a}
-                fallbackPrice={FAQ_DRE_FALLBACK_PRICE}
+                fallbackPrice={drePrice}
               />
             ))}
           </Accordion>

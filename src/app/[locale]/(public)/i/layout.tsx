@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { loadShellMessages } from "@/i18n/loadMessages";
 import type { LocalePageProps } from "@/i18n/types";
+import { ApiPreconnect } from "@/components/ApiPreconnect";
 
 export const metadata: Metadata = { robots: { index: false } };
 
@@ -17,6 +18,7 @@ const InvitationLayout = async ({
   ]);
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <ApiPreconnect />
       {children}
     </NextIntlClientProvider>
   );

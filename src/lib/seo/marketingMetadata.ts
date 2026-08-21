@@ -15,20 +15,16 @@ type MarketingPageConfig = {
   page: string;
   path: string;
   absoluteTitle?: boolean;
-  ogImage?: string;
-  useRouteOgImage?: boolean;
 };
 
-const DEFAULT_OG_IMAGE = "/opengraph-image.png";
+// OpenGraph/Twitter images are handled by Next.js's file-based convention:
+// - The root src/app/opengraph-image.png is used automatically for every route.
+// - Routes that override with their own opengraph-image.[ext] file win.
+// We do NOT set `images` here — a manual URL like "/opengraph-image.png"
+// bypasses the file convention and 404s in production.
 
 const buildMetadataGenerator =
-  ({
-    page,
-    path,
-    absoluteTitle = false,
-    ogImage = DEFAULT_OG_IMAGE,
-    useRouteOgImage = false,
-  }: MarketingPageConfig) =>
+  ({ page, path, absoluteTitle = false }: MarketingPageConfig) =>
   async ({ params }: PageMetadataProps): Promise<Metadata> => {
     const { locale } = await params;
     const t = await getTranslations({ locale });
@@ -51,15 +47,11 @@ const buildMetadataGenerator =
         url: canonicalUrl,
         locale: openGraphLocale(locale),
         alternateLocale: openGraphAlternateLocales(locale),
-        images: useRouteOgImage
-          ? undefined
-          : [{ url: ogImage, width: 1600, height: 840 }],
       },
       twitter: {
         card: "summary_large_image",
         title,
         description,
-        images: useRouteOgImage ? undefined : [ogImage],
       },
     };
   };
@@ -67,18 +59,6 @@ const buildMetadataGenerator =
 export const generateGeneralLandingMetadata = buildMetadataGenerator({
   page: "landing",
   path: "/",
-  absoluteTitle: true,
-});
-
-export const generateWeddingLandingMetadata = buildMetadataGenerator({
-  page: "wedding",
-  path: "/wedding",
-  absoluteTitle: true,
-});
-
-export const generateGeneralShowcaseMetadata = buildMetadataGenerator({
-  page: "general",
-  path: "/general",
   absoluteTitle: true,
 });
 
@@ -145,7 +125,6 @@ export const generateTemplatesMetadata = buildMetadataGenerator({
 export const generateGoldBookMetadata = buildMetadataGenerator({
   page: "gold_book",
   path: "/gold-book",
-  useRouteOgImage: true,
 });
 
 export const generateHowItWorksMetadata = buildMetadataGenerator({
@@ -161,7 +140,6 @@ export const generateKeepsakesMetadata = buildMetadataGenerator({
 export const generatePricingMetadata = buildMetadataGenerator({
   page: "pricing",
   path: "/pricing",
-  useRouteOgImage: true,
 });
 
 export const generateSampleMetadata = buildMetadataGenerator({

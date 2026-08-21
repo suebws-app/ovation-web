@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getCurrentEvent } from "@/lib/auth/current-event";
 import { EventThemeScope } from "@/lib/theme/EventThemeScope";
+import { ApiPreconnect } from "@/components/ApiPreconnect";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +16,7 @@ export default async function PrivateLayout({
   const event = await getCurrentEvent().catch(() => null);
   return (
     <NextIntlClientProvider>
+      <ApiPreconnect />
       <EventThemeScope
         event={{
           themeColor: event?.themeColor,

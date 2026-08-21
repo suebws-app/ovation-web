@@ -105,9 +105,15 @@ const nextConfig: NextConfig = {
     return [
       { source: "/create/role", destination: "/create", permanent: true },
       { source: "/role", destination: "/create", permanent: true },
+      { source: "/general", destination: "/", permanent: true },
       {
         source: "/wedding",
         destination: "/use-cases/wedding",
+        permanent: true,
+      },
+      {
+        source: `/:locale(${localePattern})/general`,
+        destination: "/:locale",
         permanent: true,
       },
       {

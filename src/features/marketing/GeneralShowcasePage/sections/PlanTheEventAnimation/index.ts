@@ -1,1 +1,0 @@
-export { PlanTheEventAnimation } from "./PlanTheEventAnimation";

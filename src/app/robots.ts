@@ -10,14 +10,14 @@ const PRIVATE_PATHS = [
   "/api/",
   "/monitoring",
   "/checkout/",
-  "/plans",
   "/create/",
   "/verify",
+  "/verify-email",
   "/home",
-  "/settings",
+  "/settings/",
   "/analytics",
-  "/messages",
-  "/events",
+  "/messages/",
+  "/events/",
   "/guests",
   "/gallery",
   "/shop",
@@ -26,7 +26,6 @@ const PRIVATE_PATHS = [
   "/account",
   "/qr-code",
   "/link",
-  "/help",
   "/g/",
   "/i/",
   "/kiosk/",
@@ -36,9 +35,20 @@ const PRIVATE_PATHS = [
   "/reset-password",
 ];
 
+const localePrefixedPaths = (paths: string[], localePattern: string) =>
+  paths.map((path) => `/${localePattern}${path}`);
+
+const ALLOWED_LOCALIZATION = process.env.NEXT_PUBLIC_ALLOWED_LOCALIZATION ?? "";
+const NON_DEFAULT_LOCALES = ALLOWED_LOCALIZATION.split(",")
+  .map((token) => token.trim())
+  .filter(Boolean)
+  .slice(1);
+
 const disallow = [
   ...PRIVATE_PATHS,
-  ...PRIVATE_PATHS.map((path) => `/*${path}`),
+  ...NON_DEFAULT_LOCALES.flatMap((locale) =>
+    localePrefixedPaths(PRIVATE_PATHS, locale),
+  ),
 ];
 
 const robots = (): MetadataRoute.Robots => ({

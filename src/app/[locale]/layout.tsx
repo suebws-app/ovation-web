@@ -14,6 +14,11 @@ import { GoogleTagManagerNoscript } from "@/components/GoogleTagManagerNoscript"
 import { CrispChat } from "@/components/CrispChat";
 import { clientEnv } from "@/lib/utils/env.client";
 import { invitationFontVariables } from "@/features/invitation/invitationFonts";
+// API + media preconnects intentionally live in the layouts that actually
+// hit those origins (authenticated groups, guest/kiosk/invitation, checkout,
+// create, plans, auth). Marketing pages are SSG and never call the API, so
+// warming a credentialed connection here would waste a browser connection
+// slot on every landing visit.
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -56,23 +61,6 @@ export default async function LocaleLayout({
       className={`${rubik.variable} ${cormorant.variable} ${invitationFontVariables} h-dvh antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        <link
-          rel="preconnect"
-          href={clientEnv.API_URL}
-          crossOrigin="use-credentials"
-        />
-        {clientEnv.MEDIA_DOMAIN && (
-          <link
-            rel="preconnect"
-            href={
-              clientEnv.MEDIA_DOMAIN.startsWith("http")
-                ? clientEnv.MEDIA_DOMAIN
-                : `https://${clientEnv.MEDIA_DOMAIN}`
-            }
-          />
-        )}
-      </head>
       <body className="flex max-h-dvh flex-1 flex-col font-sans">
         <GoogleTagManagerNoscript />
         <ThemeInitScript />

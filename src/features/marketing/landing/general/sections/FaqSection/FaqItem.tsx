@@ -35,7 +35,10 @@ export const FaqItem = ({
         />
       </span>
     </AccordionTrigger>
-    <AccordionContent className="text-muted-foreground type-body max-w-160 leading-relaxed">
+    <AccordionContent
+      forceMount
+      className="text-muted-foreground type-body max-w-160 leading-relaxed"
+    >
       <FAQAnswer answerKey={answerKey} dreFallbackPrice={fallbackPrice} />
     </AccordionContent>
   </AccordionItem>

@@ -40,7 +40,7 @@ export const HeroPhoneScreen = ({
 
       <div className="grid grid-cols-3 gap-0.5 px-1 pb-1">
         {HERO_PHONE_GRID.map((src) => (
-          <HeroGridCell key={src} src={src} alt={photoAlt} />
+          <HeroGridCell key={src} src={src} />
         ))}
       </div>
     </div>
@@ -51,7 +51,6 @@ export const HeroPhoneScreen = ({
       width={900}
       height={1752}
       sizes="(min-width: 1220px) 160px, (min-width: 740px) 25vw, 108px"
-      priority
       className="pointer-events-none relative w-full select-none"
     />
   </div>

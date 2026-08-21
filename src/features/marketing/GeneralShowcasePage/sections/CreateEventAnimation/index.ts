@@ -1,1 +1,0 @@
-export { CreateEventAnimation } from "./CreateEventAnimation";

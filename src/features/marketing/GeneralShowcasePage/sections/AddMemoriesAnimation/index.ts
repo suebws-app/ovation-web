@@ -1,1 +1,0 @@
-export { AddMemoriesAnimation } from "./AddMemoriesAnimation";

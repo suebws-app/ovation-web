@@ -1,10 +1,8 @@
-import { OCCASIONS } from "@/features/marketing/GeneralShowcasePage/constants";
+import { OCCASION_KEYS } from "@/features/marketing/landing/general/occasions";
 
-export const HERO_OCCASION_SUFFIXES = OCCASIONS.map(
-  (occasion) => `hero_occasion_${occasion.key}`,
+export const HERO_OCCASION_SUFFIXES = OCCASION_KEYS.map(
+  (key) => `hero_occasion_${key}`,
 );
-
-export const HERO_STAR_POSITIONS = [1, 2, 3, 4, 5];
 
 export const HERO_THUMBS = [
   "/images/general/gen-wedding-party.webp",

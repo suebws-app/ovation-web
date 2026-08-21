@@ -28,7 +28,7 @@ export const HeroTabletScreen = ({
 
       <div className="absolute top-3 right-3 flex flex-col gap-2">
         {HERO_THUMBS.map((src) => (
-          <HeroThumb key={src} src={src} alt={photoAlt} />
+          <HeroThumb key={src} src={src} />
         ))}
       </div>
 

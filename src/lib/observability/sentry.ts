@@ -10,7 +10,8 @@ type NavigationType = Parameters<
 const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
 const isProduction = process.env.NODE_ENV === "production";
 
-const IDLE_FALLBACK_DELAY_MS = 4000;
+const IDLE_FALLBACK_DELAY_MS = 10000;
+const INTERACTION_LOAD_DELAY_MS = 1500;
 const INTERACTION_EVENTS: (keyof WindowEventMap)[] = [
   "pointerdown",
   "keydown",
@@ -147,9 +148,23 @@ export const scheduleSentryLoad = () => {
     void loadSentry();
   };
 
+  const scheduleAfterInteraction = () => {
+    runCleanups();
+    if (typeof window.requestIdleCallback === "function") {
+      window.requestIdleCallback(load, { timeout: 3000 });
+    } else {
+      window.setTimeout(load, INTERACTION_LOAD_DELAY_MS);
+    }
+  };
+
   INTERACTION_EVENTS.forEach((eventName) => {
-    window.addEventListener(eventName, load, { once: true, passive: true });
-    cleanups.push(() => window.removeEventListener(eventName, load));
+    window.addEventListener(eventName, scheduleAfterInteraction, {
+      once: true,
+      passive: true,
+    });
+    cleanups.push(() =>
+      window.removeEventListener(eventName, scheduleAfterInteraction),
+    );
   });
 
   const timer = window.setTimeout(load, IDLE_FALLBACK_DELAY_MS);

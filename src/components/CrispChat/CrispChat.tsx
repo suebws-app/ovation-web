@@ -3,14 +3,8 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "@/i18n/navigation";
 import { useSession } from "@/lib/auth/client";
+import { useDeferredMount } from "@/lib/hooks/useDeferredMount";
 
-const IDLE_FALLBACK_DELAY_MS = 10000;
-const INTERACTION_EVENTS: (keyof WindowEventMap)[] = [
-  "pointerdown",
-  "keydown",
-  "scroll",
-  "touchstart",
-];
 const CRISP_SCRIPT_ID = "crisp-widget";
 
 const ALWAYS_HIDDEN_PATH_PREFIXES = ["/g"];
@@ -62,7 +56,7 @@ const injectCrispScript = () => {
   document.head.appendChild(script);
 };
 
-export const CrispChat = ({ websiteId }: { websiteId: string }) => {
+const CrispChatActive = ({ websiteId }: { websiteId: string }) => {
   const scriptLoadedRef = useRef(false);
   const pathname = usePathname();
   const { data: session } = useSession();
@@ -74,28 +68,9 @@ export const CrispChat = ({ websiteId }: { websiteId: string }) => {
 
   useEffect(() => {
     if (!shouldShow || scriptLoadedRef.current) return;
-
+    scriptLoadedRef.current = true;
     ensureCrispQueue(websiteId);
-
-    const cleanups: (() => void)[] = [];
-    const runCleanups = () => cleanups.forEach((cleanup) => cleanup());
-
-    const load = () => {
-      if (scriptLoadedRef.current) return;
-      scriptLoadedRef.current = true;
-      runCleanups();
-      injectCrispScript();
-    };
-
-    INTERACTION_EVENTS.forEach((eventName) => {
-      window.addEventListener(eventName, load, { once: true, passive: true });
-      cleanups.push(() => window.removeEventListener(eventName, load));
-    });
-
-    const timer = window.setTimeout(load, IDLE_FALLBACK_DELAY_MS);
-    cleanups.push(() => window.clearTimeout(timer));
-
-    return runCleanups;
+    injectCrispScript();
   }, [websiteId, shouldShow]);
 
   useEffect(() => {
@@ -118,4 +93,10 @@ export const CrispChat = ({ websiteId }: { websiteId: string }) => {
   }, [email, name, websiteId]);
 
   return null;
+};
+
+export const CrispChat = ({ websiteId }: { websiteId: string }) => {
+  const active = useDeferredMount();
+  if (!active) return null;
+  return <CrispChatActive websiteId={websiteId} />;
 };

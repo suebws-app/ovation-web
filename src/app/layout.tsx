@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -6,6 +6,16 @@ import { CookieYesBanner } from "@/components/CookieYesBanner";
 import { DeferredGoogleTagManager } from "@/components/DeferredGoogleTagManager";
 import { appUrl } from "@/lib/seo/urls";
 import { clientEnv } from "@/lib/utils/env.client";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),

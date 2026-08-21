@@ -6,6 +6,7 @@ import { appRoutes } from "@/lib/routes";
 import { SignupThemeScope } from "@/components/SignupThemeScope";
 import { CreateHeader } from "@/features/layout/CreateHeader/CreateHeader";
 import { AppLayout } from "@/features/layout/AppLayout/AppLayout";
+import { ApiPreconnect } from "@/components/ApiPreconnect";
 import { eventsApi } from "@/lib/api/events";
 import { isConsumerRole } from "@/lib/auth/account-role";
 import { isPaidPlan } from "@/lib/utils/plan";
@@ -44,6 +45,7 @@ export default async function CreateLayout({
 
     return (
       <NextIntlClientProvider>
+        <ApiPreconnect />
         <AppLayout
           user={user}
           events={events.items}
@@ -57,6 +59,7 @@ export default async function CreateLayout({
 
   return (
     <NextIntlClientProvider>
+      <ApiPreconnect />
       <SignupThemeScope />
       <div className="bg-background flex min-h-screen w-full flex-col">
         <CreateHeader />
